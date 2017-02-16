@@ -29,8 +29,8 @@ protected:
 		int capa;
 	};
 
-	vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
-	vector <Colision> vecCol;  //Vector de colisiones
+std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
+	std:: vector <Colision> vecCol;  //Vector de colisiones
 	juegoPG* pJuego;
 	Texturas_t et;
 	SDL_Rect fondo;
