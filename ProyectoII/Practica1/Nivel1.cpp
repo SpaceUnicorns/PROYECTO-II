@@ -10,7 +10,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	int y = 0;
 	Tile aux2;
 	SDL_Rect rectAux; rectAux.x = rectAux.y = 0; rectAux.w = 99; rectAux.h = 50;
-	f.open("C:/Users/David/Desktop/UCM/PROYECTO II/Practica3-DavidPerez_AlvaroRodriguez-Peral/PROYECTO-II/ProyectoII/docs/mapa.txt", std::ios::in);
+	f.open("../docs/mapa.txt", std::ios::in);
 	while (!f.eof()){
 		//f >> x;
 		f.get(aux);
