@@ -1,5 +1,6 @@
 #pragma once
 #include "EstadoPG.h"
+#include <fstream>
 #include <iostream>
 #include "SDL_ttf.h"
 #include <string>
@@ -10,6 +11,7 @@ public:
 	Nivel1(juegoPG*jug);
 	//PlayPG(juegoPG*jug, int puntos);
 	virtual ~Nivel1();
+	virtual void draw();
 	/*//métodos-----------------------------------------------------------------
 	int getPuntos(){ return contPuntos; }
 	virtual void onClick();

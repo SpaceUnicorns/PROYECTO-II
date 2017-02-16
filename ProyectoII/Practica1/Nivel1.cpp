@@ -5,7 +5,47 @@
 #include "Pausa.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
-
+	std:: ifstream f; char aux = 'p';
+	int x = 0;
+	int y = 0;
+	Tile aux2;
+	SDL_Rect rectAux; rectAux.x = rectAux.y = 0; rectAux.w = 99; rectAux.h = 50;
+	f.open("C:/Users/David/Desktop/UCM/PROYECTO II/Practica3-DavidPerez_AlvaroRodriguez-Peral/PROYECTO-II/ProyectoII/docs/mapa.txt", std::ios::in);
+	while (!f.eof()){
+		//f >> x;
+		f.get(aux);
+		if (!f.fail()){
+			//std::cout << x << "\n";
+			switch (aux){
+				case 't':  rectAux.x = 0; aux2.rectTileset = rectAux;
+						   aux2.x = x; aux2.y = y; aux2.capa = 1;
+						   x += 100;
+					       vecTile.push_back(aux2);
+					      break;
+				case 's': rectAux.x = 99; aux2.rectTileset = rectAux;
+					      aux2.x = x; aux2.y = y; aux2.capa = 1;
+						  x += 100;
+					      vecTile.push_back(aux2);
+					      break;
+				case 'X': x += 100;
+					break;
+				case 'L': y += 25; if (y == 0 || y % 50 == 0) x = 0; else x = 50;;
+					break;
+			}
+			
+		}
+	}
+	f.close();
+	
+}
+void Nivel1::draw(){
+	SDL_Rect aux;
+	Tile tile;
+	for (int i = 0; i < vecTile.size(); i++){
+		tile= vecTile[i];
+		 aux.x = tile.x; aux.y = tile.y; aux.w = 99; aux.h = 50;
+		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
+	}
 }
 Nivel1::~Nivel1()
 {

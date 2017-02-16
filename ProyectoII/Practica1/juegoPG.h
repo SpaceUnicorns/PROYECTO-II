@@ -10,7 +10,7 @@
 #include <stack>
 #include <typeinfo>
 #include "EstadoJuego.h"
-enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TSuelo1 };
+enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TSuelo1, TSuelo2, TTileSet };
 
 class juegoPG
 {
