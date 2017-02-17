@@ -6,6 +6,7 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 	pJuego = juego;
 	rect.x = px;
 	rect.y = py;
+	start();
 	
 }
 
@@ -40,4 +41,39 @@ bool ObjetoPG::onOver(){
 }
 void ObjetoPG::draw(){
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
+}
+
+void ObjetoPG::awake(){}
+void ObjetoPG::sleep(){}
+void ObjetoPG::start(){
+	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
+	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
+
+	while (it != itFin){
+		it->second->start();
+		it++;
+	}
+}
+void ObjetoPG::update(){
+	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
+	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
+
+	while (it != itFin){
+		it->second->update();
+		it++;
+	}
+}
+void ObjetoPG::lateUpdate(){
+	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
+	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
+
+	while (it != itFin){
+		it->second->lateUpdate();
+		it++;
+	}
+}
+void ObjetoPG::swAble(){
+	if (activo) sleep();
+	else awake();
+	activo = !activo;
 }

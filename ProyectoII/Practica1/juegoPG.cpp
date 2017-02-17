@@ -21,7 +21,7 @@ juegoPG::juegoPG()
 	catch (EInitMixer &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
-	vecTexturas.resize(9);
+	vecTexturas.resize(8);
 	initMedia();	
 	
 	estados.push(new MenuPG(this,0));

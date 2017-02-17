@@ -1,12 +1,14 @@
 #pragma once
-#include "ObjetoPG.h"
+#include "ObjetoJuego.h"
 class Componente
 {
 public:
 
-	Componente(ObjetoPG *pEnt)
+	Componente(ObjetoJuego *pEnt)
 	{
 		pEntidad = pEnt;
+		activo = true;
+		start();
 	}
 
 	virtual ~Componente()
@@ -28,7 +30,7 @@ public:
 	//Atributos------------------------------------------------------------
 protected: 
 
-	ObjetoPG *pEntidad;
+	ObjetoJuego *pEntidad;
 	bool activo;
 };
 

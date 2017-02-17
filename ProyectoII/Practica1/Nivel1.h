@@ -9,7 +9,6 @@ class Nivel1 :
 {
 public:
 	Nivel1(juegoPG*jug);
-	//PlayPG(juegoPG*jug, int puntos);
 	virtual ~Nivel1();
 	virtual void draw();
 	/*//métodos-----------------------------------------------------------------

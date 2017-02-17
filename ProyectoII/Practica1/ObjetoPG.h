@@ -18,9 +18,21 @@ public:
 	virtual bool onClick();
 	virtual bool onOver();
 
+	virtual void update();
+	virtual void start();
+	virtual void lateUpdate();
+	virtual bool isAble(){ return activo; }
+	virtual void awake();
+	virtual void sleep();
+	virtual void swAble(); 
+
+
+
+
 protected: 
 	ObjetoPG(juegoPG * juego, int px, int py);
-	//Atributos
+	//Atributos-------------------------------------------
+	bool activo;
 	std::map <std::string, Componente*> mapaComponentes; 
 	juegoPG * pJuego;
 	Texturas_t et;
