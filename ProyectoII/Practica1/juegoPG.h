@@ -39,10 +39,10 @@ private:
 	SDL_Renderer * pRender;   //The renderer by the window  
 	SDL_Texture *pTexture;    //The image we will load and show on the screen
 	SDL_Color *pColor;
-	
+	SDL_DisplayMode pMode;
 
-	const int SCREEN_WIDTH = 640;   //Screen dimension
-	const int SCREEN_HEIGHT = 480;  //Screen dimension
+	int SCREEN_WIDTH = 1024;//640;   //Screen dimension
+	int SCREEN_HEIGHT = 768;//480;  //Screen dimension
 
 	int pmx, pmy;
 	bool exit;

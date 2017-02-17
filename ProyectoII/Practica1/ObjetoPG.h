@@ -3,6 +3,8 @@
 #include "SDL.h"
 #include "TexturasSDL.h"
 #include "juegoPG.h"
+#include <map>
+#include "Componente.h"
 class ObjetoPG :
 	public ObjetoJuego
 {
@@ -19,6 +21,7 @@ public:
 protected: 
 	ObjetoPG(juegoPG * juego, int px, int py);
 	//Atributos
+	std::map <std::string, Componente*> mapaComponentes; 
 	juegoPG * pJuego;
 	Texturas_t et;
 	SDL_Rect rect;

@@ -119,6 +119,11 @@ void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 		throw EInitSDL("SDL could not initialize!");
 	}
 	else {
+		int x = SDL_GetCurrentDisplayMode(0,&pMode);
+		if (x == 0){
+			SCREEN_HEIGHT = pMode.h; 
+			SCREEN_WIDTH = pMode.w;
+		}
 		//Create window: SDL_CreateWindow("SDL Hello World", posX, posY, width, height, SDL_WINDOW_SHOWN);
 		pWindow = SDL_CreateWindow("Ghost balloons", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (pWindow == nullptr){
