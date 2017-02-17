@@ -83,6 +83,16 @@ void juegoPG::run(){
 }
 //----------------------------------------------------------------------------------------------------------------------
 void juegoPG::handle_event(){
+	const Uint8 *keystate = SDL_GetKeyboardState(NULL);
+	input.dDS = (keystate[SDL_SCANCODE_RIGHT] && keystate[SDL_SCANCODE_UP]);
+	input.dDI = (keystate[SDL_SCANCODE_RIGHT] && keystate[SDL_SCANCODE_DOWN]);
+	input.dIS = (keystate[SDL_SCANCODE_LEFT] && keystate[SDL_SCANCODE_UP]);
+	input.dII = (keystate[SDL_SCANCODE_LEFT] && keystate[SDL_SCANCODE_DOWN]);
+	input.arriba = keystate[SDL_SCANCODE_UP];
+	input.abajo = keystate[SDL_SCANCODE_DOWN];
+	input.derecha = keystate[SDL_SCANCODE_RIGHT];
+	input.izquierda = keystate[SDL_SCANCODE_LEFT];
+
 	if (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT){
 			onExit();
@@ -93,6 +103,14 @@ void juegoPG::handle_event(){
 			}
 			else if (e.key.keysym.sym == SDLK_p){
 				estados.top()->onKeyUp('p');
+			}
+		}
+		else if (e.type == SDL_KEYDOWN){
+			if (e.key.keysym.sym == SDLK_a){
+				std::cout << "a ";
+			}
+			if (e.key.keysym.sym == SDLK_s){
+				std::cout << "s";
 			}
 		}
 		else if (e.type == SDL_MOUSEBUTTONUP) {
@@ -119,7 +137,7 @@ void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 		throw EInitSDL("SDL could not initialize!");
 	}
 	else {
-		int x = SDL_GetCurrentDisplayMode(0,&pMode);
+		int x = SDL_GetCurrentDisplayMode(1,&pMode);
 		if (x == 0){
 			SCREEN_HEIGHT = pMode.h; 
 			SCREEN_WIDTH = pMode.w;

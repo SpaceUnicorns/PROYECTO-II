@@ -16,6 +16,7 @@ public:
 	virtual void onOver();
 	virtual void drawFont();
 	virtual void onKeyUp(char k){};
+	virtual void onKeyDown(char k){};
 
 protected: 
 	struct Tile {

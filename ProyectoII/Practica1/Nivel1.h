@@ -11,12 +11,14 @@ public:
 	Nivel1(juegoPG*jug);
 	virtual ~Nivel1();
 	virtual void draw();
+
+	//void onKeyUp(char k);
+
 	/*//métodos-----------------------------------------------------------------
 	int getPuntos(){ return contPuntos; }
 	virtual void onClick();
 	virtual void update();
 
-	void onKeyUp(char k);
 	virtual void newBaja(ObjetoJuego* ob);
 	virtual void newPuntos(ObjetoJuego* ob);
 	virtual void newPremio(ObjetoJuego* ob);

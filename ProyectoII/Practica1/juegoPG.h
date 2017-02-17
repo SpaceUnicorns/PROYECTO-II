@@ -32,6 +32,10 @@ public:
 	
 private:
 	SDL_Event e;
+	struct Input{
+		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
+	};
+	Input input;
 	std::vector<TexturasSDL*> vecTexturas;
 
 	
