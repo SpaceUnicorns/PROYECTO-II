@@ -9,9 +9,9 @@
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	std:: ifstream f; char aux = 'p';
 	int x = 0;
-	int y = 0;
+	int y = -31;
 	Tile aux2;
-	SDL_Rect rectAux; rectAux.x = rectAux.y = 0; rectAux.w = 99; rectAux.h = 50;
+	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 122; rectAux.h = 83;
 	f.open("../docs/mapa.txt", std::ios::in);
 	while (!f.eof()){
 		//f >> x;
@@ -19,19 +19,19 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 		if (!f.fail()){
 			//std::cout << x << "\n";
 			switch (aux){
-				case 't':  rectAux.x = 0; aux2.rectTileset = rectAux;
+				case 's':  rectAux.x = 0; aux2.rectTileset = rectAux;
 						   aux2.x = x; aux2.y = y; aux2.capa = 1;
-						   x += 100;
+						   x += 122;
 					       vecTile.push_back(aux2);
 					      break;
-				case 's': rectAux.x = 99; aux2.rectTileset = rectAux;
+				case 't': rectAux.x = 122; aux2.rectTileset = rectAux;
 					      aux2.x = x; aux2.y = y; aux2.capa = 1;
-						  x += 100;
+						  x += 122;
 					      vecTile.push_back(aux2);
 					      break;
-				case 'X': x += 100;
+				case 'X': x += 122;
 					break;
-				case 'L': y += 25; if (y == 0 || y % 50 == 0) x = 0; else x = 50;
+				case 'L': y += 31; if (y == 0 || y % 62 == 0) x = 61; else x = 0;
 					break;
 			}
 			
@@ -48,7 +48,7 @@ void Nivel1::draw(){
 	Tile tile;
 	for (int i = 0; i < vecTile.size(); i++){
 		tile= vecTile[i];
-		 aux.x = tile.x; aux.y = tile.y; aux.w = 99; aux.h = 50;
+		 aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
 		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 	}
 	for (ObjetoJuego *c : vecObj) c->draw();
