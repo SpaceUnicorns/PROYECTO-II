@@ -45,6 +45,25 @@ void ObjetoPG::draw(){
 
 void ObjetoPG::awake(){}
 void ObjetoPG::sleep(){}
+void ObjetoPG::newComponente(Componente* cmp, std:: string const & name){
+	if (!encuentraComponente(name))	mapaComponentes.insert(std::pair<std::string, Componente*>(name, cmp));
+}
+void ObjetoPG::deleteComponente(std::string const & name){
+	if (encuentraComponente(name)){
+		Componente * aux = mapaComponentes.at(name);
+		mapaComponentes.erase(name);
+		delete aux;
+	}
+}
+bool ObjetoPG::encuentraComponente(std::string const & name){
+	try{
+		mapaComponentes.at(name);
+		return true;
+	}
+	catch (std::out_of_range & e){
+		return false;
+	}
+}
 void ObjetoPG::start(){
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();

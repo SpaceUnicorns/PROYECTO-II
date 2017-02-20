@@ -2,6 +2,7 @@
 #include "PremioPG.h"
 #include "SDL_mixer.h"
 #include "GameOver.h"
+#include "Cazador.h"
 #include "Pausa.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
@@ -29,13 +30,15 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 					      break;
 				case 'X': x += 100;
 					break;
-				case 'L': y += 25; if (y == 0 || y % 50 == 0) x = 0; else x = 50;;
+				case 'L': y += 25; if (y == 0 || y % 50 == 0) x = 0; else x = 50;
 					break;
 			}
 			
 		}
 	}
 	f.close();
+
+	vecObj.push_back(new Cazador(pJuego, 50,50));
 	
 }
 void Nivel1::draw(){
@@ -46,6 +49,7 @@ void Nivel1::draw(){
 		 aux.x = tile.x; aux.y = tile.y; aux.w = 99; aux.h = 50;
 		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 	}
+	for (ObjetoJuego *c : vecObj) c->draw();
 }
 Nivel1::~Nivel1()
 {

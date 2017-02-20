@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Archivos de código fuente\Componentes">
+      <UniqueIdentifier>{9114c424-5d12-4135-9d96-eeed10be402e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Entidades">
+      <UniqueIdentifier>{fd5c8264-6944-48f6-8325-f1bfc722a787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Niveles">
+      <UniqueIdentifier>{4167523d-b209-4ad9-88f8-d43407022605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades">
+      <UniqueIdentifier>{47db91d5-4c32-43f5-bae6-71e6330530e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Componentes">
+      <UniqueIdentifier>{cceda7df-4ad8-4eea-8bcd-5fecd24dbbef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Niveles">
+      <UniqueIdentifier>{9d51f04e-5995-433b-be7c-3654c55f7ebf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainP1.cpp">
@@ -45,10 +63,13 @@
     <ClCompile Include="Pausa.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Nivel1.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Cazador.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="Nivel1.cpp">
+      <Filter>Archivos de código fuente\Niveles</Filter>
+    </ClCompile>
+    <ClCompile Include="MovimientoP.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,13 +110,16 @@
     <ClInclude Include="Error.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Nivel1.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Cazador.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Nivel1.h">
+      <Filter>Archivos de encabezado\Niveles</Filter>
+    </ClInclude>
+    <ClInclude Include="MovimientoP.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

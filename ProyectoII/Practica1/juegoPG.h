@@ -21,6 +21,10 @@ public:
 
 	//Atributos-------------------------------------------------------------------------------------------
 	std::stack<EstadoJuego*> estados;
+	struct Input{
+		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
+	};
+	Input input;
 	//Métodos****************************************************************************************************************************
 	void setSalir(){ exit = true; }
 	TexturasSDL* getFuente(){ return fuente; }
@@ -32,10 +36,7 @@ public:
 	
 private:
 	SDL_Event e;
-	struct Input{
-		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
-	};
-	Input input;
+	
 	std::vector<TexturasSDL*> vecTexturas;
 
 	
