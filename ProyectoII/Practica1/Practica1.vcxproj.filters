@@ -72,11 +72,11 @@
     <ClCompile Include="MovimientoP.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="ColisionBox.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Arbol.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="ColisionBox.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

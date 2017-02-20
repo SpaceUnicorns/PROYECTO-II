@@ -16,3 +16,7 @@ Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
 Cazador::~Cazador()
 {
 }
+void Cazador::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
+	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
+}

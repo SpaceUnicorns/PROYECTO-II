@@ -19,10 +19,12 @@ ColisionBox::~ColisionBox()
 {
 }
 void ColisionBox::update(){
-	//draw();
-	pObj->getPJuego()->getTextura(TCazador)->draw(pObj->getPJuego()->getRender(), boxRect);
+	boxRect.x = pObj->getRect().x;
+	boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;
+	boxRect.w = pObj->getRect().w;
+	boxRect.h = pObj->getRect().h *0.2;
 }
-void ColisionBox::draw(){
+void ColisionBox::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//std::cout << "Dibujado";
-	pObj->getPJuego()->getTextura(TCazador)->draw(pObj->getPJuego()->getRender(), boxRect);
+	pObj->getPJuego()->getTextura(TCColision)->draw(pObj->getPJuego()->getRender(), boxRect);
 }
