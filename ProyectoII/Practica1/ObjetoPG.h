@@ -29,6 +29,7 @@ public:
 	virtual void deleteComponente(std::string const & name);
 	virtual bool encuentraComponente(std::string const & name);
 	virtual void setRect(int incrX, int incrY){ rect.x += incrX; rect.y += incrY; }
+	virtual SDL_Rect getRect(){ return rect; }
 	virtual juegoPG* getPJuego(){ return pJuego; }
 	
 

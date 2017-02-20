@@ -11,7 +11,6 @@ public:
 	//Métodos--------------------------------------------------
 	virtual void update();
 
-	//Atributos-----------------------------------------
-	ObjetoPG* pObj;
+	ObjetoPG *pObj;
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "ObjetoJuego.h"
+#include <SDL.h>
 class Componente
 {
 public:

@@ -70,7 +70,13 @@
       <Filter>Archivos de código fuente\Niveles</Filter>
     </ClCompile>
     <ClCompile Include="MovimientoP.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="ColisionBox.cpp">
       <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Arbol.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,7 +126,13 @@
       <Filter>Archivos de encabezado\Niveles</Filter>
     </ClInclude>
     <ClInclude Include="MovimientoP.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Arbol.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

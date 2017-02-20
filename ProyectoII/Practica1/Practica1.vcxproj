@@ -71,8 +71,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Arbol.cpp" />
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="Cazador.cpp" />
+    <ClCompile Include="ColisionBox.cpp" />
     <ClCompile Include="EstadoPG.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
@@ -86,8 +88,10 @@
     <ClCompile Include="TexturasSDL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Arbol.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="Cazador.h" />
+    <ClInclude Include="ColisionBox.h" />
     <ClInclude Include="Componente.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="EstadoJuego.h" />

@@ -3,6 +3,7 @@
 #include "SDL_mixer.h"
 #include "GameOver.h"
 #include "Cazador.h"
+#include "Arbol.h"
 #include "Pausa.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
@@ -38,7 +39,8 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	}
 	f.close();
 
-	vecObj.push_back(new Cazador(pJuego, 50,50));
+	vecObj.push_back(new Cazador(pJuego, 250,550));
+	vecObj.push_back(new Arbol(pJuego, 80, 80));
 	
 }
 void Nivel1::draw(){
