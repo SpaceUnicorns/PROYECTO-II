@@ -128,11 +128,11 @@
     <ClInclude Include="MovimientoP.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
-    <ClInclude Include="ColisionBox.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Arbol.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

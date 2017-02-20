@@ -6,14 +6,20 @@ class ColisionBox :
 {
 public:
 	ColisionBox(ObjetoJuego* ent);
-	ColisionBox(ObjetoJuego* ent, SDL_Rect const & newRect);
+	ColisionBox(ObjetoJuego* ent, SDL_Rect const & newRect, bool mov);
 	virtual ~ColisionBox();
 	//Atributos--------------------------------------
-	SDL_Rect boxRect;
-	ObjetoPG* pObj;
-
+	
 	//Metodos----------------------------------------
 	virtual void update();
 	virtual void draw();
+	virtual void setMovible(bool mov){ movible = mov; }
+	virtual bool getMovible(){ return movible; }
+	virtual SDL_Rect getRectBox(){ return boxRect; }
+private:
+	//Atributos-------------------------------------------------------
+	bool movible;
+	ObjetoPG* pObj;
+	SDL_Rect boxRect;
 };
 
