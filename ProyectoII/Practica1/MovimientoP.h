@@ -12,5 +12,7 @@ public:
 	virtual void update();
 
 	ObjetoPG *pObj;
+private:
+	int framerate = 0;
 };
 

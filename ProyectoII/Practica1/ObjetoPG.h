@@ -31,6 +31,9 @@ public:
 	virtual void setRect(int incrX, int incrY){ rect.x += incrX; rect.y += incrY; }
 	virtual SDL_Rect getRect(){ return rect; }
 	virtual juegoPG* getPJuego(){ return pJuego; }
+	//Animacion-------------------------------------------
+	virtual void changeAnimV(int fila) { anim.y = anim.h * fila; } // coloca la 'j'
+	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*6) anim.x = 0; } // coloca la 'i'
 	
 
 protected: 
@@ -41,5 +44,6 @@ protected:
 	juegoPG * pJuego;
 	Texturas_t et;
 	SDL_Rect rect;
+	SDL_Rect anim;
 };
 
