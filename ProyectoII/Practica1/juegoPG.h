@@ -10,6 +10,8 @@
 #include <stack>
 #include <typeinfo>
 #include "EstadoJuego.h"
+#include "fmod.hpp"
+
 enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision };
 
 class juegoPG
@@ -20,6 +22,8 @@ public:
 	void run();
 
 	//Atributos-------------------------------------------------------------------------------------------
+	FMOD::System     *system;
+	FMOD_RESULT       result;
 	std::stack<EstadoJuego*> estados;
 	struct Input{
 		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;

@@ -18,7 +18,6 @@ juegoPG::juegoPG()
 	try{
 		initSDL(pWin, pRender);
 	}
-	catch (EInitMixer &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
 	vecTexturas.resize(10);
@@ -163,15 +162,16 @@ void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 		cout << "TTF could not be initialized! \nTTF_Error: " << TTF_GetError() << '\n';
 		throw EInitTTF("Font could not be initialized!, There will be no marker");
 	}
-	int initted = Mix_Init(27);
-	if (initted & 27 != 27){
-		cout << "Mixer could not be initialized! \nMixer_Error: " << Mix_GetError() << '\n';
-		throw EInitMixer("Sound could not be initialized!, The Game will have no Sound");
+
+	unsigned int      version;
+	result = FMOD::System_Create(&system);
+	result = system->getVersion(&version);
+
+	if (version < FMOD_VERSION)
+	{
+		std::cout << ("FMOD lib version %08x doesn't match header version %08x", version, FMOD_VERSION);
 	}
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0){
-		cout << "Mixer (OpenAudio) could not be initialized! \nMixer_Error: " << Mix_GetError() << '\n';
-		throw EInitMixer("Sound could not be initialized!, The Game will have no Sound");
-	}
+	system->set3DSettings(1.0, 1.0f, 1.0f);
 
 	
 }
@@ -179,7 +179,8 @@ void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 
 void juegoPG::closeSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer) {
 
-	Mix_Quit();
+	result = system->close();
+	result = system->release();
 	TTF_Quit();
 	SDL_DestroyRenderer(pRenderer);
 	pRenderer = nullptr;
