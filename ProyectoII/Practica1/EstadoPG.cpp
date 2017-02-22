@@ -2,6 +2,7 @@
 #include "Error.h"
 
 // Es importante ejecutar el metodo cargarAudio al principio de cada escena en la constructora despues de ejecutar la constructora del padre.
+// Tambien es importante cargar los audios en el mapa de fx y el mapa de musicas
 EstadoPG::EstadoPG(juegoPG*jug,int puntos)
 {
 	pJuego = jug;
@@ -23,6 +24,20 @@ EstadoPG::~EstadoPG()
 	vecObj.clear();
 }
 
+void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
+	std::ifstream f;
+	FMOD::Sound* sound;
+	std::string aux;
+	f.open(txt, std::ios::in);
+	while (!f.eof()){
+		f >> aux;
+		pJuego->system->createSound(txt.c_str(), FMOD_DEFAULT, 0, &sound);
+		if (tipo == 'f')
+			vfx.insert(std::pair<std::string, FMOD::Sound*>(aux, sound));
+		else if (tipo == 'm')
+			vmusic.insert(std::pair<std::string, FMOD::Sound*>(aux, sound));
+	}
+}
 void EstadoPG::cargarAudio(std::string irPath){
 	// Sistema de audio
 	pJuego->system->createChannelGroup("reverb", &reverbGroup);
