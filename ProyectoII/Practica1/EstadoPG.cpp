@@ -30,7 +30,7 @@ void EstadoPG::cargarAudio(std::string irPath){
 	/*
 	Creamos el recurso dcp y lo añadimos a la reverb
 	*/
-
+	
 	pJuego->system->createDSPByType(FMOD_DSP_TYPE_CONVOLUTIONREVERB, &reverbUnit);
 	reverbGroup->addDSP(FMOD_CHANNELCONTROL_DSP_TAIL, reverbUnit);
 
@@ -38,7 +38,7 @@ void EstadoPG::cargarAudio(std::string irPath){
 	No vamos a usar el audio asi que lo abrimos solo para leer
 	*/
 	FMOD::Sound* irSound;
-	pJuego->system->createSound(/*reverb en impulsos path*/irPath, FMOD_DEFAULT | FMOD_OPENONLY, NULL, &irSound);
+	pJuego->system->createSound(irPath.c_str(), FMOD_DEFAULT | FMOD_OPENONLY, NULL, &irSound);
 
 	/*
 	Cogemos la informacion del archivo de audio
@@ -110,7 +110,7 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 
 
 	try { 
-		bool *cOcupied;
+		bool *cOcupied = false;
 		cfx1->isPlaying(cOcupied);
 		if (&cOcupied == false){
 			cfx1->set3DAttributes(&pos, &vel);
@@ -118,18 +118,21 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 
 		}
 		else {
+			*cOcupied = false;
 			cfx2->isPlaying(cOcupied);
 			if (&cOcupied == false){
 				cfx2->set3DAttributes(&pos, &vel);
 				pJuego->system->playSound(vfx.at(fx), 0, true, &cfx2);
 			}
 			else{
+				*cOcupied = false;
 				cfx3->isPlaying(cOcupied);
 				if (&cOcupied == false){
 					cfx3->set3DAttributes(&pos, &vel);
 					pJuego->system->playSound(vfx.at(fx), 0, true, &cfx3);
 				}
 				else {
+					*cOcupied = false;
 					cfx4->isPlaying(cOcupied);
 					cfx4->set3DAttributes(&pos, &vel);
 					if (&cOcupied == false){
@@ -147,7 +150,7 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 }
 void EstadoPG::reproduceMusica(std::string music, bool fade){
 	try {
-		bool *cOcupied;
+		bool *cOcupied = false;
 		cmusic1->isPlaying(cOcupied);
 		if (&cOcupied){
 			pJuego->system->playSound(vmusic.at(music), 0, true, &cmusic2);
@@ -201,7 +204,7 @@ void EstadoPG::paraMusica(std::string music, bool fade){
 
 void EstadoPG::reproduceAmb(std::string amb, bool fade){
 	try {
-		bool *cOcupied;
+		bool *cOcupied = false;
 		camb1->isPlaying(cOcupied);
 		if (&cOcupied){
 			pJuego->system->playSound(vmusic.at(amb), 0, true, &camb2);
