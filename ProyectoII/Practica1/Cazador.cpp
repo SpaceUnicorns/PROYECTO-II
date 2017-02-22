@@ -1,6 +1,5 @@
 #include "Cazador.h"
 #include "MovimientoP.h"
-#include "ColisionBox.h"
 
 
 Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)

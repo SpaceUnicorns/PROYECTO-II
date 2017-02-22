@@ -15,6 +15,7 @@ enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, T
 class juegoPG
 {
 public:
+
 	juegoPG();
 	~juegoPG();
 	void run();

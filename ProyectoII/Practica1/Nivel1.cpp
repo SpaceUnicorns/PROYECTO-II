@@ -11,6 +11,8 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	int x = 0;
 	int y = -31;
 	Tile aux2;
+	TrianguloBorde auxBorde; 
+	Punto auxPunto;
 	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 122; rectAux.h = 83;
 	f.open("../docs/mapa.txt", std::ios::in);
 	while (!f.eof()){
@@ -29,7 +31,19 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 						  x += 122;
 					      vecTile.push_back(aux2);
 					      break;
-				case 'X': x += 122;
+				case 'X': 
+					//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+					//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes.
+					auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
+					auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
+					auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
+					vectBordes.push_back(auxBorde);
+					auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
+					vectBordes.push_back(auxBorde);
+					/*rectAux.x = 244; aux2.rectTileset = rectAux; //Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
+					aux2.x = x; aux2.y = y; aux2.capa = 1;
+					vecTile.push_back(aux2); */
+					x += 122;
 					break;
 				case 'L': y += 31; if (y == 0 || y % 62 == 0) x = 61; else x = 0;
 					break;
@@ -39,7 +53,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	}
 	f.close();
 
-	vecObj.push_back(new Cazador(pJuego, 250,550));
+	vecObj.push_back(new Cazador(pJuego, 150,150));
 	vecObj.push_back(new Arbol(pJuego, 80, 80));
 	
 }

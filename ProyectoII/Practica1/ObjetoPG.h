@@ -31,6 +31,7 @@ public:
 	virtual void setRect(int incrX, int incrY){ rect.x += incrX; rect.y += incrY; }
 	virtual SDL_Rect getRect(){ return rect; }
 	virtual juegoPG* getPJuego(){ return pJuego; }
+	virtual  SDL_Rect getColisionBox(){ return rect; };
 	//Animacion-------------------------------------------
 	virtual void changeAnimV(int fila) { anim.y = anim.h * fila; } // coloca la 'j'
 	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*6) anim.x = 0; } // coloca la 'i'
