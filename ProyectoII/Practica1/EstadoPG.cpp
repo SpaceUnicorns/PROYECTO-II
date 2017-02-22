@@ -129,7 +129,7 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 		cfx1->isPlaying(cOcupied);
 		if (&cOcupied == false){
 			cfx1->set3DAttributes(&pos, &vel);
-			pJuego->system->playSound(vfx.at(fx), 0, true, &cfx1);
+			pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
 
 		}
 		else {
@@ -137,25 +137,25 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 			cfx2->isPlaying(cOcupied);
 			if (&cOcupied == false){
 				cfx2->set3DAttributes(&pos, &vel);
-				pJuego->system->playSound(vfx.at(fx), 0, true, &cfx2);
+				pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx2);
 			}
 			else{
 				*cOcupied = false;
 				cfx3->isPlaying(cOcupied);
 				if (&cOcupied == false){
 					cfx3->set3DAttributes(&pos, &vel);
-					pJuego->system->playSound(vfx.at(fx), 0, true, &cfx3);
+					pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx3);
 				}
 				else {
 					*cOcupied = false;
 					cfx4->isPlaying(cOcupied);
 					cfx4->set3DAttributes(&pos, &vel);
 					if (&cOcupied == false){
-						pJuego->system->playSound(vfx.at(fx), 0, true, &cfx1);
+						pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
 					}
 					else {
 						cfx4->stop();
-						pJuego->system->playSound(vfx.at(fx), 0, true, &cfx1);
+						pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
 					}
 				}
 			}
@@ -168,7 +168,7 @@ void EstadoPG::reproduceMusica(std::string music, bool fade){
 		bool *cOcupied = false;
 		cmusic1->isPlaying(cOcupied);
 		if (&cOcupied){
-			pJuego->system->playSound(vmusic.at(music), 0, true, &cmusic2);
+			pJuego->system->playSound(vmusic.at(music), mainGroup, true, &cmusic2);
 			vmusic.at(music)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
 				unsigned long long parentclock;
@@ -180,7 +180,7 @@ void EstadoPG::reproduceMusica(std::string music, bool fade){
 		}
 
 		else{
-			pJuego->system->playSound(vmusic.at(music), 0, true, &cmusic1);
+			pJuego->system->playSound(vmusic.at(music), mainGroup, true, &cmusic1);
 			vmusic.at(music)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
 				unsigned long long parentclock;
@@ -222,7 +222,7 @@ void EstadoPG::reproduceAmb(std::string amb, bool fade){
 		bool *cOcupied = false;
 		camb1->isPlaying(cOcupied);
 		if (&cOcupied){
-			pJuego->system->playSound(vmusic.at(amb), 0, true, &camb2);
+			pJuego->system->playSound(vmusic.at(amb), mainGroup, true, &camb2);
 			vmusic.at(amb)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
 				unsigned long long parentclock;
@@ -234,7 +234,7 @@ void EstadoPG::reproduceAmb(std::string amb, bool fade){
 		}
 
 		else{
-			pJuego->system->playSound(vmusic.at(amb), 0, true, &camb1);
+			pJuego->system->playSound(vmusic.at(amb), mainGroup, true, &camb1);
 			vmusic.at(amb)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
 				unsigned long long parentclock;
