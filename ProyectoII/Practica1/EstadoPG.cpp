@@ -27,19 +27,28 @@ EstadoPG::~EstadoPG()
 void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
 	std::ifstream f;
 	FMOD::Sound* sound;
-	std::string aux;
+	std::string aux, clave;
+	std::string cabecera = "../sounds/";
 	f.open(txt, std::ios::in);
 	while (!f.eof()){
 		f >> aux;
-		pJuego->system->createSound(txt.c_str(), FMOD_DEFAULT, 0, &sound);
-		if (tipo == 'f')
-			vfx.insert(std::pair<std::string, FMOD::Sound*>(aux, sound));
-		else if (tipo == 'm')
-			vmusic.insert(std::pair<std::string, FMOD::Sound*>(aux, sound));
+		clave = aux;
+		if (tipo == 'f'){
+			aux = cabecera + aux + ".wav";
+			pJuego->system->createSound(aux.c_str(), FMOD_3D, 0, &sound);
+			vfx.insert(std::pair<std::string, FMOD::Sound*>(clave, sound));
+		}
+		else if (tipo == 'm'){
+			aux = cabecera + aux + ".mp3";
+			pJuego->system->createSound(aux.c_str(), FMOD_3D, 0, &sound);
+			vmusic.insert(std::pair<std::string, FMOD::Sound*>(clave, sound));
+		}
 	}
 }
 void EstadoPG::cargarAudio(std::string irPath){
 	// Sistema de audio
+	pJuego->system->init(32, FMOD_INIT_NORMAL, NULL);
+
 	pJuego->system->createChannelGroup("reverb", &reverbGroup);
 	pJuego->system->createChannelGroup("main", &mainGroup);
 	/*
@@ -125,32 +134,32 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 
 
 	try { 
-		bool *cOcupied = false;
-		cfx1->isPlaying(cOcupied);
-		if (&cOcupied == false){
+		bool cOcupied = false;
+		cfx1->isPlaying(&cOcupied);
+		if (cOcupied == false){
 			cfx1->set3DAttributes(&pos, &vel);
 			pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
 
 		}
 		else {
-			*cOcupied = false;
-			cfx2->isPlaying(cOcupied);
-			if (&cOcupied == false){
+			cOcupied = false;
+			cfx2->isPlaying(&cOcupied);
+			if (cOcupied == false){
 				cfx2->set3DAttributes(&pos, &vel);
 				pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx2);
 			}
 			else{
-				*cOcupied = false;
-				cfx3->isPlaying(cOcupied);
-				if (&cOcupied == false){
+				cOcupied = false;
+				cfx3->isPlaying(&cOcupied);
+				if (cOcupied == false){
 					cfx3->set3DAttributes(&pos, &vel);
 					pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx3);
 				}
 				else {
-					*cOcupied = false;
-					cfx4->isPlaying(cOcupied);
+					cOcupied = false;
+					cfx4->isPlaying(&cOcupied);
 					cfx4->set3DAttributes(&pos, &vel);
-					if (&cOcupied == false){
+					if (cOcupied == false){
 						pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
 					}
 					else {
@@ -165,9 +174,9 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 }
 void EstadoPG::reproduceMusica(std::string music, bool fade){
 	try {
-		bool *cOcupied = false;
-		cmusic1->isPlaying(cOcupied);
-		if (&cOcupied){
+		bool cOcupied = false;
+		cmusic1->isPlaying(&cOcupied);
+		if (cOcupied){
 			pJuego->system->playSound(vmusic.at(music), mainGroup, true, &cmusic2);
 			vmusic.at(music)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
@@ -219,9 +228,9 @@ void EstadoPG::paraMusica(std::string music, bool fade){
 
 void EstadoPG::reproduceAmb(std::string amb, bool fade){
 	try {
-		bool *cOcupied = false;
-		camb1->isPlaying(cOcupied);
-		if (&cOcupied){
+		bool cOcupied = false;
+		camb1->isPlaying(&cOcupied);
+		if (cOcupied){
 			pJuego->system->playSound(vmusic.at(amb), mainGroup, true, &camb2);
 			vmusic.at(amb)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
