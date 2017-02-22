@@ -1,7 +1,7 @@
 #include "EstadoPG.h"
 #include "Error.h"
 
-
+// Es importante ejecutar el metodo cargarAudio al principio de cada escena en la constructora despues de ejecutar la constructora del padre.
 EstadoPG::EstadoPG(juegoPG*jug,int puntos)
 {
 	pJuego = jug;
@@ -12,13 +12,25 @@ EstadoPG::EstadoPG(juegoPG*jug,int puntos)
 	colorFuente.g = 214;
 	colorFuente.b = 28;
 	contPuntos = puntos;
+
+}
+
+
+EstadoPG::~EstadoPG()
+{
+	for (unsigned int i = 0; i < vecObj.size(); i++)
+		delete vecObj[i];
+	vecObj.clear();
+}
+
+void EstadoPG::cargarAudio(std::string irPath){
 	// Sistema de audio
 	pJuego->system->createChannelGroup("reverb", &reverbGroup);
 	pJuego->system->createChannelGroup("main", &mainGroup);
 	/*
 	Creamos el recurso dcp y lo añadimos a la reverb
 	*/
-	
+
 	pJuego->system->createDSPByType(FMOD_DSP_TYPE_CONVOLUTIONREVERB, &reverbUnit);
 	reverbGroup->addDSP(FMOD_CHANNELCONTROL_DSP_TAIL, reverbUnit);
 
@@ -26,7 +38,7 @@ EstadoPG::EstadoPG(juegoPG*jug,int puntos)
 	No vamos a usar el audio asi que lo abrimos solo para leer
 	*/
 	FMOD::Sound* irSound;
-	pJuego->system->createSound(/*reverb en impulsos path*/"", FMOD_DEFAULT | FMOD_OPENONLY, NULL, &irSound);
+	pJuego->system->createSound(/*reverb en impulsos path*/irPath, FMOD_DEFAULT | FMOD_OPENONLY, NULL, &irSound);
 
 	/*
 	Cogemos la informacion del archivo de audio
@@ -58,7 +70,7 @@ EstadoPG::EstadoPG(juegoPG*jug,int puntos)
 	*/
 	free(irData);
 	irSound->release();
-	
+
 	/*
 	Creamos el envio a la reverb
 	*/
@@ -91,14 +103,6 @@ EstadoPG::EstadoPG(juegoPG*jug,int puntos)
 	reverbUnit->addInput(channelHead, &reverbConnectionamb2, FMOD_DSPCONNECTION_TYPE_SEND);
 	camb2->setPaused(false);
 	reverbConnectionamb2->setMix(0.10);
-}
-
-
-EstadoPG::~EstadoPG()
-{
-	for (unsigned int i = 0; i < vecObj.size(); i++)
-		delete vecObj[i];
-	vecObj.clear();
 }
 void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 	FMOD_VECTOR pos = { x , y, 0.0f };

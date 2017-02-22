@@ -24,6 +24,7 @@ public:
 	void paraAmb(std::string amb, bool fade);
 	virtual void onKeyUp(char k){};
 	virtual void onKeyDown(char k){};
+	void cargarAudio(std::string irPath);
 
 protected: 
 	struct Tile {
