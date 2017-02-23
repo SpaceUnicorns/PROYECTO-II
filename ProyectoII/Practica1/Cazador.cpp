@@ -11,6 +11,7 @@ Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
 	newComponente(new ColisionBox(this), "ColisionBox");
 	anim.w = anim.h = 32; //cada frame del jugador mide 32x32
 	anim.x = anim.y = 0;
+	pintado = false;
 }
 
 
@@ -18,6 +19,7 @@ Cazador::~Cazador()
 {
 }
 void Cazador::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	pintado = true;
 	pJuego->getTextura(et)->draw(pJuego->getRender(),anim, rect);
 	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
 }

@@ -26,6 +26,9 @@ public:
 	virtual std::vector <TrianguloBorde> & getVectBordes() {
 		return vectBordes;
 	}
+	virtual std::vector <ObjetoJuego*> & getVectObj() {
+		return vecObj;
+	}
 
 protected: 
 	struct Tile {
