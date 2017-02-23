@@ -89,7 +89,7 @@ void EstadoPG::cargarAudio(std::string irPath){
 	/*
 	Tenemos un canal en seco y otro con la reverb sola
 	*/
-	reverbUnit->setParameterFloat(FMOD_DSP_CONVOLUTION_REVERB_PARAM_DRY, -80.0f);
+	//reverbUnit->setParameterFloat(FMOD_DSP_CONVOLUTION_REVERB_PARAM_DRY, -80.0f);
 
 	/*
 	Liberamos el recurso de respuesta a impulso
@@ -102,43 +102,39 @@ void EstadoPG::cargarAudio(std::string irPath){
 	*/
 	cfx1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionfx1, FMOD_DSPCONNECTION_TYPE_SEND);
-	cfx1->setPaused(false);
-	reverbConnectionfx1->setMix(0.10f);
+	reverbConnectionfx1->setMix(0.90f);
 
 	cfx2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionfx2, FMOD_DSPCONNECTION_TYPE_SEND);
-	cfx2->setPaused(false);
-	reverbConnectionfx2->setMix(0.10f);
+	reverbConnectionfx2->setMix(0.90f);
 
 	cfx3->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionfx3, FMOD_DSPCONNECTION_TYPE_SEND);
-	cfx3->setPaused(false);
-	reverbConnectionfx3->setMix(0.10f);
+	reverbConnectionfx3->setMix(0.90f);
 
 	cfx4->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionfx4, FMOD_DSPCONNECTION_TYPE_SEND);
-	cfx4->setPaused(false);
-	reverbConnectionfx4->setMix(0.10f);
+	reverbConnectionfx4->setMix(0.90f);
 
 	camb1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionamb1, FMOD_DSPCONNECTION_TYPE_SEND);
-	camb1->setPaused(false);
-	reverbConnectionamb1->setMix(0.10f);
+	reverbConnectionamb1->setMix(0.90f);
 
 	camb2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionamb2, FMOD_DSPCONNECTION_TYPE_SEND);
-	camb2->setPaused(false);
-	reverbConnectionamb2->setMix(0.10f);
+	reverbConnectionamb2->setMix(0.90f);
 
 	mainGroup->setVolume(1.0f);
+	FMOD_VECTOR forward = { 0.0f, 0.0f, 1.0f };
+	FMOD_VECTOR up = { 0.0f, 1.0f, 0.0f };
+	FMOD_VECTOR listenerpos = { 50, 50 };
+	FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };;
+	pJuego->system->set3DListenerAttributes(0, &listenerpos, &vel, &forward, &up);
+	pJuego->system->update();
+	
 }
 void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
-	FMOD::Sound* sound;
-	FMOD::Channel   *cfx = 0;
-	pJuego->system->createSound("../sounds/balloon.wav", FMOD_3D, 0, &sound);
-	pJuego->system->playSound(sound, 0, true, &cfx);
-	std::cout << "suena";
-	/*FMOD_VECTOR pos = { x , y, 0.0f };
+	FMOD_VECTOR pos = { x , y, 0.0f };
 	FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };
 
 
@@ -146,7 +142,7 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 		bool cOcupied = false;
 		cfx1->isPlaying(&cOcupied);
 		if (cOcupied == false){
-			pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
+			pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx1);
 			cfx1->set3DAttributes(&pos, &vel);
 
 		}
@@ -154,39 +150,39 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 			cOcupied = false;
 			cfx2->isPlaying(&cOcupied);
 			if (cOcupied == false){
-				pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx2);
+				pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx2);
 				cfx2->set3DAttributes(&pos, &vel);
 			}
 			else{
 				cOcupied = false;
 				cfx3->isPlaying(&cOcupied);
 				if (cOcupied == false){
-					pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx3);
+					pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx3);
 					cfx3->set3DAttributes(&pos, &vel);
 				}
 				else {
 					cOcupied = false;
 					cfx4->isPlaying(&cOcupied);
 					if (cOcupied == false){
-						pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
+						pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx1);
 					}
 					else {
 						cfx4->stop();
-						pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
+						pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx1);
 					}
 					cfx4->set3DAttributes(&pos, &vel);
 				}
 			}
 		}
 	}
-	catch (std::exception e){}*/
+	catch (std::exception e){}
 }
 void EstadoPG::reproduceMusica(std::string music, bool fade){
 	try {
 		bool cOcupied = false;
 		cmusic1->isPlaying(&cOcupied);
 		if (cOcupied){
-			pJuego->system->playSound(vmusic.at(music), mainGroup, true, &cmusic2);
+			pJuego->system->playSound(vmusic.at(music), mainGroup, false, &cmusic2);
 			vmusic.at(music)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
 				unsigned long long parentclock;
@@ -198,7 +194,7 @@ void EstadoPG::reproduceMusica(std::string music, bool fade){
 		}
 
 		else{
-			pJuego->system->playSound(vmusic.at(music), mainGroup, true, &cmusic1);
+			pJuego->system->playSound(vmusic.at(music), mainGroup, false, &cmusic1);
 			vmusic.at(music)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
 				unsigned long long parentclock;
@@ -240,7 +236,7 @@ void EstadoPG::reproduceAmb(std::string amb, bool fade){
 		bool cOcupied = false;
 		camb1->isPlaying(&cOcupied);
 		if (cOcupied){
-			pJuego->system->playSound(vmusic.at(amb), mainGroup, true, &camb2);
+			pJuego->system->playSound(vmusic.at(amb), mainGroup, false, &camb2);
 			vmusic.at(amb)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
 				unsigned long long parentclock;
@@ -252,7 +248,7 @@ void EstadoPG::reproduceAmb(std::string amb, bool fade){
 		}
 
 		else{
-			pJuego->system->playSound(vmusic.at(amb), mainGroup, true, &camb1);
+			pJuego->system->playSound(vmusic.at(amb), mainGroup, false, &camb1);
 			vmusic.at(amb)->setMode(FMOD_LOOP_NORMAL);
 			if (fade){
 				unsigned long long parentclock;

@@ -45,7 +45,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Cazador(pJuego, 250,550));
 	vecObj.push_back(new Arbol(pJuego, 80, 80));
 	reproduceFx("balloon", 5, 10, 0);
-	reproduceMusica("music", false);
+//	reproduceMusica("music", false);
 }
 void Nivel1::draw(){
 	SDL_Rect aux;

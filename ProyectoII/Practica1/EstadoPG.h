@@ -61,5 +61,8 @@ std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
 	std::map<std::string, FMOD::Sound*> vfx;
 	std::map<std::string, FMOD::Sound*> vmusic;
 
+
+	FMOD::Sound      *sound1;
+//	FMOD::Channel    *channel = 0;
 };
 
