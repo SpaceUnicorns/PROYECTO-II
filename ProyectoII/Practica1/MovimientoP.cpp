@@ -1,5 +1,6 @@
 #include "MovimientoP.h"
 #include "EstadoPG.h"
+#include "ColisionBox.h"
 
 
 MovimientoP::MovimientoP(ObjetoJuego* ent) : Componente(ent)
@@ -14,7 +15,7 @@ MovimientoP::~MovimientoP()
 	
 }
 
-//Método que calcula si alguno de los triangulos del vector de triangulos está colisionando con la posicion a la que nos queremos mover.
+/*//Método que calcula si alguno de los triangulos del vector de triangulos está colisionando con la posicion a la que nos queremos mover.
 bool MovimientoP::isColiding(Punto const & P){
 	bool col = false;
 	Punto p; p.x = P.x + pObj->getColisionBox().x; p.y = P.y + pObj->getColisionBox().y; //Posición de colisionBox + la posición a la que nos queremos mover.
@@ -52,7 +53,7 @@ En el caso de que la orientación del triángulo A1A2A3 sea negativa :
 Si las orientaciones de los tres triángulos que triángulos que tienen como vértice el punto P son negativas, el punto está dentro del triángulo
 En caso contrario el punto está situado fuera del triángulo.*/
 
-bool MovimientoP::inTriangle(TrianguloBorde tr, Punto const & P){
+/*bool MovimientoP::inTriangle(TrianguloBorde tr, Punto const & P){
 	int x = triangleOrientation(tr);
 	TrianguloBorde auxT;
 	if (x >= 0){// Orientación positiva
@@ -93,7 +94,7 @@ bool MovimientoP::inTriangle(TrianguloBorde tr, Punto const & P){
 int MovimientoP::triangleOrientation(TrianguloBorde const & tr){
 	TrianguloBorde s;
 	return ((tr.A.x - tr.C.x)*(tr.B.y - tr.C.y) - (tr.A.y - tr.C.y)*(tr.B.x - tr.C.x));
-}
+}*/
 void MovimientoP::update(){
 	//Antes de actualizar la posición comprobamos si colisiona con la posición siguiente.
 
@@ -103,14 +104,14 @@ void MovimientoP::update(){
 	framerate++;
 	if (pObj->getPJuego()->input.dDS){ //Diagonal Arriba-Derecha
 		nextPos.x = 2; nextPos.y = -1;
-		if (!isColiding(nextPos)){
+		if (!static_cast<ColisionBox*>( pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
 			pObj->setRect(nextPos.x, nextPos.y);
 			pObj->changeAnimV(7); // posiciona la 'j' de la matriz de la animacion
 		}
 	}
 	else if (pObj->getPJuego()->input.dDI){//Diagonal Abajo-Derecha
 		nextPos.x = 2; nextPos.y = 1;
-		if (!isColiding(nextPos)){
+		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
 			pObj->setRect(nextPos.x, nextPos.y);
 			pObj->changeAnimV(5);
 		}
@@ -118,7 +119,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.dII){//Diagonal Abajo-Izquierda
 		nextPos.x = -2; nextPos.y = 1;
-		if (!isColiding(nextPos)){
+		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
 			pObj->setRect(nextPos.x, nextPos.y);
 			pObj->changeAnimV(4);
 		}
@@ -126,7 +127,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.dIS){//Diagonal Arriba-Izquierda
 		nextPos.x = -2; nextPos.y = -1;
-		if (!isColiding(nextPos)){
+		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
 			pObj->setRect(nextPos.x, nextPos.y);
 			pObj->changeAnimV(6);
 		}
@@ -134,7 +135,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.arriba){
 		nextPos.x = 0; nextPos.y = -2;
-		if (!isColiding(nextPos)){
+		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
 			pObj->setRect(nextPos.x, nextPos.y);
 			pObj->changeAnimV(3);
 		}
@@ -143,7 +144,7 @@ void MovimientoP::update(){
 	else if (pObj->getPJuego()->input.derecha){
 		bool o;
 		nextPos.x = 2; nextPos.y = 0;
-		if (!isColiding(nextPos)){
+		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
 			pObj->setRect(nextPos.x, nextPos.y);
 			pObj->changeAnimV(2);
 		}
@@ -151,7 +152,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.abajo){
 		nextPos.x = 0; nextPos.y = 2;
-		if (!isColiding(nextPos)){
+		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
 			pObj->setRect(nextPos.x, nextPos.y);
 			pObj->changeAnimV(0);
 		}
@@ -159,7 +160,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.izquierda){
 		nextPos.x = -2; nextPos.y = 0;
-		if (!isColiding(nextPos)){
+		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
 			pObj->setRect(nextPos.x, nextPos.y);
 			pObj->changeAnimV(1);
 		}

@@ -16,10 +16,15 @@ public:
 	virtual void setMovible(bool mov){ movible = mov; }
 	virtual bool getMovible(){ return movible; }
 	virtual SDL_Rect getRectBox(){ return boxRect; }
+	//Funciones------------------------------------------------------------------------------------------------------------
+	bool isColiding(Punto const & P);
+
 private:
 	//Atributos-------------------------------------------------------
 	bool movible;
 	ObjetoPG* pObj;
 	SDL_Rect boxRect;
+	bool inTriangle(TrianguloBorde  tr, Punto const & P); //Calcula si un punto está dentro del triangulo.
+	int triangleOrientation(TrianguloBorde const &tr);
 };
 
