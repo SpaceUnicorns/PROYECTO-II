@@ -171,7 +171,8 @@ void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 	{
 		std::cout << ("FMOD lib version %08x doesn't match header version %08x", version, FMOD_VERSION);
 	}
-	system->set3DSettings(1.0, 1.0f, 1.0f);
+	system->init(100, FMOD_INIT_NORMAL, NULL);
+	system->set3DSettings(50.0, 50.0f, 1.0f);
 	FMOD_VECTOR forward = { 0.0f, 0.0f, 1.0f };
 	FMOD_VECTOR up = { 0.0f, 1.0f, 0.0f };
 	FMOD_VECTOR listenerpos = { SCREEN_WIDTH / 2, SCREEN_WIDTH / 2, 0 };

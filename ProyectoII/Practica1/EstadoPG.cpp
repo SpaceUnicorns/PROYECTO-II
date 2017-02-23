@@ -36,18 +36,20 @@ void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
 		if (tipo == 'f'){
 			aux = cabecera + aux + ".wav";
 			pJuego->system->createSound(aux.c_str(), FMOD_3D, 0, &sound);
+			sound->set3DMinMaxDistance(0.5f, 5000.0f);
 			vfx.insert(std::pair<std::string, FMOD::Sound*>(clave, sound));
 		}
 		else if (tipo == 'm'){
 			aux = cabecera + aux + ".mp3";
 			pJuego->system->createSound(aux.c_str(), FMOD_3D, 0, &sound);
+			sound->set3DMinMaxDistance(0.5f, 5000.0f);
 			vmusic.insert(std::pair<std::string, FMOD::Sound*>(clave, sound));
 		}
 	}
 }
 void EstadoPG::cargarAudio(std::string irPath){
 	// Sistema de audio
-	pJuego->system->init(32, FMOD_INIT_NORMAL, NULL);
+	
 
 	pJuego->system->createChannelGroup("reverb", &reverbGroup);
 	pJuego->system->createChannelGroup("main", &mainGroup);
@@ -101,35 +103,42 @@ void EstadoPG::cargarAudio(std::string irPath){
 	cfx1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionfx1, FMOD_DSPCONNECTION_TYPE_SEND);
 	cfx1->setPaused(false);
-	reverbConnectionfx1->setMix(0.10);
+	reverbConnectionfx1->setMix(0.10f);
 
 	cfx2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionfx2, FMOD_DSPCONNECTION_TYPE_SEND);
 	cfx2->setPaused(false);
-	reverbConnectionfx2->setMix(0.10);
+	reverbConnectionfx2->setMix(0.10f);
 
 	cfx3->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionfx3, FMOD_DSPCONNECTION_TYPE_SEND);
 	cfx3->setPaused(false);
-	reverbConnectionfx3->setMix(0.10);
+	reverbConnectionfx3->setMix(0.10f);
 
 	cfx4->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionfx4, FMOD_DSPCONNECTION_TYPE_SEND);
 	cfx4->setPaused(false);
-	reverbConnectionfx4->setMix(0.10);
+	reverbConnectionfx4->setMix(0.10f);
 
 	camb1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionamb1, FMOD_DSPCONNECTION_TYPE_SEND);
 	camb1->setPaused(false);
-	reverbConnectionamb1->setMix(0.10);
+	reverbConnectionamb1->setMix(0.10f);
 
 	camb2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 	reverbUnit->addInput(channelHead, &reverbConnectionamb2, FMOD_DSPCONNECTION_TYPE_SEND);
 	camb2->setPaused(false);
-	reverbConnectionamb2->setMix(0.10);
+	reverbConnectionamb2->setMix(0.10f);
+
+	mainGroup->setVolume(1.0f);
 }
 void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
-	FMOD_VECTOR pos = { x , y, 0.0f };
+	FMOD::Sound* sound;
+	FMOD::Channel   *cfx = 0;
+	pJuego->system->createSound("../sounds/balloon.wav", FMOD_3D, 0, &sound);
+	pJuego->system->playSound(sound, 0, true, &cfx);
+	std::cout << "suena";
+	/*FMOD_VECTOR pos = { x , y, 0.0f };
 	FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };
 
 
@@ -137,28 +146,27 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 		bool cOcupied = false;
 		cfx1->isPlaying(&cOcupied);
 		if (cOcupied == false){
-			cfx1->set3DAttributes(&pos, &vel);
 			pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
+			cfx1->set3DAttributes(&pos, &vel);
 
 		}
 		else {
 			cOcupied = false;
 			cfx2->isPlaying(&cOcupied);
 			if (cOcupied == false){
-				cfx2->set3DAttributes(&pos, &vel);
 				pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx2);
+				cfx2->set3DAttributes(&pos, &vel);
 			}
 			else{
 				cOcupied = false;
 				cfx3->isPlaying(&cOcupied);
 				if (cOcupied == false){
-					cfx3->set3DAttributes(&pos, &vel);
 					pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx3);
+					cfx3->set3DAttributes(&pos, &vel);
 				}
 				else {
 					cOcupied = false;
 					cfx4->isPlaying(&cOcupied);
-					cfx4->set3DAttributes(&pos, &vel);
 					if (cOcupied == false){
 						pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
 					}
@@ -166,11 +174,12 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 						cfx4->stop();
 						pJuego->system->playSound(vfx.at(fx), mainGroup, true, &cfx1);
 					}
+					cfx4->set3DAttributes(&pos, &vel);
 				}
 			}
 		}
 	}
-	catch (std::exception e){}
+	catch (std::exception e){}*/
 }
 void EstadoPG::reproduceMusica(std::string music, bool fade){
 	try {
