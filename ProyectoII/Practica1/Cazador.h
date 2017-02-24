@@ -12,6 +12,7 @@ public:
 	virtual bool estapintado(){ return pintado; }
 private: 
 	bool pintado;
+	virtual void update();
 	
 };
 

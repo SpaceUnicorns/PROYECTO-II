@@ -28,8 +28,11 @@ public:
 	virtual void newComponente(Componente* comp, std:: string const & name);
 	virtual void deleteComponente(std::string const & name);
 	virtual bool encuentraComponente(std::string const & name);
-	virtual void setRect(int incrX, int incrY){ rect.x += incrX; rect.y += incrY; }
+	//virtual void setRect(int incrX, int incrY){ rect.x += incrX; rect.y += incrY; }
+	virtual void setRect(int incrX, int incrY){ mapX += incrX; mapY += incrY; }
 	virtual SDL_Rect getRect(){ return rect; }
+	virtual int getmapX() const { return mapX; }
+	virtual int getmapY() const { return mapY; }
 	virtual juegoPG* getPJuego(){ return pJuego; }
 	virtual  SDL_Rect getColisionBox(){ return rect; };
 	virtual Componente* dameComponente(std::string const &s){
@@ -47,7 +50,9 @@ protected:
 	std::map <std::string, Componente*> mapaComponentes; 
 	juegoPG * pJuego;
 	Texturas_t et;
-	SDL_Rect rect;
+	int mapX;
+	int mapY;
+	SDL_Rect rect;	//Coordenadas respecto a la camara
 	SDL_Rect anim;
 };
 

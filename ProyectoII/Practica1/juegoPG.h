@@ -34,7 +34,8 @@ public:
 	void getMousePos(int & mpx, int & mpy) const {
 		mpx = pmx; mpy = pmy;
 	}
-	
+	int getScreenW(){ return SCREEN_WIDTH; }
+	int getScreenH(){ return SCREEN_HEIGHT; }
 private:
 	SDL_Event e;
 	

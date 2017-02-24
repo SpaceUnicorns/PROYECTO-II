@@ -101,9 +101,12 @@ int ColisionBox::triangleOrientation(TrianguloBorde const & tr){
 	return ((tr.A.x - tr.C.x)*(tr.B.y - tr.C.y) - (tr.A.y - tr.C.y)*(tr.B.x - tr.C.x));
 }
 void ColisionBox::update(){
+	boxRect.x = pObj->getRect().x +15;
+	boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;
+
 	if (movible){
-		boxRect.x = pObj->getRect().x +15;
-		boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;
+		mapX = pObj->getmapX() + 15;
+		mapY = pObj->getmapY() + pObj->getRect().h *0.8;
 	}
 }
 void ColisionBox::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

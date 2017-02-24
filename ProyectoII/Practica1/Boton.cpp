@@ -30,5 +30,9 @@ bool Boton::onOver(){
 	return false;
 }
 void Boton::draw(){
+	//Conversión coordenadas mapa a cámara
+	rect.x = mapX - (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamera().x);
+	rect.y = mapY - (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamera().y);
+
 	pJuego->getTextura(et)->draw(pJuego->getRender(), anim, rect);
 }

@@ -29,7 +29,13 @@ public:
 	virtual std::vector <ObjetoJuego*> & getVectObj() {
 		return vecObj;
 	}
-
+	virtual void setCamera(int x, int y){
+		camara.x += x;
+		camara.y += y;
+	}
+	virtual SDL_Rect getCamera() const{
+		return camara;
+	}
 protected: 
 	struct Tile {
 		int x, y;
@@ -52,6 +58,8 @@ protected:
 	SDL_Color colorFuente;
 	int contPuntos;
 	std::vector<ObjetoJuego*> vecObj;
+	SDL_Rect camara;
+	int W, H; //w y h son las dimensiones del mapa.
 
 };
 

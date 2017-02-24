@@ -47,6 +47,7 @@ void EstadoPG::update(){
 	}
 }
 void EstadoPG::onClick(){
+	
 	bool encontrado = false;
 	int it = vecObj.size() - 1;
 	while (!encontrado && it >= 0){

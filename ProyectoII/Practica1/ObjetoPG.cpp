@@ -4,6 +4,9 @@
 ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 {
 	pJuego = juego;
+	mapX = px;
+	mapY = py;
+
 	rect.x = px;
 	rect.y = py;
 	start();
@@ -40,6 +43,9 @@ bool ObjetoPG::onOver(){
 	return encontrado;
 }
 void ObjetoPG::draw(){
+	//Conversión coordenadas mapa a cámara
+	rect.x = mapX - (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamera().x);
+	rect.y = mapY - (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamera().y);
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
 
@@ -77,6 +83,9 @@ void ObjetoPG::start(){
 void ObjetoPG::update(){
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
+
+	rect.x = mapX - (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamera().x);
+	rect.y = mapY - (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamera().y);
 
 	while (it != itFin){
 		it->second->update();

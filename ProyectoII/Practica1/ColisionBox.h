@@ -24,6 +24,8 @@ private:
 	bool movible;
 	ObjetoPG* pObj;
 	SDL_Rect boxRect;
+	int mapX;
+	int mapY;
 	bool inTriangle(TrianguloBorde  tr, Punto const & P); //Calcula si un punto está dentro del triangulo.
 	int triangleOrientation(TrianguloBorde const &tr);
 };
