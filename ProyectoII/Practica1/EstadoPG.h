@@ -19,11 +19,11 @@ public:
 	virtual void onClick();
 	virtual void onOver();
 	virtual void drawFont();
-	void reproduceFx(std::string fx, float x, float y, float wet);
-	void reproduceMusica(std::string music, bool fade);
-	void paraMusica(std::string music, bool fade);
-	void reproduceAmb(std::string amb, bool fade);
-	void paraAmb(std::string amb, bool fade);
+	virtual void reproduceFx(std::string fx, float x, float y, float wet);
+	virtual void reproduceMusica(std::string music, bool fade);
+	virtual void paraMusica(std::string music, bool fade);
+	virtual void reproduceAmb(std::string amb, bool fade);
+	virtual void paraAmb(std::string amb, bool fade);
 	virtual void onKeyUp(char k){};
 	virtual void onKeyDown(char k){};
 	// Audio
