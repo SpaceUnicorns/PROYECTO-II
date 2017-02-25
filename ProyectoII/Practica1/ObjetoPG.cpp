@@ -61,6 +61,7 @@ bool ObjetoPG::encuentraComponente(std::string const & name){
 		return true;
 	}
 	catch (std::out_of_range & e){
+		std::cout << "No he encontrado el componente: " << name << "\n";
 		return false;
 	}
 }

@@ -1,5 +1,6 @@
 #include "Arbol.h"
 #include "ColisionBox.h"
+#include "Nivel1.h"
 #include <SDL.h>
 
 
@@ -16,7 +17,10 @@ Arbol::Arbol(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 Arbol::~Arbol()
 {
 }
-void Arbol::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+void Arbol::draw(/*Cazador *caz*/){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	/*int y = caz->getColisionBox().y;
+	int x = caz->getColisionBox().x;
+	if (y < getColisionBox().y) caz->draw();*/
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
 }

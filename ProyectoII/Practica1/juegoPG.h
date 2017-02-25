@@ -12,11 +12,13 @@
 #include "EstadoJuego.h"
 #include "fmod.hpp"
 
-enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision };
+enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision, TJugador };
+
 
 class juegoPG
 {
 public:
+
 	juegoPG();
 	~juegoPG();
 	void run();

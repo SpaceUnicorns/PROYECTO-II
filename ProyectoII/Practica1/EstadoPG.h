@@ -3,14 +3,24 @@
 #include "juegoPG.h"
 #include "ObjetoJuego.h"
 #include <vector>
+
 #include <map>
 #include "fmod.hpp"
 #include <fstream>
 #include <iostream>
+
+static struct Punto{
+	int x, y;
+};
+static struct TrianguloBorde{
+	Punto A, B, C;
+};
+
 class EstadoPG :
 	public EstadoJuego
 {
 public:
+	
 	EstadoPG(juegoPG* jug,int puntos);
 	virtual ~EstadoPG();
 	virtual void draw();
@@ -26,9 +36,18 @@ public:
 	virtual void paraAmb(std::string amb, bool fade);
 	virtual void onKeyUp(char k){};
 	virtual void onKeyDown(char k){};
+
 	// Audio
 	void cargarAssetsAudio(std::string txt, char tipo);
 	void cargarAudio(std::string irPath);
+
+	virtual std::vector <TrianguloBorde> & getVectBordes() {
+		return vectBordes;
+	}
+	virtual std::vector <ObjetoJuego*> & getVectObj() {
+		return vecObj;
+	}
+
 
 protected: 
 	struct Tile {
@@ -36,11 +55,17 @@ protected:
 		int capa;
 		SDL_Rect rectTileset;     //Contiene el rectangulo del Tileset que se quiere dibujar.
 	};
+	
 	struct Colision
 	{
 		SDL_Rect collider;
 		int capa;
 	};
+
+
+	std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
+	std::vector<TrianguloBorde> vectBordes;
+
 	std:: vector <Colision> vecCol;  //Vector de colisiones
 	juegoPG* pJuego;
 	Texturas_t et;
@@ -56,7 +81,7 @@ protected:
 	int cMusic;
 	int cAmb;
 	FMOD::Channel   *cfx1 = 0, *cfx2 = 0, *cfx3 = 0, *cfx4 = 0, *camb1 = 0, *camb2 = 0, *cmusic1 = 0, *cmusic2 = 0;
-std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
+//	std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
 	std::vector<ObjetoJuego*> vecObj;
 	std::map<std::string, FMOD::Sound*> vfx;
 	std::map<std::string, FMOD::Sound*> vmusic;

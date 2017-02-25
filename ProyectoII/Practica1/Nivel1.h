@@ -2,6 +2,7 @@
 #include "EstadoPG.h"
 #include <fstream>
 #include <iostream>
+#include "Cazador.h"
 #include "SDL_ttf.h"
 #include <string>
 class Nivel1 :
@@ -25,7 +26,6 @@ public:
 	virtual void reproduce(ObjetoJuego* ob);*/
 
 private:
-
 
 	/*int contGlobos, globosTot, pmx, pmy;
 	int numPremios;

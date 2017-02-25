@@ -1,6 +1,7 @@
 #pragma once
 #include "ObjetoJuego.h"
 #include <SDL.h>
+#include "EstadoPG.h"
 class Componente
 {
 public:
@@ -27,7 +28,6 @@ public:
 		else awake();
 		activo = !activo; 
 	}
-
 	//Atributos------------------------------------------------------------
 protected: 
 
