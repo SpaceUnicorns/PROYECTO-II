@@ -48,6 +48,7 @@ protected:
 	juegoPG * pJuego;
 	Texturas_t et;
 	SDL_Rect rect;
+	SDL_Rect aux; //Rect auxiliar para cual quier cuenta con rectangulos (Se usa para la camara)	
 	SDL_Rect anim;
 };
 

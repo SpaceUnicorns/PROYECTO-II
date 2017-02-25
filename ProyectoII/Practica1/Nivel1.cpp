@@ -54,7 +54,9 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	}
 	f.close();
 
-	vecObj.push_back(new Cazador(pJuego, 150,150));
+	camara.x = camara.y = 0;
+	camara.h = 768; camara.w = 1024;
+	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
 	vecObj.push_back(new Arbol(pJuego, 180, 60));
 	vecObj.push_back(new Arbol(pJuego, 480, 260));
 	vecObj.push_back(new Arbol(pJuego, 380, 60));
@@ -68,16 +70,23 @@ void Nivel1::draw(){
 	SDL_Rect aux;
 	Tile tile;
 	for (int i = 0; i < vecTile.size(); i++){
+		vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
 		tile= vecTile[i];
 		 aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
 		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 	}
+	for (int i = 0; i < vectBordes.size(); i++){
+		vectBordes[i].A.x -= camara.x;
+		vectBordes[i].A.y -= camara.y;
+		vectBordes[i].B.x -= camara.x;
+		vectBordes[i].B.y -= camara.y;
+		vectBordes[i].C.x -= camara.x;
+		vectBordes[i].C.y -= camara.y;
+	}
 	std::sort(vecObj.begin(), vecObj.end(), ordena);
 	for (ObjetoJuego* ob : vecObj) ob->draw();
-	/*for (int i = 1; i < vecObj.size(); i++){
-		static_cast<Arbol*>( vecObj[i])->draw(pCazador);
-	}*/
-	//static_cast<Cazador*>( vecObj[0])->
+	
+	setCamara(0,0); //Se reinicia el offset a 0
 }
 Nivel1::~Nivel1()
 {
