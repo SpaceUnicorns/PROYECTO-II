@@ -3,7 +3,6 @@
 #include "juegoPG.h"
 #include "ObjetoJuego.h"
 #include <vector>
-
 #include <map>
 #include "fmod.hpp"
 #include <fstream>
@@ -20,7 +19,6 @@ class EstadoPG :
 	public EstadoJuego
 {
 public:
-	
 	EstadoPG(juegoPG* jug,int puntos);
 	virtual ~EstadoPG();
 	virtual void draw();
@@ -36,17 +34,16 @@ public:
 	virtual void paraAmb(std::string amb, bool fade);
 	virtual void onKeyUp(char k){};
 	virtual void onKeyDown(char k){};
-
-	// Audio
-	void cargarAssetsAudio(std::string txt, char tipo);
-	void cargarAudio(std::string irPath);
-
 	virtual std::vector <TrianguloBorde> & getVectBordes() {
 		return vectBordes;
 	}
 	virtual std::vector <ObjetoJuego*> & getVectObj() {
 		return vecObj;
 	}
+
+	// Audio
+	void cargarAssetsAudio(std::string txt, char tipo);
+	void cargarAudio(std::string irPath);
 
 
 protected: 
@@ -61,6 +58,7 @@ protected:
 		SDL_Rect collider;
 		int capa;
 	};
+
 
 
 	std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
@@ -81,7 +79,6 @@ protected:
 	int cMusic;
 	int cAmb;
 	FMOD::Channel   *cfx1 = 0, *cfx2 = 0, *cfx3 = 0, *cfx4 = 0, *camb1 = 0, *camb2 = 0, *cmusic1 = 0, *cmusic2 = 0;
-//	std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
 	std::vector<ObjetoJuego*> vecObj;
 	std::map<std::string, FMOD::Sound*> vfx;
 	std::map<std::string, FMOD::Sound*> vmusic;

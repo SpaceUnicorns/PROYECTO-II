@@ -14,7 +14,6 @@
 
 enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision, TJugador };
 
-
 class juegoPG
 {
 public:
