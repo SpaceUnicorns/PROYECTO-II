@@ -105,10 +105,12 @@ void ColisionBox::update(){
 		boxRect.x = pObj->getRect().x +15;
 		boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;
 	}*/
-	boxRect.x = pObj->getRect().x + 15;
-	boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;
 }
 void ColisionBox::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//std::cout << "Dibujado";
+	if (!movible) {
+		boxRect.y -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().y;
+		boxRect.x -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().x;
+	}
 	pObj->getPJuego()->getTextura(TCColision)->draw(pObj->getPJuego()->getRender(), boxRect);
 }

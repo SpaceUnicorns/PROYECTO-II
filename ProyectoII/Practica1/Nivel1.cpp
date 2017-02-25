@@ -59,7 +59,9 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
 	vecObj.push_back(new Arbol(pJuego, 180, 60));
 	vecObj.push_back(new Arbol(pJuego, 480, 260));
-	vecObj.push_back(new Arbol(pJuego, 380, 60));
+	vecObj.push_back(new Arbol(pJuego, 680, 60));
+	vecObj.push_back(new Arbol(pJuego, 750, 365));
+	vecObj.push_back(new Arbol(pJuego, 1080, 195));
 	vecObj.push_back(new Arbol(pJuego, 480, 60));
 	
 }
