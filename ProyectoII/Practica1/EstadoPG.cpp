@@ -23,27 +23,28 @@ EstadoPG::~EstadoPG()
 		delete vecObj[i];
 	vecObj.clear();
 
-	auto it = vfx.begin();
-	auto itEnd = vfx.end();
-	/*while (it != itEnd) {
-		it->second->release();
-		it++;
-	}
-	vfx.clear();
-	it = vmusic.begin();
-	itEnd = vmusic.end();
+/*	FMOD_RESULT result;
 
-	while (it != itEnd) {
-		it->second->release();
-		it++;
-	}
-	vmusic.clear();*/
+	try{
+		result = reverbGroup->release();
+		result = reverbUnit->release();
+		result = reverbGroup->removeDSP(reverbUnit);
+		result = reverbUnit->disconnectAll(true, true);
 
-	mainGroup->release();
-	reverbGroup->removeDSP(reverbUnit);
-	reverbUnit->disconnectAll(true, true);
-	reverbUnit->release();
-	reverbGroup->release();
+		auto it = vfx.begin();
+		while (!vfx.empty()) {
+				it->second->release();
+				vfx.erase(it);
+		}
+
+		it = vmusic.begin();
+		while (!vmusic.empty()) {
+			it->second->release();
+			vfx.erase(it);
+		}
+	}
+	catch (std::exception e){}
+	mainGroup->release();*/
 }
 
 void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
@@ -71,7 +72,6 @@ void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
 }
 void EstadoPG::cargarAudio(std::string irPath){
 	// Sistema de audio
-	FMOD_RESULT result;
 
 	pJuego->system->createChannelGroup("reverb", &reverbGroup);
 	pJuego->system->createChannelGroup("main", &mainGroup);
@@ -94,9 +94,9 @@ void EstadoPG::cargarAudio(std::string irPath){
 	FMOD_SOUND_FORMAT irSoundFormat;
 	FMOD_SOUND_TYPE irSoundType;
 	int irSoundBits, irSoundChannels;
-	result = irSound->getFormat(&irSoundType, &irSoundFormat, &irSoundChannels, &irSoundBits);
+	irSound->getFormat(&irSoundType, &irSoundFormat, &irSoundChannels, &irSoundBits);
 	unsigned int irSoundLength;
-	result = irSound->getLength(&irSoundLength, FMOD_TIMEUNIT_PCM);
+	irSound->getLength(&irSoundLength, FMOD_TIMEUNIT_PCM);
 
 	/*
 	El formato del archivo de respuesta a impulso debe ser wav, PCM, 16 bits, 48 kh, el numero de canales no es importante
@@ -105,13 +105,13 @@ void EstadoPG::cargarAudio(std::string irPath){
 	short* irData = (short*)malloc(irDataLength);
 	irData[0] = (short)irSoundChannels;
 	unsigned int irDataRead;
-	result = irSound->readData(&irData[1], irDataLength - sizeof(short), &irDataRead);
-	result = reverbUnit->setParameterData(FMOD_DSP_CONVOLUTION_REVERB_PARAM_IR, irData, irDataLength);
+	irSound->readData(&irData[1], irDataLength - sizeof(short), &irDataRead);
+	reverbUnit->setParameterData(FMOD_DSP_CONVOLUTION_REVERB_PARAM_IR, irData, irDataLength);
 
 	/*
 	Tenemos un canal en seco y otro con la reverb sola
 	*/
-	result = reverbUnit->setParameterFloat(FMOD_DSP_CONVOLUTION_REVERB_PARAM_DRY, -80.0f);
+	reverbUnit->setParameterFloat(FMOD_DSP_CONVOLUTION_REVERB_PARAM_DRY, -80.0f);
 
 	/*
 	Liberamos el recurso de respuesta a impulso
@@ -119,43 +119,18 @@ void EstadoPG::cargarAudio(std::string irPath){
 	free(irData);
 	irSound->release();
 
-	/*
-	Creamos el envio a la reverb
-	*/
-/*	cfx1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-	reverbUnit->addInput(channelHead, &reverbConnectionfx1, FMOD_DSPCONNECTION_TYPE_SEND);
-	reverbConnectionfx1->setMix(0.90f);
-
-	cfx2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-	reverbUnit->addInput(channelHead, &reverbConnectionfx2, FMOD_DSPCONNECTION_TYPE_SEND);
-	reverbConnectionfx2->setMix(0.90f);
-
-	cfx3->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-	reverbUnit->addInput(channelHead, &reverbConnectionfx3, FMOD_DSPCONNECTION_TYPE_SEND);
-	reverbConnectionfx3->setMix(0.90f);
-
-	cfx4->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-	reverbUnit->addInput(channelHead, &reverbConnectionfx4, FMOD_DSPCONNECTION_TYPE_SEND);
-	reverbConnectionfx4->setMix(0.90f);
-
-	camb1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-	reverbUnit->addInput(channelHead, &reverbConnectionamb1, FMOD_DSPCONNECTION_TYPE_SEND);
-	reverbConnectionamb1->setMix(0.90f);
-
-	camb2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-	reverbUnit->addInput(channelHead, &reverbConnectionamb2, FMOD_DSPCONNECTION_TYPE_SEND);
-	reverbConnectionamb2->setMix(0.90f);
-	pJuego->system->update();
-	*/
-	FMOD_VECTOR forward = { 0.0f, 0.0f, 1.0f };
-	FMOD_VECTOR up = { 0.0f, 1.0f, 0.0f };
-	FMOD_VECTOR listenerpos = { 50, 50 };
+	pJuego->system->set3DSettings(1.0, 1.0, 1.0);
+	FMOD_VECTOR forward = { 0.0f, 1.0f, 0.0f };
+	FMOD_VECTOR up = { 0.0f, 0.0f, 1.0f };
+	FMOD_VECTOR listenerpos = { 0, 0, 0};
 	FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };;
 	pJuego->system->set3DListenerAttributes(0, &listenerpos, &vel, &forward, &up);
 	pJuego->system->update();
 }
-void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
-	FMOD_VECTOR pos = { x , y, 0.0f };
+void EstadoPG::reproduceFx(std::string fx, float x, float y, float wet){
+	FMOD_VECTOR pos = { -x , -1, y };
+	FMOD_VECTOR forward = { 0.0f, 1.0f, 0.0f };
+	FMOD_VECTOR up = { 0.0f, 0.0f, 1.0f };
 	FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };
 
 
@@ -164,8 +139,7 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 		cfx1->isPlaying(&cOcupied);
 		if (cOcupied == false){
 			pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx1);
-			cfx1->set3DAttributes(&pos, &vel);
-
+			//cfx1->set3DAttributes(&pos, &vel);
 			cfx1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 			reverbUnit->addInput(channelHead, &reverbConnectionfx1, FMOD_DSPCONNECTION_TYPE_SEND);
 			reverbConnectionfx1->setMix(0.50f);
@@ -175,7 +149,7 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 			cfx2->isPlaying(&cOcupied);
 			if (cOcupied == false){
 				pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx2);
-				cfx2->set3DAttributes(&pos, &vel);
+			//	cfx2->set3DAttributes(&pos, &vel);
 				cfx2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 				reverbUnit->addInput(channelHead, &reverbConnectionfx2, FMOD_DSPCONNECTION_TYPE_SEND);
 				reverbConnectionfx2->setMix(0.50f);
@@ -185,7 +159,7 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 				cfx3->isPlaying(&cOcupied);
 				if (cOcupied == false){
 					pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx3);
-					cfx3->set3DAttributes(&pos, &vel);
+					//cfx3->set3DAttributes(&pos, &vel);
 					cfx3->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 					reverbUnit->addInput(channelHead, &reverbConnectionfx3, FMOD_DSPCONNECTION_TYPE_SEND);
 					reverbConnectionfx3->setMix(0.50f);
@@ -200,13 +174,15 @@ void EstadoPG::reproduceFx(std::string fx, int x, int y, float wet){
 						cfx4->stop();
 						pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx1);
 					}
-					cfx4->set3DAttributes(&pos, &vel);
+					//cfx4->set3DAttributes(&pos, &vel);
 					cfx4->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 					reverbUnit->addInput(channelHead, &reverbConnectionfx4, FMOD_DSPCONNECTION_TYPE_SEND);
 					reverbConnectionfx4->setMix(0.50f);
 				}
 			}
 		}
+		pJuego->system->set3DListenerAttributes(0, &pos, &vel, &forward, &up);
+		pJuego->system->update();
 	}
 	catch (std::exception e){}
 }

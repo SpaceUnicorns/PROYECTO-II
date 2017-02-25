@@ -19,7 +19,7 @@ public:
 	virtual void onClick();
 	virtual void onOver();
 	virtual void drawFont();
-	void reproduceFx(std::string fx, int x, int y, float wet);
+	void reproduceFx(std::string fx, float x, float y, float wet);
 	void reproduceMusica(std::string music, bool fade);
 	void paraMusica(std::string music, bool fade);
 	void reproduceAmb(std::string amb, bool fade);
