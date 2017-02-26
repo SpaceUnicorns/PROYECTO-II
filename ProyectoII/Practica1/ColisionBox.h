@@ -13,7 +13,6 @@ public:
 	//Metodos----------------------------------------
 	virtual void update();
 	virtual void draw();
-	virtual void drawOnSw();
 	virtual void setMovible(bool mov){ movible = mov; }
 	virtual bool getMovible(){ return movible; }
 	virtual SDL_Rect getRectBox(){ return boxRect; }

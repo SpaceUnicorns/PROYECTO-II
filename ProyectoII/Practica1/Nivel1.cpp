@@ -105,34 +105,34 @@ void Nivel1::swPlayer(){
 	Tile tile;
 	if (activePlayer == "C"){
 		pCazador->swAble();
-		camara.x = pCazador->getRect().x - pRecolector->getRect().x;
-		camara.y = pCazador->getRect().y - pRecolector->getRect().y;
+		camara.x = -1*(pCazador->getRect().x - pRecolector->getRect().x);
+		camara.y = -1*(pCazador->getRect().y - pRecolector->getRect().y);
 		activePlayer = "R";
 	}
 	else if (activePlayer == "R") {
 		pRecolector->swAble();
-		camara.x = pRecolector->getRect().x - pCazador->getRect().x;
-		camara.y = pRecolector->getRect().y - pCazador->getRect().y;
+		camara.x = -1*(pRecolector->getRect().x - pCazador->getRect().x);
+		camara.y = -1*(pRecolector->getRect().y - pCazador->getRect().y);
 		activePlayer = "C";
 	}
 	for (int i = 0; i < vecTile.size(); i++){
-		vecTile[i].x += camara.x; vecTile[i].y += camara.y;
+		vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
 		tile = vecTile[i];
 		aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
 		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 	}
 		
 	for (int i = 0; i < vectBordes.size(); i++){
-		vectBordes[i].A.x += camara.x;
-		vectBordes[i].A.y += camara.y;
-		vectBordes[i].B.x += camara.x;
-		vectBordes[i].B.y += camara.y;
-		vectBordes[i].C.x += camara.x;
-		vectBordes[i].C.y += camara.y;
+		vectBordes[i].A.x -= camara.x;
+		vectBordes[i].A.y -= camara.y;
+		vectBordes[i].B.x -= camara.x;
+		vectBordes[i].B.y -= camara.y;
+		vectBordes[i].C.x -= camara.x;
+		vectBordes[i].C.y -= camara.y;
 	}
 	std::sort(vecObj.begin(), vecObj.end(), ordena);
 	for (ObjetoJuego* ob : vecObj){
-		ob->drawOnSw();
+		ob->draw();
 	}
 	
 	if (activePlayer == "C") pCazador->swAble();

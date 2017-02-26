@@ -15,7 +15,6 @@ public:
 	//Métodos
 	virtual bool dentro(int x, int y)const;
 	virtual void draw();
-	virtual void drawOnSw();
 	virtual bool onClick();
 	virtual bool onOver();
 

@@ -42,13 +42,6 @@ bool ObjetoPG::onOver(){
 void ObjetoPG::draw(){
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
-void ObjetoPG::drawOnSw(){
-	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());
-	rect.x += aux.x;
-	rect.y += aux.y;
-	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
-	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->drawOnSw();
-}
 
 void ObjetoPG::awake(){}
 void ObjetoPG::sleep(){}
