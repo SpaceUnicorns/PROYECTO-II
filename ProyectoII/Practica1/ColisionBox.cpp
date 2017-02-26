@@ -108,9 +108,16 @@ void ColisionBox::update(){
 }
 void ColisionBox::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//std::cout << "Dibujado";
-	if (!movible) {
+	if (!movible || !pObj->isAble()) {
 		boxRect.y -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().y;
 		boxRect.x -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().x;
+	}
+	pObj->getPJuego()->getTextura(TCColision)->draw(pObj->getPJuego()->getRender(), boxRect);
+}
+void ColisionBox::drawOnSw(){
+	if (!movible || !pObj->isAble()) {
+		boxRect.y += dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().y;
+		boxRect.x += dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().x;
 	}
 	pObj->getPJuego()->getTextura(TCColision)->draw(pObj->getPJuego()->getRender(), boxRect);
 }

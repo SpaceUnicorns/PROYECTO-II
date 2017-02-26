@@ -57,13 +57,18 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	camara.x = camara.y = 0;
 	camara.h = 768; camara.w = 1024;
 	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
+	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -80, camara.y + (camara.h / 2)));
 	vecObj.push_back(new Arbol(pJuego, 180, 60));
 	vecObj.push_back(new Arbol(pJuego, 480, 260));
 	vecObj.push_back(new Arbol(pJuego, 680, 60));
 	vecObj.push_back(new Arbol(pJuego, 750, 365));
 	vecObj.push_back(new Arbol(pJuego, 1080, 195));
 	vecObj.push_back(new Arbol(pJuego, 480, 60));
+	pCazador = static_cast<Cazador*>(vecObj[0]);
+	pRecolector = static_cast<Recolector*>(vecObj[1]);
+	activePlayer = "C";
 	
+	//pRecolector->swAble();
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
@@ -71,6 +76,7 @@ bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 void Nivel1::draw(){
 	SDL_Rect aux;
 	Tile tile;
+	
 	for (int i = 0; i < vecTile.size(); i++){
 		vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
 		tile= vecTile[i];
@@ -88,7 +94,48 @@ void Nivel1::draw(){
 	std::sort(vecObj.begin(), vecObj.end(), ordena);
 	for (ObjetoJuego* ob : vecObj) ob->draw();
 	
+	//No se si esto iria mejor en el update (??????????????????)
+	if (pJuego->input.sw) swPlayer();
+
 	setCamara(0,0); //Se reinicia el offset a 0
+}
+void Nivel1::swPlayer(){
+	SDL_Rect aux;
+	Tile tile;
+	if (activePlayer == "C"){
+		pCazador->swAble();
+		camara.x = pCazador->getRect().x - pRecolector->getRect().x;
+		camara.y = pCazador->getRect().y - pRecolector->getRect().y;
+		activePlayer = "R";
+	}
+	else if (activePlayer == "R") {
+		pRecolector->swAble();
+		camara.x = pRecolector->getRect().x - pCazador->getRect().x;
+		camara.y = pRecolector->getRect().y - pCazador->getRect().y;
+		activePlayer = "C";
+	}
+	for (int i = 0; i < vecTile.size(); i++){
+		vecTile[i].x += camara.x; vecTile[i].y += camara.y;
+		tile = vecTile[i];
+		aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
+		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
+	}
+		
+	for (int i = 0; i < vectBordes.size(); i++){
+		vectBordes[i].A.x += camara.x;
+		vectBordes[i].A.y += camara.y;
+		vectBordes[i].B.x += camara.x;
+		vectBordes[i].B.y += camara.y;
+		vectBordes[i].C.x += camara.x;
+		vectBordes[i].C.y += camara.y;
+	}
+	for (ObjetoJuego* ob : vecObj){
+		ob->drawOnSw();
+	}
+	
+	if (activePlayer == "C") pCazador->swAble();
+	else pRecolector->swAble();
+
 }
 Nivel1::~Nivel1()
 {

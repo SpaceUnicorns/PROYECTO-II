@@ -15,6 +15,7 @@ public:
 	//Métodos
 	virtual bool dentro(int x, int y)const;
 	virtual void draw();
+	virtual void drawOnSw();
 	virtual bool onClick();
 	virtual bool onOver();
 
@@ -38,7 +39,7 @@ public:
 	//Animacion-------------------------------------------
 	virtual void changeAnimV(int fila) { anim.y = anim.h * fila; } // coloca la 'j'
 	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*6) anim.x = 0; } // coloca la 'i'
-	
+	virtual Texturas_t getEnumText()const { return et; }
 
 protected: 
 	ObjetoPG(juegoPG * juego, int px, int py);

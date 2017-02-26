@@ -1,5 +1,5 @@
 #include "ObjetoPG.h"
-
+#include "ColisionBox.h"
 
 ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 {
@@ -42,6 +42,13 @@ bool ObjetoPG::onOver(){
 void ObjetoPG::draw(){
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
+void ObjetoPG::drawOnSw(){
+	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());
+	rect.x += aux.x;
+	rect.y += aux.y;
+	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
+	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->drawOnSw();
+}
 
 void ObjetoPG::awake(){}
 void ObjetoPG::sleep(){}
@@ -78,7 +85,7 @@ void ObjetoPG::update(){
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
 
-	while (it != itFin){
+	while (activo && it != itFin){
 		it->second->update();
 		it++;
 	}

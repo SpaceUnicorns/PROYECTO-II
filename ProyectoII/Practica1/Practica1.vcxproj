@@ -85,6 +85,7 @@
     <ClCompile Include="ObjetoPG.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Nivel1.cpp" />
+    <ClCompile Include="Recolector.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +106,7 @@
     <ClInclude Include="ObjetoPG.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Nivel1.h" />
+    <ClInclude Include="Recolector.h" />
     <ClInclude Include="TexturasSDL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
