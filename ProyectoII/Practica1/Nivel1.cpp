@@ -69,7 +69,8 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
 	reproduceFx("balloon", -100, 0, 0);
-	//	reproduceMusica("music", false);
+	reproduceMusica("music", false);
+
 	pCazador = static_cast<Cazador*>(vecObj[0]);
 	pRecolector = static_cast<Recolector*>(vecObj[1]);
 	activePlayer = "C";

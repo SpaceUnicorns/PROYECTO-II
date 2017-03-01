@@ -38,6 +38,8 @@ int main(int argc, char* args[]) {  // SDL require esta cabecera
 		msg = e.mensaje();
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.c_str(), nullptr);
 	}
+
+	// salir de todo
 	
 	return 0;
 }

@@ -59,6 +59,8 @@ juegoPG::~juegoPG()
 		estados.pop();
 	}
 	vecTexturas.clear();
+	system->release();
+
 	
 }
 //--------------------------------------------------------------------------------------------------------------------
@@ -213,6 +215,5 @@ void juegoPG::render() const {
 }
 void juegoPG::onExit(){
 	exit = true;
-	system->release();
 }
 
