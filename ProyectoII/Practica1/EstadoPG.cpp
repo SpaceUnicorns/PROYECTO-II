@@ -19,32 +19,28 @@ EstadoPG::EstadoPG(juegoPG*jug,int puntos)
 
 EstadoPG::~EstadoPG()
 {
-	for (unsigned int i = 0; i < vecObj.size(); i++)
-		delete vecObj[i];
-	vecObj.clear();
-
-/*	FMOD_RESULT result;
-
-	try{
-		result = reverbGroup->release();
-		result = reverbUnit->release();
-		result = reverbGroup->removeDSP(reverbUnit);
-		result = reverbUnit->disconnectAll(true, true);
-
-		auto it = vfx.begin();
-		while (!vfx.empty()) {
-				it->second->release();
-				vfx.erase(it);
-		}
-
-		it = vmusic.begin();
-		while (!vmusic.empty()) {
-			it->second->release();
-			vfx.erase(it);
-		}
+	
+	for (auto it : vecObj) {
+		delete it;
 	}
-	catch (std::exception e){}
-	mainGroup->release();*/
+
+	FMOD_RESULT result;
+	if (!pJuego->hasExit()){
+		for (auto it : vfx) {
+			it.second->release();
+		}
+		
+		for (auto it : vmusic) {
+			it.second->release();
+		}
+
+			mainGroup->release();
+			result = reverbGroup->release();
+			result = reverbUnit->release();
+			result = reverbGroup->removeDSP(reverbUnit);
+			result = reverbUnit->disconnectAll(true, true);
+	}
+
 }
 
 void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
@@ -61,6 +57,7 @@ void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
 			pJuego->system->createSound(aux.c_str(), FMOD_3D, 0, &sound);
 			sound->set3DMinMaxDistance(0.5f, 5000.0f);
 			vfx.insert(std::pair<std::string, FMOD::Sound*>(clave, sound));
+
 		}
 		else if (tipo == 'm'){
 			aux = cabecera + aux + ".mp3";
@@ -69,6 +66,7 @@ void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
 			vmusic.insert(std::pair<std::string, FMOD::Sound*>(clave, sound));
 		}
 	}
+	f.close();
 }
 void EstadoPG::cargarAudio(std::string irPath){
 	// Sistema de audio
@@ -133,12 +131,11 @@ void EstadoPG::reproduceFx(std::string fx, float x, float y, float wet){
 	FMOD_VECTOR up = { 0.0f, 0.0f, 1.0f };
 	FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };
 
-
-	try { 
 		bool cOcupied = false;
 		cfx1->isPlaying(&cOcupied);
-		if (cOcupied == false){
-			pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx1);
+		FMOD::Sound* s = vfx[fx];
+		if (!cOcupied){
+			pJuego->system->playSound(s, mainGroup, false, &cfx1);
 			//cfx1->set3DAttributes(&pos, &vel);
 			cfx1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 			reverbUnit->addInput(channelHead, &reverbConnectionfx1, FMOD_DSPCONNECTION_TYPE_SEND);
@@ -146,9 +143,10 @@ void EstadoPG::reproduceFx(std::string fx, float x, float y, float wet){
 		}
 		else {
 			cOcupied = false;
+			//FMOD::Sound *s = vfx[fx]; -- REVISAR ESTILO
 			cfx2->isPlaying(&cOcupied);
-			if (cOcupied == false){
-				pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx2);
+			if (!cOcupied){
+				pJuego->system->playSound(s, mainGroup, false, &cfx2);
 			//	cfx2->set3DAttributes(&pos, &vel);
 				cfx2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 				reverbUnit->addInput(channelHead, &reverbConnectionfx2, FMOD_DSPCONNECTION_TYPE_SEND);
@@ -157,8 +155,8 @@ void EstadoPG::reproduceFx(std::string fx, float x, float y, float wet){
 			else{
 				cOcupied = false;
 				cfx3->isPlaying(&cOcupied);
-				if (cOcupied == false){
-					pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx3);
+				if (!cOcupied){
+					pJuego->system->playSound(s, mainGroup, false, &cfx3);
 					//cfx3->set3DAttributes(&pos, &vel);
 					cfx3->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 					reverbUnit->addInput(channelHead, &reverbConnectionfx3, FMOD_DSPCONNECTION_TYPE_SEND);
@@ -167,12 +165,12 @@ void EstadoPG::reproduceFx(std::string fx, float x, float y, float wet){
 				else {
 					cOcupied = false;
 					cfx4->isPlaying(&cOcupied);
-					if (cOcupied == false){
-						pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx1);
+					if (!cOcupied){
+						pJuego->system->playSound(s, mainGroup, false, &cfx1);
 					}
 					else {
 						cfx4->stop();
-						pJuego->system->playSound(vfx.at(fx), mainGroup, false, &cfx1);
+						pJuego->system->playSound(s, mainGroup, false, &cfx1);
 					}
 					//cfx4->set3DAttributes(&pos, &vel);
 					cfx4->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
@@ -183,11 +181,10 @@ void EstadoPG::reproduceFx(std::string fx, float x, float y, float wet){
 		}
 		pJuego->system->set3DListenerAttributes(0, &pos, &vel, &forward, &up);
 		pJuego->system->update();
-	}
-	catch (std::exception e){}
+
 }
 void EstadoPG::reproduceMusica(std::string music, bool fade){
-	try {
+
 		bool cOcupied = false;
 		cmusic1->isPlaying(&cOcupied);
 		if (cOcupied){
@@ -213,8 +210,6 @@ void EstadoPG::reproduceMusica(std::string music, bool fade){
 			}
 			cMusic = 1;
 		}
-	}
-	catch (std::exception e){}
 }
 void EstadoPG::paraMusica(std::string music, bool fade){
 	try {
@@ -277,7 +272,7 @@ void EstadoPG::reproduceAmb(std::string amb, bool fade){
 	catch (std::exception e){}
 }
 void EstadoPG::paraAmb(std::string amb, bool fade){
-	try {
+	//try {
 		if (cMusic == 1){
 			if (fade){
 				unsigned long long parentclock;
@@ -296,8 +291,8 @@ void EstadoPG::paraAmb(std::string amb, bool fade){
 			}
 			cmusic2->stop();
 		}
-	}
-	catch (std::exception e){}
+	//}
+	//catch (std::exception e){}
 }
 
 
@@ -313,11 +308,11 @@ void EstadoPG::draw(){
 }
 void EstadoPG::drawFont(){
 	//Dibujar puntos
-	try{// bloque try catch
+	//try{// bloque try catch
 			pJuego->getFuente()->loadFromText(pJuego->getRender(), std::to_string(contPuntos), colorFuente);
 			pJuego->getFuente()->draw(pJuego->getRender(), pJuego->getFuente()->font.recFont);
-		}
-		catch (ELoadFont & e){}
+	//	}
+		//catch (ELoadFont & e){}
 	}
 
 void EstadoPG::update(){

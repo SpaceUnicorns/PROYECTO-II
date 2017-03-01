@@ -207,5 +207,6 @@ void juegoPG::render() const {
 }
 void juegoPG::onExit(){
 	exit = true;
+	system->release();
 }
 

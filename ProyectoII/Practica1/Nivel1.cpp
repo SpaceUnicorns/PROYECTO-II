@@ -53,13 +53,13 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 		}
 	}
 	f.close();
-	cargarAudio("../sounds/reverb/standrews.wav");
-	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
-	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
 
 
 	vecObj.push_back(new Cazador(pJuego, 250,550));
 	vecObj.push_back(new Arbol(pJuego, 80, 80));
+	cargarAudio("../sounds/reverb/standrews.wav");
+	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
+	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
 	reproduceFx("balloon", -100, 0, 0);
 //	reproduceMusica("music", false);
 

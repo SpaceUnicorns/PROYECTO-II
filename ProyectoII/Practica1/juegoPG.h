@@ -38,7 +38,7 @@ public:
 	void getMousePos(int & mpx, int & mpy) const {
 		mpx = pmx; mpy = pmy;
 	}
-	
+	bool hasExit(){ return exit; }
 private:
 	SDL_Event e;
 	
