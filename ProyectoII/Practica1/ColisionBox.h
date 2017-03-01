@@ -16,6 +16,7 @@ public:
 	virtual void setMovible(bool mov){ movible = mov; }
 	virtual bool getMovible(){ return movible; }
 	virtual SDL_Rect getRectBox(){ return boxRect; }
+	virtual void setRectBox(int x, int y){ boxRect.x = x; boxRect.y = y; }
 	//Funciones------------------------------------------------------------------------------------------------------------
 	bool isColiding(Punto const & P);
 

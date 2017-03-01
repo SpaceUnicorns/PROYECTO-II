@@ -38,7 +38,7 @@ public:
 	//Animacion-------------------------------------------
 	virtual void changeAnimV(int fila) { anim.y = anim.h * fila; } // coloca la 'j'
 	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*6) anim.x = 0; } // coloca la 'i'
-	
+	virtual Texturas_t getEnumText()const { return et; }
 
 protected: 
 	ObjetoPG(juegoPG * juego, int px, int py);
@@ -48,6 +48,7 @@ protected:
 	juegoPG * pJuego;
 	Texturas_t et;
 	SDL_Rect rect;
+	SDL_Rect aux; //Rect auxiliar para cual quier cuenta con rectangulos (Se usa para la camara)	
 	SDL_Rect anim;
 };
 

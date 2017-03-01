@@ -45,8 +45,11 @@ public:
 	void cargarAssetsAudio(std::string txt, char tipo);
 	void cargarAudio(std::string irPath);
 
+	virtual SDL_Rect getCamara()const{ return camara; }
+	virtual void setCamara(int x, int y){ camara.x = x; camara.y = y; }
 
 protected: 
+	SDL_Rect camara;
 	struct Tile {
 		int x, y;
 		int capa;

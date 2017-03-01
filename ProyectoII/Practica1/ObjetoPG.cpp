@@ -1,5 +1,5 @@
 #include "ObjetoPG.h"
-
+#include "ColisionBox.h"
 
 ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 {
@@ -78,7 +78,7 @@ void ObjetoPG::update(){
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
 
-	while (it != itFin){
+	while (activo && it != itFin){
 		it->second->update();
 		it++;
 	}

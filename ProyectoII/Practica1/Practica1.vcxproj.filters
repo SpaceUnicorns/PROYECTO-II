@@ -78,6 +78,9 @@
     <ClCompile Include="ColisionBox.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="Recolector.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="ColisionBox.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="Recolector.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
