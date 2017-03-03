@@ -23,9 +23,15 @@ void MovimientoP::update(){
 		pObj->changeAnimH();
 
 	framerate++;
+
+	nextPos.x = nextPos.y = 0;
+	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) == 2){
+		if (pObj->getPJuego()->input.e)
+			std::cout << "lo he cogido"	<< "\n";
+	}
 	if (pObj->getPJuego()->input.dDS){ //Diagonal Arriba-Derecha
 		nextPos.x = 2; nextPos.y = -1;
-		if (!static_cast<ColisionBox*>( pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
+		if (static_cast<ColisionBox*>( pObj->dameComponente("ColisionBox"))->isColiding(nextPos)!= 1){
 			//pObj->setRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(7); // posiciona la 'j' de la matriz de la animacion
@@ -33,7 +39,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.dDI){//Diagonal Abajo-Derecha
 		nextPos.x = 2; nextPos.y = 1;
-		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
+		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) != 1){
 			//pObj->setRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(5);
@@ -42,7 +48,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.dII){//Diagonal Abajo-Izquierda
 		nextPos.x = -2; nextPos.y = 1;
-		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
+		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) != 1){
 			//pObj->setRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(4);
@@ -51,7 +57,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.dIS){//Diagonal Arriba-Izquierda
 		nextPos.x = -2; nextPos.y = -1;
-		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
+		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) != 1){
 			//pObj->setRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(6);
@@ -60,7 +66,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.arriba){
 		nextPos.x = 0; nextPos.y = -2;
-		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
+		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) != 1){
 			//pObj->setRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(3);
@@ -70,7 +76,7 @@ void MovimientoP::update(){
 	else if (pObj->getPJuego()->input.derecha){
 		bool o;
 		nextPos.x = 2; nextPos.y = 0;
-		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
+		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) != 1){
 			//pObj->setRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(2);
@@ -79,7 +85,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.abajo){
 		nextPos.x = 0; nextPos.y = 2;
-		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
+		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) != 1){
 			//pObj->setRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(0);
@@ -88,7 +94,7 @@ void MovimientoP::update(){
 	}
 	else if (pObj->getPJuego()->input.izquierda){
 		nextPos.x = -2; nextPos.y = 0;
-		if (!static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos)){
+		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) != 1){
 			//pObj->setRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(1);

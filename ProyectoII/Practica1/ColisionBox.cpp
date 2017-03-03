@@ -21,20 +21,28 @@ ColisionBox::~ColisionBox()
 {
 }
 //Método que calcula si alguno de los triangulos del vector de triangulos está colisionando con la posicion a la que nos queremos mover.
-bool ColisionBox::isColiding(Punto const & P){
-	bool col = false;
+int ColisionBox::isColiding(Punto const & P){
+	int col = 0;
 	Punto p; p.x = P.x + pObj->getColisionBox().x; p.y = P.y + pObj->getColisionBox().y; //Posición de colisionBox + la posición a la que nos queremos mover.
 	ObjetoPG* ob;
 	int i = 0;
 	while (i < static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().size() && !col){
 		ob = dynamic_cast<ObjetoPG*>(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj()[i]);
 		if (ob != pObj){
-			if ((ob->getColisionBox().x + ob->getColisionBox().w) < p.x || ob->getColisionBox().x > (p.x + pObj->getColisionBox().w)) col = false;
-			else if ((ob->getColisionBox().y + ob->getColisionBox().h) < p.y || ob->getColisionBox().y > (p.y + pObj->getColisionBox().h)) col = false;
-			else col = true;
+				if ((ob->getColisionBox().x + ob->getColisionBox().w) < p.x || ob->getColisionBox().x > (p.x + pObj->getColisionBox().w)) col = 0;
+				else if ((ob->getColisionBox().y + ob->getColisionBox().h) < p.y || ob->getColisionBox().y > (p.y + pObj->getColisionBox().h)) col = 0;
+				else {
+					if (ob->interactuable)
+						col = 2;
+					else
+					col = 1;
+				};
+				
 		}
-		i++;
+			i++;
+		
 	}
+
 	//Comprueba la colision con los bordes
 	i = 0;
 	if (!col){
@@ -58,7 +66,7 @@ En el caso de que la orientación del triángulo A1A2A3 sea negativa :
 Si las orientaciones de los tres triángulos que triángulos que tienen como vértice el punto P son negativas, el punto está dentro del triángulo
 En caso contrario el punto está situado fuera del triángulo.*/
 
-bool ColisionBox::inTriangle(TrianguloBorde tr, Punto const & P){
+int ColisionBox::inTriangle(TrianguloBorde tr, Punto const & P){
 	int x = triangleOrientation(tr);
 	TrianguloBorde auxT;
 	if (x >= 0){// Orientación positiva
@@ -68,13 +76,13 @@ bool ColisionBox::inTriangle(TrianguloBorde tr, Punto const & P){
 			if (triangleOrientation(auxT) >= 0){
 				auxT.A = P; auxT.B = tr.B; auxT.C = tr.C;
 				if (triangleOrientation(auxT) >= 0){
-					return true;
+					return 1;
 				}
-				else return false;
+				else return 0;
 			}
-			else return false;
+			else return 0;
 		}
-		else return false;
+		else return 0;
 
 	}
 	else {//Orientación negativa
@@ -84,13 +92,13 @@ bool ColisionBox::inTriangle(TrianguloBorde tr, Punto const & P){
 			if (triangleOrientation(auxT) < 0){
 				auxT.A = P; auxT.B = tr.B; auxT.C = tr.C;
 				if (triangleOrientation(auxT) < 0){
-					return true;
+					return 1;
 				}
-				else return false;
+				else return 0;
 			}
-			else return false;
+			else return 0;
 		}
-		else return false;
+		else return 0;
 	}
 }
 //Método que calcula la orientación de un triangulo con la fórmula: (A1.x - A3.x) * (A2.y - A3.y) - (A1.y - A3.y) * (A2.x - A3.x)

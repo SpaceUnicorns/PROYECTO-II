@@ -12,7 +12,7 @@
 #include "EstadoJuego.h"
 #include "fmod.hpp"
 
-enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision, TJugador, TJugador2 };
+enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision, TJugador, TJugador2, TPiedra };
 
 class juegoPG
 {
@@ -27,7 +27,7 @@ public:
 	FMOD_RESULT       result;
 	std::stack<EstadoJuego*> estados;
 	struct Input{
-		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII, sw; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
+		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII, sw, e; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
 	};
 	Input input;
 	//Métodos****************************************************************************************************************************

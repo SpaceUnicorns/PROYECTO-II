@@ -5,6 +5,7 @@
 #include "Arbol.h"
 #include <algorithm>
 #include "Pausa.h"
+#include "Piedra.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	std:: ifstream f; char aux = 'p';
@@ -65,6 +66,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Arbol(pJuego, 750, 365));
 	vecObj.push_back(new Arbol(pJuego, 1080, 195));
 	vecObj.push_back(new Arbol(pJuego, 480, 60));
+	vecObj.push_back(new Piedra(pJuego, 880, 100));
 	cargarAudio("../sounds/reverb/standrews.wav");
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
