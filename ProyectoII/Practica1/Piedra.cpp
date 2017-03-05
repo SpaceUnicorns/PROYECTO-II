@@ -5,8 +5,8 @@ Piedra::Piedra(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
 	interactuable = true;
 	et = TPiedra;
-	rect.w = 250;
-	rect.h = 163;
+	rect.w = 100;
+	rect.h = 60;
 	
 		newComponente(new ColisionBox(this), "ColisionBox");
 }

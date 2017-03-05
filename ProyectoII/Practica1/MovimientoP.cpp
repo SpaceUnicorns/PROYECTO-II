@@ -1,6 +1,7 @@
 #include "MovimientoP.h"
 #include "EstadoPG.h"
 #include "ColisionBox.h"
+#include "Recolector.h"
 
 
 MovimientoP::MovimientoP(ObjetoJuego* ent) : Componente(ent)
@@ -25,10 +26,13 @@ void MovimientoP::update(){
 	framerate++;
 
 	nextPos.x = nextPos.y = 0;
+	
 	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) == 2) {
-		if (pObj->getPJuego()->input.e) {
-			pObj->getPJuego()->input.e = false;
-			std::cout << "lo he cogido" << "\n";
+		pObj->getPJuego()->input.e = false;
+		if (dynamic_cast<Recolector*>(pObj)) {
+			if (pObj->getPJuego()->input.e) {
+				std::cout << "lo he cogido" << "\n";
+			}
 		}
 	}
 	if (pObj->getPJuego()->input.dDS){ //Diagonal Arriba-Derecha
