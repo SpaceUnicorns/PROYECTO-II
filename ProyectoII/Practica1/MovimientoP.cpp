@@ -28,13 +28,16 @@ void MovimientoP::update(){
 	nextPos.x = nextPos.y = 0;
 	
 	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) == 2) {
-		pObj->getPJuego()->input.e = false;
 		if (dynamic_cast<Recolector*>(pObj)) {
 			if (pObj->getPJuego()->input.e) {
+				pObj->getPJuego()->input.e = false;
 				std::cout << "lo he cogido" << "\n";
 			}
+			
 		}
+		
 	}
+	pObj->getPJuego()->input.e = false;
 	if (pObj->getPJuego()->input.dDS){ //Diagonal Arriba-Derecha
 		nextPos.x = 2; nextPos.y = -1;
 		if (static_cast<ColisionBox*>( pObj->dameComponente("ColisionBox"))->isColiding(nextPos)!= 1){
