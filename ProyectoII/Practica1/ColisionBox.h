@@ -8,6 +8,9 @@ public:
 	ColisionBox(ObjetoJuego* ent);
 	ColisionBox(ObjetoJuego* ent, SDL_Rect const & newRect, bool mov);
 	virtual ~ColisionBox();
+	int isColiding(Punto const & P, ObjetoPG *& info);
+	int isColiding(Punto const & P, ObjetoPG & info);
+	int isColiding(Punto const & P, ObjetoPG info);
 	//Atributos--------------------------------------
 	
 	//Metodos----------------------------------------

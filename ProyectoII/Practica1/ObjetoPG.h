@@ -9,7 +9,6 @@ class ObjetoPG :
 	public ObjetoJuego
 {
 public:
-
 	virtual ~ObjetoPG();
 
 	//Métodos
