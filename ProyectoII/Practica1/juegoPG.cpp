@@ -105,8 +105,10 @@ void juegoPG::handle_event(){
 			else if (e.key.keysym.sym == SDLK_TAB){
 				input.sw = true;
 			}
-			else if (e.key.keysym.sym == SDLK_e)
+			else if (e.key.keysym.sym == SDLK_e) {
+
 				input.e = true;
+			}
 			else if (e.key.keysym.sym == SDLK_p){
 				estados.top()->onKeyUp('p');
 			}
@@ -135,7 +137,8 @@ void juegoPG::handle_event(){
 	}
 		else {
 			input.sw = false;
-			input.e = false;
+			
+			
 		}
 }
 

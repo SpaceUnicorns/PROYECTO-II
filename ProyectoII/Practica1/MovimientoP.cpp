@@ -25,9 +25,11 @@ void MovimientoP::update(){
 	framerate++;
 
 	nextPos.x = nextPos.y = 0;
-	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) == 2){
-		if (pObj->getPJuego()->input.e)
-			std::cout << "lo he cogido"	<< "\n";
+	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos) == 2) {
+		if (pObj->getPJuego()->input.e) {
+			pObj->getPJuego()->input.e = false;
+			std::cout << "lo he cogido" << "\n";
+		}
 	}
 	if (pObj->getPJuego()->input.dDS){ //Diagonal Arriba-Derecha
 		nextPos.x = 2; nextPos.y = -1;

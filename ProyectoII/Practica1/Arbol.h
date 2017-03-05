@@ -1,6 +1,6 @@
 #pragma once
 #include "ObjetoPG.h"
-#include "Cazador.h"
+#include "ColisionBox.h"
 class Arbol :
 	public ObjetoPG
 {
