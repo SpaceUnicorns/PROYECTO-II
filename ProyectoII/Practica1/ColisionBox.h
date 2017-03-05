@@ -18,7 +18,7 @@ public:
 	virtual SDL_Rect getRectBox(){ return boxRect; }
 	virtual void setRectBox(int x, int y){ boxRect.x = x; boxRect.y = y; }
 	//Funciones------------------------------------------------------------------------------------------------------------
-	int isColiding(Punto const & P);
+	int isColiding(Punto const & P, ObjetoPG* & info);
 
 private:
 	//Atributos-------------------------------------------------------

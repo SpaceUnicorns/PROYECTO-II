@@ -10,7 +10,7 @@ public:
 
 	//Métodos--------------------------------------------------
 	virtual void update();
-
+	ObjetoPG* info = nullptr;
 	ObjetoPG *pObj;
 private:
 	
