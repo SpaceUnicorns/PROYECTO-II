@@ -10,7 +10,8 @@ public:
 
 	//Métodos--------------------------------------------------
 	virtual void update();
-	juegoPG* juego = new juegoPG();
+
+	ObjetoPG* info = nullptr;
 	ObjetoPG *pObj;
 private:
 	

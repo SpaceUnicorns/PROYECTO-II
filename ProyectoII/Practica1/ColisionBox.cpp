@@ -21,7 +21,9 @@ ColisionBox::~ColisionBox()
 {
 }
 //Método que calcula si alguno de los triangulos del vector de triangulos está colisionando con la posicion a la que nos queremos mover.
+
 int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
+
 	int col = 0;
 	Punto p; p.x = P.x + pObj->getColisionBox().x; p.y = P.y + pObj->getColisionBox().y; //Posición de colisionBox + la posición a la que nos queremos mover.
 	ObjetoPG* ob;

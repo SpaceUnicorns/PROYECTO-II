@@ -2,8 +2,7 @@
 #include "EstadoPG.h"
 #include "ColisionBox.h"
 #include "Recolector.h"
-#include"juegoPG.h"
-#include "Piedra.h"
+#include "ObjetoPG.h"
 
 
 MovimientoP::MovimientoP(ObjetoJuego* ent) : Componente(ent)
@@ -30,12 +29,13 @@ void MovimientoP::update(){
 
 	nextPos.x = nextPos.y = 0;
 	
-	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info) == 2) {
+
+	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos,info) == 2) {
 		if (dynamic_cast<Recolector*>(pObj)) {
 			if (pObj->getPJuego()->input.e) {
 				pObj->getPJuego()->input.e = false;
-				if(dynamic_cast<Piedra*>(info))
-				std::cout << "lo he cogido" << "\n";
+				std::cout << " he cogido una " << info->nombre << "\n";
+
 			}
 			
 		}
