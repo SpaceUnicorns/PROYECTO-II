@@ -81,6 +81,7 @@
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="Cazador.cpp" />
     <ClCompile Include="ColisionBox.cpp" />
+    <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="EstadoPG.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
@@ -99,8 +100,10 @@
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="Cazador.h" />
+    <ClInclude Include="checkML.h" />
     <ClInclude Include="ColisionBox.h" />
     <ClInclude Include="Componente.h" />
+    <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="EstadoPG.h" />

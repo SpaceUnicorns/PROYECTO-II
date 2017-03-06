@@ -19,6 +19,7 @@ Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
 Cazador::~Cazador()
 {
 }
+
 void Cazador::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	pintado = true;
 	if (!activo) {

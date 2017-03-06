@@ -84,6 +84,9 @@
     <ClCompile Include="Piedra.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
+    <ClCompile Include="Enemigo.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
@@ -145,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="Piedra.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemigo.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="checkML.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
