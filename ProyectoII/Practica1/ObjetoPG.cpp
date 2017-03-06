@@ -80,9 +80,9 @@ void ObjetoPG::update(){
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
 
-	while (activo && it != itFin){
-		it->second->update();
-		it++;
+	while (it != itFin){
+		if (it->second->isAble()) it->second->update();
+			it++;
 	}
 }
 void ObjetoPG::lateUpdate(){

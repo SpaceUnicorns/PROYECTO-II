@@ -6,6 +6,7 @@
 #include <algorithm>
 #include "Pausa.h"
 #include "Piedra.h"
+#include "Follow.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	std:: ifstream f; char aux = 'p';
@@ -57,8 +58,14 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 	camara.x = camara.y = 0;
 	camara.h = 768; camara.w = 1024;
+
 	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
+	pCazador = static_cast<Cazador*>(vecObj[0]);
 	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -80, camara.y + (camara.h / 2)));
+	pRecolector = static_cast<Recolector*>(vecObj[1]);
+
+	pRecolector->newComponente(new Follow(pRecolector, pCazador), "Follow");
+	pCazador->newComponente(new Follow(pCazador, pRecolector), "Follow");
 
 	vecObj.push_back(new Arbol(pJuego, 180, 60));
 	vecObj.push_back(new Arbol(pJuego, 480, 260));
@@ -73,8 +80,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	reproduceFx("balloon", -100, 0, 0);
 	reproduceMusica("music", false);
 
-	pCazador = static_cast<Cazador*>(vecObj[0]);
-	pRecolector = static_cast<Recolector*>(vecObj[1]);
+
 	activePlayer = "C";
 	
 	//pRecolector->swAble();
@@ -144,8 +150,12 @@ void Nivel1::swPlayer(){
 		ob->draw();
 	}
 	
-	if (activePlayer == "C") pCazador->swAble();
-	else pRecolector->swAble();
+	if (activePlayer == "C"){
+		pCazador->swAble();
+	}
+	else{
+		pRecolector->swAble();
+	}
 
 }
 Nivel1::~Nivel1()

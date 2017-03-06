@@ -116,6 +116,11 @@ void ColisionBox::update(){
 		boxRect.x = pObj->getRect().x +15;
 		boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;
 	}*/
+	if (pObj->isFollowing()){
+		boxRect.x = pObj->getRect().x + 15;
+		boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;
+	}
+
 }
 void ColisionBox::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//std::cout << "Dibujado";

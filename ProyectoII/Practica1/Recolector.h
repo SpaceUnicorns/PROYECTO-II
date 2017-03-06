@@ -1,6 +1,7 @@
 #pragma once
 #include "ObjetoPG.h"
 #include "ColisionBox.h"
+#include "Cazador.h"
 class Recolector :
 	public ObjetoPG
 {
@@ -11,6 +12,7 @@ public:
 	virtual void draw(); //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	virtual bool estapintado(){ return pintado; }
 private:
+	Cazador* target;
 	bool pintado;
 };
 

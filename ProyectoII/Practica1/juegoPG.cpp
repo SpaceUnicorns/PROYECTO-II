@@ -109,6 +109,9 @@ void juegoPG::handle_event(){
 
 				input.e = true;
 			}
+			else if (e.key.keysym.sym == SDLK_f) {
+				input.follow = true;
+			}
 			else if (e.key.keysym.sym == SDLK_p){
 				estados.top()->onKeyUp('p');
 			}

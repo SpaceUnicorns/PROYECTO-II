@@ -2,7 +2,7 @@
 #include "MovimientoP.h"
 
 
-Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
+Recolector::Recolector(juegoPG * juego, int px, int py): ObjetoPG(juego, px, py)
 {
 	et = TJugador2;
 	rect.w = 45;
