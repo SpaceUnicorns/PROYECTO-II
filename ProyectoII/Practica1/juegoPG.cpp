@@ -19,8 +19,9 @@ juegoPG::juegoPG()
 		initSDL(pWin, pRender);
 	}
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
-
-	vecTexturas.resize(13);
+	
+	//CAMBIAR CADA VEZ QUE SE METE UNA IMAGEN NUEVA
+	vecTexturas.resize(14);
 	initMedia();	
 	
 	estados.push(new MenuPG(this,0));

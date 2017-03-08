@@ -19,6 +19,7 @@ public:
 	virtual bool getMovible(){ return movible; }
 	virtual SDL_Rect getRectBox(){ return boxRect; }
 	virtual void setRectBox(int x, int y){ boxRect.x = x; boxRect.y = y; }
+	virtual void setDimBox(int w, int h){ boxRect.w = w; boxRect.h = h; }
 	//Funciones------------------------------------------------------------------------------------------------------------
 	int isColiding(Punto const & P, ObjetoPG* & info);
 

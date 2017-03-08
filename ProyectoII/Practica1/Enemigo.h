@@ -7,7 +7,7 @@ class Enemigo :
 public:
 	Enemigo(juegoPG *juego, int px, int py);
 	~Enemigo();
-	virtual  SDL_Rect getColisionBox() { return static_cast<ColisionBox*> (mapaComponentes.at("ColisionBox"))->getRectBox(); }
+	virtual SDL_Rect getColisionBox() { return static_cast<ColisionBox*> (mapaComponentes.at("ColisionBox"))->getRectBox(); }
 protected:
 	int damage;
 	int life;
