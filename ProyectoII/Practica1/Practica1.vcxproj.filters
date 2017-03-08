@@ -87,6 +87,9 @@
     <ClCompile Include="Enemigo.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
+    <ClCompile Include="Lobo.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
@@ -153,6 +156,9 @@
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
     <ClInclude Include="checkML.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Lobo.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -86,6 +86,7 @@
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="juegoPG.cpp" />
+    <ClCompile Include="Lobo.cpp" />
     <ClCompile Include="mainP1.cpp" />
     <ClCompile Include="MenuPG.cpp" />
     <ClCompile Include="MovimientoP.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="juegoPG.h" />
+    <ClInclude Include="Lobo.h" />
     <ClInclude Include="MenuPG.h" />
     <ClInclude Include="MovimientoP.h" />
     <ClInclude Include="ObjetoJuego.h" />
