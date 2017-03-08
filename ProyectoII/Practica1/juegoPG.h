@@ -12,7 +12,7 @@
 #include "EstadoJuego.h"
 #include "fmod.hpp"
 
-enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision, TJugador, TJugador2, TPiedra };
+enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision, TJugador, TJugador2, TPiedra, TLuz, TNieve1, TNieve2 };
 
 class juegoPG
 {
@@ -39,6 +39,8 @@ public:
 		mpx = pmx; mpy = pmy;
 	}
 	bool hasExit(){ return exit; }
+	int getHeight(){ return SCREEN_HEIGHT; }
+	int getWidht(){ return SCREEN_WIDTH; }
 private:
 	SDL_Event e;
 	

@@ -20,7 +20,7 @@ juegoPG::juegoPG()
 	}
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
-	vecTexturas.resize(13);
+	vecTexturas.resize(16);
 	initMedia();	
 	
 	estados.push(new MenuPG(this,0));
@@ -150,7 +150,7 @@ void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 		throw EInitSDL("SDL could not initialize!");
 	}
 	else {
-		int x = SDL_GetCurrentDisplayMode(1,&pMode); //0 para poner en toda la pantalla;
+		int x = SDL_GetCurrentDisplayMode(0,&pMode); //0 para poner en toda la pantalla;
 		if (x == 0){
 			SCREEN_HEIGHT = pMode.h; 
 			SCREEN_WIDTH = pMode.w;
