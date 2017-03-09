@@ -12,19 +12,17 @@ public:
 
 	ObjetoPG *pObj;
 private:
+	void calculaPath();
+	void calculaPath(int k, bool &exito);
+	Punto sigDireccion(int dir);
+	bool esValida(int k);
 	ObjetoPG * hitInfo;	
-	struct vec {
-		int x, y;
-	};
-	struct esq{
-		bool esquivando;
-		int cont;
-	};
-	esq esquivandoH, esquivandoV;
 
+	std::vector<Punto> path;
 	ObjetoPG* target;
-	int signoY, signoX;
-	vec vecDir;
+	bool following;
+	int signoY, signoX, paso;
+	Punto vecDir;
 	Punto nextPos;
 };
 
