@@ -9,12 +9,13 @@ public:
 	virtual ~Follow();
 	//Métodos--------------------------------------------------
 	virtual void update();
-
+	//cutradamaxima borrar.
+	int estimacion;
 	ObjetoPG *pObj;
 private:
 	void calculaPath();
 	void calculaPath(int k, bool &exito);
-	Punto sigDireccion(int dir);
+	Punto sigDireccion(int dir, int k);
 	bool esValida(int k);
 	ObjetoPG * hitInfo;	
 

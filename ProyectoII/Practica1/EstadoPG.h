@@ -10,6 +10,10 @@
 
 static struct Punto{
 	int x, y;
+	bool compruebaRadio(SDL_Rect target, int radio){
+		Punto centro; centro.y = target.h / 2 + target.y; centro.x = target.w / 2 + target.x;
+		return pow(x - centro.x, 2) + pow(y - centro.y,2) <= pow(radio,2);
+	}
 };
 static struct TrianguloBorde{
 	Punto A, B, C;

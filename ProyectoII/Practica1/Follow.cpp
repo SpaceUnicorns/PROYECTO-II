@@ -7,7 +7,7 @@ Follow::Follow(ObjetoJuego* ent, ObjetoPG* tg) : Componente(ent)
 	pObj = dynamic_cast<ObjetoPG*>(pEntidad);
 	nextPos.x = nextPos.y = 0;
 	target = tg;
-	paso = 20;
+	paso = 80;
 	following = false;
 	hitInfo = nullptr;
 }
@@ -17,33 +17,45 @@ Follow::Follow(ObjetoJuego* ent, ObjetoPG* tg) : Componente(ent)
 Follow::~Follow()
 {
 }
-Punto Follow:: sigDireccion(int dir){
+Punto Follow:: sigDireccion(int dir, int k){
 	Punto aux;
-	switch (dir)
-	{
-	case 0: aux.x = pObj->getRect().x + paso; aux.y = pObj->getRect().y+0; //Derecha
-		break;
-	case 1: aux.x = pObj->getRect().x - paso; aux.y = pObj->getRect().y +0; //Izquierda
-		break;
-	case 2: aux.x = pObj->getRect().x + 0; aux.y = pObj->getRect().y - paso; // Arriba;
-		break;
-	case 3: aux.x = pObj->getRect().x + 0; aux.y = pObj->getRect().y+paso; // Abajo;
-		break;
-	case 4: aux.x = pObj->getRect().x + paso; aux.y = pObj->getRect().y - paso; //dDS
-		break;
-	case 5: aux.x = pObj->getRect().x + paso; aux.y = pObj->getRect().y+paso; //dDI
-		break;
-	case 6: aux.x = pObj->getRect().x - paso; aux.y = pObj->getRect().y - paso; //dIS
-		break;
-	case 7: aux.x = pObj->getRect().x - paso; aux.y = pObj->getRect().y+paso; //dII
-		break;
-	default:
-		break;
+	
+		switch (dir)
+		{
+		case 0: aux.x = path[k].x + paso; aux.y = path[k].y + 0; //Derecha 
+			std::cout << "der\n";
+			std::cout << "X: " << aux.x << " Y: " << aux.y << "\n";
+			break;
+		case 1: aux.x = path[k ].x - paso; aux.y = path[k].y + 0; //Izquierda
+			std::cout << "izq\n";
+			std::cout << "X: " << aux.x << " Y: " << aux.y << "\n";
+			break;
+		case 2: aux.x = path[k ].x + 0; aux.y = path[k].y - paso; // Arriba;
+			std::cout << "arr\n";
+			std::cout << "X: " << aux.x << " Y: " << aux.y << "\n";
+			break;
+		case 3: aux.x = path[k].x + 0; aux.y = path[k].y + paso; // Abajo;
+			std::cout << "\n";
+			std::cout << "X: " << aux.x << " Y: " << aux.y << "\n";
+			break;
+		/*case 4: aux.x = path[k].x + paso; aux.y = path[k].y - paso; //dDS
+			break;
+		case 5: aux.x = path[k].x + paso; aux.y = path[k].y + paso; //dDI
+			break;
+		case 6: aux.x = path[k].x - paso; aux.y = path[k].y - paso; //dIS
+			break;
+		case 7: aux.x = path[k].x - paso; aux.y = path[k].y + paso; //dII*/
+			break;
+		default:
+			break;
+		
 	}
 	return aux;
 }
 bool Follow::esValida(int k){
 	std::cout << "Validando\n";
+	/*if (path[k].x > 1024 || path[k].x < 0) return false;
+	if (path[k].y > 768 || path[k].y < 0) return false;*/
 	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(path[k], hitInfo) == 1) return false;
 	bool valida = true;
 	int i = 0;
@@ -56,23 +68,44 @@ bool Follow::esValida(int k){
 }
 void Follow:: calculaPath(int k, bool &exito){
 	int dir = 0;
-	while (dir < 8 && !exito){
-		path.push_back(sigDireccion(dir));
-		if (esValida(k)){
-			if (path[k].x == target->getRect().x && path[k].y == target->getRect().y )
+
+	while (dir < 4 && !exito){
+		path.push_back(sigDireccion(dir,k));
+		if (esValida(k+1)){
+			if (path[k+1].compruebaRadio(target->getColisionBox(),paso ))
 			{
 				std::cout << "He encontrado un camino debuti loco \n"; exito = true;
+				return;
 			}
 			else{ // marcar
 				//marcas[sol[k].fila][sol[k].col] = true;
-				calculaPath(k + 1, exito);
-				//desmarcar
-				//marcas[sol[k].fila][sol[k].col] = F;
+					calculaPath(k + 1, exito);
+				
 			}
 		}
-		else path.pop_back();
+		 path.pop_back();
 		dir++;
 	}
+	/*while (dir < 4 && !exito){
+		path.push_back(sigDireccion(dir, k));
+		if (esValida(k + 1)){
+			if (path[k + 1].compruebaRadio(target->getColisionBox(), paso))
+			{
+				std::cout << "He encontrado un camino debuti loco \n"; exito = true;
+				return;
+			}
+			/*	else{ // marcar
+			//marcas[sol[k].fila][sol[k].col] = true;
+
+
+			}
+		}
+
+
+		dir++;
+	}
+	
+		calculaPath(k + 1, exito);*/
 }
 
 void Follow::calculaPath(){
@@ -84,7 +117,12 @@ void Follow::calculaPath(){
 	else signoY = 1;
 	bool aux = false;
 	std::cout << "Here\n";
+	Punto au;
+	au.x = pObj->getColisionBox().x; au.y = pObj->getColisionBox().y;
+	path.push_back(au);
+	estimacion = 0;
 	calculaPath(0, aux);
+	path.clear();
 
 }
 void Follow::update(){

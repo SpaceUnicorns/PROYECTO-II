@@ -61,7 +61,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
 	pCazador = static_cast<Cazador*>(vecObj[0]);
-	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -80, camara.y + (camara.h / 2)));
+	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2)+70, camara.y-30 + (camara.h / 2)));
 	pRecolector = static_cast<Recolector*>(vecObj[1]);
 
 	pRecolector->newComponente(new Follow(pRecolector, pCazador), "Follow");
