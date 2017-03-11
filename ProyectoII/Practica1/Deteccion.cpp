@@ -5,10 +5,8 @@
 Deteccion::Deteccion(ObjetoJuego* entidad, float radio):Componente(entidad),radio(radio)
 {
 	SDL_Rect aux = static_cast<Enemigo*>(entidad)->getColisionBox();
-	//posIni.x = aux.x + aux.w / 2;
-	//posIni.y = aux.y;
-	detectado = false;
 	activo = true;
+	detectado = false;
 }
 
 
@@ -17,9 +15,10 @@ Deteccion::~Deteccion()
 }
 
 void Deteccion::update() {
-	std::cout << "UPDATEEER \n";
+	//std::cout << "UPDATE LOBO DEPURAR \n";
 	float distCaz, distRec;
-	if (cazadorIn(distCaz)/* || recolectorIn(distRec)*/) {//Llamamos al follow del lobo
+	if (cazadorIn(distCaz)) {//Llamamos al follow del lobo
+		detectado = true;
 		recolectorIn(distRec);
 		if (distCaz > distRec)
 			static_cast<Enemigo*>(pEntidad)->setTarget(1);
@@ -27,12 +26,20 @@ void Deteccion::update() {
 		static_cast<Enemigo*>(pEntidad)->activaFollow();
 	}
 	else if (recolectorIn(distRec)) {
-			static_cast<Enemigo*>(pEntidad)->setTarget(1);//Podria dar problemas xDDDDD
-			static_cast<Enemigo*>(pEntidad)->activaFollow();
+		detectado = true;
+		static_cast<Enemigo*>(pEntidad)->setTarget(1);//Podria dar problemas xDDDDD
+		static_cast<Enemigo*>(pEntidad)->activaFollow();
 	}
+	else {
+		if (detectado)static_cast<Enemigo*>(pEntidad)->desactivaFollow();
+		detectado = false;
+	}
+	/*
+	DEPURACION
 	std::cout << static_cast<Enemigo*>(pEntidad)->getCazador()->getRect().x << "     " << static_cast<Enemigo*>(pEntidad)->getCazador()->getRect().y << "\n";
 	std::cout << static_cast<Enemigo*>(pEntidad)->getRect().x << "     " << static_cast<Enemigo*>(pEntidad)->getRect().y << "\n";
 	std::cout << static_cast<Enemigo*>(pEntidad)->getPosIni().x << "     " << static_cast<Enemigo*>(pEntidad)->getPosIni().y;
+	*/
 }
 
 bool Deteccion::compruebaRadio(SDL_Rect target, float& distancia) {

@@ -1,4 +1,6 @@
 ﻿#include "juegoPG.h"
+#include "checkML.h"
+
 using namespace std; // Para cualificar automaticamente con std:: los identificadores de la librería estandar 
 
 //---------------------------------------------------------------------------------------------------------------

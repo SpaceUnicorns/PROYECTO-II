@@ -6,8 +6,8 @@
 
 Arbol::Arbol(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
+	nombre = "Arbol";
 	et = TArbol;
-	nombre = typeid(this).name();
 	rect.w = 100;
 	rect.h = 200;
 	SDL_Rect aux; aux.x = rect.x + 33; aux.y = rect.y + 185; aux.w = 33; aux.h = 15,

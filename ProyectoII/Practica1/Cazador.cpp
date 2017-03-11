@@ -2,11 +2,13 @@
 #include "MovimientoP.h"
 
 
+
 Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
 {
-	et = TJugador;
+	nombre = "Zhenia";
+	et = TZhenia;
 	rect.w = 45;
-	rect.h = 45;
+	rect.h = 55;
 	newComponente(new MovimientoP(this),"MovimientoP");
 	newComponente(new ColisionBox(this), "ColisionBox");
 	anim.w = anim.h = 32; //cada frame del jugador mide 32x32

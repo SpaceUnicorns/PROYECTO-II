@@ -4,9 +4,10 @@
 
 Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
-	et = TJugador2;
+	nombre = "Liov";
+	et = TLiov;
 	rect.w = 45;
-	rect.h = 55;
+	rect.h = 45;
 	newComponente(new MovimientoP(this), "MovimientoP");
 	newComponente(new ColisionBox(this), "ColisionBox");
 	anim.w = anim.h = 32; //cada frame del jugador mide 32x32

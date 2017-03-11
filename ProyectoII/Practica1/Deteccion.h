@@ -1,6 +1,5 @@
 #pragma once
 #include "Componente.h"
-
 class Deteccion :
 	public Componente
 {

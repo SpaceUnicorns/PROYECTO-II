@@ -3,11 +3,11 @@
 
 Piedra::Piedra(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
+	nombre = "Piedra";
 	interactuable = true;
 	et = TPiedra;
 	rect.w = 100;
 	rect.h = 60;
-	nombre = typeid(this).name();
 	newComponente(new ColisionBox(this), "ColisionBox");
 }
 

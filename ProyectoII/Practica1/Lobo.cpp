@@ -4,6 +4,7 @@
 
 Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int py):Enemigo(juego,hunter,collector, px,py)
 {
+	nombre = "lobo";
 	activo = true;
 	et = TLobete;//Añadir TLobo al array de texturas
 	rect.w = 80;
@@ -14,16 +15,19 @@ Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int p
 	SDL_Rect aux; aux.x = rect.x; aux.y = rect.y + 30; aux.w = 80; aux.h = 20;
 	newComponente(new ColisionBox(this,aux,false), "ColisionBox");
 	newComponente(new Deteccion(this,200),"Deteccion");
-	//setColisionBox(80, 50);
 }
 
 
 Lobo::~Lobo()
 {
-}
-
+}/*
+void Lobo::update() {
+	ObjetoPG::update();
+	rect.x += 2;
+	rect.y += 0.2;
+	
+}*/
 void Lobo::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	Enemigo::draw();
-	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
 }
