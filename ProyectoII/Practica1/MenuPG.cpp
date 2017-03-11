@@ -13,6 +13,7 @@ MenuPG::MenuPG(juegoPG*jug, int puntos) :EstadoPG(jug, puntos)
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
 	reproduceFx("balloon", -100, 0, 0);
+	vecObj.push_back(new MenuPrincipal(pJuego,192,290));
 }
 
 

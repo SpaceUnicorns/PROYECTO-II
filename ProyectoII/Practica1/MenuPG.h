@@ -2,6 +2,7 @@
 #include "EstadoPG.h"
 #include "Boton.h"
 #include "Nivel1.h"
+#include "MenuPrincipal.h"
 class MenuPG :
 	public EstadoPG
 {

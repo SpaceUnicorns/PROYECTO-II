@@ -87,6 +87,8 @@
     <ClCompile Include="juegoPG.cpp" />
     <ClCompile Include="mainP1.cpp" />
     <ClCompile Include="MenuPG.cpp" />
+    <ClCompile Include="MenuPrincipal.cpp" />
+    <ClCompile Include="MenuPrincipalComp.cpp" />
     <ClCompile Include="MovimientoP.cpp" />
     <ClCompile Include="ObjetoPG.cpp" />
     <ClCompile Include="Pausa.cpp" />
@@ -108,6 +110,8 @@
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="juegoPG.h" />
     <ClInclude Include="MenuPG.h" />
+    <ClInclude Include="MenuPrincipal.h" />
+    <ClInclude Include="MenuPrincipalComp.h" />
     <ClInclude Include="MovimientoP.h" />
     <ClInclude Include="ObjetoJuego.h" />
     <ClInclude Include="ObjetoPG.h" />

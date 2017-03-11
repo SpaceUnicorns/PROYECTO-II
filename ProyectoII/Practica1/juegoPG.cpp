@@ -20,7 +20,7 @@ juegoPG::juegoPG()
 	}
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
-	vecTexturas.resize(13);
+	vecTexturas.resize(14);
 	initMedia();	
 	
 	estados.push(new MenuPG(this,0));
@@ -93,6 +93,8 @@ void juegoPG::handle_event(){
 	input.abajo = keystate[SDL_SCANCODE_DOWN];
 	input.derecha = keystate[SDL_SCANCODE_RIGHT];
 	input.izquierda = keystate[SDL_SCANCODE_LEFT];
+	input.enter = keystate[SDL_SCANCODE_RETURN] || keystate[SDL_SCANCODE_KP_ENTER];
+	
 
 	if (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT){
@@ -112,6 +114,7 @@ void juegoPG::handle_event(){
 			else if (e.key.keysym.sym == SDLK_p){
 				estados.top()->onKeyUp('p');
 			}
+
 		}
 		else if (e.type == SDL_KEYDOWN){
 			if (e.key.keysym.sym == SDLK_a){
@@ -137,7 +140,7 @@ void juegoPG::handle_event(){
 	}
 		else {
 			input.sw = false;
-			
+
 			
 		}
 }
