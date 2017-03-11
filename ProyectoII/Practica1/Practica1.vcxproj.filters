@@ -88,7 +88,10 @@
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
     <ClCompile Include="Lobo.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="Deteccion.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +162,10 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Lobo.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Deteccion.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

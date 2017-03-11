@@ -39,6 +39,7 @@ public:
 		mpx = pmx; mpy = pmy;
 	}
 	bool hasExit(){ return exit; }
+	EstadoJuego* getEstadoActual() { return estados.top(); }
 private:
 	SDL_Event e;
 	

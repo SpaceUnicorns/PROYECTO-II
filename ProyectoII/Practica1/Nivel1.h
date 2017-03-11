@@ -13,6 +13,9 @@ public:
 	Nivel1(juegoPG*jug);
 	virtual ~Nivel1();
 	virtual void draw();
+	Cazador* getCazador() { return pCazador; }
+	Recolector* getRecolector() { return pRecolector; }
+
 protected:
 	Cazador* pCazador;
 	Recolector* pRecolector;
