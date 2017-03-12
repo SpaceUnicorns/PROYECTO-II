@@ -20,7 +20,9 @@ juegoPG::juegoPG()
 	}
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
-	vecTexturas.resize(12);
+	vecTexturas.resize(14);
+	vecPaginas.resize(6);
+
 	initMedia();	
 	
 	estados.push(new MenuPG(this,0));
@@ -35,6 +37,14 @@ void juegoPG::initMedia(){
 		vecTexturas[i]->load(pRender, "..\\bmps\\" + (str += to_string(i + 1)) + ".png");
 		str = "Textura";
 	}
+
+	str = "Pagina";
+	for (unsigned int i = 0; i < vecPaginas.size(); i++) {
+		vecPaginas[i] = new TexturasSDL;
+		vecPaginas[i]->load(pRender, "..\\bmps\\" + (str += to_string(i + 1)) + ".png");
+		str = "Pagina";
+	}
+
 	//Cargamos la fuente
 	try{
 		fuente = new TexturasSDL;
@@ -59,6 +69,7 @@ juegoPG::~juegoPG()
 		estados.pop();
 	}
 	vecTexturas.clear();
+
 	system->release();
 
 	
@@ -108,6 +119,19 @@ void juegoPG::handle_event(){
 			else if (e.key.keysym.sym == SDLK_p){
 				estados.top()->onKeyUp('p');
 			}
+			else if (e.key.keysym.sym == SDLK_q) {
+				estados.top()->onKeyUp('q');
+			}
+			else if (e.key.keysym.sym == SDLK_RETURN) {
+				estados.top()->onKeyUp('e');
+			}
+			else if (e.key.keysym.sym == SDLK_RIGHT) {
+				estados.top()->onKeyUp('d');
+			}
+			else if (e.key.keysym.sym == SDLK_LEFT) {
+				estados.top()->onKeyUp('i');
+			}
+
 		}
 		else if (e.type == SDL_KEYDOWN){
 			if (e.key.keysym.sym == SDLK_a){

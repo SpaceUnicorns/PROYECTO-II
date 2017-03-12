@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -85,6 +85,7 @@
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="juegoPG.cpp" />
     <ClCompile Include="mainP1.cpp" />
+    <ClCompile Include="MCrafteo.cpp" />
     <ClCompile Include="MenuPG.cpp" />
     <ClCompile Include="MovimientoP.cpp" />
     <ClCompile Include="ObjetoPG.cpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="juegoPG.h" />
+    <ClInclude Include="MCrafteo.h" />
     <ClInclude Include="MenuPG.h" />
     <ClInclude Include="MovimientoP.h" />
     <ClInclude Include="ObjetoJuego.h" />

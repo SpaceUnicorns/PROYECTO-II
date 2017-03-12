@@ -6,6 +6,8 @@
 #include <algorithm>
 #include "Pausa.h"
 
+#include "MCrafteo.h"
+
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	std:: ifstream f; char aux = 'p';
 	int x = 0;
@@ -146,6 +148,25 @@ void Nivel1::swPlayer(){
 	else pRecolector->swAble();
 
 }
+
+void Nivel1::onKeyUp(char k) {
+	switch (k) {
+	case 'q':
+		pJuego->estados.push(new MCrafteo(pJuego, contPuntos));
+		break;
+
+		/*case 'p':
+		if(!pause) pause = true;
+		else pause = false;
+		break;
+		case 'S':
+		pJuego->estados.push(new Pausa(pJuego,contPuntos));
+		break;*/
+	default:
+		break;
+	}
+}
+
 Nivel1::~Nivel1()
 {
 }
@@ -181,20 +202,7 @@ void PlayPG::onClick(){
 	}
 
 }
-void PlayPG::onKeyUp(char k){
-	switch (k)
-	{
-	case 'p':
-		if(!pause) pause = true;
-		else pause = false;
-		break;
-	case 'S':
-		pJuego->estados.push(new Pausa(pJuego,contPuntos));
-		break;
-	default:
-		break;
-	}
-}
+
 void PlayPG::update(){
 	if (!pause){
 		EstadoPG::update();

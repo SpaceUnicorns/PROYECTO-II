@@ -3,7 +3,7 @@
 
 // Es importante ejecutar el metodo cargarAudio al principio de cada escena en la constructora despues de ejecutar la constructora del padre.
 // Tambien es importante cargar los audios en el mapa de fx y el mapa de musicas
-EstadoPG::EstadoPG(juegoPG*jug,int puntos)
+EstadoPG::EstadoPG(juegoPG*jug, int puntos)
 {
 	pJuego = jug;
 	fondo.h = 480;
