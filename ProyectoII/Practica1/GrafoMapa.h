@@ -45,15 +45,15 @@ public:
 	{
 		for (ObjetoJuego* o : obj)
 		{
-			if (static_cast<ObjetoPG*>(o)->encuentraComponente("ColisionBox"));
+			if (static_cast<ObjetoPG*>(o)->encuentraComponente("ColisionBox")){
 
-			SDL_Rect rec = static_cast<ObjetoPG*>(o)->getColisionBox();
-			int cuadarnteX = rec.x / 122;
-			int cuadranteY = rec.y / 61;
-			/* ver la posicion del objeto, teniendo en cuenta el offset de la camara: 
-				x/122 == cuadrante de x en el que esta
-				y/62  == cuadrante de y en el que esta
-				hallado este cuadrante siguen existiendo cinco posible posiciones finales 
+				SDL_Rect rec = static_cast<ObjetoPG*>(o)->getColisionBox();
+				int cuadranteX = rec.x / 122;
+				int cuadranteY = rec.y / 62;
+				/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
+					x/122 == cuadrante de x en el que esta
+					y/62  == cuadrante de y en el que esta
+					hallado este cuadrante siguen existiendo cinco posible posiciones finales
 					El centro del cuadrante o cualquiera de sus esquinas que pertenecerían a otro tile
 
 					_____________
@@ -61,8 +61,73 @@ public:
 					|  /     \  |
 					|  \     /  |
 					|____\_/____|
-			
-			*/
+
+					*/
+				int Px, Py;
+				Px = rec.x - cuadranteX * 122;
+				Py = rec.y - cuadranteY * 62;
+				// Dividimos el cudrante como si fueran 6 triangulos por comodidad si esta en alguno de los dos centrales añadimos una X al mapa en la posicion del cuadrante
+				if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) < 0)){
+					int aux1 = 0;
+					for (int i = 0; i < cuadranteY; i++)
+					{
+						aux1 += niveles[i];
+					}
+						mapa[aux1 + cuadranteX] = 'X';
+				}
+				else if(((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) < 0)){
+					int aux1 = 0;
+					for (int i = 0; i < cuadranteY; i++)
+					{
+						aux1 += niveles[i];
+					}
+						mapa[aux1 + cuadranteX] = 'X';
+				}
+				// Si la posicion del objeto no esta en ninguno de los dos triangulos centrales comprobamo su x y su y con el centro del cuadrante
+				// Si ambas son mayores marcamos la casilla inferior derecha y asi sucesivamente
+				else
+				{
+					int aux1 = 0;
+					if (Px >= 61)
+					{
+						if (Py < 31)
+						{
+							for (int i = 0; i < cuadranteY - 1; i++)
+							{
+								aux1 += niveles[i];
+							}
+								mapa[aux1 + cuadranteX + 1] = 'X';
+						}
+						else
+						{
+							for (int i = 0; i < cuadranteY + 1; i++)
+							{
+								aux1 += niveles[i];
+							}
+								mapa[aux1 + cuadranteX + 1] = 'X';
+						}
+					}
+					else
+					{
+						if (Py < 31)
+						{
+							for (int i = 0; i < cuadranteY - 1; i++)
+							{
+								aux1 += niveles[i];
+							}
+							mapa[aux1 + cuadranteX - 1] = 'X';
+						}
+						else
+						{
+							for (int i = 0; i < cuadranteY + 1; i++)
+							{
+								aux1 += niveles[i];
+							}
+							mapa[aux1 + cuadranteX - 1] = 'X';
+						}
+					}
+				}
+			}
 		}
 	}
 	/**
