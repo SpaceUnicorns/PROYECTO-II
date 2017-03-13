@@ -8,6 +8,7 @@
 #include "Piedra.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
+	mapa = new GrafoMapa();
 	std:: ifstream f; char aux = 'p';
 	int x = 0;
 	int y = -31;
@@ -21,6 +22,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 		f.get(aux);
 		if (!f.fail()){
 			//std::cout << x << "\n";
+			mapa->creaMapa(aux);
 			switch (aux){
 				case 's':  rectAux.x = 0; aux2.rectTileset = rectAux;
 						   aux2.x = x; aux2.y = y; aux2.capa = 1;

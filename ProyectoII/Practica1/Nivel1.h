@@ -6,6 +6,7 @@
 #include "Recolector.h"
 #include "SDL_ttf.h"
 #include <string>
+#include "GrafoMapa.h"
 class Nivel1 :
 	public EstadoPG
 {
@@ -14,6 +15,7 @@ public:
 	virtual ~Nivel1();
 	virtual void draw();
 protected:
+	GrafoMapa* mapa;
 	Cazador* pCazador;
 	Recolector* pRecolector;
 	std::string activePlayer;;

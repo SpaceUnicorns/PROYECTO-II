@@ -48,14 +48,14 @@ public:
 	virtual SDL_Rect getCamara()const{ return camara; }
 	virtual void setCamara(int x, int y){ camara.x = x; camara.y = y; }
 
-protected: 
-	SDL_Rect camara;
 	struct Tile {
 		int x, y;
 		int capa;
 		SDL_Rect rectTileset;     //Contiene el rectangulo del Tileset que se quiere dibujar.
 	};
 	
+protected: 
+	SDL_Rect camara;
 	struct Colision
 	{
 		SDL_Rect collider;
