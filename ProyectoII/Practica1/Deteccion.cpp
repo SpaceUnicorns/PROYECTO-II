@@ -4,7 +4,6 @@
 
 Deteccion::Deteccion(ObjetoJuego* entidad, float radio):Componente(entidad),radio(radio)
 {
-	SDL_Rect aux = static_cast<Enemigo*>(entidad)->getColisionBox();
 	activo = true;
 	detectado = false;
 }

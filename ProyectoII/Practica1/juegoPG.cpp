@@ -25,7 +25,10 @@ juegoPG::juegoPG()
 	//CAMBIAR CADA VEZ QUE SE METE UNA IMAGEN NUEVA
 	vecTexturas.resize(14);
 	initMedia();	
-	
+
+	//La vida de los pjs (al ser compartida va en el juego)
+	vida = 300;
+
 	estados.push(new MenuPG(this,0));
 
 }

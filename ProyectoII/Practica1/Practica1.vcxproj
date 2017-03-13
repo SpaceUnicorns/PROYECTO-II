@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Arbol.cpp" />
+    <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="Cazador.cpp" />
     <ClCompile Include="ColisionBox.cpp" />
@@ -100,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arbol.h" />
+    <ClInclude Include="Attack.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="Cazador.h" />
     <ClInclude Include="checkML.h" />

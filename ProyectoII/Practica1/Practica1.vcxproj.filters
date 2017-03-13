@@ -93,6 +93,9 @@
     <ClCompile Include="Deteccion.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
@@ -131,9 +134,6 @@
     <ClInclude Include="Error.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Componente.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Cazador.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
@@ -165,6 +165,12 @@
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
     <ClInclude Include="Deteccion.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>

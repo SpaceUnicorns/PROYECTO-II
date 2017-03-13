@@ -40,6 +40,9 @@ public:
 	}
 	bool hasExit(){ return exit; }
 	EstadoJuego* getEstadoActual() { return estados.top(); }
+	int getVida(){ return vida; }
+	void cambiaVida(int cambio){ vida += cambio; }
+
 private:
 	SDL_Event e;
 	
@@ -74,5 +77,8 @@ private:
 	//void update();														// : Pide a todos los globos que actualicen su estado, y actualiza el número de globos que quedan activos.
 	void handle_event();												// : Comprueba si se ha producido el evento SDL_Quit o el evento soltar el botón izquierdo del ratón.Para el caso SDL_Quit, ejecuta onExit().En el otro caso, ejecuta onClick(), pasando como argumentos la posición del ratón.
 	void onExit();
+
+	//Cosas de los personajes
+	int vida;
 };
 

@@ -15,6 +15,7 @@ public:
 	virtual void draw();
 	Cazador* getCazador() { return cazador; }
 	Recolector* getRecolector() { return recolector; }
+	ObjetoPG* getTarget(){ return objetivo; }
 	void setTarget(/*ObjetoPG* target*/int chachiPiruli) { 
 		if (chachiPiruli == 0)objetivo = cazador; 
 		else objetivo = recolector; 
@@ -22,10 +23,10 @@ public:
 	void activaFollow() { std::cout << "ACTIVOOOOOOO" <<"  TARGET  "<< objetivo->nombre <<std::endl;}
 	void desactivaFollow() { std::cout << "DESACTIVA FOLLOW" << std::endl; };
 	Pos getPosIni() { return posIni; }
-
-protected:
 	int damage;
 	int life;
+
+protected:
 	Pos posIni;
 	Cazador* cazador;
 	Recolector* recolector;
