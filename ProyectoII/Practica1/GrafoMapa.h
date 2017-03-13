@@ -130,6 +130,19 @@ public:
 			}
 		}
 	}
+
+	void NodeToXY(void* node, int* x, int* y)
+	{
+		intptr_t index = (intptr_t)node;
+		*y = index / niveles[0];
+		*x = index - *y * niveles[0];
+	}
+
+	void* XYToNode(int x, int y)
+	{
+		return (void*)(y*niveles[0] + x);
+	}
+
 	/**
 	Return the least possible cost between 2 states. For example, if your pathfinding
 	is based on distance, this is simply the straight distance between 2 points on the
@@ -138,7 +151,13 @@ public:
 	*/
 	virtual float LeastCostEstimate(void* stateStart, void* stateEnd)
 	{
-		
+		int firstX, firstY, lastX, lastY;
+		NodeToXY(stateStart, &firstX, &firstY);
+		NodeToXY(stateEnd, &lastX, &lastY);
+
+		int dx = firstX - lastX;
+		int dy = firstY - lastY;
+		return (float)sqrt((double)(dx*dx) + (double)(dy*dy));
 	}
 
 	/**
@@ -147,7 +166,13 @@ public:
 	exact values for every call to MicroPather::Solve(). It should generally be a simple,
 	fast function with no callbacks into the pather.
 	*/
-	virtual void AdjacentCost(void* state, std::vector< micropather::StateCost > *adjacent){};
+	virtual void AdjacentCost(void* state, std::vector< micropather::StateCost > *adjacent)
+	{
+		int x, y;
+		NodeToXY(state, &x, &y);
+
+
+	}
 
 	/**
 	This function is only used in DEBUG mode - it dumps output to stdout. Since void*
