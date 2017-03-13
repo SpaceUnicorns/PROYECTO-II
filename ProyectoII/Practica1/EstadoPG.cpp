@@ -15,8 +15,6 @@ EstadoPG::EstadoPG(juegoPG*jug,int puntos)
 	contPuntos = puntos;
 
 }
-
-
 EstadoPG::~EstadoPG()
 {
 	
@@ -234,7 +232,6 @@ void EstadoPG::paraMusica(std::string music, bool fade){
 	}
 	catch (std::exception e){}
 }
-
 void EstadoPG::reproduceAmb(std::string amb, bool fade){
 	try {
 		bool cOcupied = false;
@@ -314,6 +311,7 @@ void EstadoPG::drawFont(){
 	//	}
 		//catch (ELoadFont & e){}
 	}
+
 
 void EstadoPG::update(){
 	for (unsigned int i = 0; i < vecObj.size(); i++){

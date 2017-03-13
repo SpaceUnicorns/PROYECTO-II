@@ -50,8 +50,9 @@ public:
 
 protected: 
 	SDL_Rect camara;
+
 	struct Tile {
-		int x, y;
+		int x, y; //Posicion
 		int capa;
 		SDL_Rect rectTileset;     //Contiene el rectangulo del Tileset que se quiere dibujar.
 	};

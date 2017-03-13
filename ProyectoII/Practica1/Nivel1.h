@@ -18,6 +18,8 @@ protected:
 	Recolector* pRecolector;
 	std::string activePlayer;;
 	void swPlayer();
+	int tileH = 83;
+	int tileW = 122;
 	//void onKeyUp(char k);
 
 	/*//métodos-----------------------------------------------------------------
