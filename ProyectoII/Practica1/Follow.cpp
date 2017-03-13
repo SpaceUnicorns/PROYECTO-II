@@ -7,9 +7,10 @@ Follow::Follow(ObjetoJuego* ent, ObjetoPG* tg) : Componente(ent)
 	pObj = dynamic_cast<ObjetoPG*>(pEntidad);
 	nextPos.x = nextPos.y = 0;
 	target = tg;
-	paso = 80;
+	paso = 120;
 	following = false;
 	hitInfo = nullptr;
+	cont = 1;
 }
 
 
@@ -38,7 +39,7 @@ Punto Follow:: sigDireccion(int dir, int k){
 			std::cout << "\n";
 			std::cout << "X: " << aux.x << " Y: " << aux.y << "\n";
 			break;
-		/*case 4: aux.x = path[k].x + paso; aux.y = path[k].y - paso; //dDS
+		case 4: aux.x = path[k].x + paso; aux.y = path[k].y - paso; //dDS
 			break;
 		case 5: aux.x = path[k].x + paso; aux.y = path[k].y + paso; //dDI
 			break;
@@ -54,8 +55,8 @@ Punto Follow:: sigDireccion(int dir, int k){
 }
 bool Follow::esValida(int k){
 	std::cout << "Validando\n";
-	/*if (path[k].x > 1024 || path[k].x < 0) return false;
-	if (path[k].y > 768 || path[k].y < 0) return false;*/
+	if (path[k].x > path[0].x + pObj->getPJuego()->getScrenWidth() || path[k].x < path[0].x - pObj->getPJuego()->getScrenWidth()) return false;
+	if (path[k].y > path[0].y + pObj->getPJuego()->getScrenHeight() || path[k].y < path[0].y - pObj->getPJuego()->getScrenHeight()) return false;
 	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(path[k], hitInfo) == 1) return false;
 	bool valida = true;
 	int i = 0;
@@ -69,7 +70,7 @@ bool Follow::esValida(int k){
 void Follow:: calculaPath(int k, bool &exito){
 	int dir = 0;
 
-	while (dir < 4 && !exito){
+	while (dir < 8 && !exito){
 		path.push_back(sigDireccion(dir,k));
 		if (esValida(k+1)){
 			if (path[k+1].compruebaRadio(target->getColisionBox(),paso ))
@@ -79,7 +80,12 @@ void Follow:: calculaPath(int k, bool &exito){
 			}
 			else{ // marcar
 				//marcas[sol[k].fila][sol[k].col] = true;
-					calculaPath(k + 1, exito);
+				Punto ideal; ideal.x = abs(target->getColisionBox().x - pObj->getColisionBox().x);
+				ideal.y = abs(target->getColisionBox().y - pObj->getColisionBox().y);
+				Punto temp; temp.x = abs(target->getColisionBox().x - path[k + 1].x);
+				temp.y = abs(target->getColisionBox().y - path[k + 1].y);
+				if (temp.x < 2*temp.x || temp.y < 2*temp.y) 
+				calculaPath(k + 1, exito);
 				
 			}
 		}
@@ -122,13 +128,43 @@ void Follow::calculaPath(){
 	path.push_back(au);
 	estimacion = 0;
 	calculaPath(0, aux);
-	path.clear();
+	
 
 }
 void Follow::update(){
 	if (pObj->getPJuego()->input.follow){
 		pObj->getPJuego()->input.follow = false;
-		following = true;
-		calculaPath();
+		if (pObj->getColisionBox().x > 1024 || pObj->getColisionBox().x < 0){
+			std::cout << "Estas demasiado lejos";
+		}
+		else if (pObj->getColisionBox().y > 768 || pObj->getColisionBox().y < 0){
+			std::cout << "Estas demasiado lejos";
+		}
+		else {
+			following = true;
+			calculaPath();
+		}
+	}
+	if (following && cont < path.size()){
+		std::cout << "moviendo\n";
+		vecDir.x = path[cont].x - path[cont-1].x;
+		vecDir.y = path[cont].y - path[cont-1].y;
+		if (vecDir.x < 0) signoX = -1;
+		else signoX = 1;
+		if (vecDir.y < 0) signoY = -1;
+		else signoY = 1;
+		if (pObj->getRect().x != path[cont].x){
+			pObj->setRect(1 * signoX, 0);
+		}
+		if (pObj->getRect().y != path[cont].y){
+			pObj->setRect(0, 1 * signoY);
+		}
+		if (pObj->getRect().y == path[cont].y && pObj->getRect().x == path[cont].x)
+			cont++;
+	}
+	else {
+		cont = 1;
+		following = false;
+		path.clear();
 	}
 }

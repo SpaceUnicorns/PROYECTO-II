@@ -39,6 +39,8 @@ public:
 		mpx = pmx; mpy = pmy;
 	}
 	bool hasExit(){ return exit; }
+	int getScrenWidth(){ return SCREEN_WIDTH; }
+	int getScrenHeight(){ return SCREEN_HEIGHT; }
 private:
 	SDL_Event e;
 	

@@ -1,5 +1,6 @@
 #include "Recolector.h"
 #include "MovimientoP.h"
+#include "Follow.h"
 
 
 Recolector::Recolector(juegoPG * juego, int px, int py): ObjetoPG(juego, px, py)
@@ -18,6 +19,10 @@ Recolector::Recolector(juegoPG * juego, int px, int py): ObjetoPG(juego, px, py)
 
 Recolector::~Recolector()
 {
+}
+void Recolector::update(){
+	ObjetoPG::update();
+	following = static_cast<Follow*>(dameComponente("Follow"))->isFollowing();
 }
 void Recolector::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if (!activo) {

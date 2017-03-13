@@ -12,6 +12,7 @@ public:
 	//cutradamaxima borrar.
 	int estimacion;
 	ObjetoPG *pObj;
+	bool isFollowing(){ return following; }
 private:
 	void calculaPath();
 	void calculaPath(int k, bool &exito);
@@ -22,7 +23,7 @@ private:
 	std::vector<Punto> path;
 	ObjetoPG* target;
 	bool following;
-	int signoY, signoX, paso;
+	int signoY, signoX, paso, cont;
 	Punto vecDir;
 	Punto nextPos;
 };
