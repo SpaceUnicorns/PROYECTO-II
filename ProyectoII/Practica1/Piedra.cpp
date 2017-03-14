@@ -15,6 +15,8 @@ Piedra::Piedra(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 
 Piedra::~Piedra()
 {
+	
+	deleteComponente("ColisionBox");
 }
 void Piedra::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());

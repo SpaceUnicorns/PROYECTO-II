@@ -36,5 +36,5 @@ void MenuPrincipal::update(){
 }
 MenuPrincipal::~MenuPrincipal()
 {
-
+	deleteComponente("Menu");
 }

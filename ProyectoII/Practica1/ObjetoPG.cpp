@@ -14,7 +14,9 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 
 
 ObjetoPG::~ObjetoPG()
-{
+
+{ 
+	mapaComponentes.erase(mapaComponentes.begin(), mapaComponentes.end());
 }
 
 bool ObjetoPG::dentro(int x, int y)const{

@@ -18,6 +18,8 @@ Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py
 
 Recolector::~Recolector()
 {
+	deleteComponente("MovimientoP");
+	deleteComponente("ColisionBox");
 }
 void Recolector::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if (!activo) {

@@ -40,7 +40,7 @@ EstadoPG::~EstadoPG()
 			result = reverbGroup->removeDSP(reverbUnit);
 			result = reverbUnit->disconnectAll(true, true);
 	}
-
+	
 }
 
 void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
