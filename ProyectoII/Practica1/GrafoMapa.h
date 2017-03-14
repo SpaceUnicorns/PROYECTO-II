@@ -168,9 +168,65 @@ public:
 	*/
 	virtual void AdjacentCost(void* state, std::vector< micropather::StateCost > *adjacent)
 	{
+		micropather::StateCost nodeCost;
 		int x, y;
 		NodeToXY(state, &x, &y);
-
+		for (int i = 0; i < 8; i++)
+		{
+			switch (i)
+			{
+			case 0:
+				if (mapa[(y - 1)*niveles[0] + x]!= 'X')
+					nodeCost = { XYToNode(x, y - 1), 9999 };
+				else
+					nodeCost = { XYToNode(x, y - 1), 1 };
+				adjacent->push_back(nodeCost);
+				break;
+			case 1:
+				if (mapa[(y - 1)*niveles[0] + x + 1] != 'X')
+					nodeCost = { XYToNode(x + 1, y - 1), 9999 };
+				else
+					nodeCost = { XYToNode(x + 1, y - 1), 1 };
+				adjacent->push_back(nodeCost);
+				break;
+			case 2:
+				if (mapa[(y)*niveles[0] + x + 1] != 'X')
+					nodeCost = { XYToNode(x + 1, y), 9999 };
+				else
+					nodeCost = { XYToNode(x + 1, y), 1 };
+				break;
+			case 3:
+				if (mapa[(y + 1)*niveles[0] + x + 1] != 'X')
+					nodeCost = { XYToNode(x + 1, y + 1), 9999 };
+				else
+					nodeCost = { XYToNode(x + 1, y + 1), 1 };
+				break;
+			case 4:
+				if (mapa[(y + 1)*niveles[0] + x] != 'X')
+					nodeCost = { XYToNode(x, y + 1), 9999 };
+				else
+					nodeCost = { XYToNode(x, y + 1), 1 };
+				break;
+			case 5:
+				if (mapa[(y + 1)*niveles[0] + x - 1] != 'X')
+					nodeCost = { XYToNode(x - 1, y + 1), 9999 };
+				else
+					nodeCost = { XYToNode(x - 1, y + 1), 1 };
+				break;
+			case 6:
+				if (mapa[(y)*niveles[0] + x - 1] != 'X')
+					nodeCost = { XYToNode(x - 1, y), 9999 };
+				else
+					nodeCost = { XYToNode(x - 1, y), 1 };
+				break;
+			case 7:
+				if (mapa[(y - 1)*niveles[0] + x - 1] != 'X')
+					nodeCost = { XYToNode(x - 1, y - 1), 9999 };
+				else
+					nodeCost = { XYToNode(x - 1, y - 1), 1 };
+				break;
+			}
+		}
 
 	}
 
