@@ -6,9 +6,9 @@ ColisionBox::ColisionBox(ObjetoJuego* ent) : Componente(ent)
 	pObj = dynamic_cast<ObjetoPG*>(ent);
 	movible = true;
 	boxRect.x = pObj->getRect().x +15;
-	boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;
-	boxRect.w = pObj->getRect().w*0.4;
-	boxRect.h = pObj->getRect().h *0.2;
+	boxRect.y = int(pObj->getRect().y + pObj->getRect().h *0.8);
+	boxRect.w = int(pObj->getRect().w*0.4);
+	boxRect.h = int(pObj->getRect().h *0.2);
 }
 ColisionBox::ColisionBox(ObjetoJuego* ent, SDL_Rect const & newRect, bool mov): Componente(ent){
 	pObj = dynamic_cast<ObjetoPG*>(ent);
@@ -26,8 +26,8 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 
 	int col = 0;
 	Punto p; p.x = P.x + pObj->getColisionBox().x; p.y = P.y + pObj->getColisionBox().y; //Posición de colisionBox + la posición a la que nos queremos mover.
-	ObjetoPG* ob;
-	int i = 0;
+	ObjetoPG* ob = nullptr;
+	unsigned int i = 0;
 	while (i < static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().size() && !col){
 		ob = dynamic_cast<ObjetoPG*>(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj()[i]); //objeto con el que colisiona
 		if (ob != pObj){
@@ -45,6 +45,7 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 			i++;
 		
 	}
+	
 
 	//Comprueba la colision con los bordes
 	i = 0;
@@ -54,6 +55,7 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 			i++;
 		}//fin colision con bordes
 	}
+
 	return col;
 }
 //Este método calcula si un punto dado se encuentra dentro del área del triangulo.
@@ -108,7 +110,7 @@ int ColisionBox::inTriangle(TrianguloBorde tr, Punto const & P){
 //Siendo A1A2A3 el triángulo.
 //Si el resultado es mayor o igual que 0, la orientación del triángulo será positiva.En caso contrario, la orientación del triángulo será negativa.
 int ColisionBox::triangleOrientation(TrianguloBorde const & tr){
-	TrianguloBorde s;
+	static TrianguloBorde s;
 	return ((tr.A.x - tr.C.x)*(tr.B.y - tr.C.y) - (tr.A.y - tr.C.y)*(tr.B.x - tr.C.x));
 }
 void ColisionBox::update(){
@@ -116,10 +118,11 @@ void ColisionBox::update(){
 		boxRect.x = pObj->getRect().x +15;
 		boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;
 	}*/
+	
 }
 void ColisionBox::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//std::cout << "Dibujado";
-	if (!movible || !pObj->isAble()) {
+	if (!movible || !pObj->isAble()) { // cambiar este metodo al update, y llamar al update desde cada entidad
 		boxRect.y -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().y;
 		boxRect.x -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().x;
 	}

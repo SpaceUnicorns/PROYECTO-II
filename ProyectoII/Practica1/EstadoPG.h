@@ -8,10 +8,10 @@
 #include <fstream>
 #include <iostream>
 
-static struct Punto{
+ struct Punto{
 	int x, y;
 };
-static struct TrianguloBorde{
+ struct TrianguloBorde{
 	Punto A, B, C;
 };
 

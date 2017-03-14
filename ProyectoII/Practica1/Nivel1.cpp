@@ -88,13 +88,13 @@ void Nivel1::draw(){
 	//No se si esto iria mejor en el update (??????????????????)
 	if (pJuego->input.sw) swPlayer();
 	else{
-		for (int i = 0; i < vecTile.size(); i++){
+		for (unsigned int i = 0; i < vecTile.size(); i++){
 			vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
 			tile = vecTile[i];
 			aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
 			pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 		}
-		for (int i = 0; i < vectBordes.size(); i++){
+		for (unsigned int i = 0; i < vectBordes.size(); i++){
 			vectBordes[i].A.x -= camara.x;
 			vectBordes[i].A.y -= camara.y;
 			vectBordes[i].B.x -= camara.x;
@@ -124,14 +124,14 @@ void Nivel1::swPlayer(){
 		camara.y = -1*(pRecolector->getRect().y - pCazador->getRect().y);
 		activePlayer = "C";
 	}
-	for (int i = 0; i < vecTile.size(); i++){
+	for (unsigned int i = 0; i < vecTile.size(); i++){
 		vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
 		tile = vecTile[i];
 		aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
 		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 	}
 		
-	for (int i = 0; i < vectBordes.size(); i++){
+	for (unsigned int i = 0; i < vectBordes.size(); i++){
 		vectBordes[i].A.x -= camara.x;
 		vectBordes[i].A.y -= camara.y;
 		vectBordes[i].B.x -= camara.x;

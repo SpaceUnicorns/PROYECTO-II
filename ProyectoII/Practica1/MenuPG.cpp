@@ -1,4 +1,4 @@
-#include "MenuPG.h"
+	#include "MenuPG.h"
 
 
 MenuPG::MenuPG(juegoPG*jug, int puntos) :EstadoPG(jug, puntos)

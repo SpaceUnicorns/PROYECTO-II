@@ -33,6 +33,7 @@ public:
 	virtual  SDL_Rect getColisionBox(){ return rect; };
 	virtual Componente* dameComponente(std::string const &s){
 		if (encuentraComponente(s)) return mapaComponentes.at(s);
+		else return nullptr;
 	}
 	//Animacion-------------------------------------------
 	virtual void changeAnimV(int fila) { anim.y = anim.h * fila; } // coloca la 'j'
