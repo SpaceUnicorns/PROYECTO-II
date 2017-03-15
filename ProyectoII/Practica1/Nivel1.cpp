@@ -152,6 +152,7 @@ void Nivel1::swPlayer(){
 void Nivel1::onKeyUp(char k) {
 	switch (k) {
 	case 'q':
+		
 		pJuego->estados.push(new MCrafteo(pJuego, contPuntos));
 		break;
 

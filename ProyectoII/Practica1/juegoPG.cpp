@@ -120,6 +120,11 @@ void juegoPG::handle_event(){
 				estados.top()->onKeyUp('p');
 			}
 			else if (e.key.keysym.sym == SDLK_q) {
+				
+				SDL_Surface *sshot = SDL_CreateRGBSurface(0, 1024, 768, 32, 0, 0, 0, 0);
+				SDL_RenderReadPixels(getRender(),NULL , SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
+				SDL_SaveBMP(sshot, "..//bmps//temp//screenshot.bmp");
+				SDL_FreeSurface(sshot);
 				estados.top()->onKeyUp('q');
 			}
 			else if (e.key.keysym.sym == SDLK_RETURN) {
