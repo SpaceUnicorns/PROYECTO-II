@@ -8,7 +8,7 @@ Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR)
 	rect.h = 50;
 	tgCazador = tgC;
 	tgRecolector = tgR;
-	triggered = false;
+	triggered = reacciona = false;
 }
 
 
@@ -16,20 +16,22 @@ Trigger::~Trigger()
 {
 }
 void Trigger::update(){
-	if (!triggered && tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w)){
+	if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w)){
 		if(tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)) {
-			cb->callback();
+			if(!reacciona) cb->callback();
+			reacciona = true;
 			triggered = true;
 		}
 	}
-	else if (!triggered && tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w)){
+	else if (tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w)){
 		if (tgRecolector->getColisionBox().y > rect.y && tgRecolector->getColisionBox().y < (rect.y + rect.h)) {
-			cb->callback();
+			if(!reacciona) cb->callback();
 			triggered = true;
+			reacciona = true;
 		}
 	}
+	else triggered = false;
 	cb->update();
-	//triggered = false;
 }
 void Trigger::draw(){ 
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());

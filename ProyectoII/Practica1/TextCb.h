@@ -6,7 +6,7 @@ class TextCb :
 	public Componente
 {
 public:
-	TextCb(ObjetoJuego* ent);
+	TextCb(ObjetoJuego* ent, std::string s);
 	virtual ~TextCb();
 	virtual void callback();
 	virtual void update();
@@ -15,9 +15,11 @@ protected:
 	SDL_Rect textBox;
 	SDL_Rect font;
 	Trigger* pObj;
+	std::string default;
 	std::ifstream f; std:: vector<std:: string> aux;
 	int cont;
 	int timer;
-	bool once;
+	bool reacciona;
+	int firstTime;
 };
 

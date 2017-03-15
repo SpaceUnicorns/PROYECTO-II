@@ -64,8 +64,13 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -80, camara.y + (camara.h / 2)));
 	pRecolector = static_cast<Recolector*>(vecObj[1]);
 
-	vecTriggers.push_back(new Trigger(pJuego, 300, 50, pCazador, pRecolector));
-	static_cast<Trigger*>(vecTriggers[0])->setCallback(new TextCb(vecTriggers[0]));
+	vecTriggers.push_back(new Trigger(pJuego, 562, 384, pCazador, pRecolector));
+	static_cast<Trigger*>(vecTriggers[0])->setCallback(new TextCb(vecTriggers[0], "../docs/textos/dialogo1.txt"));
+	vecTriggers.push_back(new Trigger(pJuego, 662, 384, pCazador, pRecolector));
+	static_cast<Trigger*>(vecTriggers[1])->setCallback(new TextCb(vecTriggers[1], "../docs/textos/dialogo2.txt"));
+	vecTriggers.push_back(new Trigger(pJuego, 865, 70, pCazador, pRecolector));
+	static_cast<Trigger*>(vecTriggers[2])->setCallback(new TextCb(vecTriggers[2], "../docs/textos/dialogo3.txt"));
+	static_cast<Trigger*>(vecTriggers[2])->setTriggerDim(80, 80);
 
 	vecObj.push_back(new Arbol(pJuego, 180, 60));
 	vecObj.push_back(new Arbol(pJuego, 480, 260));
@@ -78,7 +83,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
 	reproduceFx("balloon", -100, 0, 0);
-	reproduceMusica("music", false);
+	//reproduceMusica("music", false);
 
 	activePlayer = "C";
 	
