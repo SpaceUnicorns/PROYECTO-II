@@ -299,18 +299,18 @@ void EstadoPG::paraAmb(std::string amb, bool fade){
 void EstadoPG::draw(){
 	//Draw background
 	pJuego->getTextura(et)->draw(pJuego->getRender(), fondo);
-	drawFont();
+	//drawFont();
 
 	for (unsigned int i = 0; i < vecObj.size(); i++)
 		vecObj[i]->draw();
 
 
 }
-void EstadoPG::drawFont(){
+void EstadoPG::drawFont(SDL_Rect rect, std::string const & s){
 	//Dibujar puntos
 	//try{// bloque try catch
-			pJuego->getFuente()->loadFromText(pJuego->getRender(), std::to_string(contPuntos), colorFuente);
-			pJuego->getFuente()->draw(pJuego->getRender(), pJuego->getFuente()->font.recFont);
+			pJuego->getFuente()->loadFromText(pJuego->getRender(), s, colorFuente);
+			pJuego->getFuente()->draw(pJuego->getRender(), rect);
 	//	}
 		//catch (ELoadFont & e){}
 	}
@@ -318,6 +318,9 @@ void EstadoPG::drawFont(){
 void EstadoPG::update(){
 	for (unsigned int i = 0; i < vecObj.size(); i++){
 		vecObj[i]->update();
+	}
+	for (unsigned int i = 0; i < vecTriggers.size(); i++){
+		vecTriggers[i]->update();
 	}
 }
 void EstadoPG::onClick(){

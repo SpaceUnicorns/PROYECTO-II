@@ -6,6 +6,8 @@
 #include <algorithm>
 #include "Pausa.h"
 #include "Piedra.h"
+#include "TextCb.h"
+#include "Trigger.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	std:: ifstream f; char aux = 'p';
@@ -58,7 +60,12 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	camara.x = camara.y = 0;
 	camara.h = 768; camara.w = 1024;
 	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
+	pCazador = static_cast<Cazador*>(vecObj[0]);
 	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -80, camara.y + (camara.h / 2)));
+	pRecolector = static_cast<Recolector*>(vecObj[1]);
+
+	vecTriggers.push_back(new Trigger(pJuego, 300, 50, pCazador, pRecolector));
+	static_cast<Trigger*>(vecTriggers[0])->setCallback(new TextCb(vecTriggers[0]));
 
 	vecObj.push_back(new Arbol(pJuego, 180, 60));
 	vecObj.push_back(new Arbol(pJuego, 480, 260));
@@ -73,8 +80,6 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	reproduceFx("balloon", -100, 0, 0);
 	reproduceMusica("music", false);
 
-	pCazador = static_cast<Cazador*>(vecObj[0]);
-	pRecolector = static_cast<Recolector*>(vecObj[1]);
 	activePlayer = "C";
 	
 	//pRecolector->swAble();
@@ -104,7 +109,7 @@ void Nivel1::draw(){
 		}
 		std::sort(vecObj.begin(), vecObj.end(), ordena);
 		for (ObjetoJuego* ob : vecObj) ob->draw();
-
+		for (ObjetoJuego* trg : vecTriggers) trg->draw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 	}
 
 	setCamara(0,0); //Se reinicia el offset a 0
@@ -141,6 +146,9 @@ void Nivel1::swPlayer(){
 	}
 	std::sort(vecObj.begin(), vecObj.end(), ordena);
 	for (ObjetoJuego* ob : vecObj){
+		ob->draw();
+	}
+	for (ObjetoJuego* ob : vecTriggers){ //TIENE QUE SER LO ULTIMO EN DIBUJARSE
 		ob->draw();
 	}
 	

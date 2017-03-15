@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iostream>
 
+
  struct Punto{
 	int x, y;
 };
@@ -26,7 +27,7 @@ public:
 	virtual void update();
 	virtual void onClick();
 	virtual void onOver();
-	virtual void drawFont();
+	virtual void drawFont(SDL_Rect rect, std::string const & s);
 	virtual void reproduceFx(std::string fx, float x, float y, float wet);
 	virtual void reproduceMusica(std::string music, bool fade);
 	virtual void paraMusica(std::string music, bool fade);
@@ -40,7 +41,9 @@ public:
 	virtual std::vector <ObjetoJuego*> & getVectObj() {
 		return vecObj;
 	}
-
+	virtual std::vector <ObjetoJuego*> & getVecTriggers() {
+		return vecTriggers;
+	}
 	// Audio
 	void cargarAssetsAudio(std::string txt, char tipo);
 	void cargarAudio(std::string irPath);
@@ -83,6 +86,7 @@ protected:
 	int cAmb;
 	FMOD::Channel   *cfx1 = 0, *cfx2 = 0, *cfx3 = 0, *cfx4 = 0, *camb1 = 0, *camb2 = 0, *cmusic1 = 0, *cmusic2 = 0;
 	std::vector<ObjetoJuego*> vecObj;
+	std::vector<ObjetoJuego*>vecTriggers;
 	std::map<std::string, FMOD::Sound*> vfx;
 	std::map<std::string, FMOD::Sound*> vmusic;
 

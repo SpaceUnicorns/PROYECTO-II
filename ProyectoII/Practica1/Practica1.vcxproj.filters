@@ -90,6 +90,12 @@
     <ClCompile Include="MenuPrincipalComp.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="Trigger.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="TextCb.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
@@ -157,6 +163,12 @@
     </ClInclude>
     <ClInclude Include="MenuPrincipalComp.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="Trigger.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="TextCb.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

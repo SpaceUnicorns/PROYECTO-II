@@ -17,6 +17,8 @@ public:
 	{
 	}
 	//Métodos-----------------------------------------------------------
+	virtual void callback(){};
+	virtual void draw(){ };
 	virtual void update(){};
 	virtual void start(){};
 	virtual void lateUpdate(){};

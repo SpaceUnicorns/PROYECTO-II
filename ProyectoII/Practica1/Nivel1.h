@@ -16,7 +16,7 @@ public:
 protected:
 	Cazador* pCazador;
 	Recolector* pRecolector;
-	std::string activePlayer;;
+	std::string activePlayer;
 	void swPlayer();
 	//void onKeyUp(char k);
 
