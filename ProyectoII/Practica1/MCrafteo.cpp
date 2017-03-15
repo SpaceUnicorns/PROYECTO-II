@@ -20,7 +20,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos) : EstadoPG(jug, puntos)
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temp//screenshot.bmp");
 	
-	kek.x = kek.y = 0; kek.w = 1024; kek.h = 768;
+	rekt.x = rekt.y = 0; rekt.w = 1024; rekt.h = 768;
 	
 }
 
@@ -29,12 +29,12 @@ MCrafteo::~MCrafteo()
 {
 
 	delete fondo;
-	remove("..//bmps//temp//screenshot.bmp");
+	
 }
 
 void MCrafteo::draw() {
 	//std::cout << "pagina: " << numPag << "tamaño: " << pag1.w << "\n";
-	fondo->draw(pJuego->getRender(), kek);
+	fondo->draw(pJuego->getRender(), rekt);
 
 	if (numPag < 5)	pJuego->getPag(numPag + 1)->draw(pJuego->getRender(), pag2);
 	pJuego->getPag(numPag)->draw(pJuego->getRender(), pag1);
@@ -114,7 +114,7 @@ void MCrafteo::onKeyUp(char k) {
 
 	switch (k) {
 	case 'e':
-		
+		remove("..//bmps//temp//screenshot.bmp");
 		pJuego->estados.pop();
 		break;
 
