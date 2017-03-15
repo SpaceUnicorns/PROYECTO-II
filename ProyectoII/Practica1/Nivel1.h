@@ -15,6 +15,7 @@ public:
 	virtual ~Nivel1();
 	virtual void draw();
 protected:
+	int x, y;
 	GrafoMapa* mapa;
 	Cazador* pCazador;
 	Recolector* pRecolector;

@@ -78,7 +78,15 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pCazador = static_cast<Cazador*>(vecObj[0]);
 	pRecolector = static_cast<Recolector*>(vecObj[1]);
 	activePlayer = "C";
+	std::vector<void*> path;
+	float cost;
+	mapa->solve(mapa->XYToNode(1, 16), mapa->XYToNode(1, 8), &path, &cost);
 	
+	for (unsigned int i = 0; i < path.size(); i++)
+	{
+		mapa->NodeToXY(path[i], &x, &y);
+		std::cout << "Posicion " << x << " " << y << "\n";
+	}
 	//pRecolector->swAble();
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){

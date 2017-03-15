@@ -16,6 +16,10 @@ public:
 		pather = new micropather::MicroPather(this, 20);	// Use a very small memory block to stress the pather
 	}
 	
+	void solve(void* startState, void* endState, std::vector< void* >* path, float* totalCost)
+	{
+		pather->Solve(startState, endState, path, totalCost);
+	}
 	void creaMapa(char c)
 	{
 		switch (c)
@@ -176,54 +180,76 @@ public:
 			switch (i)
 			{
 			case 0:
-				if (mapa[(y - 1)*niveles[0] + x]!= 'X')
-					nodeCost = { XYToNode(x, y - 1), 9999 };
-				else
-					nodeCost = { XYToNode(x, y - 1), 1 };
-				adjacent->push_back(nodeCost);
+				if (y > 0){
+					if (mapa[(y - 1)*niveles[0] + x] == 'X')
+						nodeCost = { XYToNode(x, y - 1), INT_MAX };
+					else
+						nodeCost = { XYToNode(x, y - 1), 1 };
+					adjacent->push_back(nodeCost);
+				}
 				break;
 			case 1:
-				if (mapa[(y - 1)*niveles[0] + x + 1] != 'X')
-					nodeCost = { XYToNode(x + 1, y - 1), 9999 };
-				else
-					nodeCost = { XYToNode(x + 1, y - 1), 1 };
-				adjacent->push_back(nodeCost);
+				if (y > 0 && x < niveles[0]-1){
+					if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
+						nodeCost = { XYToNode(x + 1, y - 1), INT_MAX };
+					else
+						nodeCost = { XYToNode(x + 1, y - 1), 1 };
+					adjacent->push_back(nodeCost);
+				}
 				break;
 			case 2:
-				if (mapa[(y)*niveles[0] + x + 1] != 'X')
-					nodeCost = { XYToNode(x + 1, y), 9999 };
-				else
-					nodeCost = { XYToNode(x + 1, y), 1 };
+				if (x < niveles[0]-1){
+					if (mapa[(y)*niveles[0] + x + 1] == 'X')
+						nodeCost = { XYToNode(x + 1, y), INT_MAX };
+					else
+						nodeCost = { XYToNode(x + 1, y), 1 };
+					adjacent->push_back(nodeCost);
+				}
 				break;
 			case 3:
-				if (mapa[(y + 1)*niveles[0] + x + 1] != 'X')
-					nodeCost = { XYToNode(x + 1, y + 1), 9999 };
-				else
-					nodeCost = { XYToNode(x + 1, y + 1), 1 };
+				if (y < niveles.size()-1 && x < niveles[0] - 1){
+					if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
+						nodeCost = { XYToNode(x + 1, y + 1), INT_MAX };
+					else
+						nodeCost = { XYToNode(x + 1, y + 1), 1 };
+					adjacent->push_back(nodeCost);
+				}
 				break;
 			case 4:
-				if (mapa[(y + 1)*niveles[0] + x] != 'X')
-					nodeCost = { XYToNode(x, y + 1), 9999 };
-				else
-					nodeCost = { XYToNode(x, y + 1), 1 };
+				if (y < niveles.size() - 1){
+					if (mapa[(y + 1)*niveles[0] + x] == 'X')
+						nodeCost = { XYToNode(x, y + 1), INT_MAX };
+					else
+						nodeCost = { XYToNode(x, y + 1), 1 };
+					adjacent->push_back(nodeCost);
+				}
 				break;
 			case 5:
-				if (mapa[(y + 1)*niveles[0] + x - 1] != 'X')
-					nodeCost = { XYToNode(x - 1, y + 1), 9999 };
-				else
-					nodeCost = { XYToNode(x - 1, y + 1), 1 };
+				if (y < niveles.size() - 1 && x > 0){
+					if (mapa[(y + 1)*niveles[0] + x - 1] == 'X')
+						nodeCost = { XYToNode(x - 1, y + 1), INT_MAX };
+					else
+						nodeCost = { XYToNode(x - 1, y + 1), 1 };
+					adjacent->push_back(nodeCost);
+				}
 				break;
 			case 6:
-				if (mapa[(y)*niveles[0] + x - 1] != 'X')
-					nodeCost = { XYToNode(x - 1, y), 9999 };
-				else
-					nodeCost = { XYToNode(x - 1, y), 1 };
+				if (x > 0){
+					if (mapa[(y)*niveles[0] + x - 1] == 'X')
+						nodeCost = { XYToNode(x - 1, y), INT_MAX };
+					else
+						nodeCost = { XYToNode(x - 1, y), 1 };
+					adjacent->push_back(nodeCost);
+				}
 				break;
 			case 7:
-				if (mapa[(y - 1)*niveles[0] + x - 1] != 'X')
-					nodeCost = { XYToNode(x - 1, y - 1), 9999 };
-				else
-					nodeCost = { XYToNode(x - 1, y - 1), 1 };
+				if (y > 0 && x > 0){
+					if (mapa[(y - 1)*niveles[0] + x - 1] == 'X')
+						nodeCost = { XYToNode(x - 1, y - 1), INT_MAX };
+					else
+						nodeCost = { XYToNode(x - 1, y - 1), 1 };
+					adjacent->push_back(nodeCost);
+				}
 				break;
 			}
 		}
