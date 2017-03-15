@@ -40,6 +40,14 @@ public:
 	virtual std::vector <ObjetoJuego*> & getVectObj() {
 		return vecObj;
 	}
+	virtual void eraseVectObj(ObjetoJuego* pnt) {
+		std::vector<ObjetoJuego*>::iterator it;
+		for (it = vecObj.begin(); it != vecObj.end(); it++)
+			if ((*it) == pnt) {
+				delete * it;
+				it = vecObj.erase(it);
+			}
+	}
 
 	// Audio
 	void cargarAssetsAudio(std::string txt, char tipo);
