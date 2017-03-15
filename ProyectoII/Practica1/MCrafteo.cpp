@@ -20,6 +20,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos) : EstadoPG(jug, puntos)
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temp//screenshot.bmp");
 	
+	kek.x = kek.y = 0; kek.w = 1024; kek.h = 768;
 	
 }
 

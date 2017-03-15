@@ -9,7 +9,7 @@ public:
 
 	void draw();
 	void update();
-	SDL_Rect kek = { 0,0,1024,768 };
+	SDL_Rect kek;
 	void onKeyUp(char k);
 
 private:
