@@ -3,7 +3,7 @@
 #include "ColisionBox.h"
 #include "Recolector.h"
 #include "ObjetoPG.h"
-
+#include "Mochila.h"
 
 MovimientoP::MovimientoP(ObjetoJuego* ent) : Componente(ent)
 {
@@ -34,7 +34,8 @@ void MovimientoP::update(){
 		if (dynamic_cast<Recolector*>(pObj)) {
 			if (pObj->getPJuego()->input.e) {
 				pObj->getPJuego()->input.e = false;
-				std::cout << " he cogido una " << info->nombre << "\n";
+				static_cast<Mochila*> (pObj->dameComponente("Mochila"))->newItem(info->nombre, 1);
+			
 
 			}
 			
