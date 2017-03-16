@@ -9,9 +9,6 @@ EstadoPG::EstadoPG(juegoPG*jug,int puntos)
 	fondo.h = 480;
 	fondo.w = 640;
 	fondo.x = fondo.y = 0;
-	colorFuente.r = 130;
-	colorFuente.g = 214;
-	colorFuente.b = 28;
 	contPuntos = puntos;
 
 }
@@ -306,10 +303,10 @@ void EstadoPG::draw(){
 
 
 }
-void EstadoPG::drawFont(SDL_Rect rect, std::string const & s){
+void EstadoPG::drawFont(SDL_Rect rect, std::string const & s, SDL_Color color){
 	//Dibujar puntos
 	//try{// bloque try catch
-			pJuego->getFuente()->loadFromText(pJuego->getRender(), s, colorFuente);
+			pJuego->getFuente()->loadFromText(pJuego->getRender(), s, color);
 			pJuego->getFuente()->draw(pJuego->getRender(), rect);
 	//	}
 		//catch (ELoadFont & e){}

@@ -15,10 +15,12 @@ protected:
 	SDL_Rect textBox;
 	SDL_Rect font;
 	Trigger* pObj;
-	std::string default;
+	SDL_Color colorZenia;
+	SDL_Color colorLyov;
+	std::string default, frase, active;
 	std::ifstream f; std:: vector<std:: string> aux;
-	int cont;
-	int timer;
+	int cont, cont2;
+	int timer, timer2;
 	bool reacciona;
 	int firstTime;
 };

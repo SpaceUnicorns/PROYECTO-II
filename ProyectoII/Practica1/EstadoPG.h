@@ -27,7 +27,7 @@ public:
 	virtual void update();
 	virtual void onClick();
 	virtual void onOver();
-	virtual void drawFont(SDL_Rect rect, std::string const & s);
+	virtual void drawFont(SDL_Rect rect, std::string const & s, SDL_Color color = {34,245,55,1});// , int g = 245, int b = 55, int a = 1);
 	virtual void reproduceFx(std::string fx, float x, float y, float wet);
 	virtual void reproduceMusica(std::string music, bool fade);
 	virtual void paraMusica(std::string music, bool fade);
@@ -74,7 +74,6 @@ protected:
 	juegoPG* pJuego;
 	Texturas_t et;
 	SDL_Rect fondo;
-	SDL_Color colorFuente;
 	int contPuntos;
 	// Necesario para la gestion de la reverb y el audio
 	FMOD::ChannelGroup* reverbGroup;

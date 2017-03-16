@@ -16,19 +16,17 @@ Trigger::~Trigger()
 {
 }
 void Trigger::update(){
-	if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w)){
-		if(tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)) {
+	if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w) 
+		&& tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)){
 			if(!reacciona) cb->callback();
 			reacciona = true;
 			triggered = true;
-		}
 	}
-	else if (tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w)){
-		if (tgRecolector->getColisionBox().y > rect.y && tgRecolector->getColisionBox().y < (rect.y + rect.h)) {
+	else if (tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w) 
+		&& tgRecolector->getColisionBox().y > rect.y && tgRecolector->getColisionBox().y < (rect.y + rect.h)){
 			if(!reacciona) cb->callback();
 			triggered = true;
 			reacciona = true;
-		}
 	}
 	else triggered = false;
 	cb->update();
