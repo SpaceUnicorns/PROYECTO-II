@@ -9,13 +9,15 @@ public:
 
 	void draw();
 	void update();
-	SDL_Rect rekt;
 	void onKeyUp(char k);
 
+	void animacionS();
+	void animacionA();
+
 private:
-	SDL_Rect pag1, pag2, sombra;
+	SDL_Rect pag1, pag2, sombra, rekt;
 	TexturasSDL * fondo;
-	int numPag;
+	int numPag, aux = 0;
 
 	bool derecha, izquierda, flag;
 };

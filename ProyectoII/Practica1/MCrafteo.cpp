@@ -12,7 +12,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos) : EstadoPG(jug, puntos)
 
 	sombra.h = pag1.h;
 	sombra.w = 30;
-	sombra.x = pag1.x + pag1.w - 1;
+	sombra.x = pag1.x + pag1.w - 20;
 	sombra.y = pag1.y;
 
 	numPag = 0;
@@ -27,83 +27,81 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos) : EstadoPG(jug, puntos)
 
 MCrafteo::~MCrafteo()
 {
-
 	delete fondo;
-	
 }
 
 void MCrafteo::draw() {
-	//std::cout << "pagina: " << numPag << "tamaño: " << pag1.w << "\n";
+	//Fondo
 	fondo->draw(pJuego->getRender(), rekt);
-
+	
+	//Libro
+	pJuego->getTextura(TGris)->draw(pJuego->getRender(), rekt);
 	if (numPag < 5)	pJuego->getPag(numPag + 1)->draw(pJuego->getRender(), pag2);
 	pJuego->getPag(numPag)->draw(pJuego->getRender(), pag1);
 
+	if (derecha && numPag < 5) animacionS(); //A. siguiente pagina
+	else if (izquierda) animacionA(); //A. pagina anterior
+	else { //default
+		derecha = false;
+		izquierda = false;
+	}
 
-	//////animacion de paso a la siguiente pagina
-	if (derecha && numPag < 5) {
 
-		pag1.w -= 1; //la pag se hace mas pequeña
+}
 
+void MCrafteo::animacionS() {
+
+	--pag1.w; //la pag se hace mas pequeña
+	sombra.x = pag1.x + pag1.w; //le sigue la sombra
+
+	if (pag1.w < 350 && pag1.w >= 0) {
+		++aux;
+		if (aux == 10) { ++sombra.w; aux = 0; } //la sombra se hace mas grande
+		pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
+	}
+
+	else if (pag1.w <= 0) {
+		derecha = false;
+		++numPag;
+
+		pag1.w = 375;
+		sombra.w = 30;
+	}
+
+}
+
+void MCrafteo::animacionA() {
+
+	if (!flag && numPag != 0) { //solo una vez
+		pag1.w = 0;
+		flag = true;
+		aux = 0;
+		sombra.w = 65;
+
+		--numPag;
+		if (numPag == -1) numPag = 0;
+	}
+
+	else if (flag) {
+
+		++pag1.w; //la pag se hace mas grande
 		sombra.x = pag1.x + pag1.w; //le sigue la sombra
 
-		if (pag1.w > 60) {
-			sombra.w = 30;
+		if (pag1.w < 350) {
+			++aux;
+			if (aux == 10) { --sombra.w; aux = 0; } //la sombra se hace mas pequeña
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
 		}
-		else {
-			sombra.w = 50;
-			pJuego->getTextura(TSombra2)->draw(pJuego->getRender(), sombra);
-		}
-		
-		if (pag1.w <= 0) {
-			derecha = false;
-			++numPag;
+
+		else if (pag1.w >= 375) {
+			izquierda = false;
+			flag = false;
 
 			pag1.w = 375;
 			sombra.w = 30;
 		}
 	}
-
-	//////animacion de paso a la pagina anterior
-	else if (izquierda) {
-
-		if (!flag && numPag != 0) {
-			pag1.w = 0; //solo una vez
-			flag = true;
-			--numPag;
-			if (numPag == -1) numPag = 0;
-		}
-
-		if (flag) {
-			pag1.w += 1; //la pag se hace mas grande
-
-			sombra.x = pag1.x + pag1.w; //le sigue la sombra
-
-			if (pag1.w > 60) {
-				sombra.w = 30;
-				pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
-			}
-			else {
-				sombra.w = 50;
-				pJuego->getTextura(TSombra2)->draw(pJuego->getRender(), sombra);
-			}
-
-			if (pag1.w >= 375) {
-				izquierda = false;
-				flag = false;
-
-				pag1.w = 375;
-				sombra.w = 30;
-			}
-		}
-		else izquierda = false;
-	}
-
-	else { //default
-		derecha = false;
-		izquierda = false;
-	}
+	else izquierda = false;
 }
 
 void MCrafteo::update() {
@@ -113,7 +111,7 @@ void MCrafteo::update() {
 void MCrafteo::onKeyUp(char k) {
 
 	switch (k) {
-	case 'e':
+	case 'q':
 		remove("..//bmps//temp//screenshot.bmp");
 		pJuego->estados.pop();
 		break;
