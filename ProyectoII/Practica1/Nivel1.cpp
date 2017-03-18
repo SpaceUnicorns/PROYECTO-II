@@ -13,7 +13,7 @@
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	std:: ifstream f; char aux = 'p';
-	layer = 0;
+	activeLayer = 0;
 	int x = 0;
 	int y = -31;
 	Tile aux2;
@@ -30,20 +30,20 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 			case 's':  rectAux.x = 0; aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
-				if (layer == 0) vecTile.push_back(aux2);
-				else if (layer == 1)vecTile2.push_back(aux2);
+				if (activeLayer == 0) vecTile.push_back(aux2);
+				else if (activeLayer == 1)vecTile2.push_back(aux2);
 				break;
 			case 'f':  rectAux.x = 854; aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
-				if (layer == 0) vecTile.push_back(aux2);
-				else if (layer == 1)vecTile2.push_back(aux2);
+				if (activeLayer == 0) vecTile.push_back(aux2);
+				else if (activeLayer == 1)vecTile2.push_back(aux2);
 				break;
 			case 't': rectAux.x = 122; aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
-				if (layer == 0) vecTile.push_back(aux2);
-				else if (layer == 1)vecTile2.push_back(aux2);
+				if (activeLayer == 0) vecTile.push_back(aux2);
+				else if (activeLayer == 1)vecTile2.push_back(aux2);
 				break;
 			case 'X':
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
@@ -51,11 +51,11 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
 				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
 				auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
-				if (layer == 0) vectBordes.push_back(auxBorde);
-				else if (layer == 1) vectBordes2.push_back(auxBorde);
+				if (activeLayer == 0) vectBordes.push_back(auxBorde);
+				else if (activeLayer == 1) vectBordes2.push_back(auxBorde);
 				auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
-				if (layer == 0) vectBordes.push_back(auxBorde);
-				else if (layer == 1) vectBordes2.push_back(auxBorde);
+				if (activeLayer == 0) vectBordes.push_back(auxBorde);
+				else if (activeLayer == 1) vectBordes2.push_back(auxBorde);
 				//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
 				/*rectAux.x = 244; aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
@@ -101,8 +101,8 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 				rectAux.x = 732; aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
-				if (layer == 0) vecTile.push_back(aux2);
-				else if (layer == 1)vecTile2.push_back(aux2);
+				if (activeLayer == 0) vecTile.push_back(aux2);
+				else if (activeLayer == 1)vecTile2.push_back(aux2);
 				x += 122;
 				break;
 
@@ -130,7 +130,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 				x += 122;
 				break;
 			case '+':
-				layer = 1;
+				activeLayer = 1;
 				x = 0; y = -31;
 				rectAux.x = rectAux.y = -1; rectAux.w = 122; rectAux.h = 83;
 				break;
@@ -183,13 +183,17 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	//reproduceMusica("music", false);
 
 	activePlayer = "C";
-	layer = 0;
+	activeLayer = 0;
 	//pRecolector->swAble();
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
 }
 void Nivel1::draw(){
+
+	if (activePlayer == "C") activeLayer = layerCaz;
+	else activeLayer = layerRec;
+	
 	SDL_Rect aux;
 	Tile tile;
 	//No se si esto iria mejor en el update (??????????????????)
@@ -210,14 +214,14 @@ void Nivel1::draw(){
 			vectBordes[i].C.y -= camara.y;
 		}
 		std::sort(vecObj.begin(), vecObj.end(), ordena);
-		if (layer == 0) for (ObjetoJuego* ob : vecObj) ob->draw();
+		if (activeLayer == 0) for (ObjetoJuego* ob : vecObj) ob->draw();
 		for (unsigned int i = 0; i < vecTile2.size(); i++){
 			vecTile2[i].x -= camara.x; vecTile2[i].y -= camara.y;
 			tile = vecTile2[i];
 			aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
 			pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 		}
-		if (layer == 1) for (ObjetoJuego* ob : vecObj) ob->draw();
+		if (activeLayer == 1) for (ObjetoJuego* ob : vecObj) ob->draw();
 		for (unsigned int i = 0; i < vectBordes2.size(); i++){
 			vectBordes2[i].A.x -= camara.x;
 			vectBordes2[i].A.y -= camara.y;
@@ -265,14 +269,14 @@ void Nivel1::swPlayer(){
 		vectBordes[i].C.y -= camara.y;
 	}
 	std::sort(vecObj.begin(), vecObj.end(), ordena);
-	if (layer == 0) for (ObjetoJuego* ob : vecObj) ob->draw();
+	if (activeLayer == 0) for (ObjetoJuego* ob : vecObj) ob->draw();
 	for (unsigned int i = 0; i < vecTile2.size(); i++){
 		vecTile2[i].x -= camara.x; vecTile2[i].y -= camara.y;
 		tile = vecTile2[i];
 		aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
 		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 	}
-	if (layer == 1) for (ObjetoJuego* ob : vecObj) ob->draw();
+	if (activeLayer == 1) for (ObjetoJuego* ob : vecObj) ob->draw();
 	for (unsigned int i = 0; i < vectBordes2.size(); i++){
 		vectBordes2[i].A.x -= camara.x;
 		vectBordes2[i].A.y -= camara.y;
@@ -287,8 +291,14 @@ void Nivel1::swPlayer(){
 	}
 	for (ObjetoJuego* trg : vecTriggers) trg->draw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 	
-	if (activePlayer == "C") pCazador->swAble();
-	else pRecolector->swAble();
+	if (activePlayer == "C"){
+		activeLayer = layerCaz;
+		pCazador->swAble();
+	}
+	else{
+		activeLayer = layerRec;
+		pRecolector->swAble();
+	}
 
 }
 Nivel1::~Nivel1()

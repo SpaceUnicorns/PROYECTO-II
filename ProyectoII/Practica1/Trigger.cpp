@@ -9,6 +9,7 @@ Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR)
 	tgCazador = tgC;
 	tgRecolector = tgR;
 	triggered = reacciona = false;
+	playerTriggered = "X";
 }
 
 
@@ -18,12 +19,14 @@ Trigger::~Trigger()
 void Trigger::update(){
 	if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w) 
 		&& tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)){
+		playerTriggered = "C";
 			if(!reacciona) cb->callback();
 			reacciona = true;
 			triggered = true;
 	}
 	else if (tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w) 
 		&& tgRecolector->getColisionBox().y > rect.y && tgRecolector->getColisionBox().y < (rect.y + rect.h)){
+		playerTriggered = "R";
 			if(!reacciona) cb->callback();
 			triggered = true;
 			reacciona = true;

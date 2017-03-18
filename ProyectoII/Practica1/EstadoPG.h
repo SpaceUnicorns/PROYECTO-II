@@ -52,10 +52,13 @@ public:
 
 	virtual SDL_Rect getCamara()const{ return camara; }
 	virtual void setCamara(int x, int y){ camara.x = x; camara.y = y; }
-	void setLayer(int i){
-		layer = i;
+	void setLayerCaz(int i){
+		layerCaz = i;
 	}
-	int getLayer(){ return layer; }
+	void setLayerRec(int i){
+		layerRec = i;
+	}
+	int getLayer(){ return activeLayer; }
 protected: 
 	SDL_Rect camara;
 	struct Tile {
@@ -80,7 +83,7 @@ protected:
 	Texturas_t et;
 	SDL_Rect fondo;
 	int contPuntos;
-	int layer;
+	int layerCaz, layerRec, activeLayer;
 	// Necesario para la gestion de la reverb y el audio
 	FMOD::ChannelGroup* reverbGroup;
 	FMOD::ChannelGroup* mainGroup;

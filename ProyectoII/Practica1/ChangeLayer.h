@@ -14,7 +14,8 @@ public:
 	virtual void callback(){
 		if (ly == 0 && !done)ly = 1;
 		else if (ly == 1 && !done) ly = 0;
-		static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setLayer(ly);
+		if (pObj->getPlayerTriggered() == "C")	static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setLayerCaz(ly);
+		else static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setLayerRec(ly);
 		done = true;
 	}
 	virtual void update(){

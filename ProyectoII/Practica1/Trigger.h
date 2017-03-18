@@ -17,12 +17,14 @@ public:
 	bool reaccionando(){ return reacciona; }
 	void setReacciona(bool x){ reacciona = x; }
 	void setTriggerDim(int h, int w){ rect.h = h; rect.w = w; }
+	std::string getPlayerTriggered(){ return playerTriggered; }
 protected:
 	bool reacciona;
 	bool triggered;
 	Componente* cb; //Callback;
 	Cazador* tgCazador;
 	Recolector* tgRecolector;
+	std::string playerTriggered;
 	
 };
 
