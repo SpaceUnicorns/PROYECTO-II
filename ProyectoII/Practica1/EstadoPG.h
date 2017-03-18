@@ -35,11 +35,13 @@ public:
 	virtual void paraAmb(std::string amb, bool fade);
 	virtual void onKeyUp(char k){};
 	virtual void onKeyDown(char k){};
-	virtual std::vector <TrianguloBorde> & getVectBordes() {
-		return vectBordes;
+	virtual std::vector <TrianguloBorde> & getVectBordes(int layer = 1) {
+		if (layer == 1)return vectBordes;
+		else if (layer == 2) return vectBordes2;
 	}
-	virtual std::vector <ObjetoJuego*> & getVectObj() {
-		return vecObj;
+	virtual std::vector <ObjetoJuego*> & getVectObj(int i = 1) {
+		if (i == 1) return vecObj;
+		else if (i == 2) return vecObjOverL;
 	}
 	virtual std::vector <ObjetoJuego*> & getVecTriggers() {
 		return vecTriggers;
@@ -50,7 +52,10 @@ public:
 
 	virtual SDL_Rect getCamara()const{ return camara; }
 	virtual void setCamara(int x, int y){ camara.x = x; camara.y = y; }
-
+	void setLayer(int i){
+		layer = i;
+	}
+	int getLayer(){ return layer; }
 protected: 
 	SDL_Rect camara;
 	struct Tile {
@@ -67,14 +72,15 @@ protected:
 
 
 
-	std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
-	std::vector<TrianguloBorde> vectBordes;
+	std::vector <Tile> vecTile, vecTile2;     //Vector de tiles para dibujar el mapa
+	std::vector<TrianguloBorde> vectBordes, vectBordes2;
 
 	std:: vector <Colision> vecCol;  //Vector de colisiones
 	juegoPG* pJuego;
 	Texturas_t et;
 	SDL_Rect fondo;
 	int contPuntos;
+	int layer;
 	// Necesario para la gestion de la reverb y el audio
 	FMOD::ChannelGroup* reverbGroup;
 	FMOD::ChannelGroup* mainGroup;
@@ -84,7 +90,7 @@ protected:
 	int cMusic;
 	int cAmb;
 	FMOD::Channel   *cfx1 = 0, *cfx2 = 0, *cfx3 = 0, *cfx4 = 0, *camb1 = 0, *camb2 = 0, *cmusic1 = 0, *cmusic2 = 0;
-	std::vector<ObjetoJuego*> vecObj;
+	std::vector<ObjetoJuego*> vecObj, vecObjOverL;
 	std::vector<ObjetoJuego*>vecTriggers;
 	std::map<std::string, FMOD::Sound*> vfx;
 	std::map<std::string, FMOD::Sound*> vmusic;

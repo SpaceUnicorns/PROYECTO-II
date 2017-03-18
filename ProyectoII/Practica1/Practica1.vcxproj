@@ -103,6 +103,7 @@
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="Cazador.h" />
+    <ClInclude Include="ChangeLayer.h" />
     <ClInclude Include="ColisionBox.h" />
     <ClInclude Include="Componente.h" />
     <ClInclude Include="Error.h" />
@@ -117,6 +118,7 @@
     <ClInclude Include="MovimientoP.h" />
     <ClInclude Include="ObjetoJuego.h" />
     <ClInclude Include="ObjetoPG.h" />
+    <ClInclude Include="ObjetosOverLayer.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Nivel1.h" />
     <ClInclude Include="Piedra.h" />

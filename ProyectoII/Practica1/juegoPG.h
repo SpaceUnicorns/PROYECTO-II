@@ -12,7 +12,7 @@
 #include "EstadoJuego.h"
 #include "fmod.hpp"
 
-enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TTextBox, TArbol, TCColision, TJugador, TJugador2, TPiedra, TMenuResaltado };
+enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TTextBox, TArbol, TCopaArbol, TCColision, TJugador, TJugador2, TPiedra, TMenuResaltado };
 
 class juegoPG
 {

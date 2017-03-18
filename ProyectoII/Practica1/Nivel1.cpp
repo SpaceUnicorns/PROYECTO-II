@@ -8,9 +8,12 @@
 #include "Piedra.h"
 #include "TextCb.h"
 #include "Trigger.h"
+#include "ChangeLayer.h"
+#include "ObjetosOverLayer.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	std:: ifstream f; char aux = 'p';
+	layer = 0;
 	int x = 0;
 	int y = -31;
 	Tile aux2;
@@ -24,35 +27,115 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 		if (!f.fail()){
 			//std::cout << x << "\n";
 			switch (aux){
-				case 's':  rectAux.x = 0; aux2.rectTileset = rectAux;
-						   aux2.x = x; aux2.y = y; aux2.capa = 1;
-						   x += 122;
-					       vecTile.push_back(aux2);
-					      break;
-				case 't': rectAux.x = 122; aux2.rectTileset = rectAux;
-					      aux2.x = x; aux2.y = y; aux2.capa = 1;
-						  x += 122;
-					      vecTile.push_back(aux2);
-					      break;
-				case 'X': 
-					//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
-					//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
-					auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
-					auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
-					auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
-					vectBordes.push_back(auxBorde);
-					auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
-					vectBordes.push_back(auxBorde);
-					//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
-					/*rectAux.x = 244; aux2.rectTileset = rectAux; 
-					aux2.x = x; aux2.y = y; aux2.capa = 1;
-					vecTile.push_back(aux2); */
-					x += 122;
-					break;
-				case 'L': y += 31; if (y == 0 || y % 62 == 0) x = 61; else x = 0;
-					break;
+			case 's':  rectAux.x = 0; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				if (layer == 0) vecTile.push_back(aux2);
+				else if (layer == 1)vecTile2.push_back(aux2);
+				break;
+			case 'f':  rectAux.x = 854; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				if (layer == 0) vecTile.push_back(aux2);
+				else if (layer == 1)vecTile2.push_back(aux2);
+				break;
+			case 't': rectAux.x = 122; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				if (layer == 0) vecTile.push_back(aux2);
+				else if (layer == 1)vecTile2.push_back(aux2);
+				break;
+			case 'X':
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
+				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
+				if (layer == 0) vectBordes.push_back(auxBorde);
+				else if (layer == 1) vectBordes2.push_back(auxBorde);
+				auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
+				if (layer == 0) vectBordes.push_back(auxBorde);
+				else if (layer == 1) vectBordes2.push_back(auxBorde);
+				//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
+				/*rectAux.x = 244; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				if(layer == 0) vecTile.push_back(aux2);
+				else if (layer == 1)vecTile2.push_back(aux2); */
+				x += 122;
+				break;
+			case'K':
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
+				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				vectBordes2.push_back(auxBorde);
+				auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+				vectBordes2.push_back(auxBorde);
+				//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
+				rectAux.x = 366; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				vecTile.push_back(aux2);
+				x += 122;
+				break;
+			case 'D':
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
+				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				vectBordes2.push_back(auxBorde);
+				auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+				vectBordes2.push_back(auxBorde);
+				//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
+				rectAux.x = 610; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				vecTile.push_back(aux2);
+				x += 122;
+				break;
+			case 'B':
+
+				rectAux.x = 732; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				if (layer == 0) vecTile.push_back(aux2);
+				else if (layer == 1)vecTile2.push_back(aux2);
+				x += 122;
+				break;
+
+			case 'Q':
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
+				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				vectBordes2.push_back(auxBorde);
+				auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+				vectBordes2.push_back(auxBorde);
+				//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
+				rectAux.x = 488; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				vecTile.push_back(aux2);
+
+				x += 122;
+				break;
+			case 'L': y += 31; if (y == 0 || y % 62 == 0) x = 61; else x = 0;
+				break;
+			case 'A':
+				x += 122;
+				break;
+			case '+':
+				layer = 1;
+				x = 0; y = -31;
+				rectAux.x = rectAux.y = -1; rectAux.w = 122; rectAux.h = 83;
+				break;
 			}
-			
+
 		}
 	}
 	f.close();
@@ -71,14 +154,28 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecTriggers.push_back(new Trigger(pJuego, 865, 70, pCazador, pRecolector));
 	static_cast<Trigger*>(vecTriggers[2])->setCallback(new TextCb(vecTriggers[2], "../docs/textos/dialogo3.txt"));
 	static_cast<Trigger*>(vecTriggers[2])->setTriggerDim(80, 80);
+	vecTriggers.push_back(new Trigger(pJuego, 655, 290, pCazador, pRecolector));
+	static_cast<Trigger*>(vecTriggers[3])->setCallback(new ChangeLayer(vecTriggers[3]));
+	static_cast<Trigger*>(vecTriggers[3])->setTriggerDim(30, 80);
+	vecTriggers.push_back(new Trigger(pJuego, 1330, 170, pCazador, pRecolector));
+	static_cast<Trigger*>(vecTriggers[4])->setCallback(new ChangeLayer(vecTriggers[4]));
+	static_cast<Trigger*>(vecTriggers[4])->setTriggerDim(30, 80);
 
 	vecObj.push_back(new Arbol(pJuego, 180, 60));
 	vecObj.push_back(new Arbol(pJuego, 480, 260));
-	vecObj.push_back(new Arbol(pJuego, 680, 60));
+	vecObj.push_back(new Arbol(pJuego, 700, 95));
 	vecObj.push_back(new Arbol(pJuego, 750, 365));
 	vecObj.push_back(new Arbol(pJuego, 1080, 195));
-	vecObj.push_back(new Arbol(pJuego, 480, 60));
 	vecObj.push_back(new Piedra(pJuego, 880, 100));
+
+	//Metemos las copas de los arboles en el vectorde ObjetosOverLayer
+	vecObjOverL.push_back(new CopaArbol(pJuego, 180, 60, TCopaArbol));
+	vecObjOverL.push_back(new CopaArbol(pJuego, 480, 260, TCopaArbol));
+	vecObjOverL.push_back(new CopaArbol(pJuego, 700, 95, TCopaArbol));
+	vecObjOverL.push_back(new CopaArbol(pJuego, 750, 365, TCopaArbol));
+	vecObjOverL.push_back(new CopaArbol(pJuego, 1080, 195, TCopaArbol));
+	
+
 	cargarAudio("../sounds/reverb/standrews.wav");
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
@@ -86,7 +183,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	//reproduceMusica("music", false);
 
 	activePlayer = "C";
-	
+	layer = 0;
 	//pRecolector->swAble();
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
@@ -113,7 +210,26 @@ void Nivel1::draw(){
 			vectBordes[i].C.y -= camara.y;
 		}
 		std::sort(vecObj.begin(), vecObj.end(), ordena);
-		for (ObjetoJuego* ob : vecObj) ob->draw();
+		if (layer == 0) for (ObjetoJuego* ob : vecObj) ob->draw();
+		for (unsigned int i = 0; i < vecTile2.size(); i++){
+			vecTile2[i].x -= camara.x; vecTile2[i].y -= camara.y;
+			tile = vecTile2[i];
+			aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
+			pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
+		}
+		if (layer == 1) for (ObjetoJuego* ob : vecObj) ob->draw();
+		for (unsigned int i = 0; i < vectBordes2.size(); i++){
+			vectBordes2[i].A.x -= camara.x;
+			vectBordes2[i].A.y -= camara.y;
+			vectBordes2[i].B.x -= camara.x;
+			vectBordes2[i].B.y -= camara.y;
+			vectBordes2[i].C.x -= camara.x;
+			vectBordes2[i].C.y -= camara.y;
+		}
+		for (ObjetoJuego* ob : vecObjOverL){
+			static_cast<ObjetoPG*>(ob)->setRect(-1 * camara.x, -1 * camara.y);
+			ob->draw();
+		}
 		for (ObjetoJuego* trg : vecTriggers) trg->draw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 	}
 
@@ -140,7 +256,6 @@ void Nivel1::swPlayer(){
 		aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
 		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 	}
-		
 	for (unsigned int i = 0; i < vectBordes.size(); i++){
 		vectBordes[i].A.x -= camara.x;
 		vectBordes[i].A.y -= camara.y;
@@ -150,12 +265,27 @@ void Nivel1::swPlayer(){
 		vectBordes[i].C.y -= camara.y;
 	}
 	std::sort(vecObj.begin(), vecObj.end(), ordena);
-	for (ObjetoJuego* ob : vecObj){
+	if (layer == 0) for (ObjetoJuego* ob : vecObj) ob->draw();
+	for (unsigned int i = 0; i < vecTile2.size(); i++){
+		vecTile2[i].x -= camara.x; vecTile2[i].y -= camara.y;
+		tile = vecTile2[i];
+		aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
+		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
+	}
+	if (layer == 1) for (ObjetoJuego* ob : vecObj) ob->draw();
+	for (unsigned int i = 0; i < vectBordes2.size(); i++){
+		vectBordes2[i].A.x -= camara.x;
+		vectBordes2[i].A.y -= camara.y;
+		vectBordes2[i].B.x -= camara.x;
+		vectBordes2[i].B.y -= camara.y;
+		vectBordes2[i].C.x -= camara.x;
+		vectBordes2[i].C.y -= camara.y;
+	}
+	for (ObjetoJuego* ob : vecObjOverL){
+		static_cast<ObjetoPG*>(ob)->setRect(-1 * camara.x, -1 * camara.y);
 		ob->draw();
 	}
-	for (ObjetoJuego* ob : vecTriggers){ //TIENE QUE SER LO ULTIMO EN DIBUJARSE
-		ob->draw();
-	}
+	for (ObjetoJuego* trg : vecTriggers) trg->draw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 	
 	if (activePlayer == "C") pCazador->swAble();
 	else pRecolector->swAble();

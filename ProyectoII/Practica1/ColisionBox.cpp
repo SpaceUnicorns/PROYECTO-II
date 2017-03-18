@@ -50,10 +50,18 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 	//Comprueba la colision con los bordes
 	i = 0;
 	if (!col){
-		while (i < static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes().size() && !col){
-			col = inTriangle(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i], p);
-			i++;
-		}//fin colision con bordes
+		if (static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getLayer() == 0){
+			while (i < static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes().size() && !col){
+				col = inTriangle(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i], p);
+				i++;
+			}//fin colision con bordes
+		}
+		else if (static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getLayer() == 1){
+			while (i < static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes(2).size() && !col){
+				col = inTriangle(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes(2)[i], p);
+				i++;
+			}//fin colision con bordes
+		}
 	}
 
 	return col;
