@@ -118,7 +118,7 @@
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
     <ClCompile Include="TrampaCerrada.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,7 +210,7 @@
       <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
     </ClInclude>
     <ClInclude Include="TrampaCerrada.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

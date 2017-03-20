@@ -5,7 +5,7 @@
 TrampaCerrada::TrampaCerrada(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
 	interactuable = true;
-	et = TPiedra;
+	et = TTrampaCerrada;
 	rect.w = 50;
 	rect.h = 30;
 	nombre = "TrampaCerrada";

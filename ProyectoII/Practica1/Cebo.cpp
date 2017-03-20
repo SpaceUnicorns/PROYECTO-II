@@ -5,7 +5,7 @@
 Cebo::Cebo(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
 	interactuable = true;
-	et = TPiedra;
+	et = TCebo;
 	rect.w = 50;
 	rect.h = 30;
 	nombre = "Cebo";

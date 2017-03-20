@@ -91,6 +91,7 @@
     <ClCompile Include="juegoPG.cpp" />
     <ClCompile Include="Madera.cpp" />
     <ClCompile Include="mainP1.cpp" />
+    <ClCompile Include="MCrafteo.cpp" />
     <ClCompile Include="MenuPG.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="MenuPrincipalComp.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="Hueso.h" />
     <ClInclude Include="juegoPG.h" />
     <ClInclude Include="Madera.h" />
+    <ClInclude Include="MCrafteo.h" />
     <ClInclude Include="MenuPG.h" />
     <ClInclude Include="MenuPrincipal.h" />
     <ClInclude Include="MenuPrincipalComp.h" />

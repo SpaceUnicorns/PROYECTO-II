@@ -20,7 +20,13 @@ juegoPG::juegoPG()
 	}
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
-	vecTexturas.resize(14);
+
+	
+
+	vecTexturas.resize(27);
+	vecPaginas.resize(6);
+
+
 	initMedia();	
 	
 	estados.push(new MenuPG(this,0));
@@ -35,6 +41,14 @@ void juegoPG::initMedia(){
 		vecTexturas[i]->load(pRender, "..\\bmps\\" + (str += to_string(i + 1)) + ".png");
 		str = "Textura";
 	}
+
+	str = "Pagina";
+	for (unsigned int i = 0; i < vecPaginas.size(); i++) {
+		vecPaginas[i] = new TexturasSDL;
+		vecPaginas[i]->load(pRender, "..\\bmps\\" + (str += to_string(i + 1)) + ".png");
+		str = "Pagina";
+	}
+
 	//Cargamos la fuente
 	try{
 		fuente = new TexturasSDL;
@@ -59,6 +73,7 @@ juegoPG::~juegoPG()
 		estados.pop();
 	}
 	vecTexturas.clear();
+
 	system->release();
 
 	
@@ -114,6 +129,26 @@ void juegoPG::handle_event(){
 			else if (e.key.keysym.sym == SDLK_p){
 				estados.top()->onKeyUp('p');
 			}
+
+			else if (e.key.keysym.sym == SDLK_q) {
+				if (dynamic_cast<Nivel1*>(estados.top()) != nullptr) {
+					SDL_Surface *sshot = SDL_CreateRGBSurface(0, 1024, 768, 32, 0, 0, 0, 0);
+					SDL_RenderReadPixels(getRender(), NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
+					SDL_SaveBMP(sshot, "..//bmps//temp//screenshot.bmp");
+					SDL_FreeSurface(sshot);
+				}
+				estados.top()->onKeyUp('q');
+			}
+			else if (e.key.keysym.sym == SDLK_RETURN) {
+				estados.top()->onKeyUp('e');
+			}
+			else if (e.key.keysym.sym == SDLK_RIGHT) {
+				estados.top()->onKeyUp('d');
+			}
+			else if (e.key.keysym.sym == SDLK_LEFT) {
+				estados.top()->onKeyUp('i');
+			}
+
 
 		}
 		else if (e.type == SDL_KEYDOWN){

@@ -5,7 +5,7 @@
 Cuerda::Cuerda(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
 	interactuable = true;
-	et = TPiedra;
+	et = TCuerda;
 	rect.w = 50;
 	rect.h = 30;
 	nombre = "Cuerda";
