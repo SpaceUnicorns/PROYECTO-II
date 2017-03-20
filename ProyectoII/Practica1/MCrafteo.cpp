@@ -19,9 +19,10 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos) : EstadoPG(jug, puntos)
 	derecha = izquierda = flag = false;
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temp//screenshot.bmp");
-	
-	rekt.x = rekt.y = 0; rekt.w = 1024; rekt.h = 768;
-	
+
+	rFondo.x = rFondo.y = 0; rFondo.w = 1024; rFondo.h = 768; //rect del fondo (ocupa toda la pantalla)
+	niños.x = 150; niños.y = 560; niños.w = niños.h = 120; //rect de los personajes
+	recuadros.x = 500; recuadros.y = 30; recuadros.w = 500; recuadros.h = 333; //recuadro
 }
 
 
@@ -32,10 +33,10 @@ MCrafteo::~MCrafteo()
 
 void MCrafteo::draw() {
 	//Fondo
-	fondo->draw(pJuego->getRender(), rekt);
+	fondo->draw(pJuego->getRender(), rFondo);
 	
 	//Libro
-	pJuego->getTextura(TGris)->draw(pJuego->getRender(), rekt);
+	pJuego->getTextura(TGris)->draw(pJuego->getRender(), rFondo);
 	if (numPag < 5)	pJuego->getPag(numPag + 1)->draw(pJuego->getRender(), pag2);
 	pJuego->getPag(numPag)->draw(pJuego->getRender(), pag1);
 
@@ -46,7 +47,21 @@ void MCrafteo::draw() {
 		izquierda = false;
 	}
 
+	//Personajes
+	pJuego->getTextura(TLyov)->draw(pJuego->getRender(), niños);
+	niños.x += pag2.w - niños.w - 100;
+	pJuego->getTextura(TZhenia)->draw(pJuego->getRender(), niños);
+	niños.x = 150;
 
+	//Equipables
+	recuadros.y = 30;
+	recuadros.h = 333;
+	pJuego->getTextura(TEquipables)->draw(pJuego->getRender(), recuadros);
+
+	//Materiales
+	recuadros.y += recuadros.h + 50;
+	recuadros.h = 250;
+	pJuego->getTextura(TMateriales)->draw(pJuego->getRender(), recuadros);
 }
 
 void MCrafteo::animacionS() {
@@ -104,9 +119,7 @@ void MCrafteo::animacionA() {
 	else izquierda = false;
 }
 
-void MCrafteo::update() {
-
-}
+void MCrafteo::update() {}
 
 void MCrafteo::onKeyUp(char k) {
 

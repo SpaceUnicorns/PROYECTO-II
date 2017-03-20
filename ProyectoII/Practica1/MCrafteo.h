@@ -15,7 +15,7 @@ public:
 	void animacionA();
 
 private:
-	SDL_Rect pag1, pag2, sombra, rekt;
+	SDL_Rect pag1, pag2, sombra, rFondo, niños, recuadros;
 	TexturasSDL * fondo;
 	int numPag, aux = 0;
 

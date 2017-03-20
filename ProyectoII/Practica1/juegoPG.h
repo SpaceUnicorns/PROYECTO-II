@@ -13,7 +13,7 @@
 #include "fmod.hpp"
 
 enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision, TJugador, TJugador2, 
-	TSombra1, TGris };
+	TSombra1, TGris, TLyov, TZhenia, TEquipables, TMateriales };
 
 class juegoPG
 {
