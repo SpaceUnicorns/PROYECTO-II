@@ -276,12 +276,12 @@ public:
 				}
 				break;
 			case 1:
-				if (y > 0 && x < niveles[0] - 1){
+				if (y > 0 && x < niveles[0] + 1){
 					if (y % 2 == 0){
 						if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
-							nodeCost = { XYToNode(x + 1, y - 1), 9999 };
+							nodeCost = { XYToNode(x + 1, y + 1), 9999 };
 						else
-							nodeCost = { XYToNode(x + 1, y - 1), 1 };
+							nodeCost = { XYToNode(x + 1, y + 1), 1 };
 					}
 					else {
 						if (mapa[(y - 1)*niveles[0] + x] == 'X')

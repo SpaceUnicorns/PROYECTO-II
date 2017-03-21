@@ -36,9 +36,9 @@ void follow::update(){
 		int auxX, auxY;
 		auxX = x; auxY = y;
 		x = x + (x - xx);
-		y = y + (y - yy);
+		y = y;
 		xx = xx + (auxX - xx);
-		yy = yy + (auxY - yy);
+		yy = yy;
 
 		if (y % 2 == 0) x--;
 		if (yy % 2 == 0) xx--;
@@ -127,7 +127,7 @@ void follow::update(){
 			case 0:
 				target->setRect(0, -2);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
-				paso-=6;
+				paso-=4;
 				break;
 			case 1:
 				target->setRect(2, -1);
@@ -147,7 +147,7 @@ void follow::update(){
 			case 4:
 				target->setRect(0, 2);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
-				paso -= 6;
+				paso -= 4;
 				break;
 			case 5:
 				target->setRect(-2, 1);
