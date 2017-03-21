@@ -27,7 +27,7 @@ public:
 	FMOD_RESULT       result;
 	std::stack<EstadoJuego*> estados;
 	struct Input{
-		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII, sw, e, enter; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
+		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII, sw, e, enter, follow; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
 	};
 	Input input;
 	//Métodos****************************************************************************************************************************

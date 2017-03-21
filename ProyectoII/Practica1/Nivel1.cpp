@@ -6,6 +6,7 @@
 #include <algorithm>
 #include "Pausa.h"
 #include "Piedra.h"
+#include "follow.h""
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
@@ -78,15 +79,8 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pCazador = static_cast<Cazador*>(vecObj[0]);
 	pRecolector = static_cast<Recolector*>(vecObj[1]);
 	activePlayer = "C";
-	std::vector<void*> path;
-	float cost;
-	mapa->solve(mapa->XYToNode(1, 16), mapa->XYToNode(1, 8), &path, &cost);
-	
-	for (unsigned int i = 0; i < path.size(); i++)
-	{
-		mapa->NodeToXY(path[i], &x, &y);
-		std::cout << "Posicion " << x << " " << y << "\n";
-	}
+	pCazador->newComponente(new follow(pCazador, pRecolector, mapa), "follow");
+
 	//pRecolector->swAble();
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){

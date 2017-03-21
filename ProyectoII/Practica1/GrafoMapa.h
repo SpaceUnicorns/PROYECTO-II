@@ -1,24 +1,46 @@
 #pragma once
 #include "micropather.h"
-#include "EstadoPG.h"
+//#include "EstadoPG.h"
+#include "ObjetoPG.h"
+
 
 class GrafoMapa : public micropather::Graph
 {
 	std::vector<char> mapa;
 	std::vector<int> niveles;
-	int aux,nivelAct;
+	int aux, nivelAct;
 	micropather::MicroPather* pather;
 public:
 	GrafoMapa()
 	{
 		niveles.push_back(0);
 		nivelAct = aux = 0;
-		pather = new micropather::MicroPather(this, 20);	// Use a very small memory block to stress the pather
+		pather = new micropather::MicroPather(this, 50);	// Use a very small memory block to stress the pather
 	}
-	
+
 	void solve(void* startState, void* endState, std::vector< void* >* path, float* totalCost)
 	{
 		pather->Solve(startState, endState, path, totalCost);
+	}
+
+	void solve(int startX, int startY, int endX, int endY, std::vector<void*>* camino, float* totalCost)
+	{
+
+		void* startState, *endState;
+		transformaCoord(startX, startY);
+		transformaCoord(endX, endY);
+		startState = XYToNode(startX, startY);
+		endState = XYToNode(endX, endY);
+		std::cout << "llego aqui\n";
+		int x, y, xx, yy;
+		NodeToXY(startState, &x, &y);
+		NodeToXY(endState, &xx, &yy);
+		pather->Solve(&startState, &endState, camino, totalCost);
+		/*for (unsigned int i = 0; i < path.size(); i++)
+		{
+			NodeToXY(path[i], &x, &y);
+			camino->push_back(std::make_pair(x, y));
+		}*/
 	}
 	void creaMapa(char c)
 	{
@@ -45,6 +67,71 @@ public:
 
 		}
 	}
+	void transformaCoord(int& x, int& y)
+	{
+	/*	int cuadranteX;
+		int cuadranteY = y / 31;
+		if (cuadranteY % 2 == 0)
+			cuadranteX = x / 61;
+		else 
+			cuadranteX = (x + 61) / 61;
+
+		int Px, Py;
+		Px = x - cuadranteX * 61;
+		Py = y - cuadranteY * 31;
+
+		/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
+		x/122 == cuadrante de x en el que esta
+		y/62  == cuadrante de y en el que esta
+		hallado este cuadrante siguen existiendo cinco posible posiciones finales
+		El centro del cuadrante o cualquiera de sus esquinas que pertenecerían a otro tile
+
+		_____________
+		|    / \    |
+		|  /     \  |
+		|  \     /  |
+		|____\_/____|
+
+		*/
+
+	/*	if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) < 0)){
+			x = cuadranteX; y = cuadranteY;
+		}
+		else if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) < 0)){
+			x = cuadranteX; y = cuadranteY;
+		}
+		// Si la posicion del objeto no esta en ninguno de los dos triangulos centrales comprobamo su x y su y con el centro del cuadrante
+		// Si ambas son mayores marcamos la casilla inferior derecha y asi sucesivamente
+		else
+		{
+			if (Px > 61)
+			{
+				if (Py < 31)
+				{
+					x = cuadranteX + 1; y = cuadranteY - 1;
+				}
+				else
+				{
+					x = cuadranteX + 1; y = cuadranteY + 1;
+				}
+			}
+			else
+			{
+				if (Py < 31)
+				{
+					x = cuadranteX - 1; y = cuadranteY - 1;
+				}
+				else
+				{
+					x = cuadranteX - 1; y = cuadranteY + 1;
+				}
+			}
+		}
+		*/
+		x = x / 122;
+		y = y / 31;
+
+	}
 	void actualizaMapa(std::vector<ObjetoJuego*> obj)
 	{
 		for (ObjetoJuego* o : obj)
@@ -53,20 +140,20 @@ public:
 
 				SDL_Rect rec = static_cast<ObjetoPG*>(o)->getColisionBox();
 				int cuadranteX = rec.x / 122;
-				int cuadranteY = rec.y / 62;
+				int cuadranteY = rec.y / 31;
 				/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
-					x/122 == cuadrante de x en el que esta
-					y/62  == cuadrante de y en el que esta
-					hallado este cuadrante siguen existiendo cinco posible posiciones finales
-					El centro del cuadrante o cualquiera de sus esquinas que pertenecerían a otro tile
+				x/122 == cuadrante de x en el que esta
+				y/62  == cuadrante de y en el que esta
+				hallado este cuadrante siguen existiendo cinco posible posiciones finales
+				El centro del cuadrante o cualquiera de sus esquinas que pertenecerían a otro tile
 
-					_____________
-					|    / \    |
-					|  /     \  |
-					|  \     /  |
-					|____\_/____|
+				_____________
+				|    / \    |
+				|  /     \  |
+				|  \     /  |
+				|____\_/____|
 
-					*/
+				*/
 				int Px, Py;
 				Px = rec.x - cuadranteX * 122;
 				Py = rec.y - cuadranteY * 62;
@@ -77,15 +164,15 @@ public:
 					{
 						aux1 += niveles[i];
 					}
-						mapa[aux1 + cuadranteX] = 'X';
+					mapa[aux1 + cuadranteX] = 'X';
 				}
-				else if(((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) < 0)){
+				else if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) < 0)){
 					int aux1 = 0;
 					for (int i = 0; i < cuadranteY; i++)
 					{
 						aux1 += niveles[i];
 					}
-						mapa[aux1 + cuadranteX] = 'X';
+					mapa[aux1 + cuadranteX] = 'X';
 				}
 				// Si la posicion del objeto no esta en ninguno de los dos triangulos centrales comprobamo su x y su y con el centro del cuadrante
 				// Si ambas son mayores marcamos la casilla inferior derecha y asi sucesivamente
@@ -100,7 +187,7 @@ public:
 							{
 								aux1 += niveles[i];
 							}
-								mapa[aux1 + cuadranteX + 1] = 'X';
+							mapa[aux1 + cuadranteX + 1] = 'X';
 						}
 						else
 						{
@@ -108,7 +195,7 @@ public:
 							{
 								aux1 += niveles[i];
 							}
-								mapa[aux1 + cuadranteX + 1] = 'X';
+							mapa[aux1 + cuadranteX + 1] = 'X';
 						}
 					}
 					else
@@ -180,63 +267,87 @@ public:
 			switch (i)
 			{
 			case 0:
-				if (y > 0){
-					if (mapa[(y - 1)*niveles[0] + x] == 'X')
-						nodeCost = { XYToNode(x, y - 1), INT_MAX };
+				if (y > 1){
+					if (mapa[(y -2)*niveles[0] + x] == 'X')
+						nodeCost = { XYToNode(x, y - 2), 9999 };
 					else
-						nodeCost = { XYToNode(x, y - 1), 1 };
+						nodeCost = { XYToNode(x, y - 2), 1 };
 					adjacent->push_back(nodeCost);
 				}
 				break;
 			case 1:
-				if (y > 0 && x < niveles[0]-1){
-					if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
-						nodeCost = { XYToNode(x + 1, y - 1), INT_MAX };
-					else
-						nodeCost = { XYToNode(x + 1, y - 1), 1 };
+				if (y > 0 && x < niveles[0] - 1){
+					if (y % 2 == 0){
+						if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
+							nodeCost = { XYToNode(x + 1, y - 1), 9999 };
+						else
+							nodeCost = { XYToNode(x + 1, y - 1), 1 };
+					}
+					else {
+						if (mapa[(y - 1)*niveles[0] + x] == 'X')
+							nodeCost = { XYToNode(x, y - 1), 9999 };
+						else
+							nodeCost = { XYToNode(x, y - 1), 1 };
+					}
 					adjacent->push_back(nodeCost);
 				}
 				break;
 			case 2:
-				if (x < niveles[0]-1){
+				if (x < niveles[0] - 1){
 					if (mapa[(y)*niveles[0] + x + 1] == 'X')
-						nodeCost = { XYToNode(x + 1, y), INT_MAX };
+						nodeCost = { XYToNode(x + 1, y), 9999 };
 					else
 						nodeCost = { XYToNode(x + 1, y), 1 };
 					adjacent->push_back(nodeCost);
 				}
 				break;
 			case 3:
-				if (y < niveles.size()-1 && x < niveles[0] - 1){
-					if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
-						nodeCost = { XYToNode(x + 1, y + 1), INT_MAX };
-					else
-						nodeCost = { XYToNode(x + 1, y + 1), 1 };
+				if (y < niveles.size() - 1 && x < niveles[0] - 1){
+					if (y % 2 == 0){
+						if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
+							nodeCost = { XYToNode(x + 1, y + 1), 9999 };
+						else
+							nodeCost = { XYToNode(x + 1, y + 1), 1 };
+					}
+					else{
+						if (mapa[(y + 1)*niveles[0] + x] == 'X')
+							nodeCost = { XYToNode(x, y + 1), 9999 };
+						else
+							nodeCost = { XYToNode(x, y + 1), 1 };
+					}
 					adjacent->push_back(nodeCost);
 				}
 				break;
 			case 4:
-				if (y < niveles.size() - 1){
-					if (mapa[(y + 1)*niveles[0] + x] == 'X')
-						nodeCost = { XYToNode(x, y + 1), INT_MAX };
+				if (y < niveles.size() - 2){
+					if (mapa[(y + 2)*niveles[0] + x] == 'X')
+						nodeCost = { XYToNode(x, y + 2), 9999 };
 					else
-						nodeCost = { XYToNode(x, y + 1), 1 };
+						nodeCost = { XYToNode(x, y + 2), 1 };
 					adjacent->push_back(nodeCost);
 				}
 				break;
 			case 5:
 				if (y < niveles.size() - 1 && x > 0){
-					if (mapa[(y + 1)*niveles[0] + x - 1] == 'X')
-						nodeCost = { XYToNode(x - 1, y + 1), INT_MAX };
-					else
-						nodeCost = { XYToNode(x - 1, y + 1), 1 };
+					if (y % 2 == 0){
+						if (mapa[(y + 1)*niveles[0] + x] == 'X')
+							nodeCost = { XYToNode(x, y + 1), 9999 };
+						else
+							nodeCost = { XYToNode(x, y + 1), 1 };
+					}
+					else {
+						if (mapa[(y + 1)*niveles[0] + x] == 'X')
+							nodeCost = { XYToNode(x-1, y + 1), 9999 };
+						else
+							nodeCost = { XYToNode(x-1, y + 1), 1 };
+					}
 					adjacent->push_back(nodeCost);
 				}
 				break;
 			case 6:
 				if (x > 0){
 					if (mapa[(y)*niveles[0] + x - 1] == 'X')
-						nodeCost = { XYToNode(x - 1, y), INT_MAX };
+						nodeCost = { XYToNode(x - 1, y), 9999 };
 					else
 						nodeCost = { XYToNode(x - 1, y), 1 };
 					adjacent->push_back(nodeCost);
@@ -244,18 +355,24 @@ public:
 				break;
 			case 7:
 				if (y > 0 && x > 0){
-					if (mapa[(y - 1)*niveles[0] + x - 1] == 'X')
-						nodeCost = { XYToNode(x - 1, y - 1), INT_MAX };
-					else
-						nodeCost = { XYToNode(x - 1, y - 1), 1 };
+					if (y % 2 == 0){
+						if (mapa[(y - 1)*niveles[0] + x] == 'X')
+							nodeCost = { XYToNode(x, y - 1), 9999 };
+						else
+							nodeCost = { XYToNode(x, y - 1), 1 };
+					}
+					else{
+						if (mapa[(y - 1)*niveles[0] + x-1] == 'X')
+							nodeCost = { XYToNode(x-1, y - 1), 9999 };
+						else
+							nodeCost = { XYToNode(x-1, y - 1), 1 };
+					}
 					adjacent->push_back(nodeCost);
 				}
 				break;
 			}
 		}
-
 	}
-
 	/**
 	This function is only used in DEBUG mode - it dumps output to stdout. Since void*
 	aren't really human readable, normally you print out some concise info (like "(1,2)")

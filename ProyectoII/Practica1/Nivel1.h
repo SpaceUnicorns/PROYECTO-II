@@ -16,11 +16,13 @@ public:
 	virtual void draw();
 protected:
 	int x, y;
-	GrafoMapa* mapa;
+	
 	Cazador* pCazador;
 	Recolector* pRecolector;
 	std::string activePlayer;;
 	void swPlayer();
+
+	GrafoMapa* mapa;
 	//void onKeyUp(char k);
 
 	/*//métodos-----------------------------------------------------------------

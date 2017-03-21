@@ -82,6 +82,7 @@
     <ClCompile Include="Cazador.cpp" />
     <ClCompile Include="ColisionBox.cpp" />
     <ClCompile Include="EstadoPG.cpp" />
+    <ClCompile Include="follow.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="juegoPG.cpp" />
@@ -107,6 +108,7 @@
     <ClInclude Include="Error.h" />
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="EstadoPG.h" />
+    <ClInclude Include="follow.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="GrafoMapa.h" />
