@@ -28,7 +28,9 @@ public:
 	virtual void deleteComponente(std::string const & name);
 	virtual bool encuentraComponente(std::string const & name);
 	virtual void setRect(int incrX, int incrY){ rect.x += incrX; rect.y += incrY; }
+	virtual void setAbsRect(int incrX, int incrY){ absRect.x += incrX; absRect.y += incrY; }
 	virtual SDL_Rect getRect(){ return rect; }
+	virtual SDL_Rect getAbsRect(){ return absRect; }
 	virtual juegoPG* getPJuego(){ return pJuego; }
 	virtual  SDL_Rect getColisionBox(){ return rect; };
 	virtual Componente* dameComponente(std::string const &s){
@@ -49,6 +51,7 @@ protected:
 	juegoPG * pJuego;
 	Texturas_t et;
 	SDL_Rect rect;
+	SDL_Rect absRect;
 	SDL_Rect aux; //Rect auxiliar para cual quier cuenta con rectangulos (Se usa para la camara)	
 	SDL_Rect anim;
 };

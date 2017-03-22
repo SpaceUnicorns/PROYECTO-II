@@ -7,6 +7,7 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 	rect.x = px;
 	rect.y = py;
 	start();
+	absRect = rect;
 	
 }
 

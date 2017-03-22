@@ -80,7 +80,16 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pRecolector = static_cast<Recolector*>(vecObj[1]);
 	activePlayer = "C";
 	pCazador->newComponente(new follow(pCazador, pRecolector, mapa), "follow");
+	std::vector<void*>path;
+/*	float cost = 0.0f;
+	mapa->solve(mapa->XYToNode(1,16),mapa->XYToNode(1,8), &path, &cost);
 
+	int xx, yy;
+	for (int i = 0; i < path.size();i++){
+		mapa->NodeToXY(path[i], &xx, &yy);
+		std::cout << xx << " " << yy << "\n";
+	}
+	std::cout << "    ";*/
 	//pRecolector->swAble();
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){

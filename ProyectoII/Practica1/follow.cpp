@@ -26,26 +26,26 @@ void follow::update(){
 		int x, y, xx, yy;
 
 		// Hallamos las coordenadas de cada objeto y las transformamos a las coordenadas absolutas que ocupan dentro del mapa
-		x = pObj->getColisionBox().x + (pObj->getColisionBox().x - target->getColisionBox().x);
-		y = pObj->getColisionBox().y + (pObj->getColisionBox().y - target->getColisionBox().y);
-		xx = target->getColisionBox().x + (pObj->getColisionBox().x - target->getColisionBox().x);;
-		yy = target->getColisionBox().y + (pObj->getColisionBox().y - target->getColisionBox().y);;
+		x = pObj->getAbsRect().x + pObj->getAbsRect().w*0.2;
+		y = pObj->getAbsRect().y + pObj->getAbsRect().h*0.8;
+		xx = target->getAbsRect().x + target->getAbsRect().w*0.2;
+		yy = target->getAbsRect().y + target->getAbsRect().h*0.8;
 		map->transformaCoord(x, y);
 		map->transformaCoord(xx, yy);
 
 		//Resolvemos el camino
 		std::cout << x << " " << y << " \n";
 		std::cout << xx << " " << yy << " \n";
-			map->solve(map->XYToNode(x,y), map->XYToNode(xx,yy), &path, &coste);
+		map->solve(map->XYToNode(xx,yy), map->XYToNode(x,y), &path, &coste);
 		coste = 0;
 		int auxX, auxY;
 		int dirX, dirY;
 
 		//codificamos en el vector de direcciones
-		for (int i = path.size()-1; i > 0; i--)
+		for (int i = 0; i < path.size()-1 && path.size() > 0; i++)
 		{
 			map->NodeToXY(path[i], &dirX, &dirY);
-			map->NodeToXY(path[i-1], &auxX, &auxY);
+			map->NodeToXY(path[i+1], &auxX, &auxY);
 
 			if (auxX > dirX)
 			{
@@ -120,41 +120,49 @@ void follow::update(){
 			{
 			case 0:
 				target->setRect(0, -2);
+				target->setAbsRect(0, -2);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
 				paso-=4;
 				break;
 			case 1:
 				target->setRect(2, -1);
+				target->setAbsRect(2, -1);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
 				paso -= 3;
 				break;
 			case 2:
 				target->setRect(2, 0);
+				target->setAbsRect(2, 0);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
-				paso-=2.25;
+				paso-=2;
 				break;
 			case 3:
 				target->setRect(2, 1);
+				target->setAbsRect(2, 1);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
 				paso -= 3;
 				break;
 			case 4:
 				target->setRect(0, 2);
+				target->setAbsRect(0, 2);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
 				paso -= 4;
 				break;
 			case 5:
 				target->setRect(-2, 1);
+				target->setAbsRect(-2, 1);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
 				paso -= 3;
 				break;
 			case 6:
 				target->setRect(-2, 0);
+				target->setAbsRect(-2, 0);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
-				paso-=2.25;
+				paso-=2;
 				break;
 			case 7:
 				target->setRect(-2, -1);
+				target->setAbsRect(-2, -1);
 				static_cast<ColisionBox*>(target->dameComponente("ColisionBox"))->setRectBox(target->getRect().x + 15, target->getRect().y + 40);
 				paso -= 3;
 				break;
