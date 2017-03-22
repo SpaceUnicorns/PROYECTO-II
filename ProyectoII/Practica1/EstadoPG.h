@@ -46,14 +46,14 @@ public:
 	void cargarAudio(std::string irPath);
 
 	virtual SDL_Rect getCamara()const{ return camara; }
-	virtual void setCamara(int x, int y){ camara.x = x; camara.y = y; }
+	virtual void setCamara(int x, int y){
+		camara.x = x; camara.y = y; }
 
 	struct Tile {
 		int x, y;
 		int capa;
 		SDL_Rect rectTileset;     //Contiene el rectangulo del Tileset que se quiere dibujar.
 	};
-	
 protected: 
 	SDL_Rect camara;
 	struct Colision

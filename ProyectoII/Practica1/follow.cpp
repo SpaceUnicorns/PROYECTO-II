@@ -26,29 +26,23 @@ void follow::update(){
 		int x, y, xx, yy;
 
 		// Hallamos las coordenadas de cada objeto y las transformamos a las coordenadas absolutas que ocupan dentro del mapa
-		SDL_Rect aux = (dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara());
-		x = pObj->getColisionBox().x ;
-		y = pObj->getColisionBox().y ;
-		xx = target->getColisionBox().x;
-		yy = target->getColisionBox().y;
+		x = pObj->getColisionBox().x + (pObj->getColisionBox().x - target->getColisionBox().x);
+		y = pObj->getColisionBox().y + (pObj->getColisionBox().y - target->getColisionBox().y);
+		xx = target->getColisionBox().x + (pObj->getColisionBox().x - target->getColisionBox().x);;
+		yy = target->getColisionBox().y + (pObj->getColisionBox().y - target->getColisionBox().y);;
 		map->transformaCoord(x, y);
 		map->transformaCoord(xx, yy);
-		int auxX, auxY;
-		auxX = x; auxY = y;
-		x = x + (x - xx);
-		y = y;
-		xx = xx + (auxX - xx);
-		yy = yy;
 
-		if (y % 2 == 0) x--;
-		if (yy % 2 == 0) xx--;
 		//Resolvemos el camino
-		map->solve(map->XYToNode(x,y), map->XYToNode(xx,yy), &path, &coste);
+		std::cout << x << " " << y << " \n";
+		std::cout << xx << " " << yy << " \n";
+			map->solve(map->XYToNode(x,y), map->XYToNode(xx,yy), &path, &coste);
 		coste = 0;
+		int auxX, auxY;
 		int dirX, dirY;
 
 		//codificamos en el vector de direcciones
-		for (size_t i = path.size()-1; i > 0; i--)
+		for (int i = path.size()-1; i > 0; i--)
 		{
 			map->NodeToXY(path[i], &dirX, &dirY);
 			map->NodeToXY(path[i-1], &auxX, &auxY);
@@ -89,7 +83,7 @@ void follow::update(){
 		}
 		std::cout << "\n";
 	}
-		//Primero calculamo posiciones absolutas y calculamos luego la distancia euclidea
+		//Primero calculamos posiciones absolutas y calculamos luego la distancia euclidea
 		int x, y, xx, yy;
 		int auxX, auxY;
 		x = pObj->getColisionBox().x;
