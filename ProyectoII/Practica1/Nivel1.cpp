@@ -57,7 +57,11 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	f.close();
 
 	camara.x = camara.y = 0;
-	camara.h = 768; camara.w = 1024;
+	camara.h = pJuego->getHeight(); camara.w = pJuego->getWidht();
+	animNieve1.h = animNieve2.h = camara.h+1000; animNieve1.w = animNieve2.w = camara.w+1000;
+	animNieve1.x = animNieve2.x = camara.w;
+	animNieve1.y = animNieve2.y = camara.h;
+
 	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
 	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -80, camara.y + (camara.h / 2)));
 
@@ -111,6 +115,22 @@ void Nivel1::draw(){
 	}
 
 	setCamara(0,0); //Se reinicia el offset a 0
+	int x = rand() % 100;
+	if (x >= 60){
+		animNieve1.x--;
+		animNieve1.y--;
+	}
+	if (animNieve1.x <= 0) animNieve1.x = camara.w;
+	if (animNieve1.y <= 0) animNieve1.y = camara.h;
+	if (x >= 70){
+		animNieve2.x--;
+		animNieve2.y--;
+	}
+	if (animNieve2.x <= 0) animNieve2.x = camara.w*2;
+	if (animNieve2.y <= 0) animNieve2.y = camara.h*2;
+	pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1,camara);
+	pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
+	pJuego->getTextura(TLuz)->draw(pJuego->getRender(), camara);
 }
 void Nivel1::swPlayer(){
 	SDL_Rect aux;

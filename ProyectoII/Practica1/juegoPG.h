@@ -12,7 +12,7 @@
 #include "EstadoJuego.h"
 #include "fmod.hpp"
 
-enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision, TLiov, TZhenia, TPiedra, TLobete };
+enum Texturas_t { TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TCazador, TArbol, TCColision, TLiov, TZhenia, TPiedra, TLuz, TNieve1, TNieve2 , TLobete};
 
 class juegoPG
 {
@@ -42,6 +42,8 @@ public:
 	EstadoJuego* getEstadoActual() { return estados.top(); }
 	int getVida(){ return vida; }
 	void cambiaVida(int cambio){ vida += cambio; }
+	int getHeight(){ return SCREEN_HEIGHT; }
+	int getWidht(){ return SCREEN_WIDTH; }
 
 private:
 	SDL_Event e;

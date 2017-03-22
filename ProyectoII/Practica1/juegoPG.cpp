@@ -23,7 +23,7 @@ juegoPG::juegoPG()
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 	
 	//CAMBIAR CADA VEZ QUE SE METE UNA IMAGEN NUEVA
-	vecTexturas.resize(14);
+	vecTexturas.resize(17);
 	initMedia();	
 
 	//La vida de los pjs (al ser compartida va en el juego)
@@ -156,7 +156,7 @@ void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 		throw EInitSDL("SDL could not initialize!");
 	}
 	else {
-		int x = SDL_GetCurrentDisplayMode(1,&pMode); //0 para poner en toda la pantalla;
+		int x = SDL_GetCurrentDisplayMode(0,&pMode); //0 para poner en toda la pantalla;
 		if (x == 0){
 			SCREEN_HEIGHT = pMode.h; 
 			SCREEN_WIDTH = pMode.w;

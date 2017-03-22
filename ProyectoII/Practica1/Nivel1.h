@@ -17,6 +17,8 @@ public:
 	Recolector* getRecolector() { return pRecolector; }
 
 protected:
+	SDL_Rect animNieve1;
+	SDL_Rect animNieve2;
 	Cazador* pCazador;
 	Recolector* pRecolector;
 	std::string activePlayer;;
