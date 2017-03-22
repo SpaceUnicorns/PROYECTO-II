@@ -3,6 +3,7 @@
 #include "ColisionBox.h"
 #include "Recolector.h"
 #include "ObjetoPG.h"
+#include "Mochila.h"
 
 
 MovimientoP::MovimientoP(ObjetoJuego* ent) : Componente(ent)
@@ -21,7 +22,7 @@ MovimientoP::~MovimientoP()
 
 void MovimientoP::update(){
 	//Antes de actualizar la posición comprobamos si colisiona con la posición siguiente.
-	ObjetoPG* info = nullptr;
+	 info = nullptr;
 	if(framerate % 16 == 0) // se mueve 1 frame cada 16 ms x 16ms
 		pObj->changeAnimH();
 
@@ -34,9 +35,12 @@ void MovimientoP::update(){
 		if (dynamic_cast<Recolector*>(pObj)) {
 			if (pObj->getPJuego()->input.e) {
 				pObj->getPJuego()->input.e = false;
-				std::cout << " he cogido una " << info->nombre << "\n";
+				static_cast<Mochila*> (pObj->dameComponente("Mochila"))->newItem(info->nombre, 1);
+				dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->eraseVectObj(info);
+				
 
 			}
+
 			
 		}
 		

@@ -7,7 +7,7 @@ Piedra::Piedra(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 	et = TPiedra;
 	rect.w = 50;
 	rect.h = 30;
-	nombre = typeid(this).name();
+	nombre = "Piedra";
 	SDL_Rect colision = { rect.x,rect.y+10,50,10 };
 	newComponente(new ColisionBox(this,colision,false), "ColisionBox");
 }
@@ -16,7 +16,6 @@ Piedra::Piedra(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 Piedra::~Piedra()
 {
 	
-	deleteComponente("ColisionBox");
 }
 void Piedra::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());

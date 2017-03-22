@@ -16,7 +16,12 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 ObjetoPG::~ObjetoPG()
 
 { 
-	mapaComponentes.erase(mapaComponentes.begin(), mapaComponentes.end());
+
+	std::map <std::string, Componente*>::iterator it = mapaComponentes.begin();
+	while (it != mapaComponentes.end()){
+		delete it->second;
+		it++;
+	}
 }
 
 bool ObjetoPG::dentro(int x, int y)const{

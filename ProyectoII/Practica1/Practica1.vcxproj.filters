@@ -31,6 +31,15 @@
     <Filter Include="Archivos de encabezado\Niveles">
       <UniqueIdentifier>{9d51f04e-5995-433b-be7c-3654c55f7ebf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Entidades\Objetos">
+      <UniqueIdentifier>{67111fa3-f1e0-4f9d-952e-1d1055e7cdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades\Objetos">
+      <UniqueIdentifier>{faf06080-e01b-4a78-b90c-1d847fc96bf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Entidades\Herramientas">
+      <UniqueIdentifier>{935428cf-8dac-41e4-bad5-f9578e42c9c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainP1.cpp">
@@ -81,9 +90,6 @@
     <ClCompile Include="Recolector.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
-    <ClCompile Include="Piedra.cpp">
-      <Filter>Archivos de código fuente\Entidades</Filter>
-    </ClCompile>
     <ClCompile Include="MenuPrincipal.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
@@ -94,6 +100,36 @@
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
     <ClCompile Include="TextCb.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Mochila.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="Piedra.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Enredadera.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Madera.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Cuerda.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Hueso.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Yesca.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Cebo.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="TrampaCerrada.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="MCrafteo.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
@@ -155,9 +191,6 @@
     <ClInclude Include="Recolector.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
-    <ClInclude Include="Piedra.h">
-      <Filter>Archivos de encabezado\Entidades</Filter>
-    </ClInclude>
     <ClInclude Include="MenuPrincipal.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
@@ -165,9 +198,40 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="Trigger.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
     </ClInclude>
     <ClInclude Include="TextCb.h">
+    <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="Mochila.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="Piedra.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Enredadera.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Madera.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Cuerda.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Hueso.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Yesca.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Cebo.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="TrampaCerrada.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="MCrafteo.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

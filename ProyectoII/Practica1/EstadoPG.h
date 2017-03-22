@@ -44,6 +44,15 @@ public:
 	virtual std::vector <ObjetoJuego*> & getVecTriggers() {
 		return vecTriggers;
 	}
+	virtual void eraseVectObj(ObjetoJuego* pnt) {
+		std::vector<ObjetoJuego*>::iterator it;
+		for (it = vecObj.begin(); it != vecObj.end(); it++)
+			if ((*it) == pnt) {
+				delete * it;
+				it = vecObj.erase(it);
+			}
+	}
+
 	// Audio
 	void cargarAssetsAudio(std::string txt, char tipo);
 	void cargarAudio(std::string irPath);

@@ -1,5 +1,6 @@
 #include "Recolector.h"
 #include "MovimientoP.h"
+#include "Mochila.h"
 
 
 Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
@@ -9,6 +10,7 @@ Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py
 	rect.h = 55;
 	newComponente(new MovimientoP(this), "MovimientoP");
 	newComponente(new ColisionBox(this), "ColisionBox");
+	newComponente(new Mochila(this), "Mochila");
 	anim.w = anim.h = 32; //cada frame del jugador mide 32x32
 	anim.x = anim.y = 0;
 	pintado = false;
@@ -18,8 +20,7 @@ Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py
 
 Recolector::~Recolector()
 {
-	deleteComponente("MovimientoP");
-	deleteComponente("ColisionBox");
+
 }
 void Recolector::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if (!activo) {

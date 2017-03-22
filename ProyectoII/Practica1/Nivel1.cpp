@@ -5,9 +5,18 @@
 #include "Arbol.h"
 #include <algorithm>
 #include "Pausa.h"
+#include "Cebo.h"
+#include "Cuerda.h"
+#include "Enredadera.h"
+#include "Hueso.h"
+#include "Madera.h"
 #include "Piedra.h"
 #include "TextCb.h"
 #include "Trigger.h"
+#include "TrampaCerrada.h"
+#include "Yesca.h"
+
+#include "MCrafteo.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	std:: ifstream f; char aux = 'p';
@@ -62,6 +71,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
 	pCazador = static_cast<Cazador*>(vecObj[0]);
 	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -80, camara.y + (camara.h / 2)));
+
 	pRecolector = static_cast<Recolector*>(vecObj[1]);
 
 	vecTriggers.push_back(new Trigger(pJuego, 562, 384, pCazador, pRecolector));
@@ -72,13 +82,23 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	static_cast<Trigger*>(vecTriggers[2])->setCallback(new TextCb(vecTriggers[2], "../docs/textos/dialogo3.txt"));
 	static_cast<Trigger*>(vecTriggers[2])->setTriggerDim(80, 80);
 
+
 	vecObj.push_back(new Arbol(pJuego, 180, 60));
 	vecObj.push_back(new Arbol(pJuego, 480, 260));
 	vecObj.push_back(new Arbol(pJuego, 680, 60));
 	vecObj.push_back(new Arbol(pJuego, 750, 365));
 	vecObj.push_back(new Arbol(pJuego, 1080, 195));
 	vecObj.push_back(new Arbol(pJuego, 480, 60));
-	vecObj.push_back(new Piedra(pJuego, 880, 100));
+
+	vecObj.push_back(new Cebo(pJuego, 780, 100));
+	vecObj.push_back(new Cuerda(pJuego, 880, 100));
+	vecObj.push_back(new Enredadera(pJuego, 980, 100));
+	vecObj.push_back(new Hueso(pJuego, 880, 200));
+	vecObj.push_back(new Madera(pJuego, 880, 300));
+	vecObj.push_back(new Piedra(pJuego, 980, 200));
+	vecObj.push_back(new TrampaCerrada(pJuego, 980, 300));
+	vecObj.push_back(new Yesca(pJuego, 1080, 100));
+
 	cargarAudio("../sounds/reverb/standrews.wav");
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
@@ -161,88 +181,27 @@ void Nivel1::swPlayer(){
 	else pRecolector->swAble();
 
 }
-Nivel1::~Nivel1()
-{
-}
-/*PlayPG::PlayPG(juegoPG*jug, int puntos): EstadoPG(jug, puntos)
-{
-	et = TFondo;
-	numPremios = 0;
-	globosTot = 10;
-	vecObj.resize(globosTot);
-	for (unsigned int i = 0; i < vecObj.size(); i++){
-		int tipo = tipoGlobo();
-		if (tipo <= 50) vecObj[i] = new GlobosPG(pJuego, rand() % (640 - 25), rand() % (480 - 50));
-		else vecObj[i] = new GloboA(pJuego, rand() % (640 - 25), rand() % (480 - 50));
-	}
-	//cargar mariposa.
-	vecObj.push_back(new MariposaPG(pJuego, 50, 80));
-	vecObj.push_back(new MariposaPG(pJuego, 80, 100));
-	vecObj.push_back(new PremioPG(pJuego,50,50));
-	vecObj.push_back(new PremioPG(pJuego,50,100));
 
-	gameOver = pause= false;
-}
-int PlayPG::tipoGlobo(){
-	return rand() % 100;
-}
+void Nivel1::onKeyUp(char k) {
+	switch (k) {
+	case 'q':
+		pJuego->estados.push(new MCrafteo(pJuego, contPuntos));
+		break;
 
-void PlayPG::onClick(){
-	bool encontrado = false;
-	int it = vecObj.size() - 1;
-	while (!encontrado && it >= 0){
-		encontrado = vecObj[it]->onClick();
-		it--;
-	}
-
-}
-void PlayPG::onKeyUp(char k){
-	switch (k)
-	{
-	case 'p':
+		/*case 'p':
 		if(!pause) pause = true;
 		else pause = false;
 		break;
-	case 'S':
+		case 'S':
 		pJuego->estados.push(new Pausa(pJuego,contPuntos));
-		break;
+		break;*/
 	default:
 		break;
 	}
 }
-void PlayPG::update(){
-	if (!pause){
-		EstadoPG::update();
-		if (globosTot == 0){
-			EstadoJuego* borrar = pJuego->estados.top();
-			pJuego->estados.pop();
-			pJuego->estados.push(new GameOver(pJuego,contPuntos));
 
-			delete borrar;
-		}
-	}
+Nivel1::~Nivel1()
+{
 }
 
-void PlayPG::newBaja(ObjetoJuego* ob){
-	if (dynamic_cast<GlobosPG*>(ob))globosTot--;
-	else if (typeid(*ob) == typeid(PremioPG)) numPremios--;
-}
-void PlayPG::newPuntos(ObjetoJuego* ob){
-	if (dynamic_cast<GlobosPG*>(ob))
-		contPuntos += static_cast<GlobosPG*>(ob)->damePuntos();
-	else if (typeid(*ob) == typeid(PremioPG))
-		contPuntos += static_cast<PremioPG*>(ob)->damePuntos();
-	
-}
-void PlayPG::newPremio(ObjetoJuego* ob){
-	numPremios++;
-	if (numPremios == 1) static_cast<PremioPG*>(vecObj[vecObj.size() - 1])->creaPremio();
-	else{
-		static_cast<PremioPG*>(vecObj[vecObj.size() - 2])->creaPremio();
-	}
-}
-void PlayPG::reproduce(ObjetoJuego* ob){
-	//Si otros objetos reprodujeran sonido habría que hacer un casting, tambien haria falta crear un vector de FX de sonido en el juego.
-		Mix_PlayChannel(-1, pJuego->getSound()->pFx, 0);
-}*/
 

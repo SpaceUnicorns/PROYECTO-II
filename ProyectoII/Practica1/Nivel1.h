@@ -18,7 +18,8 @@ protected:
 	Recolector* pRecolector;
 	std::string activePlayer;
 	void swPlayer();
-	//void onKeyUp(char k);
+	
+	void onKeyUp(char k);
 
 	/*//métodos-----------------------------------------------------------------
 	int getPuntos(){ return contPuntos; }
