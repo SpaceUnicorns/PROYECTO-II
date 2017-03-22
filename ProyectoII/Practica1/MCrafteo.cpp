@@ -20,7 +20,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos) : EstadoPG(jug, puntos)
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
 
-	rFondo.x = rFondo.y = 0; rFondo.w = 1024; rFondo.h = 768; //rect del fondo (ocupa toda la pantalla)
+	rFondo.x = rFondo.y = 0; rFondo.w = pJuego->getScreenWidth(); rFondo.h = pJuego->getScreenHeight(); //rect del fondo (ocupa toda la pantalla)
 	niños.x = 150; niños.y = 560; niños.w = niños.h = 120; //rect de los personajes
 	recuadros.x = 500; recuadros.y = 30; recuadros.w = 500; recuadros.h = 333; //recuadro
 }

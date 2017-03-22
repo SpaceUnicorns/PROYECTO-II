@@ -74,7 +74,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
 	pCazador = static_cast<Cazador*>(vecObj[0]);
-	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -80, camara.y + (camara.h / 2)));
+	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -300, camara.y + (camara.h / 2)));
 
 	pRecolector = static_cast<Recolector*>(vecObj[1]);
 
@@ -160,8 +160,6 @@ void Nivel1::draw(){
 	pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1,camara);
 	pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
 
-	//VAMO A DALE CHICHITA A LA VIDA DE LOS PJ
-	//SDL_Rect* manolitoPiesDePLata = nullptr;
 	pJuego->getTextura(TLuz)->draw(pJuego->getRender(),pJuego->getNieblaRect() ,camara);
 }
 void Nivel1::swPlayer(){
