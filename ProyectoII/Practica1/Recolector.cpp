@@ -5,9 +5,10 @@
 
 Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
-	et = TJugador2;
+	nombre = "Liov";
+	et = TJugador;
 	rect.w = 45;
-	rect.h = 55;
+	rect.h = 45;
 	newComponente(new MovimientoP(this), "MovimientoP");
 	newComponente(new ColisionBox(this), "ColisionBox");
 	newComponente(new Mochila(this), "Mochila");

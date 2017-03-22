@@ -78,18 +78,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Arbol.cpp" />
+    <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="Cazador.cpp" />
     <ClCompile Include="Cebo.cpp" />
     <ClCompile Include="ColisionBox.cpp" />
     <ClCompile Include="Cuerda.cpp" />
     <ClCompile Include="Enredadera.cpp" />
+    <ClCompile Include="Deteccion.cpp" />
+    <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="EstadoPG.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Hueso.cpp" />
     <ClCompile Include="juegoPG.cpp" />
     <ClCompile Include="Madera.cpp" />
+    <ClCompile Include="Lobo.cpp" />
     <ClCompile Include="mainP1.cpp" />
     <ClCompile Include="MCrafteo.cpp" />
     <ClCompile Include="MenuPG.cpp" />
@@ -110,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arbol.h" />
+    <ClInclude Include="Attack.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="Cazador.h" />
     <ClInclude Include="Cebo.h" />
@@ -117,6 +122,11 @@
     <ClInclude Include="Componente.h" />
     <ClInclude Include="Cuerda.h" />
     <ClInclude Include="Enredadera.h" />
+    <ClInclude Include="checkML.h" />
+    <ClInclude Include="ColisionBox.h" />
+    <ClInclude Include="Componente.h" />
+    <ClInclude Include="Deteccion.h" />
+    <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="EstadoPG.h" />
@@ -126,6 +136,7 @@
     <ClInclude Include="juegoPG.h" />
     <ClInclude Include="Madera.h" />
     <ClInclude Include="MCrafteo.h" />
+    <ClInclude Include="Lobo.h" />
     <ClInclude Include="MenuPG.h" />
     <ClInclude Include="MenuPrincipal.h" />
     <ClInclude Include="MenuPrincipalComp.h" />

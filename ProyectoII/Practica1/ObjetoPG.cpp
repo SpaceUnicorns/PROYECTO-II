@@ -1,5 +1,6 @@
 #include "ObjetoPG.h"
 #include "ColisionBox.h"
+#include "checkML.h"
 
 ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 {
@@ -7,18 +8,12 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 	rect.x = px;
 	rect.y = py;
 	start();
-	
 }
 
+ObjetoPG::~ObjetoPG(){
 
-
-
-ObjetoPG::~ObjetoPG()
-
-{ 
-
-	std::map <std::string, Componente*>::iterator it = mapaComponentes.begin();
-	while (it != mapaComponentes.end()){
+	std::map <std::string, Componente*>::iterator it= mapaComponentes.begin();
+	while (it!=mapaComponentes.end()){
 		delete it->second;
 		it++;
 	}
@@ -48,6 +43,7 @@ bool ObjetoPG::onOver(){
 	}
 	return encontrado;
 }
+
 void ObjetoPG::draw(){
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
@@ -57,6 +53,7 @@ void ObjetoPG::sleep(){}
 void ObjetoPG::newComponente(Componente* cmp, std:: string const & name){
 	if (!encuentraComponente(name))	mapaComponentes.insert(std::pair<std::string, Componente*>(name, cmp));
 }
+
 void ObjetoPG::deleteComponente(std::string const & name){
 	if (encuentraComponente(name)){
 		Componente * aux = mapaComponentes.at(name);

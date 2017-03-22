@@ -30,23 +30,20 @@ void MovimientoP::update(){
 
 	nextPos.x = nextPos.y = 0;
 	
-
+	//RECOLECTOR PUEDE COGER OBJETOS
 	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos,info) == 2) {
 		if (dynamic_cast<Recolector*>(pObj)) {
 			if (pObj->getPJuego()->input.e) {
 				pObj->getPJuego()->input.e = false;
 				static_cast<Mochila*> (pObj->dameComponente("Mochila"))->newItem(info->nombre, 1);
 				dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->eraseVectObj(info);
-				
-
+				std::cout << "He cogido una " << info->nombre << "\n";
 			}
-
-			
 		}
-		
 	}
 	pObj->getPJuego()->input.e = false;
-
+	
+	//MOVIMIENTO DIRECCIONES
 	if (pObj->getPJuego()->input.dDS){ //Diagonal Arriba-Derecha
 		nextPos.x = 2; nextPos.y = -1;
 		if (static_cast<ColisionBox*>( pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info)!= 1){

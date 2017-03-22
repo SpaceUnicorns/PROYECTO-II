@@ -14,7 +14,8 @@
 
 enum Texturas_t {
 	TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TTextBox, TArbol, TCColision, TJugador, TJugador2,
-	TSombra1, TMenuResaltado,  TLyov, TZhenia, TEquipables,  TMateriales, TCebo, TCuerda, TEnredadera, THueso, TMadera, TPiedra, TTrampaCerrada, TYesca, TGris };
+	TSombra1, TMenuResaltado, TLyov, TZhenia, TEquipables, TMateriales, TCebo, TCuerda, TEnredadera, THueso, TMadera, TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete
+};
 
 class juegoPG
 {
@@ -46,6 +47,13 @@ public:
 	bool hasExit(){ return exit; }
 	int getScreenWidth(){ return SCREEN_WIDTH; }
 	int getScreenHeight(){ return SCREEN_HEIGHT; }
+	EstadoJuego* getEstadoActual() { return estados.top(); }
+	int getVida(){ return vida; }
+
+	//Este metodo cambia la vida y el rect de la niebla oscura
+	void cambiaVida(int cambio);
+	SDL_Rect getNieblaRect() { return nieblaRect; }
+
 private:
 	SDL_Event e;
 	
@@ -80,5 +88,9 @@ private:
 	//void update();														// : Pide a todos los globos que actualicen su estado, y actualiza el número de globos que quedan activos.
 	void handle_event();												// : Comprueba si se ha producido el evento SDL_Quit o el evento soltar el botón izquierdo del ratón.Para el caso SDL_Quit, ejecuta onExit().En el otro caso, ejecuta onClick(), pasando como argumentos la posición del ratón.
 	void onExit();
+
+	//Cosas de los personajes
+	int vida;
+	SDL_Rect nieblaRect;
 };
 

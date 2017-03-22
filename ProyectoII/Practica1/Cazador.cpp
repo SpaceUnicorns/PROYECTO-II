@@ -2,11 +2,13 @@
 #include "MovimientoP.h"
 
 
+
 Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
 {
-	et = TJugador;
+	nombre = "Zhenia";
+	et = TJugador2;
 	rect.w = 45;
-	rect.h = 45;
+	rect.h = 55;
 	newComponente(new MovimientoP(this),"MovimientoP");
 	newComponente(new ColisionBox(this), "ColisionBox");
 	anim.w = anim.h = 32; //cada frame del jugador mide 32x32
@@ -20,6 +22,7 @@ Cazador::~Cazador()
 {
 
 }
+
 void Cazador::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	pintado = true;
 	if (!activo) {

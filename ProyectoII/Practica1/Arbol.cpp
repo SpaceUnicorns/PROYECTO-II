@@ -6,8 +6,8 @@
 
 Arbol::Arbol(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
-	et = TArbol;
 	nombre = "Arbol";
+	et = TArbol;
 	interactuable = true;
 	rect.w = 100;
 	rect.h = 200;

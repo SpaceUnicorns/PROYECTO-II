@@ -13,7 +13,12 @@ public:
 	Nivel1(juegoPG*jug);
 	virtual ~Nivel1();
 	virtual void draw();
+	Cazador* getCazador() { return pCazador; }
+	Recolector* getRecolector() { return pRecolector; }
+
 protected:
+	SDL_Rect animNieve1;
+	SDL_Rect animNieve2;
 	Cazador* pCazador;
 	Recolector* pRecolector;
 	std::string activePlayer;
