@@ -137,7 +137,7 @@ void juegoPG::handle_event(){
 				if (dynamic_cast<Nivel1*>(estados.top()) != nullptr) {
 					SDL_Surface *sshot = SDL_CreateRGBSurface(0, getScreenWidth(), getScreenHeight(), 32, 0, 0, 0, 0);
 					SDL_RenderReadPixels(getRender(), NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
-					SDL_SaveBMP(sshot, "..//bmps//temp//screenshot.bmp");
+					SDL_SaveBMP(sshot, "..//bmps//temporal//screenshot.bmp");
 					SDL_FreeSurface(sshot);
 				}
 				estados.top()->onKeyUp('q');
