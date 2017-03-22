@@ -17,9 +17,7 @@ Cuerda::Cuerda(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 
 Cuerda::~Cuerda()
 {
-	deleteComponente("ColisionBox");
 }
-
 void Cuerda::draw() {
 
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());

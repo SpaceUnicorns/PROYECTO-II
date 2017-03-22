@@ -16,7 +16,6 @@ Yesca::Yesca(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 
 Yesca::~Yesca()
 {
-	deleteComponente("ColisionBox");
 
 }
 void Yesca::draw() {

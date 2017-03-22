@@ -16,7 +16,6 @@ TrampaCerrada::TrampaCerrada(juegoPG * juego, int px, int py) : ObjetoPG(juego, 
 
 TrampaCerrada::~TrampaCerrada()
 {
-	deleteComponente("ColisionBox");
 
 }
 void TrampaCerrada::draw() {

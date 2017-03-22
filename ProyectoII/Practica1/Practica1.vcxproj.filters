@@ -37,6 +37,9 @@
     <Filter Include="Archivos de encabezado\Entidades\Objetos">
       <UniqueIdentifier>{faf06080-e01b-4a78-b90c-1d847fc96bf8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Entidades\Herramientas">
+      <UniqueIdentifier>{935428cf-8dac-41e4-bad5-f9578e42c9c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainP1.cpp">
@@ -119,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="TrampaCerrada.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="MCrafteo.cpp">
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="TrampaCerrada.h">
       <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="MCrafteo.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

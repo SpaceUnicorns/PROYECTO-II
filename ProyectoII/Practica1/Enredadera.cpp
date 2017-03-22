@@ -16,7 +16,7 @@ Enredadera::Enredadera(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py
 
 Enredadera::~Enredadera()
 {
-	deleteComponente("ColisionBox");
+
 }
 void Enredadera::draw() { 
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());

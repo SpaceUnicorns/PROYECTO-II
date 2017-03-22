@@ -16,7 +16,6 @@ Madera::Madera(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 
 Madera::~Madera()
 {
-	deleteComponente("ColisionBox");
 }
 void Madera::draw() {
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());

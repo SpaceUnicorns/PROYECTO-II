@@ -16,7 +16,6 @@ Hueso::Hueso(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 
 Hueso::~Hueso()
 {
-	deleteComponente("ColisionBox");
 
 }
 void Hueso::draw() {

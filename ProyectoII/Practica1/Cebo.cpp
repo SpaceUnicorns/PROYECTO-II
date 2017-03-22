@@ -16,7 +16,6 @@ Cebo::Cebo(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 
 Cebo::~Cebo()
 {
-	deleteComponente("ColisionBox");
 
 }
 void Cebo::draw() {
