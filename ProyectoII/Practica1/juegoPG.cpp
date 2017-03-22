@@ -25,9 +25,9 @@ juegoPG::juegoPG()
 	//CAMBIAR CADA VEZ QUE SE METE UNA IMAGEN NUEVA
 	vecTexturas.resize(17);
 	initMedia();	
-
 	//La vida de los pjs (al ser compartida va en el juego)
 	vida = 300;
+	nieblaRect = { 600,338,400,225 };
 
 	estados.push(new MenuPG(this,0));
 
@@ -229,3 +229,12 @@ void juegoPG::onExit(){
 	exit = true;
 }
 
+void juegoPG::cambiaVida(int cambio) { 
+	if (vida + cambio <= 300 && vida + cambio >= 0) {
+		vida += cambio;
+		nieblaRect.w = 400 + 4 * (300 - vida);//Tamaño de text min + 4* vida total - vida actual
+		nieblaRect.h = 225 + 2.25 * (300 - vida);
+		nieblaRect.x = 1600/2 - nieblaRect.w / 2;
+		nieblaRect.y = 900/2 - nieblaRect.h / 2;
+	}
+}

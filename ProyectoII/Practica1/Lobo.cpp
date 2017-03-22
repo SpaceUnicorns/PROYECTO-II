@@ -8,7 +8,7 @@ Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int p
 	nombre = "lobo";
 	activo = true;
 	//interactuable = true;
-	damage = 50;
+	damage = 1;
 	et = TLobete;//Añadir TLobo al array de texturas
 	rect.w = 80;
 	rect.h = 50;//Lo que quiero que ocupe en pantalla

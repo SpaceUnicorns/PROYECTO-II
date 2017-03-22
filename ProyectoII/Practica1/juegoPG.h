@@ -41,7 +41,10 @@ public:
 	bool hasExit(){ return exit; }
 	EstadoJuego* getEstadoActual() { return estados.top(); }
 	int getVida(){ return vida; }
-	void cambiaVida(int cambio){ vida += cambio; }
+
+	//Este metodo cambia la vida y el rect de la niebla oscura
+	void cambiaVida(int cambio);
+	SDL_Rect getNieblaRect() { return nieblaRect; }
 	int getHeight(){ return SCREEN_HEIGHT; }
 	int getWidht(){ return SCREEN_WIDTH; }
 
@@ -82,5 +85,6 @@ private:
 
 	//Cosas de los personajes
 	int vida;
+	SDL_Rect nieblaRect;
 };
 
