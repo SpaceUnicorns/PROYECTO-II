@@ -68,12 +68,12 @@ public:
 	}
 	void transformaCoord(int& x, int& y)
 	{
-	/*	int cuadranteX;
+		int cuadranteX;
 		int cuadranteY = y / 31;
-		if (cuadranteY % 2 == 0)
-			cuadranteX = x / 61;
+		if (cuadranteY % 2 != 0 || cuadranteY == 0)
+			cuadranteX = (x + 61) / 122;
 		else 
-			cuadranteX = (x + 61) / 61;
+			cuadranteX = x / 122;
 
 		int Px, Py;
 		Px = x - cuadranteX * 61;
@@ -93,7 +93,7 @@ public:
 
 		*/
 
-	/*	if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) < 0)){
+		if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) < 0)){
 			x = cuadranteX; y = cuadranteY;
 		}
 		else if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) < 0)){
@@ -107,31 +107,37 @@ public:
 			{
 				if (Py < 31)
 				{
-					x = cuadranteX + 1; y = cuadranteY - 1;
+					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX + 1; y = cuadranteY - 1; }
+					else { x = cuadranteX; y = cuadranteY - 1; }
 				}
 				else
 				{
-					x = cuadranteX + 1; y = cuadranteY + 1;
+					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX + 1; y = cuadranteY + 1; }
+					else { x = cuadranteX; y = cuadranteY + 1; }
 				}
 			}
 			else
 			{
 				if (Py < 31)
 				{
-					x = cuadranteX - 1; y = cuadranteY - 1;
+					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX; y = cuadranteY - 1; }
+					else { x = cuadranteX - 1; y = cuadranteY - 1; }
 				}
 				else
 				{
-					x = cuadranteX - 1; y = cuadranteY + 1;
+					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX; y = cuadranteY + 1; }
+					else { x = cuadranteX - 1; y = cuadranteY + 1; }
 				}
 			}
 		}
-		*/
-		y = (y / 31);
-		//if (y % 2 != 0 || y == 0)x += 61;*/
- 		x = (x / 122);
-	/*	x -= 3;
-		y += 3;*/
+
+		if (x < 0) x = 0;
+		if (y < 0) y = 0;
+		if (x > niveles[0]) x = 0;
+		if (y > niveles[0]) y = 0;
+		//y = (y / 31);
+ 		//x = (x / 122);
+
 
 	}
 	void actualizaMapa(std::vector<ObjetoJuego*> obj)
@@ -141,85 +147,10 @@ public:
 			if (static_cast<ObjetoPG*>(o)->encuentraComponente("ColisionBox")){
 
 				SDL_Rect rec = static_cast<ObjetoPG*>(o)->getColisionBox();
-				int cuadranteX = rec.x / 122;
-				int cuadranteY = rec.y / 31;
-				/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
-				x/122 == cuadrante de x en el que esta
-				y/62  == cuadrante de y en el que esta
-				hallado este cuadrante siguen existiendo cinco posible posiciones finales
-				El centro del cuadrante o cualquiera de sus esquinas que pertenecerían a otro tile
+				int x, y;
+				transformaCoord(x, y);
 
-				_____________
-				|    / \    |
-				|  /     \  |
-				|  \     /  |
-				|____\_/____|
-
-				*/
-				int Px, Py;
-				Px = rec.x - cuadranteX * 122;
-				Py = rec.y - cuadranteY * 62;
-				// Dividimos el cudrante como si fueran 6 triangulos por comodidad si esta en alguno de los dos centrales añadimos una X al mapa en la posicion del cuadrante
-				if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) < 0)){
-					int aux1 = 0;
-					for (int i = 0; i < cuadranteY; i++)
-					{
-						aux1 += niveles[i];
-					}
-					mapa[aux1 + cuadranteX] = 'X';
-				}
-				else if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) < 0)){
-					int aux1 = 0;
-					for (int i = 0; i < cuadranteY; i++)
-					{
-						aux1 += niveles[i];
-					}
-					mapa[aux1 + cuadranteX] = 'X';
-				}
-				// Si la posicion del objeto no esta en ninguno de los dos triangulos centrales comprobamo su x y su y con el centro del cuadrante
-				// Si ambas son mayores marcamos la casilla inferior derecha y asi sucesivamente
-				else
-				{
-					int aux1 = 0;
-					if (Px >= 61)
-					{
-						if (Py < 31)
-						{
-							for (int i = 0; i < cuadranteY - 1; i++)
-							{
-								aux1 += niveles[i];
-							}
-							mapa[aux1 + cuadranteX + 1] = 'X';
-						}
-						else
-						{
-							for (int i = 0; i < cuadranteY + 1; i++)
-							{
-								aux1 += niveles[i];
-							}
-							mapa[aux1 + cuadranteX + 1] = 'X';
-						}
-					}
-					else
-					{
-						if (Py < 31)
-						{
-							for (int i = 0; i < cuadranteY - 1; i++)
-							{
-								aux1 += niveles[i];
-							}
-							mapa[aux1 + cuadranteX - 1] = 'X';
-						}
-						else
-						{
-							for (int i = 0; i < cuadranteY + 1; i++)
-							{
-								aux1 += niveles[i];
-							}
-							mapa[aux1 + cuadranteX - 1] = 'X';
-						}
-					}
-				}
+				mapa[y*niveles[0] + x] = 'X';
 			}
 		}
 	}

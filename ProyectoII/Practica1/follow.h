@@ -9,7 +9,7 @@ class follow :
 public:
 	follow(ObjetoJuego* ent, ObjetoPG* target, GrafoMapa* m);
 	virtual ~follow();
-	virtual void update();
+	virtual void lateUpdate();
 protected:
 	GrafoMapa* map;
 	//std::vector<std::pair<int, int>> path;

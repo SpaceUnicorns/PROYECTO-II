@@ -24,6 +24,7 @@ public:
 	virtual void draw();
 
 	virtual void update();
+	virtual void lateUpdate();
 	virtual void onClick();
 	virtual void onOver();
 	virtual void drawFont();

@@ -73,6 +73,7 @@ void juegoPG::run(){
 		while (!exit) {
 				if (SDL_GetTicks() - lastUpdate >= msUpdate) { // while(elapsed >= MSxUpdate)
 					estados.top()->update();
+					estados.top()->lateUpdate();
 					lastUpdate = SDL_GetTicks();
 				}
 			

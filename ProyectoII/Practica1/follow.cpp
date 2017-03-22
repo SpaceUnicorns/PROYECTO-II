@@ -18,11 +18,11 @@ follow::~follow()
 {
 }
 
-void follow::update(){
+void follow::lateUpdate(){
 	if (pObj->getPJuego()->input.follow){
 		pObj->getPJuego()->input.follow = false;
 		//actualiza el mapa
-		//map->actualizaMapa(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj());
+		map->actualizaMapa(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj());
 		int x, y, xx, yy;
 
 		// Hallamos las coordenadas de cada objeto y las transformamos a las coordenadas absolutas que ocupan dentro del mapa

@@ -320,6 +320,12 @@ void EstadoPG::update(){
 		vecObj[i]->update();
 	}
 }
+
+void EstadoPG::lateUpdate(){
+	for (unsigned int i = 0; i < vecObj.size(); i++){
+		vecObj[i]->lateUpdate();
+	}
+}
 void EstadoPG::onClick(){
 	bool encontrado = false;
 	int it = vecObj.size() - 1;

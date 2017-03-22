@@ -46,35 +46,35 @@ void MovimientoP::update(){
 	if (pObj->getPJuego()->input.dDS){ //Diagonal Arriba-Derecha
 		nextPos.x = 2; nextPos.y = -1;
 		if (static_cast<ColisionBox*>( pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info)!= 1){
-			pObj->setAbsRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(7); // posiciona la 'j' de la matriz de la animacion
+			pObj->setAbsRect(nextPos.x, nextPos.y);
 		}
 	}
 	else if (pObj->getPJuego()->input.dDI){//Diagonal Abajo-Derecha
 		nextPos.x = 2; nextPos.y = 1;
 		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info) != 1){
-			pObj->setAbsRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(5);
+			pObj->setAbsRect(nextPos.x, nextPos.y);
 		}
 
 	}
 	else if (pObj->getPJuego()->input.dII){//Diagonal Abajo-Izquierda
 		nextPos.x = -2; nextPos.y = 1;
 		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info) != 1){
-			pObj->setAbsRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(4);
+			pObj->setAbsRect(nextPos.x, nextPos.y);
 		}
 
 	}
 	else if (pObj->getPJuego()->input.dIS){//Diagonal Arriba-Izquierda
 		nextPos.x = -2; nextPos.y = -1;
 		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info) != 1){
-			pObj->setAbsRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(6);
+			pObj->setAbsRect(nextPos.x, nextPos.y);
 		}
 
 	}
@@ -88,30 +88,29 @@ void MovimientoP::update(){
 
 	}
 	else if (pObj->getPJuego()->input.derecha){
-		bool o;
 		nextPos.x = 2; nextPos.y = 0;
 		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info) != 1){
-			pObj->setAbsRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(2);
+			pObj->setAbsRect(nextPos.x, nextPos.y);
 		}
 
 	}
 	else if (pObj->getPJuego()->input.abajo){
 		nextPos.x = 0; nextPos.y = 2;
 		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info) != 1){
-			pObj->setAbsRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(0);
+			pObj->setAbsRect(nextPos.x, nextPos.y);
 		}
 
 	}
 	else if (pObj->getPJuego()->input.izquierda){
 		nextPos.x = -2; nextPos.y = 0;
 		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info) != 1){
-			pObj->setAbsRect(nextPos.x, nextPos.y);
 			dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->setCamara(nextPos.x, nextPos.y);
 			pObj->changeAnimV(1);
+			pObj->setAbsRect(nextPos.x, nextPos.y);
 		}
 
 	}
