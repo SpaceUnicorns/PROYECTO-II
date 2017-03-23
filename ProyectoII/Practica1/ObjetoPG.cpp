@@ -12,8 +12,6 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 }
 
 
-
-
 ObjetoPG::~ObjetoPG()
 {
 }

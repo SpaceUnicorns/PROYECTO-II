@@ -6,7 +6,7 @@
 
 class GrafoMapa : public micropather::Graph
 {
-	std::vector<char> mapa;
+	std::vector<char> mapa, mapaAux;
 	std::vector<int> niveles;
 	int aux, nivelAct;
 	micropather::MicroPather* pather;
@@ -47,14 +47,17 @@ public:
 		{
 		case 's':
 			mapa.push_back('s');
+			mapaAux.push_back('s');
 			aux++;
 			break;
 		case 't':
 			mapa.push_back('t');
+			mapaAux.push_back('t');
 			aux++;
 			break;
 		case 'X':
 			mapa.push_back('X');
+			mapaAux.push_back('X');
 			aux++;
 			break;
 		case 'L':
@@ -73,7 +76,7 @@ public:
 		if (cuadranteY % 2 != 0 || cuadranteY == 0)
 			cuadranteX = (x + 61) / 122;
 		else 
-			cuadranteX = x / 122;
+			cuadranteX = x / 111;
 
 		int Px, Py;
 		Px = x - cuadranteX * 61;
@@ -133,8 +136,9 @@ public:
 
 		if (x < 0) x = 0;
 		if (y < 0) y = 0;
-		if (x > niveles[0]) x = 0;
-		if (y > niveles[0]) y = 0;
+		if (x >= niveles[0]) x = niveles[0]-1;
+		if (y >= niveles.size()) y = niveles.size()-1;
+		
 		//y = (y / 31);
  		//x = (x / 122);
 
@@ -142,6 +146,9 @@ public:
 	}
 	void actualizaMapa(std::vector<ObjetoJuego*> obj)
 	{
+		for (int i = 0; i < mapa.size(); i++){
+			mapa[i] = mapaAux[i];
+		}
 		for (ObjetoJuego* o : obj)
 		{
 			if (static_cast<ObjetoPG*>(o)->encuentraComponente("ColisionBox")){
