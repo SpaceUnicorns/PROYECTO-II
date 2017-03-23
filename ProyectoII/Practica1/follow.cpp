@@ -122,49 +122,49 @@ void follow::lateUpdate(){
 				pObj->setRect(0, -2);
 				pObj->setAbsRect(0, -2);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso-=4;
+				paso-=3.8;
 				break;
 			case 1:
 				pObj->setRect(2, -1);
 				pObj->setAbsRect(2, -1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 3;
+				paso -= 2.5;
 				break;
 			case 2:
 				pObj->setRect(2, 0);
 				pObj->setAbsRect(2, 0);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso-=2;
+				paso-=1.8;
 				break;
 			case 3:
 				pObj->setRect(2, 1);
 				pObj->setAbsRect(2, 1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 3;
+				paso -= 2.5;
 				break;
 			case 4:
 				pObj->setRect(0, 2);
 				pObj->setAbsRect(0, 2);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 4;
+				paso -= 3.8;
 				break;
 			case 5:
 				pObj->setRect(-2, 1);
 				pObj->setAbsRect(-2, 1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 3;
+				paso -= 2.5;
 				break;
 			case 6:
 				pObj->setRect(-2, 0);
 				pObj->setAbsRect(-2, 0);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso-=2;
+				paso-=1.8;
 				break;
 			case 7:
 				pObj->setRect(-2, -1);
 				pObj->setAbsRect(-2, -1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 3;
+				paso -= 2.5;
 				break;
 			}
 			
