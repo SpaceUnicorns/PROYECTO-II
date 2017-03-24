@@ -79,7 +79,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pCazador = static_cast<Cazador*>(vecObj[0]);
 	pRecolector = static_cast<Recolector*>(vecObj[1]);
 	activePlayer = "C";
-	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa), "follow");
+	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 	std::vector<void*>path;
 /*	float cost = 0.0f;
 	mapa->solve(mapa->XYToNode(1,16),mapa->XYToNode(1,8), &path, &cost);

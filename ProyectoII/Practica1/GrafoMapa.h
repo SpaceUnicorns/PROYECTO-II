@@ -139,8 +139,7 @@ public:
 		if (x >= niveles[0]) x = niveles[0]-1;
 		if (y >= niveles.size()) y = niveles.size()-1;
 		
-		//y = (y / 31);
- 		//x = (x / 122);
+
 
 
 	}
@@ -153,9 +152,11 @@ public:
 		{
 			if (static_cast<ObjetoPG*>(o)->encuentraComponente("ColisionBox")){
 
-				SDL_Rect rec = static_cast<ObjetoPG*>(o)->getColisionBox();
+				SDL_Rect rec = static_cast<ObjetoPG*>(o)->getAbsRect();
 				int x, y;
-				transformaCoord(x, y);
+				x = rec.x + rec.w*0.5;
+				y = rec.y + rec.h*0.8;
+				transformaCoord(x,y);
 
 				mapa[y*niveles[0] + x] = 'X';
 			}

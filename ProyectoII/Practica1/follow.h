@@ -7,11 +7,13 @@ class follow :
 	public Componente
 {
 public:
-	follow(ObjetoJuego* ent, ObjetoPG* target, GrafoMapa* m);
+	follow(ObjetoJuego* ent, ObjetoPG* target, GrafoMapa* m, bool aliado);
 	virtual ~follow();
 	virtual void lateUpdate();
+	void doFollow();
 protected:
 	GrafoMapa* map;
+	bool al;
 	//std::vector<std::pair<int, int>> path;
 	std::vector<void*> path;
 	ObjetoPG* target;

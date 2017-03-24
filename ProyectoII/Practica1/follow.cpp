@@ -1,7 +1,7 @@
 #include "follow.h"
 
 
-follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m) : Componente(ent)
+follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m, bool aliado) : Componente(ent)
 {
 	pObj = dynamic_cast<ObjetoPG*>(pEntidad);
 	nextPos.x = nextPos.y = 0;
@@ -11,6 +11,7 @@ follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m) : Componente(ent)
 	hitInfo = nullptr;
 	cont = 0;
 	map = m;
+	al = aliado;
 }
 
 
@@ -18,70 +19,71 @@ follow::~follow()
 {
 }
 
+void follow::doFollow()
+{
+	// Nos aseguramos de que el vector path y direccion este vacio
+	direccion.clear();
+	cont = 0;
+	path.clear();
+	//actualiza el mapa
+	map->actualizaMapa(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj());
+	int x, y, xx, yy;
+
+	// Hallamos las coordenadas de cada objeto y las transformamos a las coordenadas absolutas que ocupan dentro del mapa
+	x = pObj->getAbsRect().x + pObj->getAbsRect().w*0.2;
+	y = pObj->getAbsRect().y + pObj->getAbsRect().h*0.8;
+	xx = target->getAbsRect().x + target->getAbsRect().w*0.2;
+	yy = target->getAbsRect().y + target->getAbsRect().h*0.8;
+	map->transformaCoord(x, y);
+	map->transformaCoord(xx, yy);
+
+	//Resolvemos el camino
+	std::cout << x << " " << y << " \n";
+	std::cout << xx << " " << yy << " \n";
+	map->solve(map->XYToNode(x, y), map->XYToNode(xx, yy), &path, &coste);
+	coste = 0;
+	int auxX, auxY;
+	int dirX, dirY;
+
+	//codificamos en el vector de direcciones
+	for (int i = 0; i < path.size() - 1 && path.size() > 0; i++)
+	{
+		map->NodeToXY(path[i], &dirX, &dirY);
+		map->NodeToXY(path[i + 1], &auxX, &auxY);
+
+		if (auxX > dirX)
+		{
+			if (auxY > dirY)
+				direccion.push_back(3);
+			else if (auxY < dirY)
+				direccion.push_back(1);
+			else
+				direccion.push_back(2);
+		}
+		else if (auxX < dirX)
+		{
+			if (auxY > dirY)
+				direccion.push_back(5);
+			else if (auxY < dirY)
+				direccion.push_back(7);
+			else
+				direccion.push_back(6);
+		}
+		else
+		{
+			if (auxY > dirY)
+				direccion.push_back(4);
+			else
+				direccion.push_back(0);
+		}
+	}
+	following = true;
+
+}
 void follow::lateUpdate(){
-	if (pObj->getPJuego()->input.follow){
+	if (pObj->getPJuego()->input.follow && al){
 		pObj->getPJuego()->input.follow = false;
-		//actualiza el mapa
-		map->actualizaMapa(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj());
-		int x, y, xx, yy;
-
-		// Hallamos las coordenadas de cada objeto y las transformamos a las coordenadas absolutas que ocupan dentro del mapa
-		x = pObj->getAbsRect().x + pObj->getAbsRect().w*0.2;
-		y = pObj->getAbsRect().y + pObj->getAbsRect().h*0.8;
-		xx = target->getAbsRect().x + target->getAbsRect().w*0.2;
-		yy = target->getAbsRect().y + target->getAbsRect().h*0.8;
-		map->transformaCoord(x, y);
-		map->transformaCoord(xx, yy);
-
-		//Resolvemos el camino
-		std::cout << x << " " << y << " \n";
-		std::cout << xx << " " << yy << " \n";
-		map->solve(map->XYToNode(x, y), map->XYToNode(xx, yy), &path, &coste);
-		coste = 0;
-		int auxX, auxY;
-		int dirX, dirY;
-
-		//codificamos en el vector de direcciones
-		for (int i = 0; i < path.size()-1 && path.size() > 0; i++)
-		{
-			map->NodeToXY(path[i], &dirX, &dirY);
-			map->NodeToXY(path[i+1], &auxX, &auxY);
-
-			if (auxX > dirX)
-			{
-				if (auxY > dirY)
-					direccion.push_back(3);
-				else if (auxY < dirY)
-					direccion.push_back(1);
-				else
-					direccion.push_back(2);
-			}
-			else if (auxX < dirX)
-			{
-				if (auxY > dirY)
-					direccion.push_back(5);
-				else if (auxY < dirY)
-					direccion.push_back(7);
-				else
-					direccion.push_back(6);
-			}
-			else 
-			{
-				if (auxY > dirY)
-					direccion.push_back(4);
-				else
-					direccion.push_back(0);
-			}
-		}
-		following = true;
-		std::cout << "following a true \n";
-
-		for (void* p : path)
-		{
-			map->NodeToXY(p, &auxX, &auxY);
-			std::cout << "pos X: " << auxX << " Y: " << auxY << "\n";
-		}
-		std::cout << "\n";
+		doFollow();
 	}
 		//Primero calculamos posiciones absolutas y calculamos luego la distancia euclidea
 		int x, y, xx, yy;
