@@ -8,16 +8,19 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 	rect.x = px;
 	rect.y = py;
 	start();
+	absRect = rect;
+	
 }
 
 ObjetoPG::~ObjetoPG(){
 
-	std::map <std::string, Componente*>::iterator it= mapaComponentes.begin();
-	while (it!=mapaComponentes.end()){
+	std::map <std::string, Componente*>::iterator it = mapaComponentes.begin();
+	while (it != mapaComponentes.end()){
 		delete it->second;
 		it++;
 	}
 }
+
 
 bool ObjetoPG::dentro(int x, int y)const{
 	int xMax = rect.x + rect.w;

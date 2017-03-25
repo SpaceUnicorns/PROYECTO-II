@@ -6,6 +6,8 @@ MenuPrincipal::MenuPrincipal(juegoPG * juego, int px, int py) : ObjetoPG(juego, 
 	et = TMenuResaltado;
 	rect.w = 256;
 	rect.h = 82;
+	absRect.w = rect.w;
+	absRect.h = rect.h;
 	activo = true;
 	newComponente(new MenuPrincipalComp(this), "Menu");
 	opcion = 0;

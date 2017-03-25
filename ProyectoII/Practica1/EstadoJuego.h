@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 class EstadoJuego
 {
 public:
@@ -10,6 +11,7 @@ public:
 	virtual void draw() = 0;
 	virtual void onClick() = 0;
 	virtual void update() = 0;
+	virtual void lateUpdate() = 0;
 	virtual void onOver() = 0;
 	virtual void onKeyUp(char k) = 0;
 	virtual void reproduceFx(std::string fx, float x, float y, float wet) = 0;

@@ -6,6 +6,7 @@
 #include "Recolector.h"
 #include "SDL_ttf.h"
 #include <string>
+#include "GrafoMapa.h"
 class Nivel1 :
 	public EstadoPG
 {
@@ -19,12 +20,14 @@ public:
 protected:
 	SDL_Rect animNieve1;
 	SDL_Rect animNieve2;
+	int x, y;
 	Cazador* pCazador;
 	Recolector* pRecolector;
 	std::string activePlayer;
-	void swPlayer();
-	
+	void swPlayer();	
 	void onKeyUp(char k);
+
+	GrafoMapa* mapa;
 
 	/*//métodos-----------------------------------------------------------------
 	int getPuntos(){ return contPuntos; }

@@ -144,6 +144,12 @@
     <ClCompile Include="Attack.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
+    <ClCompile Include="micropather.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="follow.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
@@ -258,6 +264,15 @@
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="micropather.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="GrafoMapa.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="follow.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
   </ItemGroup>

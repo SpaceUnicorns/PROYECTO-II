@@ -30,6 +30,7 @@ public:
 	virtual void draw();
 
 	virtual void update();
+	virtual void lateUpdate();
 	virtual void onClick();
 	virtual void onOver();
 	virtual void drawFont(SDL_Rect rect, std::string const & s, SDL_Color color = {34,245,55,1});// , int g = 245, int b = 55, int a = 1);
@@ -63,16 +64,16 @@ public:
 	void cargarAudio(std::string irPath);
 
 	virtual SDL_Rect getCamara()const{ return camara; }
-	virtual void setCamara(int x, int y){ camara.x = x; camara.y = y; }
+	virtual void setCamara(int x, int y){
+		camara.x = x; camara.y = y; }
 
-protected: 
-	SDL_Rect camara;
 	struct Tile {
 		int x, y;
 		int capa;
 		SDL_Rect rectTileset;     //Contiene el rectangulo del Tileset que se quiere dibujar.
 	};
-	
+protected: 
+	SDL_Rect camara;
 	struct Colision
 	{
 		SDL_Rect collider;

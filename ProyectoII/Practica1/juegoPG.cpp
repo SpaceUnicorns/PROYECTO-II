@@ -91,6 +91,7 @@ void juegoPG::run(){
 		while (!exit) {
 				if (SDL_GetTicks() - lastUpdate >= msUpdate) { // while(elapsed >= MSxUpdate)
 					estados.top()->update();
+					estados.top()->lateUpdate();
 					lastUpdate = SDL_GetTicks();
 				}
 			
@@ -161,6 +162,9 @@ void juegoPG::handle_event(){
 			if (e.key.keysym.sym == SDLK_s){
 				std::cout << "s";
 			}
+			if (e.key.keysym.sym == SDLK_f){
+				input.follow = true;
+			}
 		}
 		else if (e.type == SDL_MOUSEBUTTONUP) {
 			if (e.button.button == SDL_BUTTON_LEFT) {
@@ -177,9 +181,7 @@ void juegoPG::handle_event(){
 		}
 	}
 		else {
-			input.sw = false;
-
-			
+			input.sw = false;	
 		}
 }
 
