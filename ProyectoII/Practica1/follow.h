@@ -10,6 +10,7 @@ public:
 	follow(ObjetoJuego* ent, ObjetoPG* target, GrafoMapa* m, bool aliado);
 	virtual ~follow();
 	virtual void lateUpdate();
+	virtual void update();
 	void doFollow();
 protected:
 	GrafoMapa* map;

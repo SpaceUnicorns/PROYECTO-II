@@ -155,7 +155,7 @@ public:
 				SDL_Rect rec = static_cast<ObjetoPG*>(o)->getAbsRect();
 				int x, y;
 				x = rec.x + rec.w*0.5;
-				y = rec.y + rec.h*0.8;
+				y = rec.y + rec.h*0.7;
 				transformaCoord(x,y);
 
 				mapa[y*niveles[0] + x] = 'X';

@@ -6,7 +6,7 @@ follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m, bool aliado) : Comp
 	pObj = dynamic_cast<ObjetoPG*>(pEntidad);
 	nextPos.x = nextPos.y = 0;
 	target = tg;
-	paso = 120;
+	paso = 122;
 	following = false;
 	hitInfo = nullptr;
 	cont = 0;
@@ -19,6 +19,14 @@ follow::~follow()
 {
 }
 
+void follow:: update(){
+	if (pObj->getPJuego()->input.sw && al){
+		direccion.clear();
+		cont = 0;
+		path.clear();
+	}
+
+}
 void follow::doFollow()
 {
 	// Nos aseguramos de que el vector path y direccion este vacio
@@ -85,6 +93,7 @@ void follow::lateUpdate(){
 		pObj->getPJuego()->input.follow = false;
 		doFollow();
 	}
+	
 		//Primero calculamos posiciones absolutas y calculamos luego la distancia euclidea
 		int x, y, xx, yy;
 		int auxX, auxY;
@@ -124,49 +133,49 @@ void follow::lateUpdate(){
 				pObj->setRect(0, -2);
 				pObj->setAbsRect(0, -2);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso-=3.8;
+				paso-=4;
 				break;
 			case 1:
 				pObj->setRect(2, -1);
 				pObj->setAbsRect(2, -1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 2.5;
+				paso -= 2.23;
 				break;
 			case 2:
 				pObj->setRect(2, 0);
 				pObj->setAbsRect(2, 0);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso-=1.8;
+				paso-=2;
 				break;
 			case 3:
 				pObj->setRect(2, 1);
 				pObj->setAbsRect(2, 1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 2.5;
+				paso -= 2.23;
 				break;
 			case 4:
 				pObj->setRect(0, 2);
 				pObj->setAbsRect(0, 2);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 3.8;
+				paso -= 4;
 				break;
 			case 5:
 				pObj->setRect(-2, 1);
 				pObj->setAbsRect(-2, 1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 2.5;
+				paso -= 2.23;
 				break;
 			case 6:
 				pObj->setRect(-2, 0);
 				pObj->setAbsRect(-2, 0);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso-=1.8;
+				paso-=2;
 				break;
 			case 7:
 				pObj->setRect(-2, -1);
 				pObj->setAbsRect(-2, -1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso -= 2.5;
+				paso -= 2.23;
 				break;
 			}
 			
