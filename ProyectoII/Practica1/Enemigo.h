@@ -20,8 +20,8 @@ public:
 		if (chachiPiruli == 0)objetivo = cazador; 
 		else objetivo = recolector; 
 	}
-	void activaFollow() { std::cout << "ACTIVOOOOOOO" <<"  TARGET  "<< objetivo->nombre <<std::endl;}
-	void desactivaFollow() { std::cout << "DESACTIVA FOLLOW" << std::endl; };
+	void activaFollow() { /*std::cout <</* "ACTIVOOOOOOO" <<"  TARGET  "<< objetivo->nombre <<std::endl;*/}
+	void desactivaFollow() { /*std::cout << "DESACTIVA FOLLOW" << std::endl;*/ };
 	Pos getPosIni() { return posIni; }
 	int damage;
 	int life;

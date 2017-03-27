@@ -72,11 +72,11 @@ public:
 	void transformaCoord(int& x, int& y)
 	{
 		int cuadranteX;
-		int cuadranteY = y / 31;
-		if (cuadranteY % 2 != 0 || cuadranteY == 0)
-			cuadranteX = (x + 61) / 122;
-		else 
-			cuadranteX = x / 111;
+		int cuadranteY;
+		if (y < 62) cuadranteY = 0;
+		if (x < 122) cuadranteX = 0;
+		cuadranteY = (y / 61) * 2;
+		cuadranteX = x / 122;
 
 		int Px, Py;
 		Px = x - cuadranteX * 61;
@@ -111,12 +111,12 @@ public:
 				if (Py < 31)
 				{
 					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX + 1; y = cuadranteY - 1; }
-					else { x = cuadranteX; y = cuadranteY - 1; }
+					else { x = cuadranteX + 1 ; y = cuadranteY - 1; }
 				}
 				else
 				{
 					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX + 1; y = cuadranteY + 1; }
-					else { x = cuadranteX; y = cuadranteY + 1; }
+					else { x = cuadranteX + 1; y = cuadranteY + 1; }
 				}
 			}
 			else
@@ -124,12 +124,12 @@ public:
 				if (Py < 31)
 				{
 					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX; y = cuadranteY - 1; }
-					else { x = cuadranteX - 1; y = cuadranteY - 1; }
+					else { x = cuadranteX; y = cuadranteY - 1; }
 				}
 				else
 				{
 					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX; y = cuadranteY + 1; }
-					else { x = cuadranteX - 1; y = cuadranteY + 1; }
+					else { x = cuadranteX; y = cuadranteY + 1; }
 				}
 			}
 		}
