@@ -23,5 +23,6 @@ protected:
 	int timer, timer2, delay;
 	bool reacciona;
 	int firstTime;
+	EstadoPG *estadoAux;
 };
 
