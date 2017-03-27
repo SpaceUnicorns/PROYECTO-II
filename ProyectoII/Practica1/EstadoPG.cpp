@@ -342,3 +342,23 @@ void EstadoPG::onOver(){
 		it--;
 	}
 }
+void EstadoPG::updateBorrarObj()
+{
+	int x = 0;
+	if (vecBorrar.size() > 0)
+	{
+		std::cout << " ";
+	}
+	for (size_t i = 0; i < vecBorrar.size(); i++)
+	{
+		for (size_t j = 0; j < vecObj.size(); j++)
+		{
+			if (vecBorrar[i] == vecObj[j]) {
+				x = j;
+			}
+		}
+		delete vecObj[x];
+		vecObj.resize(vecObj.size() - 1);
+	}
+	vecBorrar.clear();
+}

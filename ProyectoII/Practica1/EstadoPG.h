@@ -41,6 +41,8 @@ public:
 	virtual void paraAmb(std::string amb, bool fade);
 	virtual void onKeyUp(char k){};
 	virtual void onKeyDown(char k){};
+	virtual void borrarObj(ObjetoJuego* o){ vecBorrar.push_back(o); };
+	virtual void updateBorrarObj();
 	virtual std::vector <TrianguloBorde> & getVectBordes() {
 		return vectBordes;
 	}
@@ -100,6 +102,7 @@ protected:
 	int cAmb;
 	FMOD::Channel   *cfx1 = 0, *cfx2 = 0, *cfx3 = 0, *cfx4 = 0, *camb1 = 0, *camb2 = 0, *cmusic1 = 0, *cmusic2 = 0;
 	std::vector<ObjetoJuego*> vecObj;
+	std::vector<ObjetoJuego*> vecBorrar;
 	std::vector<ObjetoJuego*>vecTriggers;
 	std::map<std::string, FMOD::Sound*> vfx;
 	std::map<std::string, FMOD::Sound*> vmusic;

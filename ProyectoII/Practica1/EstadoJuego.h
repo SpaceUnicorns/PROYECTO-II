@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include "ObjetoJuego.h"
 class EstadoJuego
 {
 public:
@@ -14,6 +14,8 @@ public:
 	virtual void lateUpdate() = 0;
 	virtual void onOver() = 0;
 	virtual void onKeyUp(char k) = 0;
+	virtual void borrarObj(ObjetoJuego* o) {};
+	virtual void updateBorrarObj() {};
 	virtual void reproduceFx(std::string fx, float x, float y, float wet) = 0;
 	virtual void reproduceMusica(std::string music, bool fade) = 0;
 	virtual void paraMusica(std::string music, bool fade) = 0;
