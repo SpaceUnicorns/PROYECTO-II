@@ -38,6 +38,8 @@ TextCb::TextCb(ObjetoJuego* ent, std:: string s) : Componente(ent)
 	frase = " ";
 	colorLyov.r = 51; colorLyov.g = 102; colorLyov.b = 0;
 	colorZenia.r = 247; colorZenia.g = 25; colorZenia.b = 25;
+	if (aux[0].length() > 15) delay = 250;
+	else delay = 150;
 }
 
 
@@ -72,11 +74,13 @@ void TextCb::callback(){
 void TextCb::update(){
 	if (cont < aux.size()-1 && reacciona && firstTime == 0){
 		timer++;
-		if (timer >= 120){
+		if (timer >= delay){
 			frase = " ";
 			cont2 = 1;
 			cont++; timer = 0;
 			font.w = 50;
+			if (aux[0].length() > 15) delay = 250;
+			else delay = 150;
 		}
 	}
 	else {
