@@ -110,6 +110,8 @@
     <ClCompile Include="Recolector.cpp" />
     <ClCompile Include="TextCb.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
+    <ClCompile Include="TrampaAbierta.cpp" />
+    <ClCompile Include="TrampaComponente.cpp" />
     <ClCompile Include="Trigger.cpp" />
     <ClCompile Include="TrampaCerrada.cpp" />
     <ClCompile Include="Yesca.cpp" />
@@ -155,6 +157,8 @@
     <ClInclude Include="Recolector.h" />
     <ClInclude Include="TextCb.h" />
     <ClInclude Include="TexturasSDL.h" />
+    <ClInclude Include="TrampaAbierta.h" />
+    <ClInclude Include="TrampaComponente.h" />
     <ClInclude Include="Trigger.h" />
     <ClInclude Include="TrampaCerrada.h" />
     <ClInclude Include="Yesca.h" />

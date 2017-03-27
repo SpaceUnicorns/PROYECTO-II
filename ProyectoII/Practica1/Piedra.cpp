@@ -13,7 +13,6 @@ Piedra::Piedra(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 	absRect.w = rect.w;
 	absRect.h = rect.h;
 	nombre = typeid(this).name();
-	newComponente(new ColisionBox(this), "ColisionBox");
 }
 
 

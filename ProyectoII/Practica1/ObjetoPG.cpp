@@ -9,7 +9,7 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 	rect.y = py;
 	start();
 	absRect = rect;
-	
+	nombre = "default";
 }
 
 ObjetoPG::~ObjetoPG(){

@@ -18,6 +18,7 @@
 #include "MCrafteo.h"
 #include "Lobo.h"
 #include "follow.h""
+#include "TrampaAbierta.h"
 
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
@@ -106,6 +107,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Piedra(pJuego, 980, 200));
 	vecObj.push_back(new TrampaCerrada(pJuego, 980, 300));
 	vecObj.push_back(new Yesca(pJuego, 1080, 100));
+	vecObj.push_back(new TrampaAbierta(pJuego, 1200, 200));
 
 	cargarAudio("../sounds/reverb/standrews.wav");
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');

@@ -72,16 +72,28 @@ public:
 	void transformaCoord(int& x, int& y)
 	{
 		int cuadranteX;
-		int cuadranteY = y / 31;
-		if (cuadranteY % 2 != 0 || cuadranteY == 0)
-			cuadranteX = (x + 61) / 122;
-		else 
-			cuadranteX = x / 111;
+		int cuadranteY;
+		if (y < 31 || x + 61 < 122){
+			if (y < 31) cuadranteY = 0;
+			if (x + 61 < 122) cuadranteX = 0;
+		}
+		else{
+			cuadranteY = y / 31;
+			if (cuadranteY % 2 != 0 || cuadranteY == 0)
+				cuadranteX = (x + 61) / 122;
+			else
+				cuadranteX = x / 122;
+		}
 
 		int Px, Py;
-		Px = x - cuadranteX * 61;
-		Py = y - cuadranteY * 31;
-
+		if (cuadranteX == 0 || cuadranteY == 0){
+			if (cuadranteX == 0) Px = x;
+			if (cuadranteY == 0) Py = y;
+		}
+		else {
+			Px = x - cuadranteX * 61;
+			Py = y - cuadranteY * 31;
+		}
 		/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
 		x/122 == cuadrante de x en el que esta
 		y/62  == cuadrante de y en el que esta
@@ -106,7 +118,7 @@ public:
 		// Si ambas son mayores marcamos la casilla inferior derecha y asi sucesivamente
 		else
 		{
-			if (Px > 61)
+			if (Px < 61)
 			{
 				if (Py < 31)
 				{
