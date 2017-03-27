@@ -52,7 +52,7 @@ void TextCb::draw(){
 			active = "Z";
 		if (cont2 < aux[cont].length()){
 			timer2++;
-			if (timer2 > 20){
+			if (timer2 > 5){
 			frase += aux[cont][cont2];
 			font.w += 15;
 			cont2++;
@@ -72,7 +72,7 @@ void TextCb::callback(){
 void TextCb::update(){
 	if (cont < aux.size()-1 && reacciona && firstTime == 0){
 		timer++;
-		if (timer >= 100){
+		if (timer >= 120){
 			frase = " ";
 			cont2 = 1;
 			cont++; timer = 0;

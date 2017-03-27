@@ -93,11 +93,10 @@ void juegoPG::run(){
 					estados.top()->update();
 					estados.top()->lateUpdate();
 					lastUpdate = SDL_GetTicks();
+					render();
+					handle_event();
 				}
 			
-				render();
-			
-			handle_event();
 		}
 		if (exit) cout << "EXIT \n";
 }
