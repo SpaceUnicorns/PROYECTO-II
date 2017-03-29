@@ -217,7 +217,7 @@ void Nivel1::swPlayer(){
 void Nivel1::onKeyUp(char k) {
 	switch (k) {
 	case 'q':
-		pJuego->estados.push(new MCrafteo(pJuego, contPuntos));
+		pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))));
 		break;
 
 		/*case 'p':

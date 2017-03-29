@@ -3,11 +3,13 @@
 
 
 
-MCrafteo::MCrafteo(juegoPG*jug, int puntos) : EstadoPG(jug, puntos)
+MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos), mochila(NULL)
 {
+	mochila = m;
+
 	pag1.h = pag2.h = 500; //poner mas pequeño o en funcion de la pantalla
 	pag1.w = pag2.w = 375;
-	pag1.x = pag2.x = 100; //la posicion del libro
+	pag1.x = pag2.x = 180; //la posicion del libro
 	pag1.y = pag2.y = 30;
 
 	sombra.h = pag1.h;
@@ -17,12 +19,16 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos) : EstadoPG(jug, puntos)
 
 	numPag = 0;
 	derecha = izquierda = flag = false;
+
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
 
 	rFondo.x = rFondo.y = 0; rFondo.w = pJuego->getScreenWidth(); rFondo.h = pJuego->getScreenHeight(); //rect del fondo (ocupa toda la pantalla)
-	niños.x = 150; niños.y = 560; niños.w = niños.h = 120; //rect de los personajes
-	recuadros.x = 500; recuadros.y = 30; recuadros.w = 500; recuadros.h = 333; //recuadro
+	niños.x = 230; niños.y = 560; niños.w = niños.h = 120; //rect de los personajes
+	recuadros.x = 700; recuadros.y = 30; recuadros.w = 500; recuadros.h = 333; //recuadro
+
+	font.x = font.y = 0; font.w = 20; font.h = 25;
+	fuente = { 0,0,0,0 };
 }
 
 
@@ -51,17 +57,23 @@ void MCrafteo::draw() {
 	pJuego->getTextura(TLyov)->draw(pJuego->getRender(), niños);
 	niños.x += pag2.w - niños.w - 100;
 	pJuego->getTextura(TZhenia)->draw(pJuego->getRender(), niños);
-	niños.x = 150;
+	niños.x = 230;
 
 	//Equipables
+	recuadros.w = 500;
+	recuadros.x = 700;
 	recuadros.y = 30;
 	recuadros.h = 333;
 	pJuego->getTextura(TEquipables)->draw(pJuego->getRender(), recuadros);
+	comprobar(equipables);
 
 	//Materiales
-	recuadros.y += recuadros.h + 50;
+	recuadros.w = 500;
+	recuadros.x = 700;
+	recuadros.y = 413;
 	recuadros.h = 250;
 	pJuego->getTextura(TMateriales)->draw(pJuego->getRender(), recuadros);
+	comprobar(materiales);
 }
 
 void MCrafteo::animacionS() {
@@ -119,7 +131,27 @@ void MCrafteo::animacionA() {
 	else izquierda = false;
 }
 
-void MCrafteo::update() {}
+void MCrafteo::comprobar(std::vector<coords> const& v)
+{
+	for (size_t i = 0; i < v.size(); i++) //recorre el vector de posibles y comprueba si estan en la mochila
+	{
+		if (!mochila->findItem(v[i].name)) //si no está se pinta el cuadrado
+		{ 
+			recuadros.x = v[i].x;
+			recuadros.y = v[i].y;
+			recuadros.w = recuadros.h = 100;
+			pJuego->getTextura(TTapa)->draw(pJuego->getRender(), recuadros);
+		}
+		else //si están se pinta el numero de objetos del tipo v[i].name
+		{
+			int cantidad = mochila->getCantidad(v[i].name);
+			font.x = v[i].x + 10;
+			font.y = v[i].y + 75;
+			static_cast<EstadoPG*>(pJuego->estados.top())->drawFont(font, std::to_string(cantidad), fuente);
+		}
+	}
+}
+
 
 void MCrafteo::onKeyUp(char k) {
 
