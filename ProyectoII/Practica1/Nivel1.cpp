@@ -47,6 +47,26 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 						  x += 122;
 					      vecTile.push_back(aux2);
 					      break;
+				case 'q': rectAux.x = 366; aux2.rectTileset = rectAux;
+					aux2.x = x; aux2.y = y; aux2.capa = 1;
+					x += 122;
+					vecTile.push_back(aux2);
+					break;
+				case 'w': rectAux.x = 488; aux2.rectTileset = rectAux;
+					aux2.x = x; aux2.y = y; aux2.capa = 1;
+					x += 122;
+					vecTile.push_back(aux2);
+					break;
+				case 'e': rectAux.x = 610; aux2.rectTileset = rectAux;
+					aux2.x = x; aux2.y = y; aux2.capa = 1;
+					x += 122;
+					vecTile.push_back(aux2);
+					break;
+				case 'r': rectAux.x = 732; aux2.rectTileset = rectAux;
+					aux2.x = x; aux2.y = y; aux2.capa = 1;
+					x += 122;
+					vecTile.push_back(aux2);
+					break;
 				case 'X': 
 					//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 					//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes

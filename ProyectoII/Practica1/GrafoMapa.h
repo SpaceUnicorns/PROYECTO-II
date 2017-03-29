@@ -55,6 +55,26 @@ public:
 			mapaAux.push_back('t');
 			aux++;
 			break;
+		case 'q':
+			mapa.push_back('X');
+			mapaAux.push_back('X');
+			aux++;
+			break;
+		case 'w':
+			mapa.push_back('X');
+			mapaAux.push_back('X');
+			aux++;
+			break;
+		case 'e':
+			mapa.push_back('X');
+			mapaAux.push_back('X');
+			aux++;
+			break;
+		case 'r':
+			mapa.push_back('X');
+			mapaAux.push_back('X');
+			aux++;
+			break;
 		case 'X':
 			mapa.push_back('X');
 			mapaAux.push_back('X');
@@ -79,7 +99,7 @@ public:
 		cuadranteX = x / 122;
 
 		int Px, Py;
-		Px = x - cuadranteX * 61;
+		Px = x - cuadranteX * 122;
 		Py = y - cuadranteY * 31;
 
 		/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
@@ -156,9 +176,10 @@ public:
 				SDL_Rect rec = static_cast<ObjetoPG*>(o)->getAbsRect();
 				int x, y;
 				x = rec.x + rec.w*0.5;
-				y = rec.y + rec.h*0.7;
+				y = rec.y + rec.h*0.8;
 				transformaCoord(x,y);
 
+				std::cout << y*niveles[0] + x << "\n";
 				mapa[y*niveles[0] + x] = 'X';
 			}
 		}
