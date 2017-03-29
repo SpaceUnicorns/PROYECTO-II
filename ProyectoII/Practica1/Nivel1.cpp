@@ -17,7 +17,8 @@
 #include "Yesca.h"
 #include "MCrafteo.h"
 #include "Lobo.h"
-#include "follow.h""
+#include "follow.h"
+#include "Antorcha.h"
 
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
@@ -77,6 +78,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	animNieve1.y = animNieve2.y = camara.h;
 
 	pCazador = new Cazador(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
+	pCazador->newComponente(new Antorcha(pCazador, this), "Antorcha");
 	vecObj.push_back(pCazador);
 	pRecolector = new Recolector(pJuego, camara.x + (camara.w / 2) - 300, camara.y + (camara.h / 2));
 	vecObj.push_back(pRecolector);
@@ -120,9 +122,13 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	activePlayer = "C";
 
 	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
-	
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 
+	rectZonaOscura.h = pJuego->getScreenHeight(); rectZonaOscura.w = pJuego->getScreenWidth();
+	rectZonaOscura.x = 1000; rectZonaOscura.y = 0;
+	hasTorch = false;
+	alpha = 255;
+	pJuego->getTextura(TZonaOscura)->setBlendMode(SDL_BLENDMODE_BLEND);
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
@@ -151,7 +157,15 @@ void Nivel1::draw(){
 		for (ObjetoJuego* ob : vecObj) ob->draw();
 		for (ObjetoJuego* trg : vecTriggers) trg->draw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 	}
-
+	rectZonaOscura.x -= camara.x;
+	rectZonaOscura.y -= camara.y;
+	
+	if (hasTorch){
+		
+		pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
+		//pJuego->getTextura(TAntorcha)->draw(pJuego->getRender(), camara, camara, 255-alpha);
+	}
+	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
 	setCamara(0,0); //Se reinicia el offset a 0
 	int x = rand() % 100;
 	if (x >= 60){
@@ -169,6 +183,7 @@ void Nivel1::draw(){
 	pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1,camara);
 	pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
 
+	
 	pJuego->getTextura(TLuz)->draw(pJuego->getRender(),pJuego->getNieblaRect() ,camara);
 }
 void Nivel1::swPlayer(){

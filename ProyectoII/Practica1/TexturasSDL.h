@@ -17,10 +17,11 @@ public:
 
 	Fuente font;
 
-	void draw(SDL_Renderer*, SDL_Rect const& rect);
-	void draw(SDL_Renderer* prenderer, SDL_Rect const& rectAnim, SDL_Rect& rect);
+	void draw(SDL_Renderer*, SDL_Rect const& rect, Uint8 alpha = 255);
+	void draw(SDL_Renderer* prenderer, SDL_Rect const& rectAnim, SDL_Rect& rect, Uint8 alpha= 255);
 	void loadFromText(SDL_Renderer* pRenderer, const std::string text, SDL_Color color);
 	void loadFuente(std::string nombre, int tamaño);
+	void setBlendMode(SDL_BlendMode blending);
 	int getW();
 	int getH();
 	void load(SDL_Renderer* pRenderer, std::string const& nombArch);			// : Carga la imagen del archivo.En caso de

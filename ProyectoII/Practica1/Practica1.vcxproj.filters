@@ -131,7 +131,7 @@
     </ClCompile>
     <ClCompile Include="MCrafteo.cpp">
       <Filter>Archivos de código fuente</Filter>
-      </ClCompile>
+    </ClCompile>
     <ClCompile Include="Enemigo.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
@@ -149,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="follow.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="Antorcha.cpp">
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,7 +219,7 @@
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
     <ClInclude Include="TextCb.h">
-    <Filter>Archivos de encabezado\Componentes</Filter>
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="Mochila.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
@@ -247,7 +250,7 @@
     </ClInclude>
     <ClInclude Include="MCrafteo.h">
       <Filter>Archivos de encabezado</Filter>
-      </ClInclude>
+    </ClInclude>
     <ClInclude Include="Enemigo.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
@@ -274,6 +277,15 @@
     </ClInclude>
     <ClInclude Include="follow.h">
       <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Antorcha.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

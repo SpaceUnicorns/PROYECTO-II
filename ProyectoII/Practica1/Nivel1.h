@@ -16,11 +16,14 @@ public:
 	virtual void draw();
 	Cazador* getCazador() { return pCazador; }
 	Recolector* getRecolector() { return pRecolector; }
+	void getTorch(){ hasTorch = true; }
+	void dropTorch(){hasTorch = false;}
+	void setAlpha(int i){ alpha = i; }
 
 protected:
-	SDL_Rect animNieve1;
-	SDL_Rect animNieve2;
-	int x, y;
+	SDL_Rect animNieve1, animNieve2, rectZonaOscura;
+	bool hasTorch;
+	int x, y, alpha;
 	Cazador* pCazador;
 	Recolector *pRecolector;
 	std::string activePlayer;
