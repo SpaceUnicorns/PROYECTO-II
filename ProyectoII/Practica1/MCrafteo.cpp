@@ -6,7 +6,13 @@
 MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos), mochila(NULL)
 {
 	mochila = m;
-
+	equipables = { //5 elems
+		{ "Hacha", 746, 76 }, { "Antorcha", 902, 77 }, { "Pico", 1054, 76 }, { "Pala", 820, 216 }, { "TrampaAbierta", 982, 216 }
+	};
+	materiales = { //8 elems
+		{ "Madera", 725, 431 }, { "Piedra", 838, 430 }, { "Hueso", 956, 430 }, { "Cebo", 1071, 430 },
+		{ "Enredadera", 725, 545 }, { "Yesca", 838, 545 }, { "Cuerda", 956, 545 }, { "TrampaCerrada", 1072, 547 }
+	};
 	pag1.h = pag2.h = 500; //poner mas pequeño o en funcion de la pantalla
 	pag1.w = pag2.w = 375;
 	pag1.x = pag2.x = 180; //la posicion del libro
@@ -78,7 +84,7 @@ void MCrafteo::draw() {
 
 void MCrafteo::animacionS() {
 
-	--pag1.w; //la pag se hace mas pequeña
+	pag1.w -= 2; //la pag se hace mas pequeña
 	sombra.x = pag1.x + pag1.w; //le sigue la sombra
 
 	if (pag1.w < 350 && pag1.w >= 0) {
@@ -111,12 +117,19 @@ void MCrafteo::animacionA() {
 
 	else if (flag) {
 
-		++pag1.w; //la pag se hace mas grande
-		sombra.x = pag1.x + pag1.w; //le sigue la sombra
+		pag1.w += 2; //la pag se hace mas grande
+		sombra.x = pag1.x + pag1.w - 5; //le sigue la sombra
 
-		if (pag1.w < 350) {
+		//
+		//
+		if (pag1.w < 345) { //hacer que disminuya el tamaño de la sombra cuando esté a la mitad de la hoja
 			++aux;
-			if (aux == 10) { --sombra.w; aux = 0; } //la sombra se hace mas pequeña
+			if (aux == 10) { 
+				if (sombra.x + sombra.w < pag1.x + 186)
+					--sombra.w;
+				else ++sombra.w;
+				aux = 0;
+			} //la sombra se hace mas pequeña
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
 		}
 

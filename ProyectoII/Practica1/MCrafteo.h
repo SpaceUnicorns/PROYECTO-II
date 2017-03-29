@@ -29,12 +29,7 @@ private:
 	bool derecha, izquierda, flag;
 	
 	Mochila* mochila;
-	std::vector<coords> equipables = { //5 elems
-		{ "Hacha", 746, 76 },{ "Antorcha", 902, 77 },{ "Pico", 1054, 76 },{ "Pala", 820, 216 },{ "TrampaAbierta", 982, 216 }
-	};
-	std::vector<coords> materiales = { //8 elems
-		{ "Madera", 725, 431 },{ "Piedra", 838, 430 },{ "Hueso", 956, 430 },{ "Cebo", 1071, 430 },
-		{ "Enredadera", 725, 545 },{ "Yesca", 838, 545 },{ "Cuerda", 956, 545 },{ "TrampaCerrada", 1072, 547 }
-	};
+	std::vector<coords> equipables;
+	std::vector<coords> materiales;
 };
 
