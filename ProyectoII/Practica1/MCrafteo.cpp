@@ -5,36 +5,41 @@
 
 MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos), mochila(NULL)
 {
-	mochila = m;
-	equipables = { //5 elems
-		{ "Hacha", 746, 76 }, { "Antorcha", 902, 77 }, { "Pico", 1054, 76 }, { "Pala", 820, 216 }, { "TrampaAbierta", 982, 216 }
-	};
-	materiales = { //8 elems
-		{ "Madera", 725, 431 }, { "Piedra", 838, 430 }, { "Hueso", 956, 430 }, { "Cebo", 1071, 430 },
-		{ "Enredadera", 725, 545 }, { "Yesca", 838, 545 }, { "Cuerda", 956, 545 }, { "TrampaCerrada", 1072, 547 }
-	};
-	pag1.h = pag2.h = 500; //poner mas pequeño o en funcion de la pantalla
+
+	//Rects en funcion de la pantalla
+	pag1.h = pag2.h = 500;
 	pag1.w = pag2.w = 375;
-	pag1.x = pag2.x = 180; //la posicion del libro
-	pag1.y = pag2.y = 30;
+	pag1.x = pag2.x = pJuego->getScreenWidth() / 2 - pag1.w - 100;
+	pag1.y = pag2.y = 50;
 
 	sombra.h = pag1.h;
 	sombra.w = 30;
 	sombra.x = pag1.x + pag1.w - 20;
 	sombra.y = pag1.y;
 
+	rFondo.x = rFondo.y = 0; rFondo.w = pJuego->getScreenWidth(); rFondo.h = pJuego->getScreenHeight(); //rect del fondo (ocupa toda la pantalla)
+	niños.x = pag1.x + 50; niños.y = pag1.y + 530; niños.w = niños.h = 120; //rect de los personajes
+	recuadros.x = pJuego->getScreenWidth() / 2 + 30; recuadros.y = pag1.y; recuadros.w = 500; recuadros.h = 333; //recuadro
+
+	font.x = font.y = 0; font.w = 20; font.h = 25;
+	fuente = { 0,0,0,0 };
+
+	//resto de variables
+	mochila = m;
+
+	equipables = { //5 elems
+		{ "Hacha", 746, 76 },{ "Antorcha", 902, 77 },{ "Pico", 1054, 76 },{ "Pala", 820, 216 },{ "TrampaAbierta", 982, 216 }
+	};
+	materiales = { //8 elems
+		{ "Madera", 725, 431 },{ "Piedra", 838, 430 },{ "Hueso", 956, 430 },{ "Cebo", 1071, 430 },
+		{ "Enredadera", 725, 545 },{ "Yesca", 838, 545 },{ "Cuerda", 956, 545 },{ "TrampaCerrada", 1072, 547 }
+	};
+
 	numPag = 0;
 	derecha = izquierda = flag = false;
 
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
-
-	rFondo.x = rFondo.y = 0; rFondo.w = pJuego->getScreenWidth(); rFondo.h = pJuego->getScreenHeight(); //rect del fondo (ocupa toda la pantalla)
-	niños.x = 230; niños.y = 560; niños.w = niños.h = 120; //rect de los personajes
-	recuadros.x = 700; recuadros.y = 30; recuadros.w = 500; recuadros.h = 333; //recuadro
-
-	font.x = font.y = 0; font.w = 20; font.h = 25;
-	fuente = { 0,0,0,0 };
 }
 
 
@@ -63,20 +68,20 @@ void MCrafteo::draw() {
 	pJuego->getTextura(TLyov)->draw(pJuego->getRender(), niños);
 	niños.x += pag2.w - niños.w - 100;
 	pJuego->getTextura(TZhenia)->draw(pJuego->getRender(), niños);
-	niños.x = 230;
+	niños.x = pag1.x + 50;
 
 	//Equipables
 	recuadros.w = 500;
-	recuadros.x = 700;
-	recuadros.y = 30;
+	recuadros.x = pJuego->getScreenWidth() / 2 + 30;
+	recuadros.y = pag1.y;
 	recuadros.h = 333;
 	pJuego->getTextura(TEquipables)->draw(pJuego->getRender(), recuadros);
 	comprobar(equipables);
 
 	//Materiales
 	recuadros.w = 500;
-	recuadros.x = 700;
-	recuadros.y = 413;
+	recuadros.x = pJuego->getScreenWidth() / 2 + 30;
+	recuadros.y = pJuego->getScreenHeight() / 2 + 30;
 	recuadros.h = 250;
 	pJuego->getTextura(TMateriales)->draw(pJuego->getRender(), recuadros);
 	comprobar(materiales);
