@@ -5,7 +5,7 @@
 #include <iostream>  // la consola: cin / cout
 #include "Error.h"
 #include "SDL.h"
-
+#include <glew.h>
 using namespace std; // Para cualificar automaticamente con std:: los identificadores de la librería estandar 
 //----------------------------------------------------------------------------------------------------------------------
 

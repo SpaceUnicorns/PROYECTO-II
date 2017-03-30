@@ -284,7 +284,20 @@
     <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Antorcha.h">
+=======
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+>>>>>>> master
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

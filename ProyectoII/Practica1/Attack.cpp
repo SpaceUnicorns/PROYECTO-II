@@ -14,8 +14,7 @@ Attack::~Attack()
 }
 
 void Attack::update(){
-	posicion = { static_cast<Enemigo*>(pEntidad)->getColisionBox().x + static_cast<Enemigo*>(pEntidad)->getColisionBox().w * 0.8 , static_cast<Enemigo*>(pEntidad)->getColisionBox().y };
-	
+	posicion = { (int)(static_cast<Enemigo*>(pEntidad)->getColisionBox().x + static_cast<Enemigo*>(pEntidad)->getColisionBox().w * 0.8 , static_cast<Enemigo*>(pEntidad)->getColisionBox().y) };
 	
 	//static_cast<ColisionBox*>(static_cast<Enemigo*>(pEntidad)->dameComponente("ColisionBox"))->isColiding(posicion, info);
 	

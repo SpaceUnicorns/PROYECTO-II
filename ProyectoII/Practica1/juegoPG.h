@@ -15,7 +15,11 @@
 enum Texturas_t {
 	TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TTextBox, TArbol, TCColision, TJugador, TJugador2,
 	TSombra1, TMenuResaltado, TLyov, TZhenia, TEquipables, TMateriales, TCebo, TCuerda, TEnredadera, THueso, TMadera, 
+<<<<<<< HEAD
 	TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete, TAntorcha, TZonaOscura
+=======
+	TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete, TTapa
+>>>>>>> master
 };
 
 class juegoPG

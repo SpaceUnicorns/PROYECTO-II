@@ -74,7 +74,7 @@ public:
 		int cuadranteX;
 		int cuadranteY;
 		if (y < 62) cuadranteY = 0;
-		if (x < 122) cuadranteX = 0;
+		if (x < 123) cuadranteX = 0;
 		cuadranteY = (y / 61) * 2;
 		cuadranteX = x / 122;
 
@@ -96,10 +96,10 @@ public:
 
 		*/
 
-		if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) < 0)){
+		if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) >= 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) >= 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) >= 0)){
 			x = cuadranteX; y = cuadranteY;
 		}
-		else if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) < 0)){
+		else if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) >= 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) >= 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) >= 0)){
 			x = cuadranteX; y = cuadranteY;
 		}
 		// Si la posicion del objeto no esta en ninguno de los dos triangulos centrales comprobamo su x y su y con el centro del cuadrante
@@ -133,7 +133,8 @@ public:
 				}
 			}
 		}
-
+		y++;
+		x--;
 		if (x < 0) x = 0;
 		if (y < 0) y = 0;
 		if (x >= niveles[0]) x = niveles[0]-1;
