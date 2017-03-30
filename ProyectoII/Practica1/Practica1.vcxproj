@@ -43,8 +43,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Fmod\inc;C:\hlocal\TP\Practica1%28funciona%29\ProyectosSDL\ProyectosSDL\SDL2_ttf-2.0.14\include;C:\hlocal\TP\Practica1%28funciona%29\ProyectosSDL\ProyectosSDL\SDL2_mixer-2.0.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Fmod\lib;C:\hlocal\TP\Practica1%28funciona%29\ProyectosSDL\ProyectosSDL\SDL2_ttf-2.0.14\lib\x86;C:\hlocal\TP\Practica1%28funciona%29\ProyectosSDL\ProyectosSDL\SDL2_mixer-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Glew-2.0.0\include\GL;$(SolutionDir)Fmod\inc;C:\hlocal\TP\Practica1%28funciona%29\ProyectosSDL\ProyectosSDL\SDL2_ttf-2.0.14\include;C:\hlocal\TP\Practica1%28funciona%29\ProyectosSDL\ProyectosSDL\SDL2_mixer-2.0.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Glew-2.0.0\lib\Release\Win32;$(SolutionDir)Fmod\lib;C:\hlocal\TP\Practica1%28funciona%29\ProyectosSDL\ProyectosSDL\SDL2_ttf-2.0.14\lib\x86;C:\hlocal\TP\Practica1%28funciona%29\ProyectosSDL\ProyectosSDL\SDL2_mixer-2.0.1\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)Fmod\inc;$(SolutionDir)SDL2-2.0.4\include;$(SolutionDir)SDL2_image-2.0.1\include;$(SolutionDir)SDL2_ttf-2.0.14\include;$(SolutionDir)SDL2_mixer-2.0.1\include;$(IncludePath)</IncludePath>
