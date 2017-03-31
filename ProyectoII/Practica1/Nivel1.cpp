@@ -219,14 +219,9 @@ void Nivel1::onKeyUp(char k) {
 	case 'q':
 		pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))));
 		break;
-
-		/*case 'p':
-		if(!pause) pause = true;
-		else pause = false;
-		break;
-		case 'S':
+	case 's':
 		pJuego->estados.push(new Pausa(pJuego,contPuntos));
-		break;*/
+		break;
 	default:
 		break;
 	}

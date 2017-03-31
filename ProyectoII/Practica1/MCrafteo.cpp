@@ -27,12 +27,16 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos),
 	//resto de variables
 	mochila = m;
 
+	int Rx = recuadros.x;
+	int Ry = recuadros.y;
 	equipables = { //5 elems
-		{ "Hacha", 746, 76 },{ "Antorcha", 902, 77 },{ "Pico", 1054, 76 },{ "Pala", 820, 216 },{ "TrampaAbierta", 982, 216 }
+		{ "Hacha", Rx + 46, Ry + 46 },{ "Antorcha", Rx + 202, Ry + 47 },{ "Pico", Rx + 354, Ry + 46 },
+		{ "Pala", Rx + 120, Ry + 186 },{ "TrampaAbierta", Rx + 282, Ry + 186 }
 	};
+	Ry = pJuego->getScreenHeight() / 2 + 30;
 	materiales = { //8 elems
-		{ "Madera", 725, 431 },{ "Piedra", 838, 430 },{ "Hueso", 956, 430 },{ "Cebo", 1071, 430 },
-		{ "Enredadera", 725, 545 },{ "Yesca", 838, 545 },{ "Cuerda", 956, 545 },{ "TrampaCerrada", 1072, 547 }
+		{ "Madera", Rx + 25, Ry + 18 },{ "Piedra", Rx + 138,  Ry + 17 },{ "Hueso", Rx + 256, Ry + 17 },{ "Cebo", Rx + 371, Ry + 17 },
+		{ "Enredadera", Rx + 25, Ry + 132 },{ "Yesca", Rx + 138, Ry + 132 },{ "Cuerda", Rx + 256, Ry + 132 },{ "TrampaCerrada",  Rx + 371, Ry + 134 }
 	};
 
 	numPag = 0;
@@ -51,9 +55,9 @@ MCrafteo::~MCrafteo()
 void MCrafteo::draw() {
 	//Fondo
 	fondo->draw(pJuego->getRender(), rFondo);
-	
-	//Libro
 	pJuego->getTextura(TGris)->draw(pJuego->getRender(), rFondo);
+
+	//Libro
 	if (numPag < 5)	pJuego->getPag(numPag + 1)->draw(pJuego->getRender(), pag2);
 	pJuego->getPag(numPag)->draw(pJuego->getRender(), pag1);
 
@@ -94,7 +98,7 @@ void MCrafteo::animacionS() {
 
 	if (pag1.w < 350 && pag1.w >= 0) {
 		++aux;
-		if (aux == 10) { ++sombra.w; aux = 0; } //la sombra se hace mas grande
+		if (aux == 10) { sombra.w += 2; aux = 0; } //la sombra se hace mas grande
 		pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
 	}
 
@@ -125,16 +129,14 @@ void MCrafteo::animacionA() {
 		pag1.w += 2; //la pag se hace mas grande
 		sombra.x = pag1.x + pag1.w - 5; //le sigue la sombra
 
-		//
-		//
-		if (pag1.w < 345) { //hacer que disminuya el tamaño de la sombra cuando esté a la mitad de la hoja
+		if (pag1.w < 332) {
 			++aux;
-			if (aux == 10) { 
-				if (sombra.x + sombra.w < pag1.x + 186)
-					--sombra.w;
-				else ++sombra.w;
-				aux = 0;
-			} //la sombra se hace mas pequeña
+			if (aux == 10) { --sombra.w; aux = 0; } //la sombra se hace mas pequeña
+			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
+		}
+
+		else if (pag1.w >= 332 && pag1.w < 375) {
+			sombra.w = 380 - pag1.w;
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
 		}
 
@@ -171,8 +173,8 @@ void MCrafteo::comprobar(std::vector<coords> const& v)
 }
 
 
-void MCrafteo::onKeyUp(char k) {
-
+void MCrafteo::onKeyUp(char k)
+{
 	switch (k) {
 	case 'q':
 		remove("..//bmps//temp//screenshot.bmp");

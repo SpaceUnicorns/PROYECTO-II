@@ -22,7 +22,7 @@ juegoPG::juegoPG()
 	}
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
-	vecTexturas.resize(32);
+	vecTexturas.resize(35);
 	vecPaginas.resize(6);
 
 
@@ -120,7 +120,13 @@ void juegoPG::handle_event(){
 		}
 		else if (e.type == SDL_KEYUP){
 			if (e.key.keysym.sym == SDLK_ESCAPE){
-				estados.top()->onKeyUp('S');
+				if (dynamic_cast<Nivel1*>(estados.top()) != nullptr) {
+					SDL_Surface *sshot = SDL_CreateRGBSurface(0, getScreenWidth(), getScreenHeight(), 32, 0, 0, 0, 0);
+					SDL_RenderReadPixels(getRender(), NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
+					SDL_SaveBMP(sshot, "..//bmps//temporal//screenshot.bmp");
+					SDL_FreeSurface(sshot);
+				}
+				estados.top()->onKeyUp('s');
 			}
 			else if (e.key.keysym.sym == SDLK_TAB){
 				input.sw = true;
