@@ -10,6 +10,7 @@ Enredadera::Enredadera(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py
 	rect.h = 30;
 	nombre.push_back("2");
 	nombre.push_back( "Enredadera");
+
 	SDL_Rect colision = { rect.x,rect.y + 10,50,10 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");
 }
