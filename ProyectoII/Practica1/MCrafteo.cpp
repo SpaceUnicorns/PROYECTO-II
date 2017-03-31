@@ -1,13 +1,16 @@
 #include "MCrafteo.h"
 #include "TexturasSDL.h"
-
-
+#include "Cuerda.h"
+#include "ObjetoPG.h"
 
 MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos), mochila(NULL)
 {
 	mochila = m;
+	crafteo.resize(6);
+		crafteo = { "Antorcha", "Cuerda", "Hacha", "Pico", "Pala", "TrampaAbierta" };
+	
 	equipables = { //5 elems
-		{ "Hacha", 746, 76 }, { "Antorcha", 902, 77 }, { "Pico", 1054, 76 }, { "Pala", 820, 216 }, { "TrampaAbierta", 982, 216 }
+		{ "Antorcha", 902, 77 },{ "Hacha", 746, 76 },  { "Pico", 1054, 76 }, { "Pala", 820, 216 }, { "TrampaAbierta", 982, 216 }
 	};
 	materiales = { //8 elems
 		{ "Madera", 725, 431 }, { "Piedra", 838, 430 }, { "Hueso", 956, 430 }, { "Cebo", 1071, 430 },
@@ -96,6 +99,7 @@ void MCrafteo::animacionS() {
 	else if (pag1.w <= 0) {
 		derecha = false;
 		++numPag;
+		
 
 		pag1.w = 375;
 		sombra.w = 30;
@@ -131,9 +135,11 @@ void MCrafteo::animacionA() {
 				aux = 0;
 			} //la sombra se hace mas pequeña
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
+			
 		}
 
 		else if (pag1.w >= 375) {
+			
 			izquierda = false;
 			flag = false;
 
@@ -164,6 +170,28 @@ void MCrafteo::comprobar(std::vector<coords> const& v)
 		}
 	}
 }
+void MCrafteo::craftear(){
+	ObjetoPG* kek =nullptr ; //auxiliar para poder acceder al nombre y receta
+	if (crafteo[numPag] == "Cuerda"){ //la cuerda lo complica todo :V pensaba que eran solo herramientas
+		kek = new Cuerda(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Antorcha"){} //cuando esten las clases de pondria PE:kek = new Antorcha(pJuego, 0, 0);
+	else if (crafteo[numPag] == "Hacha"){}
+	else if (crafteo[numPag] == "Pico"){}
+	else if (crafteo[numPag] == "Pala"){}
+	else if (crafteo[numPag] == "TrampaCerrada"){}
+
+	if (kek != nullptr){
+		for (unsigned int i = 0; i + 1 < kek->receta.size(); i += 2){ //comprobacion de objetos
+			if (mochila->findItem(kek->receta[i + 1]))
+				if (mochila->getCantidad(kek->receta[i + 1]) >= atoi(kek->receta[i].c_str())){//si está...
+					mochila->removeItem(kek->receta[i + 1], atoi(kek->receta[i].c_str())); //se eliminan los objetos de la mochila
+					mochila->newItem(kek->nombre[1], 1); //y se añade lo crafteado
+				}//aqui hay que cambiarlo mas adelante, por el tema de las 2 mochilas, puta cuerda tt
+		}
+	}
+	delete kek;
+}
 
 
 void MCrafteo::onKeyUp(char k) {
@@ -180,6 +208,9 @@ void MCrafteo::onKeyUp(char k) {
 
 	case 'i':
 		izquierda = true;
+		break;
+	case 'e':
+		craftear(); //PD se craftea con la tecla INTRO
 		break;
 
 	default:

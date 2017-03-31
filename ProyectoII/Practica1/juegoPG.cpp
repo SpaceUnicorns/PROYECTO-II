@@ -151,7 +151,7 @@ void juegoPG::handle_event(){
 			else if (e.key.keysym.sym == SDLK_LEFT) {
 				estados.top()->onKeyUp('i');
 			}
-
+	
 
 		}
 		else if (e.type == SDL_KEYDOWN){
