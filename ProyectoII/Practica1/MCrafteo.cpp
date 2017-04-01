@@ -39,7 +39,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos),
 		{ "Enredadera", Rx + 25, Ry + 132 },{ "Yesca", Rx + 138, Ry + 132 },{ "Cuerda", Rx + 256, Ry + 132 },{ "TrampaCerrada",  Rx + 371, Ry + 134 }
 	};
 
-	numPag = 0;
+	numPag = aux = acuD = acuI = 0;
 	derecha = izquierda = flag = false;
 
 	fondo = new TexturasSDL;
@@ -91,25 +91,26 @@ void MCrafteo::draw() {
 	comprobar(materiales);
 }
 
-void MCrafteo::animacionS() {
+void MCrafteo::animacionS() 
+{
+	if (acuD < 2) {
+		pag1.w -= 2; //la pag se hace mas pequeña
+		sombra.x = pag1.x + pag1.w; //le sigue la sombra
 
-	pag1.w -= 2; //la pag se hace mas pequeña
-	sombra.x = pag1.x + pag1.w; //le sigue la sombra
-
-	if (pag1.w < 350 && pag1.w >= 0) {
-		++aux;
-		if (aux == 10) { sombra.w += 2; aux = 0; } //la sombra se hace mas grande
-		pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
+		if (pag1.w < 350 && pag1.w >= 0) {
+			++aux;
+			if (aux == 10) { sombra.w += 2; aux = 0; } //la sombra se hace mas grande
+			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
+		}
 	}
-
-	else if (pag1.w <= 0) {
+	
+	if (pag1.w <= 0 || acuD >= 2) {
 		derecha = false;
 		++numPag;
-
 		pag1.w = 375;
 		sombra.w = 30;
+		acuD = 0;
 	}
-
 }
 
 void MCrafteo::animacionA() {
@@ -123,8 +124,7 @@ void MCrafteo::animacionA() {
 		--numPag;
 		if (numPag == -1) numPag = 0;
 	}
-
-	else if (flag) {
+	else if (flag && acuI < 2) {
 
 		pag1.w += 2; //la pag se hace mas grande
 		sombra.x = pag1.x + pag1.w - 5; //le sigue la sombra
@@ -139,16 +139,16 @@ void MCrafteo::animacionA() {
 			sombra.w = 380 - pag1.w;
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
 		}
-
-		else if (pag1.w >= 375) {
-			izquierda = false;
-			flag = false;
-
-			pag1.w = 375;
-			sombra.w = 30;
-		}
 	}
 	else izquierda = false;
+
+	if (pag1.w >= 375 || acuI >= 2) {
+		izquierda = false;
+		flag = false;
+		pag1.w = 375;
+		sombra.w = 30;
+		acuI = 0;
+	}
 }
 
 void MCrafteo::comprobar(std::vector<coords> const& v)
@@ -183,10 +183,12 @@ void MCrafteo::onKeyUp(char k)
 
 	case 'd':
 		derecha = true;
+		acuD++;
 		break;
 
 	case 'i':
 		izquierda = true;
+		acuI++;
 		break;
 
 	default:

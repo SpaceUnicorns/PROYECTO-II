@@ -24,7 +24,7 @@ private:
 	SDL_Rect pag1, pag2, sombra, rFondo, niños, recuadros, font;
 	TexturasSDL * fondo;
 	SDL_Color fuente;
-	int numPag, aux = 0;
+	int numPag, aux, acuD, acuI;
 
 	bool derecha, izquierda, flag;
 	
