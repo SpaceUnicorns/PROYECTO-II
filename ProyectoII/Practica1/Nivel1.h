@@ -7,6 +7,7 @@
 #include "SDL_ttf.h"
 #include <string>
 #include "GrafoMapa.h"
+
 class Nivel1 :
 	public EstadoPG
 {

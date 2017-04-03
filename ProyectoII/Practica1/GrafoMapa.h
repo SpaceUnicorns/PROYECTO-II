@@ -89,18 +89,29 @@ public:
 
 		}
 	}
+
+	void creaMapa(std::vector<char>& c, int& ancho)
+	{
+		niveles.resize(1);
+		niveles[0] = ancho*4;
+		mapa = c;
+		for (size_t i = 0; i < mapa.size(); i++)
+		{
+			mapaAux.push_back(mapa[i]);
+		}
+	}
 	void transformaCoord(int& x, int& y)
 	{
 		int cuadranteX;
 		int cuadranteY;
 		if (y < 62) cuadranteY = 0;
 		if (x < 123) cuadranteX = 0;
-		cuadranteY = (y / 61) * 2;
+		cuadranteY = (y / 61);
 		cuadranteX = x / 122;
 
 		int Px, Py;
 		Px = x - cuadranteX * 122;
-		Py = y - cuadranteY * 31;
+		Py = y - (cuadranteY) * 61;
 
 		/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
 		x/122 == cuadrante de x en el que esta
@@ -153,12 +164,11 @@ public:
 				}
 			}
 		}
-		y++;
-		x--;
+
 		if (x < 0) x = 0;
 		if (y < 0) y = 0;
 		if (x >= niveles[0]) x = niveles[0]-1;
-		if (y >= niveles.size()) y = niveles.size()-1;
+		//if (y >= niveles.size()) y = niveles.size()-1;
 		
 
 
@@ -179,7 +189,7 @@ public:
 				y = rec.y + rec.h*0.8;
 				transformaCoord(x,y);
 
-				std::cout << y*niveles[0] + x << "\n";
+				//std::cout << y*niveles[0] + x << "\n";
 				mapa[y*niveles[0] + x] = 'X';
 			}
 		}
@@ -225,6 +235,10 @@ public:
 		micropather::StateCost nodeCost;
 		int x, y;
 		NodeToXY(state, &x, &y);
+		if (x == 5 && y == 58)
+			std::cout << x << " " << y << "\n";
+		else
+			std::cout << x << " " << y << "\n";
 		for (int i = 0; i < 8; i++)
 		{
 			switch (i)
@@ -239,12 +253,12 @@ public:
 				}
 				break;
 			case 1:
-				if (y > 0 && x < niveles[0] - 1){
+				if (y > 0 && x > 0){
 					if (y % 2 != 0 || y == 0){
-						if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
-							nodeCost = { XYToNode(x + 1, y - 1), 999 };
+						if (mapa[(y - 1)*niveles[0] + x - 1] == 'X')
+							nodeCost = { XYToNode(x - 1, y - 1), 999 };
 						else
-							nodeCost = { XYToNode(x + 1, y - 1), 0.1f };
+							nodeCost = { XYToNode(x - 1, y - 1), 0.1f };
 						adjacent->push_back(nodeCost);
 					}
 					else {
@@ -268,12 +282,12 @@ public:
 				}
 				break;
 			case 3:
-				if (y < niveles.size() - 1 && x < niveles[0] - 1){
+				if (y < niveles.size() - 1 && x > 0){
 					if (y % 2 != 0 || y == 0){
-						if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
-							nodeCost = { XYToNode(x + 1, y + 1), 999 };
+						if (mapa[(y + 1)*niveles[0] + x - 1] == 'X')
+							nodeCost = { XYToNode(x - 1, y + 1), 999 };
 						else
-							nodeCost = { XYToNode(x + 1, y + 1), 0.1f };
+							nodeCost = { XYToNode(x - 1, y + 1), 0.1f };
 						adjacent->push_back(nodeCost);
 					}
 					else{
@@ -306,11 +320,11 @@ public:
 						adjacent->push_back(nodeCost);
 					}
 					else {
-						if (y < niveles.size() - 1 && x > 0){
-							if (mapa[(y + 1)*niveles[0] + x] == 'X')
-								nodeCost = { XYToNode(x - 1, y + 1), 999 };
+						if (y < niveles.size() - 1 && x < niveles[0]-1){
+							if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
+								nodeCost = { XYToNode(x + 1, y + 1), 999 };
 							else
-								nodeCost = { XYToNode(x - 1, y + 1), 0.1f };
+								nodeCost = { XYToNode(x + 1, y + 1), 0.1f };
 							adjacent->push_back(nodeCost);
 						}
 					}
@@ -335,11 +349,11 @@ public:
 						adjacent->push_back(nodeCost);
 					}
 					else{
-						if (y > 0 && x > 0){
-							if (mapa[(y - 1)*niveles[0] + x - 1] == 'X')
-								nodeCost = { XYToNode(x - 1, y - 1), 999 };
+						if (y > 0 && x < niveles[0]-1){
+							if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
+								nodeCost = { XYToNode(x + 1, y - 1), 999 };
 							else
-								nodeCost = { XYToNode(x - 1, y - 1), 0.1f };
+								nodeCost = { XYToNode(x + 1, y - 1), 0.1f };
 							adjacent->push_back(nodeCost);
 						}
 					}

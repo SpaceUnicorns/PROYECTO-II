@@ -7,7 +7,7 @@
 #include "fmod.hpp"
 #include <fstream>
 #include <iostream>
-
+//#include "GrafoMapa.h"
 
  struct Punto{
 	int x, y;
@@ -39,6 +39,8 @@ public:
 	virtual void paraMusica(std::string music, bool fade);
 	virtual void reproduceAmb(std::string amb, bool fade);
 	virtual void paraAmb(std::string amb, bool fade);
+	void cargaTile(char c, int i, int j, std::vector<char>& mapa, int ancho);
+	virtual void cargaMapa(std::string txt, std::vector<char>&mapa, int& anch);
 	virtual void onKeyUp(char k){};
 	virtual void onKeyDown(char k){};
 	virtual std::vector <TrianguloBorde> & getVectBordes() {
@@ -79,7 +81,7 @@ protected:
 		SDL_Rect collider;
 		int capa;
 	};
-
+	//GrafoMapa* mapa;
 
 
 	std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa

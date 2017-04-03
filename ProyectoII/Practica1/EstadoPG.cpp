@@ -39,7 +39,2109 @@ EstadoPG::~EstadoPG()
 	}
 	
 }
+void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int ancho)
+{
+	//conveniente recibir un vector de char para codificar tambien las colisiones del seguimiento
+	std::pair<int, int> tiles[16];
+	int xAux, yAux;
+	xAux = j * 122*4;
+	yAux = i * 31*4;
+	if ( i % 2 != 0)  xAux += 61 * 4; yAux += 31 * 4;
+	Tile aux;
+	aux.capa = 1;
+	aux.rectTileset.w = 122;
+	aux.rectTileset.h = 83;
 
+	Punto auxPunto;
+	TrianguloBorde auxBorde;
+
+	// Aqui definimos la posicion en la textura de los tiles que usaremos
+
+	mapa[i*ancho + j * 4 + 1] = 't';
+	mapa[i+1*ancho + j * 4 + 1] = 't';
+	mapa[i+1*ancho + j * 4 + 2] = 't';
+	mapa[i+2*ancho + j * 4] = 't';
+	mapa[i+2*ancho + j * 4 + 1] = 't';
+	mapa[i+2* ancho + j * 4 + 2] = 't';
+	mapa[i+3* ancho + j * 4] = 't';
+	mapa[i+3* ancho + j * 4 + 1] = 't';
+	mapa[i+3* ancho + j * 4 + 2] = 't';
+	mapa[i+3* ancho + j * 4 + 3] = 't';
+	mapa[i+4* ancho + j * 4] = 't';
+	mapa[i+4* ancho + j * 4 + 1] = 't';
+	mapa[i+4* ancho + j * 4 + 2] = 't';
+	mapa[i+5* ancho + j * 4 + 1] = 't';
+	mapa[i+5* ancho + j * 4 + 2] = 't';
+	mapa[i+6* ancho + j * 4 + 1] = 't';
+
+
+	switch (c)
+	{
+	case 't':
+		aux.rectTileset.x = 2 * 122;//1
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//2
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//3
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//4
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//5
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//6
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//7
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//8
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//9
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//10
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//11
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//12
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//13
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//14
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//15
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//16
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 2 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 62; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 122; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'y':
+		aux.rectTileset.x = 5 * 122;//1
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//2
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//3
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//4
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//5
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//6
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//7
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//8
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//9
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//10
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//11
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//12
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//13
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//14
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//15
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//16
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 93; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 122; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'u':
+		aux.rectTileset.x = 1 * 122;//1
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//2
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//3
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//4
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//5
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//6
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//7
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//8
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//9
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//10
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//11
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//12
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//13
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//14
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//15
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//16
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 305; auxPunto.y = yAux + 31; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 186; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 248; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 93; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 186; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 248; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'i':
+		aux.rectTileset.x = 0 * 122;//1
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//2
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//3
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//4
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//5
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//6
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//7
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//8
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//9
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//10
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//11
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//12
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//13
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//14
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//15
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//16
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 305; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 62; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 62; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'o':
+		aux.rectTileset.x = 5 * 122;//1
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//2
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//3
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//4
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//5
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//6
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//7
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//8
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//9
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//10
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//11
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//12
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//13
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//14
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//15
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//16
+		aux.rectTileset.y = 6 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 93; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 0; auxPunto.y = yAux + 124; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 305; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'a':
+		aux.rectTileset.x = 1 * 122;//1
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//2
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//3
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//4
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//5
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//6
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//7
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//8
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//9
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//10
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//11
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//12
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//13
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//14
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//15
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//16
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 122; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 's':
+		aux.rectTileset.x = 2 * 122;//1
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//2
+		aux.rectTileset.y = 10 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//3
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//4
+		aux.rectTileset.y = 10 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//5
+		aux.rectTileset.y = 10 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//6
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//7
+		aux.rectTileset.y = 11 * 83;
+		aux.x = xAux + 0;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//8
+		aux.rectTileset.y = 10 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//9
+		aux.rectTileset.y = 10 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//10
+		aux.rectTileset.y = 10 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//11
+		aux.rectTileset.y = 11 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//12
+		aux.rectTileset.y = 11 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//13
+		aux.rectTileset.y = 10 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//14
+		aux.rectTileset.y = 11 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//15
+		aux.rectTileset.y = 11 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//16
+		aux.rectTileset.y = 11 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 0; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 93; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 186; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 0; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'd':
+		aux.rectTileset.x = 6 * 122;//1
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//2
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//3
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//4
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//5
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//6
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//7
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//8
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//9
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//10
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//11
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//12
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//13
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//14
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//15
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//16
+		aux.rectTileset.y = 11 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 0; auxPunto.y = yAux + 124; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 0; auxPunto.y = yAux + 124; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'f':
+		aux.rectTileset.x = 0 * 122;//1
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//2
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//3
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//4
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//5
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//6
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//7
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//8
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//9
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//10
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//11
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//12
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//13
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//14
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//15
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//16
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 2 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 305; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 122; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 488; auxPunto.y = yAux + 124; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 305; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 122; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 488; auxPunto.y = yAux + 124; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'g':
+		aux.rectTileset.x = 4 * 122;//1
+		aux.rectTileset.y = 14 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//2
+		aux.rectTileset.y = 14 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//3
+		aux.rectTileset.y = 14 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//4
+		aux.rectTileset.y = 14 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//5
+		aux.rectTileset.y = 14 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//6
+		aux.rectTileset.y = 14 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//7
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//8
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//9
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//10
+		aux.rectTileset.y = 14 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//11
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//12
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//13
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//14
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//15
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//16
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 124; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 305; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 124; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'h':
+		aux.rectTileset.x = 6 * 122;//1
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//2
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//3
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//4
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//5
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//6
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//7
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//8
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//9
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//10
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//11
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//12
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//13
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//14
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//15
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//16
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 2 * ancho + j * 4] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 217; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'j':
+		aux.rectTileset.x = 0 * 122;//1
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//2
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//3
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//4
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//5
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//6
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//7
+		aux.rectTileset.y = 12 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//8
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//9
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//10
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//11
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//12
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//13
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//14
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		aux.rectTileset.y = 9 * 83;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//15
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//16
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 305; auxPunto.y = yAux + 31; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'k':
+		aux.rectTileset.x = 1 * 122;//1
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//2
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//3
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//4
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//5
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//6
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//7
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//8
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//9
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//10
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//11
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//12
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//13
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//14
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//15
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//16
+		aux.rectTileset.y = 13 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 93; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 305; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+
+		break;
+	case 'l':
+		aux.rectTileset.x = 3 * 122;//1
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//2
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//3
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//4
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//5
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//6
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//7
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//8
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//9
+		aux.rectTileset.y = 9 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//10
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//11
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//12
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//13
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//14
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//15
+		aux.rectTileset.y = 7 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//16
+		aux.rectTileset.y = 8 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux; auxPunto.y = yAux + 124; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 488; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 0; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux; auxPunto.y = yAux + 124; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 488; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 248; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'z':
+		aux.rectTileset.x = 3 * 122;//1
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//2
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//3
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//4
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//5
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//6
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//7
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//8
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//9
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//10
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//11
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//12
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//13
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//14
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//15
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//16
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'x':
+		aux.rectTileset.x = 2 * 122;//1
+		aux.rectTileset.y = 1 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//2
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//3
+		aux.rectTileset.y = 1 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//4
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//5
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//6
+		aux.rectTileset.y = 1 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//7
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//8
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//9
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//10
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//11
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//12
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//13
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//14
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//15
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//16
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 183; auxPunto.y = yAux; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 366; auxPunto.y = yAux+ 62; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 135; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'c':
+		aux.rectTileset.x = 3 * 122;//1
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//2
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//3
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//4
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//5
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//6
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//7
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//8
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//9
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//10
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//11
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//12
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//13
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//14
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//15
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//16
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 2 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 62; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 122; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'v':
+		aux.rectTileset.x = 2 * 122;//1
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//2
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//3
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//4
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//5
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//6
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//7
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//8
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 1 * 122;//9
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//10
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//11
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//12
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//13
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//14
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//15
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//16
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 4 * ancho + j * 4] = 'X';
+		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 93; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 122; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 366; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+	case 'b':
+		aux.rectTileset.x = 6 * 122;//1
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//2
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//3
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//4
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//5
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 2 * 122;//6
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//7
+		aux.rectTileset.y = 3 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//8
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//9
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 3 * 122;//10
+		aux.rectTileset.y = 4 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//11
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 4 * 122;//12
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//13
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//14
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 6 * 122;//15
+		aux.rectTileset.y = 2 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 5 * 122;//16
+		aux.rectTileset.y = 5 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+		mapa[i*ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
+		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 2 * ancho + j * 4] = 'X';
+		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
+		mapa[i + 3 * ancho + j * 4] = 'X';
+		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+		// Metemos los bordes al vector de bordes
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 305; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 244; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 62; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux + 62; auxBorde.B = auxPunto;
+		auxPunto.x = xAux + 183; auxPunto.y = yAux; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+		break;
+
+	case 'n':
+		aux.rectTileset.x = 0 * 122;//1
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//2
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//3
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 31;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//4
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//5
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//6
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 62;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//7
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//8
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//9
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//10
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 366;
+		aux.y = yAux + 93;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//11
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 61;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//12
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//13
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 305;
+		aux.y = yAux + 124;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//14
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 122;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//15
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 244;
+		aux.y = yAux + 155;
+		vecTile.push_back(aux);
+		aux.rectTileset.x = 0 * 122;//16
+		aux.rectTileset.y = 0 * 83;
+		aux.x = xAux + 183;
+		aux.y = yAux + 186;
+		vecTile.push_back(aux);
+
+		break;
+	}
+
+}
+
+void::EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa, int& anch){
+	//mapa = new GrafoMapa();
+	std::ifstream f; char aux = 'p';
+	int ancho = 0;
+	int alto = 0;
+	f.open(txt, std::ios::in);
+	f >> ancho;
+	f >> alto;
+	f.get(aux);
+	anch = ancho;
+	mapa.resize(24 * ancho*alto);
+	for (size_t i = 0; i < ancho; i++)
+	{
+		for (size_t j = 0; j < alto; j++)
+		{
+			if (!f.eof()){
+				f.get(aux);
+				if (aux == '\n') f.get(aux);
+				cargaTile(aux, i, j, mapa, ancho);
+			}
+		}
+	}
+	f.close();
+}
 void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
 	std::ifstream f;
 	FMOD::Sound* sound;
