@@ -128,7 +128,12 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	rectZonaOscura.x = 1000; rectZonaOscura.y = 0;
 	hasTorch = false;
 	alpha = 255;
-	pJuego->getTextura(TZonaOscura)->setBlendMode(SDL_BLENDMODE_BLEND);
+
+	mFogOfWar = SDL_CreateRGBSurface(0, pJuego->getScreenWidth(), pJuego->getScreenHeight(), 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+	SDL_Rect screenRect = { 0, 0, pJuego->getScreenWidth(), pJuego->getScreenHeight() };
+	SDL_FillRect(mFogOfWar, &screenRect, 0xFF202020);
+	pTextMFogOfWar = SDL_CreateTextureFromSurface(pJuego->getRender(), mFogOfWar);
+
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
@@ -160,12 +165,12 @@ void Nivel1::draw(){
 	rectZonaOscura.x -= camara.x;
 	rectZonaOscura.y -= camara.y;
 	
-	if (hasTorch){
-		
-		pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
+	/*if (hasTorch){
+		DrawSurface(mFogOfWar, 0, 0);
+		//pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
 		//pJuego->getTextura(TAntorcha)->draw(pJuego->getRender(), camara, camara, 255-alpha);
 	}
-	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
+	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);*/
 	setCamara(0,0); //Se reinicia el offset a 0
 	int x = rand() % 100;
 	if (x >= 60){
@@ -185,6 +190,11 @@ void Nivel1::draw(){
 
 	
 	pJuego->getTextura(TLuz)->draw(pJuego->getRender(),pJuego->getNieblaRect() ,camara);
+	DrawSurface(pTextMFogOfWar);
+}
+void Nivel1::DrawSurface(SDL_Texture* in_Text){
+
+	SDL_RenderCopy(pJuego->getRender(), in_Text, NULL, NULL); //const SDL_Rect* srcrect,	const SDL_Rect* dstrect);
 }
 void Nivel1::swPlayer(){
 	SDL_Rect aux;
@@ -246,7 +256,70 @@ void Nivel1::onKeyUp(char k) {
 		break;
 	}
 }
+void Nivel1::RemoveFogOfWar(int in_X, int in_Y){
+	const int halfWidth = pJuego->getTextura(TPunch)->getW()/ 2;
+	const int halfHeight = pJuego->getTextura(TPunch)->getH() / 2;
 
+	SDL_Rect sourceRect = { 0, 0, pJuego->getTextura(TPunch)->getW(), pJuego->getTextura(TPunch)->getH() };
+	SDL_Rect destRect = { in_X - halfWidth, in_Y - halfHeight, pJuego->getTextura(TPunch)->getW(), pJuego->getTextura(TPunch)->getH() };
+
+	// Make sure our rects stays within bounds
+	if (destRect.x < 0)
+	{
+		sourceRect.x -= destRect.x; // remove the pixels outside of the surface
+		sourceRect.w -= sourceRect.x; // shrink to the surface, not to offset fog
+		destRect.x = 0;
+		destRect.w -= sourceRect.x; // shrink the width to stay within bounds
+	}
+	if (destRect.y < 0)
+	{
+		sourceRect.y -= destRect.y; // remove the pixels outside
+		sourceRect.h -= sourceRect.y; // shrink to the surface, not to offset fog
+		destRect.y = 0;
+		destRect.h -= sourceRect.y; // shrink the height to stay within bounds
+	}
+
+	int xDistanceFromEdge = (destRect.x + destRect.w) - mFogOfWar->w;
+	if (xDistanceFromEdge > 0) // we're busting
+	{
+		sourceRect.w -= xDistanceFromEdge;
+		destRect.w -= xDistanceFromEdge;
+	}
+	int yDistanceFromEdge = (destRect.y + destRect.h) - mFogOfWar->h;
+	if (yDistanceFromEdge > 0) // we're busting
+	{
+		sourceRect.h -= yDistanceFromEdge;
+		destRect.h -= yDistanceFromEdge;
+	}
+
+	SDL_LockSurface(mFogOfWar);
+
+	Uint32* destPixels = (Uint32*)mFogOfWar->pixels;
+	Uint32* srcPixels = (Uint32*)pJuego->getTextura(TPunch)->getSurface()->pixels;
+
+	static bool keepFogRemoved = false;
+
+	for (int x = 0; x < destRect.w; ++x)
+	{
+		for (int y = 0; y < destRect.h; ++y)
+		{
+			Uint32* destPixel = destPixels + (y + destRect.y) * mFogOfWar->w + destRect.x + x;
+			Uint32* srcPixel = srcPixels + (y + sourceRect.y) * pJuego->getTextura(TPunch)->getW() + sourceRect.x + x;
+
+			unsigned char* destAlpha = (unsigned char*)destPixel + 3; // fetch alpha channel
+			unsigned char* srcAlpha = (unsigned char*)srcPixel + 3; // fetch alpha channel
+			if (keepFogRemoved == true && *srcAlpha > 0)
+			{
+				continue; // skip this pixel
+			}
+
+			*destAlpha = *srcAlpha;
+		}
+	}
+
+	SDL_UnlockSurface(mFogOfWar);
+	pTextMFogOfWar = SDL_CreateTextureFromSurface(pJuego->getRender(), mFogOfWar);
+}
 Nivel1::~Nivel1()
 {
 }

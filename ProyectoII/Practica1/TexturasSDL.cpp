@@ -44,6 +44,7 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 		}
 		w = pSurface->w;
 		h = pSurface->h;
+		pTexSurface=  pSurface;
 	}
 }
 //-------------------------------------------------------------------------------------------------------

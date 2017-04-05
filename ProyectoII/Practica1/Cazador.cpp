@@ -32,6 +32,7 @@ void Cazador::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!
 		rect.x -= aux.x;
 		rect.y -= aux.y;
 	}
+	static_cast<Nivel1*>(pJuego->estados.top())->RemoveFogOfWar((pJuego->getScreenWidth() / 2 )+ 50, (pJuego->getScreenHeight() / 2 )+ 50);
 	pJuego->getTextura(et)->draw(pJuego->getRender(),anim, rect);
 	static_cast<Antorcha*>(mapaComponentes.at("Antorcha"))->draw();
 	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();

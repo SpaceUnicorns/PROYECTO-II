@@ -10,6 +10,7 @@ class TexturasSDL
 private:
 	int w, h;
 	SDL_Texture* pTexture;
+	SDL_Surface* pTexSurface;
 
 public:
 	TexturasSDL();
@@ -24,6 +25,7 @@ public:
 	void setBlendMode(SDL_BlendMode blending);
 	int getW();
 	int getH();
+	SDL_Surface* getSurface(){ return pTexSurface; }
 	void load(SDL_Renderer* pRenderer, std::string const& nombArch);			// : Carga la imagen del archivo.En caso de
 	//error lo muestra y devuelve false, y en otro caso genera la textura.Cuidado con la anterior textura.
 
