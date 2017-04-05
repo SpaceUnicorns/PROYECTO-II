@@ -1,5 +1,7 @@
 #pragma once
 #include "Componente.h"
+#include "Enemigo.h"
+
 class Deteccion :
 	public Componente
 {
@@ -12,6 +14,7 @@ public:
 	bool recolectorIn(float& dist);
 
 private:
+	Enemigo* enemy;
 	float radio;
 	bool detectado;
 };

@@ -1,7 +1,8 @@
 #include "Enemigo.h"
 
 
-Enemigo::Enemigo(juegoPG * juego, Cazador* hunter, Recolector* collector, int px, int py) : ObjetoPG (juego,px,py),cazador(hunter), recolector(collector)
+Enemigo::Enemigo(juegoPG * juego, Cazador* hunter, Recolector* collector, int px, int py) : ObjetoPG (juego,px,py),
+cazador(hunter), recolector(collector), estado(EstadoEnemigo::Quieto)
 {
 	activo = true;
 	//newComponente(new ColisionBox(this), "ColisionBox");

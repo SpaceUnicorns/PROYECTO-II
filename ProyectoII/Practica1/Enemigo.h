@@ -4,6 +4,10 @@
 #include "Cazador.h"
 #include "Recolector.h"
 struct Pos { float x, y; };
+enum EstadoEnemigo
+{
+	Quieto, Moviendo, Atacando, Atrapado
+};
 class Enemigo :
 	public ObjetoPG
 {
@@ -20,6 +24,7 @@ public:
 		if (chachiPiruli == 0)objetivo = cazador; 
 		else objetivo = recolector; 
 	}
+	void setEstado(EstadoEnemigo est){ estado = est; }
 	void activaFollow() { /*std::cout <</* "ACTIVOOOOOOO" <<"  TARGET  "<< objetivo->nombre <<std::endl;*/}
 	void desactivaFollow() { /*std::cout << "DESACTIVA FOLLOW" << std::endl;*/ };
 	Pos getPosIni() { return posIni; }
@@ -27,6 +32,7 @@ public:
 	int life;
 
 protected:
+	EstadoEnemigo estado;
 	Pos posIni;
 	Cazador* cazador;
 	Recolector* recolector;
