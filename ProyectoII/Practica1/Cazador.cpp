@@ -17,6 +17,7 @@ Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
 	anim.x = anim.y = 0;
 	pintado = false;
 	activo = true;
+	equipo = "Trampa";
 }
 
 

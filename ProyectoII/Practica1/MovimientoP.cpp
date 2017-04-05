@@ -4,6 +4,8 @@
 #include "Recolector.h"
 #include "ObjetoPG.h"
 #include "Mochila.h"
+#include "Cazador.h"
+#include "TrampaAbierta.h"
 
 
 MovimientoP::MovimientoP(ObjetoJuego* ent) : Componente(ent)
@@ -30,6 +32,8 @@ void MovimientoP::update(){
 
 	nextPos.x = nextPos.y = 0;
 	
+	
+
 	//RECOLECTOR PUEDE COGER OBJETOS
 	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos,info) == 2) {
 		if (dynamic_cast<Recolector*>(pObj)) {
@@ -41,6 +45,15 @@ void MovimientoP::update(){
 			}
 		}
 	}
+	// Usa el objeto Trampa
+	if (pObj->getPJuego()->input.e && static_cast<Cazador*>(pObj) && static_cast<Cazador*>(pObj)->getEquipo() == "Trampa"){
+		static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().push_back(new TrampaAbierta(pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y - 50));
+		static_cast<Mochila*> (pObj->dameComponente("Mochila"))->removeItem("Trampa",1);
+		if (!static_cast<Mochila*> (pObj->dameComponente("Mochila"))->findItem("Trampa")){
+			static_cast<Cazador*>(pObj)->setEquipo("");
+		}
+	}
+
 	pObj->getPJuego()->input.e = false;
 	
 	//MOVIMIENTO DIRECCIONES
