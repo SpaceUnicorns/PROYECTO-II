@@ -1,16 +1,21 @@
 #include "MCrafteo.h"
 #include "TexturasSDL.h"
+#include "Hacha.h"
 #include "Cuerda.h"
+#include "Pala.h"
+#include "Pico.h"
+#include "Trampa.h"
+#include "Antorcha.h"
 #include "ObjetoPG.h"
 
 MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos), mochila(NULL)
 {
 	mochila = m;
 	crafteo.resize(6);
-		crafteo = { "Antorcha", "Cuerda", "Hacha", "Pico", "Pala", "TrampaAbierta" };
+		crafteo = { "Antorcha", "Cuerda", "Hacha", "Pico", "Pala", "Trampa" };
 	
 	equipables = { //5 elems
-		{ "Antorcha", 902, 77 },{ "Hacha", 746, 76 },  { "Pico", 1054, 76 }, { "Pala", 820, 216 }, { "TrampaAbierta", 982, 216 }
+		{ "Antorcha", 902, 77 },{ "Hacha", 746, 76 },  { "Pico", 1054, 76 }, { "Pala", 820, 216 }, { "Trampa", 982, 216 }
 	};
 	materiales = { //8 elems
 		{ "Madera", 725, 431 }, { "Piedra", 838, 430 }, { "Hueso", 956, 430 }, { "Cebo", 1071, 430 },
@@ -175,21 +180,51 @@ void MCrafteo::craftear(){
 	if (crafteo[numPag] == "Cuerda"){ //la cuerda lo complica todo :V pensaba que eran solo herramientas
 		kek = new Cuerda(pJuego, 0, 0);
 	}
-	else if (crafteo[numPag] == "Antorcha"){} //cuando esten las clases de pondria PE:kek = new Antorcha(pJuego, 0, 0);
-	else if (crafteo[numPag] == "Hacha"){}
-	else if (crafteo[numPag] == "Pico"){}
-	else if (crafteo[numPag] == "Pala"){}
-	else if (crafteo[numPag] == "TrampaCerrada"){}
+	else if (crafteo[numPag] == "Antorcha"){
+		kek = new Antorcha(pJuego, 0, 0);
+	} //cuando esten las clases de pondria PE:kek = new Antorcha(pJuego, 0, 0);
+	else if (crafteo[numPag] == "Hacha"){
+		kek = new Hacha(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Pico"){
+		kek = new Pico(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Pala"){
+		kek = new Pala(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Trampa"){
+		kek = new Trampa(pJuego, 0, 0);
+	}
 
-	if (kek != nullptr){
+	if (kek != nullptr) {
+		unsigned int i = 0;
+		bool exito = true;
+		while (i + 1 < kek->receta.size() && exito) {
+			if (!(mochila->findItem(kek->receta[i + 1]) && (mochila->getCantidad(kek->receta[i + 1]) >= atoi(kek->receta[i].c_str()))))
+				exito = false;
+
+			i += 2;
+		}
+		if (exito) {
+			for (unsigned int i = 0; i + 1 < kek->receta.size(); i += 2) {
+				//std::cout << "Necesitas: " << kek->receta[i + 1] << "\n";
+				mochila->removeItem(kek->receta[i + 1], atoi(kek->receta[i].c_str())); //se eliminan los objetos de la mochila
+			}
+			mochila->newItem(kek->nombre[1], 1); //y se añade lo crafteado
+
+		}
+	}
+
+	/*if (kek != nullptr){
 		for (unsigned int i = 0; i + 1 < kek->receta.size(); i += 2){ //comprobacion de objetos
+			std::cout << "Necesitas: " << kek->receta[i + 1] << "\n";
 			if (mochila->findItem(kek->receta[i + 1]))
 				if (mochila->getCantidad(kek->receta[i + 1]) >= atoi(kek->receta[i].c_str())){//si está...
 					mochila->removeItem(kek->receta[i + 1], atoi(kek->receta[i].c_str())); //se eliminan los objetos de la mochila
 					mochila->newItem(kek->nombre[1], 1); //y se añade lo crafteado
 				}//aqui hay que cambiarlo mas adelante, por el tema de las 2 mochilas, puta cuerda tt
 		}
-	}
+	}*/
 	delete kek;
 }
 
