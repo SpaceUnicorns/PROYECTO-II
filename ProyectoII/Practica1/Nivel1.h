@@ -22,8 +22,8 @@ public:
 	void RemoveFogOfWar(int in_X, int in_Y);
 
 protected:
-	SDL_Surface *mFogOfWar;
-	SDL_Texture* pTextMFogOfWar;
+	SDL_Surface *mFogOfWar, *punch;
+	SDL_Texture* pTextMFogOfWar, *pTexPunch;
 	SDL_Rect animNieve1, animNieve2, rectZonaOscura;
 	bool hasTorch;
 	int x, y, alpha;

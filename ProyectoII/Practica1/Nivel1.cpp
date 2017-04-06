@@ -124,15 +124,19 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 
-	rectZonaOscura.h = pJuego->getScreenHeight(); rectZonaOscura.w = pJuego->getScreenWidth();
+	rectZonaOscura.h = 600; rectZonaOscura.w = 600;
 	rectZonaOscura.x = 1000; rectZonaOscura.y = 0;
 	hasTorch = false;
 	alpha = 255;
 
-	mFogOfWar = SDL_CreateRGBSurface(0, pJuego->getScreenWidth(), pJuego->getScreenHeight(), 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-	SDL_Rect screenRect = { 0, 0, pJuego->getScreenWidth(), pJuego->getScreenHeight() };
+	mFogOfWar = SDL_CreateRGBSurface(0, rectZonaOscura.w, rectZonaOscura.h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+	SDL_Rect screenRect = { 0, 0, rectZonaOscura.w, rectZonaOscura.h};
 	SDL_FillRect(mFogOfWar, &screenRect, 0xFF202020);
 	pTextMFogOfWar = SDL_CreateTextureFromSurface(pJuego->getRender(), mFogOfWar);
+
+	punch = SDL_CreateRGBSurface(0, 32, 32, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0);
+	//SDL_Rect screenRect = { 0, 0, pJuego->getScreenWidth(), pJuego->getScreenHeight() };
+	//SDL_FillRect(punch, &screenRect, 0xFF202020);
 
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
@@ -165,12 +169,13 @@ void Nivel1::draw(){
 	rectZonaOscura.x -= camara.x;
 	rectZonaOscura.y -= camara.y;
 	
-	/*if (hasTorch){
-		DrawSurface(mFogOfWar, 0, 0);
+	if (hasTorch){
+		DrawSurface(pTextMFogOfWar);
+		RemoveFogOfWar(500 + 16, 250 + 16);
 		//pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
 		//pJuego->getTextura(TAntorcha)->draw(pJuego->getRender(), camara, camara, 255-alpha);
 	}
-	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);*/
+	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
 	setCamara(0,0); //Se reinicia el offset a 0
 	int x = rand() % 100;
 	if (x >= 60){
@@ -190,11 +195,12 @@ void Nivel1::draw(){
 
 	
 	pJuego->getTextura(TLuz)->draw(pJuego->getRender(),pJuego->getNieblaRect() ,camara);
-	DrawSurface(pTextMFogOfWar);
+	
 }
 void Nivel1::DrawSurface(SDL_Texture* in_Text){
-
-	SDL_RenderCopy(pJuego->getRender(), in_Text, NULL, NULL); //const SDL_Rect* srcrect,	const SDL_Rect* dstrect);
+	rectZonaOscura.x - camara.x;
+	rectZonaOscura.y - camara.y;
+	SDL_RenderCopy(pJuego->getRender(), in_Text, NULL, &rectZonaOscura); //const SDL_Rect* srcrect,	const SDL_Rect* dstrect);
 }
 void Nivel1::swPlayer(){
 	SDL_Rect aux;
@@ -257,11 +263,11 @@ void Nivel1::onKeyUp(char k) {
 	}
 }
 void Nivel1::RemoveFogOfWar(int in_X, int in_Y){
-	const int halfWidth = pJuego->getTextura(TPunch)->getW()/ 2;
-	const int halfHeight = pJuego->getTextura(TPunch)->getH() / 2;
+	const int halfWidth = punch->w/ 2;
+	const int halfHeight = punch->h / 2;
 
-	SDL_Rect sourceRect = { 0, 0, pJuego->getTextura(TPunch)->getW(), pJuego->getTextura(TPunch)->getH() };
-	SDL_Rect destRect = { in_X - halfWidth, in_Y - halfHeight, pJuego->getTextura(TPunch)->getW(), pJuego->getTextura(TPunch)->getH() };
+	SDL_Rect sourceRect = { 0, 0, punch->w, punch->h };
+	SDL_Rect destRect = { in_X - halfWidth, in_Y - halfHeight, punch->w, punch->h };
 
 	// Make sure our rects stays within bounds
 	if (destRect.x < 0)
@@ -295,16 +301,16 @@ void Nivel1::RemoveFogOfWar(int in_X, int in_Y){
 	SDL_LockSurface(mFogOfWar);
 
 	Uint32* destPixels = (Uint32*)mFogOfWar->pixels;
-	Uint32* srcPixels = (Uint32*)pJuego->getTextura(TPunch)->getSurface()->pixels;
+	Uint32* srcPixels = (Uint32*)punch->pixels;
 
-	static bool keepFogRemoved = false;
+	static bool keepFogRemoved = true;
 
 	for (int x = 0; x < destRect.w; ++x)
 	{
 		for (int y = 0; y < destRect.h; ++y)
 		{
 			Uint32* destPixel = destPixels + (y + destRect.y) * mFogOfWar->w + destRect.x + x;
-			Uint32* srcPixel = srcPixels + (y + sourceRect.y) * pJuego->getTextura(TPunch)->getW() + sourceRect.x + x;
+			Uint32* srcPixel = srcPixels + (y + sourceRect.y) * punch->w + sourceRect.x + x;
 
 			unsigned char* destAlpha = (unsigned char*)destPixel + 3; // fetch alpha channel
 			unsigned char* srcAlpha = (unsigned char*)srcPixel + 3; // fetch alpha channel
