@@ -44,6 +44,7 @@ void Pausa::draw() {
 void Pausa::update() 
 {
 	temp++;
+	bool enter = pJuego->input.enter;
 
 	if (temp >= 8) 
 	{
@@ -58,7 +59,8 @@ void Pausa::update()
 				rect.y = aux - 7;
 				estado = Opciones;
 			}
-			else if (pJuego->input.enter) {
+			else if (enter) {
+				pJuego->input.enter = false;
 				pJuego->estados.pop();
 			}
 			break;
@@ -72,8 +74,9 @@ void Pausa::update()
 				rect.y = aux + 93;
 				estado = Menu;
 			}
-			else if (pJuego->input.enter) {
+			else if (enter) {
 				//push estado nuevo --> Opciones
+				pJuego->input.enter = false;
 				std::cout << "me voy a opciones --- en proceso de creacion ---\n";
 			}
 			break;
@@ -87,7 +90,8 @@ void Pausa::update()
 				rect.y = aux - 107;
 				estado = Resume;
 			}
-			else if (pJuego->input.enter) {
+			else if (enter) {
+				pJuego->input.enter = false;
 				EstadoJuego* borrar = pJuego->estados.top();
 				pJuego->estados.pop();
 				pJuego->estados.push(new MenuPG(pJuego, 0));
