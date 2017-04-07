@@ -46,7 +46,7 @@ void Pausa::update()
 	temp++;
 	bool enter = pJuego->input.enter;
 
-	if (temp >= 8) 
+	if (temp >= 7) 
 	{
 		switch (estado) 
 		{
