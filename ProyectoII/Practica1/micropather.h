@@ -128,7 +128,8 @@ namespace micropather
 		aren't really human readable, normally you print out some concise info (like "(1,2)")
 		without an ending newline.
 		*/
-		virtual void  PrintStateInfo(void* state) = 0;
+		virtual void PrintStateInfo(void* state) = 0;
+		virtual bool IsThisTheEnd(void* state, void* endState) = 0;
 	};
 
 

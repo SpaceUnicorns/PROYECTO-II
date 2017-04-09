@@ -30,10 +30,9 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	TrianguloBorde auxBorde; 
 	Punto auxPunto;
 	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 122; rectAux.h = 83;
-	std::vector<char> mapaAux;
-	int ancho;
-	cargaMapa("../docs/mapa.txt", mapaAux, ancho);
-	mapa->creaMapa(mapaAux, ancho);
+	std::vector<TrianguloBorde> mapaAux;
+	cargaMapa("../docs/mapa.txt", mapaAux);
+	mapa->creaMapa(mapaAux);
 	//f.open("../docs/mapa.txt", std::ios::in);
 	/*while (!f.eof()){
 		//f >> x;

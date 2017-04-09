@@ -672,8 +672,8 @@ int MicroPather::Solve(void* startNode, void* endNode, vector< void* >* path, fl
 	while (!open.Empty())
 	{
 		PathNode* node = open.Pop();
-
-		if (node->state == endNode)
+		//if (node->state == endNode)
+		if (graph->IsThisTheEnd(node->state, endNode))
 		{
 			GoalReached(node, startNode, endNode, path);
 			*cost = node->costFromStart;

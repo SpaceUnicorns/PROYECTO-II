@@ -39,7 +39,7 @@ EstadoPG::~EstadoPG()
 	}
 	
 }
-void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int ancho)
+void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa)
 {
 	//conveniente recibir un vector de char para codificar tambien las colisiones del seguimiento
 	std::pair<int, int> tiles[16];
@@ -56,24 +56,6 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 	TrianguloBorde auxBorde;
 
 	// Aqui definimos la posicion en la textura de los tiles que usaremos
-
-	mapa[i*ancho + j * 4 + 1] = 't';
-	mapa[i+1*ancho + j * 4 + 1] = 't';
-	mapa[i+1*ancho + j * 4 + 2] = 't';
-	mapa[i+2*ancho + j * 4] = 't';
-	mapa[i+2*ancho + j * 4 + 1] = 't';
-	mapa[i+2* ancho + j * 4 + 2] = 't';
-	mapa[i+3* ancho + j * 4] = 't';
-	mapa[i+3* ancho + j * 4 + 1] = 't';
-	mapa[i+3* ancho + j * 4 + 2] = 't';
-	mapa[i+3* ancho + j * 4 + 3] = 't';
-	mapa[i+4* ancho + j * 4] = 't';
-	mapa[i+4* ancho + j * 4 + 1] = 't';
-	mapa[i+4* ancho + j * 4 + 2] = 't';
-	mapa[i+5* ancho + j * 4 + 1] = 't';
-	mapa[i+5* ancho + j * 4 + 2] = 't';
-	mapa[i+6* ancho + j * 4 + 1] = 't';
-
 
 	switch (c)
 	{
@@ -160,15 +142,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 2 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+		
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 244; auxPunto.y = yAux + 62; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
@@ -262,16 +236,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
-
+		
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 61; auxPunto.y = yAux + 93; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 366; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
@@ -365,15 +330,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 305; auxPunto.y = yAux + 31; auxBorde.B = auxPunto;
@@ -471,15 +428,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 305; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
@@ -577,14 +526,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
-
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
@@ -682,19 +624,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-
+		
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 427; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
@@ -784,14 +714,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 427; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
@@ -885,14 +808,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 366; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
@@ -986,14 +902,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 2 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 305; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 122; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
@@ -1087,15 +996,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
@@ -1189,19 +1090,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 2 * ancho + j * 4] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+		
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 61; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
@@ -1291,19 +1180,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+		
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 305; auxPunto.y = yAux + 31; auxBorde.B = auxPunto;
@@ -1393,19 +1270,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 61; auxPunto.y = yAux + 93; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 305; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
@@ -1496,23 +1361,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux; auxPunto.y = yAux + 124; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 488; auxPunto.y = yAux + 124; auxBorde.B = auxPunto;
@@ -1606,10 +1455,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
+	
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 31; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 427; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
@@ -1699,16 +1545,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+		
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 183; auxPunto.y = yAux; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
@@ -1802,15 +1639,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 		vecTile.push_back(aux);
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 2 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+		
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 244; auxPunto.y = yAux + 62; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
@@ -1905,15 +1734,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 4 * ancho + j * 4] = 'X';
-		mapa[i + 5 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
-
+		
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 61; auxPunto.y = yAux + 93; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 366; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
@@ -2008,14 +1829,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 
 
 		// Metemos a un vector de char si se puede traspasar el tile o no
-		mapa[i*ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 1] = 'X';
-		mapa[i + 1 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 2 * ancho + j * 4] = 'X';
-		mapa[i + 2 * ancho + j * 4 + 2] = 'X';
-		mapa[i + 3 * ancho + j * 4] = 'X';
-		mapa[i + 3 * ancho + j * 4 + 3] = 'X';
-		mapa[i + 6 * ancho + j * 4 + 1] = 'X';
+		
 		// Metemos los bordes al vector de bordes
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
 		auxPunto.x = xAux + 305; auxPunto.y = yAux + 217; auxBorde.B = auxPunto;
@@ -2118,7 +1932,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<char>& mapa, int anch
 
 }
 
-void::EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa, int& anch){
+void::EstadoPG::cargaMapa(std::string txt, std::vector<TrianguloBorde>& mapa){
 	//mapa = new GrafoMapa();
 	std::ifstream f; char aux = 'p';
 	int ancho = 0;
@@ -2127,16 +1941,14 @@ void::EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa, int& anch){
 	f >> ancho;
 	f >> alto;
 	f.get(aux);
-	anch = ancho;
-	mapa.resize(24 * ancho*alto);
-	for (size_t i = 0; i < ancho; i++)
+	for (size_t i = 0; i <= alto; i++)
 	{
-		for (size_t j = 0; j < alto; j++)
+		for (size_t j = 0; j <= ancho; j++)
 		{
 			if (!f.eof()){
 				f.get(aux);
 				if (aux == '\n') f.get(aux);
-				cargaTile(aux, i, j, mapa, ancho);
+				cargaTile(aux, i, j, mapa);
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 
 class GrafoMapa : public micropather::Graph
 {
-	std::vector<char> mapa, mapaAux;
+	std::vector<TrianguloBorde> mapa, mapaAux;
 	std::vector<int> niveles;
 	int aux, nivelAct;
 	micropather::MicroPather* pather;
@@ -15,7 +15,7 @@ public:
 	{
 		niveles.push_back(0);
 		nivelAct = aux = 0;
-		pather = new micropather::MicroPather(this, 50);	// Use a very small memory block to stress the pather
+		pather = new micropather::MicroPather(this, 100);	// Use a very small memory block to stress the pather
 	}
 
 	void solve(void* startState, void* endState, std::vector< void* >* path, float* totalCost)
@@ -27,157 +27,28 @@ public:
 	{
 
 		void* startState, *endState;
-		transformaCoord(startX, startY);
-		transformaCoord(endX, endY);
 		startState = XYToNode(startX, startY);
 		endState = XYToNode(endX, endY);
 		int x, y, xx, yy;
-		NodeToXY(startState, &x, &y);
-		NodeToXY(endState, &xx, &yy);
 		pather->Solve(&startState, &endState, camino, totalCost);
-		/*for (unsigned int i = 0; i < path.size(); i++)
-		{
-			NodeToXY(path[i], &x, &y);
-			camino->push_back(std::make_pair(x, y));
-		}*/
-	}
-	void creaMapa(char c)
-	{
-		switch (c)
-		{
-		case 's':
-			mapa.push_back('s');
-			mapaAux.push_back('s');
-			aux++;
-			break;
-		case 't':
-			mapa.push_back('t');
-			mapaAux.push_back('t');
-			aux++;
-			break;
-		case 'q':
-			mapa.push_back('X');
-			mapaAux.push_back('X');
-			aux++;
-			break;
-		case 'w':
-			mapa.push_back('X');
-			mapaAux.push_back('X');
-			aux++;
-			break;
-		case 'e':
-			mapa.push_back('X');
-			mapaAux.push_back('X');
-			aux++;
-			break;
-		case 'r':
-			mapa.push_back('X');
-			mapaAux.push_back('X');
-			aux++;
-			break;
-		case 'X':
-			mapa.push_back('X');
-			mapaAux.push_back('X');
-			aux++;
-			break;
-		case 'L':
-			niveles[nivelAct] = aux;
-			niveles.push_back(0);
-			nivelAct++;
-			aux = 0;
-			break;
-
-		}
 	}
 
-	void creaMapa(std::vector<char>& c, int& ancho)
+	void creaMapa(std::vector<TrianguloBorde>& c)
 	{
-		niveles.resize(1);
-		niveles[0] = ancho*4;
+		//niveles.resize(1);
+		//niveles[0] = ancho*4;
 		mapa = c;
 		for (size_t i = 0; i < mapa.size(); i++)
 		{
 			mapaAux.push_back(mapa[i]);
 		}
 	}
-	void transformaCoord(int& x, int& y)
-	{
-		int cuadranteX;
-		int cuadranteY;
-		if (y < 62) cuadranteY = 0;
-		if (x < 123) cuadranteX = 0;
-		cuadranteY = (y / 61);
-		cuadranteX = x / 122;
 
-		int Px, Py;
-		Px = x - cuadranteX * 122;
-		Py = y - (cuadranteY) * 61;
-
-		/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
-		x/122 == cuadrante de x en el que esta
-		y/62  == cuadrante de y en el que esta
-		hallado este cuadrante siguen existiendo cinco posible posiciones finales
-		El centro del cuadrante o cualquiera de sus esquinas que pertenecerían a otro tile
-
-		_____________
-		|    / \    |
-		|  /     \  |
-		|  \     /  |
-		|____\_/____|
-
-		*/
-
-		if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) >= 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) >= 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) >= 0)){
-			x = cuadranteX; y = cuadranteY;
-		}
-		else if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) >= 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) >= 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) >= 0)){
-			x = cuadranteX; y = cuadranteY;
-		}
-		// Si la posicion del objeto no esta en ninguno de los dos triangulos centrales comprobamo su x y su y con el centro del cuadrante
-		// Si ambas son mayores marcamos la casilla inferior derecha y asi sucesivamente
-		else
-		{
-			if (Px > 61)
-			{
-				if (Py < 31)
-				{
-					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX + 1; y = cuadranteY - 1; }
-					else { x = cuadranteX + 1 ; y = cuadranteY - 1; }
-				}
-				else
-				{
-					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX + 1; y = cuadranteY + 1; }
-					else { x = cuadranteX + 1; y = cuadranteY + 1; }
-				}
-			}
-			else
-			{
-				if (Py < 31)
-				{
-					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX; y = cuadranteY - 1; }
-					else { x = cuadranteX; y = cuadranteY - 1; }
-				}
-				else
-				{
-					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX; y = cuadranteY + 1; }
-					else { x = cuadranteX; y = cuadranteY + 1; }
-				}
-			}
-		}
-
-		if (x < 0) x = 0;
-		if (y < 0) y = 0;
-		if (x >= niveles[0]) x = niveles[0]-1;
-		//if (y >= niveles.size()) y = niveles.size()-1;
-		
-
-
-
-	}
 	void actualizaMapa(std::vector<ObjetoJuego*> obj)
 	{
-		for (int i = 0; i < mapa.size(); i++){
-			mapa[i] = mapaAux[i];
+		mapa.clear();
+		for (int i = 0; i < mapaAux.size(); i++){
+			mapa.push_back(mapaAux[i]);
 		}
 		for (ObjetoJuego* o : obj)
 		{
@@ -185,26 +56,75 @@ public:
 
 				SDL_Rect rec = static_cast<ObjetoPG*>(o)->getAbsRect();
 				int x, y;
-				x = rec.x + rec.w*0.5;
+				x = rec.x + rec.w*0.3;
 				y = rec.y + rec.h*0.8;
-				transformaCoord(x,y);
+				
+				TrianguloBorde tr;
+				tr.A.x = x; tr.A.y = y;
+				tr.B.x = x + (rec.w*0.3); tr.B.y = y;
+				tr.C.x = x + (rec.w*0.15); tr.C.y = y + (rec.h*0.2);
 
 				//std::cout << y*niveles[0] + x << "\n";
-				mapa[y*niveles[0] + x] = 'X';
+				mapa.push_back(tr);
 			}
 		}
 	}
 
 	void NodeToXY(void* node, int* x, int* y)
 	{
-		intptr_t index = (intptr_t)node;
-		*y = index / niveles[0];
-		*x = index - *y * niveles[0];
+		Punto* index = (Punto*)node;
+		*y = index->y;
+		*x = index->x;
 	}
 
 	void* XYToNode(int x, int y)
 	{
-		return (void*)(y*niveles[0] + x);
+		Punto* node = new Punto();
+		node->x = x;
+		node->y = y;
+		void* index = (void*)node;
+		return index;
+	}
+
+	bool inTriangle(TrianguloBorde tr, Punto const & P){
+		int x = triangleOrientation(tr);
+		TrianguloBorde auxT;
+		if (x >= 0){// Orientación positiva
+			auxT.A = tr.A; auxT.B = tr.B; auxT.C = P;
+			if (triangleOrientation(auxT) >= 0){
+				auxT.A = tr.A; auxT.B = P; auxT.C = tr.C;
+				if (triangleOrientation(auxT) >= 0){
+					auxT.A = P; auxT.B = tr.B; auxT.C = tr.C;
+					if (triangleOrientation(auxT) >= 0){
+						return true;
+					}
+					else return false;
+				}
+				else return false;
+			}
+			else return false;
+
+		}
+		else {//Orientación negativa
+			auxT.A = tr.A; auxT.B = tr.B; auxT.C = P;
+			if (triangleOrientation(auxT) < 0){
+				auxT.A = tr.A; auxT.B = P; auxT.C = tr.C;
+				if (triangleOrientation(auxT) < 0){
+					auxT.A = P; auxT.B = tr.B; auxT.C = tr.C;
+					if (triangleOrientation(auxT) < 0){
+						return true;
+					}
+					else return false;
+				}
+				else return false;
+			}
+			else return false;
+		}
+	}
+
+	int triangleOrientation(TrianguloBorde const & tr){
+		static TrianguloBorde s;
+		return ((tr.A.x - tr.C.x)*(tr.B.y - tr.C.y) - (tr.A.y - tr.C.y)*(tr.B.x - tr.C.x));
 	}
 
 	/**
@@ -235,132 +155,167 @@ public:
 		micropather::StateCost nodeCost;
 		int x, y;
 		NodeToXY(state, &x, &y);
-		if (x == 5 && y == 58)
-			std::cout << x << " " << y << "\n";
-		else
-			std::cout << x << " " << y << "\n";
+		Punto p;
+		p.x = x;
+		p.y = y;
+		bool col = false;
+		int j = 0;
+		std::cout << x << " " << y <<"\n";
 		for (int i = 0; i < 8; i++)
 		{
 			switch (i)
 			{
 			case 0:
-				if (y > 1){
-					if (mapa[(y -2)*niveles[0] + x] == 'X')
-						nodeCost = { XYToNode(x, y - 2), 999 };
-					else
-						nodeCost = { XYToNode(x, y - 2), 0.1f };
-					adjacent->push_back(nodeCost);
+				p.y -= 62;
+				while (!col && j < mapa.size())
+				{
+					col = inTriangle(mapa[j], p);
+					j++;
 				}
+				if (j != mapa.size())
+					nodeCost = { XYToNode(p.x, p.y ), 999 };
+				else
+					nodeCost = { XYToNode(p.x, p.y), 0.1f };
+				p.y += 62;
+				col = false;
+				j = 0;
+				adjacent->push_back(nodeCost);
 				break;
 			case 1:
-				if (y > 0 && x > 0){
-					if (y % 2 != 0 || y == 0){
-						if (mapa[(y - 1)*niveles[0] + x - 1] == 'X')
-							nodeCost = { XYToNode(x - 1, y - 1), 999 };
-						else
-							nodeCost = { XYToNode(x - 1, y - 1), 0.1f };
-						adjacent->push_back(nodeCost);
-					}
-					else {
-						if (y > 0){
-							if (mapa[(y - 1)*niveles[0] + x] == 'X')
-								nodeCost = { XYToNode(x, y - 1), 999 };
-							else
-								nodeCost = { XYToNode(x, y - 1), 0.1f };
-						adjacent->push_back(nodeCost);
-						}
-					}
+				p.y -= 31;
+				p.x += 61;
+				while (!col && j < mapa.size())
+				{
+					col = inTriangle(mapa[j], p);
+					j++;
 				}
+				if (j != mapa.size())
+					nodeCost = { XYToNode(p.x, p.y), 999 };
+				else
+					nodeCost = { XYToNode(p.x, p.y), 0.225f };
+				p.y += 31;
+				p.x -= 61;
+				col = false;
+				j = 0;
+				adjacent->push_back(nodeCost);
 				break;
 			case 2:
-				if (x < niveles[0] - 1){
-					if (mapa[(y)*niveles[0] + x + 1] == 'X')
-						nodeCost = { XYToNode(x + 1, y), 999 };
-					else
-						nodeCost = { XYToNode(x + 1, y), 0.1f };
-					adjacent->push_back(nodeCost);
+				p.x += 122;
+				while (!col && j < mapa.size())
+				{
+					col = inTriangle(mapa[j], p);
+					j++;
 				}
+				if (j != mapa.size())
+					nodeCost = { XYToNode(p.x, p.y), 999 };
+				else
+					nodeCost = { XYToNode(p.x, p.y), 0.15f };
+				p.y -= 122;
+				col = false;
+				j = 0;
+				adjacent->push_back(nodeCost);
 				break;
 			case 3:
-				if (y < niveles.size() - 1 && x > 0){
-					if (y % 2 != 0 || y == 0){
-						if (mapa[(y + 1)*niveles[0] + x - 1] == 'X')
-							nodeCost = { XYToNode(x - 1, y + 1), 999 };
-						else
-							nodeCost = { XYToNode(x - 1, y + 1), 0.1f };
-						adjacent->push_back(nodeCost);
-					}
-					else{
-						if (y < niveles.size() - 1){
-							if (mapa[(y + 1)*niveles[0] + x] == 'X')
-								nodeCost = { XYToNode(x, y + 1), 999 };
-							else
-								nodeCost = { XYToNode(x, y + 1), 0.1f };
-							adjacent->push_back(nodeCost);
-						}
-					}
+				p.y += 31;
+				p.x += 61;
+				while (!col && j < mapa.size())
+				{
+					col = inTriangle(mapa[j], p);
+					j++;
 				}
+				if (j != mapa.size())
+					nodeCost = { XYToNode(p.x, p.y), 999 };
+				else
+					nodeCost = { XYToNode(p.x, p.y), 0.225f };
+				p.y -= 31;
+				p.x -= 61;
+				col = false;
+				j = 0;
+				adjacent->push_back(nodeCost);
 				break;
 			case 4:
-				if (y < niveles.size() - 3){
-					if (mapa[(y + 2)*niveles[0] + x] == 'X')
-						nodeCost = { XYToNode(x, y + 2), 999 };
-					else
-						nodeCost = { XYToNode(x, y + 2), 0.1f };
-					adjacent->push_back(nodeCost);
+				p.y += 62;
+				while (!col && j < mapa.size())
+				{
+					col = inTriangle(mapa[j], p);
+					j++;
 				}
+				if (j != mapa.size())
+					nodeCost = { XYToNode(p.x, p.y), 999 };
+				else
+					nodeCost = { XYToNode(p.x, p.y), 0.1f };
+				p.y -= 62;
+				col = false;
+				j = 0;
+				adjacent->push_back(nodeCost);
 				break;
 			case 5:
-				if (y < niveles.size() - 1){
-					if (y % 2 != 0 || y == 0){
-						if (mapa[(y + 1)*niveles[0] + x] == 'X')
-							nodeCost = { XYToNode(x, y + 1), 999 };
-						else
-							nodeCost = { XYToNode(x, y + 1), 0.1f };
-						adjacent->push_back(nodeCost);
-					}
-					else {
-						if (y < niveles.size() - 1 && x < niveles[0]-1){
-							if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
-								nodeCost = { XYToNode(x + 1, y + 1), 999 };
-							else
-								nodeCost = { XYToNode(x + 1, y + 1), 0.1f };
-							adjacent->push_back(nodeCost);
-						}
-					}
+				p.y += 31;
+				p.x -= 61;
+				while (!col && j < mapa.size())
+				{
+					col = inTriangle(mapa[j], p);
+					j++;
 				}
+				if (j != mapa.size())
+					nodeCost = { XYToNode(p.x, p.y), 999 };
+				else
+					nodeCost = { XYToNode(p.x, p.y), 0.225f };
+				p.y -= 31;
+				p.x += 61;
+				col = false;
+				j = 0;
+				adjacent->push_back(nodeCost);
 				break;
 			case 6:
-				if (x > 0){
-					if (mapa[(y)*niveles[0] + x - 1] == 'X')
-						nodeCost = { XYToNode(x - 1, y), 999 };
-					else
-						nodeCost = { XYToNode(x - 1, y), 0.1f };
-					adjacent->push_back(nodeCost);
+				p.x -= 122;
+				while (!col && j < mapa.size())
+				{
+					col = inTriangle(mapa[j], p);
+					j++;
 				}
+				if (j != mapa.size())
+					nodeCost = { XYToNode(p.x, p.y), 999 };
+				else
+					nodeCost = { XYToNode(p.x, p.y), 0.15f };
+				p.x += 122;
+				col = false;
+				j = 0;
+				adjacent->push_back(nodeCost);
 				break;
 			case 7:
-				if (y > 0){
-					if (y % 2 != 0 || y == 0){
-						if (mapa[(y - 1)*niveles[0] + x] == 'X')
-							nodeCost = { XYToNode(x, y - 1), 999 };
-						else
-							nodeCost = { XYToNode(x, y - 1), 0.1f };
-						adjacent->push_back(nodeCost);
-					}
-					else{
-						if (y > 0 && x < niveles[0]-1){
-							if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
-								nodeCost = { XYToNode(x + 1, y - 1), 999 };
-							else
-								nodeCost = { XYToNode(x + 1, y - 1), 0.1f };
-							adjacent->push_back(nodeCost);
-						}
-					}
+				p.y -= 31;
+				p.x -= 61;
+				while (!col && j < mapa.size())
+				{
+					col = inTriangle(mapa[j], p);
+					j++;
 				}
+				if (j != mapa.size())
+					nodeCost = { XYToNode(p.x, p.y), 999 };
+				else
+					nodeCost = { XYToNode(p.x, p.y), 0.225f };
+				p.y += 31;
+				p.x += 61;
+				col = false;
+				j = 0;
+				adjacent->push_back(nodeCost);
 				break;
 			}
 		}
+	}
+
+	virtual bool IsThisTheEnd(void* state, void* endState)
+	{
+		Punto* aux = (Punto*)state;
+		Punto* end = (Punto*)endState;
+
+		SDL_Rect x;
+		x.x = aux->x;
+		x.y = aux->y;
+		x.w = 122;
+		x.h = 62;
+		return aux->compruebaRadio(x, 69);
 	}
 	/**
 	This function is only used in DEBUG mode - it dumps output to stdout. Since void*

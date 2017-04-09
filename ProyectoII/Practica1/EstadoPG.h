@@ -9,17 +9,6 @@
 #include <iostream>
 //#include "GrafoMapa.h"
 
- struct Punto{
-	int x, y;
-	bool compruebaRadio(SDL_Rect target, int radio){
-		Punto centro; centro.y = target.h / 2 + target.y; centro.x = target.w / 2 + target.x;
-		return pow(x - centro.x, 2) + pow(y - centro.y, 2) <= pow(radio, 2);
-	}
-
-};
- struct TrianguloBorde{
-	Punto A, B, C;
-};
 
 class EstadoPG :
 	public EstadoJuego
@@ -39,8 +28,8 @@ public:
 	virtual void paraMusica(std::string music, bool fade);
 	virtual void reproduceAmb(std::string amb, bool fade);
 	virtual void paraAmb(std::string amb, bool fade);
-	void cargaTile(char c, int i, int j, std::vector<char>& mapa, int ancho);
-	virtual void cargaMapa(std::string txt, std::vector<char>&mapa, int& anch);
+	void cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa);
+	virtual void cargaMapa(std::string txt, std::vector<TrianguloBorde>&mapa);
 	virtual void onKeyUp(char k){};
 	virtual void onKeyDown(char k){};
 	virtual std::vector <TrianguloBorde> & getVectBordes() {

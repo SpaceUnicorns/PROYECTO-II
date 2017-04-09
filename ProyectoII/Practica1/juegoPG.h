@@ -17,6 +17,8 @@ enum Texturas_t {
 	TSombra1, TMenuResaltado, TLyov, TZhenia, TEquipables, TMateriales, TCebo, TCuerda, TEnredadera, THueso, TMadera, TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete
 };
 
+
+
 class juegoPG
 {
 public:

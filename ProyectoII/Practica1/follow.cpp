@@ -38,20 +38,15 @@ void follow::doFollow()
 	int x, y, xx, yy;
 
 	// Hallamos las coordenadas de cada objeto y las transformamos a las coordenadas absolutas que ocupan dentro del mapa
-	x = pObj->getAbsRect().x + pObj->getAbsRect().w*0.2;
-	y = pObj->getAbsRect().y + pObj->getAbsRect().h*0.8;
-	xx = target->getAbsRect().x + target->getAbsRect().w*0.2;
-	yy = target->getAbsRect().y + target->getAbsRect().h*0.8;
-	map->transformaCoord(x, y);
-	map->transformaCoord(xx, yy);
-
+	x = (int)(pObj->getAbsRect().x + pObj->getAbsRect().w*0.2);
+	y = (int)(pObj->getAbsRect().y + pObj->getAbsRect().h*0.8);
+	xx = (int)(target->getAbsRect().x + target->getAbsRect().w*0.2);
+	yy = (int)(target->getAbsRect().y + target->getAbsRect().h*0.8);
 
 	/*pObj->setRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
 	pObj->setAbsRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
 	static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);*/
 	//Resolvemos el camino
-	std::cout << x << " " << y << " \n";
-	std::cout << xx << " " << yy << " \n";
 	map->solve(map->XYToNode(x, y), map->XYToNode(xx, yy), &path, &coste);
 	coste = 0;
 	int auxX, auxY;
