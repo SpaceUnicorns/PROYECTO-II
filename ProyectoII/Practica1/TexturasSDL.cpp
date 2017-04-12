@@ -50,7 +50,6 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 //-------------------------------------------------------------------------------------------------------
 void TexturasSDL::draw(SDL_Renderer* prenderer, SDL_Rect const& rect, Uint8 alpha){
 	SDL_SetTextureAlphaMod(pTexture, alpha);
-	
 	SDL_RenderCopy(prenderer, pTexture, nullptr, &rect);  // nullptr, nullptr -> toda la textura en toda la ventana
 }
 void TexturasSDL::draw(SDL_Renderer* prenderer, SDL_Rect const& rectAnim, SDL_Rect& rect, Uint8 alpha){
@@ -72,8 +71,9 @@ void TexturasSDL::loadFuente(std::string nombre, int tamano){
 
 	font.load(nombre, tamano);
 }
-void TexturasSDL::setBlendMode(SDL_BlendMode blending)
+void TexturasSDL::setBlendMode(SDL_Renderer* prenderer, SDL_BlendMode blending)
 {
 	//Set blending function
+	//SDL_SetRenderDrawBlendMode(prenderer, blending);
 	SDL_SetTextureBlendMode(pTexture, blending);
 }

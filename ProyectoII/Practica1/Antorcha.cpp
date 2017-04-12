@@ -44,5 +44,5 @@ void Antorcha::swAble(){
 	}
 }
 void Antorcha::draw(){
-	if (able) pObj->getPJuego()->getTextura(TAntorcha)->draw(pObj->getPJuego()->getRender(), level->getCamara());
+	//if (able) pObj->getPJuego()->getTextura(TAntorcha)->draw(pObj->getPJuego()->getRender(), level->getCamara(), 200);
 }

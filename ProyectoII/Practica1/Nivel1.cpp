@@ -124,19 +124,15 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 
+	rectTorch.h = 350;// pJuego->getTextura(TAntorcha)->getH();
+	rectTorch.w = 350;// pJuego->getTextura(TAntorcha)->getW();
+	rectTorch.x = camara.x + (camara.w / 2) - (rectTorch.w / 2);
+	rectTorch.y = camara.y + (camara.h / 2) - (rectTorch.h / 2);
+
 	rectZonaOscura.h = 600; rectZonaOscura.w = 600;
 	rectZonaOscura.x = 1000; rectZonaOscura.y = 0;
 	hasTorch = false;
 	alpha = 255;
-
-	mFogOfWar = SDL_CreateRGBSurface(0, rectZonaOscura.w, rectZonaOscura.h, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-	SDL_Rect screenRect = { 0, 0, rectZonaOscura.w, rectZonaOscura.h};
-	SDL_FillRect(mFogOfWar, &screenRect, 0xFF202020);
-	pTextMFogOfWar = SDL_CreateTextureFromSurface(pJuego->getRender(), mFogOfWar);
-
-	punch = SDL_CreateRGBSurface(0, 32, 32, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0);
-	//SDL_Rect screenRect = { 0, 0, pJuego->getScreenWidth(), pJuego->getScreenHeight() };
-	//SDL_FillRect(punch, &screenRect, 0xFF202020);
 
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
@@ -163,19 +159,14 @@ void Nivel1::draw(){
 			vectBordes[i].C.y -= camara.y;
 		}
 		std::sort(vecObj.begin(), vecObj.end(), ordena);
+	
 		for (ObjetoJuego* ob : vecObj) ob->draw();
 		for (ObjetoJuego* trg : vecTriggers) trg->draw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 	}
 	rectZonaOscura.x -= camara.x;
 	rectZonaOscura.y -= camara.y;
 	
-	if (hasTorch){
-		DrawSurface(pTextMFogOfWar);
-		RemoveFogOfWar(500 + 16, 250 + 16);
-		//pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
-		//pJuego->getTextura(TAntorcha)->draw(pJuego->getRender(), camara, camara, 255-alpha);
-	}
-	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
+	
 	setCamara(0,0); //Se reinicia el offset a 0
 	int x = rand() % 100;
 	if (x >= 60){
@@ -193,14 +184,24 @@ void Nivel1::draw(){
 	pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1,camara);
 	pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
 
-	
+	if (hasTorch){
+		int aux, aux2; aux2 = rand() % 51; aux = 0;
+		if (aux2 >= 45) aux = rand() % 20;
+		rectTorch.w -= aux; rectTorch.h -= aux;
+
+		pJuego->getTextura(TZonaOscura)->setBlendMode(pJuego->getRender(), SDL_BLENDMODE_BLEND);
+		pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura, 240 + (aux/2));
+		pJuego->getTextura(TAntorcha)->setBlendMode(pJuego->getRender(), SDL_BLENDMODE_ADD);
+		pJuego->getTextura(TAntorcha)->draw(pJuego->getRender(), rectTorch, 25 + aux);
+
+		pJuego->getTextura(TAntorcha)->draw(pJuego->getRender(), rectTorch, 1);
+		rectTorch.w += aux; rectTorch.h += aux;
+		
+	}
+	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
+
 	pJuego->getTextura(TLuz)->draw(pJuego->getRender(),pJuego->getNieblaRect() ,camara);
 	
-}
-void Nivel1::DrawSurface(SDL_Texture* in_Text){
-	rectZonaOscura.x - camara.x;
-	rectZonaOscura.y - camara.y;
-	SDL_RenderCopy(pJuego->getRender(), in_Text, NULL, &rectZonaOscura); //const SDL_Rect* srcrect,	const SDL_Rect* dstrect);
 }
 void Nivel1::swPlayer(){
 	SDL_Rect aux;
@@ -261,70 +262,6 @@ void Nivel1::onKeyUp(char k) {
 	default:
 		break;
 	}
-}
-void Nivel1::RemoveFogOfWar(int in_X, int in_Y){
-	const int halfWidth = punch->w/ 2;
-	const int halfHeight = punch->h / 2;
-
-	SDL_Rect sourceRect = { 0, 0, punch->w, punch->h };
-	SDL_Rect destRect = { in_X - halfWidth, in_Y - halfHeight, punch->w, punch->h };
-
-	// Make sure our rects stays within bounds
-	if (destRect.x < 0)
-	{
-		sourceRect.x -= destRect.x; // remove the pixels outside of the surface
-		sourceRect.w -= sourceRect.x; // shrink to the surface, not to offset fog
-		destRect.x = 0;
-		destRect.w -= sourceRect.x; // shrink the width to stay within bounds
-	}
-	if (destRect.y < 0)
-	{
-		sourceRect.y -= destRect.y; // remove the pixels outside
-		sourceRect.h -= sourceRect.y; // shrink to the surface, not to offset fog
-		destRect.y = 0;
-		destRect.h -= sourceRect.y; // shrink the height to stay within bounds
-	}
-
-	int xDistanceFromEdge = (destRect.x + destRect.w) - mFogOfWar->w;
-	if (xDistanceFromEdge > 0) // we're busting
-	{
-		sourceRect.w -= xDistanceFromEdge;
-		destRect.w -= xDistanceFromEdge;
-	}
-	int yDistanceFromEdge = (destRect.y + destRect.h) - mFogOfWar->h;
-	if (yDistanceFromEdge > 0) // we're busting
-	{
-		sourceRect.h -= yDistanceFromEdge;
-		destRect.h -= yDistanceFromEdge;
-	}
-
-	SDL_LockSurface(mFogOfWar);
-
-	Uint32* destPixels = (Uint32*)mFogOfWar->pixels;
-	Uint32* srcPixels = (Uint32*)punch->pixels;
-
-	static bool keepFogRemoved = true;
-
-	for (int x = 0; x < destRect.w; ++x)
-	{
-		for (int y = 0; y < destRect.h; ++y)
-		{
-			Uint32* destPixel = destPixels + (y + destRect.y) * mFogOfWar->w + destRect.x + x;
-			Uint32* srcPixel = srcPixels + (y + sourceRect.y) * punch->w + sourceRect.x + x;
-
-			unsigned char* destAlpha = (unsigned char*)destPixel + 3; // fetch alpha channel
-			unsigned char* srcAlpha = (unsigned char*)srcPixel + 3; // fetch alpha channel
-			if (keepFogRemoved == true && *srcAlpha > 0)
-			{
-				continue; // skip this pixel
-			}
-
-			*destAlpha = *srcAlpha;
-		}
-	}
-
-	SDL_UnlockSurface(mFogOfWar);
-	pTextMFogOfWar = SDL_CreateTextureFromSurface(pJuego->getRender(), mFogOfWar);
 }
 Nivel1::~Nivel1()
 {

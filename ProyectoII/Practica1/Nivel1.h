@@ -19,12 +19,9 @@ public:
 	void getTorch(){ hasTorch = true; }
 	void dropTorch(){hasTorch = false;}
 	void setAlpha(int i){ alpha = i; }
-	void RemoveFogOfWar(int in_X, int in_Y);
 
 protected:
-	SDL_Surface *mFogOfWar, *punch;
-	SDL_Texture* pTextMFogOfWar, *pTexPunch;
-	SDL_Rect animNieve1, animNieve2, rectZonaOscura;
+	SDL_Rect animNieve1, animNieve2, rectZonaOscura, rectTorch;
 	bool hasTorch;
 	int x, y, alpha;
 	Cazador* pCazador;
@@ -32,7 +29,6 @@ protected:
 	std::string activePlayer;
 	void swPlayer();	
 	void onKeyUp(char k);
-	void DrawSurface(SDL_Texture* in_Text);
 
 	GrafoMapa* mapa;
 

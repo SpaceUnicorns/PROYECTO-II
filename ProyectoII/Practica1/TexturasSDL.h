@@ -22,7 +22,7 @@ public:
 	void draw(SDL_Renderer* prenderer, SDL_Rect const& rectAnim, SDL_Rect& rect, Uint8 alpha= 255);
 	void loadFromText(SDL_Renderer* pRenderer, const std::string text, SDL_Color color);
 	void loadFuente(std::string nombre, int tamaño);
-	void setBlendMode(SDL_BlendMode blending);
+	void setBlendMode(SDL_Renderer* prenderer, SDL_BlendMode blending);
 	int getW();
 	int getH();
 	SDL_Surface* getSurface(){ return pTexSurface; }
