@@ -20,7 +20,7 @@ follow::~follow()
 }
 
 void follow:: update(){
-	if (pObj->getPJuego()->input.sw && al){
+	if (pObj->getPJuego()->input.sw && al && pObj->isAble()){
 		direccion.clear();
 		cont = 0;
 		path.clear();
