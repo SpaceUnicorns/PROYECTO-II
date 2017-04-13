@@ -1,6 +1,7 @@
 #include "Cazador.h"
 #include "MovimientoP.h"
 #include "Huella.h"
+#include "Antorcha.h"
 
 
 Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
@@ -35,5 +36,6 @@ void Cazador::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!
 	}
 	static_cast<ColisionBox*>(mapaComponentes.at("Huella"))->draw();
 	pJuego->getTextura(et)->draw(pJuego->getRender(),anim, rect);
+	static_cast<Antorcha*>(mapaComponentes.at("Antorcha"))->draw();
 	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
 }
