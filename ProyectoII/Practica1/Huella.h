@@ -3,8 +3,6 @@
 #include "ObjetoPG.h"
 #include "ObjetoHuella.h"
 
-enum Dir { Arriba, DDS, Derecha, DDI, Abajo, DII, Izquierda, DIS, None };
-
 class Huella :
 	public Componente
 {
@@ -14,10 +12,11 @@ public:
 	virtual void lateUpdate();
 	virtual void update();
 	virtual void draw();
-	void setHuella(Dir dir);
+	void setHuella(int dir);
 	void quitaHuella(int ind);
 private:
 	Dir state;
+	SDL_Rect anim;
 	ObjetoPG* pObj;
 	std::vector<ObjetoHuella*> vecHuellas;
 	int sizeMax, it, timer;
