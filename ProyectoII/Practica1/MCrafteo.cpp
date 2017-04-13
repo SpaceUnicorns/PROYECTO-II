@@ -160,7 +160,7 @@ void MCrafteo::comprobar(std::vector<coords> const& v)
 			recuadros.x = v[i].x;
 			recuadros.y = v[i].y;
 			recuadros.w = recuadros.h = 100;
-			pJuego->getTextura(TTapa)->draw(pJuego->getRender(), recuadros);
+			pJuego->getTextura(TTapa)->draw(pJuego->getRender(), recuadros,245);
 		}
 		else //si están se pinta el numero de objetos del tipo v[i].name
 		{
