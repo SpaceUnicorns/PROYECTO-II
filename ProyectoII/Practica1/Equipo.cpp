@@ -2,11 +2,12 @@
 #include "TrampaAbierta.h"
 
 
-Equipo::Equipo(ObjetoJuego* entidad) :Componente(entidad)
+Equipo::Equipo(ObjetoJuego* entidad, Mochila* moch) :Componente(entidad)
 {
 	pObj = dynamic_cast<ObjetoPG*>(pEntidad);
 	equipado = Nada;
 	cantidad = 0;
+	mochila = moch;
 }
 
 
