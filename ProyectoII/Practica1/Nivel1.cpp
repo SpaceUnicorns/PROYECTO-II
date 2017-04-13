@@ -77,19 +77,23 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	animNieve1.x = animNieve2.x = camara.w;
 	animNieve1.y = animNieve2.y = camara.h;
 
-	vecObj.push_back(new Cazador(pJuego, camara.x + (camara.w/2),camara.y + (camara.h/2)));
-	pCazador = static_cast<Cazador*>(vecObj[0]);
-	vecObj.push_back(new Recolector(pJuego, camara.x + (camara.w / 2) -300, camara.y + (camara.h / 2)));
+	pCazador = new Cazador(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
+	vecObj.push_back(pCazador);
+	pRecolector = new Recolector(pJuego, camara.x + (camara.w / 2) - 300, camara.y + (camara.h / 2));
+	vecObj.push_back(pRecolector);
 
-	pRecolector = static_cast<Recolector*>(vecObj[1]);
+	Trigger *auxTr; auxTr = new Trigger (pJuego, 562, 384, pCazador, pRecolector);
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
+	vecTriggers.push_back(auxTr);
 
-	vecTriggers.push_back(new Trigger(pJuego, 562, 384, pCazador, pRecolector));
-	static_cast<Trigger*>(vecTriggers[0])->setCallback(new TextCb(vecTriggers[0], "../docs/textos/dialogo1.txt"));
-	vecTriggers.push_back(new Trigger(pJuego, 662, 384, pCazador, pRecolector));
-	static_cast<Trigger*>(vecTriggers[1])->setCallback(new TextCb(vecTriggers[1], "../docs/textos/dialogo2.txt"));
-	vecTriggers.push_back(new Trigger(pJuego, 865, 70, pCazador, pRecolector));
-	static_cast<Trigger*>(vecTriggers[2])->setCallback(new TextCb(vecTriggers[2], "../docs/textos/dialogo3.txt"));
-	static_cast<Trigger*>(vecTriggers[2])->setTriggerDim(80, 80);
+	auxTr = new Trigger(pJuego, 662, 384, pCazador, pRecolector);
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo2.txt"));
+	vecTriggers.push_back(auxTr);
+
+	auxTr = new Trigger(pJuego, 865, 70, pCazador, pRecolector);
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
+	auxTr->setTriggerDim(80, 80);
+	vecTriggers.push_back(auxTr);
 
 
 	vecObj.push_back(new Arbol(pJuego, 180, 60));
@@ -117,7 +121,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 	activePlayer = "C";
 
-	vecObj.push_back(new Lobo(pJuego,pCazador ,pRecolector, 250, 200));
+	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
 	
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 
@@ -215,16 +219,11 @@ void Nivel1::swPlayer(){
 void Nivel1::onKeyUp(char k) {
 	switch (k) {
 	case 'q':
-		pJuego->estados.push(new MCrafteo(pJuego, contPuntos));
+		pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))));
 		break;
-
-		/*case 'p':
-		if(!pause) pause = true;
-		else pause = false;
-		break;
-		case 'S':
+	case 's':
 		pJuego->estados.push(new Pausa(pJuego,contPuntos));
-		break;*/
+		break;
 	default:
 		break;
 	}

@@ -20,8 +20,9 @@ protected:
 	std::string default, frase, active;
 	std::ifstream f; std:: vector<std:: string> aux;
 	int cont, cont2;
-	int timer, timer2;
+	int timer, timer2, delay;
 	bool reacciona;
 	int firstTime;
+	EstadoPG *estadoAux;
 };
 

@@ -84,7 +84,6 @@ public:
 			else
 				cuadranteX = x / 122;
 		}
-
 		int Px, Py;
 		if (cuadranteX == 0 || cuadranteY == 0){
 			if (cuadranteX == 0) Px = x;
@@ -108,10 +107,10 @@ public:
 
 		*/
 
-		if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) < 0)){
+		if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) >= 0) && ((122 - Px)*(0 - Py) - (31 - Py)*(61 - Px) >= 0) && ((61 - Px)*(31 - Py) - (0 - Py)*(0 - Px) >= 0)){
 			x = cuadranteX; y = cuadranteY;
 		}
-		else if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) < 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) < 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) < 0)){
+		else if (((0 - Px)*(31 - Py) - (31 - Py)*(122 - Px) >= 0) && ((122 - Px)*(62 - Py) - (31 - Py)*(61 - Px) >= 0) && ((61 - Px)*(31 - Py) - (62 - Py)*(0 - Px) >= 0)){
 			x = cuadranteX; y = cuadranteY;
 		}
 		// Si la posicion del objeto no esta en ninguno de los dos triangulos centrales comprobamo su x y su y con el centro del cuadrante
@@ -123,12 +122,12 @@ public:
 				if (Py < 31)
 				{
 					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX + 1; y = cuadranteY - 1; }
-					else { x = cuadranteX; y = cuadranteY - 1; }
+					else { x = cuadranteX + 1 ; y = cuadranteY - 1; }
 				}
 				else
 				{
 					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX + 1; y = cuadranteY + 1; }
-					else { x = cuadranteX; y = cuadranteY + 1; }
+					else { x = cuadranteX + 1; y = cuadranteY + 1; }
 				}
 			}
 			else
@@ -136,16 +135,17 @@ public:
 				if (Py < 31)
 				{
 					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX; y = cuadranteY - 1; }
-					else { x = cuadranteX - 1; y = cuadranteY - 1; }
+					else { x = cuadranteX; y = cuadranteY - 1; }
 				}
 				else
 				{
 					if (cuadranteY % 2 != 0 || cuadranteY == 0)	{ x = cuadranteX; y = cuadranteY + 1; }
-					else { x = cuadranteX - 1; y = cuadranteY + 1; }
+					else { x = cuadranteX; y = cuadranteY + 1; }
 				}
 			}
 		}
-
+		y++;
+		x--;
 		if (x < 0) x = 0;
 		if (y < 0) y = 0;
 		if (x >= niveles[0]) x = niveles[0]-1;
@@ -224,7 +224,7 @@ public:
 					if (mapa[(y -2)*niveles[0] + x] == 'X')
 						nodeCost = { XYToNode(x, y - 2), 999 };
 					else
-						nodeCost = { XYToNode(x, y - 2), 0.1 };
+						nodeCost = { XYToNode(x, y - 2), 0.1f };
 					adjacent->push_back(nodeCost);
 				}
 				break;
@@ -234,7 +234,7 @@ public:
 						if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
 							nodeCost = { XYToNode(x + 1, y - 1), 999 };
 						else
-							nodeCost = { XYToNode(x + 1, y - 1), 0.1 };
+							nodeCost = { XYToNode(x + 1, y - 1), 0.1f };
 						adjacent->push_back(nodeCost);
 					}
 					else {
@@ -242,7 +242,7 @@ public:
 							if (mapa[(y - 1)*niveles[0] + x] == 'X')
 								nodeCost = { XYToNode(x, y - 1), 999 };
 							else
-								nodeCost = { XYToNode(x, y - 1), 0.1 };
+								nodeCost = { XYToNode(x, y - 1), 0.1f };
 						adjacent->push_back(nodeCost);
 						}
 					}
@@ -253,7 +253,7 @@ public:
 					if (mapa[(y)*niveles[0] + x + 1] == 'X')
 						nodeCost = { XYToNode(x + 1, y), 999 };
 					else
-						nodeCost = { XYToNode(x + 1, y), 0.1 };
+						nodeCost = { XYToNode(x + 1, y), 0.1f };
 					adjacent->push_back(nodeCost);
 				}
 				break;
@@ -263,7 +263,7 @@ public:
 						if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
 							nodeCost = { XYToNode(x + 1, y + 1), 999 };
 						else
-							nodeCost = { XYToNode(x + 1, y + 1), 0.1 };
+							nodeCost = { XYToNode(x + 1, y + 1), 0.1f };
 						adjacent->push_back(nodeCost);
 					}
 					else{
@@ -271,7 +271,7 @@ public:
 							if (mapa[(y + 1)*niveles[0] + x] == 'X')
 								nodeCost = { XYToNode(x, y + 1), 999 };
 							else
-								nodeCost = { XYToNode(x, y + 1), 0.1 };
+								nodeCost = { XYToNode(x, y + 1), 0.1f };
 							adjacent->push_back(nodeCost);
 						}
 					}
@@ -282,7 +282,7 @@ public:
 					if (mapa[(y + 2)*niveles[0] + x] == 'X')
 						nodeCost = { XYToNode(x, y + 2), 999 };
 					else
-						nodeCost = { XYToNode(x, y + 2), 0.1 };
+						nodeCost = { XYToNode(x, y + 2), 0.1f };
 					adjacent->push_back(nodeCost);
 				}
 				break;
@@ -292,7 +292,7 @@ public:
 						if (mapa[(y + 1)*niveles[0] + x] == 'X')
 							nodeCost = { XYToNode(x, y + 1), 999 };
 						else
-							nodeCost = { XYToNode(x, y + 1), 0.1 };
+							nodeCost = { XYToNode(x, y + 1), 0.1f };
 						adjacent->push_back(nodeCost);
 					}
 					else {
@@ -300,7 +300,7 @@ public:
 							if (mapa[(y + 1)*niveles[0] + x] == 'X')
 								nodeCost = { XYToNode(x - 1, y + 1), 999 };
 							else
-								nodeCost = { XYToNode(x - 1, y + 1), 0.1 };
+								nodeCost = { XYToNode(x - 1, y + 1), 0.1f };
 							adjacent->push_back(nodeCost);
 						}
 					}
@@ -311,7 +311,7 @@ public:
 					if (mapa[(y)*niveles[0] + x - 1] == 'X')
 						nodeCost = { XYToNode(x - 1, y), 999 };
 					else
-						nodeCost = { XYToNode(x - 1, y), 0.1 };
+						nodeCost = { XYToNode(x - 1, y), 0.1f };
 					adjacent->push_back(nodeCost);
 				}
 				break;
@@ -321,7 +321,7 @@ public:
 						if (mapa[(y - 1)*niveles[0] + x] == 'X')
 							nodeCost = { XYToNode(x, y - 1), 999 };
 						else
-							nodeCost = { XYToNode(x, y - 1), 0.14 };
+							nodeCost = { XYToNode(x, y - 1), 0.1f };
 						adjacent->push_back(nodeCost);
 					}
 					else{
@@ -329,7 +329,7 @@ public:
 							if (mapa[(y - 1)*niveles[0] + x - 1] == 'X')
 								nodeCost = { XYToNode(x - 1, y - 1), 999 };
 							else
-								nodeCost = { XYToNode(x - 1, y - 1), 0.14 };
+								nodeCost = { XYToNode(x - 1, y - 1), 0.1f };
 							adjacent->push_back(nodeCost);
 						}
 					}

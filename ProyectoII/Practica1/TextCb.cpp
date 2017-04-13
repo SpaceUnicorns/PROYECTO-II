@@ -38,11 +38,15 @@ TextCb::TextCb(ObjetoJuego* ent, std:: string s) : Componente(ent)
 	frase = " ";
 	colorLyov.r = 51; colorLyov.g = 102; colorLyov.b = 0;
 	colorZenia.r = 247; colorZenia.g = 25; colorZenia.b = 25;
+	if (aux[0].length() > 15) delay = 250;
+	else delay = 150;
+	
 }
 
 
 TextCb::~TextCb()
 {
+	delete estadoAux;
 }
 void TextCb::draw(){
 	if (reacciona && firstTime == 0){
@@ -52,7 +56,7 @@ void TextCb::draw(){
 			active = "Z";
 		if (cont2 < aux[cont].length()){
 			timer2++;
-			if (timer2 > 20){
+			if (timer2 > 5){
 			frase += aux[cont][cont2];
 			font.w += 15;
 			cont2++;
@@ -60,23 +64,26 @@ void TextCb::draw(){
 			}
 		}
 		pObj->getPJuego()->getTextura(TTextBox)->draw(pObj->getPJuego()->getRender(), textBox);
-		if(active == "L")static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->drawFont(font, frase, colorLyov);
-		else if (active == "Z")static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->drawFont(font, frase, colorZenia);
-		else static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->drawFont(font, frase);
+		if(active == "L")estadoAux->drawFont(font, frase, colorLyov);
+		else if (active == "Z")estadoAux->drawFont(font, frase, colorZenia);
+		else estadoAux->drawFont(font, frase);
 	}
 }
 void TextCb::callback(){
 	std::cout << "TRIGGERED\n";
+	if (!reacciona) estadoAux = static_cast<EstadoPG*>(pObj->getPJuego()->estados.top());
 	reacciona = true;
 }
 void TextCb::update(){
 	if (cont < aux.size()-1 && reacciona && firstTime == 0){
 		timer++;
-		if (timer >= 100){
+		if (timer >= delay){
 			frase = " ";
 			cont2 = 1;
 			cont++; timer = 0;
 			font.w = 50;
+			if (aux[0].length() > 15) delay = 250;
+			else delay = 150;
 		}
 	}
 	else {

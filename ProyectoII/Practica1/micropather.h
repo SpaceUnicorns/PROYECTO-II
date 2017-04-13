@@ -84,7 +84,7 @@ namespace micropather
 	struct StateCost
 	{
 		void* state;			///< The state as a void*
-		float cost;				///< The cost to the state. Use FLT_MAX for infinite cost.
+		double cost;				///< The cost to the state. Use FLT_MAX for infinite cost.
 	};
 
 

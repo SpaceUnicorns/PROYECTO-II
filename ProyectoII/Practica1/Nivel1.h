@@ -22,7 +22,7 @@ protected:
 	SDL_Rect animNieve2;
 	int x, y;
 	Cazador* pCazador;
-	Recolector* pRecolector;
+	Recolector *pRecolector;
 	std::string activePlayer;
 	void swPlayer();	
 	void onKeyUp(char k);

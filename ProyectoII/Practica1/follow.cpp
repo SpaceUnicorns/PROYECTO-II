@@ -45,6 +45,10 @@ void follow::doFollow()
 	map->transformaCoord(x, y);
 	map->transformaCoord(xx, yy);
 
+
+	/*pObj->setRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
+	pObj->setAbsRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
+	static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);*/
 	//Resolvemos el camino
 	std::cout << x << " " << y << " \n";
 	std::cout << xx << " " << yy << " \n";

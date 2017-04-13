@@ -12,7 +12,7 @@ public:
 	virtual void update();
 	virtual ~MenuPrincipalComp();
 private:
-	int temp, temp2;
+	int temp, temp2, delay;
 	estadosMP estado;
 	ObjetoPG *pObj;
 };

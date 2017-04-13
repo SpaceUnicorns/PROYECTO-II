@@ -150,12 +150,6 @@
     <ClCompile Include="follow.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="TrampaAbierta.cpp">
-      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
-    </ClCompile>
-    <ClCompile Include="TrampaComponente.cpp">
-      <Filter>Archivos de código fuente\Componentes</Filter>
-    </ClCompile>
     <ClCompile Include="Equipo.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
@@ -290,11 +284,23 @@
     <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="TrampaAbierta.h">
-      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="TrampaComponente.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ColisionBox.h">
       <Filter>Archivos de encabezado</Filter>
@@ -303,7 +309,8 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Equipo.h">
-      <Filter>Archivos de encabezado\Componentes</Filter>
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
+
