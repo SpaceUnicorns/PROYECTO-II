@@ -1,18 +1,16 @@
 #pragma once
 #include "EstadoPG.h"
-#include "Boton.h"
-#include "MenuPG.h"
+
 class Pausa :
 	public EstadoPG
 {
-protected:
-	Boton * menu;
-	Boton * resume;
+	enum estadosPausa { Resume, Menu, Opciones };
+
 public:
 	Pausa(juegoPG*jug, int puntos);
 	virtual ~Pausa();
-	//Funciones-----------------------------------------------------------------------------------------------------------
-	static void goMenu(juegoPG *jug){ 
+
+	/*static void goMenu(juegoPG *jug){ 
 		EstadoJuego* borrar = jug->estados.top();
 		jug->estados.pop(); jug->estados.push(new MenuPG(jug,0));
 		delete borrar;
@@ -21,6 +19,18 @@ public:
 		EstadoJuego* borrar = jug->estados.top();
 		jug->estados.pop();
 		delete borrar;
-	}
+	}*/
+
+	void draw();
+	void update();
+
+private:
+	TexturasSDL * fondo;
+	SDL_Rect rFondo, rect, boton;
+
+	
+	int temp;
+	int aux;
+	estadosPausa estado;
 };
 
