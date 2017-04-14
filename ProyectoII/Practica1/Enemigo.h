@@ -3,7 +3,8 @@
 #include "ColisionBox.h"
 #include "Cazador.h"
 #include "Recolector.h"
-struct Pos { float x, y; };
+#include "follow.h"
+
 enum EstadoEnemigo
 {
 	Quieto, Moviendo, Atacando, Atrapado
@@ -25,17 +26,19 @@ public:
 		else objetivo = recolector; 
 	}
 	void setEstado(EstadoEnemigo est){ estado = est; }
-	void activaFollow() { /*std::cout <</* "ACTIVOOOOOOO" <<"  TARGET  "<< objetivo->nombre <<std::endl;*/}
-	void desactivaFollow() { /*std::cout << "DESACTIVA FOLLOW" << std::endl;*/ };
-	Pos getPosIni() { return posIni; }
+	void activaFollow();
+	void desactivaFollow();
+	Punto getPosIni() { return posIni; }
 	int damage;
 	int life;
 
 protected:
+	void dameUnHogar();
 	EstadoEnemigo estado;
-	Pos posIni;
+	Punto posIni;
 	Cazador* cazador;
 	Recolector* recolector;
 	ObjetoPG* objetivo;
+	ObjetoPG* casita;
 };
 

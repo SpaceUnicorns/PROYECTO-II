@@ -16,6 +16,7 @@ public:
 	virtual void draw();
 	Cazador* getCazador() { return pCazador; }
 	Recolector* getRecolector() { return pRecolector; }
+	GrafoMapa* getGrafoMapa() { return mapa; }
 
 protected:
 	SDL_Rect animNieve1;

@@ -9,6 +9,7 @@ class ObjetoPG :
 	public ObjetoJuego
 {
 public:
+	ObjetoPG(juegoPG * juego, int px, int py);
 	virtual ~ObjetoPG();
 
 	//Métodos
@@ -44,7 +45,6 @@ public:
 	bool interactuable=false;
 	std::string nombre;
 protected: 
-	ObjetoPG(juegoPG * juego, int px, int py);
 	
 	//Atributos-------------------------------------------
 	bool activo;

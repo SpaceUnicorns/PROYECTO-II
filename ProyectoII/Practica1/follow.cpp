@@ -19,6 +19,10 @@ follow::~follow()
 {
 }
 
+void follow::setTarget(ObjetoPG* targe) {
+	target = targe;
+}
+
 void follow:: update(){
 	if (pObj->getPJuego()->input.sw && al){
 		direccion.clear();

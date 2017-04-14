@@ -12,6 +12,7 @@ public:
 	virtual void lateUpdate();
 	virtual void update();
 	void doFollow();
+	void setTarget(ObjetoPG* targe);
 protected:
 	GrafoMapa* map;
 	bool al;
