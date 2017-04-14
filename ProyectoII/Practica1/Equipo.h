@@ -11,7 +11,7 @@ public:
 	Equipo(ObjetoJuego* entidad, Mochila* moch);
 	virtual ~Equipo();
 	virtual void update();
-	void setEquipo(int equip) { equipado = (Equipamento)equip; };
+	void setEquipo(int equip, int num) { equipado = (Equipamento)equip; cantidad = num; };
 private:
 	ObjetoPG* pObj;
 	Mochila* mochila;

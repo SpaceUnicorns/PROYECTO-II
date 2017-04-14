@@ -32,6 +32,8 @@ void Equipo::update()
 			if (cantidad == 0) equipado = Nada;
 			break;
 		case Antorcha:
+			cantidad--;
+			if (cantidad == 0) equipado = Nada;
 			break;
 		case Hacha:
 			break;

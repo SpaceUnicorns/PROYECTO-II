@@ -19,7 +19,7 @@
 #include "Lobo.h"
 #include "follow.h""
 #include "TrampaAbierta.h"
-
+#include "Equipo.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
@@ -123,6 +123,8 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
 	
+	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
+	pRecolector->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 
 }

@@ -45,14 +45,7 @@ void MovimientoP::update(){
 			}
 		}
 	}
-	// Usa el objeto Trampa
-	if (pObj->getPJuego()->input.e && static_cast<Cazador*>(pObj) && static_cast<Cazador*>(pObj)->getEquipo() == "Trampa"){
-		static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().push_back(new TrampaAbierta(pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y - 50));
-		static_cast<Mochila*> (pObj->dameComponente("Mochila"))->removeItem("Trampa",1);
-		/*if (!static_cast<Mochila*> (pObj->dameComponente("Mochila"))->findItem("Trampa")){
-			static_cast<Cazador*>(pObj)->setEquipo("");
-		}*/
-	}
+	
 
 	pObj->getPJuego()->input.e = false;
 	
