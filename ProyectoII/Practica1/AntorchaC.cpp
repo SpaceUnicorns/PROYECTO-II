@@ -10,6 +10,10 @@ AntorchaC::AntorchaC(ObjetoJuego* ent, Nivel1* nivel) : Componente(ent)
 	level = nivel;
 	level->setAlpha(100);
 	able = false;
+	rectTorch.h = 350;// pJuego->getTextura(TAntorcha)->getH();
+	rectTorch.w = 350;// pJuego->getTextura(TAntorcha)->getW();
+	rectTorch.x = pObj->getRect().x - (rectTorch.w/2);
+	rectTorch.y = pObj->getRect().y - (rectTorch.h / 2);
 }
 
 
@@ -31,6 +35,12 @@ void AntorchaC::update(){
 		swAble();
 	}
 }
+void  AntorchaC::draw(){
+	if (!pObj->isAble()) { // cambiar este metodo al update, y llamar al update desde cada entidad
+		rectTorch.y -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().y;
+		rectTorch.x -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().x;
+	}
+}
 void AntorchaC::swAble(){
 	if (able){
 		contFrames = 0;
@@ -43,6 +53,15 @@ void AntorchaC::swAble(){
 		level->setAlpha(alpha);
 	}
 }
-void AntorchaC::draw(){
-	//if (able) pObj->getPJuego()->getTextura(TAntorcha)->draw(pObj->getPJuego()->getRender(), level->getCamara(), 200);
+void AntorchaC::lateDraw(){
+	
+	int aux, aux2; aux2 = rand() % 51; aux = 0;
+	if (aux2 >= 45) aux = rand() % 20;
+	rectTorch.w -= aux; rectTorch.h -= aux;
+
+	pObj->getPJuego()->getTextura(TAntorcha)->setBlendMode(pObj->getPJuego()->getRender(), SDL_BLENDMODE_ADD);
+	pObj->getPJuego()->getTextura(TAntorcha)->draw(pObj->getPJuego()->getRender(), rectTorch, 25 + aux);
+
+	pObj->getPJuego()->getTextura(TAntorcha)->draw(pObj->getPJuego()->getRender(), rectTorch, 1);
+	rectTorch.w += aux; rectTorch.h += aux; //if (able) pObj->getPJuego()->getTextura(TAntorcha)->draw(pObj->getPJuego()->getRender(), level->getCamara(), 200);
 }

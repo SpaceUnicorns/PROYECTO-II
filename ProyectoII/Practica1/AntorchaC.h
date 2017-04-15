@@ -9,9 +9,11 @@ public:
 	AntorchaC(ObjetoJuego* ent, Nivel1* nivel);
 	virtual ~AntorchaC();
 	virtual void update();
+	virtual void lateDraw();
 	virtual void draw();
 	void swAble();
 private:
+	SDL_Rect rectTorch;
 	int time;
 	int contFrames, alpha;
 	bool able;

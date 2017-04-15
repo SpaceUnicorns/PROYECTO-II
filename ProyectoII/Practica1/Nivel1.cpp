@@ -129,11 +129,6 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pRecolector->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 
-	rectTorch.h = 350;// pJuego->getTextura(TAntorcha)->getH();
-	rectTorch.w = 350;// pJuego->getTextura(TAntorcha)->getW();
-	rectTorch.x = camara.x + (camara.w / 2) - (rectTorch.w / 2);
-	rectTorch.y = camara.y + (camara.h / 2) - (rectTorch.h / 2);
-
 	rectZonaOscura.h = 600; rectZonaOscura.w = 600;
 	rectZonaOscura.x = 1000; rectZonaOscura.y = 0;
 	hasTorch = false;
@@ -171,8 +166,7 @@ void Nivel1::draw(){
 	rectZonaOscura.x -= camara.x;
 	rectZonaOscura.y -= camara.y;
 	
-	
-	setCamara(0,0); //Se reinicia el offset a 0
+	setCamara(0, 0); //Se reinicia el offset a 0
 	int x = rand() % 100;
 	if (x >= 60){
 		animNieve1.x--;
@@ -192,19 +186,16 @@ void Nivel1::draw(){
 	if (hasTorch){
 		int aux, aux2; aux2 = rand() % 51; aux = 0;
 		if (aux2 >= 45) aux = rand() % 20;
-		rectTorch.w -= aux; rectTorch.h -= aux;
 
+		//Poner aquí todas las zonas oscuras del mapa
 		pJuego->getTextura(TZonaOscura)->setBlendMode(pJuego->getRender(), SDL_BLENDMODE_BLEND);
 		pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura, 240 + (aux/2));
-		pJuego->getTextura(TAntorcha)->setBlendMode(pJuego->getRender(), SDL_BLENDMODE_ADD);
-		pJuego->getTextura(TAntorcha)->draw(pJuego->getRender(), rectTorch, 25 + aux);
-
-		pJuego->getTextura(TAntorcha)->draw(pJuego->getRender(), rectTorch, 1);
-		rectTorch.w += aux; rectTorch.h += aux;
+		pCazador->lateDraw();
+		pRecolector->lateDraw();
 		
 	}
 	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
-
+	
 	pJuego->getTextura(TLuz)->draw(pJuego->getRender(),pJuego->getNieblaRect() ,camara);
 	
 }

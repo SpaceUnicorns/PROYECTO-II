@@ -1,5 +1,6 @@
 #include "Equipo.h"
 #include "TrampaAbierta.h"
+#include "AntorchaC.h"
 
 
 Equipo::Equipo(ObjetoJuego* entidad, Mochila* moch) :Componente(entidad)
@@ -32,7 +33,11 @@ void Equipo::update()
 			if (cantidad == 0) equipado = Nada;
 			break;
 		case Antorcha:
-			cantidad--;
+			//cantidad--;
+			if (cantidad > 0){
+				pObj->newComponente(new AntorchaC(pEntidad, dynamic_cast<Nivel1*>(pObj->getPJuego()->estados.top())), "AntorchaC");
+				cantidad--;
+			}
 			if (cantidad == 0) equipado = Nada;
 			break;
 		case Hacha:

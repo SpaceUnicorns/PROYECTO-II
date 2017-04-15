@@ -50,7 +50,15 @@ bool ObjetoPG::onOver(){
 void ObjetoPG::draw(){
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
+void ObjetoPG::lateDraw(){
+	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
+	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
 
+	while (it != itFin){
+		it->second->lateDraw();
+		it++;
+	}
+}
 void ObjetoPG::awake(){}
 void ObjetoPG::sleep(){}
 void ObjetoPG::newComponente(Componente* cmp, std:: string const & name){

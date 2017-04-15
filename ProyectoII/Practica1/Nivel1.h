@@ -21,7 +21,7 @@ public:
 	void setAlpha(int i){ alpha = i; }
 
 protected:
-	SDL_Rect animNieve1, animNieve2, rectZonaOscura, rectTorch;
+	SDL_Rect animNieve1, animNieve2, rectZonaOscura;
 	bool hasTorch;
 	int x, y, alpha;
 	Cazador* pCazador;
