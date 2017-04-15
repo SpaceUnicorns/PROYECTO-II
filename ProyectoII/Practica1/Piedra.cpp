@@ -11,10 +11,6 @@ Piedra::Piedra(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 	nombre = "Piedra";
 	SDL_Rect colision = { rect.x, rect.y + 10, 50, 10 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");
-	absRect.w = rect.w;
-	absRect.h = rect.h;
-	nombre = typeid(this).name();
-
 }
 
 

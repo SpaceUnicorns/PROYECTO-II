@@ -263,7 +263,7 @@ void juegoPG::render() const {
 	//Clear the window to background color 
 	SDL_RenderClear(pRender);
 
-	//llamar al draw de envima de la pila
+	//llamar al draw de encima de la pila
 	estados.top()->draw();
 
 	//Show the window
