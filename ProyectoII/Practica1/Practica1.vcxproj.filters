@@ -154,9 +154,9 @@
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="ObjetoHuella.cpp">
-       <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="Antorcha.cpp">
+    <ClCompile Include="AntorchaC.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
@@ -324,9 +324,15 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ObjetoHuella.h">
-       <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Antorcha.h">
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="AntorchaC.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

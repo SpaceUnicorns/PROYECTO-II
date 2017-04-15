@@ -2,12 +2,12 @@
 #include "Componente.h"
 #include "ObjetoPG.h"
 #include "Nivel1.h"
-class Antorcha :
+class AntorchaC :
 	public Componente
 {
 public:
-	Antorcha(ObjetoJuego* ent, Nivel1* nivel);
-	virtual ~Antorcha();
+	AntorchaC(ObjetoJuego* ent, Nivel1* nivel);
+	virtual ~AntorchaC();
 	virtual void update();
 	virtual void draw();
 	void swAble();

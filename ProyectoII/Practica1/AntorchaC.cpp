@@ -1,7 +1,7 @@
-#include "Antorcha.h"
+#include "AntorchaC.h"
 
 
-Antorcha::Antorcha(ObjetoJuego* ent, Nivel1* nivel) : Componente(ent)
+AntorchaC::AntorchaC(ObjetoJuego* ent, Nivel1* nivel) : Componente(ent)
 {
 	pObj = dynamic_cast<ObjetoPG*>(ent);
 	time = 2000;
@@ -13,10 +13,10 @@ Antorcha::Antorcha(ObjetoJuego* ent, Nivel1* nivel) : Componente(ent)
 }
 
 
-Antorcha::~Antorcha()
+AntorchaC::~AntorchaC()
 {
 }
-void Antorcha::update(){
+void AntorchaC::update(){
 	if (able){
 		contFrames++;
 		if(contFrames%18 == 0 && alpha <255) alpha++;
@@ -31,7 +31,7 @@ void Antorcha::update(){
 		swAble();
 	}
 }
-void Antorcha::swAble(){
+void AntorchaC::swAble(){
 	if (able){
 		contFrames = 0;
 		level->setAlpha(255);
@@ -43,6 +43,6 @@ void Antorcha::swAble(){
 		level->setAlpha(alpha);
 	}
 }
-void Antorcha::draw(){
+void AntorchaC::draw(){
 	//if (able) pObj->getPJuego()->getTextura(TAntorcha)->draw(pObj->getPJuego()->getRender(), level->getCamara(), 200);
 }
