@@ -35,7 +35,10 @@ void MovimientoP::update(){
 		if (dynamic_cast<Recolector*>(pObj)) {
 			if (pObj->getPJuego()->input.e) {
 				pObj->getPJuego()->input.e = false;
-				static_cast<Mochila*> (pObj->dameComponente("Mochila"))->newItem(info->nombre, 1);
+				for (unsigned int i=0; i + 1 < info->nombre.size(); i += 2){
+
+				static_cast<Mochila*> (pObj->dameComponente("Mochila"))->newItem(info->nombre[i+1], atoi(info->nombre[i].c_str()));
+				}
 				dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->eraseVectObj(info);
 				//std::cout << "He cogido una " << info->nombre << "\n";
 			}

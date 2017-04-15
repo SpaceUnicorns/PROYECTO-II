@@ -1,13 +1,28 @@
 #include "MCrafteo.h"
 #include "TexturasSDL.h"
-
-
+#include "Hacha.h"
+#include "Cuerda.h"
+#include "Pala.h"
+#include "Pico.h"
+#include "Trampa.h"
+#include "Antorcha.h"
+#include "ObjetoPG.h"
 
 MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos), mochila(NULL)
 {
+	mochila = m;
+	crafteo.resize(6);
+		crafteo = { "Antorcha", "Cuerda", "Hacha", "Pico", "Pala", "Trampa" };
+	
+	equipables = { //5 elems
+		{ "Antorcha", 902, 77 },{ "Hacha", 746, 76 },  { "Pico", 1054, 76 }, { "Pala", 820, 216 }, { "Trampa", 982, 216 }
+	};
+	materiales = { //8 elems
+		{ "Madera", 725, 431 }, { "Piedra", 838, 430 }, { "Hueso", 956, 430 }, { "Cebo", 1071, 430 },
+		{ "Enredadera", 725, 545 }, { "Yesca", 838, 545 }, { "Cuerda", 956, 545 }, { "TrampaCerrada", 1072, 547 }
+	};
+	pag1.h = pag2.h = 500; //poner mas pequeño o en funcion de la pantalla
 
-	//Rects en funcion de la pantalla
-	pag1.h = pag2.h = 500;
 	pag1.w = pag2.w = 375;
 	pag1.x = pag2.x = pJuego->getScreenWidth() / 2 - pag1.w - 100;
 	pag1.y = pag2.y = 50;
@@ -107,6 +122,7 @@ void MCrafteo::animacionS()
 	if (pag1.w <= 0 || acuD >= 2) {
 		derecha = false;
 		++numPag;
+
 		pag1.w = 375;
 		sombra.w = 30;
 		acuD = 0;
@@ -133,11 +149,20 @@ void MCrafteo::animacionA() {
 			++aux;
 			if (aux == 10) { --sombra.w; aux = 0; } //la sombra se hace mas pequeña
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
+			
 		}
 
 		else if (pag1.w >= 332 && pag1.w < 375) {
 			sombra.w = 380 - pag1.w;
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
+/*		else if (pag1.w >= 375) {
+			
+			izquierda = false;
+			flag = false;
+
+			pag1.w = 375;
+			sombra.w = 30;
+>>>>>>> MHerramientas+Crafteo*/
 		}
 	}
 	else izquierda = false;
@@ -171,6 +196,58 @@ void MCrafteo::comprobar(std::vector<coords> const& v)
 		}
 	}
 }
+void MCrafteo::craftear(){
+	ObjetoPG* kek =nullptr ; //auxiliar para poder acceder al nombre y receta
+	if (crafteo[numPag] == "Cuerda"){ //la cuerda lo complica todo :V pensaba que eran solo herramientas
+		kek = new Cuerda(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Antorcha"){
+		kek = new Antorcha(pJuego, 0, 0);
+	} //cuando esten las clases de pondria PE:kek = new Antorcha(pJuego, 0, 0);
+	else if (crafteo[numPag] == "Hacha"){
+		kek = new Hacha(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Pico"){
+		kek = new Pico(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Pala"){
+		kek = new Pala(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Trampa"){
+		kek = new Trampa(pJuego, 0, 0);
+	}
+
+	if (kek != nullptr) {
+		unsigned int i = 0;
+		bool exito = true;
+		while (i + 1 < kek->receta.size() && exito) {
+			if (!(mochila->findItem(kek->receta[i + 1]) && (mochila->getCantidad(kek->receta[i + 1]) >= atoi(kek->receta[i].c_str()))))
+				exito = false;
+
+			i += 2;
+		}
+		if (exito) {
+			for (unsigned int i = 0; i + 1 < kek->receta.size(); i += 2) {
+				//std::cout << "Necesitas: " << kek->receta[i + 1] << "\n";
+				mochila->removeItem(kek->receta[i + 1], atoi(kek->receta[i].c_str())); //se eliminan los objetos de la mochila
+			}
+			mochila->newItem(kek->nombre[1], 1); //y se añade lo crafteado
+
+		}
+	}
+
+	/*if (kek != nullptr){
+		for (unsigned int i = 0; i + 1 < kek->receta.size(); i += 2){ //comprobacion de objetos
+			std::cout << "Necesitas: " << kek->receta[i + 1] << "\n";
+			if (mochila->findItem(kek->receta[i + 1]))
+				if (mochila->getCantidad(kek->receta[i + 1]) >= atoi(kek->receta[i].c_str())){//si está...
+					mochila->removeItem(kek->receta[i + 1], atoi(kek->receta[i].c_str())); //se eliminan los objetos de la mochila
+					mochila->newItem(kek->nombre[1], 1); //y se añade lo crafteado
+				}//aqui hay que cambiarlo mas adelante, por el tema de las 2 mochilas, puta cuerda tt
+		}
+	}*/
+	delete kek;
+}
 
 
 void MCrafteo::onKeyUp(char k)
@@ -189,6 +266,9 @@ void MCrafteo::onKeyUp(char k)
 	case 'i':
 		izquierda = true;
 		acuI++;
+		break;
+	case 'e':
+		craftear(); //PD se craftea con la tecla INTRO
 		break;
 
 	default:

@@ -8,7 +8,8 @@ Hueso::Hueso(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 	et = THueso;
 	rect.w = 50;
 	rect.h = 30;
-	nombre = "Hueso";
+	nombre.push_back("1");
+	nombre.push_back( "Hueso");
 	SDL_Rect colision = { rect.x,rect.y + 10,50,10 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");
 }
