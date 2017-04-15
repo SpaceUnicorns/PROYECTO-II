@@ -4,6 +4,8 @@
 #include "Recolector.h"
 #include "ObjetoPG.h"
 #include "Mochila.h"
+#include "Cazador.h"
+#include "TrampaAbierta.h"
 
 
 MovimientoP::MovimientoP(ObjetoJuego* ent) : Componente(ent)
@@ -30,6 +32,8 @@ void MovimientoP::update(){
 
 	nextPos.x = nextPos.y = 0;
 	
+	
+
 	//RECOLECTOR PUEDE COGER OBJETOS
 	if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos,info) == 2) {
 		if (dynamic_cast<Recolector*>(pObj)) {
@@ -44,6 +48,8 @@ void MovimientoP::update(){
 			}
 		}
 	}
+	
+
 	pObj->getPJuego()->input.e = false;
 	
 	//MOVIMIENTO DIRECCIONES

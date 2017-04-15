@@ -89,15 +89,17 @@ void juegoPG::run(){
 		render();
 		handle_event();
 		while (!exit) {
-				if (SDL_GetTicks() - lastUpdate >= msUpdate) { // while(elapsed >= MSxUpdate)
-					estados.top()->update();
-					estados.top()->lateUpdate();
-					lastUpdate = SDL_GetTicks();
-					render();
-					handle_event();
+			if (SDL_GetTicks() - lastUpdate >= msUpdate) { // while(elapsed >= MSxUpdate)
+				estados.top()->update();
+				estados.top()->lateUpdate();
+				lastUpdate = SDL_GetTicks();
+				render();
+				estados.top()->updateBorrarObj();
+				handle_event();
 				}
-			
+
 		}
+		
 		if (exit) cout << "EXIT \n";
 }
 //----------------------------------------------------------------------------------------------------------------------
@@ -156,6 +158,12 @@ void juegoPG::handle_event(){
 			}
 			else if (e.key.keysym.sym == SDLK_LEFT) {
 				estados.top()->onKeyUp('i');
+			}
+			else if (e.key.keysym.sym == SDLK_UP) {
+				estados.top()->onKeyUp('a');
+			}
+			else if (e.key.keysym.sym == SDLK_DOWN) {
+				estados.top()->onKeyUp('b');
 			}
 	
 

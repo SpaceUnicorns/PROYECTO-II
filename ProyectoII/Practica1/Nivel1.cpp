@@ -17,9 +17,10 @@
 #include "Yesca.h"
 #include "MCrafteo.h"
 #include "Lobo.h"
-#include "follow.h"
 #include "AntorchaC.h"
-
+#include "follow.h""
+#include "TrampaAbierta.h"
+#include "Equipo.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
@@ -112,6 +113,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Piedra(pJuego, 980, 200));
 	vecObj.push_back(new TrampaCerrada(pJuego, 980, 300));
 	vecObj.push_back(new Yesca(pJuego, 1080, 100));
+	vecObj.push_back(new TrampaAbierta(pJuego, 1200, 400));
 
 	cargarAudio("../sounds/reverb/standrews.wav");
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
@@ -122,6 +124,9 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	activePlayer = "C";
 
 	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
+	
+	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
+	pRecolector->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 
 	rectTorch.h = 350;// pJuego->getTextura(TAntorcha)->getH();
@@ -249,7 +254,8 @@ void Nivel1::swPlayer(){
 void Nivel1::onKeyUp(char k) {
 	switch (k) {
 	case 'q':
-		pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))));
+		pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila")), 
+			static_cast<Equipo*>(pCazador->dameComponente("Equipo")), static_cast<Equipo*>(pRecolector->dameComponente("Equipo"))));
 		break;
 	case 's':
 		pJuego->estados.push(new Pausa(pJuego,contPuntos));

@@ -25,7 +25,7 @@ void Attack::update(){
 			//El jugador deberá tener algo que lo haga inmune a daño un ratele después de recibir un ataques
 			std::string nombrefacha = static_cast<Enemigo*>(pEntidad)->getTarget()->nombre[0];
 			static_cast<Enemigo*>(pEntidad)->getPJuego()->cambiaVida(-static_cast<Enemigo*>(pEntidad)->damage);
-			std::cout << "\n\n\nLa vida de " << nombrefacha << " ha disminuido " << static_cast<Enemigo*>(pEntidad)->damage << " puntos de salud.\n\n";
+			//std::cout << "\n\n\nLa vida de " << nombrefacha << " ha disminuido " << static_cast<Enemigo*>(pEntidad)->damage << " puntos de salud.\n\n";
 		}
 	}
 	

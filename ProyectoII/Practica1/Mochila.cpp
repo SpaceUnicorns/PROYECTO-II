@@ -2,7 +2,7 @@
 
 
 
-Mochila::Mochila(ObjetoJuego* ent): Componente(ent)
+Mochila::Mochila(ObjetoJuego* ent) : Componente(ent)
 {
 }
 

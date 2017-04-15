@@ -89,6 +89,7 @@
     <ClCompile Include="Enredadera.cpp" />
     <ClCompile Include="Deteccion.cpp" />
     <ClCompile Include="Enemigo.cpp" />
+    <ClCompile Include="Equipo.cpp" />
     <ClCompile Include="EstadoPG.cpp" />
     <ClCompile Include="follow.cpp" />
     <ClCompile Include="Fuente.cpp" />
@@ -118,6 +119,8 @@
     <ClCompile Include="TextCb.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
     <ClCompile Include="Trampa.cpp" />
+    <ClCompile Include="TrampaAbierta.cpp" />
+    <ClCompile Include="TrampaComponente.cpp" />
     <ClCompile Include="Trigger.cpp" />
     <ClCompile Include="TrampaCerrada.cpp" />
     <ClCompile Include="Yesca.cpp" />
@@ -139,6 +142,7 @@
     <ClInclude Include="Componente.h" />
     <ClInclude Include="Deteccion.h" />
     <ClInclude Include="Enemigo.h" />
+    <ClInclude Include="Equipo.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="EstadoPG.h" />
@@ -171,6 +175,8 @@
     <ClInclude Include="TextCb.h" />
     <ClInclude Include="TexturasSDL.h" />
     <ClInclude Include="Trampa.h" />
+    <ClInclude Include="TrampaAbierta.h" />
+    <ClInclude Include="TrampaComponente.h" />
     <ClInclude Include="Trigger.h" />
     <ClInclude Include="TrampaCerrada.h" />
     <ClInclude Include="Yesca.h" />

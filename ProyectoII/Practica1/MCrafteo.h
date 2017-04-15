@@ -1,7 +1,9 @@
 #pragma once
 #include "EstadoPG.h"
 #include "Mochila.h"
+#include "Equipo.h"
 
+enum MenuState {Crafteo, Personaje, Objeto};
 
 class MCrafteo: public EstadoPG
 {
@@ -9,7 +11,7 @@ class MCrafteo: public EstadoPG
 		std::string name; int x; int y;
 	};
 public:
-	MCrafteo(juegoPG*jug, int puntos, Mochila* m);
+	MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo* equipRec);
 	virtual ~MCrafteo();
 
 	void draw();
@@ -30,9 +32,15 @@ private:
 	int cual=0;
 	bool derecha, izquierda, flag;
 	
+	MenuState menuState;
 	Mochila* mochila;
+	Equipo* cazador;
+	Equipo* recolector;
 	std::vector<coords> equipables;
 	std::vector<std::string> crafteo;
 	std::vector<coords> materiales;
+	SDL_Rect seleccion;
+	int equipar; // 0 significa cazador, 1 significa recolector
+	int objeto, nivelObj;
 };
 
