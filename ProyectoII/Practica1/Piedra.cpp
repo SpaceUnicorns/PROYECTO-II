@@ -8,13 +8,13 @@ Piedra::Piedra(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 	et = TPiedra;
 	rect.w = 50;
 	rect.h = 30;
-	nombre.push_back("1");
+	nombre[0] = "1";
 	nombre.push_back( "Piedra");
 	SDL_Rect colision = { rect.x, rect.y + 10, 50, 10 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");
 	absRect.w = rect.w;
 	absRect.h = rect.h;
-	nombre[0] = typeid(this).name();
+	//nombre[0] = typeid(this).name();
 
 }
 

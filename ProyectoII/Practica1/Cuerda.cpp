@@ -8,7 +8,7 @@ Cuerda::Cuerda(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 	et = TCuerda;
 	rect.w = 50;
 	rect.h = 30;
-	nombre.push_back("1");
+	nombre[0] ="1";
 	nombre.push_back( "Cuerda");
 	receta.push_back("2");
 	receta.push_back("Enredadera");

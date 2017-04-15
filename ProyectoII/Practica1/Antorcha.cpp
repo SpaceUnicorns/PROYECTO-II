@@ -4,7 +4,7 @@
 
 Antorcha::Antorcha(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
-	nombre.push_back("1");
+	nombre[0] = "1";
 	nombre.push_back("Antorcha");
 	receta.push_back("1");
 	receta.push_back("Madera");
