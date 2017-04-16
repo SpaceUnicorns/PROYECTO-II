@@ -1,4 +1,4 @@
-#include "EstadoPG.h"
+﻿#include "EstadoPG.h"
 #include "Error.h"
 
 // Es importante ejecutar el metodo cargarAudio al principio de cada escena en la constructora despues de ejecutar la constructora del padre.
@@ -12,7 +12,6 @@ EstadoPG::EstadoPG(juegoPG*jug, int puntos)
 	contPuntos = puntos;
 
 }
-
 
 EstadoPG::~EstadoPG()
 {
@@ -39,11 +38,13 @@ EstadoPG::~EstadoPG()
 	}
 	
 }
+
+
 void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa)
 {
 	//conveniente recibir un vector de char para codificar tambien las colisiones del seguimiento
 	std::pair<int, int> tiles[16];
-	int xAux, yAux;
+	int xAux, yAux, filaTile=1;
 	xAux = j * 122*4;
 	yAux = i * 31*4;
 	if ( i % 2 != 0)  xAux += 61 * 4; yAux += 31 * 4;
@@ -59,6 +60,374 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 
 	switch (c)
 	{
+	/////////////////////////////
+	// TILES NIEVE
+	////////////////////////////
+
+	case 'Ũ': // NIEVE FULL
+		filaTile = 21; ////////////////////////////////////////////SUSTITUIR POR LA FILA
+		
+		//Colocamos el tile grande usando los pequeños
+		colocaTile(filaTile, xAux, yAux, aux);
+
+		// Metemos a un vector de char si se puede traspasar el tile o no
+
+		// Metemos los bordes al vector de bordes
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ų': // Nieve Rampa 1
+		filaTile = 57;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ù': // Nieve Rampa 2
+		filaTile = 58;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	/////////////////////////////
+	// TILES LAGO
+	////////////////////////////
+
+	case 'ø': // Lago Full
+		filaTile = 1;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ò': // Lago Orilla Norte
+		filaTile = 14;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ó': // Lago Orilla Sur
+		filaTile = 13;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ô': // Lago Orilla West
+		filaTile = 12;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'õ': // Lago Orilla Este
+		filaTile = 15;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ö': // Lago Orilla Norte-Este
+		filaTile = 10;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ő': // Lago Orilla Norte-West
+		filaTile = 6;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ç': // Lago Orilla Sur-Este
+		filaTile = 11;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ȫ': // Lago Orilla Sur-West
+		filaTile = 7;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '0': // Lago Esquina Norte-Este
+		filaTile = 5;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '@': // Lago Esquina Norte-West
+		filaTile = 4;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'δ': // Lago Esquina Sur-Este
+		filaTile = 3;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'σ': // Lago Esquina Sur-West
+		filaTile = 2;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	/////////////////////////////
+	// TILES BOSQUE
+	////////////////////////////
+
+	case 'ª': // Bosque Full
+		filaTile = 20;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ē': // Bosque North
+		filaTile = 22;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'è': // Bosque South
+		filaTile = 25;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '³': // Bosque West
+		filaTile = 23;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'é': // Bosque East
+		filaTile = 24;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '²': // Bosque North-East
+		filaTile = 26;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '´': // Bosque North-West
+		filaTile = 29;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ë': // Bosque South-East
+		filaTile = 27;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '¹': // Bosque South-West
+		filaTile = 28;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'È': // Bosque North-West-East
+		filaTile = 31;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'É': // Bosque South-West-East
+		filaTile = 33;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'Ê': // Bosque North-West-South
+		filaTile = 30;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'Ë': // Bosque North-East-South
+		filaTile = 32;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'þ': // Bosque North-West-South-East
+		filaTile = 38;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'æ': // Bosque Esquina North-East
+		filaTile = 36;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ß': // Bosque Esquina North-West
+		filaTile = 35;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'º': // Bosque Esquina South-East
+		filaTile = 37;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '¤': // Bosque Esquina South-West
+		filaTile = 34;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	/////////////////////////////
+	// TILES DESNIVEL
+	////////////////////////////
+
+	case 'i': // Desnivel FULL
+		filaTile = 39;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+	
+	case '~': // Desnivel North
+		filaTile = 41;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '}': // Desnivel South
+		filaTile = 43;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ì': // Desnivel West
+		filaTile = 40;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'í': // Desnivel East
+		filaTile = 42;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '{': // Desnivel North-East
+		filaTile = 48;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'î': // Desnivel North-West
+		filaTile = 49;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ï': // Desnivel South-East
+		filaTile = 50;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '|': // Desnivel South-West
+		filaTile = 51;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ľ': // Desnivel West-North-East
+		filaTile = 54;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '£': // Desnivel West-South-East
+		filaTile = 52;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '¥': // Desnivel North-West-South
+		filaTile = 55;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'Ĭ': // Desnivel North-East-South
+		filaTile = 53;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '®': // Desnivel North-West-South-East
+		filaTile = 56;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '±': // Desnivel Bajada North-South
+		filaTile = 45;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '¶': // Desnivel Bajada West-East
+		filaTile = 44;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case '»': // Desnivel Esquina North-West
+		filaTile = 46;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'Ð': // Desnivel Esquina Cueva
+		filaTile = 47;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+
+	////////////////////////////
+	// TILES Camino
+	////////////////////////////
+
+	case 'à': // Camino North-South
+		filaTile = 17;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'á': // Camino East-West
+		filaTile = 16;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'å': // Camino Curva Sourth-East
+		filaTile = 18;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+	case 'ă': // Camino Curva West-North
+		filaTile = 19;
+		colocaTile(filaTile, xAux, yAux, aux);
+		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		break;
+
+
+	/////////////////////////////
+	// TILES PROTOTIPO
+	////////////////////////////
+	/*
 	case 't':
 		aux.rectTileset.x = 2 * 122;//1
 		aux.rectTileset.y = 6 * 83;
@@ -152,7 +521,9 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		auxPunto.x = xAux + 427; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
 		auxPunto.x = xAux + 366; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
 		vectBordes.push_back(auxBorde);
+		
 		break;
+	/////////////////////////////////////////////////////////////////////////////////
 	case 'y':
 		aux.rectTileset.x = 5 * 122;//1
 		aux.rectTileset.y = 6 * 83;
@@ -1928,8 +2299,120 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		vecTile.push_back(aux);
 
 		break;
+		*/
 	}
 
+}
+
+void EstadoPG::colocaTile(int & filaTile, int & xAux, int & yAux, Tile & aux ){
+	//Posicion del Tile pequeño en el Tileset (16 tiles pequeños por cada Tile grande)
+	aux.rectTileset.x = 1 * 122;//1
+	aux.rectTileset.y = filaTile * 83;
+	//Colocacion del primer tile pequeño
+	aux.x = xAux + 183;
+	aux.y = yAux;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 2 * 122;//2
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 122;
+	aux.y = yAux + 31;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 3 * 122;//3
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 244;
+	aux.y = yAux + 31;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 4 * 122;//4
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 61;
+	aux.y = yAux + 62;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 5 * 122;//5
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 183;
+	aux.y = yAux + 62;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 6 * 122;//6
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 305;
+	aux.y = yAux + 62;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 7 * 122;//7
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux;
+	aux.y = yAux + 93;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 8 * 122;//8
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 122;
+	aux.y = yAux + 93;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 9 * 122;//9
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 244;
+	aux.y = yAux + 93;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 10 * 122;//10
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 366;
+	aux.y = yAux + 93;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 11 * 122;//11
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 61;
+	aux.y = yAux + 124;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 12 * 122;//12
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 183;
+	aux.y = yAux + 124;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 13 * 122;//13
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 305;
+	aux.y = yAux + 124;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 14 * 122;//14
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 122;
+	aux.y = yAux + 155;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 15 * 122;//15
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 244;
+	aux.y = yAux + 155;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 3 * 122;//16
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 183;
+	aux.y = yAux + 186;
+	vecTile.push_back(aux);
+}
+
+void EstadoPG::meterBorde(Punto & auxPunto, int & xAux, int & yAux, TrianguloBorde & auxBorde){
+	auxPunto.x = xAux + 244; auxPunto.y = yAux + 62; auxBorde.A = auxPunto;
+	auxPunto.x = xAux + 61; auxPunto.y = yAux + 155; auxBorde.B = auxPunto;
+	auxPunto.x = xAux + 122; auxPunto.y = yAux + 62; auxBorde.C = auxPunto;
+	vectBordes.push_back(auxBorde);
+	auxPunto.x = xAux + 183; auxPunto.y = yAux + 217; auxBorde.A = auxPunto;
+	auxPunto.x = xAux + 427; auxPunto.y = yAux + 93; auxBorde.B = auxPunto;
+	auxPunto.x = xAux + 366; auxPunto.y = yAux + 186; auxBorde.C = auxPunto;
+	vectBordes.push_back(auxBorde);
 }
 
 void::EstadoPG::cargaMapa(std::string txt, std::vector<TrianguloBorde>& mapa){
@@ -1985,7 +2468,7 @@ void EstadoPG::cargarAudio(std::string irPath){
 	pJuego->system->createChannelGroup("reverb", &reverbGroup);
 	pJuego->system->createChannelGroup("main", &mainGroup);
 	/*
-	Creamos el recurso dcp y lo a�adimos a la reverb
+	Creamos el recurso dcp y lo añadimos a la reverb
 	*/
 	
 	pJuego->system->createDSPByType(FMOD_DSP_TYPE_CONVOLUTIONREVERB, &reverbUnit);

@@ -28,7 +28,9 @@ public:
 	virtual void paraMusica(std::string music, bool fade);
 	virtual void reproduceAmb(std::string amb, bool fade);
 	virtual void paraAmb(std::string amb, bool fade);
+
 	void cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa);
+
 	virtual void cargaMapa(std::string txt, std::vector<TrianguloBorde>&mapa);
 	virtual void onKeyUp(char k){};
 	virtual void onKeyDown(char k){};
@@ -71,7 +73,8 @@ protected:
 		int capa;
 	};
 	//GrafoMapa* mapa;
-
+	void colocaTile(int & filaTile, int & xAux, int & yAux, Tile & aux);
+	void meterBorde(Punto & auxPunto, int & xAux, int & yAux, TrianguloBorde & auxBorde);
 
 	std::vector <Tile> vecTile;     //Vector de tiles para dibujar el mapa
 	std::vector<TrianguloBorde> vectBordes;
