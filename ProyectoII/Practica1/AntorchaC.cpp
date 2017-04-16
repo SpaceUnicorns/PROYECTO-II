@@ -1,4 +1,5 @@
 #include "AntorchaC.h"
+#include "Equipo.h"
 
 
 AntorchaC::AntorchaC(ObjetoJuego* ent, Nivel1* nivel) : Componente(ent)
@@ -43,6 +44,7 @@ void AntorchaC::swAble(){
 		contFrames = 0;
 		level->setAlpha(255);
 		alpha = 125;
+		static_cast<Equipo*>(pObj->dameComponente("Equipo"))->setEquipo("Nada", 0);
 		able = false;
 	}
 	else{

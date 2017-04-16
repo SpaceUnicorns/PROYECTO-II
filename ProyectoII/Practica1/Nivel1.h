@@ -19,9 +19,10 @@ public:
 	void getTorch(){ hasTorch = true; }
 	void dropTorch(){hasTorch = false;}
 	void setAlpha(int i){ alpha = i; }
+	void drawEquipo();
 
 protected:
-	SDL_Rect animNieve1, animNieve2, rectZonaOscura;
+	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
 	bool hasTorch;
 	int x, y, alpha;
 	Cazador* pCazador;

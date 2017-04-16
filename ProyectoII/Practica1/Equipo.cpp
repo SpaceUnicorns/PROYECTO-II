@@ -39,10 +39,35 @@ void Equipo::update()
 				mochila->removeItem("Antorcha", 1);
 				cantidad--;
 			}
-			if (cantidad == 0) equipado = Nada;
 			break;
 		case Hacha:
+			if (pObj->getPJuego()->input.enter && cantidad > 0){
+				//Rellenar en función de lo que haga
+				std::cout << "Has usado el hacha\n";
+				mochila->removeItem("Hacha", 1);
+				cantidad--;
+			}
+			if (cantidad == 0) equipado = Nada;
 			break;
+		case Pala: 
+			if (pObj->getPJuego()->input.enter && cantidad > 0){
+			//Rellenar en función de lo que haga
+			std::cout << "Has usado la pala\n";
+			mochila->removeItem("Pala", 1);
+			cantidad--;
+			}
+			if (cantidad == 0) equipado = Nada;
+			break;
+		case Pico:
+			if (pObj->getPJuego()->input.enter && cantidad > 0){
+				//Rellenar en función de lo que haga
+				std::cout << "Has usado el pico\n";
+				mochila->removeItem("Pico", 1);
+				cantidad--;
+			}
+			if (cantidad == 0) equipado = Nada;
+			break;
+
 		}
 		
 	//}

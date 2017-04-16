@@ -131,6 +131,10 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 
+	rectEquipo.x = 50; rectEquipo.y = 50;
+	rectEquipo.h = rectEquipo.w = 50;  animEquipo.h = animEquipo.w = 100;
+	animEquipo.y = animEquipo.x = 0;
+
 	rectZonaOscura.h = 600; rectZonaOscura.w = 600;
 	rectZonaOscura.x = 1000; rectZonaOscura.y = 0;
 	hasTorch = false;
@@ -199,7 +203,37 @@ void Nivel1::draw(){
 	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
 	
 	pJuego->getTextura(TLuz)->draw(pJuego->getRender(),pJuego->getNieblaRect() ,camara);
+
+	drawEquipo();
 	
+}
+void Nivel1::drawEquipo(){
+
+	int auxiliar;
+	if (activePlayer == "C") auxiliar = static_cast<Equipo*>(pCazador->dameComponente("Equipo"))->getEquipo();
+	else  auxiliar = static_cast<Equipo*>(pRecolector->dameComponente("Equipo"))->getEquipo();
+
+	//Nada, Trampa, Antorcha, Hacha
+	bool dibuja = true;
+	switch (auxiliar)
+	{
+	case 0: dibuja = false; 
+		break;
+	case 1: animEquipo.x = 400; //Trampa
+		break;
+	case 2: animEquipo.x = 0; //Antorcha
+		break;
+	case 3: animEquipo.x = 100; //Hacha
+		break;
+	case 4: animEquipo.x = 200; //Pala
+		break;
+	case 5: animEquipo.x = 300; //Pico
+		break;
+	default:
+		break;
+	}
+
+	if (dibuja) pJuego->getTextura(TObjetoEquipo)->draw(pJuego->getRender(), animEquipo, rectEquipo);
 }
 void Nivel1::swPlayer(){
 	SDL_Rect aux;
