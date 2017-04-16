@@ -13,6 +13,8 @@ public:
 	std::string getEquipo(){ return equipo; };
 	void setEquipo(std::string e){ equipo = e; };
 
+
+
 private:
 	bool pintado;
 	std::string equipo;

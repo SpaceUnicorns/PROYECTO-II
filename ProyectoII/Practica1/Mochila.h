@@ -11,6 +11,7 @@ public:
 	 bool findItem(std::string const & name);
 
 	 int getCantidad(std::string const & name) const;
+
 private:
 	std::map<std::string, int> mochilaRecolector;
 };

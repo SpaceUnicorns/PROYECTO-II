@@ -7,6 +7,7 @@
 #include "SDL_ttf.h"
 #include <string>
 #include "GrafoMapa.h"
+
 class Nivel1 :
 	public EstadoPG
 {
@@ -16,6 +17,7 @@ public:
 	virtual void draw();
 	Cazador* getCazador() { return pCazador; }
 	Recolector* getRecolector() { return pRecolector; }
+	std::string getActivePlayer() { return activePlayer; }
 
 protected:
 	SDL_Rect animNieve1;
@@ -28,23 +30,5 @@ protected:
 	void onKeyUp(char k);
 
 	GrafoMapa* mapa;
-
-	/*//métodos-----------------------------------------------------------------
-	int getPuntos(){ return contPuntos; }
-	virtual void onClick();
-	virtual void update();
-
-	virtual void newBaja(ObjetoJuego* ob);
-	virtual void newPuntos(ObjetoJuego* ob);
-	virtual void newPremio(ObjetoJuego* ob);
-	virtual void reproduce(ObjetoJuego* ob);*/
-	
-	/*int contGlobos, globosTot, pmx, pmy;
-	int numPremios;
-	bool gameOver,pause;
-
-	//Métodos ------------------------------------------------------------------------------------------------------------------------------------------
-
-	int tipoGlobo();*/
 };
 
