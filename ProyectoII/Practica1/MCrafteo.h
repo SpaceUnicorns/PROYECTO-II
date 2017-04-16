@@ -42,5 +42,6 @@ private:
 	SDL_Rect seleccion;
 	int equipar; // 0 significa cazador, 1 significa recolector
 	int objeto, nivelObj;
+	int eCaz, eRec;
 };
 

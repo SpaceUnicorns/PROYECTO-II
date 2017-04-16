@@ -22,6 +22,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo
 	seleccion.h = 550;
 	seleccion.w = 385;
 	
+	eCaz = eRec = 0;
 	////////////////////////////////////////////
 
 	cazador = equipCaz;
@@ -62,7 +63,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo
 	int Ry = recuadros.y;
 	equipables = { //5 elems
 		{ "Hacha", Rx + 46, Ry + 46 },{ "Antorcha", Rx + 202, Ry + 47 },{ "Pico", Rx + 354, Ry + 46 },
-		{ "Pala", Rx + 120, Ry + 186 },{ "TrampaAbierta", Rx + 282, Ry + 186 }
+		{ "Pala", Rx + 120, Ry + 186 },{ "Trampa", Rx + 282, Ry + 186 }
 	};
 	Ry = pJuego->getScreenHeight() / 2 + 30;
 	materiales = { //8 elems
@@ -401,9 +402,13 @@ void MCrafteo::onKeyUp(char k)
 			if (mochila->findItem(equipables[objeto].name)){
 				if (equipar == 1){
 					cazador->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
+					if (objeto == eRec) recolector->setEquipo(0, 0);
+					eCaz = objeto;
 				}
 				else {
 					recolector->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
+					if (objeto == eCaz) cazador->setEquipo(0, 0);
+					eRec = objeto;
 				}
 			}
 		}
