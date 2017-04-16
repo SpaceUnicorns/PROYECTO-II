@@ -1,6 +1,7 @@
 #include "ObjetoPG.h"
 #include "ColisionBox.h"
 #include "checkML.h"
+#include "Equipo.h"
 
 ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 {
@@ -95,7 +96,7 @@ void ObjetoPG::update(){
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
 
-	while (activo && it != itFin){
+	while (it != itFin){
 		it->second->update();
 		it++;
 	}

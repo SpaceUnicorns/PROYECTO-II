@@ -81,7 +81,9 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pCazador = new Cazador(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
 	pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
 	vecObj.push_back(pCazador);
+
 	pRecolector = new Recolector(pJuego,880,220);
+	pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
 	vecObj.push_back(pRecolector);
 
 	Trigger *auxTr; auxTr = new Trigger (pJuego, 562, 384, pCazador, pRecolector);
@@ -126,7 +128,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
 	
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
-	pRecolector->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
+	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
 
 	rectZonaOscura.h = 600; rectZonaOscura.w = 600;

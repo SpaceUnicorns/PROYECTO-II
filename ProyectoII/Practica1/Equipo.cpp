@@ -5,7 +5,7 @@
 
 Equipo::Equipo(ObjetoJuego* entidad, Mochila* moch) :Componente(entidad)
 {
-	pObj = dynamic_cast<ObjetoPG*>(pEntidad);
+	pObj = dynamic_cast<ObjetoPG*>(entidad);
 	equipado = Nada;
 	cantidad = 0;
 	mochila = moch;
@@ -17,8 +17,8 @@ Equipo::~Equipo()
 }
 void Equipo::update()
 {
-	if (pObj->isAble())
-	{
+	//if (pObj->isAble())
+	//{
 		switch (equipado)
 		{
 		case Nada:
@@ -35,7 +35,8 @@ void Equipo::update()
 		case Antorcha:
 			//cantidad--;
 			if (cantidad > 0){
-				pObj->newComponente(new AntorchaC(pEntidad, dynamic_cast<Nivel1*>(pObj->getPJuego()->estados.top())), "AntorchaC");
+				dynamic_cast<AntorchaC*>(pObj->dameComponente("AntorchaC"))->swAble();
+				mochila->removeItem("Antorcha", 1);
 				cantidad--;
 			}
 			if (cantidad == 0) equipado = Nada;
@@ -44,6 +45,6 @@ void Equipo::update()
 			break;
 		}
 		
-	}
+	//}
 
 }

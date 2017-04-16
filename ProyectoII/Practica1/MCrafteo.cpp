@@ -398,12 +398,12 @@ void MCrafteo::onKeyUp(char k)
 		}
 		else if (menuState == Objeto)
 		{
-			if (equipables[objeto].name[1] > 0){
-				if (equipar == 0){
-					cazador->setEquipo(equipables[objeto].name[0], equipables[objeto].name[1]);
+			if (equipables[objeto].name != " "){
+				if (equipar == 1){
+					cazador->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
 				}
 				else {
-					recolector->setEquipo(equipables[objeto].name[0], equipables[objeto].name[1]);
+					recolector->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
 				}
 			}
 		}

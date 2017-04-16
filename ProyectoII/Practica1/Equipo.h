@@ -11,7 +11,14 @@ public:
 	Equipo(ObjetoJuego* entidad, Mochila* moch);
 	virtual ~Equipo();
 	virtual void update();
-	void setEquipo(int equip, int num) { equipado = (Equipamento)equip; cantidad = num; };
+	void setEquipo(std:: string equip, int num) {
+		if (equip == "Trampa") equipado = Trampa;
+		else if (equip == "Antorcha") equipado = Antorcha;
+		else if (equip == "Hacha") equipado = Hacha;
+		else equipado = Nada;
+
+		cantidad = num;
+	};
 private:
 	ObjetoPG* pObj;
 	Mochila* mochila;

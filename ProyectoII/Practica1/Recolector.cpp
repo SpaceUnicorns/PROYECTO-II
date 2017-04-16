@@ -2,6 +2,7 @@
 #include "MovimientoP.h"
 #include "Mochila.h"
 #include "Huella.h"
+#include "AntorchaC.h"
 
 
 Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
@@ -35,5 +36,6 @@ void Recolector::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!
 	}
 	static_cast<ColisionBox*>(mapaComponentes.at("Huella"))->draw();
 	pJuego->getTextura(et)->draw(pJuego->getRender(), anim, rect);
+	static_cast<AntorchaC*>(mapaComponentes.at("AntorchaC"))->draw();
 	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
 }
