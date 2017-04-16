@@ -398,7 +398,7 @@ void MCrafteo::onKeyUp(char k)
 		}
 		else if (menuState == Objeto)
 		{
-			if (equipables[objeto].name != " "){
+			if (mochila->findItem(equipables[objeto].name)){
 				if (equipar == 1){
 					cazador->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
 				}
