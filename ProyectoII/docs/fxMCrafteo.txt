@@ -1,0 +1,9 @@
+OpcionMenuCrafteo
+OpcionMenuNormal
+SelOpcionCrafteo0
+SelOpcionCrafteo1
+SelOpcionCrafteo2
+SelOpcionCrafteo3
+Cancelar
+NoDisponible
+RecogeItem1

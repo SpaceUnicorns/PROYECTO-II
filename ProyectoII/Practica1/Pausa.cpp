@@ -14,6 +14,8 @@ Pausa::Pausa(juegoPG*jug, int puntos) :EstadoPG(jug, puntos)
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
 
+	cargarAssetsAudio("../docs/fxMPausa.txt", 'f');
+
 	estado = Resume;
 	temp = 0;
 	aux = pJuego->getScreenHeight() / 2 + boton.h / 2;
@@ -52,14 +54,17 @@ void Pausa::update()
 		{
 		case (Resume) :
 			if (pJuego->input.arriba) {
+				reproduceFx("SelOpcionNormal1", -100, 0, 0);
 				rect.y = aux + 93;
 				estado = Menu; //cambiar de estado
 			}
 			else if (pJuego->input.abajo) {
+				reproduceFx("SelOpcionNormal1", -100, 0, 0);
 				rect.y = aux - 7;
 				estado = Opciones;
 			}
 			else if (enter) {
+				reproduceFx("OpcionMenuNormal", -100, 0, 0);
 				pJuego->input.enter = false;
 				pJuego->estados.pop();
 			}
@@ -67,14 +72,17 @@ void Pausa::update()
 
 		case (Opciones) :
 			if (pJuego->input.arriba) {
+				reproduceFx("SelOpcionNormal1", -100, 0, 0);
 				rect.y = aux - 107;
 				estado = Resume;
 			}
 			else if (pJuego->input.abajo) {
+				reproduceFx("SelOpcionNormal1", -100, 0, 0);
 				rect.y = aux + 93;
 				estado = Menu;
 			}
 			else if (enter) {
+				reproduceFx("OpcionMenuNormal", -100, 0, 0);
 				//push estado nuevo --> Opciones
 				pJuego->input.enter = false;
 				std::cout << "me voy a opciones --- en proceso de creacion ---\n";
@@ -83,17 +91,20 @@ void Pausa::update()
 
 		case (Menu) :
 			if (pJuego->input.arriba) {
+				reproduceFx("SelOpcionNormal1", -100, 0, 0);
 				rect.y = aux - 7;
 				estado = Opciones;
 			}
 			else if (pJuego->input.abajo) {
+				reproduceFx("SelOpcionNormal1", -100, 0, 0);
 				rect.y = aux - 107;
 				estado = Resume;
 			}
 			else if (enter) {
+				reproduceFx("OpcionMenuNormal", -100, 0, 0);
 				pJuego->input.enter = false;
 				EstadoJuego* borrar = pJuego->estados.top();
-				pJuego->estados.pop();
+				while( !pJuego->estados.empty()) pJuego->estados.pop();
 				pJuego->estados.push(new MenuPG(pJuego, 0));
 				delete borrar;
 			}
