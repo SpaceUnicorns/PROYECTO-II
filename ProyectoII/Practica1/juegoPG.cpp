@@ -33,6 +33,7 @@ juegoPG::juegoPG()
 	nieblaRect = { 600,338,400,225 };
 
 	estados.push(new MenuPG(this,0));
+	delay = 0;
 
 }
 void juegoPG::initMedia(){
@@ -114,14 +115,63 @@ void juegoPG::handle_event(){
 	input.derecha = keystate[SDL_SCANCODE_RIGHT];
 	input.izquierda = keystate[SDL_SCANCODE_LEFT];
 	input.enter = keystate[SDL_SCANCODE_RETURN] || keystate[SDL_SCANCODE_KP_ENTER];
+
+	int StickX, StickY;
+	for (int ControllerIndex = 0; ControllerIndex < 2; ++ControllerIndex){
+
+		if (Controller[ControllerIndex] != 0 && SDL_GameControllerGetAttached(Controller[ControllerIndex]))
+		{
+			// NOTE: We have a controller with index ControllerIndex.
+			if (!input.arriba) input.arriba = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_UP);
+			if (!input.abajo) input.abajo = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_DOWN);
+			if (!input.izquierda)input.izquierda = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_LEFT);
+			if (!input.derecha) input.derecha = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
+			//input.mcraft = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_START);
+			//bool Back = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_BACK);
+			//input.sw = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_LEFTSHOULDER);
+			bool RightShoulder = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
+			if (!input.enter) input.enter = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_A);
+			/*bool BButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_B);
+			bool XButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_X);
+			bool YButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_Y);*/
+
+			/*StickX = SDL_GameControllerGetAxis(Controller[ControllerIndex], SDL_CONTROLLER_AXIS_LEFTX);
+			StickY = SDL_GameControllerGetAxis(Controller[ControllerIndex], SDL_CONTROLLER_AXIS_LEFTY);*/
+		}
+		else
+		{
+			// TODO: This controller is note plugged in.
+		}
+	}
+
+	StickX = SDL_GameControllerGetAxis(Controller[0], SDL_CONTROLLER_AXIS_LEFTX);
+	StickY = SDL_GameControllerGetAxis(Controller[0], SDL_CONTROLLER_AXIS_LEFTY);
+
+	int xDir = 0, yDir = 0;
+	if (StickX < -JOYSTICK_DEAD_ZONE) xDir = -1;
+	else if (StickX > JOYSTICK_DEAD_ZONE) xDir = 1;
+	else xDir = 0;
 	
+	if (StickY < -JOYSTICK_DEAD_ZONE) yDir = -1;
+	else if (StickY > JOYSTICK_DEAD_ZONE) yDir = 1;
+	else yDir = 0;
+
+			
+	if (xDir == 1 && yDir == -1) input.dDS = true;
+	else if (xDir == 1 && yDir == 0) input.derecha = true;
+	else if (xDir == -1 && yDir == 0) input.izquierda = true;
+	else if (xDir == 1 && yDir == 1) input.dDI = true;
+	else if (xDir == -1 && yDir == -1) input.dIS = true;
+	else if (xDir == -1 && yDir == 1) input.dII = true;
+	else if (xDir == 0 && yDir == -1) input.arriba = true;
+	else if (xDir == 0 && yDir == 1) input.abajo = true;
 
 	if (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT){
 			onExit();
 		}
-		else if (e.type == SDL_KEYUP){
-			if (e.key.keysym.sym == SDLK_ESCAPE){
+		else if (e.type == SDL_KEYUP || e.type == SDL_CONTROLLERBUTTONUP){
+			if (e.key.keysym.sym == SDLK_ESCAPE || e.cbutton.button == SDL_CONTROLLER_BUTTON_BACK){
 				if (dynamic_cast<Nivel1*>(estados.top()) != nullptr) {
 					SDL_Surface *sshot = SDL_CreateRGBSurface(0, getScreenWidth(), getScreenHeight(), 32, 0, 0, 0, 0);
 					SDL_RenderReadPixels(getRender(), NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
@@ -130,18 +180,18 @@ void juegoPG::handle_event(){
 				}
 				estados.top()->onKeyUp('s');
 			}
-			else if (e.key.keysym.sym == SDLK_TAB){
-				input.sw = true;
+			else if (e.key.keysym.sym == SDLK_TAB || e.cbutton.button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER){
+				//input.sw = true;
+				estados.top()->onKeyUp('t');
 			}
-			else if (e.key.keysym.sym == SDLK_e) {
-
+			else if (e.key.keysym.sym == SDLK_e || e.cbutton.button == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER) {
 				input.e = true;
 			}
 			else if (e.key.keysym.sym == SDLK_p){
 				estados.top()->onKeyUp('p');
 			}
 
-			else if (e.key.keysym.sym == SDLK_q) {
+			else if (e.key.keysym.sym == SDLK_q || e.cbutton.button ==  SDL_CONTROLLER_BUTTON_START) {
 				if (dynamic_cast<Nivel1*>(estados.top()) != nullptr) {
 					SDL_Surface *sshot = SDL_CreateRGBSurface(0, getScreenWidth(), getScreenHeight(), 32, 0, 0, 0, 0);
 					SDL_RenderReadPixels(getRender(), NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
@@ -150,19 +200,19 @@ void juegoPG::handle_event(){
 				}
 				estados.top()->onKeyUp('q');
 			}
-			else if (e.key.keysym.sym == SDLK_RETURN) {
+			else if (e.key.keysym.sym == SDLK_RETURN || e.cbutton.button == SDL_CONTROLLER_BUTTON_A ) {
 				estados.top()->onKeyUp('e');
 			}
-			else if (e.key.keysym.sym == SDLK_RIGHT) {
+			else if (e.key.keysym.sym == SDLK_RIGHT || e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT) {
 				estados.top()->onKeyUp('d');
 			}
-			else if (e.key.keysym.sym == SDLK_LEFT) {
+			else if (e.key.keysym.sym == SDLK_LEFT || e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_LEFT) {
 				estados.top()->onKeyUp('i');
 			}
-			else if (e.key.keysym.sym == SDLK_UP) {
+			else if (e.key.keysym.sym == SDLK_UP || e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_UP) {
 				estados.top()->onKeyUp('a');
 			}
-			else if (e.key.keysym.sym == SDLK_DOWN) {
+			else if (e.key.keysym.sym == SDLK_DOWN || e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_DOWN) {
 				estados.top()->onKeyUp('b');
 			}
 	
@@ -187,25 +237,45 @@ void juegoPG::handle_event(){
 				estados.top()->onClick();
 			}
 		}
-		else if (e.type == SDL_MOUSEMOTION){
+		else if (e.type == SDL_MOUSEMOTION ){
 			pmx = e.button.x;
 			pmy = e.button.y;
 			estados.top()->onOver();
 		}
 	}
 		else {
-			input.sw = false;	
+			input.sw = false;
+			
 		}
+		
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 	//Initialize SDL
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+	if (SDL_Init(SDL_INIT_EVERYTHING | SDL_INIT_GAMECONTROLLER) < 0) {
 		cout << "SDL could not initialize! \nSDL_Error: " << SDL_GetError() << '\n';
 		throw EInitSDL("SDL could not initialize!");
 	}
 	else {
+
+		int MaxJoysticks = SDL_NumJoysticks();
+		int ControllerIndex = 0;
+		for (int JoystickIndex = 0; JoystickIndex < MaxJoysticks; ++JoystickIndex)
+		{
+			if (!SDL_IsGameController(JoystickIndex))
+			{
+				continue;
+			}
+			if (ControllerIndex >=2)
+			{
+				break;
+			}
+			Controller[ControllerIndex] = SDL_GameControllerOpen(JoystickIndex);
+			ControllerIndex++;
+		}
+
+		
 		int x = SDL_GetCurrentDisplayMode(0,&pMode); //0 para poner en toda la pantalla;
 		if (x == 0){
 			SCREEN_HEIGHT = pMode.h; 
@@ -254,6 +324,13 @@ void juegoPG::closeSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer) {
 	result = system->close();
 	result = system->release();
 	TTF_Quit();
+	for (int ControllerIndex = 0; ControllerIndex < 2; ++ControllerIndex)
+	{
+		if (Controller[ControllerIndex])
+		{
+			SDL_GameControllerClose(Controller[ControllerIndex]);
+		}
+	}
 	SDL_DestroyRenderer(pRenderer);
 	pRenderer = nullptr;
 

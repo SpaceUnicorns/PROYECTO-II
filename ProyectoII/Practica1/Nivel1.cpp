@@ -275,7 +275,7 @@ void Nivel1::swPlayer(){
 	
 	if (activePlayer == "C") pCazador->swAble();
 	else pRecolector->swAble();
-
+	pJuego->input.sw = false;
 }
 
 void Nivel1::onKeyUp(char k) {
@@ -286,6 +286,8 @@ void Nivel1::onKeyUp(char k) {
 		break;
 	case 's':
 		pJuego->estados.push(new Pausa(pJuego,contPuntos));
+		break;
+	case 't': pJuego->input.sw = true;
 		break;
 	default:
 		break;
