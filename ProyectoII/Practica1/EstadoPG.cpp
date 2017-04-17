@@ -2308,6 +2308,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 }
 
 void EstadoPG::colocaTile(int & filaTile, int & xAux, int & yAux, Tile & aux ){
+	int posTile = filaTile - 1;
 	//Colocacion del RECT del primer tile pequeño en su posicion respecto al tile grande
 	//xAux = Posicion X del tile Grande
 	//yAux = Posicion Y del tile Grande
@@ -2336,97 +2337,97 @@ void EstadoPG::colocaTile(int & filaTile, int & xAux, int & yAux, Tile & aux ){
 	//Tile 15: 244,155 (6,3)
 	//Tile 16: 183,186 (7,2)
 	aux.rectTileset.x = 0 * 122;//1
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 183;//1
 	aux.y = yAux;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 1 * 122;//2
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 122;
 	aux.y = yAux + 31;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 2 * 122;//3
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 244;
 	aux.y = yAux + 31;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 3 * 122;//4
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 61;
 	aux.y = yAux + 62;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 4 * 122;//5
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 183;
 	aux.y = yAux + 62;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 5 * 122;//6
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 305;
 	aux.y = yAux + 62;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 6 * 122;//7
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux;
 	aux.y = yAux + 93;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 7 * 122;//8
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 122;
 	aux.y = yAux + 93;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 8 * 122;//9
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 244;
 	aux.y = yAux + 93;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 9 * 122;//10
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 366;
 	aux.y = yAux + 93;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 10 * 122;//11
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 61;
 	aux.y = yAux + 124;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 11 * 122;//12
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 183;
 	aux.y = yAux + 124;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 12 * 122;//13
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 305;
 	aux.y = yAux + 124;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 13 * 122;//14
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 122;
 	aux.y = yAux + 155;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 14 * 122;//15
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 244;
 	aux.y = yAux + 155;
 	vecTile.push_back(aux);
 
 	aux.rectTileset.x = 15 * 122;//16
-	aux.rectTileset.y = filaTile * 83;
+	aux.rectTileset.y = posTile * 83;
 	aux.x = xAux + 183;
 	aux.y = yAux + 186;
 	vecTile.push_back(aux);
