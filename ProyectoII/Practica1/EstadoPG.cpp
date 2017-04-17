@@ -5350,7 +5350,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
-
+				//////////////////////////////////////////////////////////////////////////////////////////// Desnivel WSE
 			case 880:
 				rectAux.x = 0 * 122; rectAux.y = 51 * 83;
 				aux2.rectTileset = rectAux;
@@ -5463,6 +5463,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Desnivel NWS
 			case 900:
 				rectAux.x = 0 * 122; rectAux.y = 54 * 83;
 				aux2.rectTileset = rectAux;
@@ -5575,6 +5576,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Desnivel NES
 			case 920:
 				rectAux.x = 0 * 122; rectAux.y = 52 * 83;
 				aux2.rectTileset = rectAux;
@@ -5687,6 +5689,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Desnivel NWSE
 			case 940:
 				rectAux.x = 0 * 122; rectAux.y = 55 * 83;
 				aux2.rectTileset = rectAux;
@@ -5799,6 +5802,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Desnivel bajada NS
 			case 960:
 				rectAux.x = 0 * 122; rectAux.y = 44 * 83;
 				aux2.rectTileset = rectAux;
@@ -5911,6 +5915,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Desnivel bajada WE
 			case 980:
 				rectAux.x = 0 * 122; rectAux.y = 43 * 83;
 				aux2.rectTileset = rectAux;
@@ -6023,6 +6028,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Desnivel Esquina NW
 			case 1000:
 				rectAux.x = 0 * 122; rectAux.y = 45 * 83;
 				aux2.rectTileset = rectAux;
@@ -6135,6 +6141,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Desnivel Cueva
 			case 1020:
 				rectAux.x = 0 * 122; rectAux.y = 46 * 83;
 				aux2.rectTileset = rectAux;
@@ -6247,6 +6254,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Camino NS
 			case 1040:
 				rectAux.x = 0 * 122; rectAux.y = 16 * 83;
 				aux2.rectTileset = rectAux;
@@ -6359,6 +6367,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Camino EW
 			case 1060:
 				rectAux.x = 0 * 122; rectAux.y = 15 * 83;
 				aux2.rectTileset = rectAux;
@@ -6471,6 +6480,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Camino Curva SE
 			case 1080:
 				rectAux.x = 0 * 122; rectAux.y = 17 * 83;
 				aux2.rectTileset = rectAux;
@@ -6583,6 +6593,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+				/////////////////////////////////////////////////////////////////////////////////////////// Camino Curva WN
 			case 1100:
 				rectAux.x = 0 * 122; rectAux.y = 18 * 83;
 				aux2.rectTileset = rectAux;
@@ -6696,36 +6707,10 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				vecTile.push_back(aux2);
 				break;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			case 's':  rectAux.x = 0; aux2.rectTileset = rectAux;
-				aux2.x = x; aux2.y = y; aux2.capa = 1;
-				x += 122;
-				vecTile.push_back(aux2);
+			case 999: y += 31; if (y == 0 || y % 62 == 0) x = 61; else x = 0;
 				break;
-			case 't': rectAux.x = 122; aux2.rectTileset = rectAux;
-				aux2.x = x; aux2.y = y; aux2.capa = 1;
-				x += 122;
-				vecTile.push_back(aux2);
-				break;
-			case 'X':
+			}
+			if (tile == 0 /*si es uno de los que tiene colision*/){
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
 				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
@@ -6738,11 +6723,9 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				/*rectAux.x = 244; aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				vecTile.push_back(aux2); */
-				x += 122;
-				break;
-			case 999: y += 31; if (y == 0 || y % 62 == 0) x = 61; else x = 0;
-				break;
+				mapa.push_back('X');
 			}
+			else mapa.push_back('s');
 			f.get(aux);
 		}
 	}

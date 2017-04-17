@@ -24,6 +24,9 @@
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
 
+	std::vector<char> mapAux;
+	cargaMapa("../docs/mapa.txt", mapAux);
+	mapa->creaMapa(mapAux);
 	camara.x = camara.y = 0;
 	camara.h = pJuego->getScreenHeight(); camara.w = pJuego->getScreenWidth();
 	animNieve1.h = animNieve2.h = camara.h+1000; animNieve1.w = animNieve2.w = camara.w+1000;
