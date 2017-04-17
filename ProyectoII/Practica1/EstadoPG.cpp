@@ -42,11 +42,16 @@ EstadoPG::~EstadoPG()
 
 void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa)
 {
+	//xAux = Posicion X del tile Grande
+	//yAux = Posicion Y del tile Grande
+	//aux.x = posicion x del tile pequeño en el mapa real (relativo al tile grande)
+	//aux.y = posicion y del tile pequeño en el mapa real (relativo al tile grande)
+
 	//conveniente recibir un vector de char para codificar tambien las colisiones del seguimiento
 	std::pair<int, int> tiles[16];
 	int xAux, yAux, filaTile=1;
 	xAux = j * 122*4;
-	yAux = i * 31*4;
+	yAux = ((i * 31*4)-i);
 	if ( i % 2 != 0)  xAux += 61 * 4; yAux += 31 * 4;
 	Tile aux;
 	aux.capa = 1;
@@ -76,7 +81,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
 		break;
 
-	case 'ų': // Nieve Rampa 1
+	case '×': // Nieve Rampa 1
 		filaTile = 57;
 		colocaTile(filaTile, xAux, yAux, aux);
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
@@ -128,7 +133,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
 		break;
 
-	case 'ő': // Lago Orilla Norte-West
+	case '©': // Lago Orilla Norte-West
 		filaTile = 6;
 		colocaTile(filaTile, xAux, yAux, aux);
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
@@ -140,7 +145,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
 		break;
 
-	case 'ȫ': // Lago Orilla Sur-West
+	case '¬': // Lago Orilla Sur-West
 		filaTile = 7;
 		colocaTile(filaTile, xAux, yAux, aux);
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
@@ -158,13 +163,13 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
 		break;
 
-	case 'δ': // Lago Esquina Sur-Este
+	case '°': // Lago Esquina Sur-Este
 		filaTile = 3;
 		colocaTile(filaTile, xAux, yAux, aux);
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
 		break;
 
-	case 'σ': // Lago Esquina Sur-West
+	case '¿': // Lago Esquina Sur-West
 		filaTile = 2;
 		colocaTile(filaTile, xAux, yAux, aux);
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
@@ -177,10 +182,10 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 	case 'ª': // Bosque Full
 		filaTile = 20;
 		colocaTile(filaTile, xAux, yAux, aux);
-		meterBorde(auxPunto, xAux, yAux, auxBorde);
+		//meterBorde(auxPunto, xAux, yAux, auxBorde);
 		break;
 
-	case 'ē': // Bosque North
+	case '¼': // Bosque North
 		filaTile = 22;
 		colocaTile(filaTile, xAux, yAux, aux);
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
@@ -340,7 +345,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
 		break;
 
-	case 'ľ': // Desnivel West-North-East
+	case '½': // Desnivel West-North-East
 		filaTile = 54;
 		colocaTile(filaTile, xAux, yAux, aux);
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
@@ -358,7 +363,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
 		break;
 
-	case 'Ĭ': // Desnivel North-East-South
+	case '¾': // Desnivel North-East-South
 		filaTile = 53;
 		colocaTile(filaTile, xAux, yAux, aux);
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
@@ -417,7 +422,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
 		break;
 
-	case 'ă': // Camino Curva West-North
+	case 'Á': // Camino Curva West-North
 		filaTile = 19;
 		colocaTile(filaTile, xAux, yAux, aux);
 		meterBorde(auxPunto, xAux, yAux, auxBorde);
@@ -427,7 +432,6 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 	/////////////////////////////
 	// TILES PROTOTIPO
 	////////////////////////////
-	/*
 	case 't':
 		aux.rectTileset.x = 2 * 122;//1
 		aux.rectTileset.y = 6 * 83;
@@ -716,7 +720,7 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		auxPunto.x = xAux + 183; auxPunto.y = yAux + 248; auxBorde.C = auxPunto;
 		vectBordes.push_back(auxBorde);
 		break;
-	case 'i':
+	case 'p':
 		aux.rectTileset.x = 0 * 122;//1
 		aux.rectTileset.y = 7 * 83;
 		aux.x = xAux + 183;
@@ -2299,109 +2303,251 @@ void EstadoPG::cargaTile(char c, int i, int j, std::vector<TrianguloBorde>& mapa
 		vecTile.push_back(aux);
 
 		break;
-		*/
 	}
 
 }
 
 void EstadoPG::colocaTile(int & filaTile, int & xAux, int & yAux, Tile & aux ){
-	//Posicion del Tile pequeño en el Tileset (16 tiles pequeños por cada Tile grande)
-	aux.rectTileset.x = 1 * 122;//1
+	//Colocacion del RECT del primer tile pequeño en su posicion respecto al tile grande
+	//xAux = Posicion X del tile Grande
+	//yAux = Posicion Y del tile Grande
+	//aux.x = posicion x del tile pequeño en el mapa real (relativo al tile grande)
+	//aux.y = posicion y del tile pequeño en el mapa real (relativo al tile grande)
+	//Cada tile grande tiene 2 sistemas de coordenadas de fila por la superposicion
+	//Sistema 1 (Fila 1, 3, 5, 7) (Tiles pequeños 1, 4, 5, 6, 11, 12, 13, 16) Posicion 0 de estas filas en X = 61
+	//Sistema 2 (Fila 2, 4, 6)    (Tiles pequeños 2, 3, 7, 8 , 9, 10, 14, 15) Posicion 0 de estas filas en X = 0
+	//OJO: Los tiles engarzan en un patron no lineal, por eso las alturas no son iguales en la misma fila.
+
+	//ENGARZADO NORMAL (Espacio entre tiles pequeños)
+	//Tile 1:    183,0 (1,2)
+	//Tile 2:   122,31 (2,2)
+	//Tile 3:   244,31 (2,3)
+	//Tile 4:    61,62 (3,1) 
+	//Tile 5:   183,62 (3,2)
+	//Tile 6:   305,62 (3,3)
+	//Tile 7:    0, 93 (4,1)
+	//Tile 8:   122,93 (4,2)
+	//Tile 9:   244,93 (4,3)
+	//Tile 10:  366,93 (4,4)
+	//Tile 11:  61,124 (5,1)
+	//Tile 12: 183,124 (5,2)
+	//Tile 13: 306,124 (5,3)
+	//Tile 14: 122,155 (6,2)
+	//Tile 15: 244,155 (6,3)
+	//Tile 16: 183,186 (7,2)
+	aux.rectTileset.x = 0 * 122;//1
 	aux.rectTileset.y = filaTile * 83;
-	//Colocacion del primer tile pequeño
-	aux.x = xAux + 183;
+	aux.x = xAux + 183;//1
 	aux.y = yAux;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 2 * 122;//2
+	aux.rectTileset.x = 1 * 122;//2
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 122;
 	aux.y = yAux + 31;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 3 * 122;//3
+	aux.rectTileset.x = 2 * 122;//3
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 244;
 	aux.y = yAux + 31;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 4 * 122;//4
+	aux.rectTileset.x = 3 * 122;//4
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 61;
 	aux.y = yAux + 62;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 5 * 122;//5
+	aux.rectTileset.x = 4 * 122;//5
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 183;
 	aux.y = yAux + 62;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 6 * 122;//6
+	aux.rectTileset.x = 5 * 122;//6
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 305;
 	aux.y = yAux + 62;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 7 * 122;//7
+	aux.rectTileset.x = 6 * 122;//7
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux;
 	aux.y = yAux + 93;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 8 * 122;//8
+	aux.rectTileset.x = 7 * 122;//8
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 122;
 	aux.y = yAux + 93;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 9 * 122;//9
+	aux.rectTileset.x = 8 * 122;//9
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 244;
 	aux.y = yAux + 93;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 10 * 122;//10
+	aux.rectTileset.x = 9 * 122;//10
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 366;
 	aux.y = yAux + 93;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 11 * 122;//11
+	aux.rectTileset.x = 10 * 122;//11
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 61;
 	aux.y = yAux + 124;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 12 * 122;//12
+	aux.rectTileset.x = 11 * 122;//12
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 183;
 	aux.y = yAux + 124;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 13 * 122;//13
+	aux.rectTileset.x = 12 * 122;//13
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 305;
 	aux.y = yAux + 124;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 14 * 122;//14
+	aux.rectTileset.x = 13 * 122;//14
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 122;
 	aux.y = yAux + 155;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 15 * 122;//15
+	aux.rectTileset.x = 14 * 122;//15
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 244;
 	aux.y = yAux + 155;
 	vecTile.push_back(aux);
 
-	aux.rectTileset.x = 3 * 122;//16
+	aux.rectTileset.x = 15 * 122;//16
 	aux.rectTileset.y = filaTile * 83;
 	aux.x = xAux + 183;
 	aux.y = yAux + 186;
 	vecTile.push_back(aux);
+
+
+	//SISTEMA DE ENGARZADO 2 (Espacio entre tiles grandes)
+	/*
+	//Tile 1:    180,0 (1,2)
+	//Tile 2:   120,31 (2,2)
+	//Tile 3:   242,30 (2,3)
+	//Tile 4:    60,62 (3,1) 
+	//Tile 5:   182,61 (3,2)
+	//Tile 6:   304,60 (3,3)
+	//Tile 7:    0, 93 (4,1)
+	//Tile 8:   122,92 (4,2)
+	//Tile 9:   244,91 (4,3)
+	//Tile 10:  366,90 (4,4)
+	//Tile 11:  62,123 (5,1)
+	//Tile 12: 184,122 (5,2)
+	//Tile 13: 306,121 (5,3)
+	//Tile 14: 124,153 (6,2)
+	//Tile 15: 246,152 (6,3)
+	//Tile 16: 186,183 (7,2)
+
+	//Posicion del Tile pequeño en el Tileset (16 tiles pequeños por cada Tile grande)
+	aux.rectTileset.x = 0 * 122;//1
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 180;//1
+	aux.y = yAux;				
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 1 * 122;//2
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 120;		    
+	aux.y = yAux + 31;			
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 2 * 122;//3
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 242;
+	aux.y = yAux + 30;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 3 * 122;//4
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 60;
+	aux.y = yAux + 62;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 4 * 122;//5
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 182;
+	aux.y = yAux + 61;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 5 * 122;//6
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 304;
+	aux.y = yAux + 60;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 6 * 122;//7
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux;
+	aux.y = yAux + 93;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 7 * 122;//8
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 122;
+	aux.y = yAux + 92;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 8 * 122;//9
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 244;
+	aux.y = yAux + 91;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 9 * 122;//10
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 366;
+	aux.y = yAux + 90;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 10 * 122;//11
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 62;
+	aux.y = yAux + 123;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 11 * 122;//12
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 184;
+	aux.y = yAux + 122;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 12 * 122;//13
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 306;
+	aux.y = yAux + 121;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 13 * 122;//14
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 124;
+	aux.y = yAux + 153;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 14 * 122;//15
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 246;
+	aux.y = yAux + 152;
+	vecTile.push_back(aux);
+
+	aux.rectTileset.x = 15 * 122;//16
+	aux.rectTileset.y = filaTile * 83;
+	aux.x = xAux + 186;
+	aux.y = yAux + 183;
+	vecTile.push_back(aux);
+	*/
 }
 
 void EstadoPG::meterBorde(Punto & auxPunto, int & xAux, int & yAux, TrianguloBorde & auxBorde){
@@ -2437,6 +2583,7 @@ void::EstadoPG::cargaMapa(std::string txt, std::vector<TrianguloBorde>& mapa){
 	}
 	f.close();
 }
+
 void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
 	std::ifstream f;
 	FMOD::Sound* sound;
