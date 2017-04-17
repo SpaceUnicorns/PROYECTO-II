@@ -128,7 +128,7 @@ void juegoPG::handle_event(){
 			if (!input.derecha) input.derecha = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
 			//input.mcraft = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_START);
 			//bool Back = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_BACK);
-			//input.sw = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_LEFTSHOULDER);
+			bool LeftShoulder = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_LEFTSHOULDER);
 			bool RightShoulder = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
 			if (!input.enter) input.enter = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_A);
 			/*bool BButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_B);
@@ -137,6 +137,20 @@ void juegoPG::handle_event(){
 
 			/*StickX = SDL_GameControllerGetAxis(Controller[ControllerIndex], SDL_CONTROLLER_AXIS_LEFTX);
 			StickY = SDL_GameControllerGetAxis(Controller[ControllerIndex], SDL_CONTROLLER_AXIS_LEFTY);*/
+			
+			if (SDL_HapticRumbleInit(RumbleHandles[ControllerIndex]) != 0)
+			{
+				SDL_HapticClose(RumbleHandles[ControllerIndex]);
+				RumbleHandles[ControllerIndex] = 0;
+			}
+
+			if (input.enter || LeftShoulder)
+			{
+				if (RumbleHandles[ControllerIndex])
+				{
+					SDL_HapticRumblePlay(RumbleHandles[ControllerIndex], 0.7f, 75);
+				}
+			}
 		}
 		else
 		{
@@ -201,6 +215,7 @@ void juegoPG::handle_event(){
 				estados.top()->onKeyUp('q');
 			}
 			else if (e.key.keysym.sym == SDLK_RETURN || e.cbutton.button == SDL_CONTROLLER_BUTTON_A ) {
+
 				estados.top()->onKeyUp('e');
 			}
 			else if (e.key.keysym.sym == SDLK_RIGHT || e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT) {
@@ -272,10 +287,13 @@ void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 				break;
 			}
 			Controller[ControllerIndex] = SDL_GameControllerOpen(JoystickIndex);
+
+			SDL_Joystick *JoystickHandle = SDL_GameControllerGetJoystick(Controller[ControllerIndex]);
+			RumbleHandles[ControllerIndex] = SDL_HapticOpenFromJoystick(JoystickHandle);
 			ControllerIndex++;
 		}
-
 		
+
 		int x = SDL_GetCurrentDisplayMode(0,&pMode); //0 para poner en toda la pantalla;
 		if (x == 0){
 			SCREEN_HEIGHT = pMode.h; 
@@ -326,10 +344,13 @@ void juegoPG::closeSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer) {
 	TTF_Quit();
 	for (int ControllerIndex = 0; ControllerIndex < 2; ++ControllerIndex)
 	{
+		if (RumbleHandles[ControllerIndex])
+			SDL_HapticClose(RumbleHandles[ControllerIndex]);
 		if (Controller[ControllerIndex])
 		{
 			SDL_GameControllerClose(Controller[ControllerIndex]);
 		}
+		
 	}
 	SDL_DestroyRenderer(pRenderer);
 	pRenderer = nullptr;

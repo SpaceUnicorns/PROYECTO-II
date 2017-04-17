@@ -60,6 +60,7 @@ private:
 	const int JOYSTICK_DEAD_ZONE = 8000;
 	SDL_Event e;
 	SDL_Joystick* gGameController = NULL;
+	SDL_Haptic *RumbleHandles[2];
 	SDL_GameController *Controller[2];
 	std::vector<TexturasSDL*> vecTexturas;
 	std::vector<TexturasSDL*> vecPaginas;
