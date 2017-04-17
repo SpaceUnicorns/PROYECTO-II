@@ -21,6 +21,7 @@ public:
 	virtual void paraMusica(std::string music, bool fade) = 0;
 	virtual void reproduceAmb(std::string amb, bool fade) = 0;
 	virtual void paraAmb(std::string amb, bool fade) = 0;
+	virtual void cargaMapa(std::string txt) = 0;
 	virtual ~EstadoJuego()
 	{
 	}

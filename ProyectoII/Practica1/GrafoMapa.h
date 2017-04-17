@@ -69,6 +69,14 @@ public:
 
 		}
 	}
+	void creaMapa(std::vector<char> c)
+	{
+		for (size_t i = 0; i < c.size(); i++)
+		{
+			mapa.push_back(c[i]);
+			mapaAux.push_back(c[i]);
+		}
+	}
 	void transformaCoord(int& x, int& y)
 	{
 		int cuadranteX;
