@@ -166,7 +166,7 @@ void juegoPG::handle_event(){
 	else if (xDir == 0 && yDir == -1) input.arriba = true;
 	else if (xDir == 0 && yDir == 1) input.abajo = true;
 
-	if (SDL_PollEvent(&e)) {
+	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT){
 			onExit();
 		}
@@ -243,10 +243,10 @@ void juegoPG::handle_event(){
 			estados.top()->onOver();
 		}
 	}
-		else {
+		/*else {
 			input.sw = false;
 			
-		}
+		}*/
 		
 }
 
