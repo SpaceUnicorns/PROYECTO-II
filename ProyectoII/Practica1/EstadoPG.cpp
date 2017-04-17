@@ -2567,22 +2567,25 @@ void::EstadoPG::cargaMapa(std::string txt, std::vector<TrianguloBorde>& mapa){
 	std::ifstream f; char aux = 'p';
 	int ancho = 0;
 	int alto = 0;
+	int contTiles = 0;
 	f.open(txt, std::ios::in);
-	f >> ancho;
-	f >> alto;
-	f.get(aux);
+	f >> ancho; //lee ancho
+	f >> alto;  //lee alto
+	//f.get(aux); //lee salto linea?
 	for (size_t i = 0; i <= alto; i++)
 	{
 		for (size_t j = 0; j <= ancho; j++)
 		{
-			if (!f.eof()){
-				f.get(aux);
+			if (!f.eof()){ //si no hemos llegado al final del documento
+				f.get(aux); //leemos el 
 				if (aux == '\n') f.get(aux);
 				cargaTile(aux, i, j, mapa);
+				contTiles++;
 			}
 		}
 	}
 	f.close();
+	std::cout << "Tiles cargados: " << contTiles << "\n";
 }
 
 void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
