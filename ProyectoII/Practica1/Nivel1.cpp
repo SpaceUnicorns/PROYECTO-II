@@ -154,6 +154,7 @@ void Nivel1::draw(){
 			vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
 			tile = vecTile[i];
 			aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
+			if (aux.x > -200 && aux.x < pJuego->getScreenWidth() && aux.y > -200 && aux.y < pJuego->getScreenHeight())
 			pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 		}
 		for (unsigned int i = 0; i < vectBordes.size(); i++){
