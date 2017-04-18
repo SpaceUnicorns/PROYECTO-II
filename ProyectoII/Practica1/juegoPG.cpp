@@ -117,45 +117,51 @@ void juegoPG::handle_event(){
 	input.enter = keystate[SDL_SCANCODE_RETURN] || keystate[SDL_SCANCODE_KP_ENTER];
 
 	int StickX, StickY;
-	for (int ControllerIndex = 0; ControllerIndex < 2; ++ControllerIndex){
+	bool hayMando = true;
+	if (Controller[0] != NULL){
+		for (int ControllerIndex = 0; ControllerIndex < 2; ++ControllerIndex){
 
-		if (Controller[ControllerIndex] != 0 && SDL_GameControllerGetAttached(Controller[ControllerIndex]))
-		{
-			// NOTE: We have a controller with index ControllerIndex.
-			if (!input.arriba) input.arriba = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_UP);
-			if (!input.abajo) input.abajo = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_DOWN);
-			if (!input.izquierda)input.izquierda = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_LEFT);
-			if (!input.derecha) input.derecha = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
-			//input.mcraft = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_START);
-			//bool Back = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_BACK);
-			bool LeftShoulder = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_LEFTSHOULDER);
-			bool RightShoulder = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
-			if (!input.enter) input.enter = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_A);
-			/*bool BButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_B);
-			bool XButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_X);
-			bool YButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_Y);*/
-
-			/*StickX = SDL_GameControllerGetAxis(Controller[ControllerIndex], SDL_CONTROLLER_AXIS_LEFTX);
-			StickY = SDL_GameControllerGetAxis(Controller[ControllerIndex], SDL_CONTROLLER_AXIS_LEFTY);*/
-			
-			if (SDL_HapticRumbleInit(RumbleHandles[ControllerIndex]) != 0)
+			if (Controller[ControllerIndex] != 0 && SDL_GameControllerGetAttached(Controller[ControllerIndex]))
 			{
-				SDL_HapticClose(RumbleHandles[ControllerIndex]);
-				RumbleHandles[ControllerIndex] = 0;
-			}
+				// NOTE: We have a controller with index ControllerIndex.
+				if (!input.arriba) input.arriba = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_UP);
+				if (!input.abajo) input.abajo = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_DOWN);
+				if (!input.izquierda)input.izquierda = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_LEFT);
+				if (!input.derecha) input.derecha = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
+				//input.mcraft = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_START);
+				//bool Back = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_BACK);
+				bool LeftShoulder = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_LEFTSHOULDER);
+				bool RightShoulder = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
+				if (!input.enter) input.enter = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_A);
+				/*bool BButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_B);
+				bool XButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_X);
+				bool YButton = SDL_GameControllerGetButton(Controller[ControllerIndex], SDL_CONTROLLER_BUTTON_Y);*/
 
-			if (input.enter || LeftShoulder)
-			{
-				if (RumbleHandles[ControllerIndex])
+				/*StickX = SDL_GameControllerGetAxis(Controller[ControllerIndex], SDL_CONTROLLER_AXIS_LEFTX);
+				StickY = SDL_GameControllerGetAxis(Controller[ControllerIndex], SDL_CONTROLLER_AXIS_LEFTY);*/
+
+				if (SDL_HapticRumbleInit(RumbleHandles[ControllerIndex]) != 0)
 				{
-					SDL_HapticRumblePlay(RumbleHandles[ControllerIndex], 0.7f, 75);
+					SDL_HapticClose(RumbleHandles[ControllerIndex]);
+					RumbleHandles[ControllerIndex] = 0;
+				}
+
+				if (input.enter || LeftShoulder)
+				{
+					if (RumbleHandles[ControllerIndex])
+					{
+						SDL_HapticRumblePlay(RumbleHandles[ControllerIndex], 0.7f, 75);
+					}
 				}
 			}
+			else
+			{
+				// TODO: This controller is note plugged in.
+			}
 		}
-		else
-		{
-			// TODO: This controller is note plugged in.
-		}
+	}
+	else {
+		hayMando = false;
 	}
 
 	StickX = SDL_GameControllerGetAxis(Controller[0], SDL_CONTROLLER_AXIS_LEFTX);
@@ -184,7 +190,7 @@ void juegoPG::handle_event(){
 		if (e.type == SDL_QUIT){
 			onExit();
 		}
-		else if (e.type == SDL_KEYUP || e.type == SDL_CONTROLLERBUTTONUP){
+		else if (e.type == SDL_KEYUP || (hayMando && e.type == SDL_CONTROLLERBUTTONUP)){
 			if (e.key.keysym.sym == SDLK_ESCAPE || e.cbutton.button == SDL_CONTROLLER_BUTTON_BACK){
 				if (dynamic_cast<Nivel1*>(estados.top()) != nullptr) {
 					SDL_Surface *sshot = SDL_CreateRGBSurface(0, getScreenWidth(), getScreenHeight(), 32, 0, 0, 0, 0);
@@ -194,18 +200,18 @@ void juegoPG::handle_event(){
 				}
 				estados.top()->onKeyUp('s');
 			}
-			else if (e.key.keysym.sym == SDLK_TAB || e.cbutton.button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER){
+			else if (e.key.keysym.sym == SDLK_TAB || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER)){
 				//input.sw = true;
 				estados.top()->onKeyUp('t');
 			}
-			else if (e.key.keysym.sym == SDLK_e || e.cbutton.button == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER) {
+			else if (e.key.keysym.sym == SDLK_e || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER)) {
 				input.e = true;
 			}
 			else if (e.key.keysym.sym == SDLK_p){
 				estados.top()->onKeyUp('p');
 			}
 
-			else if (e.key.keysym.sym == SDLK_q || e.cbutton.button ==  SDL_CONTROLLER_BUTTON_START) {
+			else if (e.key.keysym.sym == SDLK_q || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_START)) {
 				if (dynamic_cast<Nivel1*>(estados.top()) != nullptr) {
 					SDL_Surface *sshot = SDL_CreateRGBSurface(0, getScreenWidth(), getScreenHeight(), 32, 0, 0, 0, 0);
 					SDL_RenderReadPixels(getRender(), NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
@@ -214,20 +220,20 @@ void juegoPG::handle_event(){
 				}
 				estados.top()->onKeyUp('q');
 			}
-			else if (e.key.keysym.sym == SDLK_RETURN || e.cbutton.button == SDL_CONTROLLER_BUTTON_A ) {
+			else if (e.key.keysym.sym == SDLK_RETURN || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_A)) {
 
 				estados.top()->onKeyUp('e');
 			}
-			else if (e.key.keysym.sym == SDLK_RIGHT || e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT) {
+			else if (e.key.keysym.sym == SDLK_RIGHT || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT)) {
 				estados.top()->onKeyUp('d');
 			}
-			else if (e.key.keysym.sym == SDLK_LEFT || e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_LEFT) {
+			else if (e.key.keysym.sym == SDLK_LEFT || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_LEFT)) {
 				estados.top()->onKeyUp('i');
 			}
-			else if (e.key.keysym.sym == SDLK_UP || e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_UP) {
+			else if (e.key.keysym.sym == SDLK_UP || (hayMando &&e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_UP)) {
 				estados.top()->onKeyUp('a');
 			}
-			else if (e.key.keysym.sym == SDLK_DOWN || e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_DOWN) {
+			else if (e.key.keysym.sym == SDLK_DOWN || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_DOWN)) {
 				estados.top()->onKeyUp('b');
 			}
 	
