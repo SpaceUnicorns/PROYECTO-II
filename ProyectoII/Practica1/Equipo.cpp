@@ -26,7 +26,7 @@ void Equipo::update()
 		case Trampa:
 			if (pObj->getPJuego()->input.e && cantidad > 0)
 			{
-				static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().push_back(new TrampaAbierta(pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y - 50));
+				static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().push_back(new TrampaAbierta(pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y));
 				mochila->removeItem("Trampa", 1);
 				cantidad--;
 			}

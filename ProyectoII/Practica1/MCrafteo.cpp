@@ -64,7 +64,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo
 	int Ry = recuadros.y;
 	equipables = { //5 elems
 		{ "Hacha", Rx + 46, Ry + 46 },{ "Antorcha", Rx + 202, Ry + 47 },{ "Pico", Rx + 354, Ry + 46 },
-		{ "Pala", Rx + 120, Ry + 186 },{ "TrampaAbierta", Rx + 282, Ry + 186 }
+		{ "Pala", Rx + 120, Ry + 186 },{ "Trampa", Rx + 282, Ry + 186 }
 	};
 	Ry = pJuego->getScreenHeight() / 2 + 30;
 	materiales = { //8 elems
