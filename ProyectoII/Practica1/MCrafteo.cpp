@@ -436,13 +436,17 @@ void MCrafteo::onKeyUp(char k)
 			if (mochila->findItem(equipables[objeto].name)){
 				reproduceFx("RecogeItem1", -100, 0, 0);
 				if (equipar == 1){
+					if (mochila->getCantidad(equipables[objeto].name) <= 1 && recolector->tieneEquipo(equipables[objeto].name)) recolector->setEquipo("Nada", 0);
 					cazador->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
 					setObjEquipo(animEquipoCaz, cazador->getEquipo());
+					setObjEquipo(animEquipoRec, recolector->getEquipo());
 					seleccion.x = niños.x + 157;
 				}
 				else {
+					if (mochila->getCantidad(equipables[objeto].name) <= 1 && cazador->tieneEquipo(equipables[objeto].name)) cazador->setEquipo("Nada", 0);
 					recolector->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
 					setObjEquipo(animEquipoRec, recolector->getEquipo());
+					setObjEquipo(animEquipoCaz, cazador->getEquipo());
 					seleccion.x = niños.x;
 					
 				}

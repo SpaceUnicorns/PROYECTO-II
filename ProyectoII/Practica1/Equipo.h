@@ -12,6 +12,17 @@ public:
 	virtual ~Equipo();
 	virtual void update();
 	int getEquipo(){ return equipado; };
+	bool tieneEquipo(std::string equip){
+		Equipamento aux;
+		if (equip == "Trampa") aux = Trampa;
+		else if (equip == "Antorcha") aux = Antorcha;
+		else if (equip == "Hacha") aux = Hacha;
+		else if (equip == "Pala") aux = Pala;
+		else if (equip == "Pico") aux = Pico;
+		else aux = Nada;
+
+		return aux == equipado;
+	}
 	void setEquipo(std:: string equip, int num) {
 		if (equip == "Trampa") equipado = Trampa;
 		else if (equip == "Antorcha") equipado = Antorcha;
