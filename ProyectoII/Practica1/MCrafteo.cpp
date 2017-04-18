@@ -1,13 +1,44 @@
 #include "MCrafteo.h"
 #include "TexturasSDL.h"
+#include "Hacha.h"
+#include "Cuerda.h"
+#include "Pala.h"
+#include "Pico.h"
+#include "Trampa.h"
+#include "Antorcha.h"
+#include "ObjetoPG.h"
 
 
-
-MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos), mochila(NULL)
+MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo* equipRec) : EstadoPG(jug, puntos), mochila(NULL)
 {
+	//Gestion de los submenus
 
-	//Rects en funcion de la pantalla
-	pag1.h = pag2.h = 500;
+	menuState = Crafteo;
+	equipar = 0;
+	objeto = 0;
+	nivelObj = 0;
+	seleccion.x = pJuego->getScreenWidth() / 2 - 375 - 105;
+	seleccion.y = 25;
+	seleccion.h = 550;
+	seleccion.w = 385;
+	
+	////////////////////////////////////////////
+
+	cazador = equipCaz;
+	recolector = equipRec;
+	mochila = m;
+	crafteo.resize(6);
+		crafteo = { "Antorcha", "Cuerda", "Hacha", "Pico", "Pala", "Trampa" };
+	
+	equipables = { //5 elems
+		{ "Antorcha", 902, 77 },{ "Hacha", 746, 76 },  { "Pico", 1054, 76 }, { "Pala", 820, 216 }, { "Trampa", 982, 216 }
+	};
+	materiales = { //8 elems
+		{ "Madera", 725, 431 }, { "Piedra", 838, 430 }, { "Hueso", 956, 430 }, { "Cebo", 1071, 430 },
+		{ "Enredadera", 725, 545 }, { "Yesca", 838, 545 }, { "Cuerda", 956, 545 }, { "TrampaCerrada", 1072, 547 }
+	};
+	pag1.h = pag2.h = 500; //poner mas pequeño o en funcion de la pantalla
+
 	pag1.w = pag2.w = 375;
 	pag1.x = pag2.x = pJuego->getScreenWidth() / 2 - pag1.w - 100;
 	pag1.y = pag2.y = 50;
@@ -44,6 +75,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m) : EstadoPG(jug, puntos),
 
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
+
 }
 
 
@@ -89,6 +121,7 @@ void MCrafteo::draw() {
 	recuadros.h = 250;
 	pJuego->getTextura(TMateriales)->draw(pJuego->getRender(), recuadros);
 	comprobar(materiales);
+	pJuego->getTextura(TMenuResaltado)->draw(pJuego->getRender(), seleccion);
 }
 
 void MCrafteo::animacionS() 
@@ -107,6 +140,7 @@ void MCrafteo::animacionS()
 	if (pag1.w <= 0 || acuD >= 2) {
 		derecha = false;
 		++numPag;
+
 		pag1.w = 375;
 		sombra.w = 30;
 		acuD = 0;
@@ -133,11 +167,20 @@ void MCrafteo::animacionA() {
 			++aux;
 			if (aux == 10) { --sombra.w; aux = 0; } //la sombra se hace mas pequeña
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
+			
 		}
 
 		else if (pag1.w >= 332 && pag1.w < 375) {
 			sombra.w = 380 - pag1.w;
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
+/*		else if (pag1.w >= 375) {
+			
+			izquierda = false;
+			flag = false;
+
+			pag1.w = 375;
+			sombra.w = 30;
+>>>>>>> MHerramientas+Crafteo*/
 		}
 	}
 	else izquierda = false;
@@ -160,7 +203,7 @@ void MCrafteo::comprobar(std::vector<coords> const& v)
 			recuadros.x = v[i].x;
 			recuadros.y = v[i].y;
 			recuadros.w = recuadros.h = 100;
-			pJuego->getTextura(TTapa)->draw(pJuego->getRender(), recuadros);
+			pJuego->getTextura(TTapa)->draw(pJuego->getRender(), recuadros,245);
 		}
 		else //si están se pinta el numero de objetos del tipo v[i].name
 		{
@@ -171,24 +214,199 @@ void MCrafteo::comprobar(std::vector<coords> const& v)
 		}
 	}
 }
+void MCrafteo::craftear(){
+	ObjetoPG* kek =nullptr ; //auxiliar para poder acceder al nombre y receta
+	if (crafteo[numPag] == "Cuerda"){ //la cuerda lo complica todo :V pensaba que eran solo herramientas
+		kek = new Cuerda(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Antorcha"){
+		kek = new Antorcha(pJuego, 0, 0);
+	} //cuando esten las clases de pondria PE:kek = new Antorcha(pJuego, 0, 0);
+	else if (crafteo[numPag] == "Hacha"){
+		kek = new Hacha(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Pico"){
+		kek = new Pico(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Pala"){
+		kek = new Pala(pJuego, 0, 0);
+	}
+	else if (crafteo[numPag] == "Trampa"){
+		kek = new Trampa(pJuego, 0, 0);
+	}
+
+	if (kek != nullptr) {
+		unsigned int i = 0;
+		bool exito = true;
+		while (i + 1 < kek->receta.size() && exito) {
+			if (!(mochila->findItem(kek->receta[i + 1]) && (mochila->getCantidad(kek->receta[i + 1]) >= atoi(kek->receta[i].c_str()))))
+				exito = false;
+
+			i += 2;
+		}
+		if (exito) {
+			for (unsigned int i = 0; i + 1 < kek->receta.size(); i += 2) {
+				//std::cout << "Necesitas: " << kek->receta[i + 1] << "\n";
+				mochila->removeItem(kek->receta[i + 1], atoi(kek->receta[i].c_str())); //se eliminan los objetos de la mochila
+			}
+			mochila->newItem(kek->nombre[1], 1); //y se añade lo crafteado
+
+		}
+	}
+
+	/*if (kek != nullptr){
+		for (unsigned int i = 0; i + 1 < kek->receta.size(); i += 2){ //comprobacion de objetos
+			std::cout << "Necesitas: " << kek->receta[i + 1] << "\n";
+			if (mochila->findItem(kek->receta[i + 1]))
+				if (mochila->getCantidad(kek->receta[i + 1]) >= atoi(kek->receta[i].c_str())){//si está...
+					mochila->removeItem(kek->receta[i + 1], atoi(kek->receta[i].c_str())); //se eliminan los objetos de la mochila
+					mochila->newItem(kek->nombre[1], 1); //y se añade lo crafteado
+				}//aqui hay que cambiarlo mas adelante, por el tema de las 2 mochilas, puta cuerda tt
+		}
+	}*/
+	delete kek;
+}
 
 
 void MCrafteo::onKeyUp(char k)
 {
 	switch (k) {
 	case 'q':
-		remove("..//bmps//temp//screenshot.bmp");
-		pJuego->estados.pop();
+		if (menuState == Crafteo || menuState == Personaje){
+			remove("..//bmps//temp//screenshot.bmp");
+			pJuego->estados.pop();
+		}
+		else {
+			menuState = Personaje;
+			equipar = 0;
+			seleccion.x = niños.x;
+			seleccion.y = 575;
+			seleccion.h = 125;
+			seleccion.w = 117;
+		}
 		break;
-
+	case 'a':
+		if (menuState == Crafteo){
+			menuState = Personaje;
+			equipar = 0;
+			seleccion.x = niños.x;
+			seleccion.y = 575;
+			seleccion.h = 125;
+			seleccion.w = 117;
+		}
+		else if (menuState == Personaje)
+		{
+			menuState = Crafteo;
+			seleccion.x = pJuego->getScreenWidth() / 2 - 375 - 105;
+			seleccion.y = 25;
+			seleccion.h = 550;
+			seleccion.w = 385;
+		}
+		else if (menuState == Objeto){
+			if (objeto <= 4) objeto -= 3;
+			else objeto += 3;
+			if (objeto >= 5) objeto = 4;
+			else if (objeto < 0) objeto = 0;
+			seleccion.x = equipables[objeto].x - 5;
+			seleccion.y = equipables[objeto].y - 5;
+		}
+		break;
+	case 'b':
+		if (menuState == Crafteo){
+			menuState = Personaje;
+			equipar = 0;
+			seleccion.x = niños.x;
+			seleccion.y = 575;
+			seleccion.h = 125;
+			seleccion.w = 117;
+		}
+		else if (menuState == Personaje)
+		{
+			menuState = Crafteo;
+			seleccion.x = pJuego->getScreenWidth() / 2 - 375 - 105;
+			seleccion.y = 25;
+			seleccion.h = 550;
+			seleccion.w = 385;
+		}
+		else if (menuState == Objeto){
+			if (objeto <= 4) objeto += 3;
+			else objeto -= 3;
+			if (objeto >= 5) objeto = 4;
+			else if (objeto < 0) objeto = 0;
+			seleccion.x = equipables[objeto].x - 5;
+			seleccion.y = equipables[objeto].y - 5;
+		}
+		break;
 	case 'd':
-		derecha = true;
-		acuD++;
+		if (menuState == Crafteo){
+			derecha = true;
+			acuD++;
+		}
+		else if (menuState == Personaje)
+		{
+			if (equipar == 0){
+				equipar = 1;
+				seleccion.x += 157;
+			}
+			else{
+				equipar = 0;
+				seleccion.x -= 157;
+			}
+		}
+		else if (menuState == Objeto){
+			if (objeto < 4 ) objeto += 1;
+			else objeto = 0;
+			seleccion.x = equipables[objeto].x - 5;
+			seleccion.y = equipables[objeto].y - 5;
+		}
 		break;
 
 	case 'i':
-		izquierda = true;
-		acuI++;
+		if (menuState == Crafteo){
+			izquierda = true;
+			acuI++;
+		}
+		else if (menuState == Personaje)
+		{
+			if (equipar == 0){
+				equipar = 1; 
+				seleccion.x += 157;
+			}
+			else{ 
+				equipar = 0; 
+				seleccion.x -= 157;
+			}
+		}
+		else if (menuState == Objeto){
+			if (objeto > 0) objeto -= 1;
+			else objeto = 4;
+			seleccion.x = equipables[objeto].x - 5;
+			seleccion.y = equipables[objeto].y - 5;
+		}
+		break;
+	case 'e':
+		if (menuState == Crafteo){
+			craftear(); //PD se craftea con la tecla INTRO
+		}
+		else if (menuState == Personaje){
+			menuState = Objeto;
+			objeto = 0;
+			seleccion.x = equipables[objeto].x-5;
+			seleccion.y = equipables[objeto].y - 5;
+			seleccion.h = 105;
+			seleccion.w = 105;
+		}
+		else if (menuState == Objeto)
+		{
+			if (mochila->findItem(equipables[objeto].name)){
+				if (equipar == 1){
+					cazador->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
+				}
+				else {
+					recolector->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
+				}
+			}
+		}
 		break;
 
 	default:

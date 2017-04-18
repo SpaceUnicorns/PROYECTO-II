@@ -14,6 +14,7 @@ public:
 	//Métodos
 	virtual bool dentro(int x, int y)const;
 	virtual void draw();
+	virtual void lateDraw();
 	virtual bool onClick();
 	virtual bool onOver();
 
@@ -42,7 +43,8 @@ public:
 	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*6) anim.x = 0; } // coloca la 'i'
 	virtual Texturas_t getEnumText()const { return et; }
 	bool interactuable=false;
-	std::string nombre;
+	std::vector<std::string> nombre;
+	std::vector<std::string> receta;
 protected: 
 	ObjetoPG(juegoPG * juego, int px, int py);
 	

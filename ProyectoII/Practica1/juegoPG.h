@@ -15,7 +15,7 @@
 enum Texturas_t {
 	TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TTextBox, TArbol, TCColision, TJugador, TJugador2,
 	TSombra1, TMenuResaltado, TLyov, TZhenia, TEquipables, TMateriales, TCebo, TCuerda, TEnredadera, THueso, TMadera, 
-	TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete, TTapa, TContinuar, TOpciones, TGoToMenu
+	TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete, TTapa, TContinuar, TOpciones, TGoToMenu, THuella, TAntorcha, TZonaOscura, TObjetoEquipo
 };
 
 class juegoPG
@@ -54,7 +54,7 @@ public:
 	//Este metodo cambia la vida y el rect de la niebla oscura
 	void cambiaVida(int cambio);
 	SDL_Rect getNieblaRect() { return nieblaRect; }
-
+	SDL_Window* getPWindow(){ return pWin; }
 private:
 	SDL_Event e;
 	

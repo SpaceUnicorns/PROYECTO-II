@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -77,6 +77,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AntorchaC.cpp" />
+    <ClCompile Include="Antorcha.cpp" />
     <ClCompile Include="Arbol.cpp" />
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Boton.cpp" />
@@ -92,6 +94,8 @@
     <ClCompile Include="follow.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Huella.cpp" />
+    <ClCompile Include="Hacha.cpp" />
     <ClCompile Include="Hueso.cpp" />
     <ClCompile Include="juegoPG.cpp" />
     <ClCompile Include="Madera.cpp" />
@@ -104,13 +108,17 @@
     <ClCompile Include="Mochila.cpp" />
     <ClCompile Include="micropather.cpp" />
     <ClCompile Include="MovimientoP.cpp" />
+    <ClCompile Include="ObjetoHuella.cpp" />
     <ClCompile Include="ObjetoPG.cpp" />
+    <ClCompile Include="Pala.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Nivel1.cpp" />
+    <ClCompile Include="Pico.cpp" />
     <ClCompile Include="Piedra.cpp" />
     <ClCompile Include="Recolector.cpp" />
     <ClCompile Include="TextCb.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
+    <ClCompile Include="Trampa.cpp" />
     <ClCompile Include="TrampaAbierta.cpp" />
     <ClCompile Include="TrampaComponente.cpp" />
     <ClCompile Include="Trigger.cpp" />
@@ -118,6 +126,8 @@
     <ClCompile Include="Yesca.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AntorchaC.h" />
+    <ClInclude Include="Antorcha.h" />
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Attack.h" />
     <ClInclude Include="Boton.h" />
@@ -139,6 +149,8 @@
     <ClInclude Include="follow.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Huella.h" />
+    <ClInclude Include="Hacha.h" />
     <ClInclude Include="Hueso.h" />
     <ClInclude Include="GrafoMapa.h" />
     <ClInclude Include="juegoPG.h" />
@@ -151,14 +163,18 @@
     <ClInclude Include="Mochila.h" />
     <ClInclude Include="micropather.h" />
     <ClInclude Include="MovimientoP.h" />
+    <ClInclude Include="ObjetoHuella.h" />
     <ClInclude Include="ObjetoJuego.h" />
     <ClInclude Include="ObjetoPG.h" />
+    <ClInclude Include="Pala.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Nivel1.h" />
+    <ClInclude Include="Pico.h" />
     <ClInclude Include="Piedra.h" />
     <ClInclude Include="Recolector.h" />
     <ClInclude Include="TextCb.h" />
     <ClInclude Include="TexturasSDL.h" />
+    <ClInclude Include="Trampa.h" />
     <ClInclude Include="TrampaAbierta.h" />
     <ClInclude Include="TrampaComponente.h" />
     <ClInclude Include="Trigger.h" />
