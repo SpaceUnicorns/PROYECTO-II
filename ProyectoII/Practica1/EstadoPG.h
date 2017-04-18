@@ -33,6 +33,7 @@ public:
 	virtual void lateUpdate();
 	virtual void onClick();
 	virtual void onOver();
+	virtual void awake(){}; //Se llama al volver de otro estado superpuesto
 	virtual void drawFont(SDL_Rect rect, std::string const & s, SDL_Color color = {34,245,55,1});// , int g = 245, int b = 55, int a = 1);
 	virtual void reproduceFx(std::string fx, float x, float y, float wet);
 	virtual void reproduceMusica(std::string music, bool fade);

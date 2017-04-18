@@ -121,7 +121,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
 	reproduceFx("balloon", -100, 0, 0);
-	//reproduceMusica("music", false);
+	reproduceMusica("Galiakberova", false);
 
 	activePlayer = "C";
 
@@ -244,6 +244,7 @@ void Nivel1::drawEquipo(){
 void Nivel1::swPlayer(){
 	SDL_Rect aux;
 	Tile tile;
+	reproduceFx("CambioPersonaje", -100, 0, 0);
 	if (activePlayer == "C"){
 		pCazador->swAble();
 		camara.x = -1*(pCazador->getRect().x - pRecolector->getRect().x);
@@ -281,17 +282,21 @@ void Nivel1::swPlayer(){
 	
 	if (activePlayer == "C") pCazador->swAble();
 	else pRecolector->swAble();
-
+	pJuego->input.sw = false;
 }
 
 void Nivel1::onKeyUp(char k) {
 	switch (k) {
 	case 'q':
+		reproduceFx("AbreMenu", -100, 0, 0);
 		pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila")), 
 			static_cast<Equipo*>(pCazador->dameComponente("Equipo")), static_cast<Equipo*>(pRecolector->dameComponente("Equipo"))));
 		break;
 	case 's':
+		reproduceFx("AbreMenu", -100, 0, 0);
 		pJuego->estados.push(new Pausa(pJuego,contPuntos));
+		break;
+	case 't': pJuego->input.sw = true;
 		break;
 	default:
 		break;

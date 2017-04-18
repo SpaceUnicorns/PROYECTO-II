@@ -14,6 +14,8 @@ public:
 	Nivel1(juegoPG*jug);
 	virtual ~Nivel1();
 	virtual void draw();
+	virtual void awake(){ 
+		reproduceFx("AbreMenu1", -100, 0, 0); };
 	Cazador* getCazador() { return pCazador; }
 	Recolector* getRecolector() { return pRecolector; }
 	void getTorch(){ hasTorch = true; }

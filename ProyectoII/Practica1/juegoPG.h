@@ -31,7 +31,7 @@ public:
 	FMOD_RESULT       result;
 	std::stack<EstadoJuego*> estados;
 	struct Input{
-		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII, sw, e, enter, follow; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
+		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII, sw, e, enter, follow, mcraft; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
 	};
 	Input input;
 
@@ -56,8 +56,12 @@ public:
 	SDL_Rect getNieblaRect() { return nieblaRect; }
 	SDL_Window* getPWindow(){ return pWin; }
 private:
+	int delay;
+	const int JOYSTICK_DEAD_ZONE = 8000;
 	SDL_Event e;
-	
+	SDL_Joystick* gGameController = NULL;
+	SDL_Haptic *RumbleHandles[2];
+	SDL_GameController *Controller[2];
 	std::vector<TexturasSDL*> vecTexturas;
 	std::vector<TexturasSDL*> vecPaginas;
 	
