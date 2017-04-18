@@ -49,7 +49,7 @@ void ObjetoHuella::update(){
 		timer = 0;
 		componente->quitaHuella(indice);
 	}
-	if (alpha > 0) alpha--;
+	if (alpha > 3) alpha-= 3;
 }
 void ObjetoHuella::draw(){
 	// cambiar este metodo al update, y llamar al update desde cada entidad

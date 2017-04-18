@@ -4,7 +4,7 @@
 Huella::Huella(ObjetoJuego* ent) : Componente(ent)
 {
 	pObj = dynamic_cast<ObjetoPG*>(ent);
-	sizeMax = 20;
+	sizeMax = 8;
 	it = 0;
 	state = None;
 	timer = 0;
