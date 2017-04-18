@@ -26,6 +26,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo
 	cargarAssetsAudio("../docs/fxMCrafteo.txt", 'f');
 	////////////////////////////////////////////
 
+
 	cazador = equipCaz;
 	recolector = equipRec;
 	mochila = m;
@@ -78,6 +79,15 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
 
+
+	rectEquipoCaz.x = niños.x+ (niños.w -51) + 157; rectEquipoCaz.y = niños.y + (niños.h-51); 
+	rectEquipoCaz.h = 50, rectEquipoCaz.w = 50; animEquipoCaz.h = animEquipoCaz.w = 100;
+	setObjEquipo(animEquipoCaz, cazador->getEquipo());
+
+	rectEquipoRec.x = niños.x + (niños.w - 51); rectEquipoRec.y = niños.y + (niños.h - 50); 
+	rectEquipoRec.h = 50, rectEquipoRec.w = 50; animEquipoRec.h = animEquipoRec.w = 100;
+	setObjEquipo(animEquipoRec, recolector->getEquipo());
+
 }
 
 
@@ -108,6 +118,10 @@ void MCrafteo::draw() {
 	pJuego->getTextura(TZhenia)->draw(pJuego->getRender(), niños);
 	niños.x = pag1.x + 50;
 
+	//Objeto equipado 
+	pJuego->getTextura(TObjetoEquipo2)->draw(pJuego->getRender(), animEquipoRec, rectEquipoRec);
+	pJuego->getTextura(TObjetoEquipo2)->draw(pJuego->getRender(), animEquipoCaz, rectEquipoCaz);
+
 	//Equipables
 	recuadros.w = 500;
 	recuadros.x = pJuego->getScreenWidth() / 2 + 30;
@@ -124,6 +138,7 @@ void MCrafteo::draw() {
 	pJuego->getTextura(TMateriales)->draw(pJuego->getRender(), recuadros);
 	comprobar(materiales);
 	pJuego->getTextura(TMenuResaltado)->draw(pJuego->getRender(), seleccion);
+
 }
 
 void MCrafteo::animacionS() 
@@ -422,15 +437,45 @@ void MCrafteo::onKeyUp(char k)
 				reproduceFx("RecogeItem1", -100, 0, 0);
 				if (equipar == 1){
 					cazador->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
+					setObjEquipo(animEquipoCaz, cazador->getEquipo());
+					seleccion.x = niños.x + 157;
 				}
 				else {
 					recolector->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
+					setObjEquipo(animEquipoRec, recolector->getEquipo());
+					seleccion.x = niños.x;
+					
 				}
+				menuState = Personaje;
+				seleccion.y = 575;
+				seleccion.h = 125;
+				seleccion.w = 117;
+				
 			}
 			else reproduceFx("NoDisponible", -100, 0, 0);
 		}
 		break;
 
+	default:
+		break;
+	}
+}
+
+void MCrafteo::setObjEquipo(SDL_Rect & animEquipo, int aux){
+	switch (aux)
+	{
+	case 0: animEquipo.x = 500; //Nada
+		break;
+	case 1: animEquipo.x = 400; //Trampa
+		break;
+	case 2: animEquipo.x = 0; //Antorcha
+		break;
+	case 3: animEquipo.x = 100; //Hacha
+		break;
+	case 4: animEquipo.x = 200; //Pala
+		break;
+	case 5: animEquipo.x = 300; //Pico
+		break;
 	default:
 		break;
 	}

@@ -24,7 +24,8 @@ public:
 	void comprobar(std::vector<coords> const& v);
 	void craftear();
 private:
-	SDL_Rect pag1, pag2, sombra, rFondo, niños, recuadros, font;
+	SDL_Rect pag1, pag2, sombra, rFondo, niños, recuadros, font, animEquipoCaz, animEquipoRec, rectEquipoCaz, rectEquipoRec;
+	void setObjEquipo(SDL_Rect & animEquipo, int aux);
 	TexturasSDL * fondo;
 	SDL_Color fuente;
 	int  acuD, acuI;
