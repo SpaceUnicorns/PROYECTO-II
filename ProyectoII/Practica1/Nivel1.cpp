@@ -20,6 +20,7 @@
 #include "follow.h""
 #include "TrampaAbierta.h"
 #include "Equipo.h"
+#include "CabañaObj.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
@@ -102,6 +103,8 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Arbol(pJuego, 750, 365));
 	vecObj.push_back(new Arbol(pJuego, 1080, 195));
 	vecObj.push_back(new Arbol(pJuego, 480, 60));
+	
+	vecObj.push_back(new CabañaObj(pJuego, 1000, 400));
 
 	vecObj.push_back(new Cebo(pJuego, 780, 100));
 	vecObj.push_back(new Cuerda(pJuego, 880, 100));
@@ -112,6 +115,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new TrampaCerrada(pJuego, 980, 300));
 	vecObj.push_back(new Yesca(pJuego, 1080, 100));
 	vecObj.push_back(new TrampaAbierta(pJuego, 1200, 400));
+
 
 	cargarAudio("../sounds/reverb/standrews.wav");
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');

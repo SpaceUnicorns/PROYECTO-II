@@ -1,6 +1,6 @@
 #include "autoSave.h"
 
-autoSave::autoSave(Nivel1* nivel)
+autoSave::autoSave(Nivel1* nivel) : mochila(NULL)
 {
 	//Posicion de los personajes
 	xCazador = nivel->getCazador()->getRect().x; //INTs
@@ -12,7 +12,8 @@ autoSave::autoSave(Nivel1* nivel)
 	activo = nivel->getActivePlayer(); //STRING
 
 	//Mochila
-	mochila = nivel->getRecolector()->dameComponente("Mochila");
+	mochila = static_cast<Mochila*>(nivel->getRecolector()->dameComponente("Mochila"));
+	mapear(mochila, items);
 }
 
 
@@ -30,8 +31,11 @@ void autoSave::Guardar() {
 		//Ultimo personaje activo
 		myfile << activo << "\n";
 		//Mochila
+		myfile << items.size() << "\n";
+		for (size_t aux = 0; aux < items.size(); aux++) {
+			myfile << items[aux] << "\n";
+		}
 
-			
 	myfile.close();
 
 
@@ -55,4 +59,18 @@ void autoSave::Guardar() {
 	}
 	else cout << "Unable to open file";
 	*/
+}
+
+void autoSave::mapear(Mochila* m, std::vector<std::string>& v) 
+{
+	std::vector<std::string> w { "Hacha", "Antorcha", "Pico", "Pala", "TrampaAbierta", "Madera",
+		"Piedra", "Hueso", "Cebo", "Enredadera", "Yesca", "Cuerda", "TrampaCerrada" };
+
+	for (size_t aux = 0; aux < w.size(); aux++) {
+		if (m->findItem(w[aux])) {
+			for (size_t i = 0; i < m->getCantidad(w[aux]); i++) {
+				v.emplace_back(w[aux]);
+			}
+		}
+	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Nivel1.h"
+#include "Mochila.h"
 
 class autoSave
 {
@@ -8,6 +9,7 @@ public:
 	~autoSave();
 
 	void Guardar();
+	void mapear(Mochila* m, std::vector<std::string>& v);
 
 private:
 	//Posicion de los personajes
@@ -16,6 +18,7 @@ private:
 	//Ultimo personaje activo
 	std::string activo;
 	//Mochila
-	Componente* mochila;
+	Mochila* mochila;
+	std::vector<std::string> items;
 };
 

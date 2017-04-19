@@ -35,7 +35,6 @@ bool Mochila::findItem(std::string const & name)
 	catch (std::out_of_range & e) {
 		return false;
 	}
-	
 }
 
 int Mochila::getCantidad(std::string const & name) const {
