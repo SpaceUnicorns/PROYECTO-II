@@ -78,7 +78,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 	pCazador = new Cazador(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
 	vecObj.push_back(pCazador);
-	pRecolector = new Recolector(pJuego, camara.x + (camara.w / 2) - 300, camara.y + (camara.h / 2));
+	pRecolector = new Recolector(pJuego, camara.x + (camara.w / 2) + 500, camara.y + (camara.h / 2));
 	vecObj.push_back(pRecolector);
 
 	Trigger *auxTr; auxTr = new Trigger (pJuego, 562, 384, pCazador, pRecolector);

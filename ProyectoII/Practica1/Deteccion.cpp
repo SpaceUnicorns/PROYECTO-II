@@ -30,7 +30,7 @@ void Deteccion::update() {
 		std::cout << "TE SIGO JOPUTA" << "\n";
 		enemy->activaFollow();
 	}
-	else {
+	/*else {
 		if (detectado)enemy->desactivaFollow();
 		detectado = false;
 	}
@@ -44,8 +44,8 @@ void Deteccion::update() {
 
 bool Deteccion::compruebaRadio(SDL_Rect target, float& distancia) {
 		Punto centro; centro.y = target.h / 2 + target.y; centro.x = target.w / 2 + target.x;
-		distancia = pow(enemy->getPosIni().x - centro.x, 2) + pow(enemy->getPosIni().y - centro.y, 2);
-		return distancia <= pow(radio, 2);
+		distancia = sqrt(((enemy->getAbsRect().x + enemy->getAbsRect().w / 2) - centro.x) * (enemy->getAbsRect().x + enemy->getAbsRect().w / 2 - centro.x) + (enemy->getAbsRect().y + enemy->getAbsRect().h / 2 - centro.y) * (enemy->getAbsRect().y + enemy->getAbsRect().h / 2 - centro.y));
+		return distancia <= radio;
 }
 
 bool Deteccion::cazadorIn(float& dist) {

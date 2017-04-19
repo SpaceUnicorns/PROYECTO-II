@@ -18,7 +18,7 @@ Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int p
 	SDL_Rect aux; aux.x = rect.x; aux.y = rect.y + 30; aux.w = 80; aux.h = 20;
 	newComponente(new ColisionBox(this,aux,false), "ColisionBox");
 	newComponente(new Attack(this), "Attack");
-	newComponente(new Deteccion(this,100),"Deteccion");
+	newComponente(new Deteccion(this,500),"Deteccion");
 }
 
 
