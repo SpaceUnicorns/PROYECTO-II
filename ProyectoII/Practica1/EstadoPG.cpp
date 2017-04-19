@@ -373,13 +373,32 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 122; rectAux.h = 83;
 	f.open(txt, std::ios::in);
 	int tile;
-	while (!f.eof()){
+	while (!f.eof() && !f.fail()){
 		f >> tile;
 		if (!f.fail()){
+			if (tile == 0 /*si es uno de los que tiene colision*/){
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
+				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+				//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
+				/*rectAux.x = 244; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				vecTile.push_back(aux2); */
+				mapa.push_back('X');
+			}
+			else mapa.push_back('s');
 			//std::cout << x << "\n";
 			switch (tile){
+			case 0:
+				x += 122;
+				break;
 				//Tile nieve
-			case 1:  
+			case 1:
 				rectAux.x = 0; rectAux.y = 20 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
@@ -387,7 +406,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				vecTile.push_back(aux2);
 				break;
 			case 2:
-				rectAux.x = 1*122; rectAux.y = 20 * 83;
+				rectAux.x = 1 * 122; rectAux.y = 20 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
@@ -830,7 +849,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
-		//////////////////////////////////////////////////////////////////////////////////////////////////////// Bosque N
+				//////////////////////////////////////////////////////////////////////////////////////////////////////// Bosque N
 			case 80:
 				rectAux.x = 0; rectAux.y = 21 * 83;
 				aux2.rectTileset = rectAux;
@@ -2760,70 +2779,70 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				vecTile.push_back(aux2);
 				break;
 			case 421:
-				rectAux.x = 1 * 122; rectAux.y =  83;
+				rectAux.x = 1 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 422:
-				rectAux.x = 2 * 122; rectAux.y =  83;
+				rectAux.x = 2 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 423:
-				rectAux.x = 3 * 122; rectAux.y =  83;
+				rectAux.x = 3 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 424:
-				rectAux.x = 4 * 122; rectAux.y =  83;
+				rectAux.x = 4 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 425:
-				rectAux.x = 5 * 122; rectAux.y =  83;
+				rectAux.x = 5 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 426:
-				rectAux.x = 6 * 122; rectAux.y =  83;
+				rectAux.x = 6 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 427:
-				rectAux.x = 7 * 122; rectAux.y =  83;
+				rectAux.x = 7 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 428:
-				rectAux.x = 8 * 122; rectAux.y =  83;
+				rectAux.x = 8 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 429:
-				rectAux.x = 9 * 122; rectAux.y =  83;
+				rectAux.x = 9 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 430:
-				rectAux.x = 10 * 122; rectAux.y =  83;
+				rectAux.x = 10 * 122; rectAux.y = 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
@@ -6710,22 +6729,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 			case 999: y += 31; if (y == 0 || y % 62 == 0) x = 61; else x = 0;
 				break;
 			}
-			if (tile == 0 /*si es uno de los que tiene colision*/){
-				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
-				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
-				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
-				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
-				auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
-				vectBordes.push_back(auxBorde);
-				auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
-				vectBordes.push_back(auxBorde);
-				//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
-				/*rectAux.x = 244; aux2.rectTileset = rectAux;
-				aux2.x = x; aux2.y = y; aux2.capa = 1;
-				vecTile.push_back(aux2); */
-				mapa.push_back('X');
-			}
-			else mapa.push_back('s');
+
 			f.get(aux);
 		}
 	}
