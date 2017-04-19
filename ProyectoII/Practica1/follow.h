@@ -11,6 +11,7 @@ public:
 	virtual ~follow();
 	virtual void lateUpdate();
 	virtual void update();
+	void clearFollow();
 	void doFollow();
 	void setTarget(ObjetoPG* targe);
 protected:

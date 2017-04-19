@@ -7,7 +7,7 @@
 
 enum EstadoEnemigo
 {
-	Quieto, Moviendo, Atacando, Atrapado
+	Quieto, Moviendo, Volviendo, Atacando, Atrapado
 };
 class Enemigo :
 	public ObjetoPG
@@ -26,6 +26,7 @@ public:
 		else objetivo = recolector; 
 	}
 	void setEstado(EstadoEnemigo est){ estado = est; }
+	EstadoEnemigo getEstado(){}
 	void activaFollow();
 	void desactivaFollow();
 	Punto getPosIni() { return posIni; }
@@ -40,5 +41,6 @@ protected:
 	Recolector* recolector;
 	ObjetoPG* objetivo;
 	ObjetoPG* casita;
+	follow* followEnem;
 };
 

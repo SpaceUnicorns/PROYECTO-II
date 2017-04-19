@@ -31,6 +31,13 @@ void follow:: update(){
 	}
 
 }
+void follow::clearFollow()
+{
+	direccion.clear();
+	cont = 0;
+	path.clear();
+}
+
 void follow::doFollow()
 {
 	// Nos aseguramos de que el vector path y direccion este vacio

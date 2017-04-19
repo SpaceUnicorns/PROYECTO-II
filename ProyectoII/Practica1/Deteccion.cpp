@@ -16,24 +16,22 @@ Deteccion::~Deteccion()
 void Deteccion::update() {
 	//std::cout << "UPDATE LOBO DEPURAR \n";
 	float distCaz, distRec;
-	if (cazadorIn(distCaz)) {//Llamamos al follow del lobo
+	cazadorIn(distCaz);
+	recolectorIn(distRec);
+	if (distCaz <  distRec && distCaz < radio) {//Llamamos al follow del lobo
 		detectado = true;
-		recolectorIn(distRec);
-		if (distCaz > distRec)
-			enemy->setTarget(1);
-		else enemy->setTarget(0);
+		enemy->setTarget(0);
 		std::cout << "TE SIGO JOPUTA" << "\n";
 		enemy->activaFollow();
 	}
-	else if (recolectorIn(distRec)) {
+	if (distCaz >=  distRec && distRec< radio) {//Llamamos al follow del lobo
 		detectado = true;
-		enemy->setTarget(1);//Podria dar problemas xDDDDD
+		enemy->setTarget(1);
 		std::cout << "TE SIGO JOPUTA" << "\n";
 		enemy->activaFollow();
 	}
 	else {
 		if (detectado)enemy->desactivaFollow();
-		std::cout << "ME VOY A CASITA" << "\n";
 		detectado = false;
 	}
 	/*
@@ -51,11 +49,11 @@ bool Deteccion::compruebaRadio(SDL_Rect target, float& distancia) {
 }
 
 bool Deteccion::cazadorIn(float& dist) {
-	SDL_Rect rectCaz = enemy->getCazador()->getRect();
+	SDL_Rect rectCaz = enemy->getCazador()->getAbsRect();
 	return compruebaRadio(rectCaz, dist);
 }
 
 bool Deteccion::recolectorIn(float& dist) {
-	SDL_Rect rec = enemy->getRecolector()->getRect();
+	SDL_Rect rec = enemy->getRecolector()->getAbsRect();
 	return compruebaRadio(rec, dist);
 }
