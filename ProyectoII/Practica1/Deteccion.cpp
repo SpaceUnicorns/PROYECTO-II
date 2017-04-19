@@ -42,9 +42,9 @@ void Deteccion::update() {
 }
 
 bool Deteccion::compruebaRadio(SDL_Rect target, float& distancia) {
-		Pos centro; centro.y = target.h / 2 + target.y; centro.x = target.w / 2 + target.x;
-		distancia = pow(static_cast<Enemigo*>(pEntidad)->getPosIni().x - centro.x, 2) + pow(static_cast<Enemigo*>(pEntidad)->getPosIni().y - centro.y, 2);
-		return distancia <= pow(radio, 2);
+	Pos centro; centro.y = target.h / 2 + target.y; centro.x = target.w / 2 + target.x;
+	distancia = pow(static_cast<Enemigo*>(pEntidad)->getPosIni().x - centro.x, 2) + pow(static_cast<Enemigo*>(pEntidad)->getPosIni().y - centro.y, 2);
+	return distancia <= pow(radio, 2);
 }
 
 bool Deteccion::cazadorIn(float& dist) {

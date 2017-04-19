@@ -1,7 +1,5 @@
 #include "Arbol.h"
 #include "ColisionBox.h"
-#include "Nivel1.h"
-#include <SDL.h>
 
 
 Arbol::Arbol(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
