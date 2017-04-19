@@ -376,7 +376,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 	while (!f.eof() && !f.fail()){
 		f >> tile;
 		if (!f.fail()){
-			if (tile == 0 /*si es uno de los que tiene colision*/){
+			if (tile == 0 ){
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
 				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
