@@ -1,5 +1,6 @@
 #pragma once
 #include "ObjetoPG.h"
+
 class CabañaObj :
 	public ObjetoPG
 {

@@ -2,23 +2,35 @@
 
 autoSave::autoSave(Nivel1* nivel) : mochila(NULL)
 {
-	//Posicion de los personajes
-	xCazador = nivel->getCazador()->getRect().x; //INTs
-	yCazador = nivel->getCazador()->getRect().y;
-	xRecolector = nivel->getRecolector()->getRect().x;
-	yRecolector = nivel->getRecolector()->getRect().y;
-
 	//Ultimo personaje activo
 	activo = nivel->getActivePlayer(); //STRING
+	
+   //Posicion de los personajes
+	if (activo == "C") {
+		xCazador = nivel->getCazador()->getRect().x; //INTs
+		yCazador = nivel->getCazador()->getRect().y;
+
+		xRecolector = xCazador - 50;
+		yRecolector = yCazador;
+	}
+
+	else {
+		xRecolector = nivel->getRecolector()->getRect().x;
+		yRecolector = nivel->getRecolector()->getRect().y;
+
+		xCazador = xRecolector - 50; //INTs
+		yCazador = yRecolector;
+	}
 
 	//Mochila
 	mochila = static_cast<Mochila*>(nivel->getRecolector()->dameComponente("Mochila"));
 	mapear(mochila, items);
+
+	//FALTARIA LOS OBSTACULOS
+	//IMPLEMENTAR CUANDO ESTÉN HECHOS
 }
 
-
 autoSave::~autoSave() {}
-
 
 void autoSave::Guardar() {
 	std::ofstream myfile;
@@ -37,28 +49,6 @@ void autoSave::Guardar() {
 		}
 
 	myfile.close();
-
-
-
-
-	/*
-	PARA EL SCRIPT DE LOAD
-
-
-	string line;
-	ifstream myfile ("../docs/autoSave.txt");
-	if (myfile.is_open())
-	{
-
-		while ( getline (myfile,line) ) //CAMBIAR SEGUN SE NECESITE
-		{
-			cout << line << '\n';
-		}
-	
-		myfile.close();
-	}
-	else cout << "Unable to open file";
-	*/
 }
 
 void autoSave::mapear(Mochila* m, std::vector<std::string>& v) 

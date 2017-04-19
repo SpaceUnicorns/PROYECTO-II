@@ -28,6 +28,7 @@ public:
 	virtual void deleteComponente(std::string const & name);
 	virtual bool encuentraComponente(std::string const & name);
 	virtual void setRect(int incrX, int incrY){ rect.x += incrX; rect.y += incrY; }
+	void setPos(int x, int y) { rect.x = x; rect.y = y; }
 	virtual void setAbsRect(int incrX, int incrY){ absRect.x += incrX; absRect.y += incrY; }
 	virtual SDL_Rect getRect(){ return rect; }
 	virtual SDL_Rect getAbsRect(){ return absRect; }

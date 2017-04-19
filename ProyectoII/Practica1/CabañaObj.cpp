@@ -1,6 +1,6 @@
 #include "CabañaObj.h"
+
 #include "ColisionBox.h"
-#include "Nivel1.h"
 #include "autoSave.h"
 
 CabañaObj::CabañaObj(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
@@ -18,15 +18,11 @@ CabañaObj::CabañaObj(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 	saved = false;
 }
 
-
-CabañaObj::~CabañaObj()
-{
-}
+CabañaObj::~CabañaObj() {}
 
 void CabañaObj::update() {
-	if (cazadorIn() || recolectorIn()) { //onCollision
-		std::cout << "COLISION SUPREMA\n";
-
+	if (cazadorIn() || recolectorIn()) 
+	{ //onCollision
 		if (!saved) {
 			autoSave* save = new autoSave(static_cast<Nivel1*>(pJuego->estados.top()));
 			save->Guardar();

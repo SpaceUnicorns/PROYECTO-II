@@ -96,6 +96,7 @@
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Hueso.cpp" />
     <ClCompile Include="juegoPG.cpp" />
+    <ClCompile Include="Load.cpp" />
     <ClCompile Include="Madera.cpp" />
     <ClCompile Include="Lobo.cpp" />
     <ClCompile Include="mainP1.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Hueso.h" />
     <ClInclude Include="GrafoMapa.h" />
     <ClInclude Include="juegoPG.h" />
+    <ClInclude Include="Load.h" />
     <ClInclude Include="Madera.h" />
     <ClInclude Include="MCrafteo.h" />
     <ClInclude Include="Lobo.h" />

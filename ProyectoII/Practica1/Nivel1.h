@@ -15,9 +15,17 @@ public:
 	Nivel1(juegoPG*jug);
 	virtual ~Nivel1();
 	virtual void draw();
+	
+	//getters
 	Cazador* getCazador() { return pCazador; }
 	Recolector* getRecolector() { return pRecolector; }
 	std::string getActivePlayer() { return activePlayer; }
+
+	//setters
+	void setCazador(int x, int y) { pCazador->setPos(x, y); }
+	void setRecolector(int x, int y) { pRecolector->setPos(x, y); }
+	void setActivePlayer(std::string a) { activePlayer = a; }
+
 
 protected:
 	SDL_Rect animNieve1;
