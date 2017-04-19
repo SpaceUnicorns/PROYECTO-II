@@ -26,7 +26,7 @@ public:
 		else objetivo = recolector; 
 	}
 	void setEstado(EstadoEnemigo est){ estado = est; }
-	EstadoEnemigo getEstado(){}
+	EstadoEnemigo getEstado(){ return estado; }
 	void activaFollow();
 	void desactivaFollow();
 	Punto getPosIni() { return posIni; }
@@ -42,5 +42,6 @@ protected:
 	ObjetoPG* objetivo;
 	ObjetoPG* casita;
 	follow* followEnem;
+	
 };
 

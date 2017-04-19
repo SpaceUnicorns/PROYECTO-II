@@ -18,7 +18,7 @@ void Attack::update(){
 	//static_cast<ColisionBox*>(static_cast<Enemigo*>(pEntidad)->dameComponente("ColisionBox"))->isColiding(posicion, info);
 	
 	if (enemigo->getTarget() != nullptr){
-		if (posicion.compruebaRadio(enemigo->getTarget()->getColisionBox(), 35)){
+		if (posicion.compruebaRadio(enemigo->getTarget()->getColisionBox(), 35) && enemigo->getEstado() == Atacando){
 
 			//Hace la animación
 			//El jugador deberá tener algo que lo haga inmune a daño un ratele después de recibir un ataques
