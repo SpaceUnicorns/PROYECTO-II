@@ -295,7 +295,7 @@ void Nivel1::onKeyUp(char k) {
 		break;
 	case 's':
 		reproduceFx("AbreMenu", -100, 0, 0);
-		pJuego->estados.push(new Pausa(pJuego,pRecolector, contPuntos));
+		pJuego->estados.push(new Pausa(pJuego,this, contPuntos));
 		break;
 	case 't': pJuego->input.sw = true;
 		break;

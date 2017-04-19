@@ -1,7 +1,7 @@
 #include "Trucos.h"
 #include "Mochila.h"
 
-Trucos::Trucos(juegoPG*jug, Recolector* pRec) : EstadoPG(jug, 0)
+Trucos::Trucos(juegoPG*jug, Nivel1* pNivel) : EstadoPG(jug, 0)
 {
 	rFondo.x = rFondo.y = 0; rFondo.w = pJuego->getScreenWidth(); rFondo.h = pJuego->getScreenHeight(); //rect del fondo (ocupa toda la pantalla)
 	fondo = new TexturasSDL;
@@ -11,7 +11,8 @@ Trucos::Trucos(juegoPG*jug, Recolector* pRec) : EstadoPG(jug, 0)
 	fuente = { 255, 255, 255, 255 };
 	renderCodigo = " ";
 	codigo = "";
-	pRecolector = pRec;
+	pRecolector = pNivel->getRecolector();
+	level = pNivel;
 }
 
 
@@ -78,7 +79,7 @@ void Trucos::desbloquea(){
 		codigo = "";
 		renderCodigo = " ";
 		font.x = pJuego->getScreenWidth() / 2 - 80; font.y = pJuego->getScreenHeight() / 2 - 30; font.w = 80; font.h = 100;
-		paraMusica(" ", true);
+		level->paraMusica(" ", true);
 	}
 	else {
 		std::cout << "INCORRECTO!\n";
