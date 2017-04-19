@@ -22,7 +22,7 @@ juegoPG::juegoPG()
 	}
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
-	vecTexturas.resize(40);
+	vecTexturas.resize(41);
 	vecPaginas.resize(6);
 
 
@@ -236,6 +236,12 @@ void juegoPG::handle_event(){
 			else if (e.key.keysym.sym == SDLK_DOWN || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_DOWN)) {
 				estados.top()->onKeyUp('b');
 			}
+			else if (e.key.keysym.sym == SDLK_1) estados.top()->onKeyUp('1');
+			else if (e.key.keysym.sym == SDLK_2)estados.top()->onKeyUp('2');
+			else if (e.key.keysym.sym == SDLK_a)estados.top()->onKeyUp('a');
+			else if (e.key.keysym.sym == SDLK_b)estados.top()->onKeyUp('b');
+			else if (e.key.keysym.sym == SDLK_c)estados.top()->onKeyUp('c');
+			else estados.top()->onKeyUp('ñ');
 	
 
 		}

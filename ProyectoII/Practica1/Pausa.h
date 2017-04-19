@@ -1,5 +1,6 @@
 #pragma once
 #include "EstadoPG.h"
+#include "Recolector.h"
 
 class Pausa :
 	public EstadoPG
@@ -7,7 +8,7 @@ class Pausa :
 	enum estadosPausa { Resume, Menu, Opciones };
 
 public:
-	Pausa(juegoPG*jug, int puntos);
+	Pausa(juegoPG*jug,Recolector* pRec, int puntos);
 	virtual ~Pausa();
 
 	/*static void goMenu(juegoPG *jug){ 
@@ -27,7 +28,7 @@ public:
 private:
 	TexturasSDL * fondo;
 	SDL_Rect rFondo, rect, boton;
-
+	Recolector* pRecolector;
 	
 	int temp;
 	int aux;

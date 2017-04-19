@@ -1,8 +1,9 @@
 #include "Pausa.h"
 #include "MenuPG.h"
+#include "Trucos.h"
 
 
-Pausa::Pausa(juegoPG*jug, int puntos) :EstadoPG(jug, puntos)
+Pausa::Pausa(juegoPG*jug, Recolector* pRec, int puntos) :EstadoPG(jug, puntos)
 {
 	rFondo.x = rFondo.y = 0; rFondo.w = pJuego->getScreenWidth(); rFondo.h = pJuego->getScreenHeight(); //rect del fondo (ocupa toda la pantalla)
 	boton.w = 344; 
@@ -19,7 +20,7 @@ Pausa::Pausa(juegoPG*jug, int puntos) :EstadoPG(jug, puntos)
 	estado = Resume;
 	temp = 0;
 	aux = pJuego->getScreenHeight() / 2 + boton.h / 2;
-
+	pRecolector =pRec;
 }
 
 Pausa::~Pausa(){
@@ -86,6 +87,7 @@ void Pausa::update()
 				//push estado nuevo --> Opciones
 				pJuego->input.enter = false;
 				std::cout << "me voy a opciones --- en proceso de creacion ---\n";
+				pJuego->estados.push(new Trucos(pJuego, pRecolector));
 			}
 			break;
 
