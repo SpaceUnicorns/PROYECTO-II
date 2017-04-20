@@ -21,6 +21,7 @@ Pausa::Pausa(juegoPG*jug, Nivel1* pNivel, int puntos) :EstadoPG(jug, puntos)
 	temp = 0;
 	aux = pJuego->getScreenHeight() / 2 + boton.h / 2;
 	level = pNivel;
+	arriba = abajo = enter = false;
 }
 
 Pausa::~Pausa(){
@@ -44,76 +45,82 @@ void Pausa::draw() {
 
 }
 
+void Pausa::onKeyUp(char k){
+	switch (k)
+	{
+	case 'a': arriba = true;
+		break;
+	case 'b': abajo = true;
+		break;
+	case 'e': enter = true;
+		break;
+	default:
+		break;
+	}
+}
 void Pausa::update() 
 {
-	temp++;
-	bool enter = pJuego->input.enter;
-
-	if (temp >= 7) 
+	switch (estado) 
 	{
-		switch (estado) 
-		{
-		case (Resume) :
-			if (pJuego->input.arriba) {
-				reproduceFx("SelOpcionNormal1", -100, 0, 0);
-				rect.y = aux + 93;
-				estado = Menu; //cambiar de estado
-			}
-			else if (pJuego->input.abajo) {
-				reproduceFx("SelOpcionNormal1", -100, 0, 0);
-				rect.y = aux - 7;
-				estado = Opciones;
-			}
-			else if (enter) {
-				reproduceFx("OpcionMenuNormal", -100, 0, 0);
-				pJuego->input.enter = false;
-				pJuego->estados.pop();
-			}
-			break;
-
-		case (Opciones) :
-			if (pJuego->input.arriba) {
-				reproduceFx("SelOpcionNormal1", -100, 0, 0);
-				rect.y = aux - 107;
-				estado = Resume;
-			}
-			else if (pJuego->input.abajo) {
+	case (Resume) :
+		if (arriba) {
+			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			rect.y = aux + 93;
+			estado = Menu; //cambiar de estado
+		}
+		else if (abajo) {
+			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			rect.y = aux - 7;
+			estado = Opciones;
+		}
+		else if (enter) {
+			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			pJuego->input.enter = false;
+			pJuego->estados.pop();
+		}
+		break;
+	case (Opciones) :
+		if (arriba) {
+			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			rect.y = aux - 107;
+			estado = Resume;
+		}
+		else if (abajo) {
 				reproduceFx("SelOpcionNormal1", -100, 0, 0);
 				rect.y = aux + 93;
 				estado = Menu;
-			}
-			else if (enter) {
-				reproduceFx("OpcionMenuNormal", -100, 0, 0);
-				//push estado nuevo --> Opciones
-				pJuego->input.enter = false;
-				std::cout << "me voy a opciones --- en proceso de creacion ---\n";
-				pJuego->estados.push(new Trucos(pJuego, level));
-			}
-			break;
-
-		case (Menu) :
-			if (pJuego->input.arriba) {
-				reproduceFx("SelOpcionNormal1", -100, 0, 0);
-				rect.y = aux - 7;
-				estado = Opciones;
-			}
-			else if (pJuego->input.abajo) {
-				reproduceFx("SelOpcionNormal1", -100, 0, 0);
-				rect.y = aux - 107;
-				estado = Resume;
-			}
-			else if (enter) {
-				reproduceFx("OpcionMenuNormal", -100, 0, 0);
-				pJuego->input.enter = false;
-				EstadoJuego* borrar = pJuego->estados.top();
-				while( !pJuego->estados.empty()) pJuego->estados.pop();
-				pJuego->estados.push(new MenuPG(pJuego, 0));
-				delete borrar;
-			}
-			break;
 		}
-		temp = 0;
+		else if (enter) {
+			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			//push estado nuevo --> Opciones
+			pJuego->input.enter = false;
+			std::cout << "me voy a opciones --- en proceso de creacion ---\n";
+			pJuego->estados.push(new Trucos(pJuego, level));
+		}
+		break;
+
+	case (Menu) :
+		if (arriba) {
+			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			rect.y = aux - 7;
+			estado = Opciones;
+		}
+		else if (abajo) {
+			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			rect.y = aux - 107;
+			estado = Resume;
+		}
+		else if (enter) {
+			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			pJuego->input.enter = false;
+			EstadoJuego* borrar = pJuego->estados.top();
+			while( !pJuego->estados.empty()) pJuego->estados.pop();
+			pJuego->estados.push(new MenuPG(pJuego, 0));
+			delete borrar;
+		}
+		break;
 	}
+	arriba = abajo = enter = false;
 }
 
 

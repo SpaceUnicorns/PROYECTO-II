@@ -11,22 +11,12 @@ class Pausa :
 public:
 	Pausa(juegoPG*jug,Nivel1* pRec, int puntos);
 	virtual ~Pausa();
-
-	/*static void goMenu(juegoPG *jug){ 
-		EstadoJuego* borrar = jug->estados.top();
-		jug->estados.pop(); jug->estados.push(new MenuPG(jug,0));
-		delete borrar;
-	}
-	static void setResume(juegoPG *jug){ 
-		EstadoJuego* borrar = jug->estados.top();
-		jug->estados.pop();
-		delete borrar;
-	}*/
-
-	void draw();
-	void update();
+	virtual void onKeyUp(char k);
+	virtual void draw();
+	virtual void update();
 
 private:
+	bool arriba, abajo, enter;
 	TexturasSDL * fondo;
 	SDL_Rect rFondo, rect, boton;
 	Nivel1* level;
