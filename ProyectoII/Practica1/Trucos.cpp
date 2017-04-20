@@ -48,7 +48,7 @@ void Trucos::onKeyUp(char t){
 		break;
 	case 's': volver();
 		break;
-	default: codigo += 'o'; renderCodigo += '*'; font.h += 2; font.w += font.h; font.x -= 60;  reproduceFx("Golpe1", -100, 0, 0);//Other
+	default: codigo += 'o'; renderCodigo += '*'; font.h += 2; font.w += font.h; font.x -= 60;  reproduceFx("Golpe1", -100, 0, 0); //Other
 		break;
 	}
 

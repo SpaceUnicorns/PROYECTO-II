@@ -52,7 +52,6 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 	if (!col){
 		while (i < static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes().size() && !col){
 			Punto aux = static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i].A;
-			if (aux.x > -400 && aux.x < pObj->getPJuego()->getScreenWidth()+200 && aux.y > -400 && aux.y <  pObj->getPJuego()->getScreenHeight()+200)
 			col = inTriangle(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i], p);
 			i++;
 		}//fin colision con bordes
