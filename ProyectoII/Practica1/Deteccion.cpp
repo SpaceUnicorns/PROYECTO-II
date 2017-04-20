@@ -74,11 +74,39 @@ void Deteccion::update() {
 		}
 		break;
 	case Moviendo:
-		acechar();
-		if (enemy->getTarget() == enemy->getRecolector())
+		float distRec;
+		recolectorIn(distRec);
+		float distCaz;
+		cazadorIn(distCaz);
+		cont++;
+		if (cont > 50)
 		{
-			float distRec;
-			recolectorIn(distRec);
+			cont = 0;
+			Punto cazP, recP;
+			cazP.x = enemy->getCazador()->getAbsRect().x; cazP.y = enemy->getCazador()->getAbsRect().y;
+			recP.x = enemy->getRecolector()->getAbsRect().x; recP.y = enemy->getRecolector()->getAbsRect().y;
+			if (inTriangle(vista, cazP) && inTriangle(vista, recP)){
+				if (distRec < distCaz){
+					enemy->setTarget(1);
+					enemy->activaFollow();
+				}
+				else{
+					enemy->setTarget(0);
+					enemy->activaFollow();
+				}
+			}
+			else if (inTriangle(vista, cazP)){
+				detectado = true;
+				enemy->setTarget(0);
+				enemy->activaFollow();
+			}
+			else if (inTriangle(vista, recP)){
+				detectado = true;
+				enemy->setTarget(1);
+				enemy->activaFollow();
+			}
+		}
+		if (enemy->getTarget() == enemy->getRecolector()){
 			dirAtaque = enemy->getDir();
 			setVista(dirAtaque);
 			if (distRec <= 80){
@@ -86,10 +114,7 @@ void Deteccion::update() {
 				enemy->setEstado(Atacando);
 			}
 		}
-		else if (enemy->getTarget() == enemy->getCazador())
-		{
-			float distCaz;
-			cazadorIn(distCaz);
+		else if (enemy->getTarget() == enemy->getCazador()){
 			if (distCaz <= 80){
 				preparaAtaque(0);
 				enemy->setEstado(Atacando);
@@ -195,8 +220,6 @@ void Deteccion::update() {
 				enemy->setAbsRect(2, 1);
 				enemy->setRect(2, 1);
 			}
-			break;
-		default:
 			break;
 		}
 		static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->setRectBox(enemy->getRect().x - 5, enemy->getRect().y + 40);
