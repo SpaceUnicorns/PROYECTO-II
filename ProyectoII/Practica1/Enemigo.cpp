@@ -32,25 +32,3 @@ void Enemigo::draw() {
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
 
-void Enemigo::activaFollow() {
-	estado = EstadoEnemigo::Moviendo;
-	if (!encuentraComponente("follow")) {
-			newComponente(new follow(this, objetivo, dynamic_cast<Nivel1*>(pJuego->getEstadoActual())->getGrafoMapa(), false), "follow");
-			followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
-	}
-	
-	followEnem->setTarget(objetivo);
-	followEnem->doFollow();
-	//std::cout << "MANOLITO SILVERFEET" << "\n";
-}
-
-void Enemigo::desactivaFollow() {
-	if (estado != EstadoEnemigo::Atrapado){
-		estado = EstadoEnemigo::Volviendo;
-		followEnem->setTarget(casita);
-		followEnem->doFollow();
-		std::cout << "ME VOY A CASITA" << "\n";
-	}
-	else
-		followEnem->clearFollow();
-}

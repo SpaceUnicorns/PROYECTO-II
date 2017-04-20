@@ -32,6 +32,7 @@ public:
 	Punto getPosIni() { return posIni; }
 	int damage;
 	int life;
+	int getDir(){ return followEnem->getDirection(); }
 
 protected:
 	void dameUnHogar();

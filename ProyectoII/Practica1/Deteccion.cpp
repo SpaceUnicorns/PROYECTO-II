@@ -31,6 +31,7 @@ void Deteccion::update() {
 		{
 			float distRec;
 			recolectorIn(distRec);
+			dirAtaque = enemy->getDir();
 			if (distRec <= 80)
 			{
 				enemy->setEstado(Atacando);
@@ -316,7 +317,7 @@ bool Deteccion::inTriangle(TrianguloBorde tr, Punto const & P){
 //Método que calcula la orientación de un triangulo con la fórmula: (A1.x - A3.x) * (A2.y - A3.y) - (A1.y - A3.y) * (A2.x - A3.x)
 //Siendo A1A2A3 el triángulo.
 //Si el resultado es mayor o igual que 0, la orientación del triángulo será positiva.En caso contrario, la orientación del triángulo será negativa.
-int ColisionBox::triangleOrientation(TrianguloBorde const & tr){
+int Deteccion::triangleOrientation(TrianguloBorde const & tr){
 	static TrianguloBorde s;
 	return ((tr.A.x - tr.C.x)*(tr.B.y - tr.C.y) - (tr.A.y - tr.C.y)*(tr.B.x - tr.C.x));
 }
