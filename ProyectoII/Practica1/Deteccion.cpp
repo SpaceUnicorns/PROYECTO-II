@@ -28,7 +28,7 @@ void Deteccion::update() {
 		{
 			float distRec;
 			recolectorIn(distRec);
-			if (distRec <= 120)
+			if (distRec <= 80)
 			{
 				enemy->setEstado(Atacando);
 				if (enemy->getAbsRect().x < enemy->getRecolector()->getAbsRect().x)
@@ -72,7 +72,7 @@ void Deteccion::update() {
 		{
 			float distCaz;
 			cazadorIn(distCaz);
-			if (distCaz <= 120)
+			if (distCaz <= 80)
 			{
 				enemy->setEstado(Atacando);
 				if (enemy->getAbsRect().x < enemy->getCazador()->getAbsRect().x)
@@ -121,7 +121,7 @@ void Deteccion::update() {
 		else { enemy->setEstado(Quieto); contAtaque = 0; }
 		switch (dirAtaque)
 		{
-		case 0:
+		case 4:
 			if (contAtaque < 50){
 				enemy->setAbsRect(0, -1);
 				enemy->setRect(0, -1);
@@ -132,7 +132,7 @@ void Deteccion::update() {
 				enemy->setRect(0, 1);
 			}
 			break;
-		case 1:
+		case 5:
 			if (contAtaque < 50){
 				enemy->setAbsRect(2, -1);
 				enemy->setRect(2, -1);
@@ -143,7 +143,7 @@ void Deteccion::update() {
 				enemy->setRect(-2, 1);
 			}
 			break;
-		case 2:
+		case 6:
 			if (contAtaque < 50){
 				enemy->setAbsRect(2, 0);
 				enemy->setRect(2, 0);
@@ -154,7 +154,7 @@ void Deteccion::update() {
 				enemy->setRect(-2, 0);
 			}
 			break;
-		case 3:
+		case 7:
 			if (contAtaque < 50){
 				enemy->setAbsRect(2, 1);
 				enemy->setRect(2, 1);
@@ -165,7 +165,7 @@ void Deteccion::update() {
 				enemy->setRect(-2, -1);
 			}
 			break;
-		case 4:
+		case 0:
 			if (contAtaque < 50){
 				enemy->setAbsRect(0, 1);
 				enemy->setRect(0, 1);
@@ -176,7 +176,7 @@ void Deteccion::update() {
 				enemy->setRect(0, -1);
 			}
 			break;
-		case 5:
+		case 1:
 			if (contAtaque < 50){
 				enemy->setAbsRect(-2, 1);
 				enemy->setRect(-2, 1);
@@ -187,7 +187,7 @@ void Deteccion::update() {
 				enemy->setRect(2, -1);
 			}
 			break;
-		case 6:
+		case 2:
 			if (contAtaque < 50){
 				enemy->setAbsRect(-2, 0);
 				enemy->setRect(-2, 0);
@@ -198,7 +198,7 @@ void Deteccion::update() {
 				enemy->setRect(2, 0);
 			}
 			break;
-		case 7:
+		case 3:
 			if (contAtaque < 50){
 				enemy->setAbsRect(-2, -1);
 				enemy->setRect(-2, -1);
@@ -262,7 +262,7 @@ void Deteccion::acechar()
 
 bool Deteccion::compruebaRadio(SDL_Rect target, float& distancia) {
 		Punto centro; centro.y = target.h / 2 + target.y; centro.x = target.w / 2 + target.x;
-		distancia = sqrt(((enemy->getAbsRect().x + enemy->getAbsRect().w / 2) - centro.x) * (enemy->getAbsRect().x + enemy->getAbsRect().w / 2 - centro.x) + (enemy->getAbsRect().y + enemy->getAbsRect().h / 2 - centro.y) * (enemy->getAbsRect().y + enemy->getAbsRect().h / 2 - centro.y));
+		distancia = sqrt(((enemy->getAbsRect().x + enemy->getRect().w / 2) - centro.x) * (enemy->getAbsRect().x + enemy->getRect().w / 2 - centro.x) + (enemy->getAbsRect().y + enemy->getRect().h / 2 - centro.y) * (enemy->getAbsRect().y + enemy->getRect().h / 2 - centro.y));
 		return distancia <= radio;
 }
 
