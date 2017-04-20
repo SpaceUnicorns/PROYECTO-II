@@ -7,6 +7,9 @@ Deteccion::Deteccion(ObjetoJuego* entidad, float radio):Componente(entidad),radi
 	activo = true;
 	detectado = false;
 	contAtrapado = contAtaque = dirAtaque = 0;
+	vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
+	vista.B.x = vista.A.x + 300;  vista.B.y = enemy->getAbsRect().y - 200;
+	vista.C.x = vista.B.x;  vista.C.y = enemy->getAbsRect().y + 200;
 }
 
 
@@ -274,4 +277,46 @@ bool Deteccion::cazadorIn(float& dist) {
 bool Deteccion::recolectorIn(float& dist) {
 	SDL_Rect rec = enemy->getRecolector()->getAbsRect();
 	return compruebaRadio(rec, dist);
+}
+bool Deteccion::inTriangle(TrianguloBorde tr, Punto const & P){
+	int x = triangleOrientation(tr);
+	TrianguloBorde auxT;
+	if (x >= 0){// Orientación positiva
+		auxT.A = tr.A; auxT.B = tr.B; auxT.C = P;
+		if (triangleOrientation(auxT) >= 0){
+			auxT.A = tr.A; auxT.B = P; auxT.C = tr.C;
+			if (triangleOrientation(auxT) >= 0){
+				auxT.A = P; auxT.B = tr.B; auxT.C = tr.C;
+				if (triangleOrientation(auxT) >= 0){
+					return 1;
+				}
+				else return 0;
+			}
+			else return 0;
+		}
+		else return 0;
+
+	}
+	else {//Orientación negativa
+		auxT.A = tr.A; auxT.B = tr.B; auxT.C = P;
+		if (triangleOrientation(auxT) < 0){
+			auxT.A = tr.A; auxT.B = P; auxT.C = tr.C;
+			if (triangleOrientation(auxT) < 0){
+				auxT.A = P; auxT.B = tr.B; auxT.C = tr.C;
+				if (triangleOrientation(auxT) < 0){
+					return 1;
+				}
+				else return 0;
+			}
+			else return 0;
+		}
+		else return 0;
+	}
+}
+//Método que calcula la orientación de un triangulo con la fórmula: (A1.x - A3.x) * (A2.y - A3.y) - (A1.y - A3.y) * (A2.x - A3.x)
+//Siendo A1A2A3 el triángulo.
+//Si el resultado es mayor o igual que 0, la orientación del triángulo será positiva.En caso contrario, la orientación del triángulo será negativa.
+int ColisionBox::triangleOrientation(TrianguloBorde const & tr){
+	static TrianguloBorde s;
+	return ((tr.A.x - tr.C.x)*(tr.B.y - tr.C.y) - (tr.A.y - tr.C.y)*(tr.B.x - tr.C.x));
 }

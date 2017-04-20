@@ -13,9 +13,12 @@ public:
 	bool cazadorIn(float& dist);
 	bool recolectorIn(float& dist);
 	void acechar();
+	bool inTriangle(TrianguloBorde tr, Punto const & P);
+	int triangleOrientation(TrianguloBorde const & tr);
 
 private:
 	Enemigo* enemy;
+	TrianguloBorde vista;
 	float radio;
 	bool detectado;
 	int contAtrapado;
