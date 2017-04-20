@@ -6,7 +6,7 @@ Deteccion::Deteccion(ObjetoJuego* entidad, float radio):Componente(entidad),radi
 	enemy = dynamic_cast<Enemigo*>(entidad);
 	activo = true;
 	detectado = false;
-	contAtrapado = contAtaque = dirAtaque = 0;
+	cont = dirAtaque = 0;
 	vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
 	vista.B.x = vista.A.x + 300;  vista.B.y = enemy->getAbsRect().y - 200;
 	vista.C.x = vista.B.x;  vista.C.y = enemy->getAbsRect().y + 200;
@@ -18,12 +18,60 @@ Deteccion::~Deteccion()
 }
 
 void Deteccion::update() {
-	//std::cout << "UPDATE LOBO DEPURAR \n";
-
+	
 	switch (enemy->getEstado())
 	{
 	case Quieto:
-		acechar();
+		cont++;
+		if (cont > 50){
+			int rnd = rand() % 100;
+			if (rnd >80 && rnd < 90){
+				//vaga
+			}
+			if (rnd > 90){
+				//aulla
+			}
+			Punto cazP, recP;
+			cazP.x = enemy->getCazador()->getAbsRect().x; cazP.y = enemy->getCazador()->getAbsRect().y;
+			recP.x = enemy->getRecolector()->getAbsRect().x; recP.y = enemy->getRecolector()->getAbsRect().y;
+			if (inTriangle(vista, cazP) && inTriangle(vista, recP)){
+				float distRec, distCaz;
+				detectado = true;
+				recolectorIn(distRec);
+				cazadorIn(distCaz);
+				if (distRec < distCaz){
+					enemy->setTarget(1);
+					enemy->activaFollow();
+					enemy->setEstado(Moviendo);
+				}
+				else{
+					enemy->setTarget(0);
+					enemy->activaFollow();
+					enemy->setEstado(Moviendo);
+				}
+				cont = 0;
+			}
+			else if (inTriangle(vista, cazP)){
+				detectado = true;
+				enemy->setTarget(0);
+				enemy->activaFollow();
+				enemy->setEstado(Moviendo);
+				cont = 0;
+			}
+			else if (inTriangle(vista, recP)){
+				detectado = true;
+				enemy->setTarget(1);
+				enemy->activaFollow();
+				enemy->setEstado(Moviendo);
+				cont = 0;
+			}
+		}
+		// Al cabo de un tiempo vuelve a casa
+		if (cont > 1000){
+			cont = 0;
+			enemy->desactivaFollow();
+			enemy->setEstado(Volviendo);
+		}
 		break;
 	case Moviendo:
 		acechar();
@@ -32,101 +80,36 @@ void Deteccion::update() {
 			float distRec;
 			recolectorIn(distRec);
 			dirAtaque = enemy->getDir();
-			if (distRec <= 80)
-			{
+			setVista(dirAtaque);
+			if (distRec <= 80){
+				preparaAtaque(1);
 				enemy->setEstado(Atacando);
-				if (enemy->getAbsRect().x < enemy->getRecolector()->getAbsRect().x)
-				{
-					if (enemy->getAbsRect().y < enemy->getRecolector()->getAbsRect().y)
-					{
-						dirAtaque = 7;
-					}
-					else if (enemy->getAbsRect().y >= enemy->getRecolector()->getAbsRect().y + 30)
-					{
-						dirAtaque = 5;
-					}
-					else{ dirAtaque = 6; }
-				}
-				else if (enemy->getAbsRect().x >= enemy->getRecolector()->getAbsRect().x + 50)
-				{
-					if (enemy->getAbsRect().y < enemy->getRecolector()->getAbsRect().y)
-					{
-						dirAtaque = 1;
-					}
-					else if (enemy->getAbsRect().y >= enemy->getRecolector()->getAbsRect().y + 30)
-					{
-						dirAtaque = 3;
-					}
-					else{ dirAtaque = 2; }
-				}
-				else
-				{
-					if (enemy->getAbsRect().y < enemy->getRecolector()->getAbsRect().y)
-					{
-						dirAtaque = 0;
-					}
-					else if (enemy->getAbsRect().y >= enemy->getRecolector()->getAbsRect().y)
-					{
-						dirAtaque = 4;
-					}
-				}
 			}
 		}
 		else if (enemy->getTarget() == enemy->getCazador())
 		{
 			float distCaz;
 			cazadorIn(distCaz);
-			if (distCaz <= 80)
-			{
+			if (distCaz <= 80){
+				preparaAtaque(0);
 				enemy->setEstado(Atacando);
-				if (enemy->getAbsRect().x < enemy->getCazador()->getAbsRect().x)
-				{
-					if (enemy->getAbsRect().y < enemy->getCazador()->getAbsRect().y)
-					{
-						dirAtaque = 7;
-					}
-					else if (enemy->getAbsRect().y >= enemy->getCazador()->getAbsRect().y + 30)
-					{
-						dirAtaque = 5;
-					}
-					else{ dirAtaque = 6; }
-				}
-				else if (enemy->getAbsRect().x >= enemy->getCazador()->getAbsRect().x + 50)
-				{
-					if (enemy->getAbsRect().y < enemy->getCazador()->getAbsRect().y)
-					{
-						dirAtaque = 1;
-					}
-					else if (enemy->getAbsRect().y >= enemy->getCazador()->getAbsRect().y + 30)
-					{
-						dirAtaque = 3;
-					}
-					else{ dirAtaque = 2; }
-				}
-				else
-				{
-					if (enemy->getAbsRect().y < enemy->getCazador()->getAbsRect().y)
-					{
-						dirAtaque = 0;
-					}
-					else if (enemy->getAbsRect().y >= enemy->getCazador()->getAbsRect().y)
-					{
-						dirAtaque = 4;
-					}
-				}
 			}
 			break;
 	case Volviendo:
-		acechar();
+		cont++;
+		if (cont >= 500){
+			cont = 0;
+			enemy->setEstado(Quieto);
+		}
 		break;
 	case Atacando:
-		if (contAtaque < 100)
-			contAtaque++;
-		else { enemy->setEstado(Quieto); contAtaque = 0; }
+		if (cont < 100)
+			cont++;
+		else { enemy->setEstado(PostAtaque); cont = 0; }
 		switch (dirAtaque)
 		{
 		case 4:
-			if (contAtaque < 50){
+			if (cont < 100){
 				enemy->setAbsRect(0, -1);
 				enemy->setRect(0, -1);
 			}
@@ -137,7 +120,7 @@ void Deteccion::update() {
 			}
 			break;
 		case 5:
-			if (contAtaque < 50){
+			if (cont < 100){
 				enemy->setAbsRect(2, -1);
 				enemy->setRect(2, -1);
 			}
@@ -148,7 +131,7 @@ void Deteccion::update() {
 			}
 			break;
 		case 6:
-			if (contAtaque < 50){
+			if (cont < 100){
 				enemy->setAbsRect(2, 0);
 				enemy->setRect(2, 0);
 			}
@@ -159,7 +142,7 @@ void Deteccion::update() {
 			}
 			break;
 		case 7:
-			if (contAtaque < 50){
+			if (cont < 100){
 				enemy->setAbsRect(2, 1);
 				enemy->setRect(2, 1);
 			}
@@ -170,7 +153,7 @@ void Deteccion::update() {
 			}
 			break;
 		case 0:
-			if (contAtaque < 50){
+			if (cont < 100){
 				enemy->setAbsRect(0, 1);
 				enemy->setRect(0, 1);
 			}
@@ -181,7 +164,7 @@ void Deteccion::update() {
 			}
 			break;
 		case 1:
-			if (contAtaque < 50){
+			if (cont < 100){
 				enemy->setAbsRect(-2, 1);
 				enemy->setRect(-2, 1);
 			}
@@ -192,7 +175,7 @@ void Deteccion::update() {
 			}
 			break;
 		case 2:
-			if (contAtaque < 50){
+			if (cont < 100){
 				enemy->setAbsRect(-2, 0);
 				enemy->setRect(-2, 0);
 			}
@@ -203,7 +186,7 @@ void Deteccion::update() {
 			}
 			break;
 		case 3:
-			if (contAtaque < 50){
+			if (cont < 100){
 				enemy->setAbsRect(-2, -1);
 				enemy->setRect(-2, -1);
 			}
@@ -219,15 +202,28 @@ void Deteccion::update() {
 		static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->setRectBox(enemy->getRect().x - 5, enemy->getRect().y + 40);
 		break;
 	case Atrapado:
-		contAtrapado++;
-		if (contAtrapado >= 500)
+		cont++;
+		if (cont >= 500)
 		{
-			contAtrapado = 0;
+			cont = 0;
 			enemy->setEstado(Quieto);
 		}
 		break;
+	case PostAtaque:
+		// vaga por el mapa
+		break;
+	case Herido:
+		//Animacion Herido
+		if (enemy->life < 0)
+			enemy->setEstado(Muerto);
+		else if (cont > 100){
+			cont = 0;
+			enemy->setEstado(Quieto);
 		}
-		
+		break;
+	case Muerto:
+		break;
+		}
 		/*
 		//DEPURACION
 		std::cout << static_cast<Enemigo*>(pEntidad)->getCazador()->getRect().x << "     " << static_cast<Enemigo*>(pEntidad)->getCazador()->getRect().y << "\n";
@@ -237,7 +233,52 @@ void Deteccion::update() {
 	}
 
 }
-
+void Deteccion::setVista(int dir)
+{
+	switch (dir)
+	{
+	case 0:
+		vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
+		vista.B.x = vista.A.x - 200;  vista.B.y = enemy->getAbsRect().y - 300;
+		vista.C.x = vista.B.x + 400;  vista.C.y = enemy->getAbsRect().y - 300;
+		break;
+	case 1:
+		vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
+		vista.B.x = vista.A.x + 70;  vista.B.y = enemy->getAbsRect().y - 350;
+		vista.C.x = vista.A.x + 350;  vista.C.y = enemy->getAbsRect().y - 70;
+		break;
+	case 2:
+		vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
+		vista.B.x = vista.A.x + 300;  vista.B.y = enemy->getAbsRect().y - 200;
+		vista.C.x = vista.B.x;  vista.C.y = enemy->getAbsRect().y + 200;
+		break;
+	case 3:
+		vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
+		vista.B.x = vista.A.x + 70;  vista.B.y = enemy->getAbsRect().y + 350;
+		vista.C.x = vista.A.x + 350;  vista.C.y = enemy->getAbsRect().y + 70;
+		break;
+	case 4:
+		vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
+		vista.B.x = vista.A.x - 200;  vista.B.y = enemy->getAbsRect().y + 300;
+		vista.C.x = vista.B.x + 400;  vista.C.y = enemy->getAbsRect().y + 300;
+		break;
+	case 5:
+		vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
+		vista.B.x = vista.A.x - 70;  vista.B.y = enemy->getAbsRect().y + 350;
+		vista.C.x = vista.A.x - 350;  vista.C.y = enemy->getAbsRect().y + 70;
+		break;
+	case 6:
+		vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
+		vista.B.x = vista.A.x - 300;  vista.B.y = enemy->getAbsRect().y - 200;
+		vista.C.x = vista.B.x;  vista.C.y = enemy->getAbsRect().y + 200;
+		break;
+	case 7:
+		vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
+		vista.B.x = vista.A.x - 70;  vista.B.y = enemy->getAbsRect().y - 350;
+		vista.C.x = vista.A.x - 350;  vista.C.y = enemy->getAbsRect().y - 70;
+		break;
+	}
+}
 void Deteccion::acechar()
 {
 	float distCaz, distRec;
@@ -320,4 +361,83 @@ bool Deteccion::inTriangle(TrianguloBorde tr, Punto const & P){
 int Deteccion::triangleOrientation(TrianguloBorde const & tr){
 	static TrianguloBorde s;
 	return ((tr.A.x - tr.C.x)*(tr.B.y - tr.C.y) - (tr.A.y - tr.C.y)*(tr.B.x - tr.C.x));
+}
+
+void Deteccion::preparaAtaque(int target)
+{
+	if (target == 0){
+		if (enemy->getAbsRect().x < enemy->getCazador()->getAbsRect().x)
+		{
+			if (enemy->getAbsRect().y < enemy->getCazador()->getAbsRect().y)
+			{
+				dirAtaque = 7;
+			}
+			else if (enemy->getAbsRect().y >= enemy->getCazador()->getAbsRect().y + 30)
+			{
+				dirAtaque = 5;
+			}
+			else{ dirAtaque = 6; }
+		}
+		else if (enemy->getAbsRect().x >= enemy->getCazador()->getAbsRect().x + 50)
+		{
+			if (enemy->getAbsRect().y < enemy->getCazador()->getAbsRect().y)
+			{
+				dirAtaque = 1;
+			}
+			else if (enemy->getAbsRect().y >= enemy->getCazador()->getAbsRect().y + 30)
+			{
+				dirAtaque = 3;
+			}
+			else{ dirAtaque = 2; }
+		}
+		else
+		{
+			if (enemy->getAbsRect().y < enemy->getCazador()->getAbsRect().y)
+			{
+				dirAtaque = 0;
+			}
+			else if (enemy->getAbsRect().y >= enemy->getCazador()->getAbsRect().y)
+			{
+				dirAtaque = 4;
+			}
+		}
+	}
+	else 
+	{
+		if (enemy->getAbsRect().x < enemy->getRecolector()->getAbsRect().x)
+		{
+			if (enemy->getAbsRect().y < enemy->getRecolector()->getAbsRect().y)
+			{
+				dirAtaque = 7;
+			}
+			else if (enemy->getAbsRect().y >= enemy->getRecolector()->getAbsRect().y + 30)
+			{
+				dirAtaque = 5;
+			}
+			else{ dirAtaque = 6; }
+		}
+		else if (enemy->getAbsRect().x >= enemy->getRecolector()->getAbsRect().x + 50)
+		{
+			if (enemy->getAbsRect().y < enemy->getRecolector()->getAbsRect().y)
+			{
+				dirAtaque = 1;
+			}
+			else if (enemy->getAbsRect().y >= enemy->getRecolector()->getAbsRect().y + 30)
+			{
+				dirAtaque = 3;
+			}
+			else{ dirAtaque = 2; }
+		}
+		else
+		{
+			if (enemy->getAbsRect().y < enemy->getRecolector()->getAbsRect().y)
+			{
+				dirAtaque = 0;
+			}
+			else if (enemy->getAbsRect().y >= enemy->getRecolector()->getAbsRect().y)
+			{
+				dirAtaque = 4;
+			}
+		}
+	}
 }

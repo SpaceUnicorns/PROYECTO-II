@@ -15,14 +15,14 @@ public:
 	void acechar();
 	bool inTriangle(TrianguloBorde tr, Punto const & P);
 	int triangleOrientation(TrianguloBorde const & tr);
-
+	void setVista(int dir);
+	void preparaAtaque(int target/*0 caz 1 rec*/);
 private:
 	Enemigo* enemy;
 	TrianguloBorde vista;
 	float radio;
 	bool detectado;
-	int contAtrapado;
-	int contAtaque;
+	int cont;
 	int dirAtaque; // 0 arriba y sigue las agujas del reloj
 };
 

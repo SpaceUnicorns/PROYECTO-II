@@ -7,7 +7,7 @@
 
 enum EstadoEnemigo
 {
-	Quieto, Moviendo, Volviendo, Atacando, Atrapado
+	Quieto, Moviendo, Volviendo, Atacando, Atrapado, PostAtaque, Herido, Muerto
 };
 class Enemigo :
 	public ObjetoPG
