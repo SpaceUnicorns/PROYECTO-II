@@ -19,6 +19,7 @@ private:
 	int framerate = 0;
 	Punto nextPos; 
 	ColisionBox * pCBox;
+	EstadoPG* pEstado;
 
 	//Funciones----------------------------------------------------------------------
 	/*bool isColiding(Punto const & P);
