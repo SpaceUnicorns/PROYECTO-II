@@ -90,6 +90,7 @@
     <ClCompile Include="Deteccion.cpp" />
     <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Equipo.cpp" />
+    <ClCompile Include="Escondite.cpp" />
     <ClCompile Include="EstadoPG.cpp" />
     <ClCompile Include="follow.cpp" />
     <ClCompile Include="Fuente.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Equipo.h" />
     <ClInclude Include="Error.h" />
+    <ClInclude Include="Escondite.h" />
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="EstadoPG.h" />
     <ClInclude Include="follow.h" />

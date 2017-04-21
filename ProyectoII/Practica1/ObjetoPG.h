@@ -46,9 +46,23 @@ public:
 	bool obstaculo = false;
 	std::vector<std::string> nombre;
 	std::vector<std::string> receta;
-protected: 
-	ObjetoPG(juegoPG * juego, int px, int py);
 	
+	void esconderse(){
+			setAlpha(100);
+			//Activar la variable indetectable
+	}
+	void salirEscondite(){
+		setAlpha(255);
+		//Desactivar la variable indetectable
+	}
+protected: 
+	void setAlpha(int x){
+		if (x >= 0 && x <= 255){
+			alpha = x;
+		}
+	}
+	ObjetoPG(juegoPG * juego, int px, int py);
+	int alpha;
 	//Atributos-------------------------------------------
 	bool activo;
 	std::map <std::string, Componente*> mapaComponentes; 

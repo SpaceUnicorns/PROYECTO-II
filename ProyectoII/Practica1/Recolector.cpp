@@ -35,7 +35,7 @@ void Recolector::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!
 		rect.y -= aux.y;
 	}
 	static_cast<ColisionBox*>(mapaComponentes.at("Huella"))->draw();
-	pJuego->getTextura(et)->draw(pJuego->getRender(), anim, rect);
+	pJuego->getTextura(et)->draw(pJuego->getRender(), anim, rect, alpha);
 	static_cast<AntorchaC*>(mapaComponentes.at("AntorchaC"))->draw();
 	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
 }

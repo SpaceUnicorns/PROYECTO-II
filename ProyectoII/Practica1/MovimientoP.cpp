@@ -36,7 +36,8 @@ void MovimientoP::update(){
 
 
 		//RECOLECTOR PUEDE COGER OBJETOS
-		if (static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info) == 2) {
+		int colAux = static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->isColiding(nextPos, info);
+		if (colAux == 2) {
 			if (dynamic_cast<Recolector*>(pObj)) {
 				if (pObj->getPJuego()->input.e) {
 					pObj->getPJuego()->input.e = false;
@@ -49,6 +50,8 @@ void MovimientoP::update(){
 				}
 			}
 		}
+		else if (colAux == 3) pObj->esconderse();
+		else pObj->salirEscondite();
 
 
 		pObj->getPJuego()->input.e = false;
