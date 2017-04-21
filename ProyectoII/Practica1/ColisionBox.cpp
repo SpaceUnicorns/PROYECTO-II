@@ -37,6 +37,8 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 					info = ob;
 					if (ob->interactuable)
 						col = 2;
+					else if (ob->obstaculo)
+						col = 3;
 					else
 					col = 1;
 				};
