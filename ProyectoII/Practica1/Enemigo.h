@@ -25,6 +25,7 @@ public:
 		if (chachiPiruli == 0)objetivo = cazador; 
 		else objetivo = recolector; 
 	}
+	void followThis(ObjetoPG* target);
 	void setEstado(EstadoEnemigo est){ estado = est; }
 	EstadoEnemigo getEstado(){ return estado; }
 	void activaFollow();

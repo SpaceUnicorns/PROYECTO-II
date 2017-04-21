@@ -23,6 +23,8 @@ private:
 	float radio;
 	bool detectado;
 	int cont;
+	int rnd;
+	ObjetoPG* direccionAux;
 	int dirAtaque; // 0 arriba y sigue las agujas del reloj
 };
 

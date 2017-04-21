@@ -23,13 +23,24 @@ void Deteccion::update() {
 	{
 	case Quieto:
 		cont++;
-		if (cont > 50){
-			int rnd = rand() % 100;
-			if (rnd >80 && rnd < 90){
-				//vaga
+		if (cont > 100){
+			rnd = rand() % 100;
+			if (rnd >80 && rnd < 89){
+				direccionAux = nullptr;
+				if (rnd >80 && rnd <83) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y);
+				else if (rnd >82 && rnd <85) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y);
+				else if (rnd >84 && rnd <87) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100);
+				else if (rnd >86 && rnd <90) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100);
+				enemy->followThis(direccionAux);
 			}
-			if (rnd > 90){
+			if (rnd > 89){
 				//aulla
+				/*rnd = rand() % 4;
+				if (rnd == 0)enemy->getPJuego()->estados.top()->reproduceFx("aullido",500, 500,0);
+				if (rnd == 1)enemy->getPJuego()->estados.top()->reproduceFx("aullido1", 500, 500, 0);
+				if (rnd == 2)enemy->getPJuego()->estados.top()->reproduceFx("aullido2", 500, 500, 0);
+				if (rnd == 3)enemy->getPJuego()->estados.top()->reproduceFx("aullido3", 500, 500, 0);
+					*/
 			}
 			Punto cazP, recP;
 			cazP.x = enemy->getCazador()->getAbsRect().x; cazP.y = enemy->getCazador()->getAbsRect().y;
@@ -119,7 +130,8 @@ void Deteccion::update() {
 				preparaAtaque(0);
 				enemy->setEstado(Atacando);
 			}
-			break;
+		}
+		break;
 	case Volviendo:
 		cont++;
 		if (cont >= 500){
@@ -233,7 +245,20 @@ void Deteccion::update() {
 		}
 		break;
 	case PostAtaque:
-		// vaga por el mapa
+		cont++;
+		direccionAux = nullptr;
+		if (cont == 0){
+			rnd = rand() % 4;
+			if (rnd == 0) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y);
+			else if (rnd == 1) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y);
+			else if (rnd == 2) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100);
+			else if (rnd == 3) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100);
+			enemy->followThis(direccionAux);
+		}
+		else if (cont > 100) {
+			cont = 0;
+			enemy->setEstado(Quieto);
+		}
 		break;
 	case Herido:
 		//Animacion Herido
@@ -246,16 +271,15 @@ void Deteccion::update() {
 		break;
 	case Muerto:
 		break;
-		}
+	}
 		/*
 		//DEPURACION
 		std::cout << static_cast<Enemigo*>(pEntidad)->getCazador()->getRect().x << "     " << static_cast<Enemigo*>(pEntidad)->getCazador()->getRect().y << "\n";
 		std::cout << static_cast<Enemigo*>(pEntidad)->getRect().x << "     " << static_cast<Enemigo*>(pEntidad)->getRect().y << "\n";
 		std::cout << static_cast<Enemigo*>(pEntidad)->getPosIni().x << "     " << static_cast<Enemigo*>(pEntidad)->getPosIni().y;
 		//*/
-	}
-
 }
+
 void Deteccion::setVista(int dir)
 {
 	switch (dir)
