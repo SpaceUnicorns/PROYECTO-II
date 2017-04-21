@@ -62,6 +62,6 @@ void Enemigo::followThis(ObjetoPG* target) {
 
 	followEnem->setTarget(target);
 	followEnem->doFollow();
-	followEnem->setTarget(objetivo);
+	
 	//std::cout << "MANOLITO SILVERFEET" << "\n";
 }

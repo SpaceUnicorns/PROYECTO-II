@@ -19,6 +19,8 @@ Deteccion::~Deteccion()
 
 void Deteccion::update() {
 	
+	enemy->setTarget(0);
+	if (enemy->encuentraComponente("follow"))setVista(enemy->getDir());
 	switch (enemy->getEstado())
 	{
 	case Quieto:
@@ -27,10 +29,10 @@ void Deteccion::update() {
 			rnd = rand() % 100;
 			if (rnd >80 && rnd < 89){
 				direccionAux = nullptr;
-				if (rnd >80 && rnd <83) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y);
-				else if (rnd >82 && rnd <85) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y);
-				else if (rnd >84 && rnd <87) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100);
-				else if (rnd >86 && rnd <90) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100);
+				if (rnd >80 && rnd <83){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y); }
+				else if (rnd >82 && rnd <85){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y); }
+				else if (rnd >84 && rnd <87){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100); }
+				else if (rnd >86 && rnd <90){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100); }
 				enemy->followThis(direccionAux);
 			}
 			if (rnd > 89){
@@ -249,13 +251,15 @@ void Deteccion::update() {
 		direccionAux = nullptr;
 		if (cont == 0){
 			rnd = rand() % 4;
-			if (rnd == 0) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y);
-			else if (rnd == 1) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y);
-			else if (rnd == 2) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100);
-			else if (rnd == 3) direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100);
+			if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y); }
+			else if (rnd == 1){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y); }
+			else if (rnd == 2){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100); }
+			else if (rnd == 3){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100); }
 			enemy->followThis(direccionAux);
 		}
 		else if (cont > 100) {
+			enemy->setTarget(0);
+			delete direccionAux;
 			cont = 0;
 			enemy->setEstado(Quieto);
 		}
