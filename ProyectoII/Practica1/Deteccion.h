@@ -25,6 +25,7 @@ private:
 	int cont;
 	int rnd;
 	ObjetoPG* direccionAux;
+	int ultAtaque;
 	int dirAtaque; // 0 arriba y sigue las agujas del reloj
 };
 

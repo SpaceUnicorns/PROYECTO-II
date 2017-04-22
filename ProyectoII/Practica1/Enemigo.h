@@ -34,6 +34,7 @@ public:
 	int damage;
 	int life;
 	int getDir(){ return followEnem->getDirection(); }
+	ObjetoPG* getCasita(){ return casita; }
 
 protected:
 	void dameUnHogar();

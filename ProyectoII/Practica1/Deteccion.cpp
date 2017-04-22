@@ -10,6 +10,7 @@ Deteccion::Deteccion(ObjetoJuego* entidad, float radio):Componente(entidad),radi
 	vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
 	vista.B.x = vista.A.x + 300;  vista.B.y = enemy->getAbsRect().y - 200;
 	vista.C.x = vista.B.x;  vista.C.y = enemy->getAbsRect().y + 200;
+	ultAtaque = 0;
 }
 
 
@@ -78,9 +79,11 @@ void Deteccion::update() {
 				enemy->setEstado(Moviendo);
 				cont = 0;
 			}
+			else detectado = false;
 		}
 		// Al cabo de un tiempo vuelve a casa
-		if (cont > 1000){
+		float distCasa;
+		if (compruebaRadio(enemy->getCasita()->getAbsRect(),distCasa) > 1000){
 			cont = 0;
 			enemy->desactivaFollow();
 			enemy->setEstado(Volviendo);
@@ -118,6 +121,7 @@ void Deteccion::update() {
 				enemy->setTarget(1);
 				enemy->activaFollow();
 			}
+			else detectado = false;
 		}
 		if (enemy->getTarget() == enemy->getRecolector()){
 			dirAtaque = enemy->getDir();
@@ -151,88 +155,57 @@ void Deteccion::update() {
 			if (cont < 100){
 				enemy->setAbsRect(0, -1);
 				enemy->setRect(0, -1);
-			}
-			else
-			{
-				enemy->setAbsRect(0, 1);
-				enemy->setRect(0, 1);
+				ultAtaque = 0;
 			}
 			break;
 		case 5:
 			if (cont < 100){
 				enemy->setAbsRect(2, -1);
 				enemy->setRect(2, -1);
-			}
-			else
-			{
-				enemy->setAbsRect(-2, 1);
-				enemy->setRect(-2, 1);
+				ultAtaque = 1;
 			}
 			break;
 		case 6:
 			if (cont < 100){
 				enemy->setAbsRect(2, 0);
 				enemy->setRect(2, 0);
-			}
-			else
-			{
-				enemy->setAbsRect(-2, 0);
-				enemy->setRect(-2, 0);
+				ultAtaque = 2;
 			}
 			break;
 		case 7:
 			if (cont < 100){
 				enemy->setAbsRect(2, 1);
 				enemy->setRect(2, 1);
+				ultAtaque = 3;
 			}
 			else
-			{
-				enemy->setAbsRect(-2, -1);
-				enemy->setRect(-2, -1);
-			}
 			break;
 		case 0:
 			if (cont < 100){
 				enemy->setAbsRect(0, 1);
 				enemy->setRect(0, 1);
-			}
-			else
-			{
-				enemy->setAbsRect(0, -1);
-				enemy->setRect(0, -1);
+				ultAtaque = 4;
 			}
 			break;
 		case 1:
 			if (cont < 100){
 				enemy->setAbsRect(-2, 1);
 				enemy->setRect(-2, 1);
-			}
-			else
-			{
-				enemy->setAbsRect(2, -1);
-				enemy->setRect(2, -1);
+				ultAtaque = 5;
 			}
 			break;
 		case 2:
 			if (cont < 100){
 				enemy->setAbsRect(-2, 0);
 				enemy->setRect(-2, 0);
-			}
-			else
-			{
-				enemy->setAbsRect(2, 0);
-				enemy->setRect(2, 0);
+				ultAtaque = 6;
 			}
 			break;
 		case 3:
 			if (cont < 100){
 				enemy->setAbsRect(-2, -1);
 				enemy->setRect(-2, -1);
-			}
-			else
-			{
-				enemy->setAbsRect(2, 1);
-				enemy->setRect(2, 1);
+				ultAtaque = 7;
 			}
 			break;
 		}
@@ -247,22 +220,63 @@ void Deteccion::update() {
 		}
 		break;
 	case PostAtaque:
-		cont++;
 		direccionAux = nullptr;
-		if (cont == 0){
-			rnd = rand() % 4;
-			if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y); }
-			else if (rnd == 1){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y); }
-			else if (rnd == 2){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100); }
-			else if (rnd == 3){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100); }
+		if (cont == 0){ // Segun aonde atacara el lobo da la vuelta a una posicion u otra
+			rnd = rand() % 2;
+			if (ultAtaque == 0){
+				if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y); }
+				else { delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y); }
+			}
+			else if (ultAtaque == 1){
+				if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y); }
+				else { delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100); }
+			}
+			else if (ultAtaque == 2){
+				if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100); }
+				else { delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100); }
+			}
+			else if (ultAtaque == 3){
+				if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y); }
+				else { delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100); }
+			}
+			else if (ultAtaque == 4){
+				if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y); }
+				else { delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x - 100, enemy->getAbsRect().y); }
+			}
+			else if (ultAtaque == 5){
+				if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y); }
+				else { delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100); }
+			}
+			else if (ultAtaque == 6){
+				if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100); }
+				else { delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100); }
+			}
+			else if (ultAtaque == 7){
+				if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y); }
+				else { delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100); }
+			}
 			enemy->followThis(direccionAux);
 		}
 		else if (cont > 100) {
+			float distRec;
+			recolectorIn(distRec);
+			float distCaz;
+			cazadorIn(distCaz);
 			enemy->setTarget(0);
 			delete direccionAux;
+
+			if (distCaz <= 80){
+				preparaAtaque(0);
+				enemy->setEstado(Atacando);
+			}
+			else if (distRec <= 80){
+				preparaAtaque(0);
+				enemy->setEstado(Atacando);
+			}
+			else enemy->setEstado(Quieto);
 			cont = 0;
-			enemy->setEstado(Quieto);
 		}
+		cont++;
 		break;
 	case Herido:
 		//Animacion Herido

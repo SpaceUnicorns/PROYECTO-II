@@ -17,7 +17,8 @@ public:
 		nivelAct = aux = 0;
 		pather = new micropather::MicroPather(this, 50);	// Use a very small memory block to stress the pather
 	}
-
+	int dameAltura(){ return niveles.size(); }
+	int dameAnchura(){ return niveles[0]; }
 	void solve(void* startState, void* endState, std::vector< void* >* path, float* totalCost)
 	{
 		pather->Solve(startState, endState, path, totalCost);
