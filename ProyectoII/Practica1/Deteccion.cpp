@@ -35,6 +35,7 @@ void Deteccion::update() {
 				else if (rnd >84 && rnd <87){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y + 100); }
 				else if (rnd >86 && rnd <90){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x, enemy->getAbsRect().y - 100); }
 				enemy->followThis(direccionAux);
+				cont = 0;
 			}
 			if (rnd > 89){
 				//aulla
@@ -121,7 +122,11 @@ void Deteccion::update() {
 				enemy->setTarget(1);
 				enemy->activaFollow();
 			}
-			else detectado = false;
+			else { 
+				detectado = false; 
+				cont = 0;
+				enemy->setEstado(Quieto);
+			}
 		}
 		if (enemy->getTarget() == enemy->getRecolector()){
 			dirAtaque = enemy->getDir();
@@ -178,7 +183,6 @@ void Deteccion::update() {
 				enemy->setRect(2, 1);
 				ultAtaque = 3;
 			}
-			else
 			break;
 		case 0:
 			if (cont < 100){
