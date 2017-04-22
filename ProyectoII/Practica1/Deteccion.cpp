@@ -84,13 +84,11 @@ void Deteccion::update() {
 				recolectorIn(distRec);
 				cazadorIn(distCaz);
 				if (distRec < distCaz){
-					std::cout << "sigue rec\n";
 					enemy->setTarget(1);
 					enemy->activaFollow();
 					enemy->setEstado(Moviendo);
 				}
 				else{
-					std::cout << "sigue caz\n";
 					enemy->setTarget(0);
 					enemy->activaFollow();
 					enemy->setEstado(Moviendo);
@@ -98,7 +96,6 @@ void Deteccion::update() {
 				cont = 0;
 			}
 			else if (inTriangle(vista, cazP)){
-				std::cout << "sigue caz\n";
 				detectado = true;
 				enemy->setTarget(0);
 				enemy->activaFollow();
@@ -106,7 +103,6 @@ void Deteccion::update() {
 				cont = 0;
 			}
 			else if (inTriangle(vista, recP)){
-				std::cout << "sigue rec\n";
 				detectado = true;
 				enemy->setTarget(1);
 				enemy->activaFollow();

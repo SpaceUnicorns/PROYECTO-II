@@ -60,7 +60,7 @@ void follow::doFollow()
 	pObj->setAbsRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
 	static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);*/
 	//Resolvemos el camino
-	if (x > 1 && xx > 1 && y > 0 && yy > 0 && x && y < map->dameAltura()-1 && yy < map->dameAltura()-1 && x < map->dameAnchura() && xx < map->dameAnchura()){
+	if (x > 0 && xx > 0 && y > 0 && yy > 0 && y < map->dameAltura()-1 && yy < map->dameAltura()-1 && x < map->dameAnchura() && xx < map->dameAnchura()){
 		map->solve(map->XYToNode(x, y), map->XYToNode(xx, yy), &path, &coste);
 		coste = 0;
 		int auxX, auxY;

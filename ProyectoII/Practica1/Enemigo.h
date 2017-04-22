@@ -18,6 +18,7 @@ public:
 
 	virtual SDL_Rect getColisionBox() { return static_cast<ColisionBox*> (mapaComponentes.at("ColisionBox"))->getRectBox(); }
 	virtual void draw();
+	virtual void lateUpdate();
 	Cazador* getCazador() { return cazador; }
 	Recolector* getRecolector() { return recolector; }
 	ObjetoPG* getTarget(){ return objetivo; }
@@ -45,6 +46,7 @@ protected:
 	ObjetoPG* objetivo;
 	ObjetoPG* casita;
 	follow* followEnem;
+	bool following;
 
 };
 

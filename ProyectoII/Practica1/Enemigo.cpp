@@ -11,6 +11,7 @@ cazador(hunter), recolector(collector), estado(EstadoEnemigo::Quieto)
 	objetivo = nullptr;
 	dameUnHogar();
 	followEnem = nullptr;
+	following = false;
 }
 
 void Enemigo::dameUnHogar() {
@@ -31,7 +32,13 @@ void Enemigo::draw() {
 	posIni.y -= aux.y;
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
-
+void Enemigo::lateUpdate()
+{
+	if (following){
+		followEnem->doFollow();
+		followEnem->lateUpdate();
+	}
+}
 void Enemigo::activaFollow() {
 	estado = EstadoEnemigo::Moviendo;
 	if (!encuentraComponente("follow")) {
@@ -39,14 +46,18 @@ void Enemigo::activaFollow() {
 		followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
 	}
 	followEnem->setTarget(objetivo);
-	followEnem->doFollow();
+	following = true;
 }
 
 void Enemigo::desactivaFollow() {
 	if (estado != EstadoEnemigo::Atrapado){
+		if (!encuentraComponente("follow")) {
+			newComponente(new follow(this, casita, dynamic_cast<Nivel1*>(pJuego->getEstadoActual())->getGrafoMapa(), false), "follow");
+			followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
+		}
 		estado = EstadoEnemigo::Volviendo;
 		followEnem->setTarget(casita);
-		followEnem->doFollow();
+		following = true;
 	}
 	else
 		followEnem->clearFollow();
@@ -54,9 +65,9 @@ void Enemigo::desactivaFollow() {
 
 void Enemigo::followThis(ObjetoPG* target) {
 	if (!encuentraComponente("follow")) {
-		newComponente(new follow(this, objetivo, dynamic_cast<Nivel1*>(pJuego->getEstadoActual())->getGrafoMapa(), false), "follow");
+		newComponente(new follow(this, target, dynamic_cast<Nivel1*>(pJuego->getEstadoActual())->getGrafoMapa(), false), "follow");
 		followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
 	}
 	followEnem->setTarget(target);
-	followEnem->doFollow();
+	following = true;
 }
