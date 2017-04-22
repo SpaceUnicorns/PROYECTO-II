@@ -23,7 +23,7 @@ Deteccion::~Deteccion()
 
 void Deteccion::update() {
 
-	enemy->setTarget(0);
+/*	enemy->setTarget(0);
 	setVista(dirAtaque); std::cout << dirAtaque << "\n";
 	switch (enemy->getEstado())
 	{
@@ -71,7 +71,7 @@ void Deteccion::update() {
 				if (rnd == 2)enemy->getPJuego()->estados.top()->reproduceFx("aullido2", 500, 500, 0);
 				if (rnd == 3)enemy->getPJuego()->estados.top()->reproduceFx("aullido3", 500, 500, 0);
 				*/
-			}
+/*			}
 			cont = 0;
 		}
 		if (cont > 50){
