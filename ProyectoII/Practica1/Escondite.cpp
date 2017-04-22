@@ -3,7 +3,7 @@
 
 Escondite::Escondite(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
-	obstaculo = true;
+	escondite = true;
 	et = TEscondite;
 	rect.w = 87;
 	rect.h = 35;

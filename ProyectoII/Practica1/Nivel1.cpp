@@ -22,6 +22,7 @@
 #include "TrampaAbierta.h"
 #include "Equipo.h"
 #include "Escondite.h"
+#include "Obstaculo.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
@@ -113,6 +114,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Enredadera(pJuego, 980, 100));
 	vecObj.push_back(new Hueso(pJuego, 880, 200));
 	vecObj.push_back(new Escondite(pJuego, 700, 500));
+	vecObj.push_back(new Obstaculo(pJuego, 600, 600, TObstaculoPiedra, "Pico"));
 	vecObj.push_back(new Madera(pJuego, 880, 300));
 	vecObj.push_back(new Piedra(pJuego, 980, 200));
 	vecObj.push_back(new TrampaCerrada(pJuego, 980, 300));

@@ -44,6 +44,8 @@ public:
 	virtual Texturas_t getEnumText()const { return et; }
 	bool interactuable=false;
 	bool obstaculo = false;
+	bool escondite = false;
+	std::string destructor;
 	std::vector<std::string> nombre;
 	std::vector<std::string> receta;
 	

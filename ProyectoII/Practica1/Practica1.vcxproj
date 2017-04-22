@@ -26,7 +26,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -111,6 +111,7 @@
     <ClCompile Include="MovimientoP.cpp" />
     <ClCompile Include="ObjetoHuella.cpp" />
     <ClCompile Include="ObjetoPG.cpp" />
+    <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Pala.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Nivel1.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="ObjetoHuella.h" />
     <ClInclude Include="ObjetoJuego.h" />
     <ClInclude Include="ObjetoPG.h" />
+    <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Pala.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Nivel1.h" />
