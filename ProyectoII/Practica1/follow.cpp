@@ -27,6 +27,16 @@ void follow:: update(){
 	}
 
 }
+
+void follow::setTarget(ObjetoPG* targe) {
+	target = targe;
+}
+void follow::clearFollow()
+{
+	direccion.clear();
+	cont = 0;
+	path.clear();
+}
 void follow::doFollow()
 {
 	// Nos aseguramos de que el vector path y direccion este vacio
@@ -50,46 +60,46 @@ void follow::doFollow()
 	pObj->setAbsRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
 	static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);*/
 	//Resolvemos el camino
-	std::cout << x << " " << y << " \n";
-	std::cout << xx << " " << yy << " \n";
-	map->solve(map->XYToNode(x, y), map->XYToNode(xx, yy), &path, &coste);
-	coste = 0;
-	int auxX, auxY;
-	int dirX, dirY;
+	if (x > 1 && xx > 1 && y > 0 && yy > 0 && x && y < map->dameAltura()-1 && yy < map->dameAltura()-1 && x < map->dameAnchura() && xx < map->dameAnchura()){
+		map->solve(map->XYToNode(x, y), map->XYToNode(xx, yy), &path, &coste);
+		coste = 0;
+		int auxX, auxY;
+		int dirX, dirY;
 
-	//codificamos en el vector de direcciones
-	for (int i = 0; i < path.size() - 1 && path.size() > 0; i++)
-	{
-		map->NodeToXY(path[i], &dirX, &dirY);
-		map->NodeToXY(path[i + 1], &auxX, &auxY);
+		//codificamos en el vector de direcciones
+		for (int i = 0; i < path.size() - 1 && path.size() > 0; i++)
+		{
+			map->NodeToXY(path[i], &dirX, &dirY);
+			map->NodeToXY(path[i + 1], &auxX, &auxY);
 
-		if (auxX > dirX)
-		{
-			if (auxY > dirY)
-				direccion.push_back(3);
-			else if (auxY < dirY)
-				direccion.push_back(1);
+			if (auxX > dirX)
+			{
+				if (auxY > dirY)
+					direccion.push_back(3);
+				else if (auxY < dirY)
+					direccion.push_back(1);
+				else
+					direccion.push_back(2);
+			}
+			else if (auxX < dirX)
+			{
+				if (auxY > dirY)
+					direccion.push_back(5);
+				else if (auxY < dirY)
+					direccion.push_back(7);
+				else
+					direccion.push_back(6);
+			}
 			else
-				direccion.push_back(2);
+			{
+				if (auxY > dirY)
+					direccion.push_back(4);
+				else
+					direccion.push_back(0);
+			}
 		}
-		else if (auxX < dirX)
-		{
-			if (auxY > dirY)
-				direccion.push_back(5);
-			else if (auxY < dirY)
-				direccion.push_back(7);
-			else
-				direccion.push_back(6);
-		}
-		else
-		{
-			if (auxY > dirY)
-				direccion.push_back(4);
-			else
-				direccion.push_back(0);
-		}
+		following = true;
 	}
-	following = true;
 
 }
 void follow::lateUpdate(){
@@ -131,6 +141,7 @@ void follow::lateUpdate(){
 
 		if (direccion.size() != 0)
 		{
+			dir = direccion[cont];
 			switch (direccion[cont])
 			{
 			case 0:
@@ -185,7 +196,6 @@ void follow::lateUpdate(){
 			
 			if (paso <= 0) { 
 				paso = 120; 
-				std::cout << direccion[cont] << "\n";
 				cont++;
 				if (cont == direccion.size()){ 
 					following = false;

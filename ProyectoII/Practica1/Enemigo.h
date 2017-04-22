@@ -3,33 +3,48 @@
 #include "ColisionBox.h"
 #include "Cazador.h"
 #include "Recolector.h"
-struct Pos { float x, y; };
+#include "follow.h"
+
+enum EstadoEnemigo
+{
+	Quieto, Moviendo, Volviendo, Atacando, Atrapado, PostAtaque, Herido, Muerto
+};
 class Enemigo :
 	public ObjetoPG
 {
 public:
-	Enemigo(juegoPG *juego, Cazador* hunter, Recolector* collector , int px, int py);
+	Enemigo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int py);
 	~Enemigo();
-	
+
 	virtual SDL_Rect getColisionBox() { return static_cast<ColisionBox*> (mapaComponentes.at("ColisionBox"))->getRectBox(); }
 	virtual void draw();
 	Cazador* getCazador() { return cazador; }
 	Recolector* getRecolector() { return recolector; }
 	ObjetoPG* getTarget(){ return objetivo; }
-	void setTarget(/*ObjetoPG* target*/int chachiPiruli) { 
-		if (chachiPiruli == 0)objetivo = cazador; 
-		else objetivo = recolector; 
+	void setTarget(/*ObjetoPG* target*/int chachiPiruli) {
+		if (chachiPiruli == 0)objetivo = cazador;
+		else objetivo = recolector;
 	}
-	void activaFollow() { /*std::cout <</* "ACTIVOOOOOOO" <<"  TARGET  "<< objetivo->nombre <<std::endl;*/}
-	void desactivaFollow() { /*std::cout << "DESACTIVA FOLLOW" << std::endl;*/ };
-	Pos getPosIni() { return posIni; }
+	void followThis(ObjetoPG* target);
+	void setEstado(EstadoEnemigo est){ estado = est; }
+	EstadoEnemigo getEstado(){ return estado; }
+	void activaFollow();
+	void desactivaFollow();
+	Punto getPosIni() { return posIni; }
 	int damage;
 	int life;
+	int getDir(){ return followEnem->getDirection(); }
+	ObjetoPG* getCasita(){ return casita; }
 
 protected:
-	Pos posIni;
+	void dameUnHogar();
+	EstadoEnemigo estado;
+	Punto posIni;
 	Cazador* cazador;
 	Recolector* recolector;
 	ObjetoPG* objetivo;
+	ObjetoPG* casita;
+	follow* followEnem;
+
 };
 

@@ -45,8 +45,8 @@ public:
 	bool interactuable=false;
 	std::vector<std::string> nombre;
 	std::vector<std::string> receta;
-protected: 
 	ObjetoPG(juegoPG * juego, int px, int py);
+protected: 
 	
 	//Atributos-------------------------------------------
 	bool activo;

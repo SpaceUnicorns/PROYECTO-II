@@ -22,6 +22,7 @@ public:
 	void dropTorch(){hasTorch = false;}
 	void setAlpha(int i){ alpha = i; }
 	void drawEquipo();
+	GrafoMapa* getGrafoMapa() { return mapa; }
 
 protected:
 	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;

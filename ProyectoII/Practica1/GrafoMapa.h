@@ -17,7 +17,8 @@ public:
 		nivelAct = aux = 0;
 		pather = new micropather::MicroPather(this, 50);	// Use a very small memory block to stress the pather
 	}
-
+	int dameAltura(){ return niveles.size(); }
+	int dameAnchura(){ return niveles[0]; }
 	void solve(void* startState, void* endState, std::vector< void* >* path, float* totalCost)
 	{
 		pather->Solve(startState, endState, path, totalCost);
@@ -71,8 +72,8 @@ public:
 	}
 	void transformaCoord(int& x, int& y)
 	{
-		int cuadranteX;
-		int cuadranteY;
+		int cuadranteX = 0;
+		int cuadranteY = 0;
 		if (y < 31 || x + 61 < 122){
 			if (y < 31) cuadranteY = 0;
 			if (x + 61 < 122) cuadranteX = 0;
@@ -85,9 +86,15 @@ public:
 				cuadranteX = x / 122;
 		}
 		int Px, Py;
-		if (cuadranteX == 0 || cuadranteY == 0){
-			if (cuadranteX == 0) Px = x;
-			if (cuadranteY == 0) Py = y;
+		if (cuadranteX == 0 && cuadranteY == 0){
+			Px = x;
+			Py = y;
+		}
+		else if (cuadranteX == 0){
+			Px = x;
+		}
+		if (cuadranteY == 0){
+			Py = y;
 		}
 		else {
 			Px = x - cuadranteX * 61;
