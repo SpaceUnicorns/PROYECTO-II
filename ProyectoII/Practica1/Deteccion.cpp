@@ -13,6 +13,7 @@ Deteccion::Deteccion(ObjetoJuego* entidad, float radio) :Componente(entidad), ra
 	vista.C.x = vista.B.x;  vista.C.y = enemy->getAbsRect().y + 200;
 	ultAtaque = 0;
 	direccionAux = nullptr;
+	info = nullptr;
 	vagar = contVagar = 0;
 }
 
@@ -23,32 +24,45 @@ Deteccion::~Deteccion()
 
 void Deteccion::update() {
 
-/*	enemy->setTarget(0);
+	enemy->setTarget(0);
 	setVista(dirAtaque); std::cout << dirAtaque << "\n";
 	switch (enemy->getEstado())
 	{
 	case Quieto:
 		cont++;
 		if (vagar > 0 && contVagar < 150){
+			Punto p = { enemy->getColisionBox().x, enemy->getColisionBox().y };
 			if (vagar == 1){
-				enemy->setAbsRect(-2, 0);
-				enemy->setRect(-2, 0);
-				dirAtaque = 6;
+				p.x -= 2;
+				if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
+					enemy->setAbsRect(-2, 0);
+					enemy->setRect(-2, 0);
+					dirAtaque = 6;
+				}
 			}
 			else if (vagar == 2){
-				enemy->setAbsRect(2, 0);
-				enemy->setRect(2, 0);
-				dirAtaque = 2;
+				p.x += 2;
+				if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
+					enemy->setAbsRect(2, 0);
+					enemy->setRect(2, 0);
+					dirAtaque = 2;
+				}
 			}
 			else if (vagar == 3){
-				enemy->setAbsRect(0, -1);
-				enemy->setRect(0, -1);
-				dirAtaque = 0;
+				p.y -= 1;
+				if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
+					enemy->setAbsRect(0, -1);
+					enemy->setRect(0, -1);
+					dirAtaque = 0;
+				}
 			}
 			else if (vagar == 4) {
-				enemy->setAbsRect(0, 1);
-				enemy->setRect(0, 1);
-				dirAtaque = 4;
+				p.y += 1;
+				if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
+					enemy->setAbsRect(0, 1);
+					enemy->setRect(0, 1);
+					dirAtaque = 4;
+				}
 			}
 			contVagar++;
 			static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->setRectBox(enemy->getRect().x - 5, enemy->getRect().y + 40);
@@ -65,13 +79,7 @@ void Deteccion::update() {
 			}
 			if (rnd >= 89){
 				//aulla
-				/*rnd = rand() % 4;
-				if (rnd == 0)enemy->getPJuego()->estados.top()->reproduceFx("aullido",500, 500,0);
-				if (rnd == 1)enemy->getPJuego()->estados.top()->reproduceFx("aullido1", 500, 500, 0);
-				if (rnd == 2)enemy->getPJuego()->estados.top()->reproduceFx("aullido2", 500, 500, 0);
-				if (rnd == 3)enemy->getPJuego()->estados.top()->reproduceFx("aullido3", 500, 500, 0);
-				*/
-/*			}
+			}
 			cont = 0;
 		}
 		if (cont > 50){
@@ -127,37 +135,10 @@ void Deteccion::update() {
 		float distCaz;
 		cazadorIn(distCaz);
 		cont++;
-		if (cont > 50)
+		if (cont > 100)
 		{
+			acechar();
 			cont = 0;
-			Punto cazP, recP;
-			cazP.x = enemy->getCazador()->getAbsRect().x; cazP.y = enemy->getCazador()->getAbsRect().y;
-			recP.x = enemy->getRecolector()->getAbsRect().x; recP.y = enemy->getRecolector()->getAbsRect().y;
-			if (inTriangle(vista, cazP) && inTriangle(vista, recP)){
-				if (distRec < distCaz){
-					enemy->setTarget(1);
-					enemy->activaFollow();
-				}
-				else{
-					enemy->setTarget(0);
-					enemy->activaFollow();
-				}
-			}
-			else if (inTriangle(vista, cazP)){
-				detectado = true;
-				enemy->setTarget(0);
-				enemy->activaFollow();
-			}
-			else if (inTriangle(vista, recP)){
-				detectado = true;
-				enemy->setTarget(1);
-				enemy->activaFollow();
-			}
-			else {
-				detectado = false;
-				cont = 0;
-				enemy->setEstado(Quieto);
-			}
 		}
 		if (enemy->getTarget() == enemy->getRecolector()){
 			dirAtaque = enemy->getDir();
@@ -385,14 +366,14 @@ void Deteccion::acechar()
 	float distCaz, distRec;
 	cazadorIn(distCaz);
 	recolectorIn(distRec);
-	if (distCaz <  distRec && distCaz < radio) {//Llamamos al follow del lobo
+	if (distCaz <  distRec && distCaz < 250) {//Llamamos al follow del lobo
 		detectado = true;
 		enemy->setTarget(0);
 		//std::cout << "TE SIGO JOPUTA" << "\n";
 		enemy->activaFollow();
 		enemy->setEstado(Moviendo);
 	}
-	else if (distCaz >= distRec && distRec< radio) {//Llamamos al follow del lobo
+	else if (distCaz >= distRec && distRec< 250) {//Llamamos al follow del lobo
 		detectado = true;
 		enemy->setTarget(1);
 		//std::cout << "TE SIGO JOPUTA" << "\n";
@@ -400,9 +381,8 @@ void Deteccion::acechar()
 		enemy->setEstado(Moviendo);
 	}
 	else {
-		if (detectado)enemy->desactivaFollow();
 		detectado = false;
-		enemy->setEstado(Volviendo);
+		enemy->setEstado(Quieto);
 	}
 }
 
