@@ -43,11 +43,27 @@ public:
 	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*6) anim.x = 0; } // coloca la 'i'
 	virtual Texturas_t getEnumText()const { return et; }
 	bool interactuable=false;
+	bool obstaculo = false;
+	bool escondite = false;
+	std::string destructor;
 	std::vector<std::string> nombre;
 	std::vector<std::string> receta;
 	ObjetoPG(juegoPG * juego, int px, int py);
+	void esconderse(){
+			setAlpha(100);
+			//Activar la variable indetectable
+	}
+	void salirEscondite(){
+		setAlpha(255);
+		//Desactivar la variable indetectable
+	}
 protected: 
-	
+	void setAlpha(int x){
+		if (x >= 0 && x <= 255){
+			alpha = x;
+		}
+	}
+	int alpha;
 	//Atributos-------------------------------------------
 	bool activo;
 	std::map <std::string, Componente*> mapaComponentes; 

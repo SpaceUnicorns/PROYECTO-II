@@ -33,6 +33,8 @@ public:
 
 		cantidad = num;
 	};
+	void increaseCant(){ cantidad++; }
+	void decreaseCant(){ if (cantidad >0) cantidad--; }
 private:
 	ObjetoPG* pObj;
 	Mochila* mochila;

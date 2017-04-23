@@ -26,7 +26,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -90,6 +90,7 @@
     <ClCompile Include="Deteccion.cpp" />
     <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Equipo.cpp" />
+    <ClCompile Include="Escondite.cpp" />
     <ClCompile Include="EstadoPG.cpp" />
     <ClCompile Include="follow.cpp" />
     <ClCompile Include="Fuente.cpp" />
@@ -110,6 +111,7 @@
     <ClCompile Include="MovimientoP.cpp" />
     <ClCompile Include="ObjetoHuella.cpp" />
     <ClCompile Include="ObjetoPG.cpp" />
+    <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Pala.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Nivel1.cpp" />
@@ -123,6 +125,7 @@
     <ClCompile Include="TrampaComponente.cpp" />
     <ClCompile Include="Trigger.cpp" />
     <ClCompile Include="TrampaCerrada.cpp" />
+    <ClCompile Include="Trucos.cpp" />
     <ClCompile Include="Yesca.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +147,7 @@
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Equipo.h" />
     <ClInclude Include="Error.h" />
+    <ClInclude Include="Escondite.h" />
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="EstadoPG.h" />
     <ClInclude Include="follow.h" />
@@ -166,6 +170,7 @@
     <ClInclude Include="ObjetoHuella.h" />
     <ClInclude Include="ObjetoJuego.h" />
     <ClInclude Include="ObjetoPG.h" />
+    <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Pala.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Nivel1.h" />
@@ -179,6 +184,7 @@
     <ClInclude Include="TrampaComponente.h" />
     <ClInclude Include="Trigger.h" />
     <ClInclude Include="TrampaCerrada.h" />
+    <ClInclude Include="Trucos.h" />
     <ClInclude Include="Yesca.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
