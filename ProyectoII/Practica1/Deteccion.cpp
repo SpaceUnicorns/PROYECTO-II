@@ -91,26 +91,26 @@ void Deteccion::update() {
 				detectado = true;
 				recolectorIn(distRec);
 				cazadorIn(distCaz);
-				if (distRec < distCaz){
+				if (distRec < distCaz && enemy->getRecolector()->esDetectable()){
 					enemy->setTarget(1);
 					enemy->activaFollow();
 					enemy->setEstado(Moviendo);
 				}
-				else{
+				else if (enemy->getCazador()->esDetectable()){
 					enemy->setTarget(0);
 					enemy->activaFollow();
 					enemy->setEstado(Moviendo);
 				}
 				cont = 0;
 			}
-			else if (inTriangle(vista, cazP)){
+			else if (inTriangle(vista, cazP) && enemy->getCazador()->esDetectable()){
 				detectado = true;
 				enemy->setTarget(0);
 				enemy->activaFollow();
 				enemy->setEstado(Moviendo);
 				cont = 0;
 			}
-			else if (inTriangle(vista, recP)){
+			else if (inTriangle(vista, recP) && enemy->getRecolector()->esDetectable()){
 				detectado = true;
 				enemy->setTarget(1);
 				enemy->activaFollow();
@@ -140,7 +140,7 @@ void Deteccion::update() {
 			acechar();
 			cont = 0;
 		}
-		if (enemy->getTarget() == enemy->getRecolector()){
+		if (enemy->getTarget() == enemy->getRecolector() && enemy->getRecolector()->esDetectable()){
 			dirAtaque = enemy->getDir();
 			setVista(dirAtaque);
 			if (distRec <= 80){
@@ -148,7 +148,7 @@ void Deteccion::update() {
 				enemy->setEstado(Atacando);
 			}
 		}
-		else if (enemy->getTarget() == enemy->getCazador()){
+		else if (enemy->getTarget() == enemy->getCazador() && enemy->getCazador()->esDetectable()){
 			if (distCaz <= 80){
 				preparaAtaque(0);
 				enemy->setEstado(Atacando);
@@ -366,14 +366,14 @@ void Deteccion::acechar()
 	float distCaz, distRec;
 	cazadorIn(distCaz);
 	recolectorIn(distRec);
-	if (distCaz <  distRec && distCaz < 250) {//Llamamos al follow del lobo
+	if (distCaz <  distRec && distCaz < 250 && enemy->getCazador()->esDetectable()) {//Llamamos al follow del lobo
 		detectado = true;
 		enemy->setTarget(0);
 		//std::cout << "TE SIGO JOPUTA" << "\n";
 		enemy->activaFollow();
 		enemy->setEstado(Moviendo);
 	}
-	else if (distCaz >= distRec && distRec< 250) {//Llamamos al follow del lobo
+	else if (distCaz >= distRec && distRec< 250 && enemy->getRecolector()->esDetectable()) {//Llamamos al follow del lobo
 		detectado = true;
 		enemy->setTarget(1);
 		//std::cout << "TE SIGO JOPUTA" << "\n";

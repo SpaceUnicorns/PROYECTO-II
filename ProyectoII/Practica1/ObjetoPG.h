@@ -38,6 +38,7 @@ public:
 		if (encuentraComponente(s)) return mapaComponentes.at(s);
 		else return nullptr;
 	}
+	bool esDetectable(){ return detectable; }
 	//Animacion-------------------------------------------
 	virtual void changeAnimV(int fila) { anim.y = anim.h * fila; } // coloca la 'j'
 	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*6) anim.x = 0; } // coloca la 'i'
@@ -51,11 +52,11 @@ public:
 	ObjetoPG(juegoPG * juego, int px, int py);
 	void esconderse(){
 			setAlpha(100);
-			//Activar la variable indetectable
+			detectable = false;
 	}
 	void salirEscondite(){
 		setAlpha(255);
-		//Desactivar la variable indetectable
+		detectable = true;
 	}
 protected: 
 	void setAlpha(int x){
@@ -66,6 +67,7 @@ protected:
 	int alpha;
 	//Atributos-------------------------------------------
 	bool activo;
+	bool detectable;
 	std::map <std::string, Componente*> mapaComponentes; 
 	juegoPG * pJuego;
 	Texturas_t et;

@@ -12,6 +12,7 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 	absRect = rect;
 	nombre.push_back("default");
 	alpha = 255;
+	detectable = true;
 }
 
 ObjetoPG::~ObjetoPG(){
