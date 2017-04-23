@@ -17,7 +17,8 @@ public:
 		nivelAct = aux = 0;
 		pather = new micropather::MicroPather(this, 50);	// Use a very small memory block to stress the pather
 	}
-
+	int dameAltura(){ return niveles.size(); }
+	int dameAnchura(){ return niveles[0]; }
 	void solve(void* startState, void* endState, std::vector< void* >* path, float* totalCost)
 	{
 		pather->Solve(startState, endState, path, totalCost);
@@ -73,14 +74,32 @@ public:
 	{
 		for (size_t i = 0; i < c.size(); i++)
 		{
-			mapa.push_back(c[i]);
-			mapaAux.push_back(c[i]);
+			switch (c[i])
+			{
+			case 's':
+				mapa.push_back('s');
+				mapaAux.push_back('s');
+				aux++;
+				break;
+			case 'X':
+				mapa.push_back('X');
+				mapaAux.push_back('X');
+				aux++;
+				break;
+			case 'L':
+				niveles[nivelAct] = aux;
+				niveles.push_back(0);
+				nivelAct++;
+				aux = 0;
+				break;
+
+			}
 		}
 	}
 	void transformaCoord(int& x, int& y)
 	{
-		int cuadranteX;
-		int cuadranteY;
+		int cuadranteX = 0;
+		int cuadranteY = 0;
 		if (y < 31 || x + 61 < 122){
 			if (y < 31) cuadranteY = 0;
 			if (x + 61 < 122) cuadranteX = 0;
@@ -93,12 +112,18 @@ public:
 				cuadranteX = x / 122;
 		}
 		int Px, Py;
-		if (cuadranteX == 0 || cuadranteY == 0){
-			if (cuadranteX == 0) Px = x;
-			if (cuadranteY == 0) Py = y;
+		if (cuadranteX == 0 && cuadranteY == 0){
+			Px = x;
+			Py = y;
+		}
+		else if (cuadranteX == 0){
+			Px = x;
+		}
+		if (cuadranteY == 0){
+			Py = y;
 		}
 		else {
-			Px = x - cuadranteX * 61;
+			Px = x - cuadranteX * 122;
 			Py = y - cuadranteY * 31;
 		}
 		/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:

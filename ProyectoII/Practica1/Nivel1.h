@@ -14,13 +14,20 @@ public:
 	Nivel1(juegoPG*jug);
 	virtual ~Nivel1();
 	virtual void draw();
+	virtual void awake(){ 
+		reproduceFx("AbreMenu1", -100, 0, 0); };
 	Cazador* getCazador() { return pCazador; }
 	Recolector* getRecolector() { return pRecolector; }
+	void getTorch(){ hasTorch = true; }
+	void dropTorch(){hasTorch = false;}
+	void setAlpha(int i){ alpha = i; }
+	void drawEquipo();
+	GrafoMapa* getGrafoMapa() { return mapa; }
 
 protected:
-	SDL_Rect animNieve1;
-	SDL_Rect animNieve2;
-	int x, y;
+	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
+	bool hasTorch;
+	int x, y, alpha;
 	Cazador* pCazador;
 	Recolector *pRecolector;
 	std::string activePlayer;

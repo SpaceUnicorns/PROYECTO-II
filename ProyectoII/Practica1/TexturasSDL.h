@@ -10,6 +10,7 @@ class TexturasSDL
 private:
 	int w, h;
 	SDL_Texture* pTexture;
+	SDL_Surface* pTexSurface;
 
 public:
 	TexturasSDL();
@@ -17,12 +18,15 @@ public:
 
 	Fuente font;
 
-	void draw(SDL_Renderer*, SDL_Rect const& rect);
-	void draw(SDL_Renderer* prenderer, SDL_Rect const& rectAnim, SDL_Rect& rect);
+	void draw(SDL_Renderer*, SDL_Rect const& rect, Uint8 alpha = 255);
+	void draw(SDL_Renderer* prenderer, SDL_Rect const& rectAnim, SDL_Rect& rect, Uint8 alpha= 255);
+	void draw(SDL_Renderer* prenderer);
 	void loadFromText(SDL_Renderer* pRenderer, const std::string text, SDL_Color color);
 	void loadFuente(std::string nombre, int tamaño);
+	void setBlendMode(SDL_Renderer* prenderer, SDL_BlendMode blending);
 	int getW();
 	int getH();
+	SDL_Surface* getSurface(){ return pTexSurface; }
 	void load(SDL_Renderer* pRenderer, std::string const& nombArch);			// : Carga la imagen del archivo.En caso de
 	//error lo muestra y devuelve false, y en otro caso genera la textura.Cuidado con la anterior textura.
 

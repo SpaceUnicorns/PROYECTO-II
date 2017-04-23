@@ -1,1 +1,5 @@
 balloon
+AbreMenu
+AbreMenu1
+CambioPersonaje
+RecogeItem1

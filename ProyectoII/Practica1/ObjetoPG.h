@@ -14,6 +14,7 @@ public:
 	//Métodos
 	virtual bool dentro(int x, int y)const;
 	virtual void draw();
+	virtual void lateDraw();
 	virtual bool onClick();
 	virtual bool onOver();
 
@@ -37,17 +38,36 @@ public:
 		if (encuentraComponente(s)) return mapaComponentes.at(s);
 		else return nullptr;
 	}
+	bool esDetectable(){ return detectable; }
 	//Animacion-------------------------------------------
 	virtual void changeAnimV(int fila) { anim.y = anim.h * fila; } // coloca la 'j'
 	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*6) anim.x = 0; } // coloca la 'i'
 	virtual Texturas_t getEnumText()const { return et; }
 	bool interactuable=false;
-	std::string nombre;
-protected: 
+	bool obstaculo = false;
+	bool escondite = false;
+	std::string destructor;
+	std::vector<std::string> nombre;
+	std::vector<std::string> receta;
 	ObjetoPG(juegoPG * juego, int px, int py);
-	
+	void esconderse(){
+			setAlpha(100);
+			detectable = false;
+	}
+	void salirEscondite(){
+		setAlpha(255);
+		detectable = true;
+	}
+protected: 
+	void setAlpha(int x){
+		if (x >= 0 && x <= 255){
+			alpha = x;
+		}
+	}
+	int alpha;
 	//Atributos-------------------------------------------
 	bool activo;
+	bool detectable;
 	std::map <std::string, Componente*> mapaComponentes; 
 	juegoPG * pJuego;
 	Texturas_t et;

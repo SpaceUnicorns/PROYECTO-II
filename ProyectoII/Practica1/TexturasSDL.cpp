@@ -34,6 +34,7 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 	}
 	else {
 		//std::cout << h << w;
+
 		SDL_DestroyTexture(pTexture);
 		pTexture = SDL_CreateTextureFromSurface(pRenderer, pSurface);
 		SDL_FreeSurface(pSurface);
@@ -43,14 +44,20 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 		}
 		w = pSurface->w;
 		h = pSurface->h;
+		pTexSurface=  pSurface;
 	}
 }
 //-------------------------------------------------------------------------------------------------------
-void TexturasSDL::draw(SDL_Renderer* prenderer, SDL_Rect const& rect){
+void TexturasSDL::draw(SDL_Renderer* prenderer, SDL_Rect const& rect, Uint8 alpha){
+	SDL_SetTextureAlphaMod(pTexture, alpha);
 	SDL_RenderCopy(prenderer, pTexture, nullptr, &rect);  // nullptr, nullptr -> toda la textura en toda la ventana
 }
-void TexturasSDL::draw(SDL_Renderer* prenderer, SDL_Rect const& rectAnim, SDL_Rect& rect){
+void TexturasSDL::draw(SDL_Renderer* prenderer, SDL_Rect const& rectAnim, SDL_Rect& rect, Uint8 alpha){
+	SDL_SetTextureAlphaMod(pTexture, alpha);
 	SDL_RenderCopy(prenderer, pTexture, &rectAnim, &rect);  // nullptr, nullptr -> toda la textura en toda la ventana
+}
+void TexturasSDL::draw(SDL_Renderer* prenderer){
+	SDL_RenderCopy(prenderer, pTexture, nullptr, nullptr);
 }
 //-----------------------------------------------------------------------------------------------------
 void  TexturasSDL::loadFromText(SDL_Renderer* pRenderer, const string text, SDL_Color color){
@@ -66,4 +73,10 @@ void  TexturasSDL::loadFromText(SDL_Renderer* pRenderer, const string text, SDL_
 void TexturasSDL::loadFuente(std::string nombre, int tamano){
 
 	font.load(nombre, tamano);
+}
+void TexturasSDL::setBlendMode(SDL_Renderer* prenderer, SDL_BlendMode blending)
+{
+	//Set blending function
+	//SDL_SetRenderDrawBlendMode(prenderer, blending);
+	SDL_SetTextureBlendMode(pTexture, blending);
 }

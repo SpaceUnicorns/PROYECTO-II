@@ -15,7 +15,8 @@
 enum Texturas_t {
 	TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TTextBox, TArbol, TCColision, TJugador, TJugador2,
 	TSombra1, TMenuResaltado, TLyov, TZhenia, TEquipables, TMateriales, TCebo, TCuerda, TEnredadera, THueso, TMadera, 
-	TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete, TTapa, TContinuar, TOpciones, TGoToMenu
+	TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete, TTapa, TContinuar, TOpciones, TGoToMenu, THuella, TAntorcha, TZonaOscura, TObjetoEquipo,
+	TObjetoEquipo2, TPantallaTrucos, TEscondite, TObstaculoPiedra
 };
 
 class juegoPG
@@ -31,7 +32,7 @@ public:
 	FMOD_RESULT       result;
 	std::stack<EstadoJuego*> estados;
 	struct Input{
-		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII, sw, e, enter, follow; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
+		bool izquierda, arriba, derecha, abajo, dDS, dDI, dIS, dII, sw, e, enter, follow, mcraft; //Diagonal Derecha Superior, Diegonal Izquierda SUperior;
 	};
 	Input input;
 
@@ -54,10 +55,14 @@ public:
 	//Este metodo cambia la vida y el rect de la niebla oscura
 	void cambiaVida(int cambio);
 	SDL_Rect getNieblaRect() { return nieblaRect; }
-
+	SDL_Window* getPWindow(){ return pWin; }
 private:
+	int delay;
+	const int JOYSTICK_DEAD_ZONE = 8000;
 	SDL_Event e;
-	
+	SDL_Joystick* gGameController = NULL;
+	SDL_Haptic *RumbleHandles[2];
+	SDL_GameController *Controller[2];
 	std::vector<TexturasSDL*> vecTexturas;
 	std::vector<TexturasSDL*> vecPaginas;
 	
@@ -73,14 +78,14 @@ private:
 	int pmx, pmy;
 	bool exit;
 	TexturasSDL* fuente;
-	
+	//Cosas de los personajes
+	int vida;
+	SDL_Rect nieblaRect;
 
 	//Métodos ------------------------------------------------------------------------------------------------------------------------------------------
 	
 	void initMedia();									// carga las texturas en el vector de texturas (fuente y música) 
 	//void freeMedia();
-
-	//Métodos práctica 1------------------------------------------------------------------------------------------------------------------------------------------
 
 	void initSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer);	    // : Inicia el renderizador.En caso de error, muestra un mensaje y deja todos los atributos con valores nulos.
 	void closeSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer);    // : Libera los atributos iniciados en initSDL.
@@ -90,8 +95,6 @@ private:
 	void handle_event();												// : Comprueba si se ha producido el evento SDL_Quit o el evento soltar el botón izquierdo del ratón.Para el caso SDL_Quit, ejecuta onExit().En el otro caso, ejecuta onClick(), pasando como argumentos la posición del ratón.
 	void onExit();
 
-	//Cosas de los personajes
-	int vida;
-	SDL_Rect nieblaRect;
+
 };
 

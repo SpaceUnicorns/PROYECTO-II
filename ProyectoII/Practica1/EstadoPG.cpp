@@ -185,8 +185,8 @@ void EstadoPG::reproduceMusica(std::string music, bool fade){
 		bool cOcupied = false;
 		cmusic1->isPlaying(&cOcupied);
 		if (cOcupied){
-			pJuego->system->playSound(vmusic.at(music), mainGroup, false, &cmusic2);
 			vmusic.at(music)->setMode(FMOD_LOOP_NORMAL);
+			pJuego->system->playSound(vmusic.at(music), mainGroup, false, &cmusic2);
 			if (fade){
 				unsigned long long parentclock;
 				cmusic2->getDSPClock(NULL, &parentclock);
@@ -197,8 +197,9 @@ void EstadoPG::reproduceMusica(std::string music, bool fade){
 		}
 
 		else{
-			pJuego->system->playSound(vmusic.at(music), mainGroup, false, &cmusic1);
 			vmusic.at(music)->setMode(FMOD_LOOP_NORMAL);
+			pJuego->system->playSound(vmusic.at(music), mainGroup, false, &cmusic1);
+
 			if (fade){
 				unsigned long long parentclock;
 				cmusic1->getDSPClock(NULL, &parentclock);
@@ -391,6 +392,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				vecTile.push_back(aux2); */
 				mapa.push_back('X');
 			}
+			else if (tile == 999) mapa.push_back('L');
 			else mapa.push_back('s');
 			//std::cout << x << "\n";
 			switch (tile){

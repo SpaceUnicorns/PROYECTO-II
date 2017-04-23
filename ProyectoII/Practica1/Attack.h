@@ -1,4 +1,5 @@
 #pragma once
+#include "Enemigo.h"
 #include "Componente.h"
 #include "Cazador.h"
 #include "Recolector.h"
@@ -12,7 +13,8 @@ public:
 
 private:
 	SDL_Rect posEnemigo; //= static_cast<Enemigo*>(pEntidad)->getColisionBox();
+	Enemigo* enemigo;
 	Punto posicion;
 	ObjetoPG* info;
+	int conAnimacion;
 };
-

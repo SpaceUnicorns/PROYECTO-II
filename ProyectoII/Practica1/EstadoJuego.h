@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "ObjetoJuego.h"
+#include <vector>
 class EstadoJuego
 {
 public:
@@ -9,6 +10,7 @@ public:
 	{
 	}
 	virtual void draw() = 0;
+	virtual void awake() = 0;
 	virtual void onClick() = 0;
 	virtual void update() = 0;
 	virtual void lateUpdate() = 0;

@@ -5,7 +5,7 @@
 
 Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int py):Enemigo(juego,hunter,collector, px,py)
 {
-	nombre = "lobo";
+	nombre.push_back("lobo");
 	activo = true;
 	//interactuable = true;
 	damage = 1;
@@ -19,7 +19,7 @@ Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int p
 	SDL_Rect aux; aux.x = rect.x; aux.y = rect.y + 30; aux.w = 80; aux.h = 20;
 	newComponente(new ColisionBox(this,aux,false), "ColisionBox");
 	newComponente(new Attack(this), "Attack");
-	newComponente(new Deteccion(this,200),"Deteccion");
+	newComponente(new Deteccion(this,500),"Deteccion");
 }
 
 

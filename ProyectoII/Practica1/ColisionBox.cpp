@@ -37,6 +37,10 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 					info = ob;
 					if (ob->interactuable)
 						col = 2;
+					else if (ob->escondite)
+						col = 3;
+					else if (ob->obstaculo)
+						col = 4;
 					else
 					col = 1;
 				};
@@ -51,6 +55,7 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 	i = 0;
 	if (!col){
 		while (i < static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes().size() && !col){
+			Punto aux = static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i].A;
 			col = inTriangle(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i], p);
 			i++;
 		}//fin colision con bordes
