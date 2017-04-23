@@ -78,14 +78,14 @@ private:
 	int pmx, pmy;
 	bool exit;
 	TexturasSDL* fuente;
-	
+	//Cosas de los personajes
+	int vida;
+	SDL_Rect nieblaRect;
 
 	//Métodos ------------------------------------------------------------------------------------------------------------------------------------------
 	
 	void initMedia();									// carga las texturas en el vector de texturas (fuente y música) 
 	//void freeMedia();
-
-	//Métodos práctica 1------------------------------------------------------------------------------------------------------------------------------------------
 
 	void initSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer);	    // : Inicia el renderizador.En caso de error, muestra un mensaje y deja todos los atributos con valores nulos.
 	void closeSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer);    // : Libera los atributos iniciados en initSDL.
@@ -95,8 +95,6 @@ private:
 	void handle_event();												// : Comprueba si se ha producido el evento SDL_Quit o el evento soltar el botón izquierdo del ratón.Para el caso SDL_Quit, ejecuta onExit().En el otro caso, ejecuta onClick(), pasando como argumentos la posición del ratón.
 	void onExit();
 
-	//Cosas de los personajes
-	int vida;
-	SDL_Rect nieblaRect;
+
 };
 
