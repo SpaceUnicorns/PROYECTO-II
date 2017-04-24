@@ -200,7 +200,7 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 {
 	int itMatriz = 0;
 
-	for (size_t i = 0; i < (alto/2)+2; i++)
+	for (size_t i = 0; i < (alto/2); i++)
 	{
 		for (size_t j = 0; j < 8; j++)
 		{
@@ -226,8 +226,8 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 				case 1:
 					if (k == 0)
 						f << "0,";
-					f << std::to_string(map[i][k]+1) + ",";
-					f << std::to_string(map[i][k]+2) + ",";
+					f << std::to_string(map[itMatriz][k] + 1) + ",";
+					f << std::to_string(map[itMatriz][k] + 2) + ",";
 					if (itMatriz > 0)
 					{
 						f << std::to_string(map[itMatriz - 1][k] + 13) + ",";
@@ -302,7 +302,7 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 				case 6:
 					if (k == 0)
 						f << "0,0,";
-					f << std::to_string(map[i][k] + 15) + ",";
+					f << std::to_string(map[itMatriz][k] + 15) + ",";
 					if (i < alto-1)
 					{
 						f << std::to_string(map[itMatriz + 1][k] + 3) + ",";
@@ -335,7 +335,6 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 			f << "999,\n";
 		}
 		itMatriz+=2;
-		i++;
 	}
 	
 }
@@ -347,7 +346,7 @@ bool resuelveCaso(std::ofstream& f) {
 	int ancho, alto;
 
 	//ALTURA / ANCHURA TILES GRANDES
-	alto = 80;
+	alto = 81;
 	ancho = 20;
 	std::vector<int> aux(ancho);
 	std::vector<std::vector<int>> mapa (alto);
