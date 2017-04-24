@@ -1,10 +1,9 @@
 #include "Load.h"
 #include <fstream>
 #include <iostream>  // la consola: cin / cout
-#include "Nivel1.h"
 #include "Mochila.h"
 
-Load::Load(Nivel1* n) : nivel(NULL)
+Load::Load(Nivel1* n)
 {
 	nivel = n;
 	Cargar();

@@ -1,4 +1,5 @@
 #pragma once
+#include "Nivel1.h"
 
 class Load
 {

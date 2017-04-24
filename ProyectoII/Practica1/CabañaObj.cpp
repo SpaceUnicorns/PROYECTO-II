@@ -42,7 +42,7 @@ bool CabañaObj::compruebaRadio(SDL_Rect target)
 	float centroY = target.h / 2 + target.y; 
 	float centroX = target.w / 2 + target.x;
 	float distancia = pow(rect.x - centroX, 2) + pow(rect.y - centroY, 2);
-	return distancia <= pow(200, 2); //200 = RADIO
+	return distancia <= pow(100, 2); //100 = RADIO
 }
 
 bool CabañaObj::cazadorIn() {
