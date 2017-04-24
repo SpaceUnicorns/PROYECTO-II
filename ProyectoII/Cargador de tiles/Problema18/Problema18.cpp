@@ -21,6 +21,7 @@ int leeTile(std::vector<std::vector<int>>& map)
 {
 	char tile;
 	std::cin >> tile;
+	while (tile == 56 || tile < 0) std::cin >> tile;
 	switch (tile)
 	{
 	case 'a':
@@ -223,7 +224,7 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 					}
 					break;
 				case 1:
-					if (k == 0 || k == ancho-1)
+					if (k == 0)
 						f << "0,";
 					f << std::to_string(map[i][k]+1) + ",";
 					f << std::to_string(map[i][k]+2) + ",";
@@ -236,9 +237,11 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 					{
 						f << "0,0,";
 					}
+					if (k == ancho - 1)
+						f << "0,";
 					break;
 				case 2:
-					if (k == 0 || k == ancho - 1)
+					if (k == 0)
 						f << "0,";
 					f << std::to_string(map[itMatriz][k] + 3) + ",";
 					f << std::to_string(map[itMatriz][k] + 4) + ",";
@@ -251,17 +254,19 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 					{
 						f << "0,";
 					}
-					break;
-				case 3:
 					if (k == ancho - 1)
 						f << "0,";
+					break;
+				case 3:
 					f << std::to_string(map[itMatriz][k] + 6) + ",";
 					f << std::to_string(map[itMatriz][k] + 7) + ",";
 					f << std::to_string(map[itMatriz][k] + 8) + ",";
 					f << std::to_string(map[itMatriz][k] + 9) + ",";
+					if (k == ancho - 1)
+						f << "0,0,";
 					break;
 				case 4:
-					if (k == 0 || k == ancho - 1)
+					if (k == 0 )
 						f << "0,";
 					f << std::to_string(map[itMatriz][k] + 10) + ",";
 					f << std::to_string(map[itMatriz][k] + 11) + ",";
@@ -274,9 +279,11 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 					{
 						f << "0,";
 					}
+					if (k == ancho - 1)
+						f << "0,";
 					break;
 				case 5:
-					if (k == 0 || k == ancho - 1)
+					if (k == 0 )
 						f << "0,";
 					f << std::to_string(map[itMatriz][k] + 13) + ",";
 					f << std::to_string(map[itMatriz][k] + 14) + ",";
@@ -289,6 +296,8 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 					{
 						f << "0,0,";
 					}
+					if (k == ancho - 1)
+						f << "0,";
 					break;
 				case 6:
 					if (k == 0)
