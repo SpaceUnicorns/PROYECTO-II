@@ -41,7 +41,7 @@ public:
 	bool esDetectable(){ return detectable; }
 	//Animacion-------------------------------------------
 	virtual void changeAnimV(int fila) { anim.y = anim.h * fila; } // coloca la 'j'
-	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*6) anim.x = 0; } // coloca la 'i'
+	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*4) anim.x = 0; } // coloca la 'i'
 	virtual Texturas_t getEnumText()const { return et; }
 	bool interactuable=false;
 	bool obstaculo = false;

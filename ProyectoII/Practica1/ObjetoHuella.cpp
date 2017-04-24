@@ -5,7 +5,7 @@ ObjetoHuella::ObjetoHuella(int dir, int ind, Componente* comp, juegoPG * juego, 
 {
 	et = THuella;
 	rect.w = 45;
-	rect.h = 55;
+	rect.h = 80;
 	anim.h = 32;
 	anim.w = 32;
 	anim.x = anim.y = 0;
