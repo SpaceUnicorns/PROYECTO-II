@@ -13,27 +13,26 @@
 
 void cambio(std::vector<std::vector<int>>& map, int i, int j, int primero)
 {
-	
-
 }
 
 int leeTile(std::vector<std::vector<int>>& map)
 {
+	std::cout << "Entra Lee Tile\n";
 	char tile;
 	std::cin >> tile;
 	while (tile == 56 || tile < 0) std::cin >> tile;
 	switch (tile)
 	{
-	case 'a':
+	case 'a': //Nieve Full
 		return 1;
 		break;
-	case 'b':
+	case 'b': //Nieve Rampa 1
 		return 20;
 		break;
-	case 'c':
+	case 'c': //Nieve Rampa 2
 		return 40;
 		break;
-	case 'd':
+	case 'd': //Bosque Full
 		return 60;
 		break;
 	case 'e':
@@ -66,7 +65,7 @@ int leeTile(std::vector<std::vector<int>>& map)
 	case 'n':
 		return 260;
 		break;
-	case 'ñ':
+	case '5':
 		return 280;
 		break;
 	case 'o':
@@ -147,7 +146,7 @@ int leeTile(std::vector<std::vector<int>>& map)
 	case 'N':
 		return 800;
 		break;
-	case 'Ñ':
+	case '6':
 		return 820;
 		break;
 	case 'O':
@@ -193,12 +192,13 @@ int leeTile(std::vector<std::vector<int>>& map)
 		return 1100;
 		break;
 	}
-
+	std::cout << "Sale Lee Tile\n";
 }
 
 void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, int ancho)
 {
 	int itMatriz = 0;
+	std::cout << "Entra Resolver\n";
 
 	for (size_t i = 0; i < (alto/2); i++)
 	{
@@ -336,7 +336,7 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 		}
 		itMatriz+=2;
 	}
-	
+	std::cout << "Sale Resolver\n";
 }
 
 
@@ -344,9 +344,9 @@ void resolver(std::ofstream& f, std::vector<std::vector<int>>& map, int alto, in
 bool resuelveCaso(std::ofstream& f) {
 	// leer los datos de la entrada
 	int ancho, alto;
-
+	std::cout << "ResuelveCaso\n";
 	//ALTURA / ANCHURA TILES GRANDES
-	alto = 81;
+	alto = 80;
 	ancho = 20;
 	std::vector<int> aux(ancho);
 	std::vector<std::vector<int>> mapa (alto);
