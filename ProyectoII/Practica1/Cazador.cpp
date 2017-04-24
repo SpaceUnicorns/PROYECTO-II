@@ -9,13 +9,14 @@ Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
 	nombre.push_back( "Zhenia");
 	et = TJugador2;
 	rect.w = 45;
-	rect.h = 55;
+	rect.h = 80;
 	absRect.w = rect.w;
 	absRect.h = rect.h;
 	newComponente(new ColisionBox(this), "ColisionBox"); //Meter primero este componente
 	newComponente(new MovimientoP(this),"MovimientoP");
 	newComponente(new Huella(this), "Huella");
-	anim.w = anim.h = 32; //cada frame del jugador mide 32x32
+	anim.w = 283.5;
+	anim.h = 609.5; //cada frame del jugador mide 32x32
 	anim.x = anim.y = 0;
 	pintado = false;
 	activo = true;

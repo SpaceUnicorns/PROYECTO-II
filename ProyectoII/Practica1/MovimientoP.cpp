@@ -30,7 +30,7 @@ void MovimientoP::update(){
 		pEstado = dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top());
 		//Antes de actualizar la posición comprobamos si colisiona con la posición siguiente.
 		info = nullptr;
-		if (framerate % 16 == 0) // se mueve 1 frame cada 16 ms x 16ms
+		if (framerate % 8 == 0) // se mueve 1 frame cada 16 ms x 16ms
 			pObj->changeAnimH();
 
 		framerate++;
@@ -45,7 +45,7 @@ void MovimientoP::update(){
 			if (colAux!= 1 && colAux != 4){
 				direccion = dDS;
 				pEstado->setCamara(nextPos.x, nextPos.y);
-				pObj->changeAnimV(7); // posiciona la 'j' de la matriz de la animacion
+				pObj->changeAnimV(0); // posiciona la 'j' de la matriz de la animacion
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
 		}
@@ -55,7 +55,7 @@ void MovimientoP::update(){
 			if (colAux != 1 && colAux != 4){
 				direccion = dDI;
 				pEstado->setCamara(nextPos.x, nextPos.y);
-				pObj->changeAnimV(5);
+				pObj->changeAnimV(3);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
 
@@ -66,7 +66,7 @@ void MovimientoP::update(){
 			if (colAux != 1 && colAux != 4){
 				direccion = dII;
 				pEstado->setCamara(nextPos.x, nextPos.y);
-				pObj->changeAnimV(4);
+				pObj->changeAnimV(7);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
 
@@ -77,7 +77,7 @@ void MovimientoP::update(){
 			if (colAux != 1 && colAux != 4){
 				direccion = dIS;
 				pEstado->setCamara(nextPos.x, nextPos.y);
-				pObj->changeAnimV(6);
+				pObj->changeAnimV(2);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
 
@@ -89,7 +89,7 @@ void MovimientoP::update(){
 				direccion = Up;
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 				pEstado->setCamara(nextPos.x, nextPos.y);
-				pObj->changeAnimV(3);
+				pObj->changeAnimV(4);
 			}
 
 		}
@@ -99,7 +99,7 @@ void MovimientoP::update(){
 			if (colAux != 1 && colAux != 4){
 				direccion = Right;
 				pEstado->setCamara(nextPos.x, nextPos.y);
-				pObj->changeAnimV(2);
+				pObj->changeAnimV(6);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
 
@@ -110,7 +110,7 @@ void MovimientoP::update(){
 			if (colAux != 1 && colAux != 4){
 				direccion = Down;
 				pEstado->setCamara(nextPos.x, nextPos.y);
-				pObj->changeAnimV(0);
+				pObj->changeAnimV(5);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
 
