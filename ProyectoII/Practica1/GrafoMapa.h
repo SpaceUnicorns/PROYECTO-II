@@ -15,7 +15,7 @@ public:
 	{
 		niveles.push_back(0);
 		nivelAct = aux = 0;
-		pather = new micropather::MicroPather(this, 50);	// Use a very small memory block to stress the pather
+		pather = new micropather::MicroPather(this, 600);	// Use a very small memory block to stress the pather
 	}
 	int dameAltura(){ return niveles.size(); }
 	int dameAnchura(){ return niveles[0]; }

@@ -377,7 +377,55 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 	while (!f.eof() && !f.fail()){
 		f >> tile;
 		if (!f.fail()){
-			if (tile == 0 ){
+			if (tile == 0 
+/*b*/			|| tile == 20 || tile == 22 || tile == 25 || tile == 29 
+/*c*/			|| tile == 40 || tile == 42 || tile == 44 || tile == 45 || tile == 48 || tile == 49 || tile == 52 || tile == 54 || tile == 55
+/*d*/			|| tile == 60 || tile == 61 || tile == 62 || tile == 63 || tile == 64 || tile == 65 || tile == 66 || tile == 67 || tile == 68 || tile == 69 || tile == 70 || tile == 71 || tile == 72 || tile == 73 || tile == 74 || tile == 75
+/*e*/			|| tile == 80 || tile == 82 || tile == 85 || tile == 89 
+/*f*/			|| tile == 100 || tile == 101 || tile == 103 || tile == 106 
+/*g*/			|| tile == 126 || tile == 130 || tile == 133 || tile == 135
+/*h*/			|| tile == 149 || tile == 152 || tile == 154 || tile == 155 
+/*i*/			|| tile == 160 || tile == 162 || tile == 165 || tile == 169 || tile == 172 || tile == 174 || tile == 175 
+/*j*/			|| tile == 180 || tile == 181 || tile == 182 || tile == 183 || tile == 185 || tile == 186 || tile == 189 
+/*k*/			|| tile == 206 || tile == 209 || tile == 210 || tile == 212 || tile == 213 || tile == 214 || tile == 215
+/*l*/			|| tile == 220 || tile == 221 || tile == 223 || tile == 226 || tile == 230 || tile == 233 || tile == 235 
+/*m*/			|| tile == 240 || tile == 241 || tile == 242 || tile == 243 || tile == 245 || tile == 246 || tile == 249 || tile == 252 || tile == 254 || tile == 255 
+/*n*/			|| tile == 260 || tile == 261 || tile == 263 || tile == 266 || tile == 269 || tile == 270 || tile == 272 || tile == 273 || tile == 274 || tile == 275
+/*o*/			|| tile == 300 || tile == 302 || tile == 305 || tile == 306 || tile == 309 || tile == 310 || tile == 312 || tile == 313 || tile == 314 || tile == 315
+				|| tile == 320 || tile == 321 || tile == 322 || tile == 323 || tile == 325 || tile == 326 || tile == 329 || tile == 330 || tile == 330 || tile == 332 || tile == 333 || tile == 334 || tile == 335
+/*q,r,s,t*/		|| tile == 355 || tile == 360 || tile == 389 || tile == 406 
+/*u*/			|| tile == 420 || tile == 421 || tile == 422 || tile == 423 || tile == 424 || tile == 425 || tile == 426 || tile == 427 || tile == 428 || tile == 429 || tile == 430 || tile == 431 || tile == 432 || tile == 433 || tile == 434 || tile == 435 
+/*v*/			|| tile == 441 || tile == 443 || tile == 444 || tile == 446 || tile == 447 || tile == 448 || tile == 450 || tile == 451 || tile == 452 || tile == 453 || tile == 454 || tile == 455 
+				|| tile == 460 || tile == 461 || tile == 462 || tile == 463 || tile == 464 || tile == 465 || tile == 467 || tile == 468 || tile == 469 || tile == 471 || tile == 472 || tile == 474
+				|| tile == 482 || tile == 484 || tile == 485 || tile == 487 || tile == 488 || tile == 489 || tile == 491 || tile == 492 || tile == 493 || tile == 494 || tile == 495
+				|| tile == 500 || tile == 501 || tile == 502 || tile == 503 || tile == 504 || tile == 505 || tile == 506 || tile == 507 || tile == 508 || tile == 510 || tile == 511 || tile == 513
+				|| tile == 521 || tile == 523 || tile == 524 || tile == 526 || tile == 527 || tile == 528 || tile == 530 || tile == 531 || tile == 533
+/*5*/			|| tile == 280 || tile == 282 || tile == 283 || tile == 285 || tile == 286 || tile == 289 || tile == 290 || tile == 293 || tile == 295
+/*A*/			|| tile == 544 || tile == 547 || tile == 548 || tile == 550 || tile == 551 || tile == 552 || tile == 553 || tile == 554 || tile == 555
+/*B*/			|| tile == 560 || tile == 561 || tile == 562 || tile == 563 || tile == 564 || tile == 565 || tile == 567 || tile == 568 || tile == 571
+				|| tile == 582 || tile == 584 || tile == 585 || tile == 587 || tile == 588 || tile == 589 || tile == 591 || tile == 592 || tile == 594
+				|| tile == 600 || tile == 601 || tile == 602 || tile == 603 || tile == 604 || tile == 605 || tile == 606 || tile == 607 || tile == 608 || tile == 610 || tile == 611 || tile == 612 || tile == 613 || tile == 614 || tile == 615
+				|| tile == 621 || tile == 622 || tile == 623 || tile == 624 || tile == 625 || tile == 626 || tile == 627 || tile == 628 || tile == 629 || tile == 630 || tile == 631 || tile == 632 || tile == 633 || tile == 634 || tile == 635
+				|| tile == 640 || tile == 641 || tile == 642 || tile == 643 || tile == 644
+				|| tile == 660 || tile == 661 || tile == 662 || tile == 663 || tile == 664 || tile == 665 || tile == 667 || tile == 675
+				|| tile == 680 || tile == 681 || tile == 682 || tile == 683 || tile == 684 || tile == 685 || tile == 686 || tile == 687 || tile == 688 || tile == 689 || tile == 690 || tile == 691 || tile == 692 || tile == 693 || tile == 694 || tile == 695
+				|| tile == 701 || tile == 703 || tile == 704 || tile == 706 || tile == 707 || tile == 708 || tile == 710 || tile == 711 || tile == 713 || tile == 714 || tile == 715
+				|| tile == 720 || tile == 721 || tile == 722 || tile == 723 || tile == 724 || tile == 725 || tile == 727 || tile == 728 || tile == 729 || tile == 731 || tile == 732 || tile == 734
+/*K*/			|| tile == 742 || tile == 744 || tile == 745 || tile == 747 || tile == 748 || tile == 749 || tile == 750 || tile == 751 || tile == 752 || tile == 753 || tile == 754 || tile == 755
+				|| tile == 760 || tile == 761 || tile == 762 || tile == 763 || tile == 764 || tile == 765 || tile == 766 || tile == 767 || tile == 768 || tile == 770 || tile == 771 || tile == 773
+				|| tile == 781 || tile == 783 || tile == 784 || tile == 786 || tile == 787 || tile == 788 || tile == 790 || tile == 791 || tile == 793
+/*N*/			|| tile == 804 || tile == 807 || tile == 808 || tile == 810 || tile == 811 || tile == 812 || tile == 813 || tile == 814 || tile == 815
+/*O*/			|| tile == 842 || tile == 844 || tile == 845 || tile == 847 || tile == 848 || tile == 849 || tile == 851 || tile == 852 || tile == 854
+				|| tile == 864 || tile == 867 || tile == 868 || tile == 870 || tile == 871 || tile == 873
+				|| tile == 882 || tile == 884 || tile == 885 || tile == 887 || tile == 888 || tile == 891
+				|| tile == 904 || tile == 907 || tile == 908 || tile == 911 || tile == 912 || tile == 914
+				|| tile == 921 || tile == 923 || tile == 924 || tile == 927 || tile == 928 || tile == 931
+				|| tile == 944 || tile == 947 || tile == 948 || tile == 951
+				|| tile == 961 || tile == 963 || tile == 964 || tile == 967 || tile == 968 || tile == 971 || tile == 972 || tile == 974
+/*V*/			|| tile == 982 || tile == 984 || tile == 985 || tile == 987 || tile == 988 || tile == 990 || tile == 991 || tile == 993
+				|| tile == 1004 || tile == 1007 || tile == 1008 || tile == 1010 || tile == 1011 || tile == 1012 || tile == 1013 || tile == 1014
+/*X*/			|| tile == 1024 || tile == 1027 || tile == 1028 || tile == 1030 || tile == 1032
+/*6*/			|| tile == 821 || tile == 823 || tile == 824 || tile == 826 || tile == 827 || tile == 828 || tile == 830 || tile == 831 || tile == 833){
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
 				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
