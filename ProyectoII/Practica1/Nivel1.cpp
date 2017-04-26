@@ -40,7 +40,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
 	vecObj.push_back(pCazador);
 
-	pRecolector = new Recolector(pJuego,880,220);
+	pRecolector = new Recolector(pJuego,1200,900);
 	pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
 	vecObj.push_back(pRecolector);
 
