@@ -380,7 +380,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 			if (tile == 0 
 /*b*/			|| tile == 20 || tile == 22 || tile == 25 || tile == 29 
 /*c*/			|| tile == 40 || tile == 42 || tile == 44 || tile == 45 || tile == 48 || tile == 49 || tile == 52 || tile == 54 || tile == 55
-/*d*/			|| tile == 60 || tile == 61 || tile == 62 || tile == 63 || tile == 64 || tile == 65 || tile == 66 || tile == 67 || tile == 68 || tile == 69 || tile == 70 || tile == 71 || tile == 72 || tile == 73 || tile == 74 || tile == 75
+/*d*//*			|| tile == 60 || tile == 61 || tile == 62 || tile == 63 || tile == 64 || tile == 65 || tile == 66 || tile == 67 || tile == 68 || tile == 69 || tile == 70 || tile == 71 || tile == 72 || tile == 73 || tile == 74 || tile == 75*/
 /*e*/			|| tile == 80 || tile == 82 || tile == 85 || tile == 89 
 /*f*/			|| tile == 100 || tile == 101 || tile == 103 || tile == 106 
 /*g*/			|| tile == 126 || tile == 130 || tile == 133 || tile == 135
@@ -394,7 +394,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 /*o*/			|| tile == 300 || tile == 302 || tile == 305 || tile == 306 || tile == 309 || tile == 310 || tile == 312 || tile == 313 || tile == 314 || tile == 315
 				|| tile == 320 || tile == 321 || tile == 322 || tile == 323 || tile == 325 || tile == 326 || tile == 329 || tile == 330 || tile == 330 || tile == 332 || tile == 333 || tile == 334 || tile == 335
 /*q,r,s,t*/		|| tile == 355 || tile == 360 || tile == 389 || tile == 406 
-/*u*/			|| tile == 420 || tile == 421 || tile == 422 || tile == 423 || tile == 424 || tile == 425 || tile == 426 || tile == 427 || tile == 428 || tile == 429 || tile == 430 || tile == 431 || tile == 432 || tile == 433 || tile == 434 || tile == 435 
+/*u*//*			|| tile == 420 || tile == 421 || tile == 422 || tile == 423 || tile == 424 || tile == 425 || tile == 426 || tile == 427 || tile == 428 || tile == 429 || tile == 430 || tile == 431 || tile == 432 || tile == 433 || tile == 434 || tile == 435 */
 /*v*/			|| tile == 441 || tile == 443 || tile == 444 || tile == 446 || tile == 447 || tile == 448 || tile == 450 || tile == 451 || tile == 452 || tile == 453 || tile == 454 || tile == 455 
 				|| tile == 460 || tile == 461 || tile == 462 || tile == 463 || tile == 464 || tile == 465 || tile == 467 || tile == 468 || tile == 469 || tile == 471 || tile == 472 || tile == 474
 				|| tile == 482 || tile == 484 || tile == 485 || tile == 487 || tile == 488 || tile == 489 || tile == 491 || tile == 492 || tile == 493 || tile == 494 || tile == 495
@@ -405,10 +405,10 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 /*B*/			|| tile == 560 || tile == 561 || tile == 562 || tile == 563 || tile == 564 || tile == 565 || tile == 567 || tile == 568 || tile == 571
 				|| tile == 582 || tile == 584 || tile == 585 || tile == 587 || tile == 588 || tile == 589 || tile == 591 || tile == 592 || tile == 594
 				|| tile == 600 || tile == 601 || tile == 602 || tile == 603 || tile == 604 || tile == 605 || tile == 606 || tile == 607 || tile == 608 || tile == 610 || tile == 611 || tile == 612 || tile == 613 || tile == 614 || tile == 615
-				|| tile == 621 || tile == 622 || tile == 623 || tile == 624 || tile == 625 || tile == 626 || tile == 627 || tile == 628 || tile == 629 || tile == 630 || tile == 631 || tile == 632 || tile == 633 || tile == 634 || tile == 635
+/*E				|| tile == 621 || tile == 622 || tile == 623 || tile == 624 || tile == 625 || tile == 626 || tile == 627 || tile == 628 || tile == 629 || tile == 630 || tile == 631 || tile == 632 || tile == 633 || tile == 634 || tile == 635*/
 				|| tile == 640 || tile == 641 || tile == 642 || tile == 643 || tile == 644
 				|| tile == 660 || tile == 661 || tile == 662 || tile == 663 || tile == 664 || tile == 665 || tile == 667 || tile == 675
-				|| tile == 680 || tile == 681 || tile == 682 || tile == 683 || tile == 684 || tile == 685 || tile == 686 || tile == 687 || tile == 688 || tile == 689 || tile == 690 || tile == 691 || tile == 692 || tile == 693 || tile == 694 || tile == 695
+/*				|| tile == 680 || tile == 681 || tile == 682 || tile == 683 || tile == 684 || tile == 685 || tile == 686 || tile == 687 || tile == 688 || tile == 689 || tile == 690 || tile == 691 || tile == 692 || tile == 693 || tile == 694 || tile == 695*/
 				|| tile == 701 || tile == 703 || tile == 704 || tile == 706 || tile == 707 || tile == 708 || tile == 710 || tile == 711 || tile == 713 || tile == 714 || tile == 715
 				|| tile == 720 || tile == 721 || tile == 722 || tile == 723 || tile == 724 || tile == 725 || tile == 727 || tile == 728 || tile == 729 || tile == 731 || tile == 732 || tile == 734
 /*K*/			|| tile == 742 || tile == 744 || tile == 745 || tile == 747 || tile == 748 || tile == 749 || tile == 750 || tile == 751 || tile == 752 || tile == 753 || tile == 754 || tile == 755
@@ -438,6 +438,29 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				/*rectAux.x = 244; aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				vecTile.push_back(aux2); */
+				mapa.push_back('X');
+			}
+			else if (tile == 620 || tile == 680 || tile == 60 || tile == 420){
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x-183; auxPunto.y = y + 123; auxBorde.A = auxPunto;
+				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 366; auxPunto.y = y + 123; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				auxPunto.x = x + 62; auxPunto.y = y + 248; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+				//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
+				/*rectAux.x = 244; aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				vecTile.push_back(aux2); */
+				mapa.push_back('X');
+			}
+			else if (
+				tile == 681 || tile == 682 || tile == 683 || tile == 684 || tile == 685 || tile == 686 || tile == 687 || tile == 688 || tile == 689 || tile == 690 || tile == 691 || tile == 692 || tile == 693 || tile == 694 || tile == 695 ||
+				tile == 621 || tile == 622 || tile == 623 || tile == 624 || tile == 625 || tile == 626 || tile == 627 || tile == 628 || tile == 629 || tile == 630 || tile == 631 || tile == 632 || tile == 633 || tile == 634 || tile == 635 ||
+				tile == 421 || tile == 422 || tile == 423 || tile == 424 || tile == 425 || tile == 426 || tile == 427 || tile == 428 || tile == 429 || tile == 430 || tile == 431 || tile == 432 || tile == 433 || tile == 434 || tile == 435 ||
+				tile == 61 || tile == 62 || tile == 63 || tile == 64 || tile == 65 || tile == 66 || tile == 67 || tile == 68 || tile == 69 || tile == 70 || tile == 71 || tile == 72 || tile == 73 || tile == 74 || tile == 75)
+			{
 				mapa.push_back('X');
 			}
 			else if (tile == 999) mapa.push_back('L');
