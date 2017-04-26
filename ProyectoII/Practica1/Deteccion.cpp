@@ -31,7 +31,7 @@ void Deteccion::update() {
 	case Quieto:
 		cont++;
 		if (vagar > 0 && contVagar < 150){
-			Punto p = { enemy->getColisionBox().x, enemy->getColisionBox().y };
+			Punto p = { 0, 0 };
 			if (vagar == 1){
 				p.x -= 2;
 				if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
