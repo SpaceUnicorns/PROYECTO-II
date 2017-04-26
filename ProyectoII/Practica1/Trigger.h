@@ -17,6 +17,7 @@ public:
 	bool reaccionando(){ return reacciona; }
 	void setReacciona(bool x){ reacciona = x; }
 	void setTriggerDim(int h, int w){ rect.h = h; rect.w = w; }
+	void lateDraw();
 protected:
 	bool reacciona;
 	bool triggered;

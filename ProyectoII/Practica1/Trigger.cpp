@@ -36,5 +36,8 @@ void Trigger::draw(){
 	rect.x -= aux.x;
 	rect.y -= aux.y;
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
+}
+void Trigger::lateDraw(){
+	
 	cb->draw();
 }

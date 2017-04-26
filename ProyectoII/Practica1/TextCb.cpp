@@ -8,7 +8,7 @@ TextCb::TextCb(ObjetoJuego* ent, std:: string s) : Componente(ent)
 	textBox.h = pObj->getPJuego()->getScreenHeight()*0.20;
 	textBox.w = pObj->getPJuego()->getScreenWidth();
 	textBox.x = 0;
-	textBox.y = pObj->getPJuego()->getScreenHeight() - textBox.h;
+	textBox.y = pObj->getPJuego()->getScreenHeight() - (textBox.h+50);
 	font.x = 50;
 	font.y = textBox.y + 60;
 	font.w = 50;

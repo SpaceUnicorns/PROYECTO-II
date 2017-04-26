@@ -176,6 +176,7 @@ void Nivel1::draw(){
 	
 	pJuego->getTextura(TLuz)->draw(pJuego->getRender(),pJuego->getNieblaRect() ,camara);
 
+	for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 	drawEquipo();
 	
 }
