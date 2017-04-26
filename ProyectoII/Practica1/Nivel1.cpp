@@ -85,7 +85,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 	activePlayer = "C";
 
-	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
+	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 1050, 1200));
 	
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");

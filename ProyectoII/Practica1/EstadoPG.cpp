@@ -443,7 +443,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 			else if (tile == 620 || tile == 680 || tile == 60 || tile == 420){
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
-				auxPunto.x = x-183; auxPunto.y = y + 123; auxBorde.A = auxPunto;
+			/*	auxPunto.x = x-183; auxPunto.y = y + 123; auxBorde.A = auxPunto;
 				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
 				auxPunto.x = x + 366; auxPunto.y = y + 123; auxBorde.C = auxPunto;
 				vectBordes.push_back(auxBorde);

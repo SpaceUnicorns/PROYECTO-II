@@ -290,7 +290,7 @@ void Deteccion::update() {
 				preparaAtaque(0);
 				enemy->setEstado(Atacando);
 			}
-			else enemy->setEstado(Quieto);
+			else enemy->setEstado(Moviendo);
 			cont = 0;
 		}
 		cont++;
