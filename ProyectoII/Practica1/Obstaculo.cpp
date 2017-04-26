@@ -5,8 +5,8 @@ Obstaculo::Obstaculo(juegoPG * juego, int px, int py, Texturas_t tex, std:: stri
 {
 	obstaculo = true;
 	et = tex;
-	rect.w = 100;
-	rect.h = 50;
+	rect.w = 200;
+	rect.h = 100;
 	nombre[0] = "1";
 	nombre.push_back("Obstaculo");
 	destructor = destruc;

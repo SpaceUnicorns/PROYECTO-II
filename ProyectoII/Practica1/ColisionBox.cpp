@@ -53,15 +53,13 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 
 	//Comprueba la colision con los bordes
 	i = 0;
-	if (!col){
+	/*if (!col){
 		while (i < static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes().size() && !col){
 			Punto aux = static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i].A;
-			if ((aux.x + 200 < p.x && aux.y + 200 < p.y) || (aux.x - 200 > p.x && aux.y - 200 > p.y)){
 				col = inTriangle(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i], p);
-			}
 			i++;
 		}//fin colision con bordes
-	}
+	}*/
 	return col;
 }
 //Este método calcula si un punto dado se encuentra dentro del área del triangulo.

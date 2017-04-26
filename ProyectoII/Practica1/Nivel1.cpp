@@ -40,39 +40,44 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
 	vecObj.push_back(pCazador);
 
+	camara.x += 500;
+	camara.y += 450;
+
 	pRecolector = new Recolector(pJuego,1200,900);
 	pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
 	vecObj.push_back(pRecolector);
 
-	Trigger *auxTr; auxTr = new Trigger (pJuego, 562, 384, pCazador, pRecolector);
+	Trigger *auxTr; auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
 	vecTriggers.push_back(auxTr);
 
-	auxTr = new Trigger(pJuego, 662, 384, pCazador, pRecolector);
+	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo2.txt"));
 	vecTriggers.push_back(auxTr);
 
-	auxTr = new Trigger(pJuego, 865, 70, pCazador, pRecolector);
+	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
 	auxTr->setTriggerDim(80, 80);
 	vecTriggers.push_back(auxTr);
 
 
-	vecObj.push_back(new Arbol(pJuego, 180, 60));
-	vecObj.push_back(new Arbol(pJuego, 480, 260));
-	vecObj.push_back(new Arbol(pJuego, 680, 60));
-	vecObj.push_back(new Arbol(pJuego, 750, 365));
-	vecObj.push_back(new Arbol(pJuego, 1080, 195));
-	vecObj.push_back(new Arbol(pJuego, 480, 60));
+	vecObj.push_back(new Arbol(pJuego, 1080, 900));
+	vecObj.push_back(new Arbol(pJuego, 1480, 800));
+	vecObj.push_back(new Arbol(pJuego, 1780, 960));
+	vecObj.push_back(new Arbol(pJuego, 1850, 1265));
+	vecObj.push_back(new Arbol(pJuego, 1080, 1195));
+	vecObj.push_back(new Arbol(pJuego, 1480, 1060));
+	vecObj.push_back(new Arbol(pJuego, 600, 1100));
+	vecObj.push_back(new Arbol(pJuego, 300, 1200));
 
-	vecObj.push_back(new Cebo(pJuego, 780, 100));
-	vecObj.push_back(new Cuerda(pJuego, 880, 100));
+	vecObj.push_back(new Cebo(pJuego, 1200, 1200));
+	vecObj.push_back(new Cuerda(pJuego, 1380, 1000));
 	vecObj.push_back(new Enredadera(pJuego, 980, 100));
-	vecObj.push_back(new Hueso(pJuego, 880, 200));
-	vecObj.push_back(new Escondite(pJuego, 700, 500));
-	vecObj.push_back(new Obstaculo(pJuego, 600, 600, TObstaculoPiedra, "Pico"));
-	vecObj.push_back(new Madera(pJuego, 880, 300));
-	vecObj.push_back(new Piedra(pJuego, 980, 200));
+	vecObj.push_back(new Hueso(pJuego, 1200, 800));
+	vecObj.push_back(new Escondite(pJuego, 2100, 1200));
+	vecObj.push_back(new Obstaculo(pJuego, 2100, 1300, TObstaculoPiedra, "Pico"));
+	vecObj.push_back(new Madera(pJuego, 580, 1400));
+	vecObj.push_back(new Piedra(pJuego, 880, 1090));
 	vecObj.push_back(new TrampaCerrada(pJuego, 980, 300));
 	vecObj.push_back(new Yesca(pJuego, 1080, 100));
 	vecObj.push_back(new TrampaAbierta(pJuego, 1200, 400));
@@ -85,7 +90,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 	activePlayer = "C";
 
-	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
+	//vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
 	
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
@@ -95,8 +100,8 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	rectEquipo.h = rectEquipo.w = 50;  animEquipo.h = animEquipo.w = 100;
 	animEquipo.y = animEquipo.x = 0;
 
-	rectZonaOscura.h = 600; rectZonaOscura.w = 600;
-	rectZonaOscura.x = 1000; rectZonaOscura.y = 0;
+	rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
+	rectZonaOscura.x = -100; rectZonaOscura.y = 500;
 	hasTorch = false;
 	alpha = 255;
 
