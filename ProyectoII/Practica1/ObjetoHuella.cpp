@@ -4,8 +4,8 @@
 ObjetoHuella::ObjetoHuella(int dir, int ind, Componente* comp, juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
 	et = THuella;
-	rect.w = 45;
-	rect.h = 55;
+	rect.w = 40;
+	rect.h = 75;
 	anim.h = 32;
 	anim.w = 32;
 	anim.x = anim.y = 0;
@@ -13,6 +13,21 @@ ObjetoHuella::ObjetoHuella(int dir, int ind, Componente* comp, juegoPG * juego, 
 	componente = static_cast<Huella*>(comp);
 	indice = ind;
 	Dir state = (Dir) dir;
+	setAnim(state);
+	alpha = 255;
+}
+ObjetoHuella::ObjetoHuella(int dir, int ind, Componente* comp, juegoPG * juego, int px, int py, int _w, int _h) : ObjetoPG(juego, px, py)
+{
+	et = THuella;
+	rect.w = _w;
+	rect.h = _h;
+	anim.h = 32;
+	anim.w = 32;
+	anim.x = anim.y = 0;
+	timer = 0;
+	componente = static_cast<Huella*>(comp);
+	indice = ind;
+	Dir state = (Dir)dir;
 	setAnim(state);
 	alpha = 255;
 }
