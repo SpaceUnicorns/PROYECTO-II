@@ -60,7 +60,6 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 			i++;
 		}//fin colision con bordes
 	}
-
 	return col;
 }
 //Este método calcula si un punto dado se encuentra dentro del área del triangulo.

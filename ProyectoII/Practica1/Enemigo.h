@@ -23,6 +23,10 @@ public:
 	Recolector* getRecolector() { return recolector; }
 	ObjetoPG* getTarget(){ return objetivo; }
 	void setTarget(/*ObjetoPG* target*/int chachiPiruli) {
+		if (!encuentraComponente("follow")) {
+			newComponente(new follow(this, objetivo, dynamic_cast<Nivel1*>(pJuego->getEstadoActual())->getGrafoMapa(), false), "follow");
+			followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
+		}
 		if (chachiPiruli == 0)objetivo = cazador;
 		else objetivo = recolector;
 	}

@@ -26,54 +26,10 @@
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
-	std:: ifstream f; char aux = 'p';
-	int x = 0;
-	int y = -31;
-	Tile aux2;
-	TrianguloBorde auxBorde; 
-	Punto auxPunto;
-	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 122; rectAux.h = 83;
-	f.open("../docs/mapa.txt", std::ios::in);
-	while (!f.eof()){
-		//f >> x;
-		f.get(aux);
-		if (!f.fail()){
-			//std::cout << x << "\n";
-			mapa->creaMapa(aux);
-			switch (aux){
-				case 's':  rectAux.x = 0; aux2.rectTileset = rectAux;
-						   aux2.x = x; aux2.y = y; aux2.capa = 1;
-						   x += 122;
-					       vecTile.push_back(aux2);
-					      break;
-				case 't': rectAux.x = 122; aux2.rectTileset = rectAux;
-					      aux2.x = x; aux2.y = y; aux2.capa = 1;
-						  x += 122;
-					      vecTile.push_back(aux2);
-					      break;
-				case 'X': 
-					//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
-					//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
-					auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
-					auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
-					auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
-					vectBordes.push_back(auxBorde);
-					auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
-					vectBordes.push_back(auxBorde);
-					//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
-					/*rectAux.x = 244; aux2.rectTileset = rectAux; 
-					aux2.x = x; aux2.y = y; aux2.capa = 1;
-					vecTile.push_back(aux2); */
-					x += 122;
-					break;
-				case 'L': y += 31; if (y == 0 || y % 62 == 0) x = 61; else x = 0;
-					break;
-			}
-			
-		}
-	}
-	f.close();
 
+	std::vector<char> mapAux;
+	cargaMapa("../docs/mapa.txt", mapAux);
+	mapa->creaMapa(mapAux);
 	camara.x = camara.y = 0;
 	camara.h = pJuego->getScreenHeight(); camara.w = pJuego->getScreenWidth();
 	animNieve1.h = animNieve2.h = camara.h+1000; animNieve1.w = animNieve2.w = camara.w+1000;
@@ -84,7 +40,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
 	vecObj.push_back(pCazador);
 
-	pRecolector = new Recolector(pJuego,880,220);
+	pRecolector = new Recolector(pJuego,1200,900);
 	pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
 	vecObj.push_back(pRecolector);
 
@@ -129,7 +85,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 
 	activePlayer = "C";
 
-	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
+	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 1050, 1200));
 	
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");

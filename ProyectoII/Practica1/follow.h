@@ -3,6 +3,7 @@
 #include "ObjetoPG.h"
 #include "GrafoMapa.h"
 #include "ColisionBox.h"
+#include "Nivel1.h"
 class follow :
 	public Componente
 {

@@ -33,6 +33,7 @@ void Deteccion::quieto(){
 				enemy->setAbsRect(-2, 0);
 				enemy->setRect(-2, 0);
 				dirAtaque = 6;
+
 			}
 		}
 		else if (vagar == 2){
@@ -277,7 +278,7 @@ void Deteccion::postAtaque(){
 			preparaAtaque(0);
 			enemy->setEstado(Atacando);
 		}
-		else enemy->setEstado(Quieto);
+		else enemy->setEstado(Moviendo);
 		cont = 0;
 	}
 	cont++;

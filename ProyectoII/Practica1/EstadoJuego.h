@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "ObjetoJuego.h"
+#include <vector>
 class EstadoJuego
 {
 public:
@@ -22,6 +23,7 @@ public:
 	virtual void paraMusica(std::string music, bool fade) = 0;
 	virtual void reproduceAmb(std::string amb, bool fade) = 0;
 	virtual void paraAmb(std::string amb, bool fade) = 0;
+	virtual void cargaMapa(std::string txt, std::vector<char>& mapa) = 0;
 	virtual ~EstadoJuego()
 	{
 	}
