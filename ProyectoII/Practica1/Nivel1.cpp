@@ -23,9 +23,11 @@
 #include "Equipo.h"
 #include "Escondite.h"
 #include "Obstaculo.h"
+#include "Carroña.h"
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
+	mode = Play;
 
 	std::vector<char> mapAux;
 	cargaMapa("../docs/mapa.txt", mapAux);
@@ -40,6 +42,8 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
 	vecObj.push_back(pCazador);
 
+	centroRel.x = camara.x + (camara.w / 2);
+	centroRel.y = camara.y + (camara.h / 2);
 	camara.x += 500;
 	camara.y += 450;
 
@@ -60,27 +64,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	auxTr->setTriggerDim(80, 80);
 	vecTriggers.push_back(auxTr);
 
-
-	vecObj.push_back(new Arbol(pJuego, 1080, 900));
-	vecObj.push_back(new Arbol(pJuego, 1480, 800));
-	vecObj.push_back(new Arbol(pJuego, 1780, 960));
-	vecObj.push_back(new Arbol(pJuego, 1850, 1265));
-	vecObj.push_back(new Arbol(pJuego, 1080, 1195));
-	vecObj.push_back(new Arbol(pJuego, 1480, 1060));
-	vecObj.push_back(new Arbol(pJuego, 600, 1100));
-	vecObj.push_back(new Arbol(pJuego, 300, 1200));
-
-	vecObj.push_back(new Cebo(pJuego, 1200, 1200));
-	vecObj.push_back(new Cuerda(pJuego, 1380, 1000));
-	vecObj.push_back(new Enredadera(pJuego, 980, 100));
-	vecObj.push_back(new Hueso(pJuego, 1200, 800));
-	vecObj.push_back(new Escondite(pJuego, 2100, 1200));
-	vecObj.push_back(new Obstaculo(pJuego, 2100, 1300, TObstaculoPiedra, "Pico"));
-	vecObj.push_back(new Madera(pJuego, 580, 1400));
-	vecObj.push_back(new Piedra(pJuego, 880, 1090));
-	vecObj.push_back(new TrampaCerrada(pJuego, 980, 300));
-	vecObj.push_back(new Yesca(pJuego, 1080, 100));
-	vecObj.push_back(new TrampaAbierta(pJuego, 1200, 400));
+	cargaObj("../docs/objetos.txt");
 
 	cargarAudio("../sounds/reverb/standrews.wav");
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
@@ -89,8 +73,6 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	reproduceMusica("Galiakberova", false);
 
 	activePlayer = "C";
-
-	//vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 250, 200));
 	
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
@@ -132,9 +114,11 @@ void Nivel1::draw(){
 		}
 		std::sort(vecObj.begin(), vecObj.end(), ordena);
 	
+		for (HuellasCamino* ob : huellasCamino) ob->draw((activePlayer == "R" || mode == Edition));
 		for (ObjetoJuego* ob : vecObj) ob->draw();
-		for (ObjetoJuego* trg : vecTriggers) trg->draw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
+		for (ObjetoJuego* trg : vecTriggers) trg->draw();
 	}
+	centroRel.x += camara.x; centroRel.y += camara.y;
 	rectZonaOscura.x -= camara.x;
 	rectZonaOscura.y -= camara.y;
 	
@@ -239,6 +223,7 @@ void Nivel1::swPlayer(){
 		vectBordes[i].C.x -= camara.x;
 		vectBordes[i].C.y -= camara.y;
 	}
+	for (HuellasCamino* ob : huellasCamino) ob->draw((activePlayer == "R" || mode == Edition));
 	std::sort(vecObj.begin(), vecObj.end(), ordena);
 	for (ObjetoJuego* ob : vecObj){
 		ob->draw();
@@ -251,25 +236,157 @@ void Nivel1::swPlayer(){
 	else pRecolector->swAble();
 	pJuego->input.sw = false;
 }
-
+void escribe(std::string s, int x, int y){
+	std::ofstream f;
+	f.open("../docs/objetos.txt",  ios::app);
+	f << s << " , " << std::to_string(x) << " , " << std::to_string(y) << "\n";
+	f.close();
+}
 void Nivel1::onKeyUp(char k) {
-	switch (k) {
-	case 'q':
-		reproduceFx("AbreMenu", -100, 0, 0);
-		pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila")), 
+
+	if (mode == Play){
+		switch (k)
+		{
+		case 'q':
+			reproduceFx("AbreMenu", -100, 0, 0);
+			pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila")),
 			static_cast<Equipo*>(pCazador->dameComponente("Equipo")), static_cast<Equipo*>(pRecolector->dameComponente("Equipo"))));
-		break;
-	case 's':
-		reproduceFx("AbreMenu", -100, 0, 0);
-		pJuego->estados.push(new Pausa(pJuego,this, contPuntos));
-		break;
-	case 't': pJuego->input.sw = true;
-		break;
-	default:
-		break;
+			break;
+		case 's':
+			reproduceFx("AbreMenu", -100, 0, 0);
+			pJuego->estados.push(new Pausa(pJuego, this, contPuntos));
+
+			break;
+		case 't': pJuego->input.sw = true;
+			break;
+		default:
+			break;
+		}
 	}
+	else {
+		switch (k) {
+		case 'q':
+			vecObj.push_back(new Arbol(pJuego, pCazador->getRect().x+20  ,pCazador->getRect().y-120));
+			escribe("Arbol", centroRel.x + 20, centroRel.y - 120);
+			break;
+		case 'w': //Obstaculo piedra
+			vecObj.push_back(new Obstaculo(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20,TObstaculoPiedra,"Pico"));
+			escribe("ObsPiedra", centroRel.x + 35, centroRel.y - 20);
+			break;
+		case 'r': //Obstaculo Nieve
+			
+			break;
+		case 'y': //Escondite
+			vecObj.push_back(new Escondite(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y +45));
+			escribe("Escondite", centroRel.x + 20, centroRel.y +45);
+			break;
+		case 'u': //Piedra
+			vecObj.push_back(new Piedra(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
+			escribe("Piedra", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'z': //Madera
+			vecObj.push_back(new Madera(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
+			escribe("Madera", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'o': //Hueso
+			vecObj.push_back(new Hueso(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
+			escribe("Hueso", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'p': //Enredadera
+			vecObj.push_back(new Enredadera(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
+			escribe("Enredadera", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'c': //Cebo
+			vecObj.push_back(new Cebo(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
+			escribe("Cebo", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'x': //Yesca
+			vecObj.push_back(new Yesca(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
+			escribe("Yesca", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'n': //Carroña
+			vecObj.push_back(new Carroña(pJuego, pCazador->getRect().x + 40, pCazador->getRect().y +20));
+			escribe("Carroña", centroRel.x + 40, centroRel.y + 20);
+			break;
+		case 'g': //Trampa Cerrada
+			vecObj.push_back(new TrampaCerrada(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
+			escribe("TrampaCerrada", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'h': //Huella Arriba Hombre
+			huellasCamino.push_back(new HuellasCamino(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50, "HS"));
+			escribe("HS", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'j': //Huella Abajo Hombre
+			huellasCamino.push_back(new HuellasCamino(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50, "HI"));
+			escribe("HI", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'k': //Huella Arriba Lobo
+			huellasCamino.push_back(new HuellasCamino(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50, "LS"));
+			escribe("LS", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'l': //Huella Abajo Lobo
+			huellasCamino.push_back(new HuellasCamino(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50, "LI"));
+			escribe("LI", centroRel.x + 20, centroRel.y + 50);
+			break;
+		case 'v': //Lobo
+			vecObj.push_back(new Lobo(pJuego, pCazador,pRecolector, pCazador->getRect().x + 30, pCazador->getRect().y + 30));
+			escribe("Lobo", centroRel.x + 30, centroRel.y + 30);
+			break;
+		case 's':
+
+			 mode = Play;
+			reproduceFx("AbreMenu", -100, 0, 0);
+			pJuego->estados.push(new Pausa(pJuego, this, contPuntos));
+
+			break;
+		case 't': pJuego->input.sw = true;
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void Nivel1::cargaObj(std:: string name){
+	std::ifstream f; 
+	
+	f.open(name, std::ios::in);
+	ObjetoJuego *aux;
+	std::string type;
+	Punto pos;
+	char stash;
+	while (!f.eof() && !f.fail()){
+		f >> type;
+		f.get(stash); f.get(stash); f.get(stash);
+		f >> pos.x;
+		f.get(stash); f.get(stash); f.get(stash);
+		f >> pos.y;
+		if (!f.fail()){
+			if (type == "Arbol")vecObj.push_back(new Arbol(pJuego, pos.x, pos.y));
+			else if (type == "ObsPiedra") vecObj.push_back(new Obstaculo(pJuego, pos.x, pos.y, TObstaculoPiedra, "Pico"));
+			else if (type == "Escondite") vecObj.push_back(new Escondite(pJuego, pos.x, pos.y));
+			else if (type == "Piedra") vecObj.push_back(new Piedra(pJuego, pos.x, pos.y));
+			else if (type == "Madera") vecObj.push_back(new Madera(pJuego, pos.x, pos.y));
+			else if (type == "Hueso") vecObj.push_back(new Hueso(pJuego, pos.x, pos.y));
+			else if (type == "Enredadera") vecObj.push_back(new Enredadera(pJuego, pos.x, pos.y));
+			else if (type == "Cebo") vecObj.push_back(new Cebo(pJuego, pos.x, pos.y));
+			else if (type == "Yesca") vecObj.push_back(new Yesca(pJuego, pos.x, pos.y));
+			else if (type == "TrampaCerrada") vecObj.push_back(new TrampaCerrada(pJuego, pos.x, pos.y));
+			else if (type == "Lobo") vecObj.push_back(new Lobo(pJuego, pCazador, pRecolector, pos.x, pos.y));
+			else if (type == "Carroña") vecObj.push_back(new Carroña(pJuego, pos.x, pos.y));
+			else if (type == "HS") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "HS"));
+			else if (type == "HI")huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "HI"));
+			else if (type == "LS") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "LS"));
+			else if (type == "LI") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "LI"));
+
+		}
+	}
+	f.close();
 }
 Nivel1::~Nivel1()
 {
+	for (HuellasCamino* it : huellasCamino){
+		delete it;
+	}
 }
 

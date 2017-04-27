@@ -20,6 +20,9 @@ EstadoPG::~EstadoPG()
 	for (auto it : vecObj) {
 		delete it;
 	}
+	for (auto it : vecTriggers){
+		delete it;
+	}
 
 	FMOD_RESULT result;
 	if (!pJuego->hasExit()){

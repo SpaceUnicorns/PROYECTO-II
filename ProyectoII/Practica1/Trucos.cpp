@@ -83,6 +83,14 @@ void Trucos::desbloquea(){
 		font.x = pJuego->getScreenWidth() / 2 - 80; font.y = pJuego->getScreenHeight() / 2 - 30; font.w = 80; font.h = 100;
 		level->paraMusica(" ", true);
 	}
+	else if (codigo == "1a2bc"){
+		std::cout << "CORRECTO!\n";
+		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
+		codigo = "";
+		renderCodigo = " ";
+		level->setMode(1);
+
+	}
 	else {
 		std::cout << "INCORRECTO!\n";
 		reproduceFx("NoDisponible", -100, 0, 0);

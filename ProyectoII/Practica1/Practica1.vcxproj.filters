@@ -192,6 +192,12 @@
     <ClCompile Include="Obstaculo.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="Carroña.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="HuellasCamino.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
@@ -435,6 +441,18 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Obstaculo.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Carroña.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="HuellasCamino.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

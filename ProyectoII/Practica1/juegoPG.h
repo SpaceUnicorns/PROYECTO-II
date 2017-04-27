@@ -16,7 +16,7 @@ enum Texturas_t {
 	TMenu, TFondo, TBotonJ, TBotonS, TBotonM, TBotonV, TTileSet, TTextBox, TArbol, TCColision, TJugador2, TJugador,
 	TSombra1, TMenuResaltado, TLyov, TZhenia, TEquipables, TMateriales, TCebo, TCuerda, TEnredadera, THueso, TMadera, 
 	TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete, TTapa, TContinuar, TOpciones, TGoToMenu, THuella, TAntorcha, TZonaOscura, TObjetoEquipo,
-	TObjetoEquipo2, TPantallaTrucos, TEscondite, TObstaculoPiedra
+	TObjetoEquipo2, TPantallaTrucos, TEscondite, TObstaculoPiedra, TCarroña, THuellasCamino
 };
 
 class juegoPG

@@ -7,6 +7,12 @@
 #include "SDL_ttf.h"
 #include <string>
 #include "GrafoMapa.h"
+#include "HuellasCamino.h"
+
+using namespace std;
+
+enum Mode{ Play, Edition };
+
 class Nivel1 :
 	public EstadoPG
 {
@@ -23,16 +29,21 @@ public:
 	void setAlpha(int i){ alpha = i; }
 	void drawEquipo();
 	GrafoMapa* getGrafoMapa() { return mapa; }
+	void setMode(int m){ mode = (Mode)m; }
 
 protected:
+	std::vector<HuellasCamino*> huellasCamino;
+	Mode mode;
 	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
 	bool hasTorch;
+	Punto centroRel;
 	int x, y, alpha;
 	Cazador* pCazador;
 	Recolector *pRecolector;
 	std::string activePlayer;
 	void swPlayer();	
 	void onKeyUp(char k);
+	void cargaObj(std:: string name);
 
 	GrafoMapa* mapa;
 
