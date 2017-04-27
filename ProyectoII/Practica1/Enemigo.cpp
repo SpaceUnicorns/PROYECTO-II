@@ -13,6 +13,7 @@ cazador(hunter), recolector(collector), estado(EstadoEnemigo::Quieto)
 	followEnem = nullptr;
 	following = false;
 	nombre.push_back("Enemigo");
+	contFollow = 0;
 }
 
 void Enemigo::dameUnHogar() {
@@ -35,8 +36,13 @@ void Enemigo::draw() {
 }
 void Enemigo::lateUpdate()
 {
-	if (following && estado != Atrapado && estado != Muerto){
+	contFollow++;
+	if (contFollow >= 50 && following && estado != Atrapado && estado != Muerto){
 		followEnem->doFollow();
+		contFollow = 0;
+	}
+	else if (following && estado != Atrapado && estado != Muerto)
+	{
 		followEnem->lateUpdate();
 	}
 }

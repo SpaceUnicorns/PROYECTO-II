@@ -49,6 +49,7 @@ protected:
 	Recolector* recolector;
 	ObjetoPG* objetivo;
 	ObjetoPG* casita;
+	int contFollow;
 	follow* followEnem;
 	bool following;
 
