@@ -56,7 +56,8 @@ void TexturasSDL::draw(SDL_Renderer* prenderer, SDL_Rect const& rectAnim, SDL_Re
 	SDL_SetTextureAlphaMod(pTexture, alpha);
 	SDL_RenderCopy(prenderer, pTexture, &rectAnim, &rect);  // nullptr, nullptr -> toda la textura en toda la ventana
 }
-void TexturasSDL::draw(SDL_Renderer* prenderer){
+void TexturasSDL::draw(SDL_Renderer* prenderer, Uint8 alpha){
+	SDL_SetTextureAlphaMod(pTexture, alpha);
 	SDL_RenderCopy(prenderer, pTexture, nullptr, nullptr);
 }
 //-----------------------------------------------------------------------------------------------------

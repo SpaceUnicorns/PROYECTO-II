@@ -44,6 +44,8 @@ protected:
 	void swPlayer();	
 	void onKeyUp(char k);
 	void cargaObj(std:: string name);
+	void fadeOut();
+	void fadeIn();
 
 	GrafoMapa* mapa;
 

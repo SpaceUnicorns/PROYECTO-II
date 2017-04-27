@@ -24,6 +24,7 @@
 #include "Escondite.h"
 #include "Obstaculo.h"
 #include "Carroña.h"
+#include <thread> 
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
@@ -94,7 +95,7 @@ bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 void Nivel1::draw(){
 	SDL_Rect aux;
 	Tile tile;
-	//No se si esto iria mejor en el update (??????????????????)
+	
 	if (pJuego->input.sw) swPlayer();
 	else{
 		for (unsigned int i = 0; i < vecTile.size(); i++){
@@ -259,6 +260,8 @@ void Nivel1::onKeyUp(char k) {
 			break;
 		case 't': pJuego->input.sw = true;
 			break;
+		case 'l': fadeOut(); fadeIn();
+			break;
 		default:
 			break;
 		}
@@ -333,7 +336,7 @@ void Nivel1::onKeyUp(char k) {
 			escribe("Lobo", centroRel.x + 30, centroRel.y + 30);
 			break;
 		case 's':
-
+			
 			 mode = Play;
 			reproduceFx("AbreMenu", -100, 0, 0);
 			pJuego->estados.push(new Pausa(pJuego, this, contPuntos));
@@ -382,6 +385,21 @@ void Nivel1::cargaObj(std:: string name){
 		}
 	}
 	f.close();
+}
+void Nivel1::fadeOut(){
+	for (int i = 0; i < 200; i+=2){
+		pJuego->getTextura(TTapa)->draw(pJuego->getRender(), i);
+		SDL_RenderPresent(pJuego->getRender());
+		SDL_Delay(40);
+	}
+}
+void Nivel1::fadeIn(){
+	for (int i = 255; i > 6; i-= 4){
+		draw();
+		pJuego->getTextura(TTapa)->draw(pJuego->getRender(), i);
+		SDL_RenderPresent(pJuego->getRender());
+		SDL_Delay(40);
+	}
 }
 Nivel1::~Nivel1()
 {
