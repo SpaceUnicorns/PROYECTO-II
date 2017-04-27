@@ -5,6 +5,7 @@ TrampaComponente::TrampaComponente(ObjetoJuego* entidad) :Componente(entidad)
 {
 	pObj = dynamic_cast<ObjetoPG*>(pEntidad);
 	comprueba = 0;
+	
 }
 
 
@@ -19,20 +20,17 @@ void TrampaComponente:: update()
 		pVecObj = static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj();
 		for (size_t i = 0; i < pVecObj.size(); i++)
 		{
-			if (static_cast<ObjetoPG*>(pVecObj[i])->encuentraComponente("ColisionBox") && pObj != static_cast<ObjetoPG*>(pVecObj[i])){
-				SDL_Rect aux = static_cast<ObjetoPG*>(pVecObj[i])->getColisionBox();
+			pAux = dynamic_cast<ObjetoPG*>(pVecObj[i]);
+			if (pAux->encuentraComponente("ColisionBox") && pObj != pAux && pAux->nombre[1] == "Enemigo"){
+				SDL_Rect aux = pAux->getColisionBox();
 				p = pObj->getColisionBox();
 				if (aux.x > p.x && aux.x < p.x + p.w && aux.y > p.y && aux.y < p.y + p.h  )
-				{
-					 if (typeid(*pVecObj[i]) == typeid(Enemigo))
-					{
-						static_cast<Enemigo*>(pVecObj[i])->life -= 5;
-						// A la espera de que sea implementado en lobo
-						//static_cast<Enemigo*>(pVecObj[i])->setEstado("Atrapado");
-						pObj->setRect(0, 999999);
-						pObj->getPJuego()->estados.top()->borrarObj(pObj);
-						break;
-					}
+				{				
+					static_cast<Enemigo*>(pVecObj[i])->life -= 2;
+					static_cast<Enemigo*>(pVecObj[i])->setEstado(EstadoEnemigo::Atrapado);
+					pObj->setRect(0, 999999);
+					pObj->getPJuego()->estados.top()->borrarObj(pObj);
+					break;
 				}
 			}
 

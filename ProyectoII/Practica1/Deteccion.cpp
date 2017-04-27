@@ -284,8 +284,10 @@ void Deteccion::postAtaque(){
 	cont++;
 }
 void Deteccion::atrapado(){
+	if (cont == 0)enemy->desactivaFollow();
+	if (enemy->life <= 0){ enemy->setEstado(Muerto); }
 	cont++;
-	if (cont >= 500)
+	if (cont >= 1000)
 	{
 		cont = 0;
 		enemy->setEstado(Quieto);

@@ -15,6 +15,7 @@ public:
 private:
 	ObjetoPG* pObj;
 	int comprueba;
+	ObjetoPG* pAux;
 	std::vector<ObjetoJuego*> pVecObj;
 };
 
