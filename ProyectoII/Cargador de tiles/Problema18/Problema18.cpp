@@ -191,6 +191,12 @@ int leeTile(std::vector<std::vector<int>>& map)
 	case '2':
 		return 1100;
 		break;
+	case '7':		// Cabaña con objetos
+		return 1140;
+		break;
+	case '8':		// Cabaña vacía
+		return 1160;
+		break;
 	}
 	std::cout << "Sale Lee Tile\n";
 }
@@ -346,8 +352,8 @@ bool resuelveCaso(std::ofstream& f) {
 	int ancho, alto;
 	std::cout << "ResuelveCaso\n";
 	//ALTURA / ANCHURA TILES GRANDES
-	alto = 71;
-	ancho = 20;
+	alto = 1;
+	ancho = 3;
 	std::vector<int> aux(ancho);
 	std::vector<std::vector<int>> mapa (alto);
 
