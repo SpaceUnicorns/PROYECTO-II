@@ -1,5 +1,6 @@
 #include "MenuPrincipal.h"
 #include "MenuPrincipalComp.h"
+#include "Tutorial.h"
 
 MenuPrincipal::MenuPrincipal(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
@@ -31,7 +32,8 @@ void MenuPrincipal::update(){
 		else if (opcion == 2){
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();
-			getPJuego()->estados.push(new Nivel1(getPJuego()));
+			Punto rec; rec.x = 6905; rec.y = 8930; Punto caz; caz.x = 6970; caz.y = 8930;
+			getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetos.txt", rec, caz));
 			delete borrar;
 		}
 	}

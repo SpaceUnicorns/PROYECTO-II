@@ -25,12 +25,12 @@
 #include "Obstaculo.h"
 #include "Carroña.h"
 
-Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
+Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
 	mode = Play;
 
 	std::vector<char> mapAux;
-	cargaMapa("../docs/mapa.txt", mapAux);
+	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
 	camara.x = camara.y = 0;
 	camara.h = pJuego->getScreenHeight(); camara.w = pJuego->getScreenWidth();
@@ -38,18 +38,35 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	animNieve1.x = animNieve2.x = camara.w;
 	animNieve1.y = animNieve2.y = camara.h;
 
-	pCazador = new Cazador(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
-	pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
-	vecObj.push_back(pCazador);
+	if (act == "C"){
+		pCazador = new Cazador(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
+		pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
+		vecObj.push_back(pCazador);
 
-	centroRel.x = camara.x + (camara.w / 2);
-	centroRel.y = camara.y + (camara.h / 2);
-	camara.x += 500;
-	camara.y += 450;
+		pRecolector = new Recolector(pJuego, posRec.x, posRec.y);
+		pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
+		vecObj.push_back(pRecolector);
+	}
+	else {
+		pCazador = new Cazador(pJuego, posCaz.x,posCaz.y);
+		pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
+		vecObj.push_back(pCazador);
+		pRecolector = new Recolector(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
+		pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
+		vecObj.push_back(pRecolector);
+	}
 
-	pRecolector = new Recolector(pJuego, 6970, 8930);
-	pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
-	vecObj.push_back(pRecolector);
+	centroRel.x = camara.x + (camara.w / 4);
+	centroRel.y = camara.y + (camara.h / 4);
+	if (act == "C"){
+		camara.x = (posCaz.x - (camara.w / 2));
+		camara.y = (posCaz.y - (camara.h / 2));
+	}
+	else {
+		camara.x = (posRec.x - (camara.w / 2));
+		camara.y = (posRec.y - (camara.h / 2));
+	}
+
 
 	Trigger *auxTr; auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
@@ -64,7 +81,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	auxTr->setTriggerDim(80, 80);
 	vecTriggers.push_back(auxTr);
 
-	cargaObj("../docs/objetos.txt");
+	cargaObj(objetos);
 
 	cargarAudio("../sounds/reverb/standrews.wav");
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
@@ -72,7 +89,11 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	reproduceFx("balloon", -100, 0, 0);
 	reproduceMusica("Galiakberova", false);
 
-	activePlayer = "C";
+	activePlayer = act;
+	if (activePlayer == "R"){
+		pCazador->swAble();
+		pRecolector->swAble();
+	}
 	
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
@@ -86,11 +107,17 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	rectZonaOscura.x = -100; rectZonaOscura.y = 500;
 	hasTorch = false;
 	alpha = 255;
+	firsTime = true;
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
 }
 void Nivel1::draw(){
+
+	if (firsTime){
+		firsTime = false;
+		fadeIn(20);
+	}
 	SDL_Rect aux;
 	Tile tile;
 	
