@@ -374,11 +374,11 @@ int main() {
 	// Para la entrada por fichero.
 	// Comentar para acepta el reto
 #ifndef DOMJUDGE
-	std::ifstream in("mapa2.txt");
+	std::ifstream in("Problema18.txt");
 	std::ofstream f;
 	auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
 #endif 
-	f.open("salida2.txt");
+	f.open("salida.txt");
 	resuelveCaso(f);
 	f.close();
 

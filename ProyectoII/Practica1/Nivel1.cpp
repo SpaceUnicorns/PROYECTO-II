@@ -24,14 +24,13 @@
 #include "Escondite.h"
 #include "Obstaculo.h"
 #include "Carroña.h"
-#include <thread> 
 
 Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
 	mode = Play;
 
 	std::vector<char> mapAux;
-	cargaMapa("../docs/mapa1.txt", mapAux);
+	cargaMapa("../docs/mapa.txt", mapAux);
 	mapa->creaMapa(mapAux);
 	camara.x = camara.y = 0;
 	camara.h = pJuego->getScreenHeight(); camara.w = pJuego->getScreenWidth();
