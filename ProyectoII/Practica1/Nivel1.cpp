@@ -31,7 +31,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	mode = Play;
 
 	std::vector<char> mapAux;
-	cargaMapa("../docs/mapa.txt", mapAux);
+	cargaMapa("../docs/mapa1.txt", mapAux);
 	mapa->creaMapa(mapAux);
 	camara.x = camara.y = 0;
 	camara.h = pJuego->getScreenHeight(); camara.w = pJuego->getScreenWidth();
@@ -48,7 +48,7 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	camara.x += 500;
 	camara.y += 450;
 
-	pRecolector = new Recolector(pJuego,1200,900);
+	pRecolector = new Recolector(pJuego, 6970, 8930);
 	pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
 	vecObj.push_back(pRecolector);
 
@@ -87,7 +87,6 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	rectZonaOscura.x = -100; rectZonaOscura.y = 500;
 	hasTorch = false;
 	alpha = 255;
-
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
@@ -260,7 +259,7 @@ void Nivel1::onKeyUp(char k) {
 			break;
 		case 't': pJuego->input.sw = true;
 			break;
-		case 'l': fadeOut(); fadeIn();
+		case 'l': fadeOut(40); fadeIn(40);
 			break;
 		default:
 			break;
@@ -386,19 +385,19 @@ void Nivel1::cargaObj(std:: string name){
 	}
 	f.close();
 }
-void Nivel1::fadeOut(){
+void Nivel1::fadeOut(int time){
 	for (int i = 0; i < 200; i+=2){
 		pJuego->getTextura(TTapa)->draw(pJuego->getRender(), i);
 		SDL_RenderPresent(pJuego->getRender());
-		SDL_Delay(40);
+		SDL_Delay(time);
 	}
 }
-void Nivel1::fadeIn(){
+void Nivel1::fadeIn(int time){
 	for (int i = 255; i > 6; i-= 4){
 		draw();
 		pJuego->getTextura(TTapa)->draw(pJuego->getRender(), i);
 		SDL_RenderPresent(pJuego->getRender());
-		SDL_Delay(40);
+		SDL_Delay(time);
 	}
 }
 Nivel1::~Nivel1()

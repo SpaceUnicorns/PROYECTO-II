@@ -346,8 +346,8 @@ bool resuelveCaso(std::ofstream& f) {
 	int ancho, alto;
 	std::cout << "ResuelveCaso\n";
 	//ALTURA / ANCHURA TILES GRANDES
-	alto = 72;
-	ancho = 20;
+	alto = 89;
+	ancho = 24;
 	std::vector<int> aux(ancho);
 	std::vector<std::vector<int>> mapa (alto);
 
@@ -374,11 +374,11 @@ int main() {
 	// Para la entrada por fichero.
 	// Comentar para acepta el reto
 #ifndef DOMJUDGE
-	std::ifstream in("Problema18.txt");
+	std::ifstream in("mapa2.txt");
 	std::ofstream f;
 	auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
 #endif 
-	f.open("salida.txt");
+	f.open("salida2.txt");
 	resuelveCaso(f);
 	f.close();
 
