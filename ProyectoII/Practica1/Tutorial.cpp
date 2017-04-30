@@ -32,7 +32,7 @@ void Tutorial::update(){
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();
 		Punto rec; rec.x = 0; rec.y = 0; Punto caz; caz.x = 6912; caz.y = 10286;
-		pJuego->estados.push(new Tutorial2(pJuego, "../docs/mapa1.txt", "../docs/objetos.txt", rec, caz));
+		pJuego->estados.push(new Tutorial2(pJuego, "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));
 		delete borrar;
 	}
 }

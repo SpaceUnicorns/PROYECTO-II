@@ -39,6 +39,8 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	animNieve1.x = animNieve2.x = camara.w;
 	animNieve1.y = animNieve2.y = camara.h;
 
+	archivoObj = objetos;
+
 	if (act == "C"){
 		pCazador = new Cazador(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
 		pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
@@ -263,9 +265,9 @@ void Nivel1::swPlayer(){
 	else pRecolector->swAble();
 	pJuego->input.sw = false;
 }
-void escribe(std::string s, int x, int y){
+void escribe(std::string s, int x, int y, std:: string name){
 	std::ofstream f;
-	f.open("../docs/objetos.txt",  ios::app);
+	f.open("../docs/"+name+".txt",  ios::app);
 	f << s << " , " << std::to_string(x) << " , " << std::to_string(y) << "\n";
 	f.close();
 }
@@ -296,78 +298,78 @@ void Nivel1::onKeyUp(char k) {
 		switch (k) {
 		case 'q':
 			vecObj.push_back(new Arbol(pJuego, pCazador->getRect().x+20  ,pCazador->getRect().y-120));
-			escribe("Arbol", centroRel.x + 20, centroRel.y - 120);
+			escribe("Arbol", centroRel.x + 20, centroRel.y - 120,archivoObj);
 			break;
 		case 'w': //Obstaculo piedra
 			vecObj.push_back(new Obstaculo(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20,TObstaculoPiedra,"Pico"));
-			escribe("ObsPiedra", centroRel.x + 35, centroRel.y - 20);
+			escribe("ObsPiedra", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
 		case 'r': //Obstaculo Nieve
 			
 			break;
 		case 'y': //Escondite
 			vecObj.push_back(new Escondite(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y +45));
-			escribe("Escondite", centroRel.x + 20, centroRel.y +45);
+			escribe("Escondite", centroRel.x + 20, centroRel.y + 45, archivoObj);
 			break;
 		case 'u': //Piedra
 			vecObj.push_back(new Piedra(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
-			escribe("Piedra", centroRel.x + 20, centroRel.y + 50);
+			escribe("Piedra", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'z': //Madera
 			vecObj.push_back(new Madera(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
-			escribe("Madera", centroRel.x + 20, centroRel.y + 50);
+			escribe("Madera", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'o': //Hueso
 			vecObj.push_back(new Hueso(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
-			escribe("Hueso", centroRel.x + 20, centroRel.y + 50);
+			escribe("Hueso", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'p': //Enredadera
 			vecObj.push_back(new Enredadera(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
-			escribe("Enredadera", centroRel.x + 20, centroRel.y + 50);
+			escribe("Enredadera", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'c': //Cebo
 			vecObj.push_back(new Cebo(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
-			escribe("Cebo", centroRel.x + 20, centroRel.y + 50);
+			escribe("Cebo", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'x': //Yesca
 			vecObj.push_back(new Yesca(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
-			escribe("Yesca", centroRel.x + 20, centroRel.y + 50);
+			escribe("Yesca", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'n': //Carroña
 			vecObj.push_back(new Carroña(pJuego, pCazador->getRect().x + 40, pCazador->getRect().y +20));
-			escribe("Carroña", centroRel.x + 40, centroRel.y + 20);
+			escribe("Carroña", centroRel.x + 40, centroRel.y + 20, archivoObj);
 			break;
 		case 'g': //Trampa Cerrada
 			vecObj.push_back(new TrampaCerrada(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50));
-			escribe("TrampaCerrada", centroRel.x + 20, centroRel.y + 50);
+			escribe("TrampaCerrada", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'h': //Huella Arriba Hombre
 			huellasCamino.push_back(new HuellasCamino(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50, "HS"));
-			escribe("HS", centroRel.x + 20, centroRel.y + 50);
+			escribe("HS", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'j': //Huella Abajo Hombre
 			huellasCamino.push_back(new HuellasCamino(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50, "HI"));
-			escribe("HI", centroRel.x + 20, centroRel.y + 50);
+			escribe("HI", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'k': //Huella Arriba Lobo
 			huellasCamino.push_back(new HuellasCamino(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50, "LS"));
-			escribe("LS", centroRel.x + 20, centroRel.y + 50);
+			escribe("LS", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'l': //Huella Abajo Lobo
 			huellasCamino.push_back(new HuellasCamino(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y + 50, "LI"));
-			escribe("LI", centroRel.x + 20, centroRel.y + 50);
+			escribe("LI", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'v': //Lobo
 			vecObj.push_back(new Lobo(pJuego, pCazador,pRecolector, pCazador->getRect().x + 30, pCazador->getRect().y + 30));
-			escribe("Lobo", centroRel.x + 30, centroRel.y + 30);
+			escribe("Lobo", centroRel.x + 30, centroRel.y + 30, archivoObj);
 			break;
 		case '1':
 			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x +45, pCazador->getRect().y - 20, "A"));
-			escribe("Valla", centroRel.x + 45, centroRel.y - 20);
+			escribe("Valla", centroRel.x + 45, centroRel.y - 20, archivoObj);
 			break;
 		case '2':
 			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x + 45, pCazador->getRect().y - 20, "D"));
-			escribe("Valla2", centroRel.x + 45, centroRel.y - 20);
+			escribe("Valla2", centroRel.x + 45, centroRel.y - 20, archivoObj);
 			break;
 		case 's':
 			 mode = Play;

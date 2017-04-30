@@ -36,6 +36,7 @@ public:
 	virtual void callback(){};
 
 protected:
+	std::string archivoObj;
 	std::vector<HuellasCamino*> huellasCamino;
 	Mode mode;
 	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;

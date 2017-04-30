@@ -33,7 +33,7 @@ void MenuPrincipal::update(){
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();
 			Punto rec; rec.x = 6912; rec.y = 10286; Punto caz; caz.x = 0; caz.y = 0;
-			getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetos.txt", rec, caz));
+			getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));
 			//getPJuego()->estados.push(new Nivel1(getPJuego(), "../docs/mapa1.txt", "../docs/objetos.txt", rec, caz, "C"));
 			delete borrar;
 		}
