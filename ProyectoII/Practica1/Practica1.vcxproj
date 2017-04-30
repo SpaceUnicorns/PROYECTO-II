@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Arbol.cpp" />
+    <ClCompile Include="AtaqueZ.cpp" />
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="Cazador.cpp" />
@@ -119,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arbol.h" />
+    <ClInclude Include="AtaqueZ.h" />
     <ClInclude Include="Attack.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="Cazador.h" />
