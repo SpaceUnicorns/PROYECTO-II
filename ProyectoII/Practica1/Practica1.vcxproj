@@ -129,6 +129,7 @@
     <ClCompile Include="TrampaCerrada.cpp" />
     <ClCompile Include="Trucos.cpp" />
     <ClCompile Include="Tutorial.cpp" />
+    <ClCompile Include="Valla.cpp" />
     <ClCompile Include="Yesca.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +192,7 @@
     <ClInclude Include="TrampaCerrada.h" />
     <ClInclude Include="Trucos.h" />
     <ClInclude Include="Tutorial.h" />
+    <ClInclude Include="Valla.h" />
     <ClInclude Include="Yesca.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

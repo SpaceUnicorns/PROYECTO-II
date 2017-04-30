@@ -24,6 +24,7 @@
 #include "Escondite.h"
 #include "Obstaculo.h"
 #include "Carroña.h"
+#include "Valla.h"
 
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
@@ -56,8 +57,8 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 		vecObj.push_back(pRecolector);
 	}
 
-	centroRel.x = camara.x + (camara.w / 4);
-	centroRel.y = camara.y + (camara.h / 4);
+	centroRel.x = camara.x + (camara.w / 2);
+	centroRel.y = camara.y + (camara.h / 2);
 	if (act == "C"){
 		camara.x = (posCaz.x - (camara.w / 2));
 		camara.y = (posCaz.y - (camara.h / 2));
@@ -360,8 +361,15 @@ void Nivel1::onKeyUp(char k) {
 			vecObj.push_back(new Lobo(pJuego, pCazador,pRecolector, pCazador->getRect().x + 30, pCazador->getRect().y + 30));
 			escribe("Lobo", centroRel.x + 30, centroRel.y + 30);
 			break;
+		case '1':
+			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x +45, pCazador->getRect().y - 20, "A"));
+			escribe("Valla", centroRel.x + 45, centroRel.y - 20);
+			break;
+		case '2':
+			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x + 45, pCazador->getRect().y - 20, "D"));
+			escribe("Valla2", centroRel.x + 45, centroRel.y - 20);
+			break;
 		case 's':
-			
 			 mode = Play;
 			reproduceFx("AbreMenu", -100, 0, 0);
 			pJuego->estados.push(new Pausa(pJuego, this, contPuntos));
@@ -406,6 +414,8 @@ void Nivel1::cargaObj(std:: string name){
 			else if (type == "HI")huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "HI"));
 			else if (type == "LS") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "LS"));
 			else if (type == "LI") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "LI"));
+			else if (type == "Valla") vecObj.push_back(new Valla(pJuego, pos.x, pos.y, "A"));
+			else if (type == "Valla2")vecObj.push_back(new Valla(pJuego, pos.x, pos.y, "D"));
 
 		}
 	}

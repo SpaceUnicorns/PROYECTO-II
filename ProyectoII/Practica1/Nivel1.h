@@ -31,6 +31,9 @@ public:
 	void drawEquipo();
 	GrafoMapa* getGrafoMapa() { return mapa; }
 	void setMode(int m){ mode = (Mode)m; }
+	void fadeOut(int time);
+	void fadeIn(int time);
+	virtual void callback(){};
 
 protected:
 	std::vector<HuellasCamino*> huellasCamino;
@@ -46,8 +49,6 @@ protected:
 	void swPlayer();	
 	void onKeyUp(char k);
 	void cargaObj(std:: string name);
-	void fadeOut(int time);
-	void fadeIn(int time);
 
 	GrafoMapa* mapa;
 
