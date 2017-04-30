@@ -1,32 +1,5 @@
 #include "Tutorial.h"
-#include "Trigger.h"
-#include "TextCb.h"
-class changeScene :
-	public Componente
-{
-public:
-	changeScene(ObjetoJuego* ent, Nivel1* aux) : Componente(ent){ 
-		reacciona = false; 
-		pObj = dynamic_cast<Trigger*>(ent);
-		this->aux = aux;
-	};
-	virtual ~changeScene(){};
-	virtual void callback();
-	virtual void update(){};
-	virtual void draw(){};
-
-private:
-	bool reacciona;
-	Trigger* pObj;
-	Nivel1* aux;
-};
-
-void changeScene::callback(){
-	if (!reacciona){
-		aux->callback();
-	}
-	reacciona = true;
-}
+#include "Tutorial2.h"
 
 Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz) : Nivel1(jug,map,objetos,posRec, posCaz, "R")
 {
@@ -58,8 +31,8 @@ void Tutorial::update(){
 		Nivel1::fadeOut(40);
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();
-		Punto caz; caz.x = 6925; caz.y = 8930; Punto rec; rec.x = 6970; rec.y = 8930;
-		pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetos.txt", rec, caz, "R"));
+		Punto rec; rec.x = 0; rec.y = 0; Punto caz; caz.x = 6912; caz.y = 10286;
+		pJuego->estados.push(new Tutorial2(pJuego, "../docs/mapa1.txt", "../docs/objetos.txt", rec, caz));
 		delete borrar;
 	}
 }
