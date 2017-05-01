@@ -35,6 +35,10 @@ public:
 	void fadeIn(int time);
 	virtual void callback(){};
 
+	bool visible; 
+	void swVisible(){
+		visible = !visible;
+	}
 protected:
 	std::string archivoObj;
 	std::vector<HuellasCamino*> huellasCamino;

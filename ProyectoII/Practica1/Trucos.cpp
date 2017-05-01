@@ -91,6 +91,13 @@ void Trucos::desbloquea(){
 		level->setMode(1);
 
 	}
+	else if (codigo == "12121"){
+		std::cout << "CORRECTO!\n";
+		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
+		codigo = "";
+		renderCodigo = " ";
+		level->swVisible();
+	}
 	else {
 		std::cout << "INCORRECTO!\n";
 		reproduceFx("NoDisponible", -100, 0, 0);

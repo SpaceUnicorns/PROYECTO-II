@@ -1,5 +1,5 @@
 #include "Trigger.h"
-
+#include "Nivel1.h"
 
 Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR) : ObjetoPG(juego, px, py)
 {
@@ -9,6 +9,7 @@ Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR)
 	tgCazador = tgC;
 	tgRecolector = tgR;
 	triggered = reacciona = false;
+
 }
 
 
@@ -16,6 +17,7 @@ Trigger::~Trigger()
 {
 }
 void Trigger::update(){
+
 	if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w) 
 		&& tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)){
 			if(!reacciona) cb->callback();
@@ -35,7 +37,7 @@ void Trigger::draw(){
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());
 	rect.x -= aux.x;
 	rect.y -= aux.y;
-	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
+	if (dynamic_cast<Nivel1*>(pJuego->estados.top())->visible)pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
 void Trigger::lateDraw(){
 	

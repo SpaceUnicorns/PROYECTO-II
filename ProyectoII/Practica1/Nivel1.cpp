@@ -29,7 +29,7 @@
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
 	mode = Play;
-
+	visible = false;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
