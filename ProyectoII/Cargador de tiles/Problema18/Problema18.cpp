@@ -191,16 +191,22 @@ int leeTile(std::vector<std::vector<int>>& map)
 	case '2':
 		return 1100;
 		break;
+	case '3':		// Tile Vacio
+		return 1220;
+		break;
+	case '4':
+		return 1120;// Desn Esq Inv NW
+		break;
 	case '7':		// Cabaña con objetos
 		return 1140;
 		break;
 	case '8':		// Cabaña vacía
 		return 1160;
 		break;
-	case '9':		//Bosque Esq SW NE
+	case '9':		// Bosque Esq SW NE
 		return 1180;
 		break;
-	case '0':		//Bosque Esq NW SE
+	case '0':		// Bosque Esq NW SE
 		return 1200;
 		break;
 	}
@@ -358,7 +364,7 @@ bool resuelveCaso(std::ofstream& f) {
 	int ancho, alto;
 	std::cout << "ResuelveCaso\n";
 	//ALTURA / ANCHURA TILES GRANDES
-	alto = 1;
+	alto = 10;
 	ancho = 3;
 	std::vector<int> aux(ancho);
 	std::vector<std::vector<int>> mapa (alto);
