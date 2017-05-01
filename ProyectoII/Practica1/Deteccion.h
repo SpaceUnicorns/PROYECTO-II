@@ -18,6 +18,17 @@ public:
 	void setVista(int dir);
 	void preparaAtaque(int target/*0 caz 1 rec*/);
 private:
+
+	//Comportamientos
+	virtual void quieto();
+	virtual void movimiento();
+	virtual void atacando();
+	virtual void postAtaque();
+	virtual void atrapado();
+	virtual void herido();
+	virtual void muerto();
+	virtual void volviendo();
+
 	Enemigo* enemy;
 	TrianguloBorde vista;
 	float radio;

@@ -9,7 +9,7 @@ TrampaAbierta::TrampaAbierta(juegoPG * juego, int px, int py) : ObjetoPG(juego, 
 	rect.h = 30;
 	activo = true;
 	nombre[0] = "1";
-	nombre.push_back("TrampAbierta");
+	nombre.push_back("Trampa");
 	SDL_Rect colision = { rect.x, rect.y + 10, 50, 10 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");
 	newComponente(new TrampaComponente(this), "TrampaComponente");

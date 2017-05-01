@@ -92,11 +92,13 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	reproduceFx("balloon", -100, 0, 0);
 	reproduceMusica("Galiakberova", false);
 
+
 	activePlayer = act;
 	if (activePlayer == "R"){
 		pCazador->swAble();
 		pRecolector->swAble();
 	}
+
 	
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");

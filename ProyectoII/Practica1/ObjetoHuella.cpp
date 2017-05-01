@@ -4,8 +4,10 @@
 ObjetoHuella::ObjetoHuella(int dir, int ind, Componente* comp, juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
 	et = THuella;
+
 	rect.w = 40;
 	rect.h = 75;
+
 	anim.h = 32;
 	anim.w = 32;
 	anim.x = anim.y = 0;

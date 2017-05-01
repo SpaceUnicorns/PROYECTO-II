@@ -15,7 +15,7 @@ public:
 	{
 		niveles.push_back(0);
 		nivelAct = aux = 0;
-		pather = new micropather::MicroPather(this, 600);	// Use a very small memory block to stress the pather
+		pather = new micropather::MicroPather(this, 1000);	// Use a very small memory block to stress the pather
 	}
 	int dameAltura(){ return niveles.size(); }
 	int dameAnchura(){ return niveles[0]; }
@@ -255,7 +255,7 @@ public:
 			case 0:
 				if (y > 1){
 					if (mapa[(y -2)*niveles[0] + x] == 'X')
-						nodeCost = { XYToNode(x, y - 2), 999 };
+						nodeCost = { XYToNode(x, y - 2), 99 };
 					else
 						nodeCost = { XYToNode(x, y - 2), 0.1f };
 					adjacent->push_back(nodeCost);
@@ -265,7 +265,7 @@ public:
 				if (y > 0 && x < niveles[0] - 1){
 					if (y % 2 != 0 || y == 0){
 						if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
-							nodeCost = { XYToNode(x + 1, y - 1), 999 };
+							nodeCost = { XYToNode(x + 1, y - 1), 99 };
 						else
 							nodeCost = { XYToNode(x + 1, y - 1), 0.1f };
 						adjacent->push_back(nodeCost);
@@ -273,7 +273,7 @@ public:
 					else {
 						if (y > 0){
 							if (mapa[(y - 1)*niveles[0] + x] == 'X')
-								nodeCost = { XYToNode(x, y - 1), 999 };
+								nodeCost = { XYToNode(x, y - 1), 99 };
 							else
 								nodeCost = { XYToNode(x, y - 1), 0.1f };
 						adjacent->push_back(nodeCost);
@@ -284,25 +284,25 @@ public:
 			case 2:
 				if (x < niveles[0] - 1){
 					if (mapa[(y)*niveles[0] + x + 1] == 'X')
-						nodeCost = { XYToNode(x + 1, y), 999 };
+						nodeCost = { XYToNode(x + 1, y), 99 };
 					else
 						nodeCost = { XYToNode(x + 1, y), 0.1f };
 					adjacent->push_back(nodeCost);
 				}
 				break;
 			case 3:
-				if (y < niveles.size() - 1 && x < niveles[0] - 1){
+				if (y < niveles.size() - 2 && x < niveles[0] - 1){
 					if (y % 2 != 0 || y == 0){
 						if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
-							nodeCost = { XYToNode(x + 1, y + 1), 999 };
+							nodeCost = { XYToNode(x + 1, y + 1), 99 };
 						else
 							nodeCost = { XYToNode(x + 1, y + 1), 0.1f };
 						adjacent->push_back(nodeCost);
 					}
 					else{
-						if (y < niveles.size() - 1){
+						if (y < niveles.size() - 2){
 							if (mapa[(y + 1)*niveles[0] + x] == 'X')
-								nodeCost = { XYToNode(x, y + 1), 999 };
+								nodeCost = { XYToNode(x, y + 1), 99 };
 							else
 								nodeCost = { XYToNode(x, y + 1), 0.1f };
 							adjacent->push_back(nodeCost);
@@ -313,25 +313,25 @@ public:
 			case 4:
 				if (y < niveles.size() - 3){
 					if (mapa[(y + 2)*niveles[0] + x] == 'X')
-						nodeCost = { XYToNode(x, y + 2), 999 };
+						nodeCost = { XYToNode(x, y + 2), 99 };
 					else
 						nodeCost = { XYToNode(x, y + 2), 0.1f };
 					adjacent->push_back(nodeCost);
 				}
 				break;
 			case 5:
-				if (y < niveles.size() - 1){
+				if (y < niveles.size() - 2){
 					if (y % 2 != 0 || y == 0){
 						if (mapa[(y + 1)*niveles[0] + x] == 'X')
-							nodeCost = { XYToNode(x, y + 1), 999 };
+							nodeCost = { XYToNode(x, y + 1), 99 };
 						else
 							nodeCost = { XYToNode(x, y + 1), 0.1f };
 						adjacent->push_back(nodeCost);
 					}
 					else {
-						if (y < niveles.size() - 1 && x > 0){
+						if (y < niveles.size() - 2 && x > 0){
 							if (mapa[(y + 1)*niveles[0] + x] == 'X')
-								nodeCost = { XYToNode(x - 1, y + 1), 999 };
+								nodeCost = { XYToNode(x - 1, y + 1), 99 };
 							else
 								nodeCost = { XYToNode(x - 1, y + 1), 0.1f };
 							adjacent->push_back(nodeCost);
@@ -342,7 +342,7 @@ public:
 			case 6:
 				if (x > 0){
 					if (mapa[(y)*niveles[0] + x - 1] == 'X')
-						nodeCost = { XYToNode(x - 1, y), 999 };
+						nodeCost = { XYToNode(x - 1, y), 99 };
 					else
 						nodeCost = { XYToNode(x - 1, y), 0.1f };
 					adjacent->push_back(nodeCost);
@@ -352,7 +352,7 @@ public:
 				if (y > 0){
 					if (y % 2 != 0 || y == 0){
 						if (mapa[(y - 1)*niveles[0] + x] == 'X')
-							nodeCost = { XYToNode(x, y - 1), 999 };
+							nodeCost = { XYToNode(x, y - 1), 99 };
 						else
 							nodeCost = { XYToNode(x, y - 1), 0.1f };
 						adjacent->push_back(nodeCost);
@@ -360,7 +360,7 @@ public:
 					else{
 						if (y > 0 && x > 0){
 							if (mapa[(y - 1)*niveles[0] + x - 1] == 'X')
-								nodeCost = { XYToNode(x - 1, y - 1), 999 };
+								nodeCost = { XYToNode(x - 1, y - 1), 99 };
 							else
 								nodeCost = { XYToNode(x - 1, y - 1), 0.1f };
 							adjacent->push_back(nodeCost);

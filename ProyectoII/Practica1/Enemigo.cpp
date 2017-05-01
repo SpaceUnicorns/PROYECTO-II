@@ -12,6 +12,8 @@ cazador(hunter), recolector(collector), estado(EstadoEnemigo::Quieto)
 	dameUnHogar();
 	followEnem = nullptr;
 	following = false;
+	nombre.push_back("Enemigo");
+	contFollow = 0;
 }
 
 void Enemigo::dameUnHogar() {
@@ -34,8 +36,13 @@ void Enemigo::draw() {
 }
 void Enemigo::lateUpdate()
 {
-	if (following){
+	contFollow++;
+	if (contFollow >= 50 && following && estado != Atrapado && estado != Muerto){
 		followEnem->doFollow();
+		contFollow = 0;
+	}
+	else if (following && estado != Atrapado && estado != Muerto)
+	{
 		followEnem->lateUpdate();
 	}
 }
@@ -50,7 +57,11 @@ void Enemigo::activaFollow() {
 }
 
 void Enemigo::desactivaFollow() {
-	if (estado != EstadoEnemigo::Atrapado){
+	if (estado == Atrapado || estado == Muerto){
+			followEnem->clearFollow();
+			following = false;
+		}
+	else {
 		if (!encuentraComponente("follow")) {
 			newComponente(new follow(this, casita, dynamic_cast<Nivel1*>(pJuego->getEstadoActual())->getGrafoMapa(), false), "follow");
 			followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
@@ -59,8 +70,7 @@ void Enemigo::desactivaFollow() {
 		followEnem->setTarget(casita);
 		following = true;
 	}
-	else
-		followEnem->clearFollow();
+
 }
 
 void Enemigo::followThis(ObjetoPG* target) {

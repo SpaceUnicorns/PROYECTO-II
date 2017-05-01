@@ -16,9 +16,11 @@ Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py
 	newComponente(new ColisionBox(this), "ColisionBox");//Meter primero este componente
 	newComponente(new MovimientoP(this), "MovimientoP");
 	newComponente(new Mochila(this), "Mochila");
+
 	newComponente(new Huella(this,40,70), "Huella");
 	anim.w = 283.5;
 	anim.h = 609.5; 
+
 	anim.x = anim.y = 0;
 	pintado = false;
 	activo = false;

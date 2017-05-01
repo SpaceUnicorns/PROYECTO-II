@@ -380,6 +380,71 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 	while (!f.eof() && !f.fail()){
 		f >> tile;
 		if (!f.fail()){
+
+			if (tile == 20 || tile == 80|| tile == 160 || tile == 180 || tile == 240 || tile == 300 || tile == 320){
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
+				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 306; auxPunto.y = y + 124; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				auxPunto.x = x + 244; auxPunto.y = y + 93; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+			}
+
+			if (tile == 100 || tile == 180 || tile == 220 || tile == 240 || tile == 260 ||tile == 320){
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x - 183; auxPunto.y = y + 124; auxBorde.A = auxPunto;
+				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 122; auxPunto.y = y + 31; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				auxPunto.x = x - 122; auxPunto.y = y + 155; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+			}
+			if (tile == 120 || tile == 200 || tile == 220 || tile == 260 || tile == 300 || tile == 320){
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x - 183; auxPunto.y = y + 124; auxBorde.A = auxPunto;
+				auxPunto.x = x - 122; auxPunto.y = y + 93; auxBorde.B = auxPunto;
+				auxPunto.x = x + 122; auxPunto.y = y + 217; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				auxPunto.x = x + 61; auxPunto.y = y + 248; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+			}
+
+			if (tile == 140 || tile == 160 || tile == 200 || tile == 240 || tile == 260 || tile == 300 || tile == 320){
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x; auxPunto.y = y + 217; auxBorde.A = auxPunto;
+				auxPunto.x = x + 244; auxPunto.y = y + 93; auxBorde.B = auxPunto;
+				auxPunto.x = x + 305; auxPunto.y = y + 124; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				auxPunto.x = x + 61; auxPunto.y = y + 248; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+			}
+			if (tile == 440 || tile == 460 || tile == 480 || tile == 500 || tile == 520 || tile == 540 || tile == 560 || tile == 580 || tile == 700 || 
+				tile == 720 || tile == 740 || tile == 760 || tile == 780 || tile == 800 || tile == 840 || tile == 860 || tile == 880 || tile == 900 ||
+				tile == 920 || tile == 940 || tile == 960 || tile == 980 || tile == 1000){
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x -183; auxPunto.y = y + 124; auxBorde.A = auxPunto;
+				auxPunto.x = x + 61; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 305; auxPunto.y = y + 124; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+				auxPunto.x = x + 61; auxPunto.y = y + 248; auxBorde.B = auxPunto;
+				vectBordes.push_back(auxBorde);
+			}
+
+			if (tile == 1020){
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x - 61; auxPunto.y = y + 186; auxBorde.A = auxPunto;
+				auxPunto.x = x + 61; auxPunto.y = y + 124; auxBorde.B = auxPunto;
+				auxPunto.x = x + 183; auxPunto.y = y + 186; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+			}
+
 			if (tile == 0 
 /*b*/			|| tile == 20 || tile == 22 || tile == 25 || tile == 29 
 /*c*/			|| tile == 40 || tile == 42 || tile == 44 || tile == 45 || tile == 48 || tile == 49 || tile == 52 || tile == 54 || tile == 55
@@ -408,10 +473,10 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 /*B*/			|| tile == 560 || tile == 561 || tile == 562 || tile == 563 || tile == 564 || tile == 565 || tile == 567 || tile == 568 || tile == 571
 				|| tile == 582 || tile == 584 || tile == 585 || tile == 587 || tile == 588 || tile == 589 || tile == 591 || tile == 592 || tile == 594
 				|| tile == 600 || tile == 601 || tile == 602 || tile == 603 || tile == 604 || tile == 605 || tile == 606 || tile == 607 || tile == 608 || tile == 610 || tile == 611 || tile == 612 || tile == 613 || tile == 614 || tile == 615
-				|| tile == 621 || tile == 622 || tile == 623 || tile == 624 || tile == 625 || tile == 626 || tile == 627 || tile == 628 || tile == 629 || tile == 630 || tile == 631 || tile == 632 || tile == 633 || tile == 634 || tile == 635
+/*E*/			|| tile == 620 || tile == 621 || tile == 622 || tile == 623 || tile == 624 || tile == 625 || tile == 626 || tile == 627 || tile == 628 || tile == 629 || tile == 630 || tile == 631 || tile == 632 || tile == 633 || tile == 634 || tile == 635
 				|| tile == 640 || tile == 641 || tile == 642 || tile == 643 || tile == 644
 				|| tile == 660 || tile == 661 || tile == 662 || tile == 663 || tile == 664 || tile == 665 || tile == 667 || tile == 675
-				|| tile == 680 || tile == 681 || tile == 682 || tile == 683 || tile == 684 || tile == 685 || tile == 686 || tile == 687 || tile == 688 || tile == 689 || tile == 690 || tile == 691 || tile == 692 || tile == 693 || tile == 694 || tile == 695
+/*H*/			|| tile == 680 || tile == 681 || tile == 682 || tile == 683 || tile == 684 || tile == 685 || tile == 686 || tile == 687 || tile == 688 || tile == 689 || tile == 690 || tile == 691 || tile == 692 || tile == 693 || tile == 694 || tile == 695
 				|| tile == 701 || tile == 703 || tile == 704 || tile == 706 || tile == 707 || tile == 708 || tile == 710 || tile == 711 || tile == 713 || tile == 714 || tile == 715
 				|| tile == 720 || tile == 721 || tile == 722 || tile == 723 || tile == 724 || tile == 725 || tile == 727 || tile == 728 || tile == 729 || tile == 731 || tile == 732 || tile == 734
 /*K*/			|| tile == 742 || tile == 744 || tile == 745 || tile == 747 || tile == 748 || tile == 749 || tile == 750 || tile == 751 || tile == 752 || tile == 753 || tile == 754 || tile == 755
@@ -429,23 +494,12 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				|| tile == 1004 || tile == 1007 || tile == 1008 || tile == 1010 || tile == 1011 || tile == 1012 || tile == 1013 || tile == 1014
 /*X*/			|| tile == 1024 || tile == 1027 || tile == 1028 || tile == 1030 || tile == 1032
 /*6*/			|| tile == 821 || tile == 823 || tile == 824 || tile == 826 || tile == 827 || tile == 828 || tile == 830 || tile == 831 || tile == 833){
-				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
-				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
-				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
-				auxPunto.x = x + 62; auxPunto.y = y; auxBorde.B = auxPunto;
-				auxPunto.x = x + 122; auxPunto.y = y + 32; auxBorde.C = auxPunto;
-				vectBordes.push_back(auxBorde);
-				auxPunto.x = x + 62; auxPunto.y = y + 62; auxBorde.B = auxPunto;
-				vectBordes.push_back(auxBorde);
-				//Con estas líneas se muestra en pantalla el sprite de los colliders de los bordes del mapa
-				/*rectAux.x = 244; aux2.rectTileset = rectAux;
-				aux2.x = x; aux2.y = y; aux2.capa = 1;
-				vecTile.push_back(aux2); */
+
 				mapa.push_back('X');
 			}
 			else if (tile == 999) mapa.push_back('L');
 			else mapa.push_back('s');
-			//std::cout << x << "\n";
+			
 			switch (tile){
 			case 0:
 				x += 122;
