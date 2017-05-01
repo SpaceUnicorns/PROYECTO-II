@@ -39,7 +39,7 @@ TextCb::TextCb(ObjetoJuego* ent, std:: string s) : Componente(ent)
 	colorLyov.r = 51; colorLyov.g = 102; colorLyov.b = 0;
 	colorZenia.r = 247; colorZenia.g = 25; colorZenia.b = 25;
 	if (aux[0].length() > 15) delay = 250;
-	else delay = 150;
+	else delay = 100;
 	
 }
 
@@ -56,7 +56,7 @@ void TextCb::draw(){
 			active = "Z";
 		if (cont2 < aux[cont].length()){
 			timer2++;
-			if (timer2 > 5){
+			if (timer2 > 3){
 			frase += aux[cont][cont2];
 			font.w += 15;
 			cont2++;
@@ -82,8 +82,8 @@ void TextCb::update(){
 			cont2 = 1;
 			cont++; timer = 0;
 			font.w = 50;
-			if (aux[0].length() > 15) delay = 250;
-			else delay = 150;
+			if (aux[0].length() > 15) delay = 200;
+			else delay = 100;
 		}
 	}
 	else {
