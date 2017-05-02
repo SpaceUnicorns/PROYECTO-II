@@ -20,6 +20,11 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
 
+	auxTr = new Trigger(pJuego, 8450, 9500, pCazador, pRecolector); //Cómo repartir
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Zhenia.txt"));
+	auxTr->setTriggerDim(250, 250);
+	vecTriggers.push_back(auxTr);
+
 	auxTr = new Trigger(pJuego, 6950, 9202, pCazador, pRecolector);
 	auxTr->setCallback(new changeScene(auxTr, this));
 	auxTr->setTriggerDim(100, 800);

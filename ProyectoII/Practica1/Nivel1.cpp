@@ -29,7 +29,7 @@
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = false;
+	visible = true;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -69,7 +69,6 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 		camara.x = (posRec.x - (camara.w / 2));
 		camara.y = (posRec.y - (camara.h / 2));
 	}
-
 
 	Trigger *auxTr; auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
