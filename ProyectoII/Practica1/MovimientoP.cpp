@@ -6,6 +6,7 @@
 #include "Mochila.h"
 #include "Cazador.h"
 #include "TrampaAbierta.h"
+#include "AtaqueZ.h"
 
 
 MovimientoP::MovimientoP(ObjetoJuego* ent) : Componente(ent)
@@ -44,6 +45,11 @@ void MovimientoP::update(){
 				//std::cout << "He cogido una " << info->nombre << "\n";
 			}
 		}
+		else if (dynamic_cast<Cazador*>(pObj)) {
+			if (pObj->getPJuego()->input.e) {
+				pObj->getPJuego()->input.e = false;
+				static_cast<AtaqueZ*> (pObj->dameComponente("AttackBox"))->setAttack();
+			}
 	}
 	
 
