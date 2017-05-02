@@ -269,7 +269,7 @@ void Nivel1::swPlayer(){
 }
 void escribe(std::string s, int x, int y, std:: string name){
 	std::ofstream f;
-	f.open("../docs/"+name+".txt",  ios::app);
+	f.open("../docs/"+name,  ios::app);
 	f << s << " , " << std::to_string(x) << " , " << std::to_string(y) << "\n";
 	f.close();
 }
