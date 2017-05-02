@@ -50,10 +50,14 @@ TextCb::~TextCb()
 }
 void TextCb::draw(){
 	if (reacciona && firstTime == 0){
-		if (aux[cont][0] == 'L')
+		if (aux[cont][0] == 'L'){
 			active = "L";
-		else if (aux[cont][0] == 'Z')
+		}
+		else if (aux[cont][0] == 'Z'){
 			active = "Z";
+		}
+		if (active == "Z" && timer == 1) pObj->getPJuego()->getEstadoActual()->reproduceFx("ZheniaHabla", pObj->getCausante("Cazador")->getRect().x, pObj->getCausante("Cazador")->getRect().y, 0);
+		else if (active == "L"&& timer == 1)pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla", pObj->getCausante("Recolector")->getRect().x, pObj->getCausante("Recolector")->getRect().y, 0);
 		if (cont2 < aux[cont].length()){
 			timer2++;
 			if (timer2 > 5){

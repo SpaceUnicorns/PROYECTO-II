@@ -6,7 +6,7 @@ Deteccion::Deteccion(ObjetoJuego* entidad, float radio) :Componente(entidad), ra
 	enemy = dynamic_cast<Enemigo*>(entidad);
 	activo = true;
 	detectado = false;
-	cont = 0;
+	cont = contPasos = 0;
 	dirAtaque = 2;
 	vista.A.x = enemy->getAbsRect().x; vista.A.y = enemy->getAbsRect().y;
 	vista.B.x = vista.A.x + 300;  vista.B.y = enemy->getAbsRect().y - 200;
@@ -33,7 +33,19 @@ void Deteccion::quieto(){
 				enemy->setAbsRect(-2, 0);
 				enemy->setRect(-2, 0);
 				dirAtaque = 6;
-
+				if (contPasos == 0)
+				{
+					int rnd = rand() % 4;
+					if (rnd == 0)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 1)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 2)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 3)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+				}
+				contPasos++;
 			}
 		}
 		else if (vagar == 2){
@@ -42,6 +54,19 @@ void Deteccion::quieto(){
 				enemy->setAbsRect(2, 0);
 				enemy->setRect(2, 0);
 				dirAtaque = 2;
+				if (contPasos == 0)
+				{
+					int rnd = rand() % 4;
+					if (rnd == 0)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 1)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 2)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 3)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+				}
+				contPasos++;
 			}
 		}
 		else if (vagar == 3){
@@ -50,6 +75,19 @@ void Deteccion::quieto(){
 				enemy->setAbsRect(0, -1);
 				enemy->setRect(0, -1);
 				dirAtaque = 0;
+				if (contPasos == 0)
+				{
+					int rnd = rand() % 4;
+					if (rnd == 0)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 1)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 2)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 3)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+				}
+				contPasos++;
 			}
 		}
 		else if (vagar == 4) {
@@ -58,23 +96,48 @@ void Deteccion::quieto(){
 				enemy->setAbsRect(0, 1);
 				enemy->setRect(0, 1);
 				dirAtaque = 4;
+				if (contPasos == 0)
+				{
+					int rnd = rand() % 4;
+					if (rnd == 0)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 1)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 2)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
+					else if (rnd == 3)
+						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+				}
+				contPasos++;
 			}
 		}
+		if (contPasos >= 20)contPasos = 0;
 		contVagar++;
 		static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->setRectBox(enemy->getRect().x - 5, enemy->getRect().y + 40);
 		if (contVagar >= 150){ vagar = 0; contVagar = 0; }
 	}
-	if (cont > 150){
+	if (cont > 300){
 		rnd = (rand() % 11) + 80;
-		if (rnd >80 && rnd < 89){
+		if (rnd >=80 && rnd < 88){
 			direccionAux = nullptr;
-			if (rnd >80 && rnd <83){ if (enemy->getAbsRect().x > 150)vagar = 1; }
-			else if (rnd >82 && rnd <85){ vagar = 2; }
-			else if (rnd >84 && rnd <87){ if (enemy->getAbsRect().y > 150)vagar = 3; }
-			else if (rnd >86 && rnd < 89){ vagar = 4; }
+			if (rnd >=80 && rnd <82){ if (enemy->getAbsRect().x > 150)vagar = 1; }
+			else if (rnd >81 && rnd <84){ vagar = 2; }
+			else if (rnd >83 && rnd <86){ if (enemy->getAbsRect().y > 150)vagar = 3; }
+			else if (rnd >85 && rnd < 88){ vagar = 4; }
 		}
-		if (rnd >= 89){
-			//aulla
+		if (rnd >= 88){
+			float distRec;
+			recolectorIn(distRec);
+			float distCaz;
+			cazadorIn(distCaz);
+			if (distCaz < 2000 || distRec < 2000){
+				if (rnd == 88)
+					enemy->getPJuego()->getEstadoActual()->reproduceFx("Aullido1", enemy->getRect().x, enemy->getRect().y, 0);
+				else if (rnd == 89)
+					enemy->getPJuego()->getEstadoActual()->reproduceFx("Aullido2", enemy->getRect().x, enemy->getRect().y, 0);
+				else
+					enemy->getPJuego()->getEstadoActual()->reproduceFx("Aullido3", enemy->getRect().x, enemy->getRect().y, 0);
+			}
 		}
 		cont = 0;
 	}
@@ -160,6 +223,8 @@ void Deteccion::volviendo(){
 	}
 }
 void Deteccion::atacando(){
+	if (cont == 0)
+		enemy->getPJuego()->getEstadoActual()->reproduceFx("Grunido", enemy->getRect().x, enemy->getRect().y, 0);
 	if (cont < 100)
 		cont++;
 	else { enemy->setEstado(PostAtaque); cont = 0; }
@@ -167,8 +232,8 @@ void Deteccion::atacando(){
 	{
 	case 4:
 		if (cont < 100){
-			enemy->setAbsRect(0, -1);
-			enemy->setRect(0, -1);
+			enemy->setAbsRect(0, -2);
+			enemy->setRect(0, -2);
 			ultAtaque = 0;
 		}
 		break;
@@ -195,8 +260,8 @@ void Deteccion::atacando(){
 		break;
 	case 0:
 		if (cont < 100){
-			enemy->setAbsRect(0, 1);
-			enemy->setRect(0, 1);
+			enemy->setAbsRect(0, 2);
+			enemy->setRect(0, 2);
 			ultAtaque = 4;
 		}
 		break;

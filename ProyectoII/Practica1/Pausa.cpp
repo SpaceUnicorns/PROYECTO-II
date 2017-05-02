@@ -64,34 +64,34 @@ void Pausa::update()
 	{
 	case (Resume) :
 		if (arriba) {
-			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
 			rect.y = aux + 93;
 			estado = Menu; //cambiar de estado
 		}
 		else if (abajo) {
-			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
 			rect.y = aux - 7;
 			estado = Opciones;
 		}
 		else if (enter) {
-			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			reproduceFx("OpcionMenuNormal", 0, 0, 0);
 			pJuego->input.enter = false;
 			pJuego->estados.pop();
 		}
 		break;
 	case (Opciones) :
 		if (arriba) {
-			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
 			rect.y = aux - 107;
 			estado = Resume;
 		}
 		else if (abajo) {
-				reproduceFx("SelOpcionNormal1", -100, 0, 0);
+				reproduceFx("SelOpcionNormal1", 0, 0, 0);
 				rect.y = aux + 93;
 				estado = Menu;
 		}
 		else if (enter) {
-			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			reproduceFx("OpcionMenuNormal", 0, 0, 0);
 			//push estado nuevo --> Opciones
 			pJuego->input.enter = false;
 			std::cout << "me voy a opciones --- en proceso de creacion ---\n";
@@ -101,17 +101,17 @@ void Pausa::update()
 
 	case (Menu) :
 		if (arriba) {
-			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
 			rect.y = aux - 7;
 			estado = Opciones;
 		}
 		else if (abajo) {
-			reproduceFx("SelOpcionNormal1", -100, 0, 0);
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
 			rect.y = aux - 107;
 			estado = Resume;
 		}
 		else if (enter) {
-			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			reproduceFx("OpcionMenuNormal", 0, 0, 0);
 			pJuego->input.enter = false;
 			EstadoJuego* borrar = pJuego->estados.top();
 			while( !pJuego->estados.empty()) pJuego->estados.pop();

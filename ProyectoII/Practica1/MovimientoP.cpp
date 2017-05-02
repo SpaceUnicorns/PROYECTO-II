@@ -16,6 +16,7 @@ MovimientoP::MovimientoP(ObjetoJuego* ent) : Componente(ent)
 	nextPos.x = nextPos.y = 0;
 	pCBox = static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"));
 	direccion = Default;
+	moviendose = false;
 }
 
 
@@ -30,9 +31,26 @@ void MovimientoP::update(){
 		pEstado = dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top());
 		//Antes de actualizar la posición comprobamos si colisiona con la posición siguiente.
 		info = nullptr;
-		if (framerate % 8 == 0) // se mueve 1 frame cada 16 ms x 16ms
+		if (framerate % 8 == 0 && moviendose) {// se mueve 1 frame cada 16 ms x 16ms
 			pObj->changeAnimH();
-
+			
+		}
+		if (moviendose && contPasos == 0)
+		{
+			int rnd = rand() % 4;
+			if (rnd == 0)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve", 0, 0, 0);
+			else if (rnd == 1) 
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve1", 0, 0, 0);
+			else if (rnd == 2)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve2", 0, 0, 0);
+			else if (rnd == 3)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve3", 0, 0, 0);
+		}
+		if (moviendose){ 
+			contPasos++; 
+			if (contPasos >= 20)contPasos = 0;
+		}
 		framerate++;
 
 		nextPos.x = nextPos.y = 0;
@@ -58,7 +76,7 @@ void MovimientoP::update(){
 				pObj->changeAnimV(3);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
-
+			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.dII){//Diagonal Abajo-Izquierda
 			nextPos.x = -2; nextPos.y = 1;
@@ -69,7 +87,7 @@ void MovimientoP::update(){
 				pObj->changeAnimV(7);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
-
+			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.dIS){//Diagonal Arriba-Izquierda
 			nextPos.x = -2; nextPos.y = -1;
@@ -80,7 +98,7 @@ void MovimientoP::update(){
 				pObj->changeAnimV(2);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
-
+			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.arriba){
 			nextPos.x = 0; nextPos.y = -2;
@@ -91,7 +109,7 @@ void MovimientoP::update(){
 				pEstado->setCamara(nextPos.x, nextPos.y);
 				pObj->changeAnimV(4);
 			}
-
+			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.derecha){
 			nextPos.x = 2; nextPos.y = 0;
@@ -102,7 +120,7 @@ void MovimientoP::update(){
 				pObj->changeAnimV(6);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
-
+			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.abajo){
 			nextPos.x = 0; nextPos.y = 2;
@@ -113,7 +131,7 @@ void MovimientoP::update(){
 				pObj->changeAnimV(5);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
-
+			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.izquierda){
 			nextPos.x = -2; nextPos.y = 0;
@@ -124,8 +142,9 @@ void MovimientoP::update(){
 				pObj->changeAnimV(1);
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
-
+			moviendose = true;
 		}
+		else moviendose = false;
 
 
 		//RECOLECTOR PUEDE COGER OBJETOS
@@ -136,7 +155,7 @@ void MovimientoP::update(){
 				if (pObj->getPJuego()->input.e) {
 					pObj->getPJuego()->input.e = false;
 					for (unsigned int i = 0; i + 1 < info->nombre.size(); i += 2){
-						pEstado->reproduceFx("RecogeItem1", -100, 0, 0);
+						pEstado->reproduceFx("RecogeItem1", 0, 0, 0);
 						mochilaAux->newItem(info->nombre[i + 1], atoi(info->nombre[i].c_str()));
 					}
 					pEstado->eraseVectObj(info);
@@ -144,8 +163,8 @@ void MovimientoP::update(){
 				}
 			}
 		}
-		else if (colAux == 3) pObj->esconderse();
-		else pObj->salirEscondite();
+		else if (colAux == 3) pObj->esconderse(); 
+		else pObj->salirEscondite(); 
 
 		if (pObj->getPJuego()->input.e) {
 			switch (direccion)

@@ -262,7 +262,7 @@ void MCrafteo::craftear(){
 			i += 2;
 		}
 		if (exito) {
-			reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
+			reproduceFx("OpcionMenuCrafteo", 0, 0, 0);
 			for (unsigned int i = 0; i + 1 < kek->receta.size(); i += 2) {
 				//std::cout << "Necesitas: " << kek->receta[i + 1] << "\n";
 				mochila->removeItem(kek->receta[i + 1], atoi(kek->receta[i].c_str())); //se eliminan los objetos de la mochila
@@ -293,11 +293,12 @@ void MCrafteo::onKeyUp(char k)
 			
 		if (menuState == Crafteo || menuState == Personaje){
 			remove("..//bmps//temp//screenshot.bmp");
+			reproduceFx("Cancelar", 0, 0, 0);
 			pJuego->estados.pop();
 			pJuego->estados.top()->awake();
 		}
 		else {
-			reproduceFx("Cancelar", -100, 0, 0);
+			reproduceFx("Cancelar", 0, 0, 0);
 			menuState = Personaje;
 			equipar = 0;
 			seleccion.x = niños.x;
@@ -307,7 +308,7 @@ void MCrafteo::onKeyUp(char k)
 		}
 		break;
 	case 'a':
-		reproduceFx("OpcionMenuNormal", -100, 0, 0);
+		reproduceFx("SelOpcionNormal1", 0, 0, 0);
 		if (menuState == Crafteo){
 			menuState = Personaje;
 			equipar = 0;
@@ -334,7 +335,7 @@ void MCrafteo::onKeyUp(char k)
 		}
 		break;
 	case 'b':
-		reproduceFx("OpcionMenuNormal", -100, 0, 0);
+		reproduceFx("SelOpcionNormal1", 0, 0, 0);
 		if (menuState == Crafteo){
 			menuState = Personaje;
 			equipar = 0;
@@ -365,13 +366,13 @@ void MCrafteo::onKeyUp(char k)
 		if (menuState == Crafteo){
 			std::string acu = std::to_string(rand() % 4);
 			std::string s = "SelOpcionCrafteo" + acu;
-			if (numPag < 5) reproduceFx(s, -100, 0, 0);
+			if (numPag < 5) reproduceFx(s, 0, 0, 0);
 			derecha = true;
 			acuD++;
 		}
 		else if (menuState == Personaje)
 		{
-			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
 			if (equipar == 0){
 				equipar = 1;
 				seleccion.x += 157;
@@ -382,7 +383,7 @@ void MCrafteo::onKeyUp(char k)
 			}
 		}
 		else if (menuState == Objeto){
-			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
 			if (objeto < 4 ) objeto += 1;
 			else objeto = 0;
 			seleccion.x = equipables[objeto].x - 5;
@@ -395,13 +396,13 @@ void MCrafteo::onKeyUp(char k)
 		if (menuState == Crafteo){
 			std::string acu = std::to_string(rand() % 4);
 			std::string s = "SelOpcionCrafteo" + acu;
-			if (numPag != 0) reproduceFx(s, -100, 0, 0);
+			if (numPag != 0) reproduceFx(s, 0, 0, 0);
 			izquierda = true;
 			acuI++;
 		}
 		else if (menuState == Personaje)
 		{
-			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
 			if (equipar == 0){
 				equipar = 1; 
 				seleccion.x += 157;
@@ -412,7 +413,7 @@ void MCrafteo::onKeyUp(char k)
 			}
 		}
 		else if (menuState == Objeto){
-			reproduceFx("OpcionMenuNormal", -100, 0, 0);
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
 			if (objeto > 0) objeto -= 1;
 			else objeto = 4;
 			seleccion.x = equipables[objeto].x - 5;
@@ -424,6 +425,7 @@ void MCrafteo::onKeyUp(char k)
 			craftear(); //PD se craftea con la tecla INTRO
 		}
 		else if (menuState == Personaje){
+			reproduceFx("OpcionMenuNormal", 0, 0, 0);
 			menuState = Objeto;
 			objeto = 0;
 			seleccion.x = equipables[objeto].x-5;
@@ -434,7 +436,7 @@ void MCrafteo::onKeyUp(char k)
 		else if (menuState == Objeto)
 		{
 			if (mochila->findItem(equipables[objeto].name)){
-				reproduceFx("RecogeItem1", -100, 0, 0);
+				reproduceFx("RecogeItem1", 0, 0, 0);
 				if (equipar == 1){
 					if (mochila->getCantidad(equipables[objeto].name) <= 1 && recolector->tieneEquipo(equipables[objeto].name)) recolector->setEquipo("Nada", 0);
 					cazador->setEquipo(equipables[objeto].name, mochila->getCantidad(equipables[objeto].name));
@@ -456,7 +458,7 @@ void MCrafteo::onKeyUp(char k)
 				seleccion.w = 117;
 				
 			}
-			else reproduceFx("NoDisponible", -100, 0, 0);
+			else reproduceFx("NoDisponible", 0, 0, 0);
 		}
 		break;
 

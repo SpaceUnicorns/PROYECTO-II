@@ -51,12 +51,16 @@ public:
 	std::vector<std::string> receta;
 	ObjetoPG(juegoPG * juego, int px, int py);
 	void esconderse(){
-			setAlpha(100);
-			detectable = false;
+		bool aux = detectable;
+		setAlpha(100);
+		detectable = false;
+		if (aux != detectable)pJuego->getEstadoActual()->reproduceFx("Maleza", 0, 0, 0);
 	}
 	void salirEscondite(){
+		bool aux = detectable;
 		setAlpha(255);
 		detectable = true;
+		if (aux != detectable)pJuego->getEstadoActual()->reproduceFx("Maleza", 0, 0, 0);
 	}
 protected: 
 	void setAlpha(int x){

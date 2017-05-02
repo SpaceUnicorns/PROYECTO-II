@@ -65,27 +65,28 @@ Nivel1::Nivel1(juegoPG*jug) : EstadoPG(jug, 0){
 	vecObj.push_back(new Arbol(pJuego, 1080, 195));
 	vecObj.push_back(new Arbol(pJuego, 480, 60));
 
-	vecObj.push_back(new Cebo(pJuego, 780, 100));
-	vecObj.push_back(new Cuerda(pJuego, 880, 100));
-	vecObj.push_back(new Enredadera(pJuego, 980, 100));
-	vecObj.push_back(new Hueso(pJuego, 880, 200));
-	vecObj.push_back(new Escondite(pJuego, 700, 500));
-	vecObj.push_back(new Obstaculo(pJuego, 600, 600, TObstaculoPiedra, "Pico"));
-	vecObj.push_back(new Madera(pJuego, 880, 300));
-	vecObj.push_back(new Piedra(pJuego, 980, 200));
-	vecObj.push_back(new TrampaCerrada(pJuego, 980, 300));
-	vecObj.push_back(new Yesca(pJuego, 1080, 100));
-	vecObj.push_back(new TrampaAbierta(pJuego, 1200, 400));
+	vecObj.push_back(new Cebo(pJuego, 780, 1000));
+	vecObj.push_back(new Cuerda(pJuego, 880, 1000));
+	vecObj.push_back(new Enredadera(pJuego, 980, 1000));
+	vecObj.push_back(new Hueso(pJuego, 880, 1600));
+	vecObj.push_back(new Escondite(pJuego, 700, 1000));
+	vecObj.push_back(new Obstaculo(pJuego, 600, 1000, TObstaculoPiedra, "Pico"));
+	vecObj.push_back(new Madera(pJuego, 880, 1000));
+	vecObj.push_back(new Piedra(pJuego, 980, 1000));
+	vecObj.push_back(new TrampaCerrada(pJuego, 980, 1200));
+	vecObj.push_back(new Yesca(pJuego, 1080, 1000));
+	vecObj.push_back(new TrampaAbierta(pJuego, 1200, 1400));
 
-	cargarAudio("../sounds/reverb/standrews.wav");
+	cargarAudio("../sounds/reverb/ReverbBosque.wav");
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
-	reproduceFx("balloon", -100, 0, 0);
-	reproduceMusica("Galiakberova", false);
+	reproduceMusica("Bosque", false);
+	reproduceAmb("Viento",false);
 
 	activePlayer = "C";
 
 	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 1050, 1200));
+	static_cast<ObjetoPG*>(vecObj[vecObj.size() - 1])->newComponente(new follow(vecObj[vecObj.size() - 1], pCazador, mapa, false), "follow");
 	
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
@@ -205,7 +206,7 @@ void Nivel1::drawEquipo(){
 void Nivel1::swPlayer(){
 	SDL_Rect aux;
 	Tile tile;
-	reproduceFx("CambioPersonaje", -100, 0, 0);
+	reproduceFx("CambioPersonaje", 0, 0, 0);
 	if (activePlayer == "C"){
 		pCazador->swAble();
 		camara.x = -1*(pCazador->getRect().x - pRecolector->getRect().x);
@@ -249,12 +250,12 @@ void Nivel1::swPlayer(){
 void Nivel1::onKeyUp(char k) {
 	switch (k) {
 	case 'q':
-		reproduceFx("AbreMenu", -100, 0, 0);
+		reproduceFx("AbreMenu", 0, 0, 0);
 		pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila")), 
 			static_cast<Equipo*>(pCazador->dameComponente("Equipo")), static_cast<Equipo*>(pRecolector->dameComponente("Equipo"))));
 		break;
 	case 's':
-		reproduceFx("AbreMenu", -100, 0, 0);
+		reproduceFx("AbreMenu", 0, 0, 0);
 		pJuego->estados.push(new Pausa(pJuego,this, contPuntos));
 		break;
 	case 't': pJuego->input.sw = true;

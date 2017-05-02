@@ -25,8 +25,10 @@ void Attack::update(){
 			std::string nombre = enemigo->getTarget()->nombre[1];
 			enemigo->getPJuego()->cambiaVida(-enemigo->damage);
 			std::cout << "\n\n\nLa vida de " << nombre << " ha disminuido " << enemigo->damage << " puntos de salud.\n\n";
-			if (nombre == "Zhenia"){/*fx daño zhenia*/}
-			else{/*fx daño Lyov*/}
+
+			enemigo->getPJuego()->getEstadoActual()->reproduceFx("Golpe", enemigo->getRect().x, enemigo->getRect().y, 0);
+			if (nombre == "Zhenia"){ enemigo->getPJuego()->getEstadoActual()->reproduceFx("ZheniaDano", enemigo->getRect().x, enemigo->getRect().y, 0); }
+			else{ enemigo->getPJuego()->getEstadoActual()->reproduceFx("LyovDano", enemigo->getRect().x, enemigo->getRect().y, 0); }
 		}
 	}
 	

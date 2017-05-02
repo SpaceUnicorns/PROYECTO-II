@@ -17,7 +17,8 @@ public:
 	ObjetoPG *pObj;
 private:
 	
-	int framerate = 0;
+	bool moviendose;
+	int framerate, contPasos = 0;
 	Punto nextPos; 
 	ColisionBox * pCBox;
 	EstadoPG* pEstado;

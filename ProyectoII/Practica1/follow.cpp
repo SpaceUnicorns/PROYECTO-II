@@ -9,7 +9,7 @@ follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m, bool aliado) : Comp
 	paso = 122;
 	following = false;
 	hitInfo = nullptr;
-	cont = 0;
+	cont = contPasos = 0;
 	map = m;
 	al = aliado;
 }
@@ -20,7 +20,7 @@ follow::~follow()
 }
 
 void follow:: update(){
-	if (pObj->getPJuego()->input.sw && al && pObj->isAble()){
+	if (pObj->getPJuego()->input.sw && al && !pObj->isAble()){
 		direccion.clear();
 		cont = 0;
 		path.clear();
@@ -103,7 +103,7 @@ void follow::doFollow()
 
 }
 void follow::lateUpdate(){
-	if (pObj->getPJuego()->input.follow && al){
+	if (pObj->getPJuego()->input.follow && al && !pObj->isAble()){
 		pObj->getPJuego()->input.follow = false;
 		doFollow();
 	}
@@ -138,7 +138,35 @@ void follow::lateUpdate(){
 		}
 	if (following)
 	{
-
+		if (direccion.size() != 0 && contPasos == 0)
+		{
+			int rnd = rand() % 4;
+			if (al){
+				if (rnd == 0)
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve", pObj->getRect().x, pObj->getRect().y, 0);
+				else if (rnd == 1)
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve1", pObj->getRect().x, pObj->getRect().y, 0);
+				else if (rnd == 2)
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve2", pObj->getRect().x, pObj->getRect().y, 0);
+				else if (rnd == 3)
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve3", pObj->getRect().x, pObj->getRect().y, 0);
+			}
+			else
+			{
+				if (rnd == 0)
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", pObj->getRect().x, pObj->getRect().y, 0);
+				else if (rnd == 1)
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", pObj->getRect().x, pObj->getRect().y, 0);
+				else if (rnd == 2)
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", pObj->getRect().x, pObj->getRect().y, 0);
+				else if (rnd == 3)
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", pObj->getRect().x, pObj->getRect().y, 0);
+			}
+		}
+		if (direccion.size() != 0){
+			contPasos++;
+			if (contPasos >= 20)contPasos = 0;
+		}
 		if (direccion.size() != 0)
 		{
 			dir = direccion[cont];

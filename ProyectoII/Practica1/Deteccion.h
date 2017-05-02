@@ -33,7 +33,7 @@ private:
 	TrianguloBorde vista;
 	float radio;
 	bool detectado;
-	int cont;
+	int cont,contPasos;
 	int rnd;
 	ObjetoPG* direccionAux;
 	ObjetoPG* info;

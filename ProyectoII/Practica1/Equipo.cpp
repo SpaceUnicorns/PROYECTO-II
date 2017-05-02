@@ -24,11 +24,12 @@ void Equipo::update()
 		case Nada:
 			break;
 		case Trampa:
-			if (pObj->getPJuego()->input.e && cantidad > 0)
+			if (pObj->getPJuego()->input.enter && cantidad > 0)
 			{
-				static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().push_back(new TrampaAbierta(pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y));
+				static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().push_back(new TrampaAbierta(pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y+30));
 				mochila->removeItem("Trampa", 1);
 				cantidad--;
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("PonerTrampa", 0,0,0);
 			}
 			if (cantidad == 0) equipado = Nada;
 			break;
@@ -37,6 +38,7 @@ void Equipo::update()
 			if (cantidad > 0){
 				dynamic_cast<AntorchaC*>(pObj->dameComponente("AntorchaC"))->swAble();
 				mochila->removeItem("Antorcha", 1);
+				pObj->getPJuego()->getEstadoActual()->reproduceAmb("Fuego", false);
 				cantidad--;
 			}
 			break;

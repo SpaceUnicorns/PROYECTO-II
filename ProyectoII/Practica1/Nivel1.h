@@ -19,9 +19,10 @@ public:
 	Cazador* getCazador() { return pCazador; }
 	Recolector* getRecolector() { return pRecolector; }
 	void getTorch(){ hasTorch = true; }
-	void dropTorch(){hasTorch = false;}
+	void dropTorch(){ hasTorch = false; paraAmb("", false); }
 	void setAlpha(int i){ alpha = i; }
 	void drawEquipo();
+
 	GrafoMapa* getGrafoMapa() { return mapa; }
 
 protected:

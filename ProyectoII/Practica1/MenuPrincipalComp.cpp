@@ -28,6 +28,7 @@ void MenuPrincipalComp::update()
 		case (Salir) :
 			if (pObj->getPJuego()->input.arriba){
 				if (temp == 0){
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("SelOpcionNormal1", 0, 0, 0);
 					pObj->setRect(0, 100);
 					estado = Jugar;
 					temp++;
@@ -35,6 +36,7 @@ void MenuPrincipalComp::update()
 			}
 			else if (pObj->getPJuego()->input.abajo){
 				if (temp == 0){
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("SelOpcionNormal1", 0, 0, 0);
 					pObj->setRect(0, 100);
 					estado = Jugar;
 					temp++;
@@ -47,6 +49,7 @@ void MenuPrincipalComp::update()
 		case (Jugar) :
 			if (pObj->getPJuego()->input.arriba){
 				if (temp == 0){
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("SelOpcionNormal1", 0, 0, 0);
 					pObj->setRect(0, -100);
 					estado = Salir;
 					temp++;
@@ -54,12 +57,14 @@ void MenuPrincipalComp::update()
 			}
 			else if (pObj->getPJuego()->input.abajo){
 				if (temp == 0){
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("SelOpcionNormal1", 0, 0, 0);
 					pObj->setRect(0, -100);
 					estado = Salir;
 					temp++;
 				}
 			}
 			else if (pObj->getPJuego()->input.enter){
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("SelOpcionNormal1", 0, 0, 0);
 				static_cast<MenuPrincipal*>(pEntidad)->opcion = 2;
 
 			}

@@ -30,6 +30,9 @@ void TrampaComponente:: update()
 					static_cast<Enemigo*>(pVecObj[i])->setEstado(EstadoEnemigo::Atrapado);
 					pObj->setRect(0, 999999);
 					pObj->getPJuego()->estados.top()->borrarObj(pObj);
+					int rnd = rand() % 2;
+					if (rnd == 0) pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboHerido", 0, 0, 0);
+					else pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboHerido1", 0, 0, 0);
 					break;
 				}
 			}

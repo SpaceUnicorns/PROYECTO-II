@@ -14,6 +14,7 @@ cazador(hunter), recolector(collector), estado(EstadoEnemigo::Quieto)
 	following = false;
 	nombre.push_back("Enemigo");
 	contFollow = 0;
+	followEnem = nullptr; // 
 }
 
 void Enemigo::dameUnHogar() {
@@ -34,50 +35,33 @@ void Enemigo::draw() {
 	posIni.y -= aux.y;
 	pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
-void Enemigo::lateUpdate()
-{
-	contFollow++;
-	if (contFollow >= 50 && following && estado != Atrapado && estado != Muerto){
-		followEnem->doFollow();
-		contFollow = 0;
-	}
-	else if (following && estado != Atrapado && estado != Muerto)
-	{
-		followEnem->lateUpdate();
-	}
-}
+
 void Enemigo::activaFollow() {
 	estado = EstadoEnemigo::Moviendo;
-	if (!encuentraComponente("follow")) {
-		newComponente(new follow(this, objetivo, dynamic_cast<Nivel1*>(pJuego->getEstadoActual())->getGrafoMapa(), false), "follow");
-		followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
-	}
+	if (!followEnem) followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
 	followEnem->setTarget(objetivo);
+	followEnem->doFollow();
 	following = true;
 }
 
 void Enemigo::desactivaFollow() {
+	if (!followEnem) followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
 	if (estado == Atrapado || estado == Muerto){
 			followEnem->clearFollow();
 			following = false;
 		}
 	else {
-		if (!encuentraComponente("follow")) {
-			newComponente(new follow(this, casita, dynamic_cast<Nivel1*>(pJuego->getEstadoActual())->getGrafoMapa(), false), "follow");
-			followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
-		}
 		estado = EstadoEnemigo::Volviendo;
 		followEnem->setTarget(casita);
+		followEnem->doFollow();
 		following = true;
 	}
 
 }
 
 void Enemigo::followThis(ObjetoPG* target) {
-	if (!encuentraComponente("follow")) {
-		newComponente(new follow(this, target, dynamic_cast<Nivel1*>(pJuego->getEstadoActual())->getGrafoMapa(), false), "follow");
-		followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
-	}
+	if (!followEnem) followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
 	followEnem->setTarget(target);
+	followEnem->doFollow();
 	following = true;
 }

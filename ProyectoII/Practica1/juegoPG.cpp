@@ -396,5 +396,6 @@ void juegoPG::cambiaVida(int cambio) {
 		nieblaRect.h = 225 + 2.25 * (300 - vida);
 		nieblaRect.x = 1600/2 - nieblaRect.w / 2;
 		nieblaRect.y = 900/2 - nieblaRect.h / 2;
+		if (vida <= 100) estados.top()->reproduceAmb("PocaVida", false);
 	}
 }

@@ -10,9 +10,9 @@ MenuPG::MenuPG(juegoPG*jug, int puntos) :EstadoPG(jug, puntos)
 	exit = new Boton(pJuego, 192, 190, TBotonS, salir);
 	vecObj.push_back(exit);
 	cargarAudio("../sounds/reverb/standrews.wav");
-	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
+	cargarAssetsAudio("../docs/fxMCrafteo.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
-	reproduceFx("balloon", -100, 0, 0);
+	reproduceMusica("Galiakberova", false);
 	vecObj.push_back(new MenuPrincipal(pJuego,192,290));
 }
 

@@ -29,6 +29,7 @@ void MenuPrincipal::update(){
 			getPJuego()->setSalir();
 		}
 		else if (opcion == 2){
+			getPJuego()->getEstadoActual()->paraMusica("", true);
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();
 			getPJuego()->estados.push(new Nivel1(getPJuego()));

@@ -29,6 +29,7 @@ protected:
 	Punto vecDir;
 	Punto nextPos;
 	ObjetoPG * hitInfo;
+	int contPasos;
 	ObjetoPG *pObj;
 	std::vector<int> direccion;
 };

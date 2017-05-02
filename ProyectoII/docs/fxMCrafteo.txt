@@ -1,5 +1,6 @@
 OpcionMenuCrafteo
 OpcionMenuNormal
+SelOpcionNormal1
 SelOpcionCrafteo0
 SelOpcionCrafteo1
 SelOpcionCrafteo2

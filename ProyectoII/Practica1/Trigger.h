@@ -17,6 +17,7 @@ public:
 	bool reaccionando(){ return reacciona; }
 	void setReacciona(bool x){ reacciona = x; }
 	void setTriggerDim(int h, int w){ rect.h = h; rect.w = w; }
+	ObjetoPG* getCausante(std::string obj) { if (obj == "Cazador")return tgCazador; else if (obj == "Recolector")return tgRecolector; }
 protected:
 	bool reacciona;
 	bool triggered;
