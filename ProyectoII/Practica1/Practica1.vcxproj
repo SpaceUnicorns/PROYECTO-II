@@ -82,6 +82,7 @@
     <ClCompile Include="Arbol.cpp" />
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Boton.cpp" />
+    <ClCompile Include="Carroña.cpp" />
     <ClCompile Include="Cazador.cpp" />
     <ClCompile Include="Cebo.cpp" />
     <ClCompile Include="ColisionBox.cpp" />
@@ -97,6 +98,7 @@
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Huella.cpp" />
     <ClCompile Include="Hacha.cpp" />
+    <ClCompile Include="HuellasCamino.cpp" />
     <ClCompile Include="Hueso.cpp" />
     <ClCompile Include="juegoPG.cpp" />
     <ClCompile Include="Madera.cpp" />
@@ -126,6 +128,9 @@
     <ClCompile Include="Trigger.cpp" />
     <ClCompile Include="TrampaCerrada.cpp" />
     <ClCompile Include="Trucos.cpp" />
+    <ClCompile Include="Tutorial.cpp" />
+    <ClCompile Include="Tutorial2.cpp" />
+    <ClCompile Include="Valla.cpp" />
     <ClCompile Include="Yesca.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +139,7 @@
     <ClInclude Include="Arbol.h" />
     <ClInclude Include="Attack.h" />
     <ClInclude Include="Boton.h" />
+    <ClInclude Include="Carroña.h" />
     <ClInclude Include="Cazador.h" />
     <ClInclude Include="Cebo.h" />
     <ClInclude Include="ColisionBox.h" />
@@ -155,6 +161,7 @@
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Huella.h" />
     <ClInclude Include="Hacha.h" />
+    <ClInclude Include="HuellasCamino.h" />
     <ClInclude Include="Hueso.h" />
     <ClInclude Include="GrafoMapa.h" />
     <ClInclude Include="juegoPG.h" />
@@ -185,6 +192,9 @@
     <ClInclude Include="Trigger.h" />
     <ClInclude Include="TrampaCerrada.h" />
     <ClInclude Include="Trucos.h" />
+    <ClInclude Include="Tutorial.h" />
+    <ClInclude Include="Tutorial2.h" />
+    <ClInclude Include="Valla.h" />
     <ClInclude Include="Yesca.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

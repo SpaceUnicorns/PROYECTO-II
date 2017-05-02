@@ -8,7 +8,7 @@ TextCb::TextCb(ObjetoJuego* ent, std:: string s) : Componente(ent)
 	textBox.h = pObj->getPJuego()->getScreenHeight()*0.20;
 	textBox.w = pObj->getPJuego()->getScreenWidth();
 	textBox.x = 0;
-	textBox.y = pObj->getPJuego()->getScreenHeight() - textBox.h;
+	textBox.y = pObj->getPJuego()->getScreenHeight() - (textBox.h+50);
 	font.x = 50;
 	font.y = textBox.y + 60;
 	font.w = 50;
@@ -39,7 +39,7 @@ TextCb::TextCb(ObjetoJuego* ent, std:: string s) : Componente(ent)
 	colorLyov.r = 51; colorLyov.g = 102; colorLyov.b = 0;
 	colorZenia.r = 247; colorZenia.g = 25; colorZenia.b = 25;
 	if (aux[0].length() > 15) delay = 250;
-	else delay = 150;
+	else delay = 100;
 	
 }
 
@@ -56,11 +56,39 @@ void TextCb::draw(){
 		else if (aux[cont][0] == 'Z'){
 			active = "Z";
 		}
-		if (active == "Z" && timer == 1) pObj->getPJuego()->getEstadoActual()->reproduceFx("ZheniaHabla", pObj->getCausante("Cazador")->getRect().x, pObj->getCausante("Cazador")->getRect().y, 0);
-		else if (active == "L"&& timer == 1)pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla", pObj->getCausante("Recolector")->getRect().x, pObj->getCausante("Recolector")->getRect().y, 0);
+		if (active == "Z" && timer == 1){ 
+			int rnd = rand() % 6;
+			if (rnd == 0)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("ZheniaHabla", pObj->getCausante("Cazador")->getRect().x, pObj->getCausante("Cazador")->getRect().y, 0); 
+			if (rnd == 1)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("ZheniaHabla1", pObj->getCausante("Cazador")->getRect().x, pObj->getCausante("Cazador")->getRect().y, 0);
+			if (rnd == 2)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("ZheniaHabla2", pObj->getCausante("Cazador")->getRect().x, pObj->getCausante("Cazador")->getRect().y, 0);
+			if (rnd == 3)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("ZheniaHabla3", pObj->getCausante("Cazador")->getRect().x, pObj->getCausante("Cazador")->getRect().y, 0);
+			if (rnd == 4)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("ZheniaHabla4", pObj->getCausante("Cazador")->getRect().x, pObj->getCausante("Cazador")->getRect().y, 0);
+			if (rnd == 5)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("ZheniaHabla5", pObj->getCausante("Cazador")->getRect().x, pObj->getCausante("Cazador")->getRect().y, 0);
+		}
+		else if (active == "L"&& timer == 1){
+			int rnd = rand() % 6;
+			if (rnd == 0)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla", pObj->getCausante("Recolector")->getRect().x, pObj->getCausante("Recolector")->getRect().y, 0); 
+			if (rnd == 1)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla1", pObj->getCausante("Recolector")->getRect().x, pObj->getCausante("Recolector")->getRect().y, 0);
+			if (rnd == 2)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla2", pObj->getCausante("Recolector")->getRect().x, pObj->getCausante("Recolector")->getRect().y, 0);
+			if (rnd == 3)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla3", pObj->getCausante("Recolector")->getRect().x, pObj->getCausante("Recolector")->getRect().y, 0);
+			if (rnd == 4)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla4", pObj->getCausante("Recolector")->getRect().x, pObj->getCausante("Recolector")->getRect().y, 0);
+			if (rnd == 5)
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla5", pObj->getCausante("Recolector")->getRect().x, pObj->getCausante("Recolector")->getRect().y, 0);
+		}
 		if (cont2 < aux[cont].length()){
 			timer2++;
-			if (timer2 > 5){
+			if (timer2 > 3){
 			frase += aux[cont][cont2];
 			font.w += 15;
 			cont2++;
@@ -86,8 +114,8 @@ void TextCb::update(){
 			cont2 = 1;
 			cont++; timer = 0;
 			font.w = 50;
-			if (aux[0].length() > 15) delay = 250;
-			else delay = 150;
+			if (aux[0].length() > 15) delay = 200;
+			else delay = 100;
 		}
 	}
 	else {

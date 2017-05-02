@@ -7,7 +7,7 @@ class Huella :
 	public Componente
 {
 public:
-	Huella(ObjetoJuego* ent);
+	Huella(ObjetoJuego* ent, int _w, int _h);
 	virtual ~Huella();
 	virtual void lateUpdate();
 	virtual void update();
@@ -15,6 +15,7 @@ public:
 	void setHuella(int dir);
 	void quitaHuella(int ind);
 private:
+	int w, h;
 	Dir state;
 	SDL_Rect anim;
 	ObjetoPG* pObj;

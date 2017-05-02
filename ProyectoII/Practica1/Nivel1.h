@@ -7,11 +7,18 @@
 #include "SDL_ttf.h"
 #include <string>
 #include "GrafoMapa.h"
+#include "HuellasCamino.h"
+
+using namespace std;
+
+enum Mode{ Play, Edition };
+
 class Nivel1 :
 	public EstadoPG
 {
 public:
-	Nivel1(juegoPG*jug);
+	Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act);
+	Nivel1(juegoPG*jug): EstadoPG(jug,0){};
 	virtual ~Nivel1();
 	virtual void draw();
 	virtual void awake(){ 
@@ -24,16 +31,30 @@ public:
 	void drawEquipo();
 
 	GrafoMapa* getGrafoMapa() { return mapa; }
+	void setMode(int m){ mode = (Mode)m; }
+	void fadeOut(int time);
+	void fadeIn(int time);
+	virtual void callback(){};
 
+	bool visible; 
+	void swVisible(){
+		visible = !visible;
+	}
 protected:
+	std::string archivoObj;
+	std::vector<HuellasCamino*> huellasCamino;
+	Mode mode;
 	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
 	bool hasTorch;
+	bool firsTime;
+	Punto centroRel;
 	int x, y, alpha;
 	Cazador* pCazador;
 	Recolector *pRecolector;
 	std::string activePlayer;
 	void swPlayer();	
 	void onKeyUp(char k);
+	void cargaObj(std:: string name);
 
 	GrafoMapa* mapa;
 

@@ -15,7 +15,7 @@ Arbol::Arbol(juegoPG * juego, int px, int py, bool fantasma) : ObjetoPG(juego, p
 	rect.h = 200;
 	absRect.w = rect.w;
 	absRect.h = rect.h;
-	SDL_Rect aux; aux.x = rect.x + 33; aux.y = rect.y + 185; aux.w = 33; aux.h = 15,
+	SDL_Rect aux; aux.x = rect.x+20 ; aux.y = rect.y + 180; aux.w = 60; aux.h = 20,
 		newComponente(new ColisionBox(this, aux, false), "ColisionBox");
 	pBoxCollider = static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"));
 	cont = 400;

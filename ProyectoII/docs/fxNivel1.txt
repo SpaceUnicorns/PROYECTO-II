@@ -11,8 +11,16 @@ LyovDano2
 Grunido
 ZheniaHabla
 ZheniaHabla1
+ZheniaHabla2
+ZheniaHabla3
+ZheniaHabla4
+ZheniaHabla5
 LyovHabla
 LyovHabla1
+LyovHabla2
+LyovHabla3
+LyovHabla4
+LyovHabla5
 Golpe
 Maleza
 AndarNieve

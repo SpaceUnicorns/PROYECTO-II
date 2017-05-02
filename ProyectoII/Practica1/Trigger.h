@@ -2,6 +2,7 @@
 #include "ObjetoPG.h"
 #include "Cazador.h"
 #include "Recolector.h"
+
 class Trigger :
 	public ObjetoPG
 {
@@ -18,7 +19,11 @@ public:
 	void setReacciona(bool x){ reacciona = x; }
 	void setTriggerDim(int h, int w){ rect.h = h; rect.w = w; }
 	ObjetoPG* getCausante(std::string obj) { if (obj == "Cazador")return tgCazador; else if (obj == "Recolector")return tgRecolector; }
+	void lateDraw();
+
+
 protected:
+
 	bool reacciona;
 	bool triggered;
 	Componente* cb; //Callback;

@@ -1,13 +1,15 @@
 #include "Huella.h"
 
 
-Huella::Huella(ObjetoJuego* ent) : Componente(ent)
+Huella::Huella(ObjetoJuego* ent, int _w, int _h) : Componente(ent)
 {
 	pObj = dynamic_cast<ObjetoPG*>(ent);
 	sizeMax = 8;
 	it = 0;
 	state = None;
 	timer = 0;
+	w = _w;
+	h = _h;
 }
 
 
@@ -18,12 +20,12 @@ void Huella::setHuella(int dir ){
 
 	if (it == sizeMax)	it = 0;
 	if (vecHuellas.size() < sizeMax){
-		vecHuellas.push_back(new ObjetoHuella(dir, it, this, pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y));
+		vecHuellas.push_back(new ObjetoHuella(dir, it, this, pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y, w, h));
 		it++;
 	}
 	else{
 		quitaHuella(it);
-		vecHuellas[it] = new ObjetoHuella(dir, it, this, pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y);
+		vecHuellas[it] = new ObjetoHuella(dir, it, this, pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y, w, h);
 		it++;
 	}
 

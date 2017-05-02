@@ -52,7 +52,7 @@ public:
 	ObjetoPG(juegoPG * juego, int px, int py);
 	void esconderse(){
 		bool aux = detectable;
-		setAlpha(100);
+		setAlpha(0);
 		detectable = false;
 		if (aux != detectable)pJuego->getEstadoActual()->reproduceFx("Maleza", 0, 0, 0);
 	}

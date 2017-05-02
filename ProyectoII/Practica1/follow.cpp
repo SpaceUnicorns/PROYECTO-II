@@ -113,9 +113,14 @@ void follow::lateUpdate(){
 		int auxX, auxY;
 		x = pObj->getColisionBox().x;
 		y = pObj->getColisionBox().y;
-		xx = target->getColisionBox().x;
-		yy = target->getColisionBox().y;
-
+		if (target){
+			xx = target->getColisionBox().x;
+			yy = target->getColisionBox().y;
+		}
+		else
+		{
+			xx = x; yy = y;
+		}
 		auxX = x; auxY = y;
 		x = x + (x - xx);
 		y = y + (y - yy)+2;

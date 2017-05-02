@@ -1,5 +1,5 @@
 #include "ColisionBox.h"
-
+#include "Nivel1.h"
 
 ColisionBox::ColisionBox(ObjetoJuego* ent) : Componente(ent)
 {
@@ -56,7 +56,7 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 	if (!col){
 		while (i < static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes().size() && !col){
 			Punto aux = static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i].A;
-			col = inTriangle(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i], p);
+				col = inTriangle(static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectBordes()[i], p);
 			i++;
 		}//fin colision con bordes
 	}
@@ -130,5 +130,5 @@ void ColisionBox::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!
 		boxRect.y -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().y;
 		boxRect.x -= dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getCamara().x;
 	}
-	pObj->getPJuego()->getTextura(TCColision)->draw(pObj->getPJuego()->getRender(), boxRect);
+	if (dynamic_cast<Nivel1*>(pObj->getPJuego()->estados.top())->visible)pObj->getPJuego()->getTextura(TCColision)->draw(pObj->getPJuego()->getRender(), boxRect);
 }

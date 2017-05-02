@@ -8,6 +8,7 @@ class ObjetoHuella :
 {
 public:
 	ObjetoHuella( int dir, int ind, Componente* comp, juegoPG * juego, int px, int py);
+	ObjetoHuella(int dir, int ind, Componente* comp, juegoPG * juego, int px, int py, int _w, int _h);
 	~ObjetoHuella();
 	virtual void draw();
 	virtual void update();

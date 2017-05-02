@@ -20,6 +20,9 @@ EstadoPG::~EstadoPG()
 	for (auto it : vecObj) {
 		delete it;
 	}
+	for (auto it : vecTriggers){
+		delete it;
+	}
 
 	FMOD_RESULT result;
 	if (!pJuego->hasExit()){
@@ -372,7 +375,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 	Tile aux2;
 	TrianguloBorde auxBorde;
 	Punto auxPunto;
-	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 122; rectAux.h = 83;
+	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 121; rectAux.h = 82;
 	f.open(txt, std::ios::in);
 	int tile;
 	while (!f.eof() && !f.fail()){

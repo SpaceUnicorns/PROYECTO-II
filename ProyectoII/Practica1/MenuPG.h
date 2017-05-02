@@ -23,7 +23,8 @@ public:
 	static void jugar(juegoPG*jug){
 		EstadoJuego* borrar = jug->estados.top();
 		jug->estados.pop();
-		jug->estados.push(new Nivel1(jug));
+		Punto rec; rec.x = 6905; rec.y = 8930; Punto caz; caz.x = 6970; caz.y = 8930;
+		jug->estados.push(new Nivel1(jug,"../docs/mapa1.txt","../docs/objetos.txt", rec, caz,"R"));
 		delete borrar;
 	}
 	virtual void drawFont(){}
