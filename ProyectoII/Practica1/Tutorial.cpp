@@ -1,5 +1,6 @@
 #include "Tutorial.h"
 #include "Tutorial2.h"
+#include "Enredadera.h"
 
 Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz) : Nivel1(jug,map,objetos,posRec, posCaz, "R")
 {
@@ -30,6 +31,8 @@ Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posR
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial5Lyov.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
+	vecObj.push_back(new Enredadera(pJuego, 7500, 9950));
+	vecObj.push_back(new Enredadera(pJuego, 8350, 9900));
 
 	auxTr = new Trigger(pJuego, 8730, 10050, pCazador, pRecolector); //ve al bosque
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Lyov.txt"));

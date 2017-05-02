@@ -8,7 +8,7 @@ Enredadera::Enredadera(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py
 	et = TEnredadera;
 	rect.w = 50;
 	rect.h = 30;
-	nombre[0] = "2";
+	nombre[0] = "1";
 	nombre.push_back( "Enredadera");
 
 	SDL_Rect colision = { rect.x,rect.y + 10,50,10 };
