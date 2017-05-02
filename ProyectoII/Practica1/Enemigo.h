@@ -13,7 +13,7 @@ class Enemigo :
 	public ObjetoPG
 {
 public:
-	Enemigo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int py);
+	Enemigo(juegoPG *juego, Cazador* hunter, Recolector* collector, GrafoMapa* mapa, int px, int py);
 	~Enemigo();
 
 	virtual SDL_Rect getColisionBox() { return static_cast<ColisionBox*> (mapaComponentes.at("ColisionBox"))->getRectBox(); }

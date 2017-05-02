@@ -3,7 +3,7 @@
 #include "Attack.h"
 
 
-Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int py):Enemigo(juego,hunter,collector, px,py)
+Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, GrafoMapa* mapa, int px, int py) :Enemigo(juego, hunter, collector, mapa, px, py)
 {
 	nombre.push_back("lobo");
 	activo = true;
@@ -20,6 +20,7 @@ Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int p
 	newComponente(new ColisionBox(this,aux,false), "ColisionBox");
 	newComponente(new Attack(this), "Attack");
 	newComponente(new Deteccion(this,500),"Deteccion");
+	newComponente(new follow(this, hunter, mapa, false), "follow");
 }
 
 

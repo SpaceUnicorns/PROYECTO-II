@@ -5,7 +5,7 @@ class Lobo :
 {
 public:
 
-	Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, int px, int py);
+	Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, GrafoMapa* mapa, int px, int py);
 	virtual ~Lobo();
 	virtual void draw();
 	//virtual void update();

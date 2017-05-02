@@ -129,59 +129,63 @@ void EstadoPG::cargarAudio(std::string irPath){
 	pJuego->system->update();
 }
 void EstadoPG::reproduceFx(std::string fx, float x, float y, float wet){
-	FMOD_VECTOR pos = { x *0.01f, y*0.01f, 0.0f };
-	FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };
-	FMOD_RESULT result;
+
+	if (abs(x) < 5000 && abs(y) < 5000){
+
+		FMOD_VECTOR pos = { x *0.01f, y*0.01f, 0.0f };
+		FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };
+		FMOD_RESULT result;
 
 
-	bool cOcupied = false;
-	cfx1->isPlaying(&cOcupied);
-	FMOD::Sound* s = vfx[fx];
-	if (!cOcupied){
-		pJuego->system->playSound(s, mainGroup, false, &cfx1);
-		result = cfx1->set3DAttributes(&pos, &vel);
-		cfx1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-		reverbUnit->addInput(channelHead, &reverbConnectionfx1, FMOD_DSPCONNECTION_TYPE_SEND);
-		reverbConnectionfx1->setMix(0.10f);
-	}
-	else {
-		cOcupied = false;
-		cfx2->isPlaying(&cOcupied);
+		bool cOcupied = false;
+		cfx1->isPlaying(&cOcupied);
+		FMOD::Sound* s = vfx[fx];
 		if (!cOcupied){
-			pJuego->system->playSound(s, mainGroup, false, &cfx2);
-			cfx2->set3DAttributes(&pos, &vel);
-			cfx2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-			reverbUnit->addInput(channelHead, &reverbConnectionfx2, FMOD_DSPCONNECTION_TYPE_SEND);
-			reverbConnectionfx2->setMix(0.10f);
+			pJuego->system->playSound(s, mainGroup, false, &cfx1);
+			result = cfx1->set3DAttributes(&pos, &vel);
+			cfx1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
+			reverbUnit->addInput(channelHead, &reverbConnectionfx1, FMOD_DSPCONNECTION_TYPE_SEND);
+			reverbConnectionfx1->setMix(0.10f);
 		}
-		else{
+		else {
 			cOcupied = false;
-			cfx3->isPlaying(&cOcupied);
+			cfx2->isPlaying(&cOcupied);
 			if (!cOcupied){
-				pJuego->system->playSound(s, mainGroup, false, &cfx3);
-				cfx3->set3DAttributes(&pos, &vel);
-				cfx3->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-				reverbUnit->addInput(channelHead, &reverbConnectionfx3, FMOD_DSPCONNECTION_TYPE_SEND);
-				reverbConnectionfx3->setMix(0.10f);
+				pJuego->system->playSound(s, mainGroup, false, &cfx2);
+				cfx2->set3DAttributes(&pos, &vel);
+				cfx2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
+				reverbUnit->addInput(channelHead, &reverbConnectionfx2, FMOD_DSPCONNECTION_TYPE_SEND);
+				reverbConnectionfx2->setMix(0.10f);
 			}
-			else {
+			else{
 				cOcupied = false;
-				cfx4->isPlaying(&cOcupied);
+				cfx3->isPlaying(&cOcupied);
 				if (!cOcupied){
-					pJuego->system->playSound(s, mainGroup, false, &cfx4);
+					pJuego->system->playSound(s, mainGroup, false, &cfx3);
+					cfx3->set3DAttributes(&pos, &vel);
+					cfx3->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
+					reverbUnit->addInput(channelHead, &reverbConnectionfx3, FMOD_DSPCONNECTION_TYPE_SEND);
+					reverbConnectionfx3->setMix(0.10f);
 				}
 				else {
-					cfx4->stop();
-					pJuego->system->playSound(s, mainGroup, false, &cfx4);
+					cOcupied = false;
+					cfx4->isPlaying(&cOcupied);
+					if (!cOcupied){
+						pJuego->system->playSound(s, mainGroup, false, &cfx4);
+					}
+					else {
+						cfx4->stop();
+						pJuego->system->playSound(s, mainGroup, false, &cfx4);
+					}
+					cfx4->set3DAttributes(&pos, &vel);
+					cfx4->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
+					reverbUnit->addInput(channelHead, &reverbConnectionfx4, FMOD_DSPCONNECTION_TYPE_SEND);
+					reverbConnectionfx4->setMix(0.10f);
 				}
-				cfx4->set3DAttributes(&pos, &vel);
-				cfx4->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-				reverbUnit->addInput(channelHead, &reverbConnectionfx4, FMOD_DSPCONNECTION_TYPE_SEND);
-				reverbConnectionfx4->setMix(0.10f);
 			}
 		}
+		pJuego->system->update();
 	}
-	pJuego->system->update();
 
 }
 void EstadoPG::reproduceMusica(std::string music, bool fade){

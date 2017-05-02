@@ -1,7 +1,7 @@
 #include "Enemigo.h"
 
 
-Enemigo::Enemigo(juegoPG * juego, Cazador* hunter, Recolector* collector, int px, int py) : ObjetoPG(juego, px, py),
+Enemigo::Enemigo(juegoPG * juego, Cazador* hunter, Recolector* collector, GrafoMapa* mapa, int px, int py) : ObjetoPG(juego, px, py),
 cazador(hunter), recolector(collector), estado(EstadoEnemigo::Quieto)
 {
 	estado = EstadoEnemigo::Quieto;

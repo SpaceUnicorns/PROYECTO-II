@@ -45,6 +45,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 		pCazador = new Cazador(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
 		pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
 		vecObj.push_back(pCazador);
+		pCazador->setAbsRect(abs(pCazador->getAbsRect().x - posCaz.x), abs(pCazador->getAbsRect().y - posCaz.y));
 
 		pRecolector = new Recolector(pJuego, posRec.x, posRec.y);
 		pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
@@ -54,9 +55,11 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 		pCazador = new Cazador(pJuego, posCaz.x,posCaz.y);
 		pCazador->newComponente(new AntorchaC(pCazador, this), "AntorchaC");
 		vecObj.push_back(pCazador);
+
 		pRecolector = new Recolector(pJuego, camara.x + (camara.w / 2), camara.y + (camara.h / 2));
 		pRecolector->newComponente(new AntorchaC(pRecolector, this), "AntorchaC");
 		vecObj.push_back(pRecolector);
+		pRecolector->setAbsRect(abs(pRecolector->getAbsRect().x - posCaz.x), abs(pRecolector->getAbsRect().y - posCaz.y));
 	}
 
 	centroRel.x = camara.x + (camara.w / 2);
@@ -99,8 +102,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	}
 
 	
-	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector, 1050, 1200));
-	static_cast<ObjetoPG*>(vecObj[vecObj.size() - 1])->newComponente(new follow(vecObj[vecObj.size() - 1], pCazador, mapa, false), "follow");
+	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector,mapa, 1050, 1200));
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
@@ -363,7 +365,7 @@ void Nivel1::onKeyUp(char k) {
 			escribe("LI", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'v': //Lobo
-			vecObj.push_back(new Lobo(pJuego, pCazador,pRecolector, pCazador->getRect().x + 30, pCazador->getRect().y + 30));
+			vecObj.push_back(new Lobo(pJuego, pCazador, pRecolector, mapa, pCazador->getRect().x + 30, pCazador->getRect().y + 30));
 			escribe("Lobo", centroRel.x + 30, centroRel.y + 30, archivoObj);
 			break;
 		case '1':
@@ -376,7 +378,7 @@ void Nivel1::onKeyUp(char k) {
 			break;
 		case 's':
 			 mode = Play;
-			reproduceFx("AbreMenu", -100, 0, 0);
+			reproduceFx("AbreMenu", 0, 0, 0);
 			pJuego->estados.push(new Pausa(pJuego, this, contPuntos));
 
 			break;
@@ -413,7 +415,7 @@ void Nivel1::cargaObj(std:: string name){
 			else if (type == "Cebo") vecObj.push_back(new Cebo(pJuego, pos.x, pos.y));
 			else if (type == "Yesca") vecObj.push_back(new Yesca(pJuego, pos.x, pos.y));
 			else if (type == "TrampaCerrada") vecObj.push_back(new TrampaCerrada(pJuego, pos.x, pos.y));
-			else if (type == "Lobo") vecObj.push_back(new Lobo(pJuego, pCazador, pRecolector, pos.x, pos.y));
+			else if (type == "Lobo") vecObj.push_back(new Lobo(pJuego, pCazador, pRecolector,mapa, pos.x, pos.y));
 			else if (type == "Carroña") vecObj.push_back(new Carroña(pJuego, pos.x, pos.y));
 			else if (type == "HS") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "HS"));
 			else if (type == "HI")huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "HI"));
