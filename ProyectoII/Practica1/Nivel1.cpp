@@ -136,7 +136,7 @@ void Nivel1::draw(){
 			tile = vecTile[i];
 			aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
 			if (aux.x > -200 && aux.x < pJuego->getScreenWidth() && aux.y > -200 && aux.y < pJuego->getScreenHeight())
-			pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
+				pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 		}
 		for (unsigned int i = 0; i < vectBordes.size(); i++){
 			vectBordes[i].A.x -= camara.x;
@@ -147,54 +147,55 @@ void Nivel1::draw(){
 			vectBordes[i].C.y -= camara.y;
 		}
 		std::sort(vecObj.begin(), vecObj.end(), ordena);
-	
+
 		for (HuellasCamino* ob : huellasCamino) ob->draw((activePlayer == "R" || mode == Edition));
 		for (ObjetoJuego* ob : vecObj) ob->draw();
 		for (ObjetoJuego* trg : vecTriggers) trg->draw();
-	}
-	centroRel.x += camara.x; centroRel.y += camara.y;
-	rectZonaOscura.x -= camara.x;
-	rectZonaOscura.y -= camara.y;
-	
-	setCamara(0, 0); //Se reinicia el offset a 0
-	int x = rand() % 100;
-	if (x >= 60){
-		animNieve1.x--;
-		animNieve1.y--;
-	}
-	if (animNieve1.x <= 0) 
-		animNieve1.x = camara.w;
-	if (animNieve1.y <= 0) 
-		animNieve1.y = camara.h;
-	
-	if (x >= 70){
-		animNieve2.x--;
-		animNieve2.y--;
-	}
-	if (animNieve2.x <= 0) 
-		animNieve2.x = camara.w;
-	if (animNieve2.y <= 0) 
-		animNieve2.y = camara.h;
 
-	pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
-	pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
+		centroRel.x += camara.x; centroRel.y += camara.y;
+		rectZonaOscura.x -= camara.x;
+		rectZonaOscura.y -= camara.y;
 
-	if (hasTorch){
-		int aux, aux2; aux2 = rand() % 51; aux = 0;
-		if (aux2 >= 45) aux = rand() % 20;
+		setCamara(0, 0); //Se reinicia el offset a 0
+		int x = rand() % 100;
+		if (x >= 60){
+			animNieve1.x--;
+			animNieve1.y--;
+		}
+		if (animNieve1.x <= 0)
+			animNieve1.x = camara.w;
+		if (animNieve1.y <= 0)
+			animNieve1.y = camara.h;
 
-		//Poner aquí todas las zonas oscuras del mapa
-		pJuego->getTextura(TZonaOscura)->setBlendMode(pJuego->getRender(), SDL_BLENDMODE_BLEND);
-		pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura, 240 + (aux/2));
-		pCazador->lateDraw();
-		pRecolector->lateDraw();
-		
+		if (x >= 70){
+			animNieve2.x--;
+			animNieve2.y--;
+		}
+		if (animNieve2.x <= 0)
+			animNieve2.x = camara.w;
+		if (animNieve2.y <= 0)
+			animNieve2.y = camara.h;
+
+		pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
+		pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
+
+		if (hasTorch){
+			int aux, aux2; aux2 = rand() % 51; aux = 0;
+			if (aux2 >= 45) aux = rand() % 20;
+
+			//Poner aquí todas las zonas oscuras del mapa
+			pJuego->getTextura(TZonaOscura)->setBlendMode(pJuego->getRender(), SDL_BLENDMODE_BLEND);
+			pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura, 240 + (aux / 2));
+			pCazador->lateDraw();
+			pRecolector->lateDraw();
+
+		}
+		else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
+
+		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
+
+		for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 	}
-	else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
-	
-	pJuego->getTextura(TLuz)->draw(pJuego->getRender(),pJuego->getNieblaRect() ,camara);
-
-	for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 	drawEquipo();
 	
 }
@@ -229,43 +230,97 @@ void Nivel1::drawEquipo(){
 void Nivel1::swPlayer(){
 	SDL_Rect aux;
 	Tile tile;
+	struct feedback{
+		float x; float y;
+	};
+	feedback fd;
 	reproduceFx("CambioPersonaje", 0, 0, 0);
 	if (activePlayer == "C"){
 		pCazador->swAble();
-		camara.x = -1*(pCazador->getRect().x - pRecolector->getRect().x);
-		camara.y = -1*(pCazador->getRect().y - pRecolector->getRect().y);
+		fd.x = -1 * (pCazador->getRect().x - pRecolector->getRect().x);
+		fd.y = -1 * (pCazador->getRect().y - pRecolector->getRect().y);
 		activePlayer = "R";
 	}
 	else if (activePlayer == "R") {
 		pRecolector->swAble();
-		camara.x = -1*(pRecolector->getRect().x - pCazador->getRect().x);
-		camara.y = -1*(pRecolector->getRect().y - pCazador->getRect().y);
+		fd.x = -1 * (pRecolector->getRect().x - pCazador->getRect().x);
+		fd.y = -1 * (pRecolector->getRect().y - pCazador->getRect().y);
 		activePlayer = "C";
 	}
-	for (unsigned int i = 0; i < vecTile.size(); i++){
-		vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
-		tile = vecTile[i];
-		aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
-		pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
-	}
-		
-	for (unsigned int i = 0; i < vectBordes.size(); i++){
-		vectBordes[i].A.x -= camara.x;
-		vectBordes[i].A.y -= camara.y;
-		vectBordes[i].B.x -= camara.x;
-		vectBordes[i].B.y -= camara.y;
-		vectBordes[i].C.x -= camara.x;
-		vectBordes[i].C.y -= camara.y;
-	}
-	for (HuellasCamino* ob : huellasCamino) ob->draw((activePlayer == "R" || mode == Edition));
-	std::sort(vecObj.begin(), vecObj.end(), ordena);
-	for (ObjetoJuego* ob : vecObj){
-		ob->draw();
-	}
-	for (ObjetoJuego* ob : vecTriggers){ //TIENE QUE SER LO ULTIMO EN DIBUJARSE
-		ob->draw();
-	}
 	
+	for (int i = 0; i < 8; i++){
+		camara.x = fd.x / 8.0f;
+		camara.y = fd.y / 8.0f;
+
+		for (unsigned int i = 0; i < vecTile.size(); i++){
+			vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
+			tile = vecTile[i];
+			aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
+			pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
+		}
+
+		for (unsigned int i = 0; i < vectBordes.size(); i++){
+			vectBordes[i].A.x -= camara.x;
+			vectBordes[i].A.y -= camara.y;
+			vectBordes[i].B.x -= camara.x;
+			vectBordes[i].B.y -= camara.y;
+			vectBordes[i].C.x -= camara.x;
+			vectBordes[i].C.y -= camara.y;
+		}
+		for (HuellasCamino* ob : huellasCamino) ob->draw((activePlayer == "R" || mode == Edition));
+		std::sort(vecObj.begin(), vecObj.end(), ordena);
+		for (ObjetoJuego* ob : vecObj){
+			ob->draw();
+		}
+		for (ObjetoJuego* ob : vecTriggers){ //TIENE QUE SER LO ULTIMO EN DIBUJARSE
+			ob->draw();
+		}
+		centroRel.x += camara.x; centroRel.y += camara.y;
+		rectZonaOscura.x -= camara.x;
+		rectZonaOscura.y -= camara.y;
+
+		setCamara(0, 0); //Se reinicia el offset a 0
+		int x = rand() % 100;
+		if (x >= 60){
+			animNieve1.x--;
+			animNieve1.y--;
+		}
+		if (animNieve1.x <= 0)
+			animNieve1.x = camara.w;
+		if (animNieve1.y <= 0)
+			animNieve1.y = camara.h;
+
+		if (x >= 70){
+			animNieve2.x--;
+			animNieve2.y--;
+		}
+		if (animNieve2.x <= 0)
+			animNieve2.x = camara.w;
+		if (animNieve2.y <= 0)
+			animNieve2.y = camara.h;
+
+		pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
+		pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
+
+		if (hasTorch){
+			int aux, aux2; aux2 = rand() % 51; aux = 0;
+			if (aux2 >= 45) aux = rand() % 20;
+
+			//Poner aquí todas las zonas oscuras del mapa
+			pJuego->getTextura(TZonaOscura)->setBlendMode(pJuego->getRender(), SDL_BLENDMODE_BLEND);
+			pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura, 240 + (aux / 2));
+			pCazador->lateDraw();
+			pRecolector->lateDraw();
+
+		}
+		else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
+
+		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
+
+		for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
+		SDL_RenderPresent(pJuego->getRender());
+		SDL_Delay(20);
+	}
 	if (activePlayer == "C") pCazador->swAble();
 	else pRecolector->swAble();
 	pJuego->input.sw = false;
