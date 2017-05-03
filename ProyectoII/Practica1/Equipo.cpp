@@ -1,7 +1,7 @@
 #include "Equipo.h"
 #include "TrampaAbierta.h"
 #include "AntorchaC.h"
-
+#include "AtaqueCazador.h"
 
 Equipo::Equipo(ObjetoJuego* entidad, Mochila* moch) :Componente(entidad)
 {
@@ -45,6 +45,7 @@ void Equipo::update()
 		case Hacha:
 			if (pObj->getPJuego()->input.enter && cantidad > 0){
 				//Rellenar en función de lo que haga
+				dynamic_cast<AtaqueCazador*>(pObj->dameComponente("AtaqueCazador"))->setAxResistance(10);
 				std::cout << "Has usado el hacha\n";
 				mochila->removeItem("Hacha", 1);
 				cantidad--;

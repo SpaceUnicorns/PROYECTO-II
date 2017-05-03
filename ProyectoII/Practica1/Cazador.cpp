@@ -2,6 +2,7 @@
 #include "MovimientoP.h"
 #include "Huella.h"
 #include "AntorchaC.h"
+#include "AtaqueCazador.h"
 
 
 Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
@@ -14,7 +15,7 @@ Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
 	absRect.h = rect.h;
 	newComponente(new ColisionBox(this), "ColisionBox"); //Meter primero este componente
 	newComponente(new MovimientoP(this),"MovimientoP");
-
+	newComponente(new AtaqueCazador(this), "AtaqueCazador");
 	newComponente(new Huella(this,35,80), "Huella");
 	anim.w = 283.5;
 	anim.h = 609.5; 

@@ -26,7 +26,7 @@ void TrampaComponente:: update()
 				p = pObj->getColisionBox();
 				if (aux.x > p.x && aux.x < p.x + p.w && aux.y > p.y && aux.y < p.y + p.h  )
 				{				
-					static_cast<Enemigo*>(pVecObj[i])->life -= 2;
+					static_cast<Enemigo*>(pVecObj[i])->setLife(-2);
 					static_cast<Enemigo*>(pVecObj[i])->setEstado(EstadoEnemigo::Atrapado);
 					pObj->setRect(0, 999999);
 					pObj->getPJuego()->estados.top()->borrarObj(pObj);

@@ -60,7 +60,7 @@ void MovimientoP::update(){
 		if (pObj->getPJuego()->input.dDS){ //Diagonal Arriba-Derecha
 			nextPos.x = 2; nextPos.y = -1;
 			colAux = pCBox->isColiding(nextPos, info);
-			if (colAux!= 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = dDS;
 				pEstado->setCamara(nextPos.x, nextPos.y);
 				pObj->changeAnimV(0); // posiciona la 'j' de la matriz de la animacion
@@ -70,7 +70,7 @@ void MovimientoP::update(){
 		else if (pObj->getPJuego()->input.dDI){//Diagonal Abajo-Derecha
 			nextPos.x = 2; nextPos.y = 1;
 			colAux = pCBox->isColiding(nextPos, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = dDI;
 				pEstado->setCamara(nextPos.x, nextPos.y);
 				pObj->changeAnimV(3);
@@ -81,7 +81,7 @@ void MovimientoP::update(){
 		else if (pObj->getPJuego()->input.dII){//Diagonal Abajo-Izquierda
 			nextPos.x = -2; nextPos.y = 1;
 			colAux = pCBox->isColiding(nextPos, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = dII;
 				pEstado->setCamara(nextPos.x, nextPos.y);
 				pObj->changeAnimV(7);
@@ -92,7 +92,7 @@ void MovimientoP::update(){
 		else if (pObj->getPJuego()->input.dIS){//Diagonal Arriba-Izquierda
 			nextPos.x = -2; nextPos.y = -1;
 			colAux = pCBox->isColiding(nextPos, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = dIS;
 				pEstado->setCamara(nextPos.x, nextPos.y);
 				pObj->changeAnimV(2);
@@ -103,7 +103,7 @@ void MovimientoP::update(){
 		else if (pObj->getPJuego()->input.arriba){
 			nextPos.x = 0; nextPos.y = -2;
 			colAux = pCBox->isColiding(nextPos, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = Up;
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 				pEstado->setCamara(nextPos.x, nextPos.y);
@@ -114,7 +114,7 @@ void MovimientoP::update(){
 		else if (pObj->getPJuego()->input.derecha){
 			nextPos.x = 2; nextPos.y = 0;
 			colAux = pCBox->isColiding(nextPos, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = Right;
 				pEstado->setCamara(nextPos.x, nextPos.y);
 				pObj->changeAnimV(6);
@@ -125,7 +125,7 @@ void MovimientoP::update(){
 		else if (pObj->getPJuego()->input.abajo){
 			nextPos.x = 0; nextPos.y = 2;
 			colAux = pCBox->isColiding(nextPos, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = Down;
 				pEstado->setCamara(nextPos.x, nextPos.y);
 				pObj->changeAnimV(5);
@@ -136,7 +136,7 @@ void MovimientoP::update(){
 		else if (pObj->getPJuego()->input.izquierda){
 			nextPos.x = -2; nextPos.y = 0;
 			colAux = pCBox->isColiding(nextPos, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = Left;
 				pEstado->setCamara(nextPos.x, nextPos.y);
 				pObj->changeAnimV(1);

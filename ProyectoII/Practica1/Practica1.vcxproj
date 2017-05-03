@@ -80,6 +80,7 @@
     <ClCompile Include="AntorchaC.cpp" />
     <ClCompile Include="Antorcha.cpp" />
     <ClCompile Include="Arbol.cpp" />
+    <ClCompile Include="AtaqueCazador.cpp" />
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="Carroña.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="AntorchaC.h" />
     <ClInclude Include="Antorcha.h" />
     <ClInclude Include="Arbol.h" />
+    <ClInclude Include="AtaqueCazador.h" />
     <ClInclude Include="Attack.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="Carroña.h" />

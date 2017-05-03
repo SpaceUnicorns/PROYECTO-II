@@ -2,6 +2,7 @@
 #include "ObjetoJuego.h"
 #include <SDL.h>
 #include "EstadoPG.h"
+enum Direc { Up, dDS, Right, dDI, Down, dII, Left, dIS, Default };
 class Componente
 {
 public:

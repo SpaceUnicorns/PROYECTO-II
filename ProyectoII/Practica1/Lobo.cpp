@@ -5,6 +5,7 @@
 
 Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, GrafoMapa* mapa, int px, int py) :Enemigo(juego, hunter, collector, mapa, px, py)
 {
+	enemigo = true;
 	nombre.push_back("lobo");
 	activo = true;
 	//interactuable = true;

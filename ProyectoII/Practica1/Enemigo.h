@@ -36,11 +36,16 @@ public:
 	void desactivaFollow();
 	Punto getPosIni() { return posIni; }
 	int damage;
-	int life;
+	int getLife(){ return life; }
+	void setLife(int x){
+		life += x;
+		if (life < 0) life = 0;
+	}
 	int getDir(){ return followEnem->getDirection(); }
 	ObjetoPG* getCasita(){ return casita; }
 
 protected:
+	int life;
 	void dameUnHogar();
 	EstadoEnemigo estado;
 	Punto posIni;

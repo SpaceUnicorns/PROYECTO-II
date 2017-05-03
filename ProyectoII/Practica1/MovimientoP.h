@@ -2,7 +2,7 @@
 #include "Componente.h"
 #include "ObjetoPG.h"
 class ColisionBox;
-enum Direc {Up, dDS, Right, dDI, Down, dII, Left, dIS, Default};
+
 class MovimientoP :
 	public Componente
 {
@@ -15,6 +15,7 @@ public:
 
 	ObjetoPG* info = nullptr;
 	ObjetoPG *pObj;
+	Direc getDir(){ return direccion; }
 private:
 	
 	bool moviendose;

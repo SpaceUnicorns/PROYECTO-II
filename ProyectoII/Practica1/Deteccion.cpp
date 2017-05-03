@@ -350,7 +350,7 @@ void Deteccion::postAtaque(){
 }
 void Deteccion::atrapado(){
 	if (cont == 0)enemy->desactivaFollow();
-	if (enemy->life <= 0){ enemy->setEstado(Muerto); }
+	if (enemy->getLife() <= 0){ enemy->setEstado(Muerto); }
 	cont++;
 	if (cont >= 1000)
 	{
@@ -360,7 +360,7 @@ void Deteccion::atrapado(){
 }
 void Deteccion::herido(){		
 	//Animacion Herido
-	if (enemy->life < 0)
+	if (enemy->getLife() < 0)
 		enemy->setEstado(Muerto);
 	else if (cont > 100){
 		cont = 0;

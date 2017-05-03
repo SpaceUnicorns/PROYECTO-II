@@ -12,6 +12,11 @@ public:
 	virtual ~Equipo();
 	virtual void update();
 	int getEquipo(){ return equipado; };
+	void removeEquipo(std:: string s){
+		equipado = Nada;
+		cantidad = 0;
+		mochila->removeItem(s, 1);
+	}
 	bool tieneEquipo(std::string equip){
 		Equipamento aux;
 		if (equip == "Trampa") aux = Trampa;

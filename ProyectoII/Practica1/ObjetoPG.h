@@ -46,6 +46,7 @@ public:
 	bool interactuable=false;
 	bool obstaculo = false;
 	bool escondite = false;
+	bool enemigo = false;
 	std::string destructor;
 	std::vector<std::string> nombre;
 	std::vector<std::string> receta;
