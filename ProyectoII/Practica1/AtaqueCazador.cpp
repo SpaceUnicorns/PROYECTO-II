@@ -23,6 +23,8 @@ void AtaqueCazador::update(){
 		equipo = dynamic_cast<Equipo*>(pObj->dameComponente("Equipo"));
 		if (equipo->tieneEquipo("Hacha")){
 			if (pObj->getPJuego()->input.e) {
+				std::string fx; fx = "ZheniaAtaca" + std::to_string(rand() % 5);
+				pEstado->reproduceFx(fx,0,0,0);
 				int colAux;
 				compMov = dynamic_cast<MovimientoP*>(pObj->dameComponente("MovimientoP"));
 				switch (compMov->getDir())
