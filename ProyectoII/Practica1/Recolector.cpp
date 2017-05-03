@@ -7,6 +7,7 @@
 
 Recolector::Recolector(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
+	velocity.x = 2; velocity.y = 1;
 	nombre.push_back( "Liov");
 	et = TJugador;
 	rect.w = 40;

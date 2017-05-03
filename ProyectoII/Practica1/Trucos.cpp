@@ -98,6 +98,31 @@ void Trucos::desbloquea(){
 		renderCodigo = " ";
 		level->swVisible();
 	}
+	else if (codigo == "ababa"){
+		std::cout << "CORRECTO!\n";
+		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
+		codigo = "";
+		renderCodigo = " ";
+		level->getCazador()->setVelocity(2,1);
+		level->getRecolector()->setVelocity(2, 1);
+	}
+	else if (codigo == "abab1"){
+		std::cout << "CORRECTO!\n";
+		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
+		codigo = "";
+		renderCodigo = " ";
+		level->getCazador()->setVelocity(3, 1.5);
+		level->getRecolector()->setVelocity(3, 1.5);
+
+	}
+	else if (codigo == "abab2"){
+		std::cout << "CORRECTO!\n";
+		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
+		codigo = "";
+		renderCodigo = " ";
+		level->getCazador()->setVelocity(4, 2);
+		level->getRecolector()->setVelocity(4, 2);
+	}
 	else {
 		std::cout << "INCORRECTO!\n";
 		reproduceFx("NoDisponible", -100, 0, 0);

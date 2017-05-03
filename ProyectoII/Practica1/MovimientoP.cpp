@@ -58,7 +58,7 @@ void MovimientoP::update(){
 		int colAux;
 		//MOVIMIENTO DIRECCIONES
 		if (pObj->getPJuego()->input.dDS){ //Diagonal Arriba-Derecha
-			nextPos.x = 2; nextPos.y = -1;
+			nextPos.x = pObj->velocity.x; nextPos.y = -1* pObj->velocity.y;
 			colAux = pCBox->isColiding(nextPos, info);
 			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = dDS;
@@ -68,7 +68,7 @@ void MovimientoP::update(){
 			}
 		}
 		else if (pObj->getPJuego()->input.dDI){//Diagonal Abajo-Derecha
-			nextPos.x = 2; nextPos.y = 1;
+			nextPos.x = pObj->velocity.x; nextPos.y = pObj->velocity.y;
 			colAux = pCBox->isColiding(nextPos, info);
 			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = dDI;
@@ -79,7 +79,7 @@ void MovimientoP::update(){
 			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.dII){//Diagonal Abajo-Izquierda
-			nextPos.x = -2; nextPos.y = 1;
+			nextPos.x = -1 * pObj->velocity.x; nextPos.y = pObj->velocity.y;
 			colAux = pCBox->isColiding(nextPos, info);
 			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = dII;
@@ -90,7 +90,7 @@ void MovimientoP::update(){
 			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.dIS){//Diagonal Arriba-Izquierda
-			nextPos.x = -2; nextPos.y = -1;
+			nextPos.x = -1 * pObj->velocity.x; nextPos.y = -1 * pObj->velocity.y;
 			colAux = pCBox->isColiding(nextPos, info);
 			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = dIS;
@@ -101,7 +101,7 @@ void MovimientoP::update(){
 			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.arriba){
-			nextPos.x = 0; nextPos.y = -2;
+			nextPos.x = 0; nextPos.y = -1 * pObj->velocity.x;
 			colAux = pCBox->isColiding(nextPos, info);
 			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = Up;
@@ -112,7 +112,7 @@ void MovimientoP::update(){
 			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.derecha){
-			nextPos.x = 2; nextPos.y = 0;
+			nextPos.x = pObj->velocity.x; nextPos.y = 0;
 			colAux = pCBox->isColiding(nextPos, info);
 			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = Right;
@@ -123,7 +123,7 @@ void MovimientoP::update(){
 			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.abajo){
-			nextPos.x = 0; nextPos.y = 2;
+			nextPos.x = 0; nextPos.y = pObj->velocity.x;
 			colAux = pCBox->isColiding(nextPos, info);
 			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = Down;
@@ -134,7 +134,7 @@ void MovimientoP::update(){
 			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.izquierda){
-			nextPos.x = -2; nextPos.y = 0;
+			nextPos.x = -1 * pObj->velocity.x; nextPos.y = 0;
 			colAux = pCBox->isColiding(nextPos, info);
 			if (colAux != 1 && colAux != 4 && colAux != 5){
 				direccion = Left;

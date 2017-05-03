@@ -63,6 +63,11 @@ public:
 		detectable = true;
 		if (aux != detectable)pJuego->getEstadoActual()->reproduceFx("Maleza", 0, 0, 0);
 	}
+	void setVelocity(float x, float y){
+		if (x >= 0 ) velocity.x = x; 
+		if (y >= 0) velocity.y = y;
+	};
+	SDL_Rect velocity;
 protected: 
 	void setAlpha(int x){
 		if (x >= 0 && x <= 255){

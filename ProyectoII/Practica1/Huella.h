@@ -20,7 +20,7 @@ private:
 	SDL_Rect anim;
 	ObjetoPG* pObj;
 	std::vector<ObjetoHuella*> vecHuellas;
-	int sizeMax, it, timer;
+	int sizeMax, it, timer, timeSpawn;
 	
 };
 

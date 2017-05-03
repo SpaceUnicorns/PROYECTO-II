@@ -10,6 +10,7 @@ Huella::Huella(ObjetoJuego* ent, int _w, int _h) : Componente(ent)
 	timer = 0;
 	w = _w;
 	h = _h;
+	timeSpawn =20/pObj->velocity.x ;
 }
 
 
@@ -37,7 +38,7 @@ void Huella::quitaHuella( int ind){
 	delete aux;
 }
 void Huella::update(){
-	if (timer == 10){
+	if (timer == timeSpawn){
 		if (pObj->getPJuego()->input.dDS) setHuella(0);
 		else if (pObj->getPJuego()->input.dDI) setHuella(1);
 		else if (pObj->getPJuego()->input.dII) setHuella(2);

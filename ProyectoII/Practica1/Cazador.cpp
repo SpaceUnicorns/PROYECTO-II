@@ -7,6 +7,7 @@
 
 Cazador::Cazador(juegoPG * juego, int px, int py) : ObjetoPG(juego, px,py)
 {
+	velocity.x = 2; velocity.y = 1;
 	nombre.push_back( "Zhenia");
 	et = TJugador2;
 	rect.w = 45;
