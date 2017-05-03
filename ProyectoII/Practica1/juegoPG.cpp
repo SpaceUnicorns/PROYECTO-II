@@ -254,6 +254,7 @@ void juegoPG::handle_event(){
 			else if (e.key.keysym.sym == SDLK_n) estados.top()->onKeyUp('n');
 			else if (e.key.keysym.sym == SDLK_1) estados.top()->onKeyUp('1');
 			else if (e.key.keysym.sym == SDLK_2)estados.top()->onKeyUp('2');
+			else if (e.key.keysym.sym == SDLK_3)estados.top()->onKeyUp('3');
 			else if (e.key.keysym.sym == SDLK_a)estados.top()->onKeyUp('a');
 			else if (e.key.keysym.sym == SDLK_b)estados.top()->onKeyUp('b');
 			else if (e.key.keysym.sym == SDLK_c)estados.top()->onKeyUp('c');

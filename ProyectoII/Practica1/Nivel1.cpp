@@ -293,16 +293,18 @@ void Nivel1::onKeyUp(char k) {
 			break;
 		case 't': pJuego->input.sw = true;
 			break;
-		case 'l': fadeOut(40); fadeIn(40);
-			break;
 		default:
 			break;
 		}
 	}
 	else {
 		switch (k) {
+		case '1':
+			vecObj.push_back(new Arbol(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y - 120));
+			escribe("ArbolF", centroRel.x + 20, centroRel.y - 120, archivoObj);
+			break;
 		case 'q':
-			vecObj.push_back(new Arbol(pJuego, pCazador->getRect().x+20  ,pCazador->getRect().y-120));
+			vecObj.push_back(new Arbol(pJuego, pCazador->getRect().x+20  ,pCazador->getRect().y-120, false));
 			escribe("Arbol", centroRel.x + 20, centroRel.y - 120,archivoObj);
 			break;
 		case 'w': //Obstaculo piedra
@@ -368,11 +370,11 @@ void Nivel1::onKeyUp(char k) {
 			vecObj.push_back(new Lobo(pJuego, pCazador, pRecolector, mapa, pCazador->getRect().x + 30, pCazador->getRect().y + 30));
 			escribe("Lobo", centroRel.x + 30, centroRel.y + 30, archivoObj);
 			break;
-		case '1':
+		case '2':
 			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x +45, pCazador->getRect().y - 20, "A"));
 			escribe("Valla", centroRel.x + 45, centroRel.y - 20, archivoObj);
 			break;
-		case '2':
+		case '3':
 			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x + 45, pCazador->getRect().y - 20, "D"));
 			escribe("Valla2", centroRel.x + 45, centroRel.y - 20, archivoObj);
 			break;
@@ -405,7 +407,8 @@ void Nivel1::cargaObj(std:: string name){
 		f.get(stash); f.get(stash); f.get(stash);
 		f >> pos.y;
 		if (!f.fail()){
-			if (type == "Arbol")vecObj.push_back(new Arbol(pJuego, pos.x, pos.y));
+			if (type == "Arbol")vecObj.push_back(new Arbol(pJuego, pos.x, pos.y, false));
+			else if (type == "ArbolF") vecObj.push_back(new Arbol(pJuego, pos.x, pos.y));
 			else if (type == "ObsPiedra") vecObj.push_back(new Obstaculo(pJuego, pos.x, pos.y, TObstaculoPiedra, "Pico"));
 			else if (type == "Escondite") vecObj.push_back(new Escondite(pJuego, pos.x, pos.y));
 			else if (type == "Piedra") vecObj.push_back(new Piedra(pJuego, pos.x, pos.y));
