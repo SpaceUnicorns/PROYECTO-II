@@ -130,7 +130,7 @@ void EstadoPG::cargarAudio(std::string irPath){
 }
 void EstadoPG::reproduceFx(std::string fx, float x, float y, float wet){
 
-	if (abs(x) < 3000 && abs(y) < 3000){
+	if (abs(x) < 2000 && abs(y) < 1200){
 
 		FMOD_VECTOR pos = { x *0.01f, y*0.01f, 0.0f };
 		FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };

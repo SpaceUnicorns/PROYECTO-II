@@ -19,11 +19,22 @@ follow::~follow()
 {
 }
 
-void follow:: update(){
-	if (pObj->getPJuego()->input.sw && al && !pObj->isAble()){
+void follow::update(){
+	if (pObj->getPJuego()->input.sw && al){
 		direccion.clear();
 		cont = 0;
 		path.clear();
+	}
+	if (target && al){
+		int auxX, auxY;
+		auxX = abs(pObj->getAbsRect().x - target->getAbsRect().x);
+		auxY = abs(pObj->getAbsRect().y - target->getAbsRect().y);
+		if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) > 500){
+			direccion.clear();
+			cont = 0;
+			path.clear();
+			doFollow();
+		}
 	}
 
 }
