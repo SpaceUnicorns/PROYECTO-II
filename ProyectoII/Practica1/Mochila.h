@@ -1,5 +1,6 @@
 #pragma once
 #include "Componente.h"
+#include "ObjetoPG.h"
 #include <map>
 class Mochila: public Componente
 {
@@ -13,5 +14,6 @@ public:
 	 int getCantidad(std::string const & name) const;
 private:
 	std::map<std::string, int> mochilaRecolector;
+	ObjetoPG *pObj;
 };
 

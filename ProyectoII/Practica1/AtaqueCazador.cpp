@@ -56,7 +56,10 @@ void AtaqueCazador::update(){
 					dynamic_cast<Lobo*>(info)->setEstado(Herido);
 					axResistance--;
 
-					if (axResistance <= 0){ equipo->removeEquipo("Hacha"); }
+					if (axResistance <= 0){ 
+						equipo->removeEquipo("Hacha"); 
+						axResistance = 10;
+					}
 				}
 			}
 		}

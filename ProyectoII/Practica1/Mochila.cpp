@@ -1,9 +1,9 @@
 #include "Mochila.h"
-
-
+#include "AtaqueCazador.h"
 
 Mochila::Mochila(ObjetoJuego* ent) : Componente(ent)
 {
+	pObj = dynamic_cast<ObjetoPG*>(ent);
 }
 
 

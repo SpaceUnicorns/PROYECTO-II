@@ -12,11 +12,6 @@ Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posR
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
 
-	auxTr = new Trigger(pJuego, 6810, 10280, pCazador, pRecolector); //donde ir
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Lyov.txt"));
-	auxTr->setTriggerDim(250, 250);
-	vecTriggers.push_back(auxTr);
-
 	auxTr = new Trigger(pJuego, 7500, 9900, pCazador, pRecolector); //tecla E
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Lyov.txt"));
 	auxTr->setTriggerDim(250, 250);

@@ -25,5 +25,5 @@ void Valla::draw() {
 	rect.x -= aux.x;
 	rect.y -= aux.y;
 	pJuego->getTextura(et)->draw(pJuego->getRender(), anim, rect);
-	//static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
+	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
 }
