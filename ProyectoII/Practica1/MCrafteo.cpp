@@ -267,7 +267,6 @@ void MCrafteo::craftear(){
 				//std::cout << "Necesitas: " << kek->receta[i + 1] << "\n";
 				mochila->removeItem(kek->receta[i + 1], atoi(kek->receta[i].c_str())); //se eliminan los objetos de la mochila
 			}
-			
 			mochila->newItem(kek->nombre[1], 1); //y se añade lo crafteado
 
 		}
