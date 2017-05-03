@@ -53,6 +53,7 @@ void AtaqueCazador::update(){
 				if (colAux == 5){
 					pObj->getPJuego()->input.e = false;
 					dynamic_cast<Lobo*>(info)->setLife(-1);
+					dynamic_cast<Lobo*>(info)->setEstado(Herido);
 					axResistance--;
 
 					if (axResistance <= 0){ equipo->removeEquipo("Hacha"); }
