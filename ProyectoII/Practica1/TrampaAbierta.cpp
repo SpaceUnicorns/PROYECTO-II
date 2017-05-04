@@ -5,8 +5,8 @@ TrampaAbierta::TrampaAbierta(juegoPG * juego, int px, int py) : ObjetoPG(juego, 
 {
 	interactuable = true;
 	et = TCColision;
-	rect.w = 50;
-	rect.h = 30;
+	rect.w = 100;
+	rect.h = 60;
 	activo = true;
 	nombre[0] = "1";
 	nombre.push_back("Trampa");

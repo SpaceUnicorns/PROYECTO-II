@@ -48,5 +48,6 @@ private:
 	Mochila* mochila;
 	Equipamento equipado;
 	int cantidad;
+	int delay;
 };
 

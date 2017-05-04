@@ -376,8 +376,10 @@ void Deteccion::atrapado(){
 }
 void Deteccion::herido(){		
 	//Animacion Herido
-	if (enemy->getLife() < 0)
+	if (enemy->getLife() < 0){
 		enemy->setEstado(Muerto);
+		enemy->deleteComponente("ColisionBox");
+	}
 	else if (cont > 100){
 		cont = 0;
 		enemy->setEstado(Quieto);

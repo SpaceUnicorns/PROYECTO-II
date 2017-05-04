@@ -26,7 +26,7 @@ void follow::update(){
 		cont = 0;
 		path.clear();
 	}
-	if (target && al){
+	if (target && al && !pObj->isAble()){
 		int auxX, auxY;
 		auxX = abs(pObj->getAbsRect().x - target->getAbsRect().x);
 		auxY = abs(pObj->getAbsRect().y - target->getAbsRect().y);
