@@ -44,10 +44,12 @@ void Equipo::update()
 			break;
 		case Hacha:
 				//Rellenar en función de lo que haga
+			if (cantidad > 0 && static_cast<AtaqueCazador*>(pObj->dameComponente("AtaqueCazador"))->getAxResistance() <=0){
 				dynamic_cast<AtaqueCazador*>(pObj->dameComponente("AtaqueCazador"))->setAxResistance(10);
 				std::cout << "Has usado el hacha\n";
 				mochila->removeItem("Hacha", 1);
 				cantidad--;
+			}
 			if (cantidad == 0) equipado = Nada;
 			break;
 		case Pala: 
