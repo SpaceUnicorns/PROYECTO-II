@@ -16,5 +16,6 @@ private:
 	Enemigo* enemigo;
 	Punto posicion;
 	ObjetoPG* info;
+	int cont;
 	int conAnimacion;
 };

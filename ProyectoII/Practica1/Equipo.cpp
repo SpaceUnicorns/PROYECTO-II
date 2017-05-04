@@ -29,6 +29,7 @@ void Equipo::update()
 				static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().push_back(new TrampaAbierta(pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y+30));
 				mochila->removeItem("Trampa", 1);
 				cantidad--;
+				pObj->getPJuego()->input.enter = false;
 				pObj->getPJuego()->getEstadoActual()->reproduceFx("PonerTrampa", 0,0,0);
 			}
 			if (cantidad == 0) equipado = Nada;
@@ -44,10 +45,12 @@ void Equipo::update()
 			break;
 		case Hacha:
 				//Rellenar en función de lo que haga
+			if (cantidad > 0 && static_cast<AtaqueCazador*>(pObj->dameComponente("AtaqueCazador"))->getAxResistance() <=0){
 				dynamic_cast<AtaqueCazador*>(pObj->dameComponente("AtaqueCazador"))->setAxResistance(10);
 				std::cout << "Has usado el hacha\n";
 				mochila->removeItem("Hacha", 1);
 				cantidad--;
+			}
 			if (cantidad == 0) equipado = Nada;
 			break;
 		case Pala: 

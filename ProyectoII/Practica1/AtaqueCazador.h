@@ -17,6 +17,7 @@ public:
 	void setAxResistance(int x){
 		axResistance = x;
 	};
+	int getAxResistance(){ return axResistance; }
 private:
 	int axResistance;
 	bool firstime;

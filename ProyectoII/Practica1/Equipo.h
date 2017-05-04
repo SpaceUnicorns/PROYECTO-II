@@ -29,14 +29,17 @@ public:
 		return aux == equipado;
 	}
 	void setEquipo(std:: string equip, int num) {
-		if (equip == "Trampa") equipado = Trampa;
-		else if (equip == "Antorcha") equipado = Antorcha;
-		else if (equip == "Hacha") equipado = Hacha;
-		else if (equip == "Pala") equipado = Pala;
-		else if (equip == "Pico") equipado = Pico;
-		else equipado = Nada;
+		if (!(equipado == Antorcha && equip == "Antorcha")){
 
-		cantidad = num;
+			if (equip == "Trampa") equipado = Trampa;
+			else if (equip == "Antorcha") equipado = Antorcha;
+			else if (equip == "Hacha") equipado = Hacha;
+			else if (equip == "Pala") equipado = Pala;
+			else if (equip == "Pico") equipado = Pico;
+			else equipado = Nada;
+
+			cantidad = num;
+		}
 	};
 	void increaseCant(){ cantidad++; }
 	void decreaseCant(){ if (cantidad >0) cantidad--; }
