@@ -12,6 +12,10 @@ public:
 	virtual bool estapintado(){ return pintado; }
 	std::string getEquipo(){ return equipo; };
 	void setEquipo(std::string e){ equipo = e; };
+	virtual void scaleRect(int x){
+		ObjetoPG::scaleRect(x);
+		static_cast<ColisionBox*> (mapaComponentes.at("ColisionBox"))->scaleColisionBox();
+	}
 private: 
 	bool pintado;
 	std::string equipo;

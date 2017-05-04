@@ -379,7 +379,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 	Tile aux2;
 	TrianguloBorde auxBorde;
 	Punto auxPunto;
-	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 121; rectAux.h = 82;
+	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 120; rectAux.h = 81;
 	f.open(txt, std::ios::in);
 	int tile;
 	while (!f.eof() && !f.fail()){
@@ -504,7 +504,8 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 /*7*/			|| tile == 1140 || tile == 1141 || tile == 1142 || tile == 1143 || tile == 1144 || tile == 1145 || tile == 1146 || tile == 1147 || tile == 1148 || tile == 1149 || tile == 1152
 /*8*/			|| tile == 1160 || tile == 1161 || tile == 1162 || tile == 1163 || tile == 1164 || tile == 1165 || tile == 1166 || tile == 1167 || tile == 1168 || tile == 1169 || tile == 1172
 /*9*/			|| tile == 1187 || tile == 1188
-/*0*/			|| tile == 1200 || tile == 1215)
+/*0*/			|| tile == 1200 || tile == 1215 || tile == 1220 || tile == 1221 || tile == 1222 || tile == 1223 || tile == 1224 || tile == 1225 || tile == 1226 || tile == 1227 || tile == 1228 || tile == 1229
+				||tile == 1230 || tile == 1231 || tile == 1232 || tile == 1233 || tile == 1234 || tile == 1235)
 			{
 
 				mapa.push_back('X');

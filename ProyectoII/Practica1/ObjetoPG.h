@@ -68,6 +68,11 @@ public:
 		if (y >= 0) velocity.y = y;
 	};
 	SDL_Rect velocity;
+
+	virtual void scaleRect(int x){ 
+		rect.w *= x; rect.h *= x; 
+
+	}
 protected: 
 	void setAlpha(int x){
 		if (x >= 0 && x <= 255){

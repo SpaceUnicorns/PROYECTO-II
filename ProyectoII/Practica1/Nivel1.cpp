@@ -30,7 +30,7 @@
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = false;
+	visible = true;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -345,8 +345,7 @@ void Nivel1::onKeyUp(char k) {
 			pJuego->estados.push(new Pausa(pJuego, this, contPuntos));
 			break;
 		case 'l':
-			//Punto rec; rec.x = 100; rec.y = 100; Punto caz; caz.x = rec.x + 60; caz.y = rec.y;
-			Punto rec; rec.x = 600; rec.y = 500; Punto caz; caz.x = rec.x + 60; caz.y = rec.y;
+			Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
 			pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer));
 			break;
 		case 't': pJuego->input.sw = true;

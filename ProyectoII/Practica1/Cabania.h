@@ -8,6 +8,7 @@ public:
 	virtual ~Cabania();
 	virtual void callback();
 	virtual void update();
+	virtual void draw();
 private:
 	bool change;
 	bool firsTime;
