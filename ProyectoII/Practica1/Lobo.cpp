@@ -11,10 +11,10 @@ Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, GrafoMapa* ma
 	//interactuable = true;
 	damage = 50;
 	et = TLobete;//Añadir TLobo al array de texturas
-	rect.w = 80;
-	rect.h = 50;//Lo que quiero que ocupe en pantalla
-	anim.w = 238;
-	anim.h = 155;
+	absRect.w = rect.w = 105;
+	absRect.h = rect.h = 75;//Lo que quiero que ocupe en pantalla
+	anim.w = 350;
+	anim.h = 250;
 	life = 5;
 	anim.x = anim.y = 0;//Lo que quiero que se vea del sprite
 	SDL_Rect aux; aux.x = rect.x; aux.y = rect.y + 30; aux.w = 80; aux.h = 20;
@@ -35,6 +35,9 @@ void Lobo::update() {
 	
 }*/
 void Lobo::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	Enemigo::draw();
+	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());
+	rect.x -= aux.x;
+	rect.y -= aux.y;
+	pJuego->getTextura(et)->draw(pJuego->getRender(), anim, rect, alpha);
 	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
 }

@@ -32,4 +32,5 @@ protected:
 	int contPasos;
 	ObjetoPG *pObj;
 	std::vector<int> direccion;
+	int framerate;
 };

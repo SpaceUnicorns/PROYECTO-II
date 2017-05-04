@@ -12,6 +12,7 @@ follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m, bool aliado) : Comp
 	cont = contPasos = 0;
 	map = m;
 	al = aliado;
+	framerate = 0;
 }
 
 
@@ -29,7 +30,7 @@ void follow::update(){
 		int auxX, auxY;
 		auxX = abs(pObj->getAbsRect().x - target->getAbsRect().x);
 		auxY = abs(pObj->getAbsRect().y - target->getAbsRect().y);
-		if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) > 500){
+		if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) > 1000){
 			direccion.clear();
 			cont = 0;
 			path.clear();
@@ -66,7 +67,7 @@ void follow::doFollow()
 	map->transformaCoord(x, y);
 	map->transformaCoord(xx, yy);
 
-
+	
 	/*pObj->setRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
 	pObj->setAbsRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
 	static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);*/
@@ -185,6 +186,11 @@ void follow::lateUpdate(){
 		}
 		if (direccion.size() != 0)
 		{
+			if (framerate % 8 == 0) {// se mueve 1 frame cada 16 ms x 16ms
+				pObj->changeAnimH();
+
+			}
+			framerate++;
 			dir = direccion[cont];
 			switch (direccion[cont])
 			{
@@ -193,48 +199,56 @@ void follow::lateUpdate(){
 				pObj->setAbsRect(0, -2);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso-=4;
+				pObj->changeAnimV(4);
 				break;
 			case 1:
 				pObj->setRect(2, -1);
 				pObj->setAbsRect(2, -1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 2.23;
+				pObj->changeAnimV(0);
 				break;
 			case 2:
 				pObj->setRect(2, 0);
 				pObj->setAbsRect(2, 0);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso-=2;
+				pObj->changeAnimV(6);
 				break;
 			case 3:
 				pObj->setRect(2, 1);
 				pObj->setAbsRect(2, 1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 2.23;
+				pObj->changeAnimV(3);
 				break;
 			case 4:
 				pObj->setRect(0, 2);
 				pObj->setAbsRect(0, 2);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 4;
+				pObj->changeAnimV(5);
 				break;
 			case 5:
 				pObj->setRect(-2, 1);
 				pObj->setAbsRect(-2, 1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 2.23;
+				pObj->changeAnimV(7);
 				break;
 			case 6:
 				pObj->setRect(-2, 0);
 				pObj->setAbsRect(-2, 0);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso-=2;
+				pObj->changeAnimV(1);
 				break;
 			case 7:
 				pObj->setRect(-2, -1);
 				pObj->setAbsRect(-2, -1);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 2.23;
+				pObj->changeAnimV(2);
 				break;
 			}
 			

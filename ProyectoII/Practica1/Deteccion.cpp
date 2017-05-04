@@ -33,8 +33,10 @@ void Deteccion::quieto(){
 				enemy->setAbsRect(-2, 0);
 				enemy->setRect(-2, 0);
 				dirAtaque = 6;
+				enemy->changeAnimV(1);
 				if (contPasos == 0)
 				{
+					enemy->changeAnimH();
 					int rnd = rand() % 4;
 					if (rnd == 0)
 						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
@@ -54,8 +56,10 @@ void Deteccion::quieto(){
 				enemy->setAbsRect(2, 0);
 				enemy->setRect(2, 0);
 				dirAtaque = 2;
+				enemy->changeAnimV(6);
 				if (contPasos == 0)
 				{
+					enemy->changeAnimH();
 					int rnd = rand() % 4;
 					if (rnd == 0)
 						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
@@ -75,8 +79,10 @@ void Deteccion::quieto(){
 				enemy->setAbsRect(0, -1);
 				enemy->setRect(0, -1);
 				dirAtaque = 0;
+				enemy->changeAnimV(4);
 				if (contPasos == 0)
 				{
+					enemy->changeAnimH();
 					int rnd = rand() % 4;
 					if (rnd == 0)
 						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
@@ -96,8 +102,10 @@ void Deteccion::quieto(){
 				enemy->setAbsRect(0, 1);
 				enemy->setRect(0, 1);
 				dirAtaque = 4;
+				enemy->changeAnimV(5);
 				if (contPasos == 0)
 				{
+					enemy->changeAnimH();
 					int rnd = rand() % 4;
 					if (rnd == 0)
 						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
@@ -232,6 +240,7 @@ void Deteccion::atacando(){
 	{
 	case 4:
 		if (cont < 100){
+			enemy->changeAnimV(4);
 			enemy->setAbsRect(0, -2);
 			enemy->setRect(0, -2);
 			ultAtaque = 0;
@@ -239,6 +248,7 @@ void Deteccion::atacando(){
 		break;
 	case 5:
 		if (cont < 100){
+			enemy->changeAnimV(0);
 			enemy->setAbsRect(2, -1);
 			enemy->setRect(2, -1);
 			ultAtaque = 1;
@@ -246,6 +256,7 @@ void Deteccion::atacando(){
 		break;
 	case 6:
 		if (cont < 100){
+			enemy->changeAnimV(6);
 			enemy->setAbsRect(2, 0);
 			enemy->setRect(2, 0);
 			ultAtaque = 2;
@@ -253,6 +264,7 @@ void Deteccion::atacando(){
 		break;
 	case 7:
 		if (cont < 100){
+			enemy->changeAnimV(3);
 			enemy->setAbsRect(2, 1);
 			enemy->setRect(2, 1);
 			ultAtaque = 3;
@@ -260,6 +272,7 @@ void Deteccion::atacando(){
 		break;
 	case 0:
 		if (cont < 100){
+			enemy->changeAnimV(5);
 			enemy->setAbsRect(0, 2);
 			enemy->setRect(0, 2);
 			ultAtaque = 4;
@@ -267,6 +280,7 @@ void Deteccion::atacando(){
 		break;
 	case 1:
 		if (cont < 100){
+			enemy->changeAnimV(7);
 			enemy->setAbsRect(-2, 1);
 			enemy->setRect(-2, 1);
 			ultAtaque = 5;
@@ -274,6 +288,7 @@ void Deteccion::atacando(){
 		break;
 	case 2:
 		if (cont < 100){
+			enemy->changeAnimV(1);
 			enemy->setAbsRect(-2, 0);
 			enemy->setRect(-2, 0);
 			ultAtaque = 6;
@@ -281,6 +296,7 @@ void Deteccion::atacando(){
 		break;
 	case 3:
 		if (cont < 100){
+			enemy->changeAnimV(2);
 			enemy->setAbsRect(-2, -1);
 			enemy->setRect(-2, -1);
 			ultAtaque = 7;
