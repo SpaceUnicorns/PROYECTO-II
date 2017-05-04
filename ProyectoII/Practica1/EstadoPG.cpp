@@ -450,24 +450,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				vectBordes.push_back(auxBorde);
 			}
 			if (tile == 1220){
-				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
-				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
-				auxPunto.x = x - 183; auxPunto.y = y + 124; auxBorde.A = auxPunto;
-				auxPunto.x = x - 122; auxPunto.y = y + 155; auxBorde.B = auxPunto;
-				auxPunto.x = x + 61; auxPunto.y = y ; auxBorde.C = auxPunto;
-				vectBordes.push_back(auxBorde);
-				auxPunto.x = x - 122; auxPunto.y = y + 155; auxBorde.A = auxPunto;
-				auxPunto.x = x + 61 ; auxPunto.y = y + 62; auxBorde.B = auxPunto;
-				auxPunto.x = x + 61; auxPunto.y = y; auxBorde.C = auxPunto;
-				vectBordes.push_back(auxBorde);
-				auxPunto.x = x ; auxPunto.y = y + 93; auxBorde.A = auxPunto;
-				auxPunto.x = x + 122; auxPunto.y = y + 31; auxBorde.B = auxPunto;
-				auxPunto.x = x + 305; auxPunto.y = y + 124; auxBorde.C = auxPunto;
-				vectBordes.push_back(auxBorde);
-				auxPunto.x = x; auxPunto.y = y + 93; auxBorde.A = auxPunto;
-				auxPunto.x = x + 122; auxPunto.y = y + 186; auxBorde.B = auxPunto;
-				auxPunto.x = x + 305; auxPunto.y = y + 124; auxBorde.C = auxPunto;
-				vectBordes.push_back(auxBorde);
+
 			}
 
 			if (tile == 0 

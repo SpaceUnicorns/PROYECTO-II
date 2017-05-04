@@ -29,14 +29,28 @@ void Cabania::draw(){
 		for (unsigned int i = 0; i < vecTile.size(); i++){
 			vecTile[i].x *= 2; vecTile[i].y *= 2;
 		}
-		for (unsigned int i = 0; i < vectBordes.size(); i++){
-			vectBordes[i].A.x *= 2;
-			vectBordes[i].A.y *= 2;
-			vectBordes[i].B.x *= 2;
-			vectBordes[i].B.y *= 2;
-			vectBordes[i].C.x *= 2;
-			vectBordes[i].C.y *= 2;
-		}
+		TrianguloBorde auxBorde;
+		Punto auxPunto;
+
+		auxPunto.x = 1330; auxPunto.y = 780; auxBorde.A = auxPunto;
+		auxPunto.x = 1670; auxPunto.y = 430; auxBorde.B = auxPunto;
+		auxPunto.x = 1560; auxPunto.y = 660; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+
+		auxPunto.x = 1670; auxPunto.y = 430; auxBorde.A = auxPunto;
+		auxPunto.x = 1560; auxPunto.y = 660; auxBorde.B = auxPunto;
+		auxPunto.x = 1910; auxPunto.y = 820; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+
+		auxPunto.x = 1810; auxPunto.y = 820; auxBorde.A = auxPunto;
+		auxPunto.x = 1860; auxPunto.y = 940; auxBorde.B = auxPunto;
+		auxPunto.x = 1555; auxPunto.y = 940; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
+
+		auxPunto.x = 1330; auxPunto.y = 760; auxBorde.A = auxPunto;
+		auxPunto.x = 1555; auxPunto.y = 940; auxBorde.B = auxPunto;
+		auxPunto.x = 1380; auxPunto.y = 940; auxBorde.C = auxPunto;
+		vectBordes.push_back(auxBorde);
 		fadeIn(20);
 	}
 	SDL_Rect aux;
