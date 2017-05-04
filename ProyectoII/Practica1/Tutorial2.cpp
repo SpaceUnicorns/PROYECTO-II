@@ -1,12 +1,4 @@
 #include "Tutorial2.h"
-void changeScene::callback(){
-	if (!reacciona){
-		aux->callback();
-		pObj->getPJuego()->getEstadoActual()->paraMusica("", false);
-		pObj->getPJuego()->getEstadoActual()->paraAmb("", false);
-	}
-	reacciona = true;
-}
 
 Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz) : Nivel1(jug, map, objetos, posRec, posCaz, "C")
 {

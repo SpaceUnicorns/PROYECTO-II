@@ -25,6 +25,7 @@
 #include "Obstaculo.h"
 #include "Carroña.h"
 #include "Valla.h"
+#include "Cabania.h"
 
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
@@ -101,8 +102,6 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 		pRecolector->swAble();
 	}
 
-	
-	vecObj.push_back(new Lobo(pJuego, pCazador ,pRecolector,mapa, 1050, 1200));
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
@@ -344,7 +343,11 @@ void Nivel1::onKeyUp(char k) {
 		case 's':
 			reproduceFx("AbreMenu", 0, 0, 0);
 			pJuego->estados.push(new Pausa(pJuego, this, contPuntos));
-
+			break;
+		case 'l':
+			//Punto rec; rec.x = 100; rec.y = 100; Punto caz; caz.x = rec.x + 60; caz.y = rec.y;
+			Punto rec; rec.x = 600; rec.y = 500; Punto caz; caz.x = rec.x + 60; caz.y = rec.y;
+			pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer));
 			break;
 		case 't': pJuego->input.sw = true;
 			break;
@@ -506,5 +509,13 @@ Nivel1::~Nivel1()
 	for (HuellasCamino* it : huellasCamino){
 		delete it;
 	}
+}
+void changeScene::callback(){
+	if (!reacciona){
+		aux->callback();
+		pObj->getPJuego()->getEstadoActual()->paraMusica("", false);
+		pObj->getPJuego()->getEstadoActual()->paraAmb("", false);
+	}
+	reacciona = true;
 }
 

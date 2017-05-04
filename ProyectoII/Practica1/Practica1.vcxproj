@@ -83,6 +83,7 @@
     <ClCompile Include="AtaqueCazador.cpp" />
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="Boton.cpp" />
+    <ClCompile Include="Cabania.cpp" />
     <ClCompile Include="Carroña.cpp" />
     <ClCompile Include="Cazador.cpp" />
     <ClCompile Include="Cebo.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="AtaqueCazador.h" />
     <ClInclude Include="Attack.h" />
     <ClInclude Include="Boton.h" />
+    <ClInclude Include="Cabania.h" />
     <ClInclude Include="Carroña.h" />
     <ClInclude Include="Cazador.h" />
     <ClInclude Include="Cebo.h" />

@@ -364,8 +364,8 @@ bool resuelveCaso(std::ofstream& f) {
 	int ancho, alto;
 	std::cout << "ResuelveCaso\n";
 	//ALTURA / ANCHURA TILES GRANDES
-	alto = 89;
-	ancho = 24;
+	alto = 5;
+	ancho = 3;
 
 	std::vector<int> aux(ancho);
 	std::vector<std::vector<int>> mapa (alto);

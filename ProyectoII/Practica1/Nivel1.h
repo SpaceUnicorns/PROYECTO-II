@@ -8,6 +8,8 @@
 #include <string>
 #include "GrafoMapa.h"
 #include "HuellasCamino.h"
+#include "Componente.h"
+#include "Trigger.h"
 
 using namespace std;
 
@@ -77,3 +79,22 @@ protected:
 	int tipoGlobo();*/
 };
 
+class changeScene :
+	public Componente
+{
+public:
+	changeScene(ObjetoJuego* ent, Nivel1* aux) : Componente(ent){
+		reacciona = false;
+		pObj = dynamic_cast<Trigger*>(ent);
+		this->aux = aux;
+	};
+	virtual ~changeScene(){};
+	virtual void callback();
+	virtual void update(){};
+	virtual void draw(){};
+
+private:
+	bool reacciona;
+	Trigger* pObj;
+	Nivel1* aux;
+};
