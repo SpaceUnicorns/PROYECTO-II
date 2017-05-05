@@ -1,4 +1,4 @@
-ZPuedo enfrentarme a los lobos con la tecla E...
-ZSiempre que tenga un arma, claro
+ZPuedo usar mi arma con la tecla E...
+Z¡Pero cuidado, que se puede romper!
 ++++++++++++++++++++++++
 -

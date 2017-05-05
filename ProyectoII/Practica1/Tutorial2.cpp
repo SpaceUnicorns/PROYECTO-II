@@ -1,4 +1,6 @@
 #include "Tutorial2.h"
+#include "Mochila.h"
+
 void changeScene::callback(){
 	if (!reacciona){
 		aux->callback();
@@ -12,22 +14,29 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 {
 	firsTime = true;
 	change = false;
-	Trigger *auxTr; auxTr = new Trigger(pJuego, 8730, 10050, pCazador, pRecolector);
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Zhenya.txt"));
-	auxTr->setTriggerDim(250, 250);
-	vecTriggers.push_back(auxTr);
+	Trigger *auxTr; 
 
-	auxTr = new Trigger(pJuego, 6810, 10280, pCazador, pRecolector);
+	auxTr = new Trigger(pJuego, 6810, 10280, pCazador, pRecolector); //nono1
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Zhenya.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
 
-	auxTr = new Trigger(pJuego, 8450, 9500, pCazador, pRecolector); //Cómo repartir
+	auxTr = new Trigger(pJuego, 7500, 9900, pCazador, pRecolector); //como equiparlo
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Zhenia.txt"));
+	auxTr->setTriggerDim(250, 250);
+	vecTriggers.push_back(auxTr);
+
+	auxTr = new Trigger(pJuego, 8000, 10100, pCazador, pRecolector); //Cómo pegar
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Zhenya.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
 
-	auxTr = new Trigger(pJuego, 6950, 9202, pCazador, pRecolector);
+	auxTr = new Trigger(pJuego, 8000, 9500, pCazador, pRecolector); //menu de pausa
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Zhenia.txt"));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+
+	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector);
 	auxTr->setCallback(new changeScene(auxTr, this));
 	auxTr->setTriggerDim(100, 800);
 	vecTriggers.push_back(auxTr);
@@ -45,6 +54,11 @@ void Tutorial2::update(){
 		Punto caz; caz.x = 6925; caz.y = 8930; Punto rec; rec.x = 6970; rec.y = 8930;
 		pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "C"));
 		delete borrar;
+	}
+
+	if (firsTime) {
+		static_cast<Mochila*> (static_cast<Nivel1*>(pJuego->getEstadoActual())->getRecolector()->dameComponente("Mochila"))->newItem("Hacha", 1);
+		firsTime = false;
 	}
 }
 
