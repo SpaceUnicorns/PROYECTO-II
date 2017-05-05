@@ -31,7 +31,7 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
 
-	auxTr = new Trigger(pJuego, 8000, 9500, pCazador, pRecolector); //menu de pausa
+	auxTr = new Trigger(pJuego, 8125, 9500, pCazador, pRecolector); //menu de pausa
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Zhenia.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
@@ -56,7 +56,7 @@ void Tutorial2::update(){
 		delete borrar;
 	}
 
-	if (firsTime) {
+	if (firsTime && !change) {
 		static_cast<Mochila*> (static_cast<Nivel1*>(pJuego->getEstadoActual())->getRecolector()->dameComponente("Mochila"))->newItem("Hacha", 1);
 		firsTime = false;
 	}

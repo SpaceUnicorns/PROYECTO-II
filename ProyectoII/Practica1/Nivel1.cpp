@@ -29,7 +29,7 @@
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = false;
+	visible = true;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -73,7 +73,19 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 		camara.y = (posRec.y - (camara.h / 2));
 	}
 
-	Trigger *auxTr; auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector);
+	Trigger *auxTr;
+	//dialogos de tutorial
+	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector); //tabulador
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Juntos.txt"));
+	vecTriggers.push_back(auxTr);
+
+	auxTr = new Trigger(pJuego, 5850, 9800, pCazador, pRecolector); //escondites
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Juntos.txt"));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+
+	//Random comments
+	auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
 	vecTriggers.push_back(auxTr);
 
@@ -117,6 +129,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	alpha = 255;
 	firsTime = true;
 }
+
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
 }
