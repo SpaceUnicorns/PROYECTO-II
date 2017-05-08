@@ -28,7 +28,7 @@ public:
 	}
 	//Funciones------------------------------------------------------------------------------------------------------------
 	int isColiding(Punto const & P, ObjetoPG* & info);
-
+	void setColBox(int incrX, int incrY){ boxRect.x += incrX; boxRect.y += incrY; }
 private:
 	//Atributos-------------------------------------------------------
 	bool movible;

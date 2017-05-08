@@ -38,25 +38,29 @@ void Huella::quitaHuella( int ind){
 	delete aux;
 }
 void Huella::update(){
-	if (timer == timeSpawn){
-		if (pObj->getPJuego()->input.dDS) setHuella(0);
-		else if (pObj->getPJuego()->input.dDI) setHuella(1);
-		else if (pObj->getPJuego()->input.dII) setHuella(2);
-		else if (pObj->getPJuego()->input.dIS) 
-			setHuella(3);
-		else if (pObj->getPJuego()->input.arriba) setHuella(4);
-		else if (pObj->getPJuego()->input.derecha) setHuella(5);
-		else if (pObj->getPJuego()->input.abajo) setHuella(6);
-		else if (pObj->getPJuego()->input.izquierda) setHuella(7);
-		timer = 0;
+	if (isAble()){
+		if (timer == timeSpawn){
+			if (pObj->getPJuego()->input.dDS) setHuella(0);
+			else if (pObj->getPJuego()->input.dDI) setHuella(1);
+			else if (pObj->getPJuego()->input.dII) setHuella(2);
+			else if (pObj->getPJuego()->input.dIS)
+				setHuella(3);
+			else if (pObj->getPJuego()->input.arriba) setHuella(4);
+			else if (pObj->getPJuego()->input.derecha) setHuella(5);
+			else if (pObj->getPJuego()->input.abajo) setHuella(6);
+			else if (pObj->getPJuego()->input.izquierda) setHuella(7);
+			timer = 0;
+		}
+		else timer++;
 	}
-	else timer++;
 }
 void Huella::lateUpdate(){
-	for (ObjetoHuella* ob : vecHuellas)if (ob != nullptr) ob->update();
+	if (isAble())
+		for (ObjetoHuella* ob : vecHuellas)if (ob != nullptr) ob->update();
 }
 void Huella::draw(){
-	for (ObjetoHuella* ob : vecHuellas){
+	if (isAble())
+		for (ObjetoHuella* ob : vecHuellas){
 		if (ob != nullptr) ob->draw();
 	}
 }

@@ -16,6 +16,10 @@ public:
 		ObjetoPG::scaleRect(x);
 		static_cast<ColisionBox*> (mapaComponentes.at("ColisionBox"))->scaleColisionBox();
 	}
+	virtual void setColRect(int incrX, int incrY){ 
+		static_cast<ColisionBox*>(dameComponente("ColisionBox"))->setColBox(incrX, incrY); 
+	};
+	
 private: 
 	bool pintado;
 	std::string equipo;

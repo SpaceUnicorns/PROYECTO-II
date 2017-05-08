@@ -26,11 +26,13 @@
 #include "Carroña.h"
 #include "Valla.h"
 #include "Cabania.h"
+#include "ObjetoCabania.h"
 
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
+	changeCabania = false;
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = true;
+	visible = false;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -324,6 +326,15 @@ void Nivel1::swPlayer(){
 	else pRecolector->swAble();
 	pJuego->input.sw = false;
 }
+void Nivel1::update(){
+	EstadoPG::update();
+	if (changeCabania){
+		fadeOut(40);
+		Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
+		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer));
+		changeCabania = false;
+	}
+}
 void escribe(std::string s, int x, int y, std:: string name){
 	std::ofstream f;
 	f.open("../docs/"+name,  ios::app);
@@ -343,10 +354,6 @@ void Nivel1::onKeyUp(char k) {
 		case 's':
 			reproduceFx("AbreMenu", 0, 0, 0);
 			pJuego->estados.push(new Pausa(pJuego, this, contPuntos));
-			break;
-		case 'l':
-			Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
-			pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer));
 			break;
 		case 't': pJuego->input.sw = true;
 			break;
@@ -435,6 +442,25 @@ void Nivel1::onKeyUp(char k) {
 			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x + 45, pCazador->getRect().y - 20, "D"));
 			escribe("Valla2", centroRel.x + 45, centroRel.y - 20, archivoObj);
 			break;
+		case '4':
+			vecObj.push_back(new ObjetoCabania(pJuego, pCazador->getRect().x + 45, pCazador->getRect().y - 20));
+			std::cout << "XCabaña: " << centroRel.x + 45 << " YCabaña: " << centroRel.y-20 << "\n";
+
+			Trigger *auxTr;
+			auxTr = new Trigger(pJuego, pCazador->getRect().x + 45 + 62, pCazador->getRect().y - 35 + 271, pCazador, pRecolector);
+			auxTr->setCallback(new changeScene(auxTr, this));
+			auxTr->setTriggerDim(60, 80);
+			vecTriggers.push_back(auxTr);	
+
+			TrianguloBorde auxBorde;
+			Punto auxPunto;
+
+			auxPunto.x = pCazador->getRect().x + 45 + 78; auxPunto.y = pCazador->getRect().y-20 + 271; auxBorde.A = auxPunto;
+			auxPunto.x = pCazador->getRect().x + 45 + 210; auxPunto.y = pCazador->getRect().y -20+ 336; auxBorde.B = auxPunto;
+			auxPunto.x = pCazador->getRect().x + 45 + 308; auxPunto.y = pCazador->getRect().y -20 + 272; auxBorde.C = auxPunto;
+			vectBordes.push_back(auxBorde);
+			escribe("Cab", centroRel.x + 45, centroRel.y - 20, archivoObj);
+			break;
 		case 's':
 			 mode = Play;
 			reproduceFx("AbreMenu", 0, 0, 0);
@@ -483,10 +509,30 @@ void Nivel1::cargaObj(std:: string name){
 			else if (type == "LI") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "LI"));
 			else if (type == "Valla") vecObj.push_back(new Valla(pJuego, pos.x, pos.y, "A"));
 			else if (type == "Valla2")vecObj.push_back(new Valla(pJuego, pos.x, pos.y, "D"));
+			else if (type == "Cab"){
+				vecObj.push_back(new ObjetoCabania(pJuego, pos.x, pos.y));
+
+				Trigger *auxTr;
+				auxTr = new Trigger(pJuego, pos.x + 67, pos.y + 256, pCazador, pRecolector);
+				auxTr->setCallback(new changeScene(auxTr, this));
+				auxTr->setTriggerDim(60, 80);
+				vecTriggers.push_back(auxTr);
+
+				TrianguloBorde auxBorde;
+				Punto auxPunto;
+
+				auxPunto.x = pos.x + 78; auxPunto.y = pos.y + 271 ; auxBorde.A = auxPunto;
+				auxPunto.x = pos.x + 210; auxPunto.y = pos.y + 336 ; auxBorde.B = auxPunto;
+				auxPunto.x = pos.x + 308; auxPunto.y = pos.y + 272; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+			}
 
 		}
 	}
 	f.close();
+}
+void Nivel1::callback(){
+	changeCabania = true;
 }
 void Nivel1::fadeOut(int time){
 	for (int i = 0; i < 200; i+=2){

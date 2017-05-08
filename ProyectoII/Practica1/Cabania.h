@@ -9,7 +9,11 @@ public:
 	virtual void callback();
 	virtual void update();
 	virtual void draw();
+	virtual void swPlayer();
+	virtual void onKeyUp(char k);
 private:
+	SDL_Color color;
+	SDL_Rect font;
 	bool change;
 	bool firsTime;
 };
