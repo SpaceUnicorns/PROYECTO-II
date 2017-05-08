@@ -1,24 +1,26 @@
-#include "Obstaculo.h"
+#include "ObstaculoNieve.h"
 
-Obstaculo::Obstaculo(juegoPG * juego, int px, int py, Texturas_t tex, std:: string destruc) : ObjetoPG(juego, px, py)
+
+
+ObstaculoNieve::ObstaculoNieve(juegoPG * juego, int px, int py, Texturas_t tex, std::string destruc) : ObjetoPG(juego, px, py)
 {
 	obstaculo = true;
-	et = tex;
+	et = tex;		//TObs1
 	rect.w = 200;
 	rect.h = 100;
 	nombre[0] = "1";
-	nombre.push_back("Obstaculo");
+	nombre.push_back("ObstaculoNieve");
 	destructor = destruc;
 	SDL_Rect colision = { rect.x, rect.y + rect.h / 2, rect.w, rect.h / 2 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");
 }
 
 
-Obstaculo::~Obstaculo()
+ObstaculoNieve::~ObstaculoNieve()
 {
 }
 
-void Obstaculo::draw() {
+void ObstaculoNieve::draw() {
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());
 	rect.x -= aux.x;
 	rect.y -= aux.y;
