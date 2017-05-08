@@ -34,6 +34,7 @@ public:
 	virtual SDL_Rect getAbsRect(){ return absRect; }
 	virtual juegoPG* getPJuego(){ return pJuego; }
 	virtual  SDL_Rect getColisionBox(){ return rect; };
+	virtual void setColRect(int incrX, int incrY){};
 	virtual Componente* dameComponente(std::string const &s){
 		if (encuentraComponente(s)) return mapaComponentes.at(s);
 		else return nullptr;
@@ -68,6 +69,11 @@ public:
 		if (y >= 0) velocity.y = y;
 	};
 	SDL_Rect velocity;
+
+	virtual void scaleRect(int x){ 
+		rect.w *= x; rect.h *= x; 
+
+	}
 protected: 
 	void setAlpha(int x){
 		if (x >= 0 && x <= 255){

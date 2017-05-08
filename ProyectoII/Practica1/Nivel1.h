@@ -8,6 +8,8 @@
 #include <string>
 #include "GrafoMapa.h"
 #include "HuellasCamino.h"
+#include "Componente.h"
+#include "Trigger.h"
 
 using namespace std;
 
@@ -21,6 +23,7 @@ public:
 	Nivel1(juegoPG*jug): EstadoPG(jug,0){};
 	virtual ~Nivel1();
 	virtual void draw();
+	virtual void update();
 	virtual void awake(){ 
 		reproduceFx("AbreMenu1", -100, 0, 0); };
 	Cazador* getCazador() { return pCazador; }
@@ -34,11 +37,26 @@ public:
 	void setMode(int m){ mode = (Mode)m; }
 	void fadeOut(int time);
 	void fadeIn(int time);
-	virtual void callback(){};
+	virtual void callback();
 
 	bool visible; 
 	void swVisible(){
 		visible = !visible;
+	}
+	void resumeCabania(std:: string act){
+		if (activePlayer == "R"){
+			int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;
+			int y = pRecolector->getAbsRect().y - pCazador->getAbsRect().y;
+			pCazador->setRect(x + 20, y + 20);
+			pCazador->setColRect(x + 20, y + 20);
+		}
+		else {
+			int x = pCazador->getAbsRect().x - pRecolector->getAbsRect().x;
+			int y = pCazador->getAbsRect().y - pRecolector->getAbsRect().y;
+			pRecolector->setRect(x + 20, y + 20);
+			pRecolector->setColRect(x + 20, y + 20);
+		}
+		if (activePlayer != act) swPlayer();
 	}
 protected:
 	std::string archivoObj;
@@ -47,12 +65,13 @@ protected:
 	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
 	bool hasTorch;
 	bool firsTime;
+	bool changeCabania;
 	Punto centroRel;
 	int x, y, alpha;
 	Cazador* pCazador;
 	Recolector *pRecolector;
 	std::string activePlayer;
-	void swPlayer();	
+	virtual void swPlayer();	
 	void onKeyUp(char k);
 	void cargaObj(std:: string name);
 
@@ -77,3 +96,27 @@ protected:
 	int tipoGlobo();*/
 };
 
+class changeScene :
+	public Componente
+{
+public:
+	changeScene(ObjetoJuego* ent, Nivel1* aux) : Componente(ent){
+		reacciona = false;
+		pObj = dynamic_cast<Trigger*>(ent);
+		this->aux = aux;
+	};
+	virtual ~changeScene(){};
+	virtual void callback();
+	virtual void update(){
+		if (reacciona && !pObj->isTriggering()){
+			reacciona = false;
+			pObj->setReacciona(false);
+		}
+	};
+	virtual void draw(){};
+
+private:
+	bool reacciona;
+	Trigger* pObj;
+	Nivel1* aux;
+};

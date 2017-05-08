@@ -22,7 +22,7 @@ juegoPG::juegoPG()
 	}
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
-	vecTexturas.resize(46);
+	vecTexturas.resize(47);
 	vecPaginas.resize(6);
 
 
@@ -251,10 +251,12 @@ void juegoPG::handle_event(){
 			else if (e.key.keysym.sym == SDLK_k) estados.top()->onKeyUp('k');
 			else if (e.key.keysym.sym == SDLK_l) estados.top()->onKeyUp('l');
 			else if (e.key.keysym.sym == SDLK_v) estados.top()->onKeyUp('v');
+			else if (e.key.keysym.sym == SDLK_s) estados.top()->onKeyUp('S');
 			else if (e.key.keysym.sym == SDLK_n) estados.top()->onKeyUp('n');
 			else if (e.key.keysym.sym == SDLK_1) estados.top()->onKeyUp('1');
 			else if (e.key.keysym.sym == SDLK_2)estados.top()->onKeyUp('2');
 			else if (e.key.keysym.sym == SDLK_3)estados.top()->onKeyUp('3');
+			else if (e.key.keysym.sym == SDLK_4)estados.top()->onKeyUp('4');
 			else if (e.key.keysym.sym == SDLK_a)estados.top()->onKeyUp('a');
 			else if (e.key.keysym.sym == SDLK_b)estados.top()->onKeyUp('b');
 			else if (e.key.keysym.sym == SDLK_c)estados.top()->onKeyUp('c');
