@@ -13,6 +13,7 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 	nombre.push_back("default");
 	alpha = 255;
 	detectable = true;
+	bool desaparece = true;
 }
 
 ObjetoPG::~ObjetoPG(){

@@ -154,12 +154,13 @@ void MovimientoP::update(){
 		if (colAux == 2) {
 			if (dynamic_cast<Recolector*>(pObj)) {
 				if (pObj->getPJuego()->input.e) {
-					pObj->getPJuego()->input.e = false;
+					pObj->getPJuego()->input.e = false; 
+					if (info->nombre.size() > 3) info->desaparece = false;
 					for (unsigned int i = 0; i + 1 < info->nombre.size(); i += 2){
 						pEstado->reproduceFx("RecogeItem1", 0, 0, 0);
 						mochilaAux->newItem(info->nombre[i + 1], atoi(info->nombre[i].c_str()));
 					}
-					pEstado->eraseVectObj(info);
+					if(info->desaparece)pEstado->eraseVectObj(info);
 					//std::cout << "He cogido una " << info->nombre << "\n";
 				}
 			}

@@ -45,9 +45,11 @@ public:
 	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w*4) anim.x = 0; } // coloca la 'i'
 	virtual Texturas_t getEnumText()const { return et; }
 	bool interactuable=false;
+	bool desaparece = true;
 	bool obstaculo = false;
 	bool escondite = false;
 	bool enemigo = false;
+
 	std::string destructor;
 	std::vector<std::string> nombre;
 	std::vector<std::string> receta;
