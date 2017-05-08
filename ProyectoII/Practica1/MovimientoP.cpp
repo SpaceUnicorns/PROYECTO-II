@@ -66,6 +66,7 @@ void MovimientoP::update(){
 				pObj->changeAnimV(0); // posiciona la 'j' de la matriz de la animacion
 				pObj->setAbsRect(nextPos.x, nextPos.y);
 			}
+			moviendose = true;
 		}
 		else if (pObj->getPJuego()->input.dDI){//Diagonal Abajo-Derecha
 			nextPos.x = pObj->velocity.x; nextPos.y = pObj->velocity.y;

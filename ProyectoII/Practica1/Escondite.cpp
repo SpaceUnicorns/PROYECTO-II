@@ -11,7 +11,7 @@ Escondite::Escondite(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 	anim.h = 161; anim.w = 180;
 	nombre[0] = "1";
 	nombre.push_back("Escondite");
-	SDL_Rect colision = { rect.x+10, rect.y+10, 65, 80 };
+	SDL_Rect colision = { rect.x+10, rect.y+50, 65, 40 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");
 }
 
