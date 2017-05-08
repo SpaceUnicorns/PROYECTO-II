@@ -2,12 +2,12 @@
 #include "ObjetoPG.h"
 #include "ColisionBox.h"
 
-class BbYgBroom :
+class BbYgBucket :
 	public ObjetoPG
 {
 public:
-	BbYgBroom(juegoPG * juego, int px, int py);
-	virtual ~BbYgBroom();
+	BbYgBucket(juegoPG * juego, int px, int py);
+	virtual ~BbYgBucket();
 	virtual void draw();
 	virtual  SDL_Rect getColisionBox() { return static_cast<ColisionBox*> (mapaComponentes.at("ColisionBox"))->getRectBox(); }
 };
