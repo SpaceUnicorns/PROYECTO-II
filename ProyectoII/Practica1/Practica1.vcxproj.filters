@@ -231,14 +231,14 @@
     <ClCompile Include="ObstaculoPiedra.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
-    <ClCompile Include="Pozo.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="RocaGrande.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
     <ClCompile Include="Tronco.cpp">
       <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Pozo.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -590,14 +590,20 @@
     <ClInclude Include="ObstaculoPiedra.h">
       <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
     </ClInclude>
-    <ClInclude Include="Pozo.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="RocaGrande.h">
       <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
     </ClInclude>
     <ClInclude Include="Tronco.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Pozo.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

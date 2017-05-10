@@ -2,10 +2,18 @@
 
 
 
-Pozo::Pozo(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
+Pozo::Pozo(juegoPG * juego, int px, int py, int type) : ObjetoPG(juego, px, py)
 {
-	interactuable = true;	//Con cuerda
-	et = TPozoA;		//TPozoA = sin cuerda, TPozoB = con Cuerda
+	tipo = type;
+	
+	if (type == 0){
+		et = TPozoA;		//TPozoA = sin cuerda, 
+		interactuable = true;	//Con cuerda
+	}
+	else if (type == 1) {
+		et = TPozoB;		//TPozoB = con Cuerda
+		interactuable = false;	//Cuerda aplicada
+	}
 	rect.w = 50;
 	rect.h = 55;
 	nombre[0] = "1";

@@ -4,13 +4,21 @@
 #include <SDL.h>
 
 
-Arbol3::Arbol3(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
+Arbol3::Arbol3(juegoPG * juego, int px, int py, int type) : ObjetoPG(juego, px, py)
 {
+	tipo = type;
+	if (tipo == 0) {
+		et = TArbol3A;			//Con Enredaderas
+		interactuable = true;	//De este arbol se recogen enredaderas
+	}
+	else if (tipo == 1) {
+		et = TArbol3B;			//Sin Enredaderas
+		interactuable = false;	
+	}
 	nombre.push_back("1");
 	nombre.push_back("Arbol3");
 
-	et = TArbol3A;
-	interactuable = true;	//De este arbol se recogen enredaderas
+	
 	rect.w = 100;
 	rect.h = 200;
 	absRect.w = rect.w;
