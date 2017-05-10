@@ -6,5 +6,6 @@ class Pala :
 public:
 	Pala(juegoPG * juego, int px, int py);
 	virtual ~Pala();
+	virtual void draw();
 };
 

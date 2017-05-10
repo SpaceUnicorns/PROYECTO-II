@@ -1,7 +1,7 @@
 #include "Trigger.h"
 #include "Nivel1.h"
 
-Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR) : ObjetoPG(juego, px, py)
+Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR, int indice_) : ObjetoPG(juego, px, py)
 {
 	et = TCColision;
 	rect.w = 50;
@@ -9,7 +9,12 @@ Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR)
 	tgCazador = tgC;
 	tgRecolector = tgR;
 	triggered = reacciona = false;
-
+	isCabania = false;
+	if (indice_ != 0){
+		indice = indice_ - 1;
+		isCabania = true;
+	}
+	firsTime = true;
 }
 
 
@@ -20,13 +25,25 @@ void Trigger::update(){
 
 	if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w) 
 		&& tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)){
-			if(!reacciona) cb->callback();
+		if (!reacciona){
+			if (firsTime && isCabania){
+				firsTime = false;
+				static_cast<Nivel1*>(pJuego->estados.top())->visitaCab(indice);
+			}
+			cb->callback();
+		}
 			reacciona = true;
 			triggered = true;
 	}
 	else if (tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w) 
 		&& tgRecolector->getColisionBox().y > rect.y && tgRecolector->getColisionBox().y < (rect.y + rect.h)){
-			if(!reacciona) cb->callback();
+		if (!reacciona){
+			if (firsTime && isCabania){
+				firsTime = false;
+				static_cast<Nivel1*>(pJuego->estados.top())->visitaCab(indice);
+			}
+			cb->callback();
+		}
 			triggered = true;
 			reacciona = true;
 	}

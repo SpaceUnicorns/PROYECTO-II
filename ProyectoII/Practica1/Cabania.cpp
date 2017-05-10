@@ -1,7 +1,11 @@
 #include "Cabania.h"
 #include <algorithm>
 #include "Huella.h"
-Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act) : Nivel1(jug, map, objetos, posRec, posCaz, act)
+#include "Hacha.h"
+#include "Pico.h"
+#include "Pala.h"
+#include "TrampaCerrada.h"
+Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool visited) : Nivel1(jug, map, objetos, posRec, posCaz, act)
 {
 	firsTime = true;
 	change = false;
@@ -21,6 +25,27 @@ Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec
 	huellasCamino.resize(0);
 	for (ObjetoJuego* tr : vecTriggers) delete tr;
 	vecTriggers.resize(0);
+
+
+
+	if (visited){
+		int aux = rand() % 4;
+		switch (aux)
+		{
+		case 0:vecObj.push_back(new Hacha(pJuego, posRec.x, posRec.y + 50));
+			break;
+		case 1:vecObj.push_back(new Pala(pJuego, posRec.x - 50, posRec.y + 50));
+			break;
+		case 2: vecObj.push_back(new Pico(pJuego, posRec.x - 60, posRec.y + 50));
+			break;
+		case 3: vecObj.push_back(new TrampaCerrada(pJuego, posRec.x - 60, posRec.y + 50));
+			break;
+		default:
+			break;
+		}
+		
+	}
+	
 }
 bool ordenation(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
@@ -210,9 +235,11 @@ void Cabania::swPlayer(){
 void Cabania::onKeyUp(char k){
 	if (k == 'S'){
 		Nivel1::fadeOut(40);
+		bool recogido = true;
+		if (vecObj.size() != 0) recogido = false;
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();
-		dynamic_cast<Nivel1*>(pJuego->estados.top())->resumeCabania(activePlayer);
+		dynamic_cast<Nivel1*>(pJuego->estados.top())->resumeCabania(activePlayer, recogido);
 		delete borrar;
 	}
 	else Nivel1::onKeyUp(k);

@@ -4,7 +4,7 @@ class Cabania :
 	public Nivel1
 {
 public:
-	Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act);
+	Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act, bool visited);
 	virtual ~Cabania();
 	virtual void callback();
 	virtual void update();

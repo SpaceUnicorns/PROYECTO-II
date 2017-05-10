@@ -6,5 +6,6 @@ class Pico :
 public:
 	Pico(juegoPG * juego, int px, int py);
 	virtual ~Pico();
+	virtual void draw();
 };
 

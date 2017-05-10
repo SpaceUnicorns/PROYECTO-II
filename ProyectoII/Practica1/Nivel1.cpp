@@ -41,6 +41,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	animNieve1.h = animNieve2.h = camara.h+1000; animNieve1.w = animNieve2.w = camara.w+1000;
 	animNieve1.x = animNieve2.x = camara.w;
 	animNieve1.y = animNieve2.y = camara.h;
+	int numCab = 0;
 
 	archivoObj = objetos;
 
@@ -342,9 +343,28 @@ void Nivel1::swPlayer(){
 void Nivel1::update(){
 	EstadoPG::update();
 	if (changeCabania){
+		if (activePlayer == "R"){
+			int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;
+			int y = pRecolector->getAbsRect().y - pCazador->getAbsRect().y;
+			pCazador->setRect(x + 20, y + 20);
+			pCazador->setAbsRect(x + 20, y + 20);
+			pCazador->setColRect(x + 20, y + 20);
+		}
+		else {
+			int x = pCazador->getAbsRect().x - pRecolector->getAbsRect().x;
+			int y = pCazador->getAbsRect().y - pRecolector->getAbsRect().y;
+			pRecolector->setRect(x + 20, y + 20);
+			pRecolector->setAbsRect(x + 20, y + 20);
+			pRecolector->setColRect(x + 20, y + 20);
+		}
+		bool visited = false;
+		if (!cabVisitadas[lastCabVisited]){
+			visited = true;
+			cabVisitadas[lastCabVisited] = true;
+		}
 		fadeOut(40);
 		Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
-		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer));
+		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited));
 		changeCabania = false;
 	}
 }
@@ -524,9 +544,10 @@ void Nivel1::cargaObj(std:: string name){
 			else if (type == "Valla2")vecObj.push_back(new Valla(pJuego, pos.x, pos.y, "D"));
 			else if (type == "Cab"){
 				vecObj.push_back(new ObjetoCabania(pJuego, pos.x, pos.y));
-
+				numCab++;
+				cabVisitadas.push_back(false);
 				Trigger *auxTr;
-				auxTr = new Trigger(pJuego, pos.x + 67, pos.y + 256, pCazador, pRecolector);
+				auxTr = new Trigger(pJuego, pos.x + 67, pos.y + 256, pCazador, pRecolector, numCab);
 				auxTr->setCallback(new changeScene(auxTr, this));
 				auxTr->setTriggerDim(60, 80);
 				vecTriggers.push_back(auxTr);

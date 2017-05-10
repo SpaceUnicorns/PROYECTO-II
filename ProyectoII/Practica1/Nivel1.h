@@ -43,26 +43,25 @@ public:
 	void swVisible(){
 		visible = !visible;
 	}
-	void resumeCabania(std:: string act){
-		if (activePlayer == "R"){
-			int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;
-			int y = pRecolector->getAbsRect().y - pCazador->getAbsRect().y;
-			pCazador->setRect(x + 20, y + 20);
-			pCazador->setColRect(x + 20, y + 20);
-		}
-		else {
-			int x = pCazador->getAbsRect().x - pRecolector->getAbsRect().x;
-			int y = pCazador->getAbsRect().y - pRecolector->getAbsRect().y;
-			pRecolector->setRect(x + 20, y + 20);
-			pRecolector->setColRect(x + 20, y + 20);
+	void resumeCabania(std:: string act, bool recogido){
+		if (!recogido){
+			cabVisitadas[lastCabVisited] = false;
 		}
 		if (activePlayer != act) swPlayer();
 	}
+	void visitaCab(int i){
+		lastCabVisited = i;
+	}
+	void setVectCab(int i, bool x){ cabVisitadas[i] = x; }
+	int getLastcabVisited(){ return lastCabVisited; }
 protected:
+	int lastCabVisited;
+	int numCab;
 	std::string archivoObj;
 	std::vector<HuellasCamino*> huellasCamino;
 	Mode mode;
 	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
+	std::vector<bool> cabVisitadas;
 	bool hasTorch;
 	bool firsTime;
 	bool changeCabania;

@@ -7,7 +7,7 @@ class Trigger :
 	public ObjetoPG
 {
 public:
-	Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR);
+	Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR, int indice_ = 0);
 	virtual ~Trigger();
 	virtual void draw();
 	virtual void update();
@@ -24,6 +24,9 @@ public:
 
 protected:
 
+	bool isCabania;
+	bool firsTime;
+	int indice;
 	bool reacciona;
 	bool triggered;
 	Componente* cb; //Callback;
