@@ -5,7 +5,6 @@
 Pozo::Pozo(juegoPG * juego, int px, int py, int type) : ObjetoPG(juego, px, py)
 {
 	tipo = type;
-	
 	if (type == 0){
 		et = TPozoA;		//TPozoA = sin cuerda, 
 		interactuable = true;	//Con cuerda

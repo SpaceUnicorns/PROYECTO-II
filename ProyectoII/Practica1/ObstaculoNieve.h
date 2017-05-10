@@ -6,6 +6,7 @@ class ObstaculoNieve :
 	public ObjetoPG
 {
 public:
+	// OJO PROBABLEMENTE CLASE INNECESARIA, LLAMADOS Y CREADOS USANDO CLASE OBSTACULO
 	ObstaculoNieve(juegoPG * juego, int px, int py, Texturas_t tex, std::string destruc); //TObs1
 	virtual ~ObstaculoNieve();
 	virtual void draw();

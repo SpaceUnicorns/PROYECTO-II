@@ -4,6 +4,7 @@
 
 ObstaculoNieve::ObstaculoNieve(juegoPG * juego, int px, int py, Texturas_t tex, std::string destruc) : ObjetoPG(juego, px, py)
 {
+	// OJO PROBABLEMENTE CLASE INNECESARIA, LLAMADOS Y CREADOS USANDO CLASE OBSTACULO
 	obstaculo = true;
 	et = tex;		//TObs1
 	rect.w = 200;
