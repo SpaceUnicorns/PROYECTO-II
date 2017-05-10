@@ -40,7 +40,7 @@
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = true;
+	visible = false; //Muestra o no las colisiones
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -356,7 +356,6 @@ void escribe(std::string s, int x, int y, std:: string name){
 	f.close();
 }
 void Nivel1::onKeyUp(char k) {
-
 	if (mode == Play){
 		switch (k)
 		{
@@ -377,12 +376,15 @@ void Nivel1::onKeyUp(char k) {
 		}
 	}
 	else {
+		std::cout << "levantada tecla: " << k << ". Genera: \n";
 		switch (k) { //EDITOR DE NIVEL
 		case '1': //Arbol Movible
+			std::cout << "agregado Arbol Movible\n";
 			vecObj.push_back(new Arbol(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y - 120));
 			escribe("ArbolF", centroRel.x + 20, centroRel.y - 120, archivoObj);
 			break;
 		case 'q': //Arbol Normal
+			std::cout << "agregado Arbol Normal\n";
 			vecObj.push_back(new Arbol(pJuego, pCazador->getRect().x+20  ,pCazador->getRect().y-120, false));
 			escribe("Arbol", centroRel.x + 20, centroRel.y - 120,archivoObj);
 			break;
@@ -394,43 +396,52 @@ void Nivel1::onKeyUp(char k) {
 			vecObj.push_back(new ObstaculoNieve(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20, TObs1, "Pico"));
 			escribe("ObstaculoNieve", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 'a': //Roca Grande
+		case '<': //Roca Grande
+			std::cout << "agregado RocaGrande\m";
 			vecObj.push_back(new RocaGrande(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20));
 			escribe("RocaGrande", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 'b': //Tronco
+		case '.': //Tronco
+			std::cout << "agregado Tronco\n";
 			vecObj.push_back(new Tronco(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20));
 			escribe("Tronco", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 'd': //Arbol2
+		case '4': //Arbol2
 			vecObj.push_back(new Arbol2(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20));
 			escribe("Arbol2", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 'e': //Arbol3 con enredaderas
+		case '5': //Arbol3A con enredaderas1
+			std::cout << "agregado Arbol3A\n";
 			vecObj.push_back(new Arbol3(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20, 0));
 			escribe("Arbol3A", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case '6': //Arbol3 sin enredaderas
+		case '6': //Arbol3B sin enredaderas
+			std::cout << "agregado Arbol3B\n";
 			vecObj.push_back(new Arbol3(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20, 1));
 			escribe("Arbol3B", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 'i': //Baba Yaga Broom
+		case '7': //Baba Yaga Broom
+			std::cout << "agregado BabaYagaBroom\n";
 			vecObj.push_back(new BbYgBroom(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20));
 			escribe("BabaYagaBroom", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 'm': //Baba Yaga Bucket
+		case '8': //Baba Yaga Bucket
+			std::cout << "agregado BabaYagaBucket\n";
 			vecObj.push_back(new BbYgBucket(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20));
 			escribe("BabaYagaBucket", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 'A': //Caseta Bota
+		case '9': //Caseta Bota
+			std::cout << "agregado CasetaBota\n";
 			vecObj.push_back(new Caseta(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20, 0));
-			escribe("Caseta Bota", centroRel.x + 35, centroRel.y - 20, archivoObj);
+			escribe("CasetaBota", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 'B': //Caseta Bota
+		case '0': //Caseta Bota y Domovoi
+			std::cout << "agregado CasetaBotaDomo\n";
 			vecObj.push_back(new Caseta(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20, 1));
 			escribe("CasetaBotaDomo", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 'C': //Caseta Bota
+		case ',': //Caseta Domovoi
+			std::cout << "agregado CasetaDomovoi\n";
 			vecObj.push_back(new Caseta(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20, 2));
 			escribe("CasetaDomovoi", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
@@ -490,31 +501,34 @@ void Nivel1::onKeyUp(char k) {
 			vecObj.push_back(new Lobo(pJuego, pCazador, pRecolector, mapa, pCazador->getRect().x + 30, pCazador->getRect().y + 30));
 			escribe("Lobo", centroRel.x + 30, centroRel.y + 30, archivoObj);
 			break;
-		case '2':
+		case '2': //VALLA1
 			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x +45, pCazador->getRect().y - 20, "A"));
 			escribe("Valla", centroRel.x + 45, centroRel.y - 20, archivoObj);
 			break;
-		case '3':
+		case '3': //VALLA2
 			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x + 45, pCazador->getRect().y - 20, "D"));
 			escribe("Valla2", centroRel.x + 45, centroRel.y - 20, archivoObj);
 			break;
-		case '4': //Pozo sin cuerda
+		case '+': //Pozo sin cuerda
+			std::cout << "agregado PozoA\n";
 			vecObj.push_back(new Pozo(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20, 0));
 			escribe("PozoA", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case '5': //Pozo con cuerda
+		case ' ': //Pozo con cuerda
+			std::cout << "agregado PozoB\n";
 			vecObj.push_back(new Pozo(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20, 1));
 			escribe("PozoB", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
-		case 's':
-			 mode = Play;
+		case 's': //Sale del modo Edicion
+			mode = Play;
 			reproduceFx("AbreMenu", 0, 0, 0);
 			pJuego->estados.push(new Pausa(pJuego, this, contPuntos));
-
 			break;
-		case 't': pJuego->input.sw = true;
+		case 't': 
+			pJuego->input.sw = true;
 			break;
 		default:
+			std::cout << "Nada (case default). \n";
 			break;
 		}
 	}
@@ -535,9 +549,9 @@ void Nivel1::cargaObj(std:: string name){
 		f.get(stash); f.get(stash); f.get(stash);
 		f >> pos.y;
 		if (!f.fail()){
-			if (type == "Arbol")vecObj.push_back(new Arbol(pJuego, pos.x, pos.y, false));
-			else if (type == "ArbolF") vecObj.push_back(new Arbol(pJuego, pos.x, pos.y));
-			else if (type == "RocaGrande") vecObj.push_back(new RocaGrande(pJuego, pos.x, pos.y));
+			if (type == "Arbol")vecObj.push_back(new Arbol(pJuego, pos.x, pos.y, false)); //OK
+			else if (type == "ArbolF") vecObj.push_back(new Arbol(pJuego, pos.x, pos.y)); //OK
+			else if (type == "RocaGrande") vecObj.push_back(new RocaGrande(pJuego, pos.x, pos.y)); //MAL
 			else if (type == "Escondite") vecObj.push_back(new Escondite(pJuego, pos.x, pos.y));
 			else if (type == "Piedra") vecObj.push_back(new Piedra(pJuego, pos.x, pos.y));
 			else if (type == "Madera") vecObj.push_back(new Madera(pJuego, pos.x, pos.y));
@@ -554,20 +568,20 @@ void Nivel1::cargaObj(std:: string name){
 			else if (type == "LI") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "LI"));
 			else if (type == "Valla") vecObj.push_back(new Valla(pJuego, pos.x, pos.y, "A"));
 			else if (type == "Valla2")vecObj.push_back(new Valla(pJuego, pos.x, pos.y, "D"));
+			//SET TONI
 			else if (type == "ObstaculoNieve") vecObj.push_back(new Obstaculo(pJuego, pos.x, pos.y, TObs1, "Pala"));
 			else if (type == "ObstaculoPiedra") vecObj.push_back(new Obstaculo(pJuego, pos.x, pos.y, TObs2, "Pico"));
-			else if (type == "Arbol2") vecObj.push_back(new Arbol2(pJuego, pos.x, pos.y));
-			else if (type == "Arbol3A")vecObj.push_back(new Arbol3(pJuego, pos.x, pos.y, 0));
-			else if (type == "Arbol3B")vecObj.push_back(new Arbol3(pJuego, pos.x, pos.y, 1));
-			else if (type == "CasetaBota")vecObj.push_back(new Caseta(pJuego, pos.x, pos.y, 0));
-			else if (type == "CasetaBotaDomo")vecObj.push_back(new Caseta(pJuego, pos.x, pos.y, 1));
-			else if (type == "CasetaDomovoi")vecObj.push_back(new Caseta(pJuego, pos.x, pos.y, 2));
-			else if (type == "PozoA")vecObj.push_back(new Pozo(pJuego, pos.x, pos.y, 0));
-			else if (type == "PozoB")vecObj.push_back(new Pozo(pJuego, pos.x, pos.y, 1));
-			else if (type == "Tronco") vecObj.push_back(new Tronco(pJuego, pos.x, pos.y));
-			else if (type == "Arbol2") vecObj.push_back(new Arbol2(pJuego, pos.x, pos.y));
-			else if (type == "BabaYagaBroom") vecObj.push_back(new BbYgBroom(pJuego, pos.x, pos.y));
-			else if (type == "BabaYagaBucket") vecObj.push_back(new BbYgBucket(pJuego, pos.x, pos.y));
+			else if (type == "Arbol2") vecObj.push_back(new Arbol2(pJuego, pos.x, pos.y));		//MAL
+			else if (type == "Arbol3A")vecObj.push_back(new Arbol3(pJuego, pos.x, pos.y, 0));	//MAL
+			else if (type == "Arbol3B")vecObj.push_back(new Arbol3(pJuego, pos.x, pos.y, 1));	//MAL
+			else if (type == "CasetaBota")vecObj.push_back(new Caseta(pJuego, pos.x, pos.y, 0)); //MAL
+			else if (type == "CasetaBotaDomo")vecObj.push_back(new Caseta(pJuego, pos.x, pos.y, 1)); //MAL
+			else if (type == "CasetaDomovoi")vecObj.push_back(new Caseta(pJuego, pos.x, pos.y, 2)); //MAL
+			else if (type == "PozoA")vecObj.push_back(new Pozo(pJuego, pos.x, pos.y, 0)); //MAL
+			else if (type == "PozoB")vecObj.push_back(new Pozo(pJuego, pos.x, pos.y, 1)); //MAL
+			else if (type == "Tronco") vecObj.push_back(new Tronco(pJuego, pos.x, pos.y)); //MAL
+			else if (type == "BabaYagaBroom") vecObj.push_back(new BbYgBroom(pJuego, pos.x, pos.y)); //MAL
+			else if (type == "BabaYagaBucket") vecObj.push_back(new BbYgBucket(pJuego, pos.x, pos.y)); //MAL
 		}
 	}
 	f.close();

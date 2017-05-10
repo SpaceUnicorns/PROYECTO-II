@@ -1,4 +1,5 @@
-Arbol , 6970 , 8930Escondite , 6611 , 8717
+Arbol , 6970 , 8930
+Escondite , 6611 , 8717
 Lobo , 6301 , 8582
 Escondite , 7499 , 1553
 Escondite , 6373 , 1224
@@ -37,5 +38,5 @@ Arbol , 2645 , 908
 Arbol , 2663 , 936
 Arbol , 2693 , 954
 Arbol , 2697 , 984
-ObsPiedra , 2510 , 1112
+ObstaculoPiedra , 2510 , 1112
 Arbol , 2441 , 1050

@@ -38,6 +38,8 @@ void Trucos::onKeyUp(char t){
 		break;
 	case '2':codigo += '2'; renderCodigo += '*'; font.h += 2; font.w += font.h; font.x -= 60; reproduceFx("Golpe1", -100, 0, 0);
 		break;
+	case '3':codigo += '3'; renderCodigo += '*'; font.h += 2; font.w += font.h; font.x -= 60; reproduceFx("Golpe1", -100, 0, 0);
+		break;
 	case 'a':codigo += 'a'; renderCodigo += '*'; font.h += 2; font.w += font.h; font.x -= 60; reproduceFx("Golpe1", -100, 0, 0);
 		break;
 	case 'b':codigo += 'b'; renderCodigo += '*'; font.h += 2; font.w += font.h; font.x -= 60; reproduceFx("Golpe1", -100, 0, 0);
@@ -59,7 +61,7 @@ void Trucos::volver(){
 	delete borrar;
 }
 void Trucos::desbloquea(){
-	if (codigo == "12abc"){
+	if (codigo == "12abc"){	//DA TODOS LOS OBJETOS
 		std::cout << "CORRECTO!\n";
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
@@ -75,7 +77,7 @@ void Trucos::desbloquea(){
 		aux->newItem("Yesca", 200);
 		aux->newItem("Enredadera", 200);
 	}
-	else if (codigo == "abc12"){
+	else if (codigo == "abc12"){ //
 		std::cout << "CORRECTO!\n";
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
@@ -83,31 +85,31 @@ void Trucos::desbloquea(){
 		font.x = pJuego->getScreenWidth() / 2 - 80; font.y = pJuego->getScreenHeight() / 2 - 30; font.w = 80; font.h = 100;
 		level->paraMusica(" ", true);
 	}
-	else if (codigo == "1a2bc"){
-		std::cout << "CORRECTO!\n";
+	else if (codigo == "1a2bc"){ //MODO EDICION
+		std::cout << "CORRECTO! Modo Edicion Activado\n";
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
 		level->setMode(1);
 
 	}
-	else if (codigo == "12121"){
+	else if (codigo == "12121"){ //
 		std::cout << "CORRECTO!\n";
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
 		level->swVisible();
 	}
-	else if (codigo == "ababa"){
-		std::cout << "CORRECTO!\n";
+	else if (codigo == "ababa"){ //CAMBIA VELOCIDAD 1
+		std::cout << "CORRECTO! Velocidad 1\n";
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
 		level->getCazador()->setVelocity(2,1);
 		level->getRecolector()->setVelocity(2, 1);
 	}
-	else if (codigo == "abab1"){
-		std::cout << "CORRECTO!\n";
+	else if (codigo == "abab1"){ //CAMBIA VELOCIDAD 2
+		std::cout << "CORRECTO! Velocidad 2\n";
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
@@ -115,13 +117,22 @@ void Trucos::desbloquea(){
 		level->getRecolector()->setVelocity(3, 1.5);
 
 	}
-	else if (codigo == "abab2"){
-		std::cout << "CORRECTO!\n";
+	else if (codigo == "abab2"){ //CAMBIA VELOCIDAD 3
+		std::cout << "CORRECTO! Velocidad 3\n";
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
 		level->getCazador()->setVelocity(4, 2);
 		level->getRecolector()->setVelocity(4, 2);
+	}
+	else if (codigo == "abab3"){ //CAMBIA VELOCIDAD 4
+		std::cout << "CORRECTO! Velocidad 4\n";
+		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
+		codigo = "";
+		renderCodigo = " ";
+		level->getCazador()->setVelocity(6, 3);
+		level->getRecolector()->setVelocity(6, 3);
+
 	}
 	else {
 		std::cout << "INCORRECTO!\n";

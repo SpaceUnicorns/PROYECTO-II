@@ -221,7 +221,6 @@ void juegoPG::handle_event(){
 				estados.top()->onKeyUp('q');
 			}
 			else if (e.key.keysym.sym == SDLK_RETURN || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_A)) {
-
 				estados.top()->onKeyUp('e');
 			}
 			else if (e.key.keysym.sym == SDLK_RIGHT || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT)) {
@@ -255,9 +254,30 @@ void juegoPG::handle_event(){
 			else if (e.key.keysym.sym == SDLK_1) estados.top()->onKeyUp('1');
 			else if (e.key.keysym.sym == SDLK_2)estados.top()->onKeyUp('2');
 			else if (e.key.keysym.sym == SDLK_3)estados.top()->onKeyUp('3');
+			else if (e.key.keysym.sym == SDLK_4)estados.top()->onKeyUp('4');
+			else if (e.key.keysym.sym == SDLK_5)estados.top()->onKeyUp('5');
+			else if (e.key.keysym.sym == SDLK_6)estados.top()->onKeyUp('6');
+			else if (e.key.keysym.sym == SDLK_7)estados.top()->onKeyUp('7');
+			else if (e.key.keysym.sym == SDLK_8)estados.top()->onKeyUp('8');
+			else if (e.key.keysym.sym == SDLK_9)estados.top()->onKeyUp('9');
+			else if (e.key.keysym.sym == SDLK_0)estados.top()->onKeyUp('0');
 			else if (e.key.keysym.sym == SDLK_a)estados.top()->onKeyUp('a');
 			else if (e.key.keysym.sym == SDLK_b)estados.top()->onKeyUp('b');
 			else if (e.key.keysym.sym == SDLK_c)estados.top()->onKeyUp('c');
+			else if (e.key.keysym.sym == SDLK_SPACE)estados.top()->onKeyUp(' ');
+			else if (e.key.keysym.sym == SDLK_COMMA)estados.top()->onKeyUp(',');
+			else if (e.key.keysym.sym == SDLK_ASTERISK)estados.top()->onKeyUp('*');
+			else if (e.key.keysym.sym == SDLK_PLUS)estados.top()->onKeyUp('+');
+			else if (e.key.keysym.sym == SDLK_AT)estados.top()->onKeyUp('@');
+			else if (e.key.keysym.sym == SDLK_PERIOD)estados.top()->onKeyUp('.');
+			else if (e.key.keysym.sym == SDLK_DOLLAR)estados.top()->onKeyUp('$');
+			else if (e.key.keysym.sym == SDLK_AMPERSAND)estados.top()->onKeyUp('&');
+			else if (e.key.keysym.sym == SDLK_COLON)estados.top()->onKeyUp(':');
+			else if (e.key.keysym.sym == SDLK_EXCLAIM)estados.top()->onKeyUp('!');
+			else if (e.key.keysym.sym == SDLK_QUESTION)estados.top()->onKeyUp('?');
+			else if (e.key.keysym.sym == SDLK_UNDERSCORE)estados.top()->onKeyUp('_');
+			else if (e.key.keysym.sym == SDLK_LESS)estados.top()->onKeyUp('<');
+			else if (e.key.keysym.sym == SDLK_MINUS)estados.top()->onKeyUp('-');
 			else estados.top()->onKeyUp('ñ');
 	
 
