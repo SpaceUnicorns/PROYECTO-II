@@ -10,8 +10,8 @@ Caseta::Caseta(juegoPG * juego, int px, int py, int tipo) : ObjetoPG(juego, px, 
 
 	//Inicializaciones Normales
 	interactuable = true;
-	rect.w = 260;
-	rect.h = 200;
+	rect.w = 520;
+	rect.h = 400;
 	nombre[0] = "1";
 	nombre.push_back("Caseta");
 	SDL_Rect colision = { rect.x,rect.y + 10,50,10 };
