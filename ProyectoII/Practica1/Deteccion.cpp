@@ -231,8 +231,10 @@ void Deteccion::volviendo(){
 	}
 }
 void Deteccion::atacando(){
-	if (cont == 0)
+	if (cont == 0){
 		enemy->getPJuego()->getEstadoActual()->reproduceFx("Grunido", enemy->getRect().x, enemy->getRect().y, 0);
+		enemy->clearFollow();
+	}
 	if (cont < 100)
 		cont++;
 	else { enemy->setEstado(PostAtaque); cont = 0; }
@@ -365,7 +367,10 @@ void Deteccion::postAtaque(){
 	cont++;
 }
 void Deteccion::atrapado(){
-	if (cont == 0)enemy->desactivaFollow();
+	if (cont == 0){
+		enemy->desactivaFollow(); 
+		enemy->clearFollow();
+	}
 	if (enemy->getLife() <= 0){ enemy->setEstado(Muerto); }
 	cont++;
 	if (cont >= 1000)
@@ -376,6 +381,7 @@ void Deteccion::atrapado(){
 }
 void Deteccion::herido(){		
 	//Animacion Herido
+	if (cont == 0) enemy->clearFollow();
 	if (enemy->getLife() < 0){
 		enemy->setEstado(Muerto);
 		enemy->deleteComponente("ColisionBox");
@@ -384,6 +390,7 @@ void Deteccion::herido(){
 		cont = 0;
 		enemy->setEstado(Quieto);
 	}
+	cont++;
 }
 void Deteccion::muerto(){}
 

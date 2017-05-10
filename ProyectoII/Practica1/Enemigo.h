@@ -33,6 +33,7 @@ public:
 	void setEstado(EstadoEnemigo est){ estado = est; }
 	EstadoEnemigo getEstado(){ return estado; }
 	void activaFollow();
+	void clearFollow(){ followEnem->clearFollow(); }
 	void desactivaFollow();
 	Punto getPosIni() { return posIni; }
 	int damage;

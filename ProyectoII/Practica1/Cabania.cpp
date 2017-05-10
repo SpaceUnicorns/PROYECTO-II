@@ -213,6 +213,17 @@ void Cabania::onKeyUp(char k){
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();
 		dynamic_cast<Nivel1*>(pJuego->estados.top())->resumeCabania(activePlayer);
+		pJuego->input.dDS = false;
+		pJuego->input.dDI = false;
+		pJuego->input.dIS = false;
+		pJuego->input.dII = false;
+		pJuego->input.arriba = false;
+		pJuego->input.abajo = false;
+		pJuego->input.derecha = false;
+		pJuego->input.izquierda = false;
+		pJuego->input.enter = false;
+		pJuego->input.follow = false;
+		pJuego->input.sw = false;
 		delete borrar;
 	}
 	else Nivel1::onKeyUp(k);

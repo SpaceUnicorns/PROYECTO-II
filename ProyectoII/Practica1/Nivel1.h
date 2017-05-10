@@ -49,12 +49,14 @@ public:
 			int y = pRecolector->getAbsRect().y - pCazador->getAbsRect().y;
 			pCazador->setRect(x + 20, y + 20);
 			pCazador->setColRect(x + 20, y + 20);
+			pCazador->setAbsRect(x + 20, y + 20);
 		}
 		else {
 			int x = pCazador->getAbsRect().x - pRecolector->getAbsRect().x;
 			int y = pCazador->getAbsRect().y - pRecolector->getAbsRect().y;
 			pRecolector->setRect(x + 20, y + 20);
 			pRecolector->setColRect(x + 20, y + 20);
+			pRecolector->setAbsRect(x + 20, y + 20);
 		}
 		if (activePlayer != act) swPlayer();
 	}

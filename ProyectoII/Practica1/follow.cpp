@@ -1,5 +1,5 @@
 #include "follow.h"
-
+#include "Cabania.h"
 
 follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m, bool aliado) : Componente(ent)
 {
@@ -13,6 +13,7 @@ follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m, bool aliado) : Comp
 	map = m;
 	al = aliado;
 	framerate = 0;
+	pCBox = static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"));
 }
 
 
@@ -21,21 +22,23 @@ follow::~follow()
 }
 
 void follow::update(){
-	if (pObj->getPJuego()->input.sw && al){
-		direccion.clear();
-		cont = 0;
-		path.clear();
-	}
 	if (target && al && !pObj->isAble()){
 		int auxX, auxY;
 		auxX = abs(pObj->getAbsRect().x - target->getAbsRect().x);
 		auxY = abs(pObj->getAbsRect().y - target->getAbsRect().y);
-		if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) > 1000){
+		if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) > 500 && contFollowSolo <= 0){
 			direccion.clear();
 			cont = 0;
 			path.clear();
 			doFollow();
+			contFollowSolo = 50;
 		}
+	}
+	contFollowSolo--;
+	if (pObj->getPJuego()->input.sw && al){
+		direccion.clear();
+		cont = 0;
+		path.clear();
 	}
 
 }
@@ -115,7 +118,7 @@ void follow::doFollow()
 
 }
 void follow::lateUpdate(){
-	if (pObj->getPJuego()->input.follow && al && !pObj->isAble()){
+	if (pObj->getPJuego()->input.follow && al && !pObj->isAble() && dynamic_cast<Cabania*>(pObj->getPJuego()->getEstadoActual()) == nullptr){
 		pObj->getPJuego()->input.follow = false;
 		doFollow();
 	}
@@ -184,6 +187,13 @@ void follow::lateUpdate(){
 			contPasos++;
 			if (contPasos >= 20)contPasos = 0;
 		}
+
+		//Sale del escondite
+		ObjetoPG* info;
+		int colAux = pCBox->isColiding(nextPos, info);
+		if (colAux == 3 && al) pObj->esconderse();
+		else pObj->salirEscondite();
+
 		if (direccion.size() != 0)
 		{
 			if (framerate % 8 == 0) {// se mueve 1 frame cada 16 ms x 16ms
@@ -212,7 +222,7 @@ void follow::lateUpdate(){
 				pObj->setRect(2, 0);
 				pObj->setAbsRect(2, 0);
 				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
-				paso-=2;
+				paso-= 2;
 				pObj->changeAnimV(6);
 				break;
 			case 3:

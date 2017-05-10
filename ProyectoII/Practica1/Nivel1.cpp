@@ -42,6 +42,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	animNieve1.x = animNieve2.x = camara.w;
 	animNieve1.y = animNieve2.y = camara.h;
 
+
 	archivoObj = objetos;
 
 	if (act == "C"){
@@ -135,6 +136,7 @@ bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
 }
 void Nivel1::draw(){
+	std::cout << "POSICION " << pRecolector->getAbsRect().x << " " << pRecolector->getAbsRect().y << "\n";
 
 	if (firsTime){
 		firsTime = false;

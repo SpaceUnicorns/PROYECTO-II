@@ -33,4 +33,6 @@ protected:
 	ObjetoPG *pObj;
 	std::vector<int> direccion;
 	int framerate;
+	int contFollowSolo;
+	ColisionBox * pCBox;
 };
