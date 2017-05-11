@@ -496,8 +496,40 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 /*7*/			|| tile == 1140 || tile == 1141 || tile == 1142 || tile == 1143 || tile == 1144 || tile == 1145 || tile == 1146 || tile == 1147 || tile == 1148 || tile == 1149 || tile == 1152
 /*8*/			|| tile == 1160 || tile == 1161 || tile == 1162 || tile == 1163 || tile == 1164 || tile == 1165 || tile == 1166 || tile == 1167 || tile == 1168 || tile == 1169 || tile == 1172
 /*9*/			|| tile == 1187 || tile == 1188
-/*0*/			|| tile == 1200 || tile == 1215)
-			{
+/*0*/			|| tile == 1200 || tile == 1215
+/*+*/			|| tile == 1260 || tile == 1262 || tile == 1265 || tile == 1269
+/*Ç*/			|| tile == 1286 || tile == 1290 || tile == 1293 || tile == 1295
+/*-*/			|| tile == 1309 || tile == 1312 || tile == 1314 || tile == 1315
+/*.*/			|| tile == 1320 || tile == 1321 || tile == 1323 || tile == 1326
+/*,*/			|| tile == 1346 || tile == 1349 || tile == 1350 || tile == 1352 || tile == 1354 || tile == 1355
+/*!*/			|| tile == 1360 || tile == 1361 || tile == 1363 || tile == 1366 || tile == 1379 || tile == 1373 || tile == 1375
+/*¡*/			|| tile == 1380 || tile == 1382 || tile == 1385 || tile == 1386 || tile == 1389 || tile == 1390 || tile == 1393 || tile == 1395
+/*¿*/			|| tile == 1400 || tile == 1401 || tile == 1402 || tile == 1403 || tile == 1405 || tile == 1406 || tile == 1409
+/*?*/			|| tile == 1420 || tile == 1422 || tile == 1425 || tile == 1429 || tile == 1432 || tile == 1434 || tile == 1435
+/*<*/			|| tile == 1440 || tile == 1441 || tile == 1443 || tile == 1446 || tile == 1449 || tile == 1450 || tile == 1452 || tile == 1453 || tile == 1454 || tile == 1455
+/*#*/			|| tile == 1460 || tile == 1461 || tile == 1462 || tile == 1463 || tile == 1464 || tile == 1465 || tile == 1466 || tile == 1467 || tile == 1468 || tile == 1469 || tile == 1470 || tile == 1471 || tile == 1472 || tile == 1473 || tile == 1474 || tile == 1475
+/*$*/			|| tile == 1480 || tile == 1482 || tile == 1484 || tile == 1485 || tile == 1488 || tile == 1489 || tile == 1491 || tile == 1492 || tile == 1494 || tile == 1495
+/*%*/			|| tile == 1500 || tile == 1501 || tile == 1503 || tile == 1504 || tile == 1506 || tile == 1507 || tile == 1510 || tile == 1511 || tile == 1513 || tile == 1515
+/*&*/			|| tile == 1526
+/***/			|| tile == 1549
+/*>*/			|| tile == 1566 || tile == 1569
+/*/*/			|| tile == 1586 || tile == 1589
+/*(*/			|| tile == 1600
+/*)*/			|| tile == 1629
+/*:*/			|| tile == 1646
+/*;*/			|| tile == 1660 || tile == 1661 || tile == 1662 || tile == 1663 || tile == 1664 || tile == 1665 || tile == 1666 || tile == 1667 || tile == 1668 || tile == 1669 || tile == 1670 || tile == 1671 || tile == 1672 || tile == 1673 || tile == 1674 || tile == 1675
+/*[*/			|| tile == 1680 || tile == 1681 || tile == 1682 || tile == 1683 || tile == 1684 || tile == 1685 || tile == 1686 || tile == 1687 || tile == 1688 || tile == 1689 || tile == 1690 || tile == 1691 || tile == 1692 || tile == 1693 || tile == 1694 || tile == 1695
+/*]*/			|| tile == 1700 || tile == 1701 || tile == 1702 || tile == 1703 || tile == 1704 || tile == 1705 || tile == 1706 || tile == 1707 || tile == 1708 || tile == 1709 || tile == 1710 || tile == 1711 || tile == 1712 || tile == 1713 || tile == 1714 || tile == 1715
+/*{*/			|| tile == 1720 || tile == 1721 || tile == 1722 || tile == 1723 || tile == 1724 || tile == 1725 || tile == 1726 || tile == 1727 || tile == 1728 || tile == 1729 || tile == 1730 || tile == 1731 || tile == 1732 || tile == 1733 || tile == 1734 || tile == 1735
+/*}*/			|| tile == 1740 || tile == 1741 || tile == 1742 || tile == 1743 || tile == 1744 || tile == 1745 || tile == 1746 || tile == 1747 || tile == 1748 || tile == 1749 || tile == 1750 || tile == 1751 || tile == 1752 || tile == 1753 || tile == 1754 || tile == 1755
+/*@*/			|| tile == 1760 || tile == 1761 || tile == 1762 || tile == 1763 || tile == 1764 || tile == 1765 || tile == 1766 || tile == 1767 || tile == 1768 || tile == 1769 || tile == 1770 || tile == 1771 || tile == 1772 || tile == 1773 || tile == 1774 || tile == 1775
+/*|*/			|| tile == 1780 || tile == 1781 || tile == 1782 || tile == 1783 || tile == 1784 || tile == 1785 || tile == 1786 || tile == 1787 || tile == 1788 || tile == 1790 || tile == 1791 || tile == 1793 || tile == 1794 || tile == 1795
+
+/**/
+/**/
+/**//**/
+/**/
+			) {
 
 				mapa.push_back('X');
 			}
