@@ -5,7 +5,7 @@
 #include "Pico.h"
 #include "Pala.h"
 #include "TrampaCerrada.h"
-Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool visited) : Nivel1(jug, map, objetos, posRec, posCaz, act)
+Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool visited, int obj) : Nivel1(jug, map, objetos, posRec, posCaz, act)
 {
 	firsTime = true;
 	change = false;
@@ -29,8 +29,8 @@ Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec
 
 
 	if (visited){
-		int aux = rand() % 4;
-		switch (aux)
+		
+		switch (obj)
 		{
 		case 0:vecObj.push_back(new Hacha(pJuego, posRec.x, posRec.y + 50));
 			break;

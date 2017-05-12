@@ -358,13 +358,14 @@ void Nivel1::update(){
 			pRecolector->setColRect(x + 20, y + 20);
 		}
 		bool visited = false;
-		if (!cabVisitadas[lastCabVisited]){
+		int objCab = cabVisitadas[lastCabVisited].obj;
+		if (!cabVisitadas[lastCabVisited].visitadas){
 			visited = true;
-			cabVisitadas[lastCabVisited] = true;
+			cabVisitadas[lastCabVisited].visitadas = true;
 		}
 		fadeOut(40);
 		Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
-		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited));
+		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited, objCab));
 		changeCabania = false;
 	}
 }
@@ -545,7 +546,8 @@ void Nivel1::cargaObj(std:: string name){
 			else if (type == "Cab"){
 				vecObj.push_back(new ObjetoCabania(pJuego, pos.x, pos.y));
 				numCab++;
-				cabVisitadas.push_back(false);
+				Cab cabAux; cabAux.visitadas = false; cabAux.obj = rand() % 4;
+				cabVisitadas.push_back(cabAux);
 				Trigger *auxTr;
 				auxTr = new Trigger(pJuego, pos.x + 67, pos.y + 256, pCazador, pRecolector, numCab);
 				auxTr->setCallback(new changeScene(auxTr, this));
