@@ -11,7 +11,7 @@ public:
 	 void removeItem(std::string const & name, int cantidad);
 	 bool findItem(std::string const & name);
 
-	 int getCantidad(std::string const & name) const;
+	 int getCantidad(std::string const & name);
 private:
 	std::map<std::string, int> mochilaRecolector;
 	ObjetoPG *pObj;

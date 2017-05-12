@@ -6,7 +6,7 @@
 class MenuPrincipalComp :
 	public Componente
 {
-	enum estadosMP {Jugar, Salir};
+	enum estadosMP {Jugar, Salir, Cargar};
 public:
 	MenuPrincipalComp(ObjetoJuego* ent);
 	virtual void update();

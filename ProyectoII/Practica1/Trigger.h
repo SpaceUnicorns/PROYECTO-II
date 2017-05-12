@@ -14,19 +14,20 @@ public:
 	bool isTriggering(){ return triggered; }
 	void swTriggered(){ triggered = !triggered; }
 	void setCallback(Componente* com){ cb = com; }
+	std::string getCallback(){ return typeid(cb).name(); }
 	void setTriggered(bool x){ triggered = x; }
 	bool reaccionando(){ return reacciona; }
 	void setReacciona(bool x){ reacciona = x; }
 	void setTriggerDim(int h, int w){ rect.h = h; rect.w = w; }
 	ObjetoPG* getCausante(std::string obj) { if (obj == "Cazador")return tgCazador; else if (obj == "Recolector")return tgRecolector; }
 	void lateDraw();
+	int indice;
 
 
 protected:
 
 	bool isCabania;
 	bool firsTime;
-	int indice;
 	bool reacciona;
 	bool triggered;
 	Componente* cb; //Callback;

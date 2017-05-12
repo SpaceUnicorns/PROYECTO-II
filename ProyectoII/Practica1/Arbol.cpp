@@ -6,9 +6,9 @@
 
 Arbol::Arbol(juegoPG * juego, int px, int py, bool fantasma) : ObjetoPG(juego, px, py)
 {
-	nombre.push_back("1");
-	nombre.push_back("Arbol");
-
+	nombre[0] = "1";
+	if (fantasma)nombre.push_back("ArbolF");
+	else nombre.push_back("Arbol");
 	et = TArbol;
 	interactuable = false;
 	rect.w = 100;

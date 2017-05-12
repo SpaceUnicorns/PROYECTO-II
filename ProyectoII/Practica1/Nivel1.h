@@ -38,6 +38,7 @@ public:
 	void fadeOut(int time);
 	void fadeIn(int time);
 	virtual void callback();
+	virtual void saveFile();
 
 	bool visible; 
 	void swVisible(){

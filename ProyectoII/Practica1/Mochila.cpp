@@ -38,6 +38,8 @@ bool Mochila::findItem(std::string const & name)
 	
 }
 
-int Mochila::getCantidad(std::string const & name) const {
+int Mochila::getCantidad(std::string const & name){
+	if (findItem(name))
 	return mochilaRecolector.at(name);
+	else return 0;
 }

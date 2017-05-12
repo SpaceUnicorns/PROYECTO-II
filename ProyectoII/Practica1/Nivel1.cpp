@@ -364,6 +364,7 @@ void Nivel1::update(){
 			cabVisitadas[lastCabVisited].visitadas = true;
 		}
 		fadeOut(40);
+		saveFile();
 		Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
 		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited, objCab));
 		changeCabania = false;
@@ -599,4 +600,38 @@ void changeScene::callback(){
 	}
 	reacciona = true;
 }
+void Nivel1::saveFile(){
+	std::ofstream f;
+	f.open("../docs/partidaGuardada/objs.txt");
+	ObjetoPG *aux;
+	for (int i = 0; i < vecObj.size(); i++){
+		aux = dynamic_cast<ObjetoPG*>(vecObj[i]);
+	
+		f << aux->nombre[1] << " , " << std::to_string(aux->getAbsRect().x) << " , " << std::to_string(aux->getAbsRect().y) << "\n";
+	}
+	f.close();
 
+	f.open("../docs/partidaGuardada/mochila.txt");
+	
+	Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
+	f << "Cebo" << " ," << std::to_string(m->getCantidad("Cebo")) << "\n";
+	f << "Cuerda" << " ," << std::to_string(m->getCantidad("Cuerda")) << "\n";
+	f << "Enredadera" << " ," << std::to_string(m->getCantidad("Enredadera")) << "\n";
+	f << "Hueso" << " ," << std::to_string(m->getCantidad("Hueso")) << "\n";
+	f << "Madera" << " ," << std::to_string(m->getCantidad("Madera")) << "\n";
+	f << "Piedra" << " ," << std::to_string(m->getCantidad("Piedra")) << "\n";
+	f << "Trampa" << " ," << std::to_string(m->getCantidad("Trampa")) << "\n";
+	f << "Yesca" << " ," << std::to_string(m->getCantidad("Yesca")) << "\n";
+	f << "Hacha" << " ," << std::to_string(m->getCantidad("Hacha")) << "\n";
+	f << "Pala" << " ," << std::to_string(m->getCantidad("Pala")) << "\n";
+	f << "Pico" << " ," << std::to_string(m->getCantidad("Pico")) << "\n";
+	f << "TrampaAbierta" << " , " << std::to_string(m->getCantidad("TrampaAbierta")) << "\n";
+	f << "Antorcha" << " ," << std::to_string(m->getCantidad("Antorcha")) << "\n";
+	f.close();
+
+	f.open("../docs/partidaGuardada/players.txt");
+	f << "Cazador" << ", " << std::to_string(pCazador->getAbsRect().x) << std::to_string(pCazador->getAbsRect().y) << "\n";
+	f << "Recolector" << ", " << std::to_string(pRecolector->getAbsRect().x) << std::to_string(pRecolector->getAbsRect().y) << "\n";
+	f << activePlayer << "\n";
+	f.close();
+}
