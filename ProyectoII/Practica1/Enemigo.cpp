@@ -12,7 +12,7 @@ cazador(hunter), recolector(collector), estado(EstadoEnemigo::Quieto)
 	dameUnHogar();
 	followEnem = nullptr;
 	following = false;
-	nombre.push_back("Enemigo");
+	//nombre.push_back("Enemigo");
 	contFollow = 0;
 	followEnem = nullptr; // 
 }

@@ -236,7 +236,9 @@ void Cabania::onKeyUp(char k){
 	if (k == 'S'){
 		Nivel1::fadeOut(40);
 		bool recogido = true;
-		if (vecObj.size() != 0) recogido = false;
+
+		if (vecObj.size() != 2) recogido = false;
+		else saveMochila();
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();
 		dynamic_cast<Nivel1*>(pJuego->estados.top())->resumeCabania(activePlayer, recogido);

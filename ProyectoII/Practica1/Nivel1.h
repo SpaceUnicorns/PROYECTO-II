@@ -10,6 +10,7 @@
 #include "HuellasCamino.h"
 #include "Componente.h"
 #include "Trigger.h"
+#include "Mochila.h"
 
 using namespace std;
 
@@ -39,16 +40,31 @@ public:
 	void fadeIn(int time);
 	virtual void callback();
 	virtual void saveFile();
+	virtual void saveMochila();
 
 	bool visible; 
 	void swVisible(){
 		visible = !visible;
 	}
 	void resumeCabania(std:: string act, bool recogido){
+		std::ifstream f;
+		f.open("../docs/partidaGuardada/mochila.txt", std::ios::in);
+		std::string s; char stash;
+		Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
+		while (!f.eof() && !f.fail()){
+			f >> s;
+			if (!f.fail()){
+				f.get(stash); f.get(stash); f.get(stash);
+				int cant; f >> cant;
+				if (cant >0)m->newItem(s, cant);
+			}
+		}
+		f.close();
 		if (!recogido){
 			cabVisitadas[lastCabVisited].visitadas = false;
 		}
 		if (activePlayer != act) swPlayer();
+		saveMochila();
 	}
 	void visitaCab(int i){
 		lastCabVisited = i;
@@ -56,7 +72,7 @@ public:
 	void setVectCab(int i, bool x){ cabVisitadas[i].visitadas = x; }
 	int getLastcabVisited(){ return lastCabVisited; }
 protected:
-
+	
 	struct Cab{
 		bool visitadas;
 		int obj;

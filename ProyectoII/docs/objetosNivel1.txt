@@ -39,4 +39,4 @@ Arbol , 2693 , 954
 Arbol , 2697 , 984
 ObsPiedra , 2510 , 1112
 Arbol , 2441 , 1050
-Cab , 7133 , 8502
+Cabania , 7133 , 8502

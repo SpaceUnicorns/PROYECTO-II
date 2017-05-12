@@ -11,6 +11,7 @@ public:
 	MenuPrincipalComp(ObjetoJuego* ent);
 	virtual void update();
 	virtual ~MenuPrincipalComp();
+	int showMessage();
 private:
 	int temp, temp2, delay;
 	estadosMP estado;

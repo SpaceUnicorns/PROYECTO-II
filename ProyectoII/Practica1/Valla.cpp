@@ -7,9 +7,15 @@ Valla::Valla(juegoPG * juego, int px, int py, std:: string dir) : ObjetoPG(juego
 	rect.w = 250;
 	rect.h = 150;
 	nombre[0] = "1";
-	nombre.push_back("Vaya");
-	if (dir == "A")anim.x = 0;
-	else anim.x = 188;
+	
+	if (dir == "A"){
+		anim.x = 0;
+		nombre.push_back("Vaya");
+	}
+	else{
+		anim.x = 188;
+		nombre.push_back("Vaya2");
+	}
 	anim.y = 0;
 	anim.h = 128; anim.w = 188;
 	SDL_Rect colision = { rect.x, rect.y + 10, 250, 100 };

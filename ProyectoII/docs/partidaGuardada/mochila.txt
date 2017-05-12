@@ -1,13 +1,13 @@
-Cebo ,0
-Cuerda ,0
-Enredadera ,0
-Hueso ,0
-Madera ,0
-Piedra ,0
-Trampa ,0
-Yesca ,0
-Hacha ,0
-Pala ,0
-Pico ,0
+Cebo , 0
+Cuerda , 0
+Enredadera , 0
+Hueso , 0
+Madera , 0
+Piedra , 0
+TrampaCerrada , 0
+Yesca , 0
+Hacha , 1
+Pala , 0
+Pico , 0
 TrampaAbierta , 0
-Antorcha ,0
+Antorcha , 0

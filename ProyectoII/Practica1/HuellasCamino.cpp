@@ -21,7 +21,7 @@ HuellasCamino::HuellasCamino(juegoPG * juego, int px, int py, std:: string s) : 
 		rect.h = 70;
 	}
 	nombre[0] = "1";
-	nombre.push_back("HuellasCamino");
+	nombre.push_back(s);
 	alpha = 200;
 	cont = 400;
 }

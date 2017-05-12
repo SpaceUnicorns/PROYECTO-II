@@ -30,6 +30,11 @@ void MenuPrincipal::update(){
 			getPJuego()->setSalir();
 		}
 		else if (opcion == 2){
+			std::ofstream f;
+			f.open("../docs/partidaGuardada/mochila.txt");
+			f.close();
+			f.open("../docs/partidaGuardada/cabanias.txt");
+			f.close();
 			getPJuego()->getEstadoActual()->paraMusica("", true);
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();
@@ -70,7 +75,7 @@ void MenuPrincipal::update(){
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();
 		
-			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, act));
+			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/partidaGuardada/objs.txt", rec, caz, act));
 			delete borrar;
 
 		}

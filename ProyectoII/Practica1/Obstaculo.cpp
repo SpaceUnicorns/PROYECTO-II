@@ -8,7 +8,8 @@ Obstaculo::Obstaculo(juegoPG * juego, int px, int py, Texturas_t tex, std:: stri
 	rect.w = 200;
 	rect.h = 100;
 	nombre[0] = "1";
-	nombre.push_back("Obstaculo");
+	if (tex == TObstaculoPiedra) nombre.push_back("ObsPiedra");
+	else nombre.push_back("ObsNieve");
 	destructor = destruc;
 	SDL_Rect colision = { rect.x, rect.y + rect.h / 2, rect.w, rect.h / 2 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");

@@ -27,8 +27,12 @@
 #include "Valla.h"
 #include "Cabania.h"
 #include "ObjetoCabania.h"
+#include<stdlib.h>
+#include<time.h>
 
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
+	srand(time(NULL));
+
 	changeCabania = false;
 	mapa = new GrafoMapa();
 	mode = Play;
@@ -494,7 +498,7 @@ void Nivel1::onKeyUp(char k) {
 			auxPunto.x = pCazador->getRect().x + 45 + 210; auxPunto.y = pCazador->getRect().y -20+ 336; auxBorde.B = auxPunto;
 			auxPunto.x = pCazador->getRect().x + 45 + 308; auxPunto.y = pCazador->getRect().y -20 + 272; auxBorde.C = auxPunto;
 			vectBordes.push_back(auxBorde);
-			escribe("Cab", centroRel.x + 45, centroRel.y - 20, archivoObj);
+			escribe("Cabania", centroRel.x + 45, centroRel.y - 20, archivoObj);
 			break;
 		case 's':
 			 mode = Play;
@@ -544,10 +548,13 @@ void Nivel1::cargaObj(std:: string name){
 			else if (type == "LI") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "LI"));
 			else if (type == "Valla") vecObj.push_back(new Valla(pJuego, pos.x, pos.y, "A"));
 			else if (type == "Valla2")vecObj.push_back(new Valla(pJuego, pos.x, pos.y, "D"));
-			else if (type == "Cab"){
+			else if (type == "Cabania"){
 				vecObj.push_back(new ObjetoCabania(pJuego, pos.x, pos.y));
 				numCab++;
-				Cab cabAux; cabAux.visitadas = false; cabAux.obj = rand() % 4;
+				Cab cabAux; cabAux.visitadas = false; cabAux.obj = 0;   
+				int i = 0;
+				i = rand() % 4;
+				
 				cabVisitadas.push_back(cabAux);
 				Trigger *auxTr;
 				auxTr = new Trigger(pJuego, pos.x + 67, pos.y + 256, pCazador, pRecolector, numCab);
@@ -564,6 +571,34 @@ void Nivel1::cargaObj(std:: string name){
 				vectBordes.push_back(auxBorde);
 			}
 
+		}
+	}
+	f.close();
+
+	f.open("../docs/partidaGuardada/cabanias.txt", std::ios::in);
+
+	while (!f.eof() && !f.fail()){
+		f >> lastCabVisited;
+		if (!f.fail()){
+			for (int i = 0; i < cabVisitadas.size(); i++){
+				f >> cabVisitadas[i].visitadas;
+				f.get(stash); f.get(stash); f.get(stash);
+				f >> cabVisitadas[i].obj;
+			}
+		}
+	}
+	f.close();
+
+	f.open("../docs/partidaGuardada/mochila.txt", std::ios::in);
+
+	std::string s;
+	Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
+	while (!f.eof() && !f.fail()){
+		f >> s;
+		if (!f.fail()){
+			f.get(stash); f.get(stash); f.get(stash);
+			int cant; f >> cant;
+			if(cant >0)m->newItem(s, cant);
 		}
 	}
 	f.close();
@@ -600,6 +635,33 @@ void changeScene::callback(){
 	}
 	reacciona = true;
 }
+void Nivel1::saveMochila(){
+	std::ofstream f;
+	f.open("../docs/partidaGuardada/mochila.txt");
+
+	Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
+	f << "Cebo" << " , " << std::to_string(m->getCantidad("Cebo")) << "\n";
+	f << "Cuerda" << " , " << std::to_string(m->getCantidad("Cuerda")) << "\n";
+	f << "Enredadera" << " , " << std::to_string(m->getCantidad("Enredadera")) << "\n";
+	f << "Hueso" << " , " << std::to_string(m->getCantidad("Hueso")) << "\n";
+	f << "Madera" << " , " << std::to_string(m->getCantidad("Madera")) << "\n";
+	f << "Piedra" << " , " << std::to_string(m->getCantidad("Piedra")) << "\n";
+	f << "TrampaCerrada" << " , " << std::to_string(m->getCantidad("TrampaCerrada")) << "\n";
+	f << "Yesca" << " , " << std::to_string(m->getCantidad("Yesca")) << "\n";
+	f << "Hacha" << " , " << std::to_string(m->getCantidad("Hacha")) << "\n";
+	f << "Pala" << " , " << std::to_string(m->getCantidad("Pala")) << "\n";
+	f << "Pico" << " , " << std::to_string(m->getCantidad("Pico")) << "\n";
+	f << "TrampaAbierta" << " , " << std::to_string(m->getCantidad("TrampaAbierta")) << "\n";
+	f << "Antorcha" << " , " << std::to_string(m->getCantidad("Antorcha")) << "\n";
+	f.close();
+
+	f.open("../docs/partidaGuardada/cabanias.txt");
+	f << lastCabVisited << "\n";
+	for (int i = 0; i < cabVisitadas.size(); i++){
+		f << cabVisitadas[i].visitadas << " , " << cabVisitadas[i].obj << "\n";
+	}
+	f.close();
+}
 void Nivel1::saveFile(){
 	std::ofstream f;
 	f.open("../docs/partidaGuardada/objs.txt");
@@ -607,26 +669,9 @@ void Nivel1::saveFile(){
 	for (int i = 0; i < vecObj.size(); i++){
 		aux = dynamic_cast<ObjetoPG*>(vecObj[i]);
 	
-		f << aux->nombre[1] << " , " << std::to_string(aux->getAbsRect().x) << " , " << std::to_string(aux->getAbsRect().y) << "\n";
+		if (aux->nombre.size() <= 2)	f << aux->nombre[1] << " , " << std::to_string(aux->getAbsRect().x) << " , " << std::to_string(aux->getAbsRect().y) << "\n";
+		else f << "Carroña" << " , " << std::to_string(aux->getAbsRect().x) << " , " << std::to_string(aux->getAbsRect().y) << "\n";
 	}
-	f.close();
-
-	f.open("../docs/partidaGuardada/mochila.txt");
-	
-	Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
-	f << "Cebo" << " ," << std::to_string(m->getCantidad("Cebo")) << "\n";
-	f << "Cuerda" << " ," << std::to_string(m->getCantidad("Cuerda")) << "\n";
-	f << "Enredadera" << " ," << std::to_string(m->getCantidad("Enredadera")) << "\n";
-	f << "Hueso" << " ," << std::to_string(m->getCantidad("Hueso")) << "\n";
-	f << "Madera" << " ," << std::to_string(m->getCantidad("Madera")) << "\n";
-	f << "Piedra" << " ," << std::to_string(m->getCantidad("Piedra")) << "\n";
-	f << "Trampa" << " ," << std::to_string(m->getCantidad("Trampa")) << "\n";
-	f << "Yesca" << " ," << std::to_string(m->getCantidad("Yesca")) << "\n";
-	f << "Hacha" << " ," << std::to_string(m->getCantidad("Hacha")) << "\n";
-	f << "Pala" << " ," << std::to_string(m->getCantidad("Pala")) << "\n";
-	f << "Pico" << " ," << std::to_string(m->getCantidad("Pico")) << "\n";
-	f << "TrampaAbierta" << " , " << std::to_string(m->getCantidad("TrampaAbierta")) << "\n";
-	f << "Antorcha" << " ," << std::to_string(m->getCantidad("Antorcha")) << "\n";
 	f.close();
 
 	f.open("../docs/partidaGuardada/players.txt");
@@ -634,4 +679,6 @@ void Nivel1::saveFile(){
 	f << "Recolector" << " , " << std::to_string(pRecolector->getAbsRect().x) << " , " << std::to_string(pRecolector->getAbsRect().y) << "\n";
 	f << activePlayer << "\n";
 	f.close();
+
+	saveMochila();
 }
