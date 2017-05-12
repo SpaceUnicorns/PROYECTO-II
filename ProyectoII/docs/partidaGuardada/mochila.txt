@@ -1,4 +1,3 @@
----
 Cebo ,0
 Cuerda ,0
 Enredadera ,0

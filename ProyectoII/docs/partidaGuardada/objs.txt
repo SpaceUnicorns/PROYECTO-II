@@ -40,6 +40,6 @@ Escondite , 4460 , 6270
 Enemigo , 6301 , 8582
 Cabania , 7133 , 8502
 Escondite , 6611 , 8717
-Liov , 7153 , 8758
-Zhenia , 7173 , 8778
+Liov , 7209 , 8779
+Zhenia , 7229 , 8799
 Arbol , 6970 , 8930

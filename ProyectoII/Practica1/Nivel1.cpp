@@ -630,8 +630,8 @@ void Nivel1::saveFile(){
 	f.close();
 
 	f.open("../docs/partidaGuardada/players.txt");
-	f << "Cazador" << ", " << std::to_string(pCazador->getAbsRect().x) << std::to_string(pCazador->getAbsRect().y) << "\n";
-	f << "Recolector" << ", " << std::to_string(pRecolector->getAbsRect().x) << std::to_string(pRecolector->getAbsRect().y) << "\n";
+	f << "Cazador" << " , " << std::to_string(pCazador->getAbsRect().x) <<" , "<< std::to_string(pCazador->getAbsRect().y) << "\n";
+	f << "Recolector" << " , " << std::to_string(pRecolector->getAbsRect().x) << " , " << std::to_string(pRecolector->getAbsRect().y) << "\n";
 	f << activePlayer << "\n";
 	f.close();
 }

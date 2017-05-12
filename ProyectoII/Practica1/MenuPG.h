@@ -9,6 +9,7 @@ class MenuPG :
 protected:
 	Boton* play;
 	Boton* exit;
+	Boton* cargar;
 public:
 	MenuPG(juegoPG*jug, int puntos);
 	virtual ~MenuPG();

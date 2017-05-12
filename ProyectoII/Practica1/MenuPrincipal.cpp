@@ -42,6 +42,38 @@ void MenuPrincipal::update(){
 			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));
 			delete borrar;
 		}
+		else if (opcion == 3){
+			std::cout << "CARGAR\n";
+			std::ifstream f;
+
+			f.open("../docs/partidaGuardada/players.txt", std::ios::in);
+			Punto caz; Punto rec; std::string name; char stash; std::string act;
+			while (!f.eof() && !f.fail()){
+				f >> name;
+				if (!f.fail()){
+					f.get(stash); f.get(stash); f.get(stash);
+					f >> caz.x;
+					f.get(stash); f.get(stash); f.get(stash);
+					f >> caz.y;
+					f >> name;
+					f.get(stash); f.get(stash); f.get(stash);
+					f >> rec.x;
+					f.get(stash); f.get(stash); f.get(stash);
+					f >> rec.y;
+					f >> act;
+
+				}
+			}
+			f.close();
+
+			getPJuego()->getEstadoActual()->paraMusica("", true);
+			EstadoJuego* borrar = getPJuego()->estados.top();
+			getPJuego()->estados.pop();
+		
+			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, act));
+			delete borrar;
+
+		}
 	}
 }
 MenuPrincipal::~MenuPrincipal()
