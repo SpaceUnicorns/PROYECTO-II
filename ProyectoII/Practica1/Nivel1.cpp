@@ -36,7 +36,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	changeCabania = false;
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = false;
+	visible = true;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -648,6 +648,7 @@ void changeScene::callback(){
 	}
 	reacciona = true;
 }
+
 void Nivel1::loadTriggerInfo(){
 	std::ifstream f;
 	f.open("../docs/partidaGuardada/infoTriggers.txt", std::ios::in);

@@ -69,6 +69,6 @@ void Trigger::draw(){
 	if (level->visible)pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
 void Trigger::lateDraw(){
-	
-	cb->draw();
+	if (cb)
+		cb->draw();
 }

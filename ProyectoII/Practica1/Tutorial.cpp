@@ -26,11 +26,12 @@ Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posR
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
-	auxTr = new Trigger(pJuego, 8350, 9800, pCazador, pRecolector,4); //como craftear
+	auxTr = new Trigger(pJuego, 8000, 9200, pCazador, pRecolector,4); //como craftear
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Lyov.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
+
 	vecObj.push_back(new Enredadera(pJuego, 7500, 9950));
 	vecObj.push_back(new Enredadera(pJuego, 8350, 9900));
 
@@ -39,8 +40,19 @@ Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posR
 	auxTr->setTriggerDim(100, 800);
 	infoTriggers.push_back(0);
 	vecTriggers.push_back(auxTr);
-	pCazador->setTerreno(1);
-	pRecolector->setTerreno(1);
+
+	auxTr = new ChangeTerreno(pJuego, 8150, 9900, pCazador, pRecolector, 0, 6); //cambio de superficie
+	auxTr->setTriggerDim(100, 900);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0);
+
+	auxTr = new ChangeTerreno(pJuego, 8150, 10000, pCazador, pRecolector, 3, 6); //cambio de superficie
+	auxTr->setTriggerDim(100, 950);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0);
+
+	pCazador->setTerreno(3);
+	pRecolector->setTerreno(3);
 }
 
 void Tutorial::onKeyUp(char k){

@@ -65,13 +65,15 @@ void MenuPrincipalComp::update()
 			}
 			else if (pObj->getPJuego()->input.enter){
 				std::ifstream f;
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("OpcionMenuNormal", 0, 0, 0);
 				int button = 1;
 				f.open("../docs/partidaGuardada/objs.txt", std::ios::in);
 				std::string aux;
 				f >> aux;
 				if (!f.fail()) button = showMessage("Hay una partida guardada.\n Desea sobreescribirla?");
+				if (button == 1){ static_cast<MenuPrincipal*>(pEntidad)->opcion = 2;
 				pObj->getPJuego()->getEstadoActual()->reproduceFx("OpcionMenuNormal", 0, 0, 0);
-				if(button == 1) static_cast<MenuPrincipal*>(pEntidad)->opcion = 2;
+				}
 
 			}
 			break;

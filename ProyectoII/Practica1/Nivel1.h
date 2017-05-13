@@ -11,6 +11,7 @@
 #include "Componente.h"
 #include "Trigger.h"
 #include "Mochila.h"
+#include "ChangeTerreno.h"
 
 using namespace std;
 

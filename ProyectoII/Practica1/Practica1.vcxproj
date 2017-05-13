@@ -87,6 +87,7 @@
     <ClCompile Include="Carroña.cpp" />
     <ClCompile Include="Cazador.cpp" />
     <ClCompile Include="Cebo.cpp" />
+    <ClCompile Include="ChangeTerreno.cpp" />
     <ClCompile Include="ColisionBox.cpp" />
     <ClCompile Include="Cuerda.cpp" />
     <ClCompile Include="Enredadera.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Carroña.h" />
     <ClInclude Include="Cazador.h" />
     <ClInclude Include="Cebo.h" />
+    <ClInclude Include="ChangeTerreno.h" />
     <ClInclude Include="ColisionBox.h" />
     <ClInclude Include="Componente.h" />
     <ClInclude Include="Cuerda.h" />
