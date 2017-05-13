@@ -26,7 +26,7 @@ Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posR
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
-	auxTr = new Trigger(pJuego, 8000, 9200, pCazador, pRecolector,4); //como craftear
+	auxTr = new Trigger(pJuego, 7850, 9250, pCazador, pRecolector,4); //como craftear
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Lyov.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);

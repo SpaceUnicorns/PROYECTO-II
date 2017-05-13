@@ -10,9 +10,7 @@ void ChangeTerreno::update(){
 	if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w)
 		&& tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)){
 		if (!reacciona && !triggered) { 
-			int aux = tgCazador->getTerreno();
 			tgCazador->setTerreno(terreno);
-			terreno = aux;
 		}
 		reacciona = true;
 		triggered = true;
@@ -20,9 +18,7 @@ void ChangeTerreno::update(){
 	else if (tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w)
 		&& tgRecolector->getColisionBox().y > rect.y && tgRecolector->getColisionBox().y < (rect.y + rect.h)){
 		if (!reacciona && !triggered){
-			int aux = tgRecolector->getTerreno();
 			tgRecolector->setTerreno(terreno);
-			terreno = aux;
 		}
 		triggered = true;
 		reacciona = true;
