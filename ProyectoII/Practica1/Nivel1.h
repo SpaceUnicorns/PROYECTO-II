@@ -31,6 +31,7 @@ public:
 	Recolector* getRecolector() { return pRecolector; }
 	void getTorch(){ hasTorch = true; }
 	void dropTorch(){ hasTorch = false; paraAmb("", false); }
+	std::string getActivePlayer()const{ return activePlayer; }
 	void setAlpha(int i){ alpha = i; }
 	void drawEquipo();
 

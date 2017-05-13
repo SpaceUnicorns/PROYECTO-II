@@ -3,6 +3,7 @@
 #include "Cazador.h"
 #include "Recolector.h"
 
+class Nivel1;
 class Trigger :
 	public ObjetoPG
 {
@@ -25,7 +26,8 @@ public:
 
 
 protected:
-
+	bool firstDraw;
+	Nivel1* level;
 	bool isCabania;
 	bool firsTime;
 	bool reacciona;
