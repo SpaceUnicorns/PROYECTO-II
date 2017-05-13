@@ -56,6 +56,7 @@ protected:
 	int contFollow;
 	follow* followEnem;
 	bool following;
+	
 
 };
 

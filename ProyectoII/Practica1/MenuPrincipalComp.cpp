@@ -70,7 +70,7 @@ void MenuPrincipalComp::update()
 				std::string aux;
 				f >> aux;
 				if (!f.fail()) button = showMessage();
-				pObj->getPJuego()->getEstadoActual()->reproduceFx("SelOpcionNormal1", 0, 0, 0);
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("OpcionMenuNormal", 0, 0, 0);
 				if(button == 1) static_cast<MenuPrincipal*>(pEntidad)->opcion = 2;
 
 			}
@@ -93,7 +93,7 @@ void MenuPrincipalComp::update()
 				}
 			}
 			else if (pObj->getPJuego()->input.enter){
-				pObj->getPJuego()->getEstadoActual()->reproduceFx("SelOpcionNormal1", 0, 0, 0);
+				pObj->getPJuego()->getEstadoActual()->reproduceFx("OpcionMenuNormal", 0, 0, 0);
 				static_cast<MenuPrincipal*>(pEntidad)->opcion = 3;
 
 			}

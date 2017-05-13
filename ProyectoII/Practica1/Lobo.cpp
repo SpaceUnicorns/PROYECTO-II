@@ -12,7 +12,7 @@ Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, GrafoMapa* ma
 	damage = 50;
 	et = TLobete;//Añadir TLobo al array de texturas
 	absRect.w = rect.w = 105;
-	absRect.h = rect.h = 75;//Lo que quiero que ocupe en pantalla
+	absRect.h = rect.h = 70;//Lo que quiero que ocupe en pantalla
 	anim.w = 350;
 	anim.h = 250;
 	life = 5;

@@ -31,6 +31,8 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 	auxTr->setCallback(new changeScene(auxTr, this));
 	auxTr->setTriggerDim(100, 800);
 	vecTriggers.push_back(auxTr);
+	pCazador->setTerreno(1);
+	pRecolector->setTerreno(1);
 }
 void Tutorial2::onKeyUp(char k){
 	if (k != 't') Nivel1::onKeyUp(k);

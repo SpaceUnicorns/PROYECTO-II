@@ -54,6 +54,12 @@ void AtaqueCazador::update(){
 					pObj->getPJuego()->input.e = false;
 					dynamic_cast<Lobo*>(info)->setLife(-1);
 					dynamic_cast<Lobo*>(info)->setEstado(Herido);
+					int rnd = rand() % 2;
+					if (rnd == 0)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboHerido", nextPos.x, nextPos.y, 0);
+					else
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboHerido1", nextPos.x, nextPos.y, 0);
+				
 					axResistance--;
 
 					if (axResistance <= 0){ 

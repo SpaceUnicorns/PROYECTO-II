@@ -14,6 +14,7 @@ ObjetoPG::ObjetoPG(juegoPG * juego, int px, int py)
 	alpha = 255;
 	detectable = true;
 	bool desaparece = true;
+	terreno = 0; // 0 nieve, 1 madera, 2 piedra, 3 tierra;
 }
 
 ObjetoPG::~ObjetoPG(){

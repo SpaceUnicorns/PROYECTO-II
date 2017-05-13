@@ -159,25 +159,71 @@ void follow::lateUpdate(){
 		{
 			int rnd = rand() % 4;
 			if (al){
-				if (rnd == 0)
-					pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve", pObj->getRect().x, pObj->getRect().y, 0);
-				else if (rnd == 1)
-					pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve1", pObj->getRect().x, pObj->getRect().y, 0);
-				else if (rnd == 2)
-					pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve2", pObj->getRect().x, pObj->getRect().y, 0);
-				else if (rnd == 3)
-					pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve3", pObj->getRect().x, pObj->getRect().y, 0);
+				switch (pObj->getTerreno()){
+				case 0:
+					if (rnd == 0)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve", 0, 0, 0);
+					else if (rnd == 1)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve1", 0, 0, 0);
+					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve2", 0, 0, 0);
+					else if (rnd == 3)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve3", 0, 0, 0);
+					break;
+				case 1:
+					if (rnd == 0)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarMadera", 0, 0, 0);
+					else if (rnd == 1)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarMadera1", 0, 0, 0);
+					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarMadera2", 0, 0, 0);
+					else if (rnd == 3)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarMadera3", 0, 0, 0);
+					break;
+				case 2:
+					if (rnd == 0)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarPiedra", 0, 0, 0);
+					else if (rnd == 1)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarPiedra1", 0, 0, 0);
+					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarPiedra2", 0, 0, 0);
+					else if (rnd == 3)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarPiedra3", 0, 0, 0);
+					break;
+				case 3:
+					if (rnd == 0)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarTierra", 0, 0, 0);
+					else if (rnd == 1)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarTierra1", 0, 0, 0);
+					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarTierra2", 0, 0, 0);
+					else if (rnd == 3)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarTierra3", 0, 0, 0);
+					break;
+				}
 			}
 			else
 			{
-				if (rnd == 0)
-					pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", pObj->getRect().x, pObj->getRect().y, 0);
-				else if (rnd == 1)
-					pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", pObj->getRect().x, pObj->getRect().y, 0);
-				else if (rnd == 2)
-					pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", pObj->getRect().x, pObj->getRect().y, 0);
-				else if (rnd == 3)
-					pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", pObj->getRect().x, pObj->getRect().y, 0);
+				if (pObj->getTerreno() == 0){
+					if (rnd == 0)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", pObj->getRect().x, pObj->getRect().y, 0);
+					else if (rnd == 1)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", pObj->getRect().x, pObj->getRect().y, 0);
+					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", pObj->getRect().x, pObj->getRect().y, 0);
+					else if (rnd == 3)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", pObj->getRect().x, pObj->getRect().y, 0);
+				}
+				else {
+					if (rnd == 0)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra", pObj->getRect().x, pObj->getRect().y, 0);
+					else if (rnd == 1)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra1", pObj->getRect().x, pObj->getRect().y, 0);
+					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra2", pObj->getRect().x, pObj->getRect().y, 0);
+					else if (rnd == 3)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", pObj->getRect().x, pObj->getRect().y, 0);
+				}
 			}
 		}
 		if (direccion.size() != 0){

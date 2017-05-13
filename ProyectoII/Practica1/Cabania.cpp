@@ -91,7 +91,13 @@ void Cabania::draw(){
 		auxPunto.x = 1555; auxPunto.y = 880; auxBorde.B = auxPunto;
 		auxPunto.x = 1380; auxPunto.y = 940; auxBorde.C = auxPunto;
 		vectBordes.push_back(auxBorde);
+		paraMusica("", true);
+		paraAmb("", false);
+		reproduceMusica("Cabana", false);
+		reproduceAmb("VientoDentroCabana", false);
 		fadeIn(20);
+		pCazador->setTerreno(1);
+		pRecolector->setTerreno(1);
 	}
 	SDL_Rect aux;
 	Tile tile;
@@ -124,7 +130,7 @@ void Cabania::draw(){
 		rectZonaOscura.y -= camara.y;
 
 		setCamara(0, 0); //Se reinicia el offset a 0
-		int x = rand() % 100;
+	/*	int x = rand() % 100;
 		if (x >= 60){
 			animNieve1.x--;
 			animNieve1.y--;
@@ -141,10 +147,10 @@ void Cabania::draw(){
 		if (animNieve2.x <= 0)
 			animNieve2.x = camara.w;
 		if (animNieve2.y <= 0)
-			animNieve2.y = camara.h;
+			animNieve2.y = camara.h;*/
 
-		pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
-		pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
+	//	pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
+	//	pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
 
 		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
 

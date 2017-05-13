@@ -65,6 +65,8 @@ public:
 		}
 		if (activePlayer != act) swPlayer();
 		saveMochila();
+		reproduceMusica("Bosque", false);
+		reproduceAmb("Viento", false);
 	}
 	void visitaCab(int i){
 		lastCabVisited = i;

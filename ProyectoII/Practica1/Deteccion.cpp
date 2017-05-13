@@ -38,14 +38,26 @@ void Deteccion::quieto(){
 				{
 					enemy->changeAnimH();
 					int rnd = rand() % 4;
-					if (rnd == 0)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 1)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 2)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 3)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+					if (enemy->getTerreno() == 0){
+						if (rnd == 0)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 1)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 2)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 3)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+					}
+					else {
+						if (rnd == 0)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 1)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra1", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 2)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra2", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 3)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", enemy->getRect().x, enemy->getRect().y, 0);
+					}
 				}
 				contPasos++;
 			}
@@ -61,14 +73,26 @@ void Deteccion::quieto(){
 				{
 					enemy->changeAnimH();
 					int rnd = rand() % 4;
-					if (rnd == 0)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 1)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 2)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 3)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+					if (enemy->getTerreno() == 0){
+						if (rnd == 0)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 1)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 2)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 3)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+					}
+					else {
+						if (rnd == 0)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 1)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra1", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 2)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra2", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 3)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", enemy->getRect().x, enemy->getRect().y, 0);
+					}
 				}
 				contPasos++;
 			}
@@ -84,14 +108,26 @@ void Deteccion::quieto(){
 				{
 					enemy->changeAnimH();
 					int rnd = rand() % 4;
-					if (rnd == 0)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 1)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 2)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 3)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+					if (enemy->getTerreno() == 0){
+						if (rnd == 0)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 1)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 2)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 3)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+					}
+					else {
+						if (rnd == 0)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 1)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra1", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 2)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra2", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 3)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", enemy->getRect().x, enemy->getRect().y, 0);
+					}
 				}
 				contPasos++;
 			}
@@ -107,19 +143,31 @@ void Deteccion::quieto(){
 				{
 					enemy->changeAnimH();
 					int rnd = rand() % 4;
-					if (rnd == 0)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 1)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 2)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
-					else if (rnd == 3)
-						enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+					if (enemy->getTerreno() == 0){
+						if (rnd == 0)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 1)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve1", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 2)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve2", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 3)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboNieve3", enemy->getRect().x, enemy->getRect().y, 0);
+					}
+					else {
+						if (rnd == 0)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 1)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra1", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 2)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra2", enemy->getRect().x, enemy->getRect().y, 0);
+						else if (rnd == 3)
+							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", enemy->getRect().x, enemy->getRect().y, 0);
+					}
 				}
 				contPasos++;
 			}
 		}
-		if (contPasos >= 20)contPasos = 0;
+		if (contPasos >= 15)contPasos = 0;
 		contVagar++;
 		static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->setRectBox(enemy->getRect().x - 5, enemy->getRect().y + 40);
 		if (contVagar >= 150){ vagar = 0; contVagar = 0; }
@@ -213,12 +261,14 @@ void Deteccion::movimiento(){
 		if (distRec <= 80){
 			preparaAtaque(1);
 			enemy->setEstado(Atacando);
+			cont = 0;
 		}
 	}
 	else if (enemy->getTarget() == enemy->getCazador() && enemy->getCazador()->esDetectable()){
 		if (distCaz <= 80){
 			preparaAtaque(0);
 			enemy->setEstado(Atacando);
+			cont = 0;
 		}
 	}
 }
@@ -376,8 +426,10 @@ void Deteccion::atrapado(){
 }
 void Deteccion::herido(){		
 	//Animacion Herido
+	cont++;
 	if (enemy->getLife() < 0){
 		enemy->setEstado(Muerto);
+		std::cout << "muerto\n";
 		enemy->deleteComponente("ColisionBox");
 	}
 	else if (cont > 100){

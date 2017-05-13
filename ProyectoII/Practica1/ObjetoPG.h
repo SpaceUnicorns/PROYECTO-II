@@ -74,8 +74,9 @@ public:
 
 	virtual void scaleRect(int x){ 
 		rect.w *= x; rect.h *= x; 
-
 	}
+	void setTerreno(int tr){ terreno = tr;}
+	int getTerreno() { return terreno; }
 protected: 
 	void setAlpha(int x){
 		if (x >= 0 && x <= 255){
@@ -93,5 +94,6 @@ protected:
 	SDL_Rect absRect;
 	SDL_Rect aux; //Rect auxiliar para cual quier cuenta con rectangulos (Se usa para la camara)	
 	SDL_Rect anim;
+	int terreno;
 };
 
