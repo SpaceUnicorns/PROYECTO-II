@@ -40,13 +40,13 @@ void MenuPrincipal::update(){
 			getPJuego()->getEstadoActual()->paraMusica("", true);
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();
-			/*Punto rec; rec.x = 6912; rec.y = 10286; Punto caz; caz.x = 0; caz.y = 0;
+			Punto rec; rec.x = 6912; rec.y = 10286; Punto caz; caz.x = 0; caz.y = 0;
 			getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));
-			*/
+			
 
 			//Descomentar esto para ir directamente al nivel
-			Punto caz; caz.x = 6925; caz.y = 8930; Punto rec; rec.x = 6970; rec.y = 8930;
-			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));
+			/*Punto caz; caz.x = 6925; caz.y = 8930; Punto rec; rec.x = 6970; rec.y = 8930;
+			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));*/
 			delete borrar;
 		}
 		else if (opcion == 3){

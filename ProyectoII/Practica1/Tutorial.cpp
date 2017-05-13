@@ -8,31 +8,36 @@ Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posR
 	change = false;
 	Trigger *auxTr; 
 
-	auxTr = new Trigger(pJuego, 6810, 10280, pCazador, pRecolector); //como moverse
+	auxTr = new Trigger(pJuego, 6810, 10280, pCazador, pRecolector,1); //como moverse
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Lyov.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0);
 
-	auxTr = new Trigger(pJuego, 7500, 9900, pCazador, pRecolector); //recoger objetos
+	auxTr = new Trigger(pJuego, 7500, 9900, pCazador, pRecolector,2); //recoger objetos
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Lyov.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0);
 
-	auxTr = new Trigger(pJuego, 8000, 10100, pCazador, pRecolector); //sugerencia
+	auxTr = new Trigger(pJuego, 8000, 10100, pCazador, pRecolector,3); //sugerencia
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Lyov.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0);
 
-	auxTr = new Trigger(pJuego, 8350, 9800, pCazador, pRecolector); //como craftear
+	auxTr = new Trigger(pJuego, 8350, 9800, pCazador, pRecolector,4); //como craftear
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Lyov.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0);
 	vecObj.push_back(new Enredadera(pJuego, 7500, 9950));
 	vecObj.push_back(new Enredadera(pJuego, 8350, 9900));
 
-	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector);
+	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector,5);
 	auxTr->setCallback(new changeScene(auxTr,this));
 	auxTr->setTriggerDim(100, 800);
+	infoTriggers.push_back(0);
 	vecTriggers.push_back(auxTr);
 	pCazador->setTerreno(1);
 	pRecolector->setTerreno(1);
