@@ -35,6 +35,8 @@ void MenuPrincipal::update(){
 			f.close();
 			f.open("../docs/partidaGuardada/cabanias.txt");
 			f.close();
+			f.open("../docs/partidaGuardada/infoTriggers.txt");
+			f.close();
 			getPJuego()->getEstadoActual()->paraMusica("", true);
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();

@@ -69,7 +69,7 @@ void MenuPrincipalComp::update()
 				f.open("../docs/partidaGuardada/objs.txt", std::ios::in);
 				std::string aux;
 				f >> aux;
-				if (!f.fail()) button = showMessage();
+				if (!f.fail()) button = showMessage("Hay una partida guardada.\n Desea sobreescribirla?");
 				pObj->getPJuego()->getEstadoActual()->reproduceFx("OpcionMenuNormal", 0, 0, 0);
 				if(button == 1) static_cast<MenuPrincipal*>(pEntidad)->opcion = 2;
 
@@ -93,8 +93,17 @@ void MenuPrincipalComp::update()
 				}
 			}
 			else if (pObj->getPJuego()->input.enter){
-				pObj->getPJuego()->getEstadoActual()->reproduceFx("OpcionMenuNormal", 0, 0, 0);
-				static_cast<MenuPrincipal*>(pEntidad)->opcion = 3;
+
+				std::ifstream f;
+				int button = 1;
+				f.open("../docs/partidaGuardada/objs.txt", std::ios::in);
+				std::string aux;
+				f >> aux;
+				if (f.fail()) button = showMessage("No hay ninguna partida guardada", true);
+				else {
+					pObj->getPJuego()->getEstadoActual()->reproduceFx("OpcionMenuNormal", 0, 0, 0);
+					static_cast<MenuPrincipal*>(pEntidad)->opcion = 3;
+				}
 
 			}
 			break;
@@ -102,12 +111,7 @@ void MenuPrincipalComp::update()
 	}
 
 }
-int MenuPrincipalComp::showMessage(){
-	const SDL_MessageBoxButtonData buttons[] = {
-		{ /* .flags, .buttonid, .text */        0, 0, "no" },
-		{ SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 1, "yes" },
-
-	};
+int MenuPrincipalComp::showMessage(const char* s, bool info){
 	const SDL_MessageBoxColorScheme colorScheme = {
 		{ /* .colors (.r, .g, .b) */
 			/* [SDL_MESSAGEBOX_COLOR_BACKGROUND] */
@@ -122,21 +126,48 @@ int MenuPrincipalComp::showMessage(){
 			{ 255, 0, 0 }
 		}
 	};
-	
-	const SDL_MessageBoxData messageboxdata = {
-		SDL_MESSAGEBOX_INFORMATION, /* .flags */
-		static_cast<ObjetoPG*>(pEntidad)->getPJuego()->getPWindow(), /* .window */
-		"WARNING", /* .title */
-		"Hay una partida guardada.\n Desea sobreescribirla?", /* .message */
-		SDL_arraysize(buttons), /* .numbuttons */
-		buttons, /* .buttons */
-		&colorScheme /* .colorScheme */
-	};
 	int buttonid;
-	if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0) {
-		SDL_Log("error displaying message box");
-		return-1;
+	if (!info){
+		const SDL_MessageBoxButtonData buttons[] = {
+			{ /* .flags, .buttonid, .text */        0, 0, "no" },
+			{ SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 1, "yes" },
+
+		};
+		const SDL_MessageBoxData messageboxdata = {
+			SDL_MESSAGEBOX_INFORMATION, /* .flags */
+			static_cast<ObjetoPG*>(pEntidad)->getPJuego()->getPWindow(), /* .window */
+			"WARNING", /* .title */
+			s, /* .message */
+			SDL_arraysize(buttons), /* .numbuttons */
+			buttons, /* .buttons */
+			&colorScheme /* .colorScheme */
+		};
+		if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0) {
+			SDL_Log("error displaying message box");
+			return-1;
+		}
 	}
+	else{
+		const SDL_MessageBoxButtonData buttons[] = {
+			{ /* .flags, .buttonid, .text */        0, 0, "Okey" },
+		};
+		const SDL_MessageBoxData messageboxdata = {
+			SDL_MESSAGEBOX_INFORMATION, /* .flags */
+			static_cast<ObjetoPG*>(pEntidad)->getPJuego()->getPWindow(), /* .window */
+			"WARNING", /* .title */
+			s, /* .message */
+			SDL_arraysize(buttons), /* .numbuttons */
+			buttons, /* .buttons */
+			&colorScheme /* .colorScheme */
+		};
+		if (SDL_ShowMessageBox(&messageboxdata, &buttonid) < 0) {
+			SDL_Log("error displaying message box");
+			return-1;
+		}
+	}
+	
+	
+	
 	if (buttonid == -1) {
 		SDL_Log("no selection");
 	}

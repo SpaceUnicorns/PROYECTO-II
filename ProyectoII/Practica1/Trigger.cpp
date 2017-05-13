@@ -14,7 +14,8 @@ Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR,
 		indice = indice_ - 1;
 		isCabania = true;
 	}
-	firsTime = true;
+	firsTime = firstDraw = true;
+	
 }
 
 
@@ -23,38 +24,49 @@ Trigger::~Trigger()
 }
 void Trigger::update(){
 
-	if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w) 
-		&& tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)){
-		if (!reacciona){
-			if (firsTime && isCabania){
-				firsTime = false;
-				static_cast<Nivel1*>(pJuego->estados.top())->visitaCab(indice);
+	if (level->getActivePlayer() == "C"){
+		if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w)
+			&& tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)){
+			if (!reacciona){
+				if (firsTime && isCabania){
+					firsTime = false;
+					level->visitaCab(indice);
+				}
+				cb->callback();
 			}
-			cb->callback();
-		}
 			reacciona = true;
 			triggered = true;
-	}
-	else if (tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w) 
-		&& tgRecolector->getColisionBox().y > rect.y && tgRecolector->getColisionBox().y < (rect.y + rect.h)){
-		if (!reacciona){
-			if (firsTime && isCabania){
-				firsTime = false;
-				static_cast<Nivel1*>(pJuego->estados.top())->visitaCab(indice);
-			}
-			cb->callback();
 		}
+		else triggered = false;
+		cb->update();
+	}
+	else{
+		if (tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w)
+			&& tgRecolector->getColisionBox().y > rect.y && tgRecolector->getColisionBox().y < (rect.y + rect.h)){
+			if (!reacciona){
+				if (firsTime && isCabania){
+					firsTime = false;
+					level->visitaCab(indice);
+				}
+				cb->callback();
+			}
 			triggered = true;
 			reacciona = true;
+		}
+		else triggered = false;
+		cb->update();
 	}
-	else triggered = false;
-	cb->update();
 }
 void Trigger::draw(){ 
+	if (firstDraw) {
+		firstDraw = false;
+		level = static_cast<Nivel1*>(pJuego->estados.top());
+	}
+
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());
 	rect.x -= aux.x;
 	rect.y -= aux.y;
-	if (dynamic_cast<Nivel1*>(pJuego->estados.top())->visible)pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
+	if (level->visible)pJuego->getTextura(et)->draw(pJuego->getRender(), rect);
 }
 void Trigger::lateDraw(){
 	

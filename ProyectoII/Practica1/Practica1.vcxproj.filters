@@ -40,6 +40,9 @@
     <Filter Include="Archivos de código fuente\Entidades\Herramientas">
       <UniqueIdentifier>{935428cf-8dac-41e4-bad5-f9578e42c9c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Entidades\Herramientas">
+      <UniqueIdentifier>{fe8ffa37-d8cc-45d9-8945-1a5604794777}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainP1.cpp">
@@ -99,9 +102,6 @@
     <ClCompile Include="Trigger.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
-    <ClCompile Include="TextCb.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Mochila.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
@@ -129,9 +129,6 @@
     <ClCompile Include="TrampaCerrada.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
-    <ClCompile Include="MCrafteo.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Enemigo.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
@@ -150,71 +147,77 @@
     <ClCompile Include="follow.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="Huella.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjetoHuella.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="AntorchaC.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Antorcha.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Hacha.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Pico.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Pala.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Trampa.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Equipo.cpp">
       <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
-    <ClCompile Include="TrampaAbierta.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="TrampaComponente.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="Trucos.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Escondite.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstaculo.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Carroña.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
-    <ClCompile Include="HuellasCamino.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="Antorcha.cpp">
+      <Filter>Archivos de código fuente\Entidades\Herramientas</Filter>
     </ClCompile>
-    <ClCompile Include="Tutorial.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Valla.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Tutorial2.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="AntorchaC.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="AtaqueCazador.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="Escondite.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Hacha.cpp">
+      <Filter>Archivos de código fuente\Entidades\Herramientas</Filter>
+    </ClCompile>
+    <ClCompile Include="HuellasCamino.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Huella.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
     <ClCompile Include="Cabania.cpp">
+      <Filter>Archivos de código fuente\Niveles</Filter>
+    </ClCompile>
+    <ClCompile Include="MCrafteo.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="ObjetoCabania.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjetoHuella.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Pala.cpp">
+      <Filter>Archivos de código fuente\Entidades\Herramientas</Filter>
+    </ClCompile>
+    <ClCompile Include="Pico.cpp">
+      <Filter>Archivos de código fuente\Entidades\Herramientas</Filter>
+    </ClCompile>
+    <ClCompile Include="TrampaAbierta.cpp">
+      <Filter>Archivos de código fuente\Entidades\Herramientas</Filter>
+    </ClCompile>
+    <ClCompile Include="Valla.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial2.cpp">
+      <Filter>Archivos de código fuente\Niveles</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>Archivos de código fuente\Niveles</Filter>
+    </ClCompile>
+    <ClCompile Include="Trampa.cpp">
+      <Filter>Archivos de código fuente\Entidades\Herramientas</Filter>
+    </ClCompile>
+    <ClCompile Include="TrampaComponente.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstaculo.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="TextCb.cpp">
+      <Filter>Archivos de código fuente\Componentes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -389,34 +392,10 @@
     <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="AntorchaC.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Antorcha.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Hacha.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Pico.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Pala.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Trampa.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="ColisionBox.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Componente.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="TrampaAbierta.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="TrampaComponente.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Equipo.h">
@@ -449,16 +428,10 @@
     <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Escondite.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="ColisionBox.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Componente.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstaculo.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ColisionBox.h">
@@ -479,25 +452,16 @@
     <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Tutorial.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="ColisionBox.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Valla.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="ColisionBox.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Componente.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Tutorial2.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ColisionBox.h">
@@ -517,21 +481,66 @@
     </ClInclude>
     <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Antorcha.h">
+      <Filter>Archivos de encabezado\Entidades\Herramientas</Filter>
+    </ClInclude>
+    <ClInclude Include="AntorchaC.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="AtaqueCazador.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ColisionBox.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Componente.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Componentes</Filter>
     </ClInclude>
     <ClInclude Include="Cabania.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Niveles</Filter>
+    </ClInclude>
+    <ClInclude Include="Escondite.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Hacha.h">
+      <Filter>Archivos de encabezado\Entidades\Herramientas</Filter>
+    </ClInclude>
+    <ClInclude Include="Pico.h">
+      <Filter>Archivos de encabezado\Entidades\Herramientas</Filter>
+    </ClInclude>
+    <ClInclude Include="Pala.h">
+      <Filter>Archivos de encabezado\Entidades\Herramientas</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstaculo.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Valla.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Trampa.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="TrampaComponente.h">
+      <Filter>Archivos de encabezado\Componentes</Filter>
+    </ClInclude>
+    <ClInclude Include="TrampaAbierta.h">
+      <Filter>Archivos de encabezado\Entidades\Herramientas</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial2.h">
+      <Filter>Archivos de encabezado\Niveles</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial.h">
+      <Filter>Archivos de encabezado\Niveles</Filter>
     </ClInclude>
     <ClInclude Include="ObjetoCabania.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 #include "Cazador.h"
 #include "Recolector.h"
 
+class Nivel1;
 class Trigger :
 	public ObjetoPG
 {
@@ -22,10 +23,11 @@ public:
 	ObjetoPG* getCausante(std::string obj) { if (obj == "Cazador")return tgCazador; else if (obj == "Recolector")return tgRecolector; }
 	void lateDraw();
 	int indice;
-
+	int getIndice(){ return indice; }
 
 protected:
-
+	bool firstDraw;
+	Nivel1* level;
 	bool isCabania;
 	bool firsTime;
 	bool reacciona;

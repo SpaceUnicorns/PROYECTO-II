@@ -1,3 +1,3 @@
-Cazador , 7177 , 8780
-Recolector , 7157 , 8760
+Cazador , 7163 , 8779
+Recolector , 7143 , 8759
 R

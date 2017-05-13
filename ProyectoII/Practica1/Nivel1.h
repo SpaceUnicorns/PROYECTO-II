@@ -31,6 +31,7 @@ public:
 	Recolector* getRecolector() { return pRecolector; }
 	void getTorch(){ hasTorch = true; }
 	void dropTorch(){ hasTorch = false; paraAmb("", false); }
+	std::string getActivePlayer()const{ return activePlayer; }
 	void setAlpha(int i){ alpha = i; }
 	void drawEquipo();
 
@@ -73,6 +74,8 @@ public:
 	}
 	void setVectCab(int i, bool x){ cabVisitadas[i].visitadas = x; }
 	int getLastcabVisited(){ return lastCabVisited; }
+	void loadTriggerInfo();
+	std::vector<int>& getTriggerInfo() { return infoTriggers; }
 protected:
 	
 	struct Cab{
@@ -81,11 +84,12 @@ protected:
 	};
 	int lastCabVisited;
 	int numCab;
+	std::vector<Cab> cabVisitadas;
+	std::vector<int> infoTriggers;
 	std::string archivoObj;
 	std::vector<HuellasCamino*> huellasCamino;
 	Mode mode;
 	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
-	std::vector<Cab> cabVisitadas;
 	bool hasTorch;
 	bool firsTime;
 	bool changeCabania;

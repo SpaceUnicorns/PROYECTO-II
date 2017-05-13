@@ -83,28 +83,39 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 
 	Trigger *auxTr;
 	//dialogos de tutorial
-	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector); //tabulador
+	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector, 1); //tabulador
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Juntos.txt"));
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 5850, 9800, pCazador, pRecolector); //escondites
+	auxTr = new Trigger(pJuego, 5850, 9800, pCazador, pRecolector, 2); //escondites
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Juntos.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
 	//Random comments
-	auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector);
+	auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector, 3);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector);
+	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector,4);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo2.txt"));
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector);
+	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector, 5);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
 	auxTr->setTriggerDim(80, 80);
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 7000, 8702, pCazador, pRecolector, 6);
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
+	auxTr->setTriggerDim(80, 80);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
 	cargaObj(objetos);
 
@@ -134,6 +145,8 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	hasTorch = false;
 	alpha = 255;
 	firsTime = true;
+	
+	loadTriggerInfo();
 }
 
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
@@ -635,6 +648,21 @@ void changeScene::callback(){
 	}
 	reacciona = true;
 }
+void Nivel1::loadTriggerInfo(){
+	std::ifstream f;
+	f.open("../docs/partidaGuardada/infoTriggers.txt", std::ios::in);
+	int s;
+	int i = 0;
+	while (!f.eof() && !f.fail()){
+		f >> s;
+		if (!f.fail()){
+			infoTriggers[i] = s;
+		}
+		i++;
+	}
+	f.close();
+
+}
 void Nivel1::saveMochila(){
 	std::ofstream f;
 	f.open("../docs/partidaGuardada/mochila.txt");
@@ -678,6 +706,12 @@ void Nivel1::saveFile(){
 	f << "Cazador" << " , " << std::to_string(pCazador->getAbsRect().x) <<" , "<< std::to_string(pCazador->getAbsRect().y) << "\n";
 	f << "Recolector" << " , " << std::to_string(pRecolector->getAbsRect().x) << " , " << std::to_string(pRecolector->getAbsRect().y) << "\n";
 	f << activePlayer << "\n";
+	f.close();
+
+	f.open("../docs/partidaGuardada/infoTriggers.txt");
+	for (int i = 0; i < infoTriggers.size(); i++){
+		f << infoTriggers[i] << "\n";
+	}
 	f.close();
 
 	saveMochila();

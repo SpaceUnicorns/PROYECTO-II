@@ -1,9 +1,10 @@
 #include "TextCb.h"
 #include <string>
-
+#include "Nivel1.h"
 
 TextCb::TextCb(ObjetoJuego* ent, std:: string s) : Componente(ent)
 {
+	archivo = s;
 	pObj = dynamic_cast<Trigger*>(ent);
 	textBox.h = pObj->getPJuego()->getScreenHeight()*0.20;
 	textBox.w = pObj->getPJuego()->getScreenWidth();
@@ -41,6 +42,7 @@ TextCb::TextCb(ObjetoJuego* ent, std:: string s) : Componente(ent)
 	if (aux[0].length() > 15) delay = 250;
 	else delay = 100;
 	
+	state = 0;
 }
 
 
@@ -104,7 +106,19 @@ void TextCb::draw(){
 void TextCb::callback(){
 	std::cout << "TRIGGERED\n";
 	if (!reacciona) estadoAux = static_cast<EstadoPG*>(pObj->getPJuego()->estados.top());
+	int indice = pObj->getIndice();
+	state = dynamic_cast<Nivel1*>(estadoAux)->getTriggerInfo()[pObj->getIndice()];
+	dynamic_cast<Nivel1*>(estadoAux)->getTriggerInfo()[pObj->getIndice()] = 1;
+	if(!reacciona)cargaDialogo();
 	reacciona = true;
+}
+void TextCb::cargaDialogo(){
+	
+	if (state == 1){
+		aux.clear();
+		if (default[0] != '-') aux.push_back(default);
+		aux.push_back(" ");
+	}
 }
 void TextCb::update(){
 	if (cont < aux.size()-1 && reacciona && firstTime == 0){

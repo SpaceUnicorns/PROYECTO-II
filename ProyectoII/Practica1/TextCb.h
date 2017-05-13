@@ -11,7 +11,14 @@ public:
 	virtual void callback();
 	virtual void update();
 	virtual void draw();
+	
 protected:
+
+	void cargaDialogo();
+
+
+	std::string archivo;
+	int state;
 	SDL_Rect textBox;
 	SDL_Rect font;
 	Trigger* pObj;
