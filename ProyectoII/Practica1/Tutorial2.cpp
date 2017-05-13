@@ -38,7 +38,7 @@ void Tutorial2::onKeyUp(char k){
 void Tutorial2::update(){
 	Nivel1::update();
 	if (change){
-
+		saveFile();
 		Nivel1::fadeOut(40);
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();

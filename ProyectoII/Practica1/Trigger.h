@@ -23,7 +23,7 @@ public:
 	ObjetoPG* getCausante(std::string obj) { if (obj == "Cazador")return tgCazador; else if (obj == "Recolector")return tgRecolector; }
 	void lateDraw();
 	int indice;
-
+	int getIndice(){ return indice; }
 
 protected:
 	bool firstDraw;
