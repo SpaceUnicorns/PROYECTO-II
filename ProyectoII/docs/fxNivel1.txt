@@ -21,6 +21,9 @@ LyovHabla2
 LyovHabla3
 LyovHabla4
 LyovHabla5
+Silbido1
+Silbido2
+Silbido3
 Golpe
 Maleza
 Maleza1

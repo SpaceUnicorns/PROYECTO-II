@@ -35,6 +35,11 @@ void follow::update(){
 			direccion.clear();
 			cont = 0;
 			path.clear();
+			if (!following){
+				int rnd = rand() % 5 + 1;
+				if (pObj->nombre[1] == "Zhenia") pObj->getPJuego()->getEstadoActual()->reproduceFx("ZheniaHabla" + to_string(rnd), pObj->getRect().x, pObj->getRect().y, 0);
+				else pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla" + to_string(rnd), pObj->getRect().x, pObj->getRect().y, 0);
+			}
 			doFollow();
 		}
 	}
@@ -119,6 +124,8 @@ void follow::lateUpdate(){
 	if (pObj->getPJuego()->input.follow && al && !pObj->isAble()){
 		pObj->getPJuego()->input.follow = false;
 		doFollow();
+		int rnd = rand() % 3 + 1;
+		pObj->getPJuego()->getEstadoActual()->reproduceFx("Silbido" + to_string(rnd), pObj->getRect().x, pObj->getRect().y, 0);
 	}
 	
 		//Primero calculamos posiciones absolutas y calculamos luego la distancia euclidea

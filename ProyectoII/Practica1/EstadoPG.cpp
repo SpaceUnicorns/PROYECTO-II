@@ -136,6 +136,7 @@ void EstadoPG::reproduceFx(std::string fx, float x, float y, float wet){
 		FMOD_VECTOR vel = { 0.0f, 0.0f, 0.0f };
 		FMOD_RESULT result;
 
+		vfx.at(fx)->setMusicSpeed(((float)(rand() % 60 - 30) / 100.0) + 1.0);
 
 		bool cOcupied = false;
 		cfx1->isPlaying(&cOcupied);

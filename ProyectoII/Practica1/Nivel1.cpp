@@ -141,6 +141,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
 	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
+	pCazador->newComponente(new follow(pCazador, pRecolector, mapa, true), "follow");
 
 	rectEquipo.x = 50; rectEquipo.y = 50;
 	rectEquipo.h = rectEquipo.w = 50;  animEquipo.h = animEquipo.w = 100;
