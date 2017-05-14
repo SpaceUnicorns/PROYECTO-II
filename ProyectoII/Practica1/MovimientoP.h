@@ -24,6 +24,7 @@ private:
 	ColisionBox * pCBox;
 	EstadoPG* pEstado;
 	Direc direccion;
+	int contHerido = 0;
 	//Direc direccion;
 	//Funciones----------------------------------------------------------------------
 	/*bool isColiding(Punto const & P);

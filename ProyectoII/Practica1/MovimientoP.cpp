@@ -27,6 +27,14 @@ MovimientoP::~MovimientoP()
 
 
 void MovimientoP::update(){
+	if (pObj->herido)
+	{
+		contHerido++;
+		if (contHerido >= 100){
+			contHerido = 0;
+			pObj->herido = false;
+		}
+	}
 	if (pObj->isAble()){
 		pEstado = dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top());
 		//Antes de actualizar la posición comprobamos si colisiona con la posición siguiente.
