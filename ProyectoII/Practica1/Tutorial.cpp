@@ -46,7 +46,7 @@ Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posR
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
-	auxTr = new ChangeTerreno(pJuego, 8150, 10000, pCazador, pRecolector, 3, 6); //cambio de superficie
+	auxTr = new ChangeTerreno(pJuego, 8150, 10000, pCazador, pRecolector, 3, 7); //cambio de superficie
 	auxTr->setTriggerDim(100, 950);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);

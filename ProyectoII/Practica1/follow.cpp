@@ -25,6 +25,7 @@ void follow::update(){
 		direccion.clear();
 		cont = 0;
 		path.clear();
+		pObj->getPJuego()->input.follow = false;
 	}
 	if (target && al && !pObj->isAble()){
 		int auxX, auxY;

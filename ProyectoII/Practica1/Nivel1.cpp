@@ -117,6 +117,12 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
+	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 7); //escondites
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(100, 100);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
 	cargaObj(objetos);
 
 	cargarAudio("../sounds/reverb/ReverbBosque.wav");
@@ -645,6 +651,23 @@ void changeScene::callback(){
 		aux->callback();
 		pObj->getPJuego()->getEstadoActual()->paraMusica("", false);
 		pObj->getPJuego()->getEstadoActual()->paraAmb("", false);
+	}
+	reacciona = true;
+}
+
+void SoundTrigger::callback(){
+	if (!reacciona){
+		std::string fx = "";
+		int rnd = rand() % 12 +1;
+		if (rnd > 0 && rnd < 4)
+			fx = "Buho" + to_string(rnd % 3);
+		if (rnd > 3 && rnd < 7)
+			fx = "Cuervo" + to_string(rnd % 3);
+		if (rnd > 6 && rnd < 10)
+			fx = "Maleza" + to_string(rnd % 3);
+		if (rnd > 9 && rnd < 13)
+			fx = "Aleteo" + to_string(rnd % 3);
+		pObj->getPJuego()->getEstadoActual()->reproduceFx(fx, rand() % 2000 - 1000, rand() % 2000 - 1000, 0);
 	}
 	reacciona = true;
 }

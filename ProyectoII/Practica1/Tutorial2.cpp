@@ -36,8 +36,20 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 	auxTr->setTriggerDim(100, 800);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
-	pCazador->setTerreno(1);
-	pRecolector->setTerreno(1);
+
+	auxTr = new ChangeTerreno(pJuego, 8150, 9900, pCazador, pRecolector, 0, 6); //cambio de superficie
+	auxTr->setTriggerDim(100, 900);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0);
+
+	auxTr = new ChangeTerreno(pJuego, 8150, 10000, pCazador, pRecolector, 3, 7); //cambio de superficie
+	auxTr->setTriggerDim(100, 950);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0);
+
+	pCazador->setTerreno(3);
+	pRecolector->setTerreno(3);
+
 }
 void Tutorial2::onKeyUp(char k){
 	if (k != 't') Nivel1::onKeyUp(k);

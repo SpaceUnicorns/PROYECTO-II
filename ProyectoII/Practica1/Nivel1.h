@@ -148,3 +148,27 @@ private:
 	Trigger* pObj;
 	Nivel1* aux;
 };
+
+
+class SoundTrigger :
+	public Componente
+{
+public:
+	SoundTrigger(ObjetoJuego* ent) : Componente(ent){
+		reacciona = false;
+		pObj = dynamic_cast<Trigger*>(ent);
+	};
+	virtual ~SoundTrigger(){};
+	virtual void callback();
+	virtual void update(){
+		if (reacciona && !pObj->isTriggering()){
+			reacciona = false;
+			pObj->setReacciona(false);
+		}
+	};
+	virtual void draw(){};
+
+private:
+	bool reacciona;
+	Trigger* pObj;
+};
