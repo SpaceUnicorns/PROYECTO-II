@@ -114,6 +114,7 @@ void Pausa::update()
 			reproduceFx("OpcionMenuNormal", 0, 0, 0);
 			pJuego->input.enter = false;
 			EstadoJuego* borrar = pJuego->estados.top();
+			pJuego->cambiaVida(300);
 			while (!pJuego->estados.empty()) { pJuego->getEstadoActual()->paraMusica("", false);  pJuego->estados.pop(); }
 			pJuego->estados.push(new MenuPG(pJuego, 0));
 			delete borrar;
