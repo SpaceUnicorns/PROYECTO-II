@@ -202,7 +202,7 @@ void MovimientoP::update(){
 		else if (colAux == 3) pObj->esconderse(); 
 		else pObj->salirEscondite(); 
 
-		if (pObj->getPJuego()->input.e) {
+		if (pObj->getPJuego()->input.e && !pObj->herido) {
 			switch (direccion)
 			{
 			case Up: nextPos.x = 0; nextPos.y = -15;
@@ -225,7 +225,7 @@ void MovimientoP::update(){
 				break;
 			}
 			colAux = pCBox->isColiding(nextPos, info);
-			if (colAux == 4){
+			if (colAux == 4 ){
 				pObj->getPJuego()->input.e = false;
 				Equipo* equipoAux = static_cast<Equipo*> (pObj->dameComponente("Equipo"));
 				if (equipoAux->tieneEquipo(info->destructor)){

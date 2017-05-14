@@ -17,6 +17,7 @@ public:
 	int triangleOrientation(TrianguloBorde const & tr);
 	void setVista(int dir);
 	void preparaAtaque(int target/*0 caz 1 rec*/);
+	int cont;
 private:
 
 	//Comportamientos
@@ -33,7 +34,7 @@ private:
 	TrianguloBorde vista;
 	float radio;
 	bool detectado;
-	int cont,contPasos;
+	int contPasos;
 	int rnd;
 	ObjetoPG* direccionAux;
 	ObjetoPG* info;

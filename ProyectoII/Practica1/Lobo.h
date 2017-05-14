@@ -10,6 +10,6 @@ public:
 	virtual void draw();
 	//virtual void update();
 	virtual void setColisionBox(int w, int h) { static_cast<ColisionBox*> (mapaComponentes.at("ColisionBox"))->setDimBox(w, h); }
-
+	virtual void setEstado(EstadoEnemigo est);
 };
 

@@ -427,14 +427,14 @@ void Deteccion::atrapado(){
 void Deteccion::herido(){		
 	//Animacion Herido
 	cont++;
-	if (enemy->getLife() < 0){
+	if (enemy->getLife() <= 0){
 		enemy->setEstado(Muerto);
 		std::cout << "muerto\n";
-		enemy->deleteComponente("ColisionBox");
+		//enemy->deleteComponente("ColisionBox");
 	}
 	else if (cont > 100){
 		cont = 0;
-		enemy->setEstado(Quieto);
+		enemy->setEstado(Moviendo);
 	}
 }
 void Deteccion::muerto(){}

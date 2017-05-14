@@ -22,12 +22,16 @@ Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, GrafoMapa* ma
 	newComponente(new Attack(this), "Attack");
 	newComponente(new Deteccion(this,500),"Deteccion");
 	newComponente(new follow(this, hunter, mapa, false), "follow");
+	followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
 }
 
 
 Lobo::~Lobo()
 {
-}/*
+}
+
+void Lobo::setEstado(EstadoEnemigo est){ estado = est; static_cast<Deteccion*>(dameComponente("Deteccion"))->cont = 0; }
+/*
 void Lobo::update() {
 	ObjetoPG::update();
 	rect.x += 2;

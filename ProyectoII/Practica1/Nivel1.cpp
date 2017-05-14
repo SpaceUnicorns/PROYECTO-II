@@ -387,6 +387,7 @@ void Nivel1::update(){
 			cabVisitadas[lastCabVisited].visitadas = true;
 		}
 		fadeOut(40);
+		pJuego->cambiaVida(300);
 		saveFile();
 		Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
 		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited, objCab));

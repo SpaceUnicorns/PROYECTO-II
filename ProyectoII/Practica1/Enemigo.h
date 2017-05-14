@@ -5,6 +5,7 @@
 #include "Recolector.h"
 #include "follow.h"
 
+
 enum EstadoEnemigo
 {
 	Quieto, Moviendo, Volviendo, Atacando, Atrapado, PostAtaque, Herido, Muerto
@@ -30,7 +31,7 @@ public:
 		else objetivo = recolector;
 	}
 	void followThis(ObjetoPG* target);
-	void setEstado(EstadoEnemigo est){ estado = est; }
+	virtual void setEstado(EstadoEnemigo est){ estado = est;}
 	EstadoEnemigo getEstado(){ return estado; }
 	void activaFollow();
 	void desactivaFollow();
@@ -39,7 +40,8 @@ public:
 	int getLife(){ return life; }
 	void setLife(int x){
 		life += x;
-		if (life < 0) life = 0;
+		if (life < 0) 
+			life = 0;
 	}
 	int getDir(){ return followEnem->getDirection(); }
 	ObjetoPG* getCasita(){ return casita; }

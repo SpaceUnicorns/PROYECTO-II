@@ -409,6 +409,13 @@ void juegoPG::onExit(){
 }
 
 void juegoPG::cambiaVida(int cambio) { 
+	if (cambio >= 300){
+		vida = 300;
+		nieblaRect.w = 400 + 4 * (300 - vida);//Tamaño de text min + 4* vida total - vida actual
+		nieblaRect.h = 225 + 2.25 * (300 - vida);
+		nieblaRect.x = 1600 / 2 - nieblaRect.w / 2;
+		nieblaRect.y = 900 / 2 - nieblaRect.h / 2;
+	}
 	if (vida + cambio <= 300 && vida + cambio >= 0) {
 		vida += cambio;
 		nieblaRect.w = 400 + 4 * (300 - vida);//Tamaño de text min + 4* vida total - vida actual

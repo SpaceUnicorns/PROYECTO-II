@@ -49,6 +49,7 @@ public:
 	bool obstaculo = false;
 	bool escondite = false;
 	bool enemigo = false;
+	bool herido = false;
 
 	std::string destructor;
 	std::vector<std::string> nombre;

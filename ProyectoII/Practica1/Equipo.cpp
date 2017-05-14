@@ -27,7 +27,7 @@ void Equipo::update()
 		case Nada:
 			break;
 		case Trampa:
-			if (pObj->getPJuego()->input.enter && cantidad > 0)
+			if (pObj->getPJuego()->input.enter && cantidad > 0 && !pObj->herido)
 			{
 				static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj().push_back(new TrampaAbierta(pObj->getPJuego(), pObj->getRect().x, pObj->getRect().y + 30));
 				mochila->removeItem("Trampa", 1);
@@ -59,7 +59,7 @@ void Equipo::update()
 			if (cantidad == 0) equipado = Nada;
 			break;
 		case Pala:
-			if (pObj->getPJuego()->input.enter && cantidad > 0){
+			if (pObj->getPJuego()->input.enter && cantidad > 0 && !pObj->herido){
 				//Rellenar en función de lo que haga
 				std::cout << "Has usado la pala\n";
 				mochila->removeItem("Pala", 1);
@@ -69,7 +69,7 @@ void Equipo::update()
 			if (cantidad == 0) equipado = Nada;
 			break;
 		case Pico:
-			if (pObj->getPJuego()->input.enter && cantidad > 0){
+			if (pObj->getPJuego()->input.enter && cantidad > 0 && !pObj->herido){
 				//Rellenar en función de lo que haga
 				std::cout << "Has usado el pico\n";
 				mochila->removeItem("Pico", 1);
