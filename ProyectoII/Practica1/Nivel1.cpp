@@ -153,7 +153,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	alpha = 255;
 	firsTime = true;
 	
-	loadTriggerInfo();
+	
 }
 
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
@@ -164,6 +164,7 @@ void Nivel1::draw(){
 	if (firsTime){
 		firsTime = false;
 		fadeIn(20);
+		loadTriggerInfo();
 	}
 	SDL_Rect aux;
 	Tile tile;

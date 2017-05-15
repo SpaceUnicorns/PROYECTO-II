@@ -47,6 +47,7 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
+
 	pCazador->setTerreno(3);
 	pRecolector->setTerreno(3);
 
