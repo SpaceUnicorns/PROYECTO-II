@@ -37,9 +37,9 @@ Escondite , 7499 , 1553
 Escondite , 6007 , 1860
 Arbol , 4678 , 5990
 Escondite , 4460 , 6270
-Lobo , 7193 , 8436
 Cabania , 7133 , 8502
+Lobo , 6617 , 8715
 Escondite , 6611 , 8717
-Zhenia , 7207 , 8750
-Liov , 7227 , 8770
+Liov , 7211 , 8769
+Zhenia , 7191 , 8749
 Arbol , 6970 , 8930

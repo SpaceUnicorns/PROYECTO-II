@@ -98,19 +98,12 @@ public:
 	}
 	void transformaCoord(int& x, int& y)
 	{
+		y += 31;
 		int cuadranteX = 0;
 		int cuadranteY = 0;
-		if (y < 31 || x + 61 < 122){
-			if (y < 31) cuadranteY = 0;
-			if (x + 61 < 122) cuadranteX = 0;
-		}
-		else{
-			cuadranteY = y / 31;
-			if (cuadranteY % 2 != 0 || cuadranteY == 0)
-				cuadranteX = (x + 61) / 122;
-			else
-				cuadranteX = x / 122;
-		}
+		cuadranteY = y / 62;
+		cuadranteX = x / 122;
+
 		int Px, Py;
 		if (cuadranteX == 0 && cuadranteY == 0){
 			Px = x;
@@ -124,7 +117,7 @@ public:
 		}
 		else {
 			Px = x - cuadranteX * 122;
-			Py = y - cuadranteY * 31;
+			Py = y - cuadranteY * 62;
 		}
 		/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
 		x/122 == cuadrante de x en el que esta
@@ -178,14 +171,11 @@ public:
 			}
 		}
 		y++;
-		x--;
+//		x--;
 		if (x < 0) x = 0;
 		if (y < 0) y = 0;
 		if (x >= niveles[0]) x = niveles[0]-1;
-		if (y >= niveles.size()) y = niveles.size()-1;
-		
-
-
+		if (y >= niveles.size()-1) y = niveles.size()-2;
 
 	}
 	void actualizaMapa(std::vector<ObjetoJuego*> obj)
@@ -267,7 +257,7 @@ public:
 						if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
 							nodeCost = { XYToNode(x + 1, y - 1), 99 };
 						else
-							nodeCost = { XYToNode(x + 1, y - 1), 0.1f };
+							nodeCost = { XYToNode(x + 1, y - 1), 0.07f };
 						adjacent->push_back(nodeCost);
 					}
 					else {
@@ -275,7 +265,7 @@ public:
 							if (mapa[(y - 1)*niveles[0] + x] == 'X')
 								nodeCost = { XYToNode(x, y - 1), 99 };
 							else
-								nodeCost = { XYToNode(x, y - 1), 0.1f };
+								nodeCost = { XYToNode(x, y - 1), 0.07f };
 						adjacent->push_back(nodeCost);
 						}
 					}
@@ -296,7 +286,7 @@ public:
 						if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
 							nodeCost = { XYToNode(x + 1, y + 1), 99 };
 						else
-							nodeCost = { XYToNode(x + 1, y + 1), 0.1f };
+							nodeCost = { XYToNode(x + 1, y + 1), 0.07f };
 						adjacent->push_back(nodeCost);
 					}
 					else{
@@ -304,7 +294,7 @@ public:
 							if (mapa[(y + 1)*niveles[0] + x] == 'X')
 								nodeCost = { XYToNode(x, y + 1), 99 };
 							else
-								nodeCost = { XYToNode(x, y + 1), 0.1f };
+								nodeCost = { XYToNode(x, y + 1), 0.07f };
 							adjacent->push_back(nodeCost);
 						}
 					}
@@ -325,7 +315,7 @@ public:
 						if (mapa[(y + 1)*niveles[0] + x] == 'X')
 							nodeCost = { XYToNode(x, y + 1), 99 };
 						else
-							nodeCost = { XYToNode(x, y + 1), 0.1f };
+							nodeCost = { XYToNode(x, y + 1), 0.07f };
 						adjacent->push_back(nodeCost);
 					}
 					else {
@@ -333,7 +323,7 @@ public:
 							if (mapa[(y + 1)*niveles[0] + x] == 'X')
 								nodeCost = { XYToNode(x - 1, y + 1), 99 };
 							else
-								nodeCost = { XYToNode(x - 1, y + 1), 0.1f };
+								nodeCost = { XYToNode(x - 1, y + 1), 0.07f };
 							adjacent->push_back(nodeCost);
 						}
 					}
@@ -354,7 +344,7 @@ public:
 						if (mapa[(y - 1)*niveles[0] + x] == 'X')
 							nodeCost = { XYToNode(x, y - 1), 99 };
 						else
-							nodeCost = { XYToNode(x, y - 1), 0.1f };
+							nodeCost = { XYToNode(x, y - 1), 0.07f };
 						adjacent->push_back(nodeCost);
 					}
 					else{
@@ -362,7 +352,7 @@ public:
 							if (mapa[(y - 1)*niveles[0] + x - 1] == 'X')
 								nodeCost = { XYToNode(x - 1, y - 1), 99 };
 							else
-								nodeCost = { XYToNode(x - 1, y - 1), 0.1f };
+								nodeCost = { XYToNode(x - 1, y - 1), 0.07f };
 							adjacent->push_back(nodeCost);
 						}
 					}

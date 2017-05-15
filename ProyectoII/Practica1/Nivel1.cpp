@@ -390,6 +390,8 @@ void Nivel1::update(){
 		fadeOut(40);
 		pJuego->cambiaVida(300);
 		saveFile();
+		pRecolector->salirEscondite();
+		pCazador->salirEscondite();
 		Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
 		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited, objCab));
 		changeCabania = false;
@@ -662,13 +664,14 @@ void SoundTrigger::callback(){
 		std::string fx = "";
 		int rnd = rand() % 12 +1;
 		if (rnd > 0 && rnd < 4)
-			fx = "Buho" + to_string(rnd % 3);
+			fx = "Buho" + to_string(rnd % 3+1);
 		if (rnd > 3 && rnd < 7)
-			fx = "Cuervo" + to_string(rnd % 3);
+			fx = "Cuervo" + to_string(rnd % 3+1);
 		if (rnd > 6 && rnd < 10)
-			fx = "Maleza" + to_string(rnd % 3);
+			fx = "Maleza" + to_string(rnd % 3+1);
 		if (rnd > 9 && rnd < 13)
-			fx = "Aleteo" + to_string(rnd % 3);
+			fx = "Aleteo" + to_string(rnd % 3+1);
+		std::cout << fx << "\n";
 		pObj->getPJuego()->getEstadoActual()->reproduceFx(fx, rand() % 2000 - 1000, rand() % 2000 - 1000, 0);
 	}
 	reacciona = true;

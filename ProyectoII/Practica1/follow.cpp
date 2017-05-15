@@ -251,61 +251,53 @@ void follow::lateUpdate(){
 			case 0:
 				pObj->setRect(0, -2);
 				pObj->setAbsRect(0, -2);
-				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso-=4;
 				pObj->changeAnimV(4);
 				break;
 			case 1:
 				pObj->setRect(2, -1);
 				pObj->setAbsRect(2, -1);
-				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 2.23;
 				pObj->changeAnimV(0);
 				break;
 			case 2:
 				pObj->setRect(2, 0);
 				pObj->setAbsRect(2, 0);
-				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso-=2;
 				pObj->changeAnimV(6);
 				break;
 			case 3:
 				pObj->setRect(2, 1);
 				pObj->setAbsRect(2, 1);
-				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 2.23;
 				pObj->changeAnimV(3);
 				break;
 			case 4:
 				pObj->setRect(0, 2);
 				pObj->setAbsRect(0, 2);
-				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 4;
 				pObj->changeAnimV(5);
 				break;
 			case 5:
 				pObj->setRect(-2, 1);
 				pObj->setAbsRect(-2, 1);
-				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 2.23;
 				pObj->changeAnimV(7);
 				break;
 			case 6:
 				pObj->setRect(-2, 0);
 				pObj->setAbsRect(-2, 0);
-				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso-=2;
 				pObj->changeAnimV(1);
 				break;
 			case 7:
 				pObj->setRect(-2, -1);
 				pObj->setAbsRect(-2, -1);
-				static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);
 				paso -= 2.23;
 				pObj->changeAnimV(2);
 				break;
 			}
-			
+			static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + pObj->getRect().w*0.3, pObj->getRect().y + pObj->getRect().h*0.8);
 			if (paso <= 0) { 
 				paso = 120; 
 				cont++;

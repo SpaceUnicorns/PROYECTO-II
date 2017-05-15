@@ -474,19 +474,19 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				/*b*/ || tile == 20 || tile == 22 || tile == 25 || tile == 29
 				/*c*/ || tile == 40 || tile == 42 || tile == 44 || tile == 45 || tile == 48 || tile == 49 || tile == 52 || tile == 54 || tile == 55
 				/*d*/ || tile == 60 || tile == 61 || tile == 62 || tile == 63 || tile == 64 || tile == 65 || tile == 66 || tile == 67 || tile == 68 || tile == 69 || tile == 70 || tile == 71 || tile == 72 || tile == 73 || tile == 74 || tile == 75
-				/*e*/ || tile == 80 || tile == 82 || tile == 85 || tile == 89
-				/*f*/ || tile == 100 || tile == 101 || tile == 103 || tile == 106
-				/*g*/ || tile == 126 || tile == 130 || tile == 133 || tile == 135
-				/*h*/ || tile == 149 || tile == 152 || tile == 154 || tile == 155
-				/*i*/ || tile == 160 || tile == 162 || tile == 165 || tile == 169 || tile == 172 || tile == 174 || tile == 175
-				/*j*/ || tile == 180 || tile == 181 || tile == 182 || tile == 183 || tile == 185 || tile == 186 || tile == 189
-				/*k*/ || tile == 206 || tile == 209 || tile == 210 || tile == 212 || tile == 213 || tile == 214 || tile == 215
-				/*l*/ || tile == 220 || tile == 221 || tile == 223 || tile == 226 || tile == 230 || tile == 233 || tile == 235
+				/*e*/ || tile == 80 || tile == 82 || tile == 85 || tile == 89 || tile == 81 || tile == 84 || tile == 88 || tile == 92
+				/*f*/ || tile == 100 || tile == 101 || tile == 103 || tile == 106 || tile == 102 || tile == 104 || tile == 107 || tile == 110
+				/*g*/ || tile == 126 || tile == 130 || tile == 133 || tile == 135 || tile == 123 || tile == 127 || tile == 131 || tile == 134
+				/*h*/ || tile == 149 || tile == 152 || tile == 154 || tile == 155 || tile == 145 || tile == 148 || tile == 151 || tile == 153
+				/*i*/ || tile == 160 || tile == 162 || tile == 165 || tile == 169 || tile == 172 || tile == 174 || tile == 175 || tile == 161 || tile == 164 || tile == 168 || tile == 171 || tile == 173
+				/*j*/ || tile == 180 || tile == 181 || tile == 182 || tile == 183 || tile == 185 || tile == 186 || tile == 189 || tile == 184 || tile == 187 || tile == 188 || tile == 190 || tile == 192
+				/*k*/ || tile == 206 || tile == 209 || tile == 210 || tile == 212 || tile == 213 || tile == 214 || tile == 215 || tile == 203 || tile == 205 || tile == 207 || tile == 208 || tile == 211
+				/*l*/ || tile == 220 || tile == 221 || tile == 223 || tile == 226 || tile == 230 || tile == 233 || tile == 235 || tile == 222 || tile == 224 || tile == 227 || tile == 231 || tile == 234
 				/*m*/ || tile == 240 || tile == 241 || tile == 242 || tile == 243 || tile == 245 || tile == 246 || tile == 249 || tile == 252 || tile == 254 || tile == 255
 				/*n*/ || tile == 260 || tile == 261 || tile == 263 || tile == 266 || tile == 269 || tile == 270 || tile == 272 || tile == 273 || tile == 274 || tile == 275
 				/*o*/ || tile == 300 || tile == 302 || tile == 305 || tile == 306 || tile == 309 || tile == 310 || tile == 312 || tile == 313 || tile == 314 || tile == 315
 				|| tile == 320 || tile == 321 || tile == 322 || tile == 323 || tile == 325 || tile == 326 || tile == 329 || tile == 330 || tile == 330 || tile == 332 || tile == 333 || tile == 334 || tile == 335
-				/*q,r,s,t*/ || tile == 355 || tile == 360 || tile == 389 || tile == 406
+				/*q,r,s,t*/ || tile == 355 || tile == 360 || tile == 389 || tile == 406 || tile == 353 || tile == 354 || tile == 361 || tile == 362 || tile == 385 || tile == 392 || tile == 403 || tile == 410
 				/*u*/ || tile == 420 || tile == 421 || tile == 422 || tile == 423 || tile == 424 || tile == 425 || tile == 426 || tile == 427 || tile == 428 || tile == 429 || tile == 430 || tile == 431 || tile == 432 || tile == 433 || tile == 434 || tile == 435
 				/*v*/ || tile == 441 || tile == 443 || tile == 444 || tile == 446 || tile == 447 || tile == 448 || tile == 450 || tile == 451 || tile == 452 || tile == 453 || tile == 454 || tile == 455
 				|| tile == 460 || tile == 461 || tile == 462 || tile == 463 || tile == 464 || tile == 465 || tile == 467 || tile == 468 || tile == 469 || tile == 471 || tile == 472 || tile == 474
