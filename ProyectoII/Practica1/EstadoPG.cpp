@@ -387,7 +387,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 		f >> tile;
 		if (!f.fail()){
 
-			if (tile == 20 || tile == 80|| tile == 160 || tile == 180 || tile == 240 || tile == 300 || tile == 320){
+			if (tile == 20 || tile == 80 || tile == 160 || tile == 180 || tile == 240 || tile == 300 || tile == 320 || tile == 1260 || tile == 1380 || tile == 1400 || tile == 1420){
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
 				auxPunto.x = x; auxPunto.y = y + 32; auxBorde.A = auxPunto;
@@ -398,7 +398,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				vectBordes.push_back(auxBorde);
 			}
 
-			if (tile == 100 || tile == 180 || tile == 220 || tile == 240 || tile == 260 ||tile == 320){
+			if (tile == 100 || tile == 180 || tile == 220 || tile == 240 || tile == 260 || tile == 320 || tile == 1320 || tile == 1360 || tile == 1400 || tile == 1440){
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
 				auxPunto.x = x - 183; auxPunto.y = y + 124; auxBorde.A = auxPunto;
@@ -408,7 +408,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				auxPunto.x = x - 122; auxPunto.y = y + 155; auxBorde.B = auxPunto;
 				vectBordes.push_back(auxBorde);
 			}
-			if (tile == 120 || tile == 200 || tile == 220 || tile == 260 || tile == 300 || tile == 320){
+			if (tile == 120 || tile == 200 || tile == 220 || tile == 260 || tile == 300 || tile == 320 || tile == 1280 || tile == 1340 || tile == 1360 || tile == 1380 || tile == 1440){
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
 				auxPunto.x = x - 183; auxPunto.y = y + 124; auxBorde.A = auxPunto;
@@ -419,7 +419,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				vectBordes.push_back(auxBorde);
 			}
 
-			if (tile == 140 || tile == 160 || tile == 200 || tile == 240 || tile == 260 || tile == 300 || tile == 320){
+			if (tile == 140 || tile == 160 || tile == 200 || tile == 240 || tile == 260 || tile == 300 || tile == 320 || tile == 1300 || tile == 1340 || tile == 1420 || tile == 1440){
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
 				auxPunto.x = x; auxPunto.y = y + 217; auxBorde.A = auxPunto;
@@ -429,12 +429,12 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				auxPunto.x = x + 61; auxPunto.y = y + 248; auxBorde.B = auxPunto;
 				vectBordes.push_back(auxBorde);
 			}
-			if (tile == 440 || tile == 460 || tile == 480 || tile == 500 || tile == 520 || tile == 540 || tile == 560 || tile == 580 || tile == 700 || 
+			if (tile == 440 || tile == 460 || tile == 480 || tile == 500 || tile == 520 || tile == 540 || tile == 560 || tile == 580 || tile == 700 ||
 				tile == 720 || tile == 740 || tile == 760 || tile == 780 || tile == 800 || tile == 840 || tile == 860 || tile == 880 || tile == 900 ||
 				tile == 920 || tile == 940 || tile == 960 || tile == 980 || tile == 1000){
 				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
 				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
-				auxPunto.x = x -183; auxPunto.y = y + 124; auxBorde.A = auxPunto;
+				auxPunto.x = x - 183; auxPunto.y = y + 124; auxBorde.A = auxPunto;
 				auxPunto.x = x + 61; auxPunto.y = y; auxBorde.B = auxPunto;
 				auxPunto.x = x + 305; auxPunto.y = y + 124; auxBorde.C = auxPunto;
 				vectBordes.push_back(auxBorde);
@@ -450,73 +450,120 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				auxPunto.x = x + 183; auxPunto.y = y + 186; auxBorde.C = auxPunto;
 				vectBordes.push_back(auxBorde);
 			}
-			if (tile == 1220){
-
+			if (tile == 40 || tile == 1500)
+			{
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x - 183; auxPunto.y = y + 124; auxBorde.A = auxPunto;
+				auxPunto.x = x + 61; auxPunto.y = y; auxBorde.B = auxPunto;
+				auxPunto.x = x + 61; auxPunto.y = y + 248; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
 			}
 
-			if (tile == 0 
-/*b*/			|| tile == 20 || tile == 22 || tile == 25 || tile == 29 
-/*c*/			|| tile == 40 || tile == 42 || tile == 44 || tile == 45 || tile == 48 || tile == 49 || tile == 52 || tile == 54 || tile == 55
-/*d*/			|| tile == 60 || tile == 61 || tile == 62 || tile == 63 || tile == 64 || tile == 65 || tile == 66 || tile == 67 || tile == 68 || tile == 69 || tile == 70 || tile == 71 || tile == 72 || tile == 73 || tile == 74 || tile == 75
-/*e*/			|| tile == 80 || tile == 82 || tile == 85 || tile == 89 
-/*f*/			|| tile == 100 || tile == 101 || tile == 103 || tile == 106 
-/*g*/			|| tile == 126 || tile == 130 || tile == 133 || tile == 135
-/*h*/			|| tile == 149 || tile == 152 || tile == 154 || tile == 155 
-/*i*/			|| tile == 160 || tile == 162 || tile == 165 || tile == 169 || tile == 172 || tile == 174 || tile == 175 
-/*j*/			|| tile == 180 || tile == 181 || tile == 182 || tile == 183 || tile == 185 || tile == 186 || tile == 189 
-/*k*/			|| tile == 206 || tile == 209 || tile == 210 || tile == 212 || tile == 213 || tile == 214 || tile == 215
-/*l*/			|| tile == 220 || tile == 221 || tile == 223 || tile == 226 || tile == 230 || tile == 233 || tile == 235 
-/*m*/			|| tile == 240 || tile == 241 || tile == 242 || tile == 243 || tile == 245 || tile == 246 || tile == 249 || tile == 252 || tile == 254 || tile == 255 
-/*n*/			|| tile == 260 || tile == 261 || tile == 263 || tile == 266 || tile == 269 || tile == 270 || tile == 272 || tile == 273 || tile == 274 || tile == 275
-/*o*/			|| tile == 300 || tile == 302 || tile == 305 || tile == 306 || tile == 309 || tile == 310 || tile == 312 || tile == 313 || tile == 314 || tile == 315
+			if (tile == 1480) 
+			{
+				//Creamos los puntos de los triangulos que forman un sprite. Cada sprite al ser un rombo forma dos rectángulos. 
+				//Calculamos los puntos de los dos rectangulos y los añadimos al vector de Bordes
+				auxPunto.x = x + 61; auxPunto.y = y; auxBorde.A = auxPunto;
+				auxPunto.x = x + 305; auxPunto.y = y + 124; auxBorde.B = auxPunto;
+				auxPunto.x = x + 61; auxPunto.y = y + 248; auxBorde.C = auxPunto;
+				vectBordes.push_back(auxBorde);
+			}
+
+			if (tile == 0
+				/*b*/ || tile == 20 || tile == 22 || tile == 25 || tile == 29
+				/*c*/ || tile == 40 || tile == 42 || tile == 44 || tile == 45 || tile == 48 || tile == 49 || tile == 52 || tile == 54 || tile == 55
+				/*d*/ || tile == 60 || tile == 61 || tile == 62 || tile == 63 || tile == 64 || tile == 65 || tile == 66 || tile == 67 || tile == 68 || tile == 69 || tile == 70 || tile == 71 || tile == 72 || tile == 73 || tile == 74 || tile == 75
+				/*e*/ || tile == 80 || tile == 82 || tile == 85 || tile == 89
+				/*f*/ || tile == 100 || tile == 101 || tile == 103 || tile == 106
+				/*g*/ || tile == 126 || tile == 130 || tile == 133 || tile == 135
+				/*h*/ || tile == 149 || tile == 152 || tile == 154 || tile == 155
+				/*i*/ || tile == 160 || tile == 162 || tile == 165 || tile == 169 || tile == 172 || tile == 174 || tile == 175
+				/*j*/ || tile == 180 || tile == 181 || tile == 182 || tile == 183 || tile == 185 || tile == 186 || tile == 189
+				/*k*/ || tile == 206 || tile == 209 || tile == 210 || tile == 212 || tile == 213 || tile == 214 || tile == 215
+				/*l*/ || tile == 220 || tile == 221 || tile == 223 || tile == 226 || tile == 230 || tile == 233 || tile == 235
+				/*m*/ || tile == 240 || tile == 241 || tile == 242 || tile == 243 || tile == 245 || tile == 246 || tile == 249 || tile == 252 || tile == 254 || tile == 255
+				/*n*/ || tile == 260 || tile == 261 || tile == 263 || tile == 266 || tile == 269 || tile == 270 || tile == 272 || tile == 273 || tile == 274 || tile == 275
+				/*o*/ || tile == 300 || tile == 302 || tile == 305 || tile == 306 || tile == 309 || tile == 310 || tile == 312 || tile == 313 || tile == 314 || tile == 315
 				|| tile == 320 || tile == 321 || tile == 322 || tile == 323 || tile == 325 || tile == 326 || tile == 329 || tile == 330 || tile == 330 || tile == 332 || tile == 333 || tile == 334 || tile == 335
-/*q,r,s,t*/		|| tile == 355 || tile == 360 || tile == 389 || tile == 406 
-/*u*/			|| tile == 420 || tile == 421 || tile == 422 || tile == 423 || tile == 424 || tile == 425 || tile == 426 || tile == 427 || tile == 428 || tile == 429 || tile == 430 || tile == 431 || tile == 432 || tile == 433 || tile == 434 || tile == 435 
-/*v*/			|| tile == 441 || tile == 443 || tile == 444 || tile == 446 || tile == 447 || tile == 448 || tile == 450 || tile == 451 || tile == 452 || tile == 453 || tile == 454 || tile == 455 
+				/*q,r,s,t*/ || tile == 355 || tile == 360 || tile == 389 || tile == 406
+				/*u*/ || tile == 420 || tile == 421 || tile == 422 || tile == 423 || tile == 424 || tile == 425 || tile == 426 || tile == 427 || tile == 428 || tile == 429 || tile == 430 || tile == 431 || tile == 432 || tile == 433 || tile == 434 || tile == 435
+				/*v*/ || tile == 441 || tile == 443 || tile == 444 || tile == 446 || tile == 447 || tile == 448 || tile == 450 || tile == 451 || tile == 452 || tile == 453 || tile == 454 || tile == 455
 				|| tile == 460 || tile == 461 || tile == 462 || tile == 463 || tile == 464 || tile == 465 || tile == 467 || tile == 468 || tile == 469 || tile == 471 || tile == 472 || tile == 474
 				|| tile == 482 || tile == 484 || tile == 485 || tile == 487 || tile == 488 || tile == 489 || tile == 491 || tile == 492 || tile == 493 || tile == 494 || tile == 495
 				|| tile == 500 || tile == 501 || tile == 502 || tile == 503 || tile == 504 || tile == 505 || tile == 506 || tile == 507 || tile == 508 || tile == 510 || tile == 511 || tile == 513
 				|| tile == 521 || tile == 523 || tile == 524 || tile == 526 || tile == 527 || tile == 528 || tile == 530 || tile == 531 || tile == 533
-/*5*/			|| tile == 280 || tile == 282 || tile == 283 || tile == 285 || tile == 286 || tile == 289 || tile == 290 || tile == 293 || tile == 295
-/*A*/			|| tile == 544 || tile == 547 || tile == 548 || tile == 550 || tile == 551 || tile == 552 || tile == 553 || tile == 554 || tile == 555
-/*B*/			|| tile == 560 || tile == 561 || tile == 562 || tile == 563 || tile == 564 || tile == 565 || tile == 567 || tile == 568 || tile == 571
+				/*5*/ || tile == 280 || tile == 282 || tile == 283 || tile == 285 || tile == 286 || tile == 289 || tile == 290 || tile == 293 || tile == 295
+				/*A*/ || tile == 544 || tile == 547 || tile == 548 || tile == 550 || tile == 551 || tile == 552 || tile == 553 || tile == 554 || tile == 555
+				/*B*/ || tile == 560 || tile == 561 || tile == 562 || tile == 563 || tile == 564 || tile == 565 || tile == 567 || tile == 568 || tile == 571
 				|| tile == 582 || tile == 584 || tile == 585 || tile == 587 || tile == 588 || tile == 589 || tile == 591 || tile == 592 || tile == 594
 				|| tile == 600 || tile == 601 || tile == 602 || tile == 603 || tile == 604 || tile == 605 || tile == 606 || tile == 607 || tile == 608 || tile == 610 || tile == 611 || tile == 612 || tile == 613 || tile == 614 || tile == 615
-/*E*/			|| tile == 620 || tile == 621 || tile == 622 || tile == 623 || tile == 624 || tile == 625 || tile == 626 || tile == 627 || tile == 628 || tile == 629 || tile == 630 || tile == 631 || tile == 632 || tile == 633 || tile == 634 || tile == 635
+				/*E*/ || tile == 620 || tile == 621 || tile == 622 || tile == 623 || tile == 624 || tile == 625 || tile == 626 || tile == 627 || tile == 628 || tile == 629 || tile == 630 || tile == 631 || tile == 632 || tile == 633 || tile == 634 || tile == 635
 				|| tile == 640 || tile == 641 || tile == 642 || tile == 643 || tile == 644
 				|| tile == 660 || tile == 661 || tile == 662 || tile == 663 || tile == 664 || tile == 665 || tile == 667 || tile == 675
-/*H*/			|| tile == 680 || tile == 681 || tile == 682 || tile == 683 || tile == 684 || tile == 685 || tile == 686 || tile == 687 || tile == 688 || tile == 689 || tile == 690 || tile == 691 || tile == 692 || tile == 693 || tile == 694 || tile == 695
+				/*H*/ || tile == 680 || tile == 681 || tile == 682 || tile == 683 || tile == 684 || tile == 685 || tile == 686 || tile == 687 || tile == 688 || tile == 689 || tile == 690 || tile == 691 || tile == 692 || tile == 693 || tile == 694 || tile == 695
 				|| tile == 701 || tile == 703 || tile == 704 || tile == 706 || tile == 707 || tile == 708 || tile == 710 || tile == 711 || tile == 713 || tile == 714 || tile == 715
 				|| tile == 720 || tile == 721 || tile == 722 || tile == 723 || tile == 724 || tile == 725 || tile == 727 || tile == 728 || tile == 729 || tile == 731 || tile == 732 || tile == 734
-/*K*/			|| tile == 742 || tile == 744 || tile == 745 || tile == 747 || tile == 748 || tile == 749 || tile == 750 || tile == 751 || tile == 752 || tile == 753 || tile == 754 || tile == 755
+				/*K*/ || tile == 742 || tile == 744 || tile == 745 || tile == 747 || tile == 748 || tile == 749 || tile == 750 || tile == 751 || tile == 752 || tile == 753 || tile == 754 || tile == 755
 				|| tile == 760 || tile == 761 || tile == 762 || tile == 763 || tile == 764 || tile == 765 || tile == 766 || tile == 767 || tile == 768 || tile == 770 || tile == 771 || tile == 773
 				|| tile == 781 || tile == 783 || tile == 784 || tile == 786 || tile == 787 || tile == 788 || tile == 790 || tile == 791 || tile == 793
-/*N*/			|| tile == 804 || tile == 807 || tile == 808 || tile == 810 || tile == 811 || tile == 812 || tile == 813 || tile == 814 || tile == 815
-/*O*/			|| tile == 842 || tile == 844 || tile == 845 || tile == 847 || tile == 848 || tile == 849 || tile == 851 || tile == 852 || tile == 854
+				/*N*/ || tile == 804 || tile == 807 || tile == 808 || tile == 810 || tile == 811 || tile == 812 || tile == 813 || tile == 814 || tile == 815
+				/*O*/ || tile == 842 || tile == 844 || tile == 845 || tile == 847 || tile == 848 || tile == 849 || tile == 851 || tile == 852 || tile == 854
 				|| tile == 864 || tile == 867 || tile == 868 || tile == 870 || tile == 871 || tile == 873
 				|| tile == 882 || tile == 884 || tile == 885 || tile == 887 || tile == 888 || tile == 891
 				|| tile == 904 || tile == 907 || tile == 908 || tile == 911 || tile == 912 || tile == 914
 				|| tile == 921 || tile == 923 || tile == 924 || tile == 927 || tile == 928 || tile == 931
 				|| tile == 944 || tile == 947 || tile == 948 || tile == 951
 				|| tile == 961 || tile == 963 || tile == 964 || tile == 967 || tile == 968 || tile == 971 || tile == 972 || tile == 974
-/*V*/			|| tile == 982 || tile == 984 || tile == 985 || tile == 987 || tile == 988 || tile == 990 || tile == 991 || tile == 993
+				/*V*/ || tile == 982 || tile == 984 || tile == 985 || tile == 987 || tile == 988 || tile == 990 || tile == 991 || tile == 993
 				|| tile == 1004 || tile == 1007 || tile == 1008 || tile == 1010 || tile == 1011 || tile == 1012 || tile == 1013 || tile == 1014
-/*X*/			|| tile == 1024 || tile == 1027 || tile == 1028 || tile == 1030 || tile == 1032
-/*3*/			|| tile == 1220 || tile == 1221 || tile == 1222 || tile == 1223 || tile == 1224 || tile == 1225 || tile == 1226 || tile == 1227 || tile == 1228 || tile == 1229 || tile == 1230 || tile == 1231 || tile == 1232 || tile == 1233 || tile == 1234 || tile == 1235
-/*4*/			|| tile == 1120 || tile == 1121 || tile == 1122 || tile == 1123 || tile == 1124 || tile == 1125 || tile == 1126 || tile == 1127 || tile == 1128 || tile == 1129 || tile == 1130 || tile == 1131 || tile == 1132 || tile == 1133 || tile == 1134 || tile == 1135
-/*6*/			|| tile == 821 || tile == 823 || tile == 824 || tile == 826 || tile == 827 || tile == 828 || tile == 830 || tile == 831 || tile == 833
-/*7*/			|| tile == 1140 || tile == 1141 || tile == 1142 || tile == 1143 || tile == 1144 || tile == 1145 || tile == 1146 || tile == 1147 || tile == 1148 || tile == 1149 || tile == 1152
-/*8*/			|| tile == 1160 || tile == 1161 || tile == 1162 || tile == 1163 || tile == 1164 || tile == 1165 || tile == 1166 || tile == 1167 || tile == 1168 || tile == 1169 || tile == 1172
-/*9*/			|| tile == 1187 || tile == 1188
-/*0*/			|| tile == 1200 || tile == 1215 || tile == 1220 || tile == 1221 || tile == 1222 || tile == 1223 || tile == 1224 || tile == 1225 || tile == 1226 || tile == 1227 || tile == 1228 || tile == 1229
-				||tile == 1230 || tile == 1231 || tile == 1232 || tile == 1233 || tile == 1234 || tile == 1235)
-			{
+				/*X*/ || tile == 1024 || tile == 1027 || tile == 1028 || tile == 1030 || tile == 1032
+				/*3*/ || tile == 1220 || tile == 1221 || tile == 1222 || tile == 1223 || tile == 1224 || tile == 1225 || tile == 1226 || tile == 1227 || tile == 1228 || tile == 1229 || tile == 1230 || tile == 1231 || tile == 1232 || tile == 1233 || tile == 1234 || tile == 1235
+				/*4*/ || tile == 1120 || tile == 1121 || tile == 1122 || tile == 1123 || tile == 1124 || tile == 1125 || tile == 1126 || tile == 1127 || tile == 1128 || tile == 1129 || tile == 1130 || tile == 1131 || tile == 1132 || tile == 1133 || tile == 1134 || tile == 1135
+				/*6*/ || tile == 821 || tile == 823 || tile == 824 || tile == 826 || tile == 827 || tile == 828 || tile == 830 || tile == 831 || tile == 833
+				/*7*/ || tile == 1140 || tile == 1141 || tile == 1142 || tile == 1143 || tile == 1144 || tile == 1145 || tile == 1146 || tile == 1147 || tile == 1148 || tile == 1149 || tile == 1152
+				/*8*/ || tile == 1160 || tile == 1161 || tile == 1162 || tile == 1163 || tile == 1164 || tile == 1165 || tile == 1166 || tile == 1167 || tile == 1168 || tile == 1169 || tile == 1172
+				/*9*/ || tile == 1187 || tile == 1188
+				/*0*/ || tile == 1200 || tile == 1215
+				/*+*/ || tile == 1260 || tile == 1262 || tile == 1265 || tile == 1269
+				/*Ç*/ || tile == 1286 || tile == 1290 || tile == 1293 || tile == 1295
+				/*-*/ || tile == 1309 || tile == 1312 || tile == 1314 || tile == 1315
+				/*.*/ || tile == 1320 || tile == 1321 || tile == 1323 || tile == 1326
+				/*,*/ || tile == 1346 || tile == 1349 || tile == 1350 || tile == 1352 || tile == 1354 || tile == 1355
+				/*!*/ || tile == 1360 || tile == 1361 || tile == 1363 || tile == 1366 || tile == 1379 || tile == 1373 || tile == 1375
+				/*¡*/ || tile == 1380 || tile == 1382 || tile == 1385 || tile == 1386 || tile == 1389 || tile == 1390 || tile == 1393 || tile == 1395
+				/*¿*/ || tile == 1400 || tile == 1401 || tile == 1402 || tile == 1403 || tile == 1405 || tile == 1406 || tile == 1409
+				/*?*/ || tile == 1420 || tile == 1422 || tile == 1425 || tile == 1429 || tile == 1432 || tile == 1434 || tile == 1435
+				/*<*/ || tile == 1440 || tile == 1441 || tile == 1443 || tile == 1446 || tile == 1449 || tile == 1450 || tile == 1452 || tile == 1453 || tile == 1454 || tile == 1455
+				/*#*/ || tile == 1460 || tile == 1461 || tile == 1462 || tile == 1463 || tile == 1464 || tile == 1465 || tile == 1466 || tile == 1467 || tile == 1468 || tile == 1469 || tile == 1470 || tile == 1471 || tile == 1472 || tile == 1473 || tile == 1474 || tile == 1475
+				/*$*/ || tile == 1480 || tile == 1482 || tile == 1484 || tile == 1485 || tile == 1488 || tile == 1489 || tile == 1491 || tile == 1492 || tile == 1494 || tile == 1495
+				/*%*/ || tile == 1500 || tile == 1501 || tile == 1503 || tile == 1504 || tile == 1506 || tile == 1507 || tile == 1510 || tile == 1511 || tile == 1513 || tile == 1515
+				/*&*/ || tile == 1526
+				/***/ || tile == 1549
+				/*>*/ || tile == 1566 || tile == 1569
+				/*/*/ || tile == 1586 || tile == 1589
+				/*(*/ || tile == 1600
+				/*)*/ || tile == 1629
+				/*:*/ || tile == 1646
+				/*;*/ || tile == 1660 || tile == 1661 || tile == 1662 || tile == 1663 || tile == 1664 || tile == 1665 || tile == 1666 || tile == 1667 || tile == 1668 || tile == 1669 || tile == 1670 || tile == 1671 || tile == 1672 || tile == 1673 || tile == 1674 || tile == 1675
+				/*[*/ || tile == 1680 || tile == 1681 || tile == 1682 || tile == 1683 || tile == 1684 || tile == 1685 || tile == 1686 || tile == 1687 || tile == 1688 || tile == 1689 || tile == 1690 || tile == 1691 || tile == 1692 || tile == 1693 || tile == 1694 || tile == 1695
+				/*]*/ || tile == 1700 || tile == 1701 || tile == 1702 || tile == 1703 || tile == 1704 || tile == 1705 || tile == 1706 || tile == 1707 || tile == 1708 || tile == 1709 || tile == 1710 || tile == 1711 || tile == 1712 || tile == 1713 || tile == 1714 || tile == 1715
+				/*{*/ || tile == 1720 || tile == 1721 || tile == 1722 || tile == 1723 || tile == 1724 || tile == 1725 || tile == 1726 || tile == 1727 || tile == 1728 || tile == 1729 || tile == 1730 || tile == 1731 || tile == 1732 || tile == 1733 || tile == 1734 || tile == 1735
+				/*}*/ || tile == 1740 || tile == 1741 || tile == 1742 || tile == 1743 || tile == 1744 || tile == 1745 || tile == 1746 || tile == 1747 || tile == 1748 || tile == 1749 || tile == 1750 || tile == 1751 || tile == 1752 || tile == 1753 || tile == 1754 || tile == 1755
+				/*@*/ || tile == 1760 || tile == 1761 || tile == 1762 || tile == 1763 || tile == 1764 || tile == 1765 || tile == 1766 || tile == 1767 || tile == 1768 || tile == 1769 || tile == 1770 || tile == 1771 || tile == 1772 || tile == 1773 || tile == 1774 || tile == 1775
+				/*|*/ || tile == 1780 || tile == 1781 || tile == 1782 || tile == 1783 || tile == 1784 || tile == 1785 || tile == 1786 || tile == 1787 || tile == 1788 || tile == 1790 || tile == 1791 || tile == 1793 || tile == 1794 || tile == 1795
+
+				/**/
+				/**/
+				/**//**/
+				/**/
+				) {
 
 				mapa.push_back('X');
 			}
 			else if (tile == 999) mapa.push_back('L');
 			else mapa.push_back('s');
-			
+
 			switch (tile){
 			case 0:
 				x += 122;
@@ -749,112 +796,112 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				break;
 				////////////////////////////////////////////////////////////////////////// Rampa 2
 			case 40:
-				rectAux.x = 0; rectAux.y = 57 * 83;
+				rectAux.x = 0; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 41:
-				rectAux.x = 1 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 1 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 42:
-				rectAux.x = 2 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 2 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 43:
-				rectAux.x = 3 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 3 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 44:
-				rectAux.x = 4 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 4 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 45:
-				rectAux.x = 5 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 5 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 46:
-				rectAux.x = 6 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 6 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 47:
-				rectAux.x = 7 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 7 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 48:
-				rectAux.x = 8 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 8 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 49:
-				rectAux.x = 9 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 9 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 50:
-				rectAux.x = 10 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 10 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 51:
-				rectAux.x = 11 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 11 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 52:
-				rectAux.x = 12 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 12 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 53:
-				rectAux.x = 13 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 13 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 54:
-				rectAux.x = 14 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 14 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
 			case 55:
-				rectAux.x = 15 * 122; rectAux.y = 57 * 83;
+				rectAux.x = 15 * 122; rectAux.y = 91 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
@@ -6968,14 +7015,14 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
-			case 1141: 
+			case 1141:
 				rectAux.x = 1 * 122; rectAux.y = 60 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
-			case 1142: 
+			case 1142:
 				rectAux.x = 2 * 122; rectAux.y = 60 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
@@ -6996,7 +7043,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
-			case 1145: 
+			case 1145:
 				rectAux.x = 5 * 122; rectAux.y = 60 * 83;
 				aux2.rectTileset = rectAux;
 				aux2.x = x; aux2.y = y; aux2.capa = 1;
@@ -7522,6 +7569,3143 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 				x += 122;
 				vecTile.push_back(aux2);
 				break;
+			case 1240: ///////////////////////////////////////Cueva Suelo Full (Fila 65)
+				rectAux.x = 0; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1241:
+				rectAux.x = 1 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1242:
+				rectAux.x = 2 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1243:
+				rectAux.x = 3 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1244:
+				rectAux.x = 4 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1245:
+				rectAux.x = 5 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1246:
+				rectAux.x = 6 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1247:
+				rectAux.x = 7 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1248:
+				rectAux.x = 8 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1249:
+				rectAux.x = 9 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1250:
+				rectAux.x = 10 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1251:
+				rectAux.x = 11 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1252:
+				rectAux.x = 12 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1253:
+				rectAux.x = 13 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1254:
+				rectAux.x = 14 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1255:
+				rectAux.x = 15 * 122; rectAux.y = 64 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1260: ///////////////////////////////////////Cueva Suelo N (Fila 66)
+				rectAux.x = 0; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1261:
+				rectAux.x = 1 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1262:
+				rectAux.x = 2 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1263:
+				rectAux.x = 3 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1264:
+				rectAux.x = 4 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1265:
+				rectAux.x = 5 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1266:
+				rectAux.x = 6 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1267:
+				rectAux.x = 7 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1268:
+				rectAux.x = 8 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1269:
+				rectAux.x = 9 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1270:
+				rectAux.x = 10 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1271:
+				rectAux.x = 11 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1272:
+				rectAux.x = 12 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1273:
+				rectAux.x = 13 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1274:
+				rectAux.x = 14 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1275:
+				rectAux.x = 15 * 122; rectAux.y = 65 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1280: ///////////////////////////////////////Cueva Suelo S (Fila 67)
+				rectAux.x = 0; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1281:
+				rectAux.x = 1 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1282:
+				rectAux.x = 2 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1283:
+				rectAux.x = 3 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1284:
+				rectAux.x = 4 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1285:
+				rectAux.x = 5 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1286:
+				rectAux.x = 6 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1287:
+				rectAux.x = 7 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1288:
+				rectAux.x = 8 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1289:
+				rectAux.x = 9 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1290:
+				rectAux.x = 10 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1291:
+				rectAux.x = 11 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1292:
+				rectAux.x = 12 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1293:
+				rectAux.x = 13 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1294:
+				rectAux.x = 14 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1295:
+				rectAux.x = 15 * 122; rectAux.y = 66 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1300: ///////////////////////////////////////Cueva Suelo E (Fila 68)
+				rectAux.x = 0; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1301:
+				rectAux.x = 1 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1302:
+				rectAux.x = 2 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1303:
+				rectAux.x = 3 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1304:
+				rectAux.x = 4 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1305:
+				rectAux.x = 5 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1306:
+				rectAux.x = 6 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1307:
+				rectAux.x = 7 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1308:
+				rectAux.x = 8 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1309:
+				rectAux.x = 9 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1310:
+				rectAux.x = 10 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1311:
+				rectAux.x = 11 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1312:
+				rectAux.x = 12 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1313:
+				rectAux.x = 13 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1314:
+				rectAux.x = 14 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1315:
+				rectAux.x = 15 * 122; rectAux.y = 67 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1320: ///////////////////////////////////////Cueva Suelo W (Fila 69)
+				rectAux.x = 0; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1321:
+				rectAux.x = 1 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1322:
+				rectAux.x = 2 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1323:
+				rectAux.x = 3 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1324:
+				rectAux.x = 4 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1325:
+				rectAux.x = 5 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1326:
+				rectAux.x = 6 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1327:
+				rectAux.x = 7 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1328:
+				rectAux.x = 8 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1329:
+				rectAux.x = 9 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1330:
+				rectAux.x = 10 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1331:
+				rectAux.x = 11 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1332:
+				rectAux.x = 12 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1333:
+				rectAux.x = 13 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1334:
+				rectAux.x = 14 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1335:
+				rectAux.x = 15 * 122; rectAux.y = 68 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1340: ///////////////////////////////////////Cueva Suelo SE (Fila 70)
+				rectAux.x = 0; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1341:
+				rectAux.x = 1 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1342:
+				rectAux.x = 2 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1343:
+				rectAux.x = 3 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1344:
+				rectAux.x = 4 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1345:
+				rectAux.x = 5 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1346:
+				rectAux.x = 6 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1347:
+				rectAux.x = 7 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1348:
+				rectAux.x = 8 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1349:
+				rectAux.x = 9 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1350:
+				rectAux.x = 10 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1351:
+				rectAux.x = 11 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1352:
+				rectAux.x = 12 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1353:
+				rectAux.x = 13 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1354:
+				rectAux.x = 14 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1355:
+				rectAux.x = 15 * 122; rectAux.y = 69 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1360: ///////////////////////////////////////Cueva Suelo SW (Fila 71)
+				rectAux.x = 0; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1361:
+				rectAux.x = 1 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1362:
+				rectAux.x = 2 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1363:
+				rectAux.x = 3 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1364:
+				rectAux.x = 4 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1365:
+				rectAux.x = 5 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1366:
+				rectAux.x = 6 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1367:
+				rectAux.x = 7 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1368:
+				rectAux.x = 8 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1369:
+				rectAux.x = 9 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1370:
+				rectAux.x = 10 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1371:
+				rectAux.x = 11 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1372:
+				rectAux.x = 12 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1373:
+				rectAux.x = 13 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1374:
+				rectAux.x = 14 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1375:
+				rectAux.x = 15 * 122; rectAux.y = 70 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1380: ///////////////////////////////////////Cueva Suelo SN (Fila 72)
+				rectAux.x = 0; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1381:
+				rectAux.x = 1 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1382:
+				rectAux.x = 2 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1383:
+				rectAux.x = 3 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1384:
+				rectAux.x = 4 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1385:
+				rectAux.x = 5 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1386:
+				rectAux.x = 6 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1387:
+				rectAux.x = 7 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1388:
+				rectAux.x = 8 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1389:
+				rectAux.x = 9 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1390:
+				rectAux.x = 10 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1391:
+				rectAux.x = 11 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1392:
+				rectAux.x = 12 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1393:
+				rectAux.x = 13 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1394:
+				rectAux.x = 14 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1395:
+				rectAux.x = 15 * 122; rectAux.y = 71 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1400: ///////////////////////////////////////Cueva Suelo NW (Fila 73)
+				rectAux.x = 0; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1401:
+				rectAux.x = 1 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1402:
+				rectAux.x = 2 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1403:
+				rectAux.x = 3 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1404:
+				rectAux.x = 4 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1405:
+				rectAux.x = 5 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1406:
+				rectAux.x = 6 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1407:
+				rectAux.x = 7 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1408:
+				rectAux.x = 8 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1409:
+				rectAux.x = 9 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1410:
+				rectAux.x = 10 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1411:
+				rectAux.x = 11 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1412:
+				rectAux.x = 12 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1413:
+				rectAux.x = 13 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1414:
+				rectAux.x = 14 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1415:
+				rectAux.x = 15 * 122; rectAux.y = 72 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1420: ///////////////////////////////////////Cueva SuN TeE (Fila 74)
+				rectAux.x = 0; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1421:
+				rectAux.x = 1 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1422:
+				rectAux.x = 2 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1423:
+				rectAux.x = 3 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1424:
+				rectAux.x = 4 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1425:
+				rectAux.x = 5 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1426:
+				rectAux.x = 6 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1427:
+				rectAux.x = 7 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1428:
+				rectAux.x = 8 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1429:
+				rectAux.x = 9 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1430:
+				rectAux.x = 10 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1431:
+				rectAux.x = 11 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1432:
+				rectAux.x = 12 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1433:
+				rectAux.x = 13 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1434:
+				rectAux.x = 14 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1435:
+				rectAux.x = 15 * 122; rectAux.y = 73 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1440: ///////////////////////////////////////Cueva Suelo WSE (Fila 75)
+				rectAux.x = 0; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1441:
+				rectAux.x = 1 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1442:
+				rectAux.x = 2 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1443:
+				rectAux.x = 3 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1444:
+				rectAux.x = 4 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1445:
+				rectAux.x = 5 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1446:
+				rectAux.x = 6 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1447:
+				rectAux.x = 7 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1448:
+				rectAux.x = 8 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1449:
+				rectAux.x = 9 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1450:
+				rectAux.x = 10 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1451:
+				rectAux.x = 11 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1452:
+				rectAux.x = 12 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1453:
+				rectAux.x = 13 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1454:
+				rectAux.x = 14 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1455:
+				rectAux.x = 15 * 122; rectAux.y = 74 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1460: ///////////////////////////////////////Cueva Bajada NW (Fila 76)
+				rectAux.x = 0; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1461:
+				rectAux.x = 1 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1462:
+				rectAux.x = 2 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1463:
+				rectAux.x = 3 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1464:
+				rectAux.x = 4 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1465:
+				rectAux.x = 5 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1466:
+				rectAux.x = 6 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1467:
+				rectAux.x = 7 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1468:
+				rectAux.x = 8 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1469:
+				rectAux.x = 9 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1470:
+				rectAux.x = 10 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1471:
+				rectAux.x = 11 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1472:
+				rectAux.x = 12 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1473:
+				rectAux.x = 13 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1474:
+				rectAux.x = 14 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1475:
+				rectAux.x = 15 * 122; rectAux.y = 75 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1480: ///////////////////////////////////////Cueva Pilar NE (Fila 77)
+				rectAux.x = 0; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1481:
+				rectAux.x = 1 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1482:
+				rectAux.x = 2 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1483:
+				rectAux.x = 3 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1484:
+				rectAux.x = 4 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1485:
+				rectAux.x = 5 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1486:
+				rectAux.x = 6 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1487:
+				rectAux.x = 7 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1488:
+				rectAux.x = 8 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1489:
+				rectAux.x = 9 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1490:
+				rectAux.x = 10 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1491:
+				rectAux.x = 11 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1492:
+				rectAux.x = 12 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1493:
+				rectAux.x = 13 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1494:
+				rectAux.x = 14 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1495:
+				rectAux.x = 15 * 122; rectAux.y = 76 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1500: ///////////////////////////////////////Cueva PILAR SW (Fila 78)
+				rectAux.x = 0; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1501:
+				rectAux.x = 1 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1502:
+				rectAux.x = 2 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1503:
+				rectAux.x = 3 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1504:
+				rectAux.x = 4 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1505:
+				rectAux.x = 5 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1506:
+				rectAux.x = 6 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1507:
+				rectAux.x = 7 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1508:
+				rectAux.x = 8 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1509:
+				rectAux.x = 9 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1510:
+				rectAux.x = 10 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1511:
+				rectAux.x = 11 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1512:
+				rectAux.x = 12 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1513:
+				rectAux.x = 13 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1514:
+				rectAux.x = 14 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1515:
+				rectAux.x = 15 * 122; rectAux.y = 77 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1520: ///////////////////////////////////////Cueva Esq T SW (Fila 79)
+				rectAux.x = 0; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1521:
+				rectAux.x = 1 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1522:
+				rectAux.x = 2 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1523:
+				rectAux.x = 3 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1524:
+				rectAux.x = 4 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1525:
+				rectAux.x = 5 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1526:
+				rectAux.x = 6 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1527:
+				rectAux.x = 7 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1528:
+				rectAux.x = 8 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1529:
+				rectAux.x = 9 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1530:
+				rectAux.x = 10 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1531:
+				rectAux.x = 11 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1532:
+				rectAux.x = 12 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1533:
+				rectAux.x = 13 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1534:
+				rectAux.x = 14 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1535:
+				rectAux.x = 15 * 122; rectAux.y = 78 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1540: ///////////////////////////////////////Cueva Esq T NE (Fila 80)
+				rectAux.x = 0; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1541:
+				rectAux.x = 1 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1542:
+				rectAux.x = 2 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1543:
+				rectAux.x = 3 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1544:
+				rectAux.x = 4 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1545:
+				rectAux.x = 5 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1546:
+				rectAux.x = 6 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1547:
+				rectAux.x = 7 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1548:
+				rectAux.x = 8 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1549:
+				rectAux.x = 9 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1550:
+				rectAux.x = 10 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1551:
+				rectAux.x = 11 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1552:
+				rectAux.x = 12 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1553:
+				rectAux.x = 13 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1554:
+				rectAux.x = 14 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1555:
+				rectAux.x = 15 * 122; rectAux.y = 79 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1560: ///////////////////////////////////////Cueva Esq TeNE SuSW (Fila 81)
+				rectAux.x = 0; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1561:
+				rectAux.x = 1 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1562:
+				rectAux.x = 2 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1563:
+				rectAux.x = 3 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1564:
+				rectAux.x = 4 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1565:
+				rectAux.x = 5 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1566:
+				rectAux.x = 6 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1567:
+				rectAux.x = 7 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1568:
+				rectAux.x = 8 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1569:
+				rectAux.x = 9 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1570:
+				rectAux.x = 10 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1571:
+				rectAux.x = 11 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1572:
+				rectAux.x = 12 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1573:
+				rectAux.x = 13 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1574:
+				rectAux.x = 14 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1575:
+				rectAux.x = 15 * 122; rectAux.y = 80 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1580: ///////////////////////////////////////Cueva Esq T SW NE (Fila 82)
+				rectAux.x = 0; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1581:
+				rectAux.x = 1 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1582:
+				rectAux.x = 2 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1583:
+				rectAux.x = 3 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1584:
+				rectAux.x = 4 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1585:
+				rectAux.x = 5 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1586:
+				rectAux.x = 6 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1587:
+				rectAux.x = 7 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1588:
+				rectAux.x = 8 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1589:
+				rectAux.x = 9 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1590:
+				rectAux.x = 10 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1591:
+				rectAux.x = 11 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1592:
+				rectAux.x = 12 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1593:
+				rectAux.x = 13 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1594:
+				rectAux.x = 14 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1595:
+				rectAux.x = 15 * 122; rectAux.y = 81 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1600: ///////////////////////////////////////Cueva Esq Suelo NW (Fila 83 )
+				rectAux.x = 0; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1601:
+				rectAux.x = 1 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1602:
+				rectAux.x = 2 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1603:
+				rectAux.x = 3 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1604:
+				rectAux.x = 4 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1605:
+				rectAux.x = 5 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1606:
+				rectAux.x = 6 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1607:
+				rectAux.x = 7 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1608:
+				rectAux.x = 8 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1609:
+				rectAux.x = 9 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1610:
+				rectAux.x = 10 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1611:
+				rectAux.x = 11 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1612:
+				rectAux.x = 12 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1613:
+				rectAux.x = 13 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1614:
+				rectAux.x = 14 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1615:
+				rectAux.x = 15 * 122; rectAux.y = 82 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1620: ///////////////////////////////////////Cueva Esq Suelo NE (Fila 84)
+				rectAux.x = 0; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1621:
+				rectAux.x = 1 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1622:
+				rectAux.x = 2 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1623:
+				rectAux.x = 3 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1624:
+				rectAux.x = 4 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1625:
+				rectAux.x = 5 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1626:
+				rectAux.x = 6 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1627:
+				rectAux.x = 7 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1628:
+				rectAux.x = 8 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1629:
+				rectAux.x = 9 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1630:
+				rectAux.x = 10 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1631:
+				rectAux.x = 11 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1632:
+				rectAux.x = 12 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1633:
+				rectAux.x = 13 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1634:
+				rectAux.x = 14 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1635:
+				rectAux.x = 15 * 122; rectAux.y = 83 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1640: ///////////////////////////////////////Cueva Esq Suelo SW (Fila 85)
+				rectAux.x = 0; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1641:
+				rectAux.x = 1 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1642:
+				rectAux.x = 2 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1643:
+				rectAux.x = 3 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1644:
+				rectAux.x = 4 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1645:
+				rectAux.x = 5 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1646:
+				rectAux.x = 6 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1647:
+				rectAux.x = 7 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1648:
+				rectAux.x = 8 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1649:
+				rectAux.x = 9 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1650:
+				rectAux.x = 10 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1651:
+				rectAux.x = 11 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1652:
+				rectAux.x = 12 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1653:
+				rectAux.x = 13 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1654:
+				rectAux.x = 14 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1655:
+				rectAux.x = 15 * 122; rectAux.y = 84 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1660: ///////////////////////////////////////Cueva Techo S (Fila 86)
+				rectAux.x = 0; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1661:
+				rectAux.x = 1 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1662:
+				rectAux.x = 2 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1663:
+				rectAux.x = 3 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1664:
+				rectAux.x = 4 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1665:
+				rectAux.x = 5 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1666:
+				rectAux.x = 6 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1667:
+				rectAux.x = 7 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1668:
+				rectAux.x = 8 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1669:
+				rectAux.x = 9 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1670:
+				rectAux.x = 10 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1671:
+				rectAux.x = 11 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1672:
+				rectAux.x = 12 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1673:
+				rectAux.x = 13 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1674:
+				rectAux.x = 14 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1675:
+				rectAux.x = 15 * 122; rectAux.y = 85 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1680: ///////////////////////////////////////Cueva Techo N (Fila 87)
+				rectAux.x = 0; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1681:
+				rectAux.x = 1 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1682:
+				rectAux.x = 2 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1683:
+				rectAux.x = 3 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1684:
+				rectAux.x = 4 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1685:
+				rectAux.x = 5 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1686:
+				rectAux.x = 6 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1687:
+				rectAux.x = 7 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1688:
+				rectAux.x = 8 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1689:
+				rectAux.x = 9 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1690:
+				rectAux.x = 10 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1691:
+				rectAux.x = 11 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1692:
+				rectAux.x = 12 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1693:
+				rectAux.x = 13 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1694:
+				rectAux.x = 14 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1695:
+				rectAux.x = 15 * 122; rectAux.y = 86 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1700: ///////////////////////////////////////Cueva Techo W (Fila 88)
+				rectAux.x = 0; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1701:
+				rectAux.x = 1 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1702:
+				rectAux.x = 2 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1703:
+				rectAux.x = 3 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1704:
+				rectAux.x = 4 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1705:
+				rectAux.x = 5 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1706:
+				rectAux.x = 6 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1707:
+				rectAux.x = 7 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1708:
+				rectAux.x = 8 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1709:
+				rectAux.x = 9 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1710:
+				rectAux.x = 10 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1711:
+				rectAux.x = 11 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1712:
+				rectAux.x = 12 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1713:
+				rectAux.x = 13 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1714:
+				rectAux.x = 14 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1715:
+				rectAux.x = 15 * 122; rectAux.y = 87 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1720: ///////////////////////////////////////Cueva Techo SW (Fila 89)
+				rectAux.x = 0; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1721:
+				rectAux.x = 1 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1722:
+				rectAux.x = 2 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1723:
+				rectAux.x = 3 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1724:
+				rectAux.x = 4 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1725:
+				rectAux.x = 5 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1726:
+				rectAux.x = 6 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1727:
+				rectAux.x = 7 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1728:
+				rectAux.x = 8 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1729:
+				rectAux.x = 9 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1730:
+				rectAux.x = 10 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1731:
+				rectAux.x = 11 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1732:
+				rectAux.x = 12 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1733:
+				rectAux.x = 13 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1734:
+				rectAux.x = 14 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1735:
+				rectAux.x = 15 * 122; rectAux.y = 88 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1740: ///////////////////////////////////////Cueva Techo NE (Fila 90)
+				rectAux.x = 0; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1741:
+				rectAux.x = 1 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1742:
+				rectAux.x = 2 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1743:
+				rectAux.x = 3 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1744:
+				rectAux.x = 4 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1745:
+				rectAux.x = 5 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1746:
+				rectAux.x = 6 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1747:
+				rectAux.x = 7 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1748:
+				rectAux.x = 8 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1749:
+				rectAux.x = 9 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1750:
+				rectAux.x = 10 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1751:
+				rectAux.x = 11 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1752:
+				rectAux.x = 12 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1753:
+				rectAux.x = 13 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1754:
+				rectAux.x = 14 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1755:
+				rectAux.x = 15 * 122; rectAux.y = 89 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1760: ///////////////////////////////////////Cueva Techo Full (Fila 91)
+				rectAux.x = 0; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1761:
+				rectAux.x = 1 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1762:
+				rectAux.x = 2 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1763:
+				rectAux.x = 3 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1764:
+				rectAux.x = 4 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1765:
+				rectAux.x = 5 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1766:
+				rectAux.x = 6 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1767:
+				rectAux.x = 7 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1768:
+				rectAux.x = 8 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1769:
+				rectAux.x = 9 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1770:
+				rectAux.x = 10 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1771:
+				rectAux.x = 11 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1772:
+				rectAux.x = 12 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1773:
+				rectAux.x = 13 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1774:
+				rectAux.x = 14 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1775:
+				rectAux.x = 15 * 122; rectAux.y = 90 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1780: ///////////////////////////////////////Rampa Nieve Alvaro (Fila 92)
+				rectAux.x = 0; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1781:
+				rectAux.x = 1 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1782:
+				rectAux.x = 2 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1783:
+				rectAux.x = 3 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1784:
+				rectAux.x = 4 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1785:
+				rectAux.x = 5 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1786:
+				rectAux.x = 6 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1787:
+				rectAux.x = 7 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1788:
+				rectAux.x = 8 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1789:
+				rectAux.x = 9 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1790:
+				rectAux.x = 10 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1791:
+				rectAux.x = 11 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1792:
+				rectAux.x = 12 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1793:
+				rectAux.x = 13 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1794:
+				rectAux.x = 14 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+			case 1795:
+				rectAux.x = 15 * 122; rectAux.y = 57 * 83;
+				aux2.rectTileset = rectAux;
+				aux2.x = x; aux2.y = y; aux2.capa = 1;
+				x += 122;
+				vecTile.push_back(aux2);
+				break;
+				///////////////////////////////////////////////////////////////////// FIN DE LINEA DE MAPA
 			case 999: y += 31; if (y == 0 || y % 62 == 0) x = 61; else x = 0;
 				break;
 			}
