@@ -64,6 +64,7 @@ public:
 		f.close();
 		if (!recogido){
 			cabVisitadas[lastCabVisited].visitadas = false;
+
 		}
 		if (activePlayer != act) swPlayer();
 		saveMochila();

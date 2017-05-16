@@ -19,7 +19,8 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
-	auxTr = new Trigger(pJuego, 8000, 10100, pCazador, pRecolector,3); //Cómo pegar
+	auxTr = new Trigger(pJuego, 8000, 10000, pCazador, pRecolector,3); //Cómo pegar
+
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Zhenya.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);

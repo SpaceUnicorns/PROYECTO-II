@@ -227,9 +227,6 @@ void Cabania::swPlayer(){
 			if (animNieve2.y <= 0)
 				animNieve2.y = camara.h;
 
-			pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
-			pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
-
 			pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
 
 			for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE

@@ -1,5 +1,5 @@
 #include "follow.h"
-
+#include "Cabania.h"
 
 follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m, bool aliado) : Componente(ent)
 {
@@ -13,6 +13,7 @@ follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m, bool aliado) : Comp
 	map = m;
 	al = aliado;
 	framerate = 0;
+	pCBox = static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"));
 }
 
 
@@ -21,17 +22,12 @@ follow::~follow()
 }
 
 void follow::update(){
-	if (pObj->getPJuego()->input.sw && al){
-		direccion.clear();
-		cont = 0;
-		path.clear();
-		pObj->getPJuego()->input.follow = false;
-	}
+
 	if (target && al && !pObj->isAble()){
 		int auxX, auxY;
 		auxX = abs(pObj->getAbsRect().x - target->getAbsRect().x);
 		auxY = abs(pObj->getAbsRect().y - target->getAbsRect().y);
-		if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) > 1000){
+		if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) > 1200 && contFollowSolo <= 0){
 			direccion.clear();
 			cont = 0;
 			path.clear();
@@ -41,7 +37,14 @@ void follow::update(){
 				else pObj->getPJuego()->getEstadoActual()->reproduceFx("LyovHabla" + to_string(rnd), pObj->getRect().x, pObj->getRect().y, 0);
 			}
 			doFollow();
+			contFollowSolo = 50;
 		}
+	}
+	contFollowSolo--;
+	if (pObj->getPJuego()->input.sw && al){
+		direccion.clear();
+		cont = 0;
+		path.clear();
 	}
 
 }
@@ -121,7 +124,7 @@ void follow::doFollow()
 
 }
 void follow::lateUpdate(){
-	if (pObj->getPJuego()->input.follow && al && !pObj->isAble()){
+	if (pObj->getPJuego()->input.follow && al && !pObj->isAble() && dynamic_cast<Cabania*>(pObj->getPJuego()->getEstadoActual()) == nullptr){
 		pObj->getPJuego()->input.follow = false;
 		doFollow();
 		int rnd = rand() % 3 + 1;
@@ -238,6 +241,13 @@ void follow::lateUpdate(){
 			contPasos++;
 			if (contPasos >= 20)contPasos = 0;
 		}
+
+		//Sale del escondite
+		ObjetoPG* info;
+		int colAux = pCBox->isColiding(nextPos, info);
+		if (colAux == 3 && al) pObj->esconderse();
+		else pObj->salirEscondite();
+
 		if (direccion.size() != 0)
 		{
 			if (framerate % 8 == 0) {// se mueve 1 frame cada 16 ms x 16ms
@@ -299,7 +309,7 @@ void follow::lateUpdate(){
 			}
 			static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + pObj->getRect().w*0.3, pObj->getRect().y + pObj->getRect().h*0.8);
 			if (paso <= 0) { 
-				paso = 120; 
+				paso = 122; 
 				cont++;
 				if (cont == direccion.size()){ 
 					following = false;
