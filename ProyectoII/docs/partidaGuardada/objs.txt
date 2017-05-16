@@ -1,6 +1,6 @@
-Zhenia , 0 , 0
+Liov , 0 , 6
 Arbol , 6970 , 8930
-Liov , 2260 , -14
+Zhenia , 7310 , 9184
 Arbol , 8182 , 9252
 Arbol , 8596 , 9407
 Arbol , 7244 , 9453
@@ -16,12 +16,10 @@ Arbol , 7174 , 9636
 Arbol , 6884 , 9637
 Arbol , 6662 , 9667
 Arbol , 8594 , 9703
-Enredadera , 8350 , 9900
 Arbol , 6756 , 9735
 Arbol , 6514 , 9743
 Arbol , 8810 , 9761
 Arbol , 9150 , 9771
-Enredadera , 7500 , 9950
 Arbol , 9150 , 9793
 Arbol , 6700 , 9834
 Arbol , 9118 , 9871

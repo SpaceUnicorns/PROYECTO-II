@@ -64,6 +64,9 @@ void Tutorial::update(){
 	Nivel1::update();
 	if (change){
 		saveFile();
+		std::ofstream f;
+		f.open("../docs/partidaGuardada/infoTriggers.txt");
+		f.close();
 		Nivel1::fadeOut(40);
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();

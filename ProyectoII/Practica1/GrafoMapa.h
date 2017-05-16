@@ -104,7 +104,7 @@ public:
 		cuadranteY = y / 62;
 		cuadranteX = x / 122;
 
-		int Px, Py;
+		int Px =0, Py = 0;
 		if (cuadranteX == 0 && cuadranteY == 0){
 			Px = x;
 			Py = y;
