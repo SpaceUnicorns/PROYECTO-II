@@ -78,8 +78,9 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	}
 
 	Trigger *auxTr;
+
 	//dialogos de tutorial
-	auxTr = new Trigger(pJuego, 6850, 8750, pCazador, pRecolector); //tabulador
+	auxTr = new Trigger(pJuego, 6850, 8750, pCazador, pRecolector); //vamonos
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Juntos.txt"));
 	auxTr->setTriggerDim(200, 600);
 	vecTriggers.push_back(auxTr);
@@ -89,15 +90,17 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
 
-	auxTr = new Trigger(pJuego, 7000, 8352, pCazador, pRecolector); //escondites
+	auxTr = new Trigger(pJuego, 7000, 8352, pCazador, pRecolector); //caseta
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Juntos.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
 
-	auxTr = new Trigger(pJuego, 2400, 1112, pCazador, pRecolector); //escondites
+	auxTr = new Trigger(pJuego, 2400, 1112, pCazador, pRecolector); //sugerencia, obtaculo pico
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Juntos.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
+
+	//5 = tab
 
 	//Random comments
 	auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector);
