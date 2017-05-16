@@ -79,9 +79,9 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 
 	Trigger *auxTr;
 	//dialogos de tutorial
-	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector); //tabulador
+	auxTr = new Trigger(pJuego, 6850, 8750, pCazador, pRecolector); //tabulador
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Juntos.txt"));
-	auxTr->setTriggerDim(500, 500);
+	auxTr->setTriggerDim(200, 600);
 	vecTriggers.push_back(auxTr);
 
 	auxTr = new Trigger(pJuego, 5850, 9800, pCazador, pRecolector); //escondites

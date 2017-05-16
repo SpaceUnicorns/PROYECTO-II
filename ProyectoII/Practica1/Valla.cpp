@@ -1,6 +1,5 @@
 #include "Valla.h"
 
-
 Valla::Valla(juegoPG * juego, int px, int py, std:: string dir) : ObjetoPG(juego, px, py)
 {
 	et = TValla;
@@ -12,14 +11,12 @@ Valla::Valla(juegoPG * juego, int px, int py, std:: string dir) : ObjetoPG(juego
 	else anim.x = 188;
 	anim.y = 0;
 	anim.h = 128; anim.w = 188;
-	SDL_Rect colision = { rect.x, rect.y + 10, 250, 100 };
+	SDL_Rect colision = { rect.x, rect.y + 10, 800, 150 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");
 }
 
+Valla::~Valla() {}
 
-Valla::~Valla()
-{
-}
 void Valla::draw() {
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());
 	rect.x -= aux.x;
