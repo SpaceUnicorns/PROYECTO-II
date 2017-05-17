@@ -528,7 +528,7 @@ void Nivel1::onKeyUp(char k) {
 			std::cout << "XCabaña: " << centroRel.x + 45 << " YCabaña: " << centroRel.y-20 << "\n";
 
 			Trigger *auxTr;
-			auxTr = new Trigger(pJuego, pCazador->getRect().x + 45 + 62, pCazador->getRect().y - 35 + 271, pCazador, pRecolector);
+			auxTr = new Trigger(pJuego, pCazador->getAbsRect().x + 45 + 62, pCazador->getRect().y - 35 + 271, pCazador, pRecolector);
 			auxTr->setCallback(new changeScene(auxTr, this));
 			auxTr->setTriggerDim(60, 80);
 			vecTriggers.push_back(auxTr);	
