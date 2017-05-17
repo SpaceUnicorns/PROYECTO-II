@@ -88,6 +88,7 @@
     <ClCompile Include="Cazador.cpp" />
     <ClCompile Include="Cebo.cpp" />
     <ClCompile Include="ColisionBox.cpp" />
+    <ClCompile Include="Controles.cpp" />
     <ClCompile Include="Cuerda.cpp" />
     <ClCompile Include="Enredadera.cpp" />
     <ClCompile Include="Deteccion.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Cebo.h" />
     <ClInclude Include="ColisionBox.h" />
     <ClInclude Include="Componente.h" />
+    <ClInclude Include="Controles.h" />
     <ClInclude Include="Cuerda.h" />
     <ClInclude Include="Enredadera.h" />
     <ClInclude Include="checkML.h" />

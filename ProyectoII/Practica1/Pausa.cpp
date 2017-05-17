@@ -1,6 +1,7 @@
 #include "Pausa.h"
 #include "MenuPG.h"
 #include "Trucos.h"
+#include "Controles.h"
 
 
 Pausa::Pausa(juegoPG*jug, Nivel1* pNivel, int puntos) :EstadoPG(jug, puntos)
@@ -10,7 +11,8 @@ Pausa::Pausa(juegoPG*jug, Nivel1* pNivel, int puntos) :EstadoPG(jug, puntos)
 	boton.h = 42; 
 	boton.x = pJuego->getScreenWidth() / 2 - boton.w / 2; 
 	boton.y = pJuego->getScreenHeight() / 2 + boton.h / 2;
-	rect.x = boton.x - 10; rect.y = boton.y - 107; rect.w = 364; rect.h = 55;
+	aux = pJuego->getScreenHeight() / 2 + boton.h / 2;
+	rect.x = boton.x - 10; rect.y = rect.y = aux - 166; rect.w = 364; rect.h = 55;
 
 	fondo = new TexturasSDL;
 	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
@@ -19,7 +21,7 @@ Pausa::Pausa(juegoPG*jug, Nivel1* pNivel, int puntos) :EstadoPG(jug, puntos)
 
 	estado = Resume;
 	temp = 0;
-	aux = pJuego->getScreenHeight() / 2 + boton.h / 2;
+	
 	level = pNivel;
 	arriba = abajo = enter = false;
 }
@@ -36,11 +38,13 @@ void Pausa::draw() {
 	//pintar recuadro antes que los botones
 	pJuego->getTextura(TMenuResaltado)->draw(pJuego->getRender(), rect);
 	
-	boton.y = aux - 100;
+	boton.y = aux - 159;
 	pJuego->getTextura(TContinuar)->draw(pJuego->getRender(), boton);
-	boton.y = aux;
+	boton.y = aux - 67;
 	pJuego->getTextura(TOpciones)->draw(pJuego->getRender(), boton);
-	boton.y = aux + 100;
+	boton.y = aux + 25;
+	pJuego->getTextura(TControl)->draw(pJuego->getRender(), boton);
+	boton.y = aux + 117;
 	pJuego->getTextura(TGoToMenu)->draw(pJuego->getRender(), boton);
 
 }
@@ -65,12 +69,12 @@ void Pausa::update()
 	case (Resume) :
 		if (arriba) {
 			reproduceFx("SelOpcionNormal1", 0, 0, 0);
-			rect.y = aux + 93;
+			rect.y = aux + 110;
 			estado = Menu; //cambiar de estado
 		}
 		else if (abajo) {
 			reproduceFx("SelOpcionNormal1", 0, 0, 0);
-			rect.y = aux - 7;
+			rect.y = aux - 74;
 			estado = Opciones;
 		}
 		else if (enter) {
@@ -82,13 +86,13 @@ void Pausa::update()
 	case (Opciones) :
 		if (arriba) {
 			reproduceFx("SelOpcionNormal1", 0, 0, 0);
-			rect.y = aux - 107;
+			rect.y = aux - 166;
 			estado = Resume;
 		}
 		else if (abajo) {
-				reproduceFx("SelOpcionNormal1", 0, 0, 0);
-				rect.y = aux + 93;
-				estado = Menu;
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
+			rect.y = aux + 18;
+			estado = Control;
 		}
 		else if (enter) {
 			reproduceFx("OpcionMenuNormal", 0, 0, 0);
@@ -99,15 +103,35 @@ void Pausa::update()
 		}
 		break;
 
-	case (Menu) :
+	case (Control) :
 		if (arriba) {
 			reproduceFx("SelOpcionNormal1", 0, 0, 0);
-			rect.y = aux - 7;
+			rect.y = aux - 74;
 			estado = Opciones;
 		}
 		else if (abajo) {
 			reproduceFx("SelOpcionNormal1", 0, 0, 0);
-			rect.y = aux - 107;
+			rect.y = aux + 110;
+			estado = Menu;
+		}
+		else if (enter) {
+			reproduceFx("OpcionMenuNormal", 0, 0, 0);
+			//push estado nuevo --> Opciones
+			pJuego->input.enter = false;
+			std::cout << "me voy a controles --- en proceso de creacion ---\n";
+			pJuego->estados.push(new Controles(pJuego));
+		}
+		break;
+
+	case (Menu) :
+		if (arriba) {
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
+			rect.y = aux + 18;
+			estado = Control;
+		}
+		else if (abajo) {
+			reproduceFx("SelOpcionNormal1", 0, 0, 0);
+			rect.y = aux - 166;
 			estado = Resume;
 		}
 		else if (enter) {

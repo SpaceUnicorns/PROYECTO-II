@@ -6,7 +6,7 @@
 class Pausa :
 	public EstadoPG
 {
-	enum estadosPausa { Resume, Menu, Opciones };
+	enum estadosPausa { Resume, Menu, Opciones, Control };
 
 public:
 	Pausa(juegoPG*jug,Nivel1* pRec, int puntos);
