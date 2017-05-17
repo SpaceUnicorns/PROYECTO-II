@@ -101,10 +101,18 @@ public:
 		y += 31;
 		int cuadranteX = 0;
 		int cuadranteY = 0;
-		cuadranteY = y / 62;
-		cuadranteX = x / 122;
-
-		int Px =0, Py = 0;
+		if (y < 31 || x + 61 < 122){
+			if (y < 31) cuadranteY = 0;
+			if (x + 61 < 122) cuadranteX = 0;
+		}
+		else{
+			cuadranteY = y / 31;
+			if (cuadranteY % 2 != 0 || cuadranteY == 0)
+				cuadranteX = (x + 61) / 122;
+			else
+				cuadranteX = x / 122;
+		}
+		int Px, Py;
 		if (cuadranteX == 0 && cuadranteY == 0){
 			Px = x;
 			Py = y;
@@ -117,7 +125,7 @@ public:
 		}
 		else {
 			Px = x - cuadranteX * 122;
-			Py = y - cuadranteY * 62;
+			Py = y - cuadranteY * 31;
 		}
 		/* ver la posicion del objeto, teniendo en cuenta el offset de la camara:
 		x/122 == cuadrante de x en el que esta
@@ -171,7 +179,7 @@ public:
 			}
 		}
 		y++;
-//		x--;
+		x--;
 		if (x < 0) x = 0;
 		if (y < 0) y = 0;
 		if (x >= niveles[0]) x = niveles[0]-1;
