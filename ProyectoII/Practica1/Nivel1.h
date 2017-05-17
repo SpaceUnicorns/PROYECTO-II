@@ -21,7 +21,7 @@ class Nivel1 :
 	public EstadoPG
 {
 public:
-	Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act);
+	Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT = true);
 	Nivel1(juegoPG*jug): EstadoPG(jug,0){};
 	virtual ~Nivel1();
 	virtual void draw();
@@ -94,7 +94,7 @@ protected:
 	Mode mode;
 	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
 	bool hasTorch;
-	bool firsTime;
+	bool firsTime, firstDraw;
 	bool changeCabania;
 	Punto centroRel;
 	int x, y, alpha;

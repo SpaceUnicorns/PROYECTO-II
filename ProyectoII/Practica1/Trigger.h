@@ -8,7 +8,7 @@ class Trigger :
 	public ObjetoPG
 {
 public:
-	Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR, int indice_ = 0);
+	Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR, int indice_ = 0, bool isCab = false);
 	virtual ~Trigger();
 	virtual void draw();
 	virtual void update();

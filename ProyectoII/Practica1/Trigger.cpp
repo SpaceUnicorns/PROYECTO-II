@@ -1,7 +1,7 @@
 #include "Trigger.h"
 #include "Nivel1.h"
 
-Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR, int indice_) : ObjetoPG(juego, px, py)
+Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR, int indice_, bool isCab) : ObjetoPG(juego, px, py)
 {
 	et = TCColision;
 	rect.w = 50;
@@ -12,7 +12,7 @@ Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR,
 	isCabania = false;
 	if (indice_ != 0){
 		indice = indice_ - 1;
-		isCabania = true;
+		isCabania = isCab;
 	}
 	firsTime = firstDraw = true;
 	

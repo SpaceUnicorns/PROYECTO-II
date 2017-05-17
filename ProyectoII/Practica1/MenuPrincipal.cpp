@@ -77,7 +77,7 @@ void MenuPrincipal::update(){
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();
 		
-			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/partidaGuardada/objs.txt", rec, caz, act));
+			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/partidaGuardada/objs.txt", rec, caz, act, false));
 			delete borrar;
 
 		}

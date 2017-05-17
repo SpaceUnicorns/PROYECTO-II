@@ -30,7 +30,7 @@
 #include<stdlib.h>
 #include<time.h>
 
-Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : EstadoPG(jug, 0){
+Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act, bool firstT) : EstadoPG(jug, 0){
 	srand(time(NULL));
 
 	changeCabania = false;
@@ -96,40 +96,44 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 7000, 8352, pCazador, pRecolector); //escondites
+	auxTr = new Trigger(pJuego, 7000, 8352, pCazador, pRecolector, 3); //escondites
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Juntos.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 2400, 1112, pCazador, pRecolector); //escondites
+
+	auxTr = new Trigger(pJuego, 2400, 1112, pCazador, pRecolector, 4); //escondites
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Juntos.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
 
 	//Random comments
-	auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector, 3);
+	auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector, 5);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector,4);
+	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector,6);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo2.txt"));
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector, 5);
+	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector, 7);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
 	auxTr->setTriggerDim(80, 80);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 7000, 8702, pCazador, pRecolector, 6);
+	auxTr = new Trigger(pJuego, 7000, 8702, pCazador, pRecolector, 8);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
 	auxTr->setTriggerDim(80, 80);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 7); //escondites
+	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 9); //escondites
 	auxTr->setCallback(new SoundTrigger(auxTr));
 	auxTr->setTriggerDim(100, 100);
 	vecTriggers.push_back(auxTr);
@@ -163,8 +167,8 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	rectZonaOscura.x = -100; rectZonaOscura.y = 500;
 	hasTorch = false;
 	alpha = 255;
-	firsTime = true;
-	
+	firsTime = !firstT;
+	firstDraw = true;
 	
 }
 
@@ -172,10 +176,9 @@ bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
 }
 void Nivel1::draw(){
-	std::cout << "POSICION " << pRecolector->getAbsRect().x << " " << pRecolector->getAbsRect().y << "\n";
 
-	if (firsTime){
-		firsTime = false;
+	if (firstDraw){
+		firstDraw = false;
 		fadeIn(20);
 		loadTriggerInfo();
 	}
@@ -379,6 +382,8 @@ void Nivel1::swPlayer(){
 	pJuego->input.sw = false;
 }
 void Nivel1::update(){
+
+
 	EstadoPG::update();
 	if (changeCabania){
 		if (activePlayer == "R"){
@@ -594,7 +599,7 @@ void Nivel1::cargaObj(std:: string name){
 				
 				cabVisitadas.push_back(cabAux);
 				Trigger *auxTr;
-				auxTr = new Trigger(pJuego, pos.x + 67, pos.y + 256, pCazador, pRecolector, numCab);
+				auxTr = new Trigger(pJuego, pos.x + 67, pos.y + 256, pCazador, pRecolector, numCab, true);
 				auxTr->setCallback(new changeScene(auxTr, this));
 				auxTr->setTriggerDim(60, 80);
 				vecTriggers.push_back(auxTr);
@@ -641,7 +646,10 @@ void Nivel1::cargaObj(std:: string name){
 	f.close();
 }
 void Nivel1::callback(){
-	changeCabania = true;
+	if (!firsTime){
+		changeCabania = true;
+	}
+	else firsTime = false;
 }
 void Nivel1::fadeOut(int time){
 	for (int i = 0; i < 200; i+=2){
