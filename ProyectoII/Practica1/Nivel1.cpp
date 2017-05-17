@@ -457,7 +457,8 @@ void Nivel1::onKeyUp(char k) {
 			escribe("ObsPiedra", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
 		case 'r': //Obstaculo Nieve
-			
+			vecObj.push_back(new Obstaculo(pJuego, pCazador->getRect().x + 35, pCazador->getRect().y - 20, TObstaculoNieve, "Pala"));
+			escribe("ObsNieve", centroRel.x + 35, centroRel.y - 20, archivoObj);
 			break;
 		case 'y': //Escondite
 			vecObj.push_back(new Escondite(pJuego, pCazador->getRect().x + 20, pCazador->getRect().y +45));
@@ -574,6 +575,7 @@ void Nivel1::cargaObj(std:: string name){
 			if (type == "Arbol")vecObj.push_back(new Arbol(pJuego, pos.x, pos.y, false));
 			else if (type == "ArbolF") vecObj.push_back(new Arbol(pJuego, pos.x, pos.y));
 			else if (type == "ObsPiedra") vecObj.push_back(new Obstaculo(pJuego, pos.x, pos.y, TObstaculoPiedra, "Pico"));
+			else if (type == "ObsNieve") vecObj.push_back(new Obstaculo(pJuego, pos.x, pos.y, TObstaculoNieve, "Pala"));
 			else if (type == "Escondite") vecObj.push_back(new Escondite(pJuego, pos.x, pos.y));
 			else if (type == "Piedra") vecObj.push_back(new Piedra(pJuego, pos.x, pos.y));
 			else if (type == "Madera") vecObj.push_back(new Madera(pJuego, pos.x, pos.y));

@@ -69,10 +69,10 @@ void follow::doFollow()
 	int x, y, xx, yy;
 
 	// Hallamos las coordenadas de cada objeto y las transformamos a las coordenadas absolutas que ocupan dentro del mapa
-	x = pObj->getAbsRect().x + pObj->getAbsRect().w*0.2;
-	y = pObj->getAbsRect().y + pObj->getAbsRect().h*0.8;
-	xx = target->getAbsRect().x + target->getAbsRect().w*0.2;
-	yy = target->getAbsRect().y + target->getAbsRect().h*0.8;
+	x = pObj->getAbsRect().x + pObj->getRect().w*0.5;
+	y = pObj->getAbsRect().y + pObj->getRect().h*0.9;
+	xx = target->getAbsRect().x + target->getRect().w*0.5;
+	yy = target->getAbsRect().y + target->getRect().h*0.9;
 	map->transformaCoord(x, y);
 	map->transformaCoord(xx, yy);
 
@@ -128,7 +128,7 @@ void follow::lateUpdate(){
 		pObj->getPJuego()->input.follow = false;
 		doFollow();
 		int rnd = rand() % 3 + 1;
-		pObj->getPJuego()->getEstadoActual()->reproduceFx("Silbido" + to_string(rnd), pObj->getRect().x, pObj->getRect().y, 0);
+		pObj->getPJuego()->getEstadoActual()->reproduceFx("Silbido" + to_string(rnd), target->getRect().x, target->getRect().y, 0);
 	}
 	
 		//Primero calculamos posiciones absolutas y calculamos luego la distancia euclidea
@@ -172,43 +172,43 @@ void follow::lateUpdate(){
 			if (al){
 				switch (pObj->getTerreno()){
 				case 0:
-					if (rnd == 0)
+					if (rnd == 3)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve", 0, 0, 0);
-					else if (rnd == 1)
-						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve1", 0, 0, 0);
 					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve1", 0, 0, 0);
+					else if (rnd == 1)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve2", 0, 0, 0);
-					else if (rnd == 3)
+					else if (rnd == 0)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarNieve3", 0, 0, 0);
 					break;
 				case 1:
-					if (rnd == 0)
+					if (rnd == 3)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarMadera", 0, 0, 0);
-					else if (rnd == 1)
-						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarMadera1", 0, 0, 0);
 					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarMadera1", 0, 0, 0);
+					else if (rnd == 1)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarMadera2", 0, 0, 0);
-					else if (rnd == 3)
+					else if (rnd == 0)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarMadera3", 0, 0, 0);
 					break;
 				case 2:
-					if (rnd == 0)
+					if (rnd == 3)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarPiedra", 0, 0, 0);
-					else if (rnd == 1)
-						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarPiedra1", 0, 0, 0);
 					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarPiedra1", 0, 0, 0);
+					else if (rnd == 1)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarPiedra2", 0, 0, 0);
-					else if (rnd == 3)
+					else if (rnd == 0)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarPiedra3", 0, 0, 0);
 					break;
 				case 3:
-					if (rnd == 0)
+					if (rnd == 3)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarTierra", 0, 0, 0);
-					else if (rnd == 1)
-						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarTierra1", 0, 0, 0);
 					else if (rnd == 2)
+						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarTierra1", 0, 0, 0);
+					else if (rnd == 1)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarTierra2", 0, 0, 0);
-					else if (rnd == 3)
+					else if (rnd == 0)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("AndarTierra3", 0, 0, 0);
 					break;
 				}
