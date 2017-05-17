@@ -50,9 +50,10 @@ public:
 	}
 	void resumeCabania(std:: string act, bool recogido){
 		std::ifstream f;
+		Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
+		m->vaciaMochila();
 		f.open("../docs/partidaGuardada/mochila.txt", std::ios::in);
 		std::string s; char stash;
-		Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
 		while (!f.eof() && !f.fail()){
 			f >> s;
 			if (!f.fail()){

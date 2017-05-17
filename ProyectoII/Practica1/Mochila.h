@@ -10,6 +10,9 @@ public:
 	 void newItem( std::string const & name, int cantidad);
 	 void removeItem(std::string const & name, int cantidad);
 	 bool findItem(std::string const & name);
+	 void vaciaMochila(){
+		 mochilaRecolector.erase(mochilaRecolector.cbegin(), mochilaRecolector.cend());
+	 }
 
 	 int getCantidad(std::string const & name);
 private:

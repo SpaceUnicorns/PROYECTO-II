@@ -36,7 +36,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	changeCabania = false;
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = true;
+	visible = false;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -626,10 +626,10 @@ void Nivel1::cargaObj(std:: string name){
 	}
 	f.close();
 
+	Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
 	f.open("../docs/partidaGuardada/mochila.txt", std::ios::in);
 
 	std::string s;
-	Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
 	while (!f.eof() && !f.fail()){
 		f >> s;
 		if (!f.fail()){
@@ -693,7 +693,7 @@ void SoundTrigger::callback(){
 
 void Nivel1::loadTriggerInfo(){
 	std::ifstream f;
-	f.open("../docs/partidaGuardada/infoTriggers.txt", std::ios::in);
+	f.open("../docs/partidaGuardada/infoTriggers.txt");
 	int s;
 	int i = 0;
 	while (!f.eof() && !f.fail()){
