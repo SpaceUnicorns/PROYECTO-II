@@ -84,7 +84,7 @@ juegoPG::~juegoPG()
 }
 //--------------------------------------------------------------------------------------------------------------------
 void juegoPG::run(){
-		Uint32 msUpdate = 22;
+		Uint32 msUpdate = 16;
 		std::cout << "PLAY \n";
 		Uint32 lastUpdate = SDL_GetTicks();
 		render();
