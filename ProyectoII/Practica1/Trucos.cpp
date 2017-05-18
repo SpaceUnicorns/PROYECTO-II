@@ -5,7 +5,7 @@ Trucos::Trucos(juegoPG*jug, Nivel1* pNivel) : EstadoPG(jug, 0)
 {
 	rFondo.x = rFondo.y = 0; rFondo.w = pJuego->getScreenWidth(); rFondo.h = pJuego->getScreenHeight(); //rect del fondo (ocupa toda la pantalla)
 	fondo = new TexturasSDL;
-	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
+	fondo->load(pJuego->getRender(), pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\temp\\screenshot.bmp");
 	cargarAssetsAudio("../docs/fxMTrucos.txt", 'f');
 	firstTime = true;
 	font.x = pJuego->getScreenWidth() / 2-80; font.y = pJuego->getScreenHeight()/2-30; font.w = 80; font.h = 100;

@@ -619,7 +619,7 @@ void Nivel1::cargaObj(std:: string name){
 	}
 	f.close();
 
-	f.open("../docs/partidaGuardada/cabanias.txt", std::ios::in);
+	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\cabanias.txt", std::ios::in);
 
 	while (!f.eof() && !f.fail()){
 		f >> lastCabVisited;
@@ -634,7 +634,7 @@ void Nivel1::cargaObj(std:: string name){
 	f.close();
 
 	Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
-	f.open("../docs/partidaGuardada/mochila.txt", std::ios::in);
+	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\mochila.txt", std::ios::in);
 
 	std::string s;
 	while (!f.eof() && !f.fail()){
@@ -703,7 +703,7 @@ void SoundTrigger::callback(){
 
 void Nivel1::loadTriggerInfo(){
 	std::ifstream f;
-	f.open("../docs/partidaGuardada/infoTriggers.txt");
+	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\infoTriggers.txt");
 	int s;
 	int i = 0;
 	while (!f.eof() && !f.fail()){
@@ -718,7 +718,7 @@ void Nivel1::loadTriggerInfo(){
 }
 void Nivel1::saveMochila(){
 	std::ofstream f;
-	f.open("../docs/partidaGuardada/mochila.txt");
+	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\mochila.txt");
 
 	Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
 	f << "Cebo" << " , " << std::to_string(m->getCantidad("Cebo")) << "\n";
@@ -736,7 +736,7 @@ void Nivel1::saveMochila(){
 	f << "Antorcha" << " , " << std::to_string(m->getCantidad("Antorcha")) << "\n";
 	f.close();
 
-	f.open("../docs/partidaGuardada/cabanias.txt");
+	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\cabanias.txt");
 	f << lastCabVisited << "\n";
 	for (int i = 0; i < cabVisitadas.size(); i++){
 		f << cabVisitadas[i].visitadas << " , " << cabVisitadas[i].obj << "\n";
@@ -745,7 +745,7 @@ void Nivel1::saveMochila(){
 }
 void Nivel1::saveFile(){
 	std::ofstream f;
-	f.open("../docs/partidaGuardada/objs.txt");
+	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\objs.txt");
 	ObjetoPG *aux;
 	for (int i = 0; i < vecObj.size(); i++){
 		aux = dynamic_cast<ObjetoPG*>(vecObj[i]);
@@ -755,13 +755,13 @@ void Nivel1::saveFile(){
 	}
 	f.close();
 
-	f.open("../docs/partidaGuardada/players.txt");
+	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\players.txt");
 	f << "Cazador" << " , " << std::to_string(pCazador->getAbsRect().x) <<" , "<< std::to_string(pCazador->getAbsRect().y) << "\n";
 	f << "Recolector" << " , " << std::to_string(pRecolector->getAbsRect().x) << " , " << std::to_string(pRecolector->getAbsRect().y) << "\n";
 	f << activePlayer << "\n";
 	f.close();
 
-	f.open("../docs/partidaGuardada/infoTriggers.txt");
+	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\infoTriggers.txt");
 	for (int i = 0; i < infoTriggers.size(); i++){
 		f << infoTriggers[i] << "\n";
 	}

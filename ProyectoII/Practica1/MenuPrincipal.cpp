@@ -31,11 +31,11 @@ void MenuPrincipal::update(){
 		}
 		else if (opcion == 2){
 			std::ofstream f;
-			f.open("../docs/partidaGuardada/mochila.txt");
+			f.open(pJuego->getPath()+"\\Galiakberova\\partidaGuardada\\mochila.txt");
 			f.close();
-			f.open("../docs/partidaGuardada/cabanias.txt");
+			f.open(pJuego->getPath() + "\\Galiakberorva\\partidaGuardada\\cabanias.txt");
 			f.close();
-			f.open("../docs/partidaGuardada/infoTriggers.txt");
+			f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\infoTriggers.txt");
 			f.close();
 			getPJuego()->getEstadoActual()->paraMusica("", true);
 			EstadoJuego* borrar = getPJuego()->estados.top();
@@ -53,7 +53,7 @@ void MenuPrincipal::update(){
 			std::cout << "CARGAR\n";
 			std::ifstream f;
 
-			f.open("../docs/partidaGuardada/players.txt", std::ios::in);
+			f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\players.txt", std::ios::in);
 			Punto caz; Punto rec; std::string name; char stash; std::string act;
 			while (!f.eof() && !f.fail()){
 				f >> name;
@@ -77,7 +77,7 @@ void MenuPrincipal::update(){
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();
 		
-			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/partidaGuardada/objs.txt", rec, caz, act, false));
+			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\objs.txt", rec, caz, act, false));
 			delete borrar;
 
 		}

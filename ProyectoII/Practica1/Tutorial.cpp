@@ -65,7 +65,7 @@ void Tutorial::update(){
 	if (change){
 		saveFile();
 		std::ofstream f;
-		f.open("../docs/partidaGuardada/infoTriggers.txt");
+		f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\infoTriggers.txt");
 		f.close();
 		Nivel1::fadeOut(40);
 		EstadoJuego* borrar = pJuego->estados.top();

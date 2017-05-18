@@ -77,7 +77,7 @@ MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo
 	derecha = izquierda = flag = false;
 
 	fondo = new TexturasSDL;
-	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
+	fondo->load(pJuego->getRender(),pJuego->getPath()+"\\Galiakberova\\partidaGuardada\\temp\\screenshot.bmp");
 
 
 	rectEquipoCaz.x = niños.x+ (niños.w -51) + 157; rectEquipoCaz.y = niños.y + (niños.h-51); 
@@ -292,7 +292,9 @@ void MCrafteo::onKeyUp(char k)
 	case 'q':
 			
 		if (menuState == Crafteo || menuState == Personaje){
-			remove("..//bmps//temp//screenshot.bmp");
+			std:: string auxiliar = pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\temp\\screenshot.bmp";
+			const char *  path = auxiliar.c_str();
+			remove(path);
 			reproduceFx("Cancelar", 0, 0, 0);
 			pJuego->estados.pop();
 			pJuego->estados.top()->awake();

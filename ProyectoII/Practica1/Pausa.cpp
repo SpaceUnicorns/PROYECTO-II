@@ -13,7 +13,7 @@ Pausa::Pausa(juegoPG*jug, Nivel1* pNivel, int puntos) :EstadoPG(jug, puntos)
 	rect.x = boton.x - 10; rect.y = boton.y - 107; rect.w = 364; rect.h = 55;
 
 	fondo = new TexturasSDL;
-	fondo->load(pJuego->getRender(), "..//bmps//temporal//screenshot.bmp");
+	fondo->load(pJuego->getRender(), pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\temp\\screenshot.bmp");
 
 	cargarAssetsAudio("../docs/fxMPausa.txt", 'f');
 

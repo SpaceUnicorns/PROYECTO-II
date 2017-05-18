@@ -52,7 +52,7 @@ public:
 		std::ifstream f;
 		Mochila* m = dynamic_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
 		m->vaciaMochila();
-		f.open("../docs/partidaGuardada/mochila.txt", std::ios::in);
+		f.open(pJuego->getPath()+"\\Galiakberova\\partidaGuardada\\mochila.txt", std::ios::in);
 		std::string s; char stash;
 		while (!f.eof() && !f.fail()){
 			f >> s;

@@ -67,7 +67,7 @@ void MenuPrincipalComp::update()
 				std::ifstream f;
 				pObj->getPJuego()->getEstadoActual()->reproduceFx("OpcionMenuNormal", 0, 0, 0);
 				int button = 1;
-				f.open("../docs/partidaGuardada/objs.txt", std::ios::in);
+				f.open(pObj->getPJuego()->getPath() + "\\Galiakberova\\partidaGuardada\\objs.txt", std::ios::in);
 				std::string aux;
 				f >> aux;
 				if (!f.fail()) button = showMessage("Hay una partida guardada.\n Desea sobreescribirla?");
@@ -98,7 +98,7 @@ void MenuPrincipalComp::update()
 
 				std::ifstream f;
 				int button = 1;
-				f.open("../docs/partidaGuardada/objs.txt", std::ios::in);
+				f.open(pObj->getPJuego()->getPath() + "\\Galiakberova\\partidaGuardada\\objs.txt", std::ios::in);
 				std::string aux;
 				f >> aux;
 				if (f.fail()) button = showMessage("No hay ninguna partida guardada", true);

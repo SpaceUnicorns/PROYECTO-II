@@ -56,7 +56,12 @@ public:
 	void cambiaVida(int cambio);
 	SDL_Rect getNieblaRect() { return nieblaRect; }
 	SDL_Window* getPWindow(){ return pWin; }
+	std::string getPath(){
+		return path;
+	}
+	
 private:
+	std:: string path;
 	int delay;
 	const int JOYSTICK_DEAD_ZONE = 8000;
 	SDL_Event e;

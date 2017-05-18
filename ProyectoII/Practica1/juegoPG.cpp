@@ -10,9 +10,16 @@ using namespace std; // Para cualificar automaticamente con std:: los identifica
 #include "Nivel1.h"
 #include <typeinfo>
 #include "Error.h"
+#include <Windows.h>
+#include <shlobj.h>
 
 juegoPG::juegoPG()
 {
+
+	CHAR my_documents[MAX_PATH];
+	HRESULT result = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
+	path = (string)my_documents;
+
 	srand(1);
 	
 	pWin = nullptr;  	//The window we'll be rendering to
@@ -195,7 +202,9 @@ void juegoPG::handle_event(){
 				if (dynamic_cast<Nivel1*>(estados.top()) != nullptr) {
 					SDL_Surface *sshot = SDL_CreateRGBSurface(0, getScreenWidth(), getScreenHeight(), 32, 0, 0, 0, 0);
 					SDL_RenderReadPixels(getRender(), NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
-					SDL_SaveBMP(sshot, "..//bmps//temporal//screenshot.bmp");
+					std::string auxiliar = getPath() + "\\Galiakberova\\partidaGuardada\\temp\\screenshot.bmp";
+					const char *  path1 = auxiliar.c_str();
+					SDL_SaveBMP(sshot, path1);
 					SDL_FreeSurface(sshot);
 				}
 				estados.top()->onKeyUp('s');
@@ -215,7 +224,10 @@ void juegoPG::handle_event(){
 				if (dynamic_cast<Nivel1*>(estados.top()) != nullptr) {
 					SDL_Surface *sshot = SDL_CreateRGBSurface(0, getScreenWidth(), getScreenHeight(), 32, 0, 0, 0, 0);
 					SDL_RenderReadPixels(getRender(), NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
-					SDL_SaveBMP(sshot, "..//bmps//temporal//screenshot.bmp");
+					std::string auxiliar = getPath() + "\\Galiakberova\\partidaGuardada\\temp\\screenshot.bmp";
+					const char *  path1 = auxiliar.c_str();
+					std::cout << path1 << "\n";
+					SDL_SaveBMP(sshot,path1);
 					SDL_FreeSurface(sshot);
 				}
 				estados.top()->onKeyUp('q');
