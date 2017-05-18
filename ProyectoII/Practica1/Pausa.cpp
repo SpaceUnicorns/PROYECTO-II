@@ -43,7 +43,7 @@ void Pausa::draw() {
 	boton.y = aux - 67;
 	pJuego->getTextura(TOpciones)->draw(pJuego->getRender(), boton);
 	boton.y = aux + 25;
-	pJuego->getTextura(TControl)->draw(pJuego->getRender(), boton);
+	pJuego->getTextura(TBControl)->draw(pJuego->getRender(), boton);
 	boton.y = aux + 117;
 	pJuego->getTextura(TGoToMenu)->draw(pJuego->getRender(), boton);
 
