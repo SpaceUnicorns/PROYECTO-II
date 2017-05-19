@@ -287,19 +287,6 @@ void juegoPG::handle_event(){
 				input.follow = true;
 			}
 		}
-		else if (e.type == SDL_MOUSEBUTTONUP) {
-			if (e.button.button == SDL_BUTTON_LEFT) {
-				//cout << "CLICK";
-				pmx = e.button.x;
-				pmy = e.button.y;
-				estados.top()->onClick();
-			}
-		}
-		else if (e.type == SDL_MOUSEMOTION ){
-			pmx = e.button.x;
-			pmy = e.button.y;
-			estados.top()->onOver();
-		}
 	}
 		/*else {
 			input.sw = false;

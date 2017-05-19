@@ -26,8 +26,6 @@ int main(int argc, char* args[]) {  // SDL require esta cabecera
 	string s = "cmd /c md " + (string)my_documents + "\\Galiakberova\\partidaGuardada\\temp";
 	const char * we = s.c_str();
 
-	std::cout << we << "\n";
-
 	system(we);
 
 	std:: string msg;
