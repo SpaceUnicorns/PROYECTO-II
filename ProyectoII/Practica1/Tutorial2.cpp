@@ -8,19 +8,21 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 	Trigger *auxTr; 
 
 	auxTr = new Trigger(pJuego, 6810, 10280, pCazador, pRecolector, 1); //nono1
+
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Zhenya.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
+
 	auxTr = new Trigger(pJuego, 7500, 9900, pCazador, pRecolector,2); //como equiparlo
+
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Zhenia.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
 	auxTr = new Trigger(pJuego, 8000, 10000, pCazador, pRecolector,3); //Cómo pegar
-
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Zhenya.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
@@ -53,9 +55,11 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 	pRecolector->setTerreno(3);
 
 }
+
 void Tutorial2::onKeyUp(char k){
 	if (k != 't') Nivel1::onKeyUp(k);
 }
+
 void Tutorial2::update(){
 	Nivel1::update();
 	if (change){
@@ -66,8 +70,8 @@ void Tutorial2::update(){
 		Nivel1::fadeOut(40);
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();
-		Punto caz; caz.x = 6925; caz.y = 8930; Punto rec; rec.x = 6970; rec.y = 8930;
-		pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "C"));
+		Punto caz; caz.x = 7180; caz.y = 9250; Punto rec; rec.x = 7200; rec.y = 9000;
+		pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));
 		delete borrar;
 	}
 
@@ -79,8 +83,6 @@ void Tutorial2::update(){
 
 void Tutorial2::callback(){
 	change = true;
+}
 
-}
-Tutorial2::~Tutorial2()
-{
-}
+Tutorial2::~Tutorial2() {}

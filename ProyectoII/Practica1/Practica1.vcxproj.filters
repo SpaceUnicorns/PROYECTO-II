@@ -219,6 +219,9 @@
     <ClCompile Include="ChangeTerreno.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="Controles.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
@@ -543,6 +546,15 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="ChangeTerreno.h">
+       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Controles.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -89,6 +89,7 @@
     <ClCompile Include="Cebo.cpp" />
     <ClCompile Include="ChangeTerreno.cpp" />
     <ClCompile Include="ColisionBox.cpp" />
+    <ClCompile Include="Controles.cpp" />
     <ClCompile Include="Cuerda.cpp" />
     <ClCompile Include="Enredadera.cpp" />
     <ClCompile Include="Deteccion.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="ChangeTerreno.h" />
     <ClInclude Include="ColisionBox.h" />
     <ClInclude Include="Componente.h" />
+    <ClInclude Include="Controles.h" />
     <ClInclude Include="Cuerda.h" />
     <ClInclude Include="Enredadera.h" />
     <ClInclude Include="checkML.h" />
