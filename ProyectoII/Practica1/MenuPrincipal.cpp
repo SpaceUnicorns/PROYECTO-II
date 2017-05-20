@@ -3,6 +3,7 @@
 #include "Tutorial.h"
 #include "Tutorial2.h"
 #include "Mochila.h"
+#include "Nivel2.h"
 
 MenuPrincipal::MenuPrincipal(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
@@ -45,8 +46,8 @@ void MenuPrincipal::update()
 			getPJuego()->estados.pop();
 			
 			//IR A TUTORIAL 1
-			Punto rec; rec.x = 6925; rec.y = 10265; Punto caz; caz.x = 0; caz.y = 0;
-			getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));
+			/*Punto rec; rec.x = 6925; rec.y = 10265; Punto caz; caz.x = 0; caz.y = 0;
+			getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));*/
 			
 			//IR A TUTORIAL 2
 			//Punto rec; rec.x = 0; rec.y = 0; Punto caz; caz.x = 6925; caz.y = 10260;
@@ -57,8 +58,8 @@ void MenuPrincipal::update()
 			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));*/
 
 			//IR AL NIVEL 2
-			/*Punto caz; caz.x = 950; caz.y = 950; Punto rec; rec.x = 710; rec.y = 930;
-			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa2.txt", "../docs/objetos.txt", rec, caz, "R"));*/
+			Punto caz; caz.x = 1950; caz.y = 1250; Punto rec; rec.x = 1910; rec.y = 1230;
+			pJuego->estados.push(new Nivel2(pJuego, "../docs/mapa2.txt", "../docs/objetos.txt", rec, caz, "R"));
 			delete borrar;
 		}
 		else if (opcion == 3){

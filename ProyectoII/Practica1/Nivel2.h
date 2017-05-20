@@ -8,6 +8,7 @@ public:
 	virtual ~Nivel2();
 	virtual void callback();
 	virtual void update();
+	virtual void cargaTriggers();
 private:
 	bool change;
 	bool firsTime;

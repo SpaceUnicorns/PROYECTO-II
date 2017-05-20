@@ -81,6 +81,7 @@ public:
 	std::vector<int>& getTriggerInfo() { return infoTriggers; }
 protected:
 	
+	virtual void cargaTriggers();
 	struct Cab{
 		bool visitadas;
 		int obj;

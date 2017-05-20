@@ -82,65 +82,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 		camara.y = (posRec.y - (camara.h / 2));
 	}
 
-	Trigger *auxTr;
-
-	//dialogos de tutorial
-	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector, 1); //tabulador
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Juntos.txt"));
-	auxTr->setTriggerDim(200, 600);
-	vecTriggers.push_back(auxTr);
-	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
-	auxTr = new Trigger(pJuego, 5850, 9800, pCazador, pRecolector, 2); //escondites
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Juntos.txt"));
-	auxTr->setTriggerDim(500, 500);
-	vecTriggers.push_back(auxTr);
-	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
-	auxTr = new Trigger(pJuego, 7000, 8352, pCazador, pRecolector, 3); //escondites
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Juntos.txt"));
-	auxTr->setTriggerDim(500, 500);
-	vecTriggers.push_back(auxTr);
-	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
-
-	auxTr = new Trigger(pJuego, 2400, 1112, pCazador, pRecolector, 4); //escondites
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Juntos.txt"));
-	auxTr->setTriggerDim(500, 500);
-	vecTriggers.push_back(auxTr);
-	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
-
-
-	//Random comments
-	auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector, 5);
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
-	vecTriggers.push_back(auxTr);
-	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
-	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector,6);
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo2.txt"));
-	vecTriggers.push_back(auxTr);
-	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
-	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector, 7);
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
-	auxTr->setTriggerDim(80, 80);
-	vecTriggers.push_back(auxTr);
-	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
-	auxTr = new Trigger(pJuego, 7000, 8702, pCazador, pRecolector, 8);
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
-	auxTr->setTriggerDim(80, 80);
-	vecTriggers.push_back(auxTr);
-	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
-	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 9); //escondites
-	auxTr->setCallback(new SoundTrigger(auxTr));
-	auxTr->setTriggerDim(100, 100);
-	vecTriggers.push_back(auxTr);
-	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
+	cargaTriggers();
 	cargaObj(objetos);
 
 	cargarAudio("../sounds/reverb/ReverbBosque.wav");
@@ -174,6 +116,66 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	
 }
 
+void Nivel1::cargaTriggers(){
+	Trigger *auxTr;
+
+	//dialogos de tutorial
+	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector, 1); //tabulador
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Juntos.txt"));
+	auxTr->setTriggerDim(200, 600);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 5850, 9800, pCazador, pRecolector, 2); //escondites
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Juntos.txt"));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 7000, 8352, pCazador, pRecolector, 3); //escondites
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Juntos.txt"));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+
+	auxTr = new Trigger(pJuego, 2400, 1112, pCazador, pRecolector, 4); //escondites
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Juntos.txt"));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+
+
+	//Random comments
+	auxTr = new Trigger(pJuego, 1662, 1284, pCazador, pRecolector, 5);
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector, 6);
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo2.txt"));
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector, 7);
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
+	auxTr->setTriggerDim(80, 80);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 7000, 8702, pCazador, pRecolector, 8);
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
+	auxTr->setTriggerDim(80, 80);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 9); //escondites
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(100, 100);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+}
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
 }
@@ -306,17 +308,18 @@ void Nivel1::swPlayer(){
 		activePlayer = "C";
 	}
 	
-	for (int i = 0; i < 8; i++){
-		camara.x = fd.x / 8.0f;
-		camara.y = fd.y / 8.0f;
+	for (int i = 0; i < 28; i++){
+		SDL_RenderClear(pJuego->getRender());
+		camara.x = fd.x / 28.0f;
+		camara.y = fd.y / 28.0f;
 
 		for (unsigned int i = 0; i < vecTile.size(); i++){
 			vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
 			tile = vecTile[i];
 			aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
-			pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
+			if (aux.x > -200 && aux.x < pJuego->getScreenWidth() && aux.y > -200 && aux.y < pJuego->getScreenHeight())
+				pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 		}
-
 		for (unsigned int i = 0; i < vectBordes.size(); i++){
 			vectBordes[i].A.x -= camara.x;
 			vectBordes[i].A.y -= camara.y;
@@ -325,14 +328,12 @@ void Nivel1::swPlayer(){
 			vectBordes[i].C.x -= camara.x;
 			vectBordes[i].C.y -= camara.y;
 		}
-		for (HuellasCamino* ob : huellasCamino) ob->draw((activePlayer == "R" || mode == Edition));
 		std::sort(vecObj.begin(), vecObj.end(), ordena);
-		for (ObjetoJuego* ob : vecObj){
-			ob->draw();
-		}
-		for (ObjetoJuego* ob : vecTriggers){ //TIENE QUE SER LO ULTIMO EN DIBUJARSE
-			ob->draw();
-		}
+
+		for (HuellasCamino* ob : huellasCamino) ob->draw((activePlayer == "R" || mode == Edition));
+		for (ObjetoJuego* ob : vecObj) ob->draw();
+		for (ObjetoJuego* trg : vecTriggers) trg->draw();
+
 		centroRel.x += camara.x; centroRel.y += camara.y;
 		rectZonaOscura.x -= camara.x;
 		rectZonaOscura.y -= camara.y;
@@ -377,8 +378,9 @@ void Nivel1::swPlayer(){
 
 		for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
 		SDL_RenderPresent(pJuego->getRender());
-		SDL_Delay(20);
+		SDL_Delay(2);
 	}
+	//SDL_RenderClear(pJuego->getRender());
 	if (activePlayer == "C") pCazador->swAble();
 	else pRecolector->swAble();
 	pJuego->input.sw = false;

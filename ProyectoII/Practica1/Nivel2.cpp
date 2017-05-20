@@ -3,10 +3,18 @@
 
 Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act) : Nivel1(jug, map, objetos, posRec, posCaz, act)
 {
+
 	firsTime = true;
 	change = false;
+	visible = true;
+	
+	/*vecTriggers.clear();
+	cargaTriggers();
+	cargaObj(objetos);*/
 }
-
+void Nivel2::cargaTriggers(){
+	vecTriggers.resize(0);
+}
 
 Nivel2::~Nivel2()
 {
