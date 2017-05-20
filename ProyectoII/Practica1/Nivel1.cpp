@@ -40,11 +40,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
-	camara.x = camara.y = 0;
-	camara.h = pJuego->getScreenHeight(); camara.w = pJuego->getScreenWidth();
-	animNieve1.h = animNieve2.h = camara.h+1000; animNieve1.w = animNieve2.w = camara.w+1000;
-	animNieve1.x = animNieve2.x = camara.w;
-	animNieve1.y = animNieve2.y = camara.h;
+	
 	int numCab = 0;
 
 
@@ -215,27 +211,7 @@ void Nivel1::draw(){
 		rectZonaOscura.y -= camara.y;
 
 		setCamara(0, 0); //Se reinicia el offset a 0
-		int x = rand() % 100;
-		if (x >= 60){
-			animNieve1.x--;
-			animNieve1.y--;
-		}
-		if (animNieve1.x <= 0)
-			animNieve1.x = camara.w;
-		if (animNieve1.y <= 0)
-			animNieve1.y = camara.h;
-
-		if (x >= 70){
-			animNieve2.x--;
-			animNieve2.y--;
-		}
-		if (animNieve2.x <= 0)
-			animNieve2.x = camara.w;
-		if (animNieve2.y <= 0)
-			animNieve2.y = camara.h;
-
-		pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
-		pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
+		EstadoPG::nieve();
 
 		if (hasTorch){
 			int aux, aux2; aux2 = rand() % 51; aux = 0;
@@ -338,27 +314,7 @@ void Nivel1::swPlayer(){
 		rectZonaOscura.y -= camara.y;
 
 		setCamara(0, 0); //Se reinicia el offset a 0
-		int x = rand() % 100;
-		if (x >= 60){
-			animNieve1.x--;
-			animNieve1.y--;
-		}
-		if (animNieve1.x <= 0)
-			animNieve1.x = camara.w;
-		if (animNieve1.y <= 0)
-			animNieve1.y = camara.h;
-
-		if (x >= 70){
-			animNieve2.x--;
-			animNieve2.y--;
-		}
-		if (animNieve2.x <= 0)
-			animNieve2.x = camara.w;
-		if (animNieve2.y <= 0)
-			animNieve2.y = camara.h;
-
-		pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
-		pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
+		EstadoPG::nieve();
 
 		if (hasTorch){
 			int aux, aux2; aux2 = rand() % 51; aux = 0;

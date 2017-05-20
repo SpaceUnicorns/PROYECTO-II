@@ -6,10 +6,24 @@
 EstadoPG::EstadoPG(juegoPG*jug, int puntos)
 {
 	pJuego = jug;
-	fondo.h = 480;
-	fondo.w = 640;
+	fondo.h = pJuego->getScreenHeight();
+	fondo.w = pJuego->getScreenWidth();
 	fondo.x = fondo.y = 0;
 	contPuntos = puntos;
+
+	camara.x = camara.y = 0;
+	camara.h = pJuego->getScreenHeight(); camara.w = pJuego->getScreenWidth();
+
+	animNieve1.h = animNieve2.h = camara.h + 1000; animNieve1.w = animNieve2.w = camara.w + 1000;
+	animNieve1.x = animNieve2.x = camara.w;
+	animNieve1.y = animNieve2.y = camara.h;
+
+	title.x = pJuego->getScreenWidth() / 2 + 30;
+	title.y = 0;
+	title.h = pJuego->getScreenHeight();
+	title.w = 500;
+
+	autoSnow = false;
 
 }
 
@@ -42,6 +56,32 @@ EstadoPG::~EstadoPG()
 	}
 	
 }
+
+void EstadoPG::nieve()
+{
+	int x = rand() % 100;
+	if (x >= 60) {
+		animNieve1.x--;
+		animNieve1.y--;
+	}
+	if (animNieve1.x <= 0)
+		animNieve1.x = camara.w;
+	if (animNieve1.y <= 0)
+		animNieve1.y = camara.h;
+
+	if (x >= 70) {
+		animNieve2.x--;
+		animNieve2.y--;
+	}
+	if (animNieve2.x <= 0)
+		animNieve2.x = camara.w;
+	if (animNieve2.y <= 0)
+		animNieve2.y = camara.h;
+
+	pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
+	pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
+}
+
 
 void::EstadoPG::cargarAssetsAudio(std::string txt, char tipo){
 	std::ifstream f;
@@ -306,6 +346,11 @@ void EstadoPG::paraAmb(std::string amb, bool fade){
 void EstadoPG::draw(){
 	//Draw background
 	pJuego->getTextura(et)->draw(pJuego->getRender(), fondo);
+
+	if (autoSnow) {
+		pJuego->getTextura(TTitulo)->draw(pJuego->getRender(), title);
+		nieve();
+	}
 	//drawFont();
 
 	for (unsigned int i = 0; i < vecObj.size(); i++)

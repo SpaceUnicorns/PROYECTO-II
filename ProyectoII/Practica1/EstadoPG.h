@@ -29,6 +29,9 @@ public:
 	virtual ~EstadoPG();
 	virtual void draw();
 
+	virtual void nieve();
+	virtual void setAutoSnow() { autoSnow = true; };
+
 	virtual void update();
 	virtual void lateUpdate();
 	virtual void onClick();
@@ -76,6 +79,11 @@ public:
 		int capa;
 		SDL_Rect rectTileset;     //Contiene el rectangulo del Tileset que se quiere dibujar.
 	};
+
+private:
+	SDL_Rect animNieve1, animNieve2, title;;
+	bool autoSnow;
+
 protected: 
 	SDL_Rect camara;
 	struct Colision
