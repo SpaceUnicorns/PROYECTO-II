@@ -113,7 +113,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 
 
 	//Random comments
-	auxTr = new Trigger (pJuego, 5662, 984, pCazador, pRecolector, 5);
+	auxTr = new Trigger (pJuego, 5662, 684, pCazador, pRecolector, 5);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
 	auxTr->setTriggerDim(1000, 150);
 	vecTriggers.push_back(auxTr);
@@ -161,7 +161,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 4900, 3000, pCazador, pRecolector, 13); // sonido amb
+	auxTr = new Trigger(pJuego, 5200, 2200, pCazador, pRecolector, 13); // sonido amb
 	auxTr->setCallback(new SoundTrigger(auxTr));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
