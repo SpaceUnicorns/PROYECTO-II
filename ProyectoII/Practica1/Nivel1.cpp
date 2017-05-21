@@ -113,7 +113,8 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	alpha = 255;
 	firsTime = !firstT;
 	firstDraw = true;
-	
+	contadorSw = 0;
+	switching = false;
 }
 
 void Nivel1::cargaTriggers(){
@@ -189,7 +190,9 @@ void Nivel1::draw(){
 	SDL_Rect aux;
 	Tile tile;
 	
-	if (pJuego->input.sw) swPlayer();
+	if (pJuego->input.sw) switching = true;
+
+	if (switching) swPlayer();
 	else{
 		for (unsigned int i = 0; i < vecTile.size(); i++){
 			vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
@@ -255,8 +258,8 @@ void Nivel1::draw(){
 		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
 
 		for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
+		drawEquipo();
 	}
-	drawEquipo();
 	
 }
 void Nivel1::drawEquipo(){
@@ -290,26 +293,25 @@ void Nivel1::drawEquipo(){
 void Nivel1::swPlayer(){
 	SDL_Rect aux;
 	Tile tile;
-	struct feedback{
-		float x; float y;
-	};
-	feedback fd;
-	reproduceFx("CambioPersonaje", 0, 0, 0);
-	if (activePlayer == "C"){
-		pCazador->swAble();
-		fd.x = -1 * (pCazador->getRect().x - pRecolector->getRect().x);
-		fd.y = -1 * (pCazador->getRect().y - pRecolector->getRect().y);
-		activePlayer = "R";
-	}
-	else if (activePlayer == "R") {
-		pRecolector->swAble();
-		fd.x = -1 * (pRecolector->getRect().x - pCazador->getRect().x);
-		fd.y = -1 * (pRecolector->getRect().y - pCazador->getRect().y);
-		activePlayer = "C";
-	}
 	
-	for (int i = 0; i < 28; i++){
-		SDL_RenderClear(pJuego->getRender());
+	if (contadorSw == 0){
+		reproduceFx("CambioPersonaje", 0, 0, 0);
+		if (activePlayer == "C"){
+			pCazador->swAble();
+			fd.x = -1 * (pCazador->getRect().x - pRecolector->getRect().x);
+			fd.y = -1 * (pCazador->getRect().y - pRecolector->getRect().y);
+			activePlayer = "R";
+		}
+		else if (activePlayer == "R") {
+			pRecolector->swAble();
+			fd.x = -1 * (pRecolector->getRect().x - pCazador->getRect().x);
+			fd.y = -1 * (pRecolector->getRect().y - pCazador->getRect().y);
+			activePlayer = "C";
+		}
+	}
+	if(contadorSw < 28){
+		contadorSw++;
+		//SDL_RenderClear(pJuego->getRender());
 		camara.x = fd.x / 28.0f;
 		camara.y = fd.y / 28.0f;
 
@@ -377,13 +379,15 @@ void Nivel1::swPlayer(){
 		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
 
 		for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
-		SDL_RenderPresent(pJuego->getRender());
-		SDL_Delay(2);
+		
 	}
-	//SDL_RenderClear(pJuego->getRender());
-	if (activePlayer == "C") pCazador->swAble();
-	else pRecolector->swAble();
-	pJuego->input.sw = false;
+	if (contadorSw == 27) {
+		contadorSw = 0;
+		switching = false;
+		if (activePlayer == "C") pCazador->swAble();
+		else pRecolector->swAble();
+		pJuego->input.sw = false;
+	}
 }
 void Nivel1::update(){
 

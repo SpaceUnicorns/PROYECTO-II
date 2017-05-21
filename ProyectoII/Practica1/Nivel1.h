@@ -88,6 +88,12 @@ protected:
 	};
 	int lastCabVisited;
 	int numCab;
+	int contadorSw;
+	bool switching;
+	struct feedback{
+		float x; float y;
+	};
+	feedback fd;
 	std::vector<Cab> cabVisitadas;
 	std::vector<int> infoTriggers;
 	std::string archivoObj;
