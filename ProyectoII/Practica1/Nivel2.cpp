@@ -8,9 +8,8 @@ Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	change = false;
 	visible = true;
 	
-	/*vecTriggers.clear();
 	cargaTriggers();
-	cargaObj(objetos);*/
+	cargaObj(objetos);
 }
 void Nivel2::cargaTriggers(){
 	vecTriggers.resize(0);
