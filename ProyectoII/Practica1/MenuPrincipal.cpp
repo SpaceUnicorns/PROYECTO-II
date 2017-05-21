@@ -45,16 +45,16 @@ void MenuPrincipal::update()
 			getPJuego()->estados.pop();
 			
 			//IR A TUTORIAL 1
-			Punto rec; rec.x = 6925; rec.y = 10265; Punto caz; caz.x = 0; caz.y = 0;
-			getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));
+			/*Punto rec; rec.x = 6925; rec.y = 10265; Punto caz; caz.x = 0; caz.y = 0;
+			getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));*/
 			
 			//IR A TUTORIAL 2
 			//Punto rec; rec.x = 0; rec.y = 0; Punto caz; caz.x = 6925; caz.y = 10260;
 			//pJuego->estados.push(new Tutorial2(pJuego, "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));
 
 			//IR A JUEGO JUNTOS 6850, 9150
-			/*Punto caz; caz.x = 6950; caz.y = 9150; Punto rec; rec.x = 7010; rec.y = 9130;
-			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));*/
+			Punto caz; caz.x = 6950; caz.y = 9150; Punto rec; rec.x = 7010; rec.y = 9130;
+			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));
 			
 			delete borrar;
 		}

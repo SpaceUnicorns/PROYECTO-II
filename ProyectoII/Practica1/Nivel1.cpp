@@ -36,7 +36,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	changeCabania = false;
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = false;
+	visible = true;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -97,14 +97,14 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 7000, 8352, pCazador, pRecolector, 3); //escondites
+	auxTr = new Trigger(pJuego, 6650, 7000, pCazador, pRecolector, 3); //Cabaña
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Juntos.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
 
-	auxTr = new Trigger(pJuego, 2400, 1112, pCazador, pRecolector, 4); //escondites
+	auxTr = new Trigger(pJuego, 4900, 4100, pCazador, pRecolector, 4); // Salida 1
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Juntos.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
@@ -113,17 +113,19 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 
 
 	//Random comments
-	auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector, 5);
+	auxTr = new Trigger (pJuego, 5662, 984, pCazador, pRecolector, 5);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
+	auxTr->setTriggerDim(1000, 150);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector,6);
+	auxTr = new Trigger(pJuego, 4300, 1084, pCazador, pRecolector,6);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo2.txt"));
+	auxTr->setTriggerDim(1000, 150);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector, 7);
+	auxTr = new Trigger(pJuego, 8276, 1250, pCazador, pRecolector, 7);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
 	auxTr->setTriggerDim(80, 80);
 	vecTriggers.push_back(auxTr);
@@ -135,11 +137,36 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 9); //escondites
+	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 9); // sonido amb
 	auxTr->setCallback(new SoundTrigger(auxTr));
 	auxTr->setTriggerDim(100, 100);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 3000, 1400, pCazador, pRecolector, 10); // Salida 1
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial6Juntos.txt"));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 7900, 6000, pCazador, pRecolector, 11); // sonido amb
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 4600, 1000, pCazador, pRecolector, 12); // sonido amb
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 4900, 3000, pCazador, pRecolector, 13); // sonido amb
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
 
 	cargaObj(objetos);
 
@@ -165,8 +192,8 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	rectEquipo.h = rectEquipo.w = 50;  animEquipo.h = animEquipo.w = 100;
 	animEquipo.y = animEquipo.x = 0;
 
-	rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
-	rectZonaOscura.x = -100; rectZonaOscura.y = 500;
+	rectZonaOscura.h = 2000; rectZonaOscura.w = 2500;
+	rectZonaOscura.x = 1050; rectZonaOscura.y = 3600;
 	hasTorch = false;
 	alpha = 255;
 	firsTime = !firstT;
