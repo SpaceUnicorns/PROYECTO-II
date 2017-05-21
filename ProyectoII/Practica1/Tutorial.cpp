@@ -2,7 +2,7 @@
 #include "Tutorial2.h"
 #include "Enredadera.h"
 
-Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz) : Nivel1(jug,map,objetos,posRec, posCaz, "R")
+Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz) : Nivel1(jug, map, objetos, posRec, posCaz, "R", "../sounds/reverb/ReverbBosque.wav")
 {
 	firsTime = true;
 	change = false;

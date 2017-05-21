@@ -5,7 +5,7 @@
 #include "Pico.h"
 #include "Pala.h"
 #include "TrampaCerrada.h"
-Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool visited, int obj) : Nivel1(jug, map, objetos, posRec, posCaz, act)
+Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool visited, int obj) : Nivel1(jug, map, objetos, posRec, posCaz, act, "../sounds/reverb/ReverbCabana2.wav")
 {
 	firsTime = true;
 	change = false;

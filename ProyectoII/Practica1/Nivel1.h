@@ -21,13 +21,13 @@ class Nivel1 :
 	public EstadoPG
 {
 public:
-	Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT = true);
+	Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, std::string reverb, bool firstT = true);
 	Nivel1(juegoPG*jug): EstadoPG(jug,0){};
 	virtual ~Nivel1();
 	virtual void draw();
 	virtual void update();
 	virtual void awake(){ 
-		reproduceFx("AbreMenu1", -100, 0, 0); };
+		reproduceFx("AbreMenu1", 0, 0, 0); };
 	Cazador* getCazador() { return pCazador; }
 	Recolector* getRecolector() { return pRecolector; }
 	void getTorch(){ hasTorch = true; }

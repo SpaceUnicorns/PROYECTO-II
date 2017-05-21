@@ -30,7 +30,7 @@
 #include<stdlib.h>
 #include<time.h>
 
-Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act, bool firstT) : EstadoPG(jug, 0){
+Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, std::string reverb, bool firstT) : EstadoPG(jug, 0){
 	srand(time(NULL));
 
 	changeCabania = false;
@@ -170,7 +170,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 
 	cargaObj(objetos);
 
-	cargarAudio("../sounds/reverb/ReverbBosque.wav");
+	cargarAudio(reverb);
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
 	reproduceMusica("Bosque", false);
@@ -679,6 +679,8 @@ void Nivel1::cargaObj(std:: string name){
 void Nivel1::callback(){
 	if (!firsTime){
 		changeCabania = true;
+		paraMusica("", false);
+		paraAmb("", false);
 	}
 	else firsTime = false;
 }
@@ -706,8 +708,6 @@ Nivel1::~Nivel1()
 void changeScene::callback(){
 	if (!reacciona){
 		aux->callback();
-		pObj->getPJuego()->getEstadoActual()->paraMusica("", false);
-		pObj->getPJuego()->getEstadoActual()->paraAmb("", false);
 	}
 	reacciona = true;
 }
