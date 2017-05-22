@@ -14,5 +14,6 @@ public:
 private:
 	SDL_Rect pag, rFondo;
 	TexturasSDL * fondo;
+	bool gamepad;
 };
 

@@ -29,7 +29,7 @@ juegoPG::juegoPG()
 	}
 	catch (EInitTTF &msg){ SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "ERROR", msg.mensaje().c_str(), nullptr); }
 
-	vecTexturas.resize(54);
+	vecTexturas.resize(55);
 	vecPaginas.resize(6);
 
 
