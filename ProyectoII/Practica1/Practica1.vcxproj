@@ -184,6 +184,7 @@
     <ClInclude Include="Mochila.h" />
     <ClInclude Include="micropather.h" />
     <ClInclude Include="MovimientoP.h" />
+    <ClInclude Include="Muerte.h" />
     <ClInclude Include="Nivel2.h" />
     <ClInclude Include="ObjetoCabania.h" />
     <ClInclude Include="ObjetoHuella.h" />

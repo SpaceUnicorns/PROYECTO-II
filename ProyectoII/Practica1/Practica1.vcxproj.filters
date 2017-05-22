@@ -575,5 +575,14 @@
     <ClInclude Include="Nivel2.h">
       <Filter>Archivos de encabezado\Niveles</Filter>
     </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Muerte.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

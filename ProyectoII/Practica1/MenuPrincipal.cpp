@@ -54,12 +54,12 @@ void MenuPrincipal::update()
 			//pJuego->estados.push(new Tutorial2(pJuego, "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));
 
 			//IR AL NIVEL 1 6850, 9150
-			/*Punto caz; caz.x = 6950; caz.y = 9150; Punto rec; rec.x = 7010; rec.y = 9130;
-			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));*/
+			Punto caz; caz.x = 6950; caz.y = 9150; Punto rec; rec.x = 7010; rec.y = 9130;
+			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));
 
 			//IR AL NIVEL 2
-			Punto caz; caz.x = 1950; caz.y = 1250; Punto rec; rec.x = 1910; rec.y = 1230;
-			pJuego->estados.push(new Nivel2(pJuego, "../docs/mapa2.txt", "../docs/objetos.txt", rec, caz, "R"));
+			//Punto caz; caz.x = 1950; caz.y = 1250; Punto rec; rec.x = 1910; rec.y = 1230;
+			//pJuego->estados.push(new Nivel2(pJuego, "../docs/mapa2.txt", "../docs/objetos.txt", rec, caz, "R"));
 			delete borrar;
 		}
 		else if (opcion == 3){

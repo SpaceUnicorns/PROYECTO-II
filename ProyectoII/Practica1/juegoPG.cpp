@@ -12,6 +12,7 @@ using namespace std; // Para cualificar automaticamente con std:: los identifica
 #include "Error.h"
 #include <Windows.h>
 #include <shlobj.h>
+#include "Muerte.h"
 
 juegoPG::juegoPG()
 {
@@ -19,7 +20,7 @@ juegoPG::juegoPG()
 	CHAR my_documents[MAX_PATH];
 	HRESULT result = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
 	path = (string)my_documents;
-
+	muerto = false;
 	srand(1);
 	
 	pWin = nullptr;  	//The window we'll be rendering to
@@ -104,6 +105,7 @@ void juegoPG::run(){
 				render();
 				estados.top()->updateBorrarObj();
 				handle_event();
+				if (muerto) cargaPartida();
 				}
 
 		}
@@ -423,4 +425,21 @@ void juegoPG::cambiaVida(int cambio) {
 		nieblaRect.y = 900/2 - nieblaRect.h / 2;
 		if (vida <= 100) estados.top()->reproduceAmb("PocaVida", false);
 	}
+
+	if (vida <= 0) muerto = true;
+}
+void juegoPG::cargaPartida(){
+	muerto = false;
+	vida = 300;
+	nieblaRect = { 600, 338, 400, 225 };
+	estados.top()->paraMusica("", true);
+	estados.top()->paraAmb("", true);
+	EstadoJuego* borrar = estados.top();
+	dynamic_cast<Nivel1*>(borrar)->fadeOut(20);
+	estados.pop();
+
+
+	delete borrar;
+	estados.push(new Muerte(this));
+	
 }
