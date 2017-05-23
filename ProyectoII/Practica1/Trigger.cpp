@@ -22,7 +22,7 @@ Trigger::Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR,
 Trigger::~Trigger()
 {
 }
-void Trigger::update(){
+void Trigger::update(int delta){
 
 	if (level->getActivePlayer() == "C"){
 		if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w)
@@ -38,7 +38,7 @@ void Trigger::update(){
 			triggered = true;
 		}
 		else triggered = false;
-		cb->update();
+		cb->update(delta);
 	}
 	else{
 		if (tgRecolector->getColisionBox().x > rect.x && tgRecolector->getColisionBox().x < (rect.x + rect.w)
@@ -54,7 +54,7 @@ void Trigger::update(){
 			reacciona = true;
 		}
 		else triggered = false;
-		cb->update();
+		cb->update(delta);
 	}
 }
 void Trigger::draw(){ 

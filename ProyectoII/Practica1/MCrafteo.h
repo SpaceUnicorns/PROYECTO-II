@@ -15,7 +15,7 @@ public:
 	virtual ~MCrafteo();
 
 	void draw();
-	void update() {};
+	void update(int delta) {};
 	void onKeyUp(char k);
 
 	void animacionS();

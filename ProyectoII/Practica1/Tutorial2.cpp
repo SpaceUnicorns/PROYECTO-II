@@ -60,8 +60,8 @@ void Tutorial2::onKeyUp(char k){
 	if (k != 't') Nivel1::onKeyUp(k);
 }
 
-void Tutorial2::update(){
-	Nivel1::update();
+void Tutorial2::update(int delta){
+	Nivel1::update(delta);
 	if (change){
 		saveFile();
 		std::ofstream f;

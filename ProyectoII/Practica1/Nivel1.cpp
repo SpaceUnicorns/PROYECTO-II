@@ -410,10 +410,10 @@ void Nivel1::swPlayer(){
 	else pRecolector->swAble();
 	pJuego->input.sw = false;
 }
-void Nivel1::update(){
+void Nivel1::update(int delta){
 
 
-	EstadoPG::update();
+	EstadoPG::update(delta);
 	if (changeCabania){
 		if (activePlayer == "R"){
 			int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;

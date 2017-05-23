@@ -8,7 +8,7 @@ Equipo::Equipo(ObjetoJuego* entidad, Mochila* moch) :Componente(entidad)
 	pObj = dynamic_cast<ObjetoPG*>(entidad);
 	equipado = Nada;
 	cantidad = 0;
-	delay = 10;
+	delay = 1000;
 	mochila = moch;
 }
 
@@ -16,11 +16,11 @@ Equipo::Equipo(ObjetoJuego* entidad, Mochila* moch) :Componente(entidad)
 Equipo::~Equipo()
 {
 }
-void Equipo::update()
+void Equipo::update(int delta)
 {
 	if (delay > 0)
-		delay--;
-	if (delay == 0){
+		delay-=delta;
+	if (delay <= 0){
 		
 		switch (equipado)
 		{
@@ -34,7 +34,7 @@ void Equipo::update()
 				cantidad--;
 				pObj->getPJuego()->input.enter = false;
 				pObj->getPJuego()->getEstadoActual()->reproduceFx("PonerTrampa", 0, 0, 0);
-				delay = 10;
+				delay = 1000;
 			}
 			if (cantidad == 0) { equipado = Nada; }
 			break;
@@ -54,7 +54,7 @@ void Equipo::update()
 				std::cout << "Has usado el hacha\n";
 				mochila->removeItem("Hacha", 1);
 				cantidad--;
-				delay = 10;
+				delay = 1000;
 			}
 			if (cantidad == 0) equipado = Nada;
 			break;
@@ -64,7 +64,7 @@ void Equipo::update()
 				std::cout << "Has usado la pala\n";
 				mochila->removeItem("Pala", 1);
 				cantidad--;
-				delay = 10;
+				delay = 1000;
 			}
 			if (cantidad == 0) equipado = Nada;
 			break;
@@ -74,7 +74,7 @@ void Equipo::update()
 				std::cout << "Has usado el pico\n";
 				mochila->removeItem("Pico", 1);
 				cantidad--;
-				delay = 10;
+				delay = 1000;
 			}
 			if (cantidad == 0) equipado = Nada;
 			break;

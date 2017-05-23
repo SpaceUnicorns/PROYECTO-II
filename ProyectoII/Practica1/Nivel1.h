@@ -25,7 +25,7 @@ public:
 	Nivel1(juegoPG*jug): EstadoPG(jug,0){};
 	virtual ~Nivel1();
 	virtual void draw();
-	virtual void update();
+	virtual void update(int delta);
 	virtual void awake(){ 
 		reproduceFx("AbreMenu1", 0, 0, 0); };
 	Cazador* getCazador() { return pCazador; }
@@ -137,7 +137,7 @@ public:
 	};
 	virtual ~changeScene(){};
 	virtual void callback();
-	virtual void update(){
+	virtual void update(int delta){
 		if (reacciona && !pObj->isTriggering()){
 			reacciona = false;
 			pObj->setReacciona(false);
@@ -162,7 +162,7 @@ public:
 	};
 	virtual ~SoundTrigger(){};
 	virtual void callback();
-	virtual void update(){
+	virtual void update(int delta){
 		if (reacciona && !pObj->isTriggering()){
 			reacciona = false;
 			pObj->setReacciona(false);

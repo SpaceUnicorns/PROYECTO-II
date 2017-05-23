@@ -51,8 +51,8 @@ bool ordenation(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
 }
 
-void Cabania::update(){
-	Nivel1::update();
+void Cabania::update(int delta){
+	Nivel1::update(delta);
 	if (change){
 		Nivel1::fadeOut(40);
 		EstadoJuego* borrar = pJuego->estados.top();

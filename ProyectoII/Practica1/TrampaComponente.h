@@ -11,7 +11,7 @@ class TrampaComponente :
 public:
 	TrampaComponente(ObjetoJuego* entidad);
 	virtual ~TrampaComponente();
-	virtual void update();
+	virtual void update(int delta);
 private:
 	ObjetoPG* pObj;
 	int comprueba;

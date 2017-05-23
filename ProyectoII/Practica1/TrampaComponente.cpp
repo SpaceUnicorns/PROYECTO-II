@@ -12,9 +12,9 @@ TrampaComponente::TrampaComponente(ObjetoJuego* entidad) :Componente(entidad)
 TrampaComponente::~TrampaComponente()
 {
 }
-void TrampaComponente:: update()
+void TrampaComponente:: update(int delta)
 {
-	if (comprueba >= 50){
+	if (comprueba >= 1000){
 		SDL_Rect p;
 		ObjetoPG* info;
 		pVecObj = static_cast<EstadoPG*>(pObj->getPJuego()->estados.top())->getVectObj();
@@ -40,5 +40,5 @@ void TrampaComponente:: update()
 		}
 		comprueba = 0;
 	}
-	comprueba++;
+	comprueba+=delta;
 }

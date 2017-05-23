@@ -9,7 +9,7 @@ public:
 	TextCb(ObjetoJuego* ent, std::string s);
 	virtual ~TextCb();
 	virtual void callback();
-	virtual void update();
+	virtual void update(int delta);
 	virtual void draw();
 	
 protected:

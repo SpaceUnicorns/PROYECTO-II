@@ -16,13 +16,13 @@ MenuPrincipal::MenuPrincipal(juegoPG * juego, int px, int py) : ObjetoPG(juego, 
 	opcion = 0;
 }
 
-void MenuPrincipal::update()
+void MenuPrincipal::update(int delta)
 {
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
 
 	while (activo && it != itFin){
-		it->second->update();
+		it->second->update(delta);
 		it++;
 	}
 	if (opcion != 0){

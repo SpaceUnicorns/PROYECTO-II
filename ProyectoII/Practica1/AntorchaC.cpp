@@ -5,7 +5,7 @@
 AntorchaC::AntorchaC(ObjetoJuego* ent, Nivel1* nivel) : Componente(ent)
 {
 	pObj = dynamic_cast<ObjetoPG*>(ent);
-	time = 2000;
+	time = 32000;
 	alpha = 125;
 	contFrames = 0;
 	level = nivel;
@@ -21,10 +21,10 @@ AntorchaC::AntorchaC(ObjetoJuego* ent, Nivel1* nivel) : Componente(ent)
 AntorchaC::~AntorchaC()
 {
 }
-void AntorchaC::update(){
+void AntorchaC::update(int delta){
 	if (able){
-		contFrames++;
-		if(contFrames%18 == 0 && alpha <255) alpha++;
+		contFrames+=delta;
+		if (contFrames % 333 >= 0 && contFrames % 333 <= 20 && alpha <255) alpha++;
 		level->setAlpha(alpha);
 	}
 	if (contFrames >= time){

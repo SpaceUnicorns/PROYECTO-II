@@ -14,15 +14,14 @@ Attack::~Attack()
 {
 }
 
-void Attack::update(){
+void Attack::update(int delta){
 	posicion = { (int)(enemigo->getColisionBox().x + enemigo->getColisionBox().w * 0.8), (enemigo->getColisionBox().y) };
 	
 	//static_cast<ColisionBox*>(static_cast<Enemigo*>(pEntidad)->dameComponente("ColisionBox"))->isColiding(posicion, info);
-	if (cont != 0) cont++;
-	if (cont >= 100) cont = 0;
+	cont+=delta;
 	if (enemigo->getTarget() != nullptr){
-		if (posicion.compruebaRadio(enemigo->getTarget()->getColisionBox(), 35) && enemigo->getEstado() == Atacando){
-			if (cont == 0){
+		if (posicion.compruebaRadio(enemigo->getTarget()->getColisionBox(), 100) && enemigo->getEstado() == Atacando){
+			if (cont >= 1300){
 				//Hace la animación
 				//El jugador deberá tener algo que lo haga inmune a daño un ratele después de recibir un ataques
 				std::string nombre = enemigo->getTarget()->nombre[1];
@@ -32,8 +31,8 @@ void Attack::update(){
 
 				enemigo->getPJuego()->getEstadoActual()->reproduceFx("Golpe", enemigo->getRect().x, enemigo->getRect().y, 0);
 				if (nombre == "Zhenia"){ enemigo->getPJuego()->getEstadoActual()->reproduceFx("ZheniaDano", enemigo->getRect().x, enemigo->getRect().y, 0); }
-				else{ enemigo->getPJuego()->getEstadoActual()->reproduceFx("LyovDano", enemigo->getRect().x, enemigo->getRect().y, 0); }
-				cont++;
+				else { enemigo->getPJuego()->getEstadoActual()->reproduceFx("LyovDano", enemigo->getRect().x, enemigo->getRect().y, 0); }
+				cont = 0;
 			}
 		}
 	}

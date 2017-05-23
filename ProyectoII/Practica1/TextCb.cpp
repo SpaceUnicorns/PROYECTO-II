@@ -120,7 +120,7 @@ void TextCb::cargaDialogo(){
 		aux.push_back(" ");
 	}
 }
-void TextCb::update(){
+void TextCb::update(int delta){
 	if (cont < aux.size()-1 && reacciona && firstTime == 0){
 		timer++;
 		if (timer >= delay){

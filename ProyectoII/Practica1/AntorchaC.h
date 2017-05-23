@@ -8,7 +8,7 @@ class AntorchaC :
 public:
 	AntorchaC(ObjetoJuego* ent, Nivel1* nivel);
 	virtual ~AntorchaC();
-	virtual void update();
+	virtual void update(int delta);
 	virtual void lateDraw();
 	virtual void draw();
 	void swAble();

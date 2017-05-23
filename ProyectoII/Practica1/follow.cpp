@@ -21,7 +21,7 @@ follow::~follow()
 {
 }
 
-void follow::update(){
+void follow::update(int delta){
 
 	if (target && al && !pObj->isAble()){
 		int auxX, auxY;
@@ -123,7 +123,7 @@ void follow::doFollow()
 	}
 
 }
-void follow::lateUpdate(){
+void follow::lateUpdate(int delta){
 	if (pObj->getPJuego()->input.follow && al && !pObj->isAble() && dynamic_cast<Cabania*>(pObj->getPJuego()->getEstadoActual()) == nullptr){
 		pObj->getPJuego()->input.follow = false;
 		doFollow();
@@ -166,7 +166,8 @@ void follow::lateUpdate(){
 		}
 	if (following)
 	{
-		if (direccion.size() != 0 && contPasos == 0)
+		contPasos += delta;
+		if (direccion.size() != 0 && contPasos > 333)
 		{
 			int rnd = rand() % 4;
 			if (al){
@@ -236,10 +237,7 @@ void follow::lateUpdate(){
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", pObj->getRect().x, pObj->getRect().y, 0);
 				}
 			}
-		}
-		if (direccion.size() != 0){
-			contPasos++;
-			if (contPasos >= 20)contPasos = 0;
+			contPasos = 0;
 		}
 
 		//Sale del escondite
@@ -250,60 +248,60 @@ void follow::lateUpdate(){
 
 		if (direccion.size() != 0)
 		{
-			if (framerate % 8 == 0) {// se mueve 1 frame cada 16 ms x 16ms
+			if (framerate >= 150) {// se mueve 1 frame cada 16 ms x 16ms
 				pObj->changeAnimH();
-
+				framerate = 0;
 			}
-			framerate++;
+			framerate+=delta;
 			dir = direccion[cont];
 			switch (direccion[cont])
 			{
 			case 0:
-				pObj->setRect(0, -2);
-				pObj->setAbsRect(0, -2);
-				paso-=4;
+				pObj->setRect(0, -2*delta/16);
+				pObj->setAbsRect(0, -2*delta/16);
+				paso-=delta/4;
 				pObj->changeAnimV(4);
 				break;
 			case 1:
-				pObj->setRect(2, -1);
-				pObj->setAbsRect(2, -1);
-				paso -= 2.23;
+				pObj->setRect(2*delta / 16, -1*delta / 16);
+				pObj->setAbsRect(2 * delta / 16, -1 * delta / 16);
+				paso -= delta/ 7;
 				pObj->changeAnimV(0);
 				break;
 			case 2:
-				pObj->setRect(2, 0);
-				pObj->setAbsRect(2, 0);
-				paso-=2;
+				pObj->setRect(2 * delta / 16, 0);
+				pObj->setAbsRect(2 * delta / 16, 0);
+				paso-=delta/2;
 				pObj->changeAnimV(6);
 				break;
 			case 3:
-				pObj->setRect(2, 1);
-				pObj->setAbsRect(2, 1);
-				paso -= 2.23;
+				pObj->setRect(2 * delta / 16, 1 * delta / 16);
+				pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
+				paso -= delta/7;
 				pObj->changeAnimV(3);
 				break;
 			case 4:
-				pObj->setRect(0, 2);
-				pObj->setAbsRect(0, 2);
-				paso -= 4;
+				pObj->setRect(0, 2 * delta / 16);
+				pObj->setAbsRect(0, 2 * delta / 16);
+				paso -= delta / 4;
 				pObj->changeAnimV(5);
 				break;
 			case 5:
-				pObj->setRect(-2, 1);
-				pObj->setAbsRect(-2, 1);
-				paso -= 2.23;
+				pObj->setRect(-2 * delta / 16, 1 * delta / 16);
+				pObj->setAbsRect(-2 * delta / 16, 1 * delta / 16);
+				paso -= delta / 7;
 				pObj->changeAnimV(7);
 				break;
 			case 6:
-				pObj->setRect(-2, 0);
-				pObj->setAbsRect(-2, 0);
-				paso-=2;
+				pObj->setRect(-2 * delta / 16, 0);
+				pObj->setAbsRect(-2 * delta / 16, 0);
+				paso -= delta / 8;
 				pObj->changeAnimV(1);
 				break;
 			case 7:
-				pObj->setRect(-2, -1);
-				pObj->setAbsRect(-2, -1);
-				paso -= 2.23;
+				pObj->setRect(-2 * delta / 16, -1 * delta / 16);
+				pObj->setAbsRect(-2 * delta / 16, -1 * delta / 16);
+				paso -= delta / 7;
 				pObj->changeAnimV(2);
 				break;
 			}

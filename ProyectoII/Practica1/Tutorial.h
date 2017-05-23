@@ -8,7 +8,7 @@ public:
 	virtual ~Tutorial();
 	virtual void onKeyUp(char k);
 	virtual void callback();
-	virtual void update();
+	virtual void update(int delta);
 private:
 	bool change;
 	bool firsTime;

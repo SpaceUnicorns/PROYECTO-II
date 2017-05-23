@@ -8,7 +8,7 @@ class Deteccion :
 public:
 	Deteccion(ObjetoJuego* entidad, float radio);
 	virtual ~Deteccion();
-	virtual void update();
+	virtual void update(int delta);
 	bool compruebaRadio(SDL_Rect target, float& distancia);
 	bool cazadorIn(float& dist);
 	bool recolectorIn(float& dist);
@@ -41,5 +41,6 @@ private:
 	int ultAtaque;
 	int vagar, contVagar;
 	int dirAtaque; // 0 arriba y sigue las agujas del reloj
+	int delta;
 };
 

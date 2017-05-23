@@ -18,9 +18,9 @@ public:
 	virtual bool onClick();
 	virtual bool onOver();
 
-	virtual void update();
+	virtual void update(int delta);
 	virtual void start();
-	virtual void lateUpdate();
+	virtual void lateUpdate(int delta);
 	virtual bool isAble(){ return activo; }
 	virtual void awake();
 	virtual void sleep();

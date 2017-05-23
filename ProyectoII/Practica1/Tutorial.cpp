@@ -65,8 +65,8 @@ void Tutorial::onKeyUp(char k){
 	else if (k == 'l');
 }
 
-void Tutorial::update(){
-	Nivel1::update();
+void Tutorial::update(int delta){
+	Nivel1::update(delta);
 	if (change){
 		saveFile();
 		std::ofstream f;

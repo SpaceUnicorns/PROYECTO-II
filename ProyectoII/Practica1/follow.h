@@ -10,8 +10,8 @@ class follow :
 public:
 	follow(ObjetoJuego* ent, ObjetoPG* target, GrafoMapa* m, bool aliado);
 	virtual ~follow();
-	virtual void lateUpdate();
-	virtual void update();
+	virtual void lateUpdate(int delta);
+	virtual void update(int delta);
 	void clearFollow();
 	void doFollow();
 	void setTarget(ObjetoPG* targe);

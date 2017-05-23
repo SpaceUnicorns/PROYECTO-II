@@ -10,7 +10,7 @@ class Equipo :
 public:
 	Equipo(ObjetoJuego* entidad, Mochila* moch);
 	virtual ~Equipo();
-	virtual void update();
+	virtual void update(int delta);
 	int getEquipo(){ return equipado; };
 	void removeEquipo(std:: string s){
 		equipado = Nada;

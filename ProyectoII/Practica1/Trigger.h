@@ -11,7 +11,7 @@ public:
 	Trigger(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR, int indice_ = 0, bool isCab = false);
 	virtual ~Trigger();
 	virtual void draw();
-	virtual void update();
+	virtual void update(int delta);
 	bool isTriggering(){ return triggered; }
 	void swTriggered(){ triggered = !triggered; }
 	void setCallback(Componente* com){ cb = com; }

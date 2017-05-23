@@ -62,7 +62,7 @@ void Pausa::onKeyUp(char k){
 		break;
 	}
 }
-void Pausa::update() 
+void Pausa::update(int delta) 
 {
 	switch (estado) 
 	{
