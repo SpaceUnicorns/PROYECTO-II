@@ -31,6 +31,7 @@
 #include<time.h>
 
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act, bool firstT) : EstadoPG(jug, 0){
+	level = "Nivel1";
 	srand(time(NULL));
 
 	changeCabania = false;
@@ -764,6 +765,7 @@ void Nivel1::saveFile(){
 	f.close();
 
 	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\players.txt");
+	f << level << "\n";
 	f << "Cazador" << " , " << std::to_string(pCazador->getAbsRect().x) <<" , "<< std::to_string(pCazador->getAbsRect().y) << "\n";
 	f << "Recolector" << " , " << std::to_string(pRecolector->getAbsRect().x) << " , " << std::to_string(pRecolector->getAbsRect().y) << "\n";
 	f << activePlayer << "\n";

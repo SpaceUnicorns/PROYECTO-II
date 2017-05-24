@@ -107,7 +107,7 @@ protected:
 	int x, y, alpha;
 	Cazador* pCazador;
 	Recolector *pRecolector;
-	std::string activePlayer;
+	std::string activePlayer, level;
 	virtual void swPlayer();	
 	void onKeyUp(char k);
 	void cargaObj(std:: string name);

@@ -225,6 +225,9 @@
     <ClCompile Include="Nivel2.cpp">
       <Filter>Archivos de código fuente\Niveles</Filter>
     </ClCompile>
+    <ClCompile Include="Nivel3.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juegoPG.h">
@@ -582,6 +585,15 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Muerte.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="ColisionBox.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Componente.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Nivel3.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

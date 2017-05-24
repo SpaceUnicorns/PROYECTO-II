@@ -209,6 +209,90 @@ int leeTile(std::vector<std::vector<int>>& map)
 	case '0':		// Bosque Esq NW SE
 		return 1200;
 		break;
+	case '^':		// Cueva Suelo Full (65)
+		return 1240;
+		break;
+	case '+':		// Cueva Suelo N (66)
+		return 1260;
+		break;
+	case '=':		// Cueva Suelo S (67)
+		return 1280;
+		break;
+	case '-':		// Cueva Suelo E (68)
+		return 1300;
+		break;
+	case '.':		// Cueva Suelo w (69)
+		return 1320;
+		break;
+	case ',':		// Cueva Suelo SE (70)
+		return 1340;
+		break;
+	case '_':		// Cueva Suelo SW (71)
+		return 1360;
+		break;
+	case '\"':		// Cueva Suelo SN (72)
+		return 1380;
+		break;
+	case '`':		// Cueva Suelo NW (73)
+		return 1400;
+		break;
+	case '\\':
+		return 1420;
+		break;
+	case '<':		// Cueva WSE (75)
+		return 1440;
+		break;
+	case '#':		// Cueva Bajada NW (76)
+		return 1460;
+		break;
+	case '$':		// Cueva Pilar NE (77)
+		return 1480;
+		break;
+	case '\'':		// Cueva Pilar SW (78)
+		return 1500;
+		break;
+	case '&':		// Cueva Esquina Techo SW (79)
+		return 1520;
+		break;
+	case '*':		// Cueva Esq Techo NE (80)
+		return 1540;
+		break;
+	case '>':		// Cueva Esq T NE S SW (81)
+		return 1560;
+		break;
+	case '/':		// Cueva Esq T SW NE (82)
+		return 1580;
+		break;
+	case '(':		// Cueva Esq Suelo NW (83)
+		return 1600;
+		break;
+	case ')':		// Cueva Esq Suelo NE (84)
+		return 1620;
+		break;
+	case ':':		// Cueva Esq Suelo SW (85)
+		return 1640;
+		break;
+	case ';':		// Cueva Techo S (86)
+		return 1660;
+		break;
+	case '[':		// Cueva Techo N (87)
+		return 1680;
+		break;
+	case ']':		// Cueva Techo W (88)
+		return 1700;
+		break;
+	case '{':		// Cueva Techo SW (89)
+		return 1720;
+		break;
+	case '}':		// Cueva Techo NE (90)
+		return 1740;
+		break;
+	case '@':		// Cueva Techo FULL (91)
+		return 1760;
+		break;
+	case '|':		// Rampa Alvaro (92)
+		return 1780;
+		break;
 	}
 	std::cout << "Sale Lee Tile\n";
 }
@@ -364,8 +448,8 @@ bool resuelveCaso(std::ofstream& f) {
 	int ancho, alto;
 	std::cout << "ResuelveCaso\n";
 	//ALTURA / ANCHURA TILES GRANDES
-	alto = 24;
-	ancho = 14;
+	alto = 28;
+	ancho = 17;
 
 	std::vector<int> aux(ancho);
 	std::vector<std::vector<int>> mapa (alto);

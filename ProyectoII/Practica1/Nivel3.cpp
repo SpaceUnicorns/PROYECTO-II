@@ -1,25 +1,30 @@
-#include "Nivel2.h"
+#include "Nivel3.h"
+#include "Huella.h"
 
-
-Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, objetos, posRec, posCaz, act, firstT)
+Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, objetos, posRec, posCaz, act, firstT)
 {
-	level = "Nivel2";
+	level = "Nivel3";
 	firsTime = true;
 	change = false;
 	visible = true;
-	
+
 	cargaTriggers();
 	cargaObj(objetos);
+	animNieve1.w = animNieve1.h = animNieve2.w = animNieve2.h = 0;
+	static_cast<Huella*>(pCazador->dameComponente("Huella"))->swAble();
+	static_cast<Huella*>(pRecolector->dameComponente("Huella"))->swAble();
+
+	huellasCamino.resize(0);
 }
-void Nivel2::cargaTriggers(){
+
+void Nivel3::cargaTriggers(){
 	vecTriggers.resize(0);
 }
 
-Nivel2::~Nivel2()
+Nivel3::~Nivel3()
 {
 }
-
-void Nivel2::update(){
+void Nivel3::update(){
 	Nivel1::update();
 	if (change){
 		saveFile();
@@ -35,8 +40,7 @@ void Nivel2::update(){
 		delete borrar;
 	}
 }
-
-void Nivel2::callback(){
+void Nivel3::callback(){
 	change = true;
 
 }
