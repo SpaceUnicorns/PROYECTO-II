@@ -10,6 +10,7 @@ public:
 	virtual void update();
 	virtual void cargaTriggers();
 private:
+	Trigger* TriggerLevel1;
 	bool change;
 	bool firsTime;
 };
