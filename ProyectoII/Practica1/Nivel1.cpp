@@ -29,6 +29,7 @@
 #include "ObjetoCabania.h"
 #include<stdlib.h>
 #include<time.h>
+#include "Nivel2.h"
 
 Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, std::string reverb, bool firstT) : EstadoPG(jug, 0){
 
@@ -145,8 +146,6 @@ void Nivel1::cargaTriggers(){
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
 
-
-
 	auxTr = new Trigger (pJuego, 5662, 684, pCazador, pRecolector, 5);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
 	auxTr->setTriggerDim(1000, 150);
@@ -201,6 +200,13 @@ void Nivel1::cargaTriggers(){
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
+
+	auxTr = new Trigger(pJuego, 2950, 1260, pCazador, pRecolector, 14);
+	auxTr->setCallback(new changeScene(auxTr, this));
+	auxTr->setTriggerDim(80, 300);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0);
+	changeLevelTrigger = auxTr;
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
@@ -376,15 +382,17 @@ void Nivel1::swPlayer(){
 }
 void Nivel1::update(int delta){
 
-
 	EstadoPG::update(delta);
 	if (changeCabania){
+		
+		ObjetoPG* auxPlayer;
 		if (activePlayer == "R"){
 			int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;
 			int y = pRecolector->getAbsRect().y - pCazador->getAbsRect().y;
 			pCazador->setRect(x + 20, y + 20);
 			pCazador->setAbsRect(x + 20, y + 20);
 			pCazador->setColRect(x + 20, y + 20);
+			auxPlayer = pRecolector;
 		}
 		else {
 			int x = pCazador->getAbsRect().x - pRecolector->getAbsRect().x;
@@ -392,21 +400,39 @@ void Nivel1::update(int delta){
 			pRecolector->setRect(x + 20, y + 20);
 			pRecolector->setAbsRect(x + 20, y + 20);
 			pRecolector->setColRect(x + 20, y + 20);
+			auxPlayer = pCazador;
 		}
-		bool visited = false;
-		int objCab = cabVisitadas[lastCabVisited].obj;
-		if (!cabVisitadas[lastCabVisited].visitadas){
-			visited = true;
-			cabVisitadas[lastCabVisited].visitadas = true;
+
+
+		SDL_Rect trigger = changeLevelTrigger->getColisionBox();
+		if (auxPlayer->getColisionBox().y > trigger.y && auxPlayer->getColisionBox().y < trigger.y + trigger.h && auxPlayer->getColisionBox().x > trigger.x && auxPlayer->getColisionBox().x < trigger.x + trigger.w){
+
+
+			fadeOut(40);
+			saveFile();
+			pRecolector->salirEscondite();
+			pCazador->salirEscondite();
+			Punto caz; caz.x = 2723; caz.y = 2394; Punto rec; rec.x = 2603; rec.y = 2394;
+			pJuego->estados.push(new Nivel2(pJuego, "../docs/mapa2.txt", "../docs/objetosNivel2.txt", rec, caz, activePlayer));
+			changeCabania = false;
 		}
-		fadeOut(40);
-		pJuego->cambiaVida(300);
-		saveFile();
-		pRecolector->salirEscondite();
-		pCazador->salirEscondite();
-		Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
-		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited, objCab));
-		changeCabania = false;
+		else{
+			bool visited = false;
+			int objCab = cabVisitadas[lastCabVisited].obj;
+			if (!cabVisitadas[lastCabVisited].visitadas){
+				visited = true;
+				cabVisitadas[lastCabVisited].visitadas = true;
+			}
+
+			fadeOut(40);
+			pJuego->cambiaVida(300);
+			saveFile();
+			pRecolector->salirEscondite();
+			pCazador->salirEscondite();
+			Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
+			pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited, objCab));
+			changeCabania = false;
+		}
 	}
 }
 void escribe(std::string s, int x, int y, std:: string name){

@@ -108,6 +108,7 @@ protected:
 	Cazador* pCazador;
 	Recolector *pRecolector;
 	std::string activePlayer, level;
+	Trigger* changeLevelTrigger;
 	virtual void swPlayer();	
 	void onKeyUp(char k);
 	void cargaObj(std:: string name);

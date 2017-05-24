@@ -47,7 +47,7 @@ void Nivel2::update(int delta){
 			Nivel1::fadeOut(40);
 			EstadoJuego* borrar = pJuego->estados.top();
 			pJuego->estados.pop();
-			Punto caz; caz.x = 6950; caz.y = 9150; Punto rec; rec.x = 7010; rec.y = 9130;
+			Punto caz; caz.x = 3080; caz.y = 1420; Punto rec; rec.x = 3130; rec.y = 1420;
 			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R", "../sounds/reverb/ReverbBosque.wav"));
 			delete borrar;
 		}
