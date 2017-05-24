@@ -7,12 +7,13 @@
 #include "Trampa.h"
 #include "Antorcha.h"
 #include "ObjetoPG.h"
+#include "Controles.h"
 
-
-MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo* equipRec) : EstadoPG(jug, puntos), mochila(NULL)
+MCrafteo::MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo* equipRec, bool controles) : EstadoPG(jug, puntos), mochila(NULL)
 {
 	//Gestion de los submenus
-
+	showControls = controles;
+	controlsShown = false;
 	menuState = Crafteo;
 	equipar = 0;
 	objeto = 0;
@@ -139,8 +140,28 @@ void MCrafteo::draw() {
 	comprobar(materiales);
 	pJuego->getTextura(TMenuResaltado)->draw(pJuego->getRender(), seleccion);
 
+	if (showControls && !controlsShown){
+
+		SDL_Surface *sshot = SDL_CreateRGBSurface(0, pJuego->getScreenWidth(), pJuego->getScreenHeight(), 32, 0, 0, 0, 0);
+		SDL_RenderReadPixels(pJuego->getRender(), NULL, SDL_PIXELFORMAT_ARGB8888, sshot->pixels, sshot->pitch);
+		std::string auxiliar = pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\temp\\screenshot.bmp";
+		const char *  path1 = auxiliar.c_str();
+		SDL_SaveBMP(sshot, path1);
+		SDL_FreeSurface(sshot);
+
+		SDL_RenderPresent(pJuego->getRender());
+		SDL_Delay(600);
+		controlsShown = true;
+		reproduceFx("OpcionMenuNormal", 0, 0, 0);
+		//push estado nuevo --> Opciones
+		pJuego->input.enter = false;
+		pJuego->estados.push(new Controles(pJuego));
+		std::cout << "TODO CHACHI\n";
+	}
+
 }
 
+void MCrafteo::update(int delta){}
 void MCrafteo::animacionS() 
 {
 	if (acuD < 2) {
@@ -292,6 +313,7 @@ void MCrafteo::onKeyUp(char k)
 	case 'q':
 			
 		if (menuState == Crafteo || menuState == Personaje){
+
 			std:: string auxiliar = pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\temp\\screenshot.bmp";
 			const char *  path = auxiliar.c_str();
 			remove(path);

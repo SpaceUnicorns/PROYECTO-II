@@ -118,7 +118,6 @@ void Pausa::update(int delta)
 			reproduceFx("OpcionMenuNormal", 0, 0, 0);
 			//push estado nuevo --> Opciones
 			pJuego->input.enter = false;
-			std::cout << "me voy a controles --- en proceso de creacion ---\n";
 			pJuego->estados.push(new Controles(pJuego));
 		}
 		break;

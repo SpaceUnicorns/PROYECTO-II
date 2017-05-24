@@ -19,6 +19,12 @@ Controles::Controles(juegoPG*jug) : EstadoPG(jug, 0)
 	fondo->load(pJuego->getRender(), pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\temp\\screenshot.bmp");
 
 	gamepad = false;
+
+	font.x = (pJuego->getScreenWidth() / 2) - (9 * 15);
+	font.y = 90;
+	font.w = 9 * 29;
+	font.h = 40;
+	color.r = 255; color.g = 255; color.b = 255;
 }
 
 Controles::~Controles() {
@@ -27,6 +33,9 @@ Controles::~Controles() {
 
 void Controles::draw(){
 	fondo->draw(pJuego->getRender(), rFondo);
+	pJuego->getTextura(TTapa)->draw(pJuego->getRender(),150);
+	pJuego->getTextura(TTapa)->draw(pJuego->getRender(),font, 150);
+
 	if (gamepad) {
 		pag.x = pJuego->getScreenWidth() / 2 - pag.w / 2 + 50;
 		pag.y = pJuego->getScreenHeight() / 2 - pag.h / 2 - 50;
@@ -57,6 +66,8 @@ void Controles::draw(){
 		pag.y = pJuego->getScreenHeight() / 2 - pag.h / 2;
 		pJuego->getTextura(TControlK)->draw(pJuego->getRender(), pag);
 	}
+
+	drawFont(font, "CONTROLES", color);
 }
 
 void Controles::onKeyUp(char t){
@@ -75,6 +86,9 @@ void Controles::onKeyUp(char t){
 		reproduceFx(s, 0, 0, 0);
 		if (gamepad) gamepad = false;
 		else gamepad = true;
+		break;
+	case 'e':
+		volver();
 		break;
 	default:
 		break;

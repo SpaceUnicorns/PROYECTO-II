@@ -10,7 +10,7 @@ public:
 	virtual void callback();
 	virtual void update(int delta);
 private:
-	bool change;
+	bool change, controlsShown;
 	bool firsTime;
 };
 

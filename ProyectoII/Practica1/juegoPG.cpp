@@ -240,7 +240,6 @@ void juegoPG::handle_event(){
 				estados.top()->onKeyUp('q');
 			}
 			else if (e.key.keysym.sym == SDLK_RETURN || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_A)) {
-
 				estados.top()->onKeyUp('e');
 			}
 			else if (e.key.keysym.sym == SDLK_RIGHT || (hayMando && e.cbutton.button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT)) {

@@ -11,11 +11,11 @@ class MCrafteo: public EstadoPG
 		std::string name; int x; int y;
 	};
 public:
-	MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo* equipRec);
+	MCrafteo(juegoPG*jug, int puntos, Mochila* m, Equipo* equipCaz, Equipo* equipRec, bool controles = false);
 	virtual ~MCrafteo();
 
 	void draw();
-	void update(int delta) {};
+	void update(int delta);
 	void onKeyUp(char k);
 
 	void animacionS();
@@ -31,7 +31,7 @@ private:
 	int  acuD, acuI;
 	int numPag, aux = 0;
 	int cual=0;
-	bool derecha, izquierda, flag;
+	bool derecha, izquierda, flag, showControls, controlsShown;
 	
 	MenuState menuState;
 	Mochila* mochila;

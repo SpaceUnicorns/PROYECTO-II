@@ -12,6 +12,8 @@ public:
 	virtual void draw();
 
 private:
+	SDL_Rect font;
+	SDL_Color color;
 	SDL_Rect pag, rFondo;
 	TexturasSDL * fondo;
 	bool gamepad;

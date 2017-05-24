@@ -1,10 +1,13 @@
 #include "Tutorial2.h"
 #include "Mochila.h"
+#include "MCrafteo.h"
+#include "Equipo.h"
 
 Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz) : Nivel1(jug, map, objetos, posRec, posCaz, "C", "../sounds/reverb/ReverbBosque.wav")
 {
 	firsTime = true;
 	change = false;
+	controlsShown = false;
 	Trigger *auxTr; 
 
 	auxTr = new Trigger(pJuego, 6810, 10280, pCazador, pRecolector, 1); //nono1
@@ -57,7 +60,14 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 }
 
 void Tutorial2::onKeyUp(char k){
-	if (k != 't') Nivel1::onKeyUp(k);
+	if (k == 'q'){
+		reproduceFx("AbreMenu", 0, 0, 0);
+		pJuego->estados.push(new MCrafteo(pJuego, contPuntos, static_cast<Mochila*>(pRecolector->dameComponente("Mochila")),
+			static_cast<Equipo*>(pCazador->dameComponente("Equipo")), static_cast<Equipo*>(pRecolector->dameComponente("Equipo")), !controlsShown));
+		if (!controlsShown) controlsShown = true;
+	}
+	else if (k != 't') Nivel1::onKeyUp(k);
+
 }
 
 void Tutorial2::update(int delta){
