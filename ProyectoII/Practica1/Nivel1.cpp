@@ -36,7 +36,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	changeCabania = false;
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = true;
+	visible = false;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -79,55 +79,55 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	}
 
 	Trigger *auxTr;
-
+	
 	//dialogos de tutorial
-	auxTr = new Trigger(pJuego, 6850, 9150, pCazador, pRecolector, 1); //tabulador
+	auxTr = new Trigger(pJuego, 6850, 9000, pCazador, pRecolector, 1); //tabulador
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Juntos.txt"));
 	auxTr->setTriggerDim(200, 600);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 5850, 9800, pCazador, pRecolector, 2); //escondites
+	auxTr = new Trigger(pJuego, 5164, 7690, pCazador, pRecolector, 2); //escondites
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Juntos.txt"));
-	auxTr->setTriggerDim(500, 500);
+	auxTr->setTriggerDim(600, 600);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 7000, 8352, pCazador, pRecolector, 3); //escondites
+	auxTr = new Trigger(pJuego, 9800, 3900, pCazador, pRecolector, 3); //cabaña
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Juntos.txt"));
-	auxTr->setTriggerDim(500, 500);
+	auxTr->setTriggerDim(800, 800);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
 
-	auxTr = new Trigger(pJuego, 2400, 1112, pCazador, pRecolector, 4); //escondites
+	auxTr = new Trigger(pJuego, 4500, 3600, pCazador, pRecolector, 4); //piedra
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Juntos.txt"));
-	auxTr->setTriggerDim(500, 500);
+	auxTr->setTriggerDim(400, 400);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
-
-
 
 	//Random comments
-	auxTr = new Trigger (pJuego, 1662, 1284, pCazador, pRecolector, 5);
+	auxTr = new Trigger(pJuego, 4110, 3397, pCazador, pRecolector, 5); 
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
+	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector,6);
+	auxTr = new Trigger(pJuego, 8200, 6000, pCazador, pRecolector, 6);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo2.txt"));
+	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector, 7);
+	auxTr = new Trigger(pJuego, 8276, 1198, pCazador, pRecolector, 7);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
 	auxTr->setTriggerDim(80, 80);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 7000, 8702, pCazador, pRecolector, 8);
-	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
-	auxTr->setTriggerDim(80, 80);
+	auxTr = new Trigger(pJuego, 2977, 1327, pCazador, pRecolector, 8); //nieve
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial5Juntos.txt"));
+	auxTr->setTriggerDim(800, 800);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
