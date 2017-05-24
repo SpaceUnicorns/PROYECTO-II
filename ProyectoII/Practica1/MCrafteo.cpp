@@ -128,6 +128,10 @@ void MCrafteo::draw() {
 	recuadros.x = pJuego->getScreenWidth() / 2 + 30;
 	recuadros.y = pag1.y;
 	recuadros.h = 333;
+	SDL_Rect cartel; cartel.x = recuadros.x + recuadros.w;
+	cartel.y = recuadros.y + 50;
+	cartel.h = 200; cartel.w = 100;
+	pJuego->getTextura(TCartelHerr)->draw(pJuego->getRender(), cartel);
 	pJuego->getTextura(TEquipables)->draw(pJuego->getRender(), recuadros);
 	comprobar(equipables);
 
@@ -136,9 +140,14 @@ void MCrafteo::draw() {
 	recuadros.x = pJuego->getScreenWidth() / 2 + 30;
 	recuadros.y = pJuego->getScreenHeight() / 2 + 30;
 	recuadros.h = 250;
+	cartel; cartel.x = recuadros.x + recuadros.w;
+	cartel.y = recuadros.y + 25;
+	cartel.h = 200; cartel.w = 100;
+	pJuego->getTextura(TCartelObj)->draw(pJuego->getRender(), cartel);
 	pJuego->getTextura(TMateriales)->draw(pJuego->getRender(), recuadros);
 	comprobar(materiales);
 	pJuego->getTextura(TMenuResaltado)->draw(pJuego->getRender(), seleccion);
+	
 
 	if (showControls && !controlsShown){
 
@@ -241,7 +250,7 @@ void MCrafteo::comprobar(std::vector<coords> const& v)
 			recuadros.x = v[i].x;
 			recuadros.y = v[i].y;
 			recuadros.w = recuadros.h = 100;
-			pJuego->getTextura(TTapa)->draw(pJuego->getRender(), recuadros,245);
+			pJuego->getTextura(TTapa)->draw(pJuego->getRender(), recuadros,235);
 		}
 		else //si están se pinta el numero de objetos del tipo v[i].name
 		{
