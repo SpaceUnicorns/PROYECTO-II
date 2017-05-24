@@ -13,7 +13,7 @@ public:
 	virtual ~Pausa();
 	virtual void onKeyUp(char k);
 	virtual void draw();
-	virtual void update();
+	virtual void update(int delta);
 
 private:
 	bool arriba, abajo, enter;

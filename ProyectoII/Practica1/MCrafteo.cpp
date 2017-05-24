@@ -145,7 +145,7 @@ void MCrafteo::animacionS()
 {
 	if (acuD < 2) {
 
-		pag1.w -= 2; //la pag se hace mas pequeña
+		pag1.w -= 6; //la pag se hace mas pequeña
 		sombra.x = pag1.x + pag1.w; //le sigue la sombra
 
 		if (pag1.w < 350 && pag1.w >= 0) {
@@ -177,12 +177,12 @@ void MCrafteo::animacionA() {
 		if (numPag == -1) numPag = 0;
 	}
 	else if (flag && acuI < 2) {
-		pag1.w += 2; //la pag se hace mas grande
+		pag1.w += 6; //la pag se hace mas grande
 		sombra.x = pag1.x + pag1.w - 5; //le sigue la sombra
 
 		if (pag1.w < 332) {
 			++aux;
-			if (aux == 10) { --sombra.w; aux = 0; } //la sombra se hace mas pequeña
+			if (aux == 10) { sombra.w+=2; aux = 0; } //la sombra se hace mas pequeña
 			pJuego->getTextura(TSombra1)->draw(pJuego->getRender(), sombra);
 			
 		}

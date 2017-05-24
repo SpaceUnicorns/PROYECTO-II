@@ -24,17 +24,16 @@ Deteccion::~Deteccion()
 // Comportamientos-----------------------------------------------------------------------------------------------------------------------------------------
 
 void Deteccion::quieto(){
-	cont++;
-	if (vagar > 0 && contVagar < 150){
+	if (vagar > 0 && contVagar < 3000){
 		Punto p = { 0, 0 };
 		if (vagar == 1){
 			p.x -= 2;
 			if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
-				enemy->setAbsRect(-2, 0);
-				enemy->setRect(-2, 0);
+				enemy->setAbsRect(-2 * delta / 16, 0);
+				enemy->setRect(-2 * delta / 16, 0);
 				dirAtaque = 6;
 				enemy->changeAnimV(1);
-				if (contPasos == 0)
+				if (contPasos < 30)
 				{
 					enemy->changeAnimH();
 					int rnd = rand() % 4;
@@ -59,17 +58,17 @@ void Deteccion::quieto(){
 							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", enemy->getRect().x, enemy->getRect().y, 0);
 					}
 				}
-				contPasos++;
+				contPasos+=delta;
 			}
 		}
 		else if (vagar == 2){
 			p.x += 2;
 			if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
-				enemy->setAbsRect(2, 0);
-				enemy->setRect(2, 0);
+				enemy->setAbsRect(2 * delta / 16, 0);
+				enemy->setRect(2 * delta / 16, 0);
 				dirAtaque = 2;
 				enemy->changeAnimV(6);
-				if (contPasos == 0)
+				if (contPasos < 30)
 				{
 					enemy->changeAnimH();
 					int rnd = rand() % 4;
@@ -94,17 +93,17 @@ void Deteccion::quieto(){
 							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", enemy->getRect().x, enemy->getRect().y, 0);
 					}
 				}
-				contPasos++;
+				contPasos += delta;
 			}
 		}
 		else if (vagar == 3){
 			p.y -= 1;
 			if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
-				enemy->setAbsRect(0, -1);
-				enemy->setRect(0, -1);
+				enemy->setAbsRect(0, -1 * delta / 16);
+				enemy->setRect(0, -1 * delta / 16);
 				dirAtaque = 0;
 				enemy->changeAnimV(4);
-				if (contPasos == 0)
+				if (contPasos < 30)
 				{
 					enemy->changeAnimH();
 					int rnd = rand() % 4;
@@ -129,17 +128,17 @@ void Deteccion::quieto(){
 							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", enemy->getRect().x, enemy->getRect().y, 0);
 					}
 				}
-				contPasos++;
+				contPasos += delta;
 			}
 		}
 		else if (vagar == 4) {
 			p.y += 1;
 			if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
-				enemy->setAbsRect(0, 1);
-				enemy->setRect(0, 1);
+				enemy->setAbsRect(0, 1 * delta / 16);
+				enemy->setRect(0, 1 * delta / 16);
 				dirAtaque = 4;
 				enemy->changeAnimV(5);
-				if (contPasos == 0)
+				if (contPasos < 30)
 				{
 					enemy->changeAnimH();
 					int rnd = rand() % 4;
@@ -164,15 +163,14 @@ void Deteccion::quieto(){
 							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", enemy->getRect().x, enemy->getRect().y, 0);
 					}
 				}
-				contPasos++;
+				contPasos += delta;
 			}
 		}
-		if (contPasos >= 15)contPasos = 0;
-		contVagar++;
+		if (contPasos >= 240)contPasos = 0;
 		static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->setRectBox(enemy->getRect().x - 5, enemy->getRect().y + 40);
-		if (contVagar >= 150){ vagar = 0; contVagar = 0; }
+		if (contVagar >= 3000){ vagar = 0; contVagar = 0; }
 	}
-	if (cont > 300){
+	if (cont > 5000){
 		rnd = (rand() % 11) + 80;
 		if (rnd >=80 && rnd < 88){
 			direccionAux = nullptr;
@@ -197,7 +195,7 @@ void Deteccion::quieto(){
 		}
 		cont = 0;
 	}
-	if (cont > 50){
+	if (cont > 1000){
 		Punto cazP, recP;
 		cazP.x = enemy->getCazador()->getAbsRect().x; cazP.y = enemy->getCazador()->getAbsRect().y;
 		recP.x = enemy->getRecolector()->getAbsRect().x; recP.y = enemy->getRecolector()->getAbsRect().y;
@@ -249,8 +247,7 @@ void Deteccion::movimiento(){
 	recolectorIn(distRec);
 	float distCaz;
 	cazadorIn(distCaz);
-	cont++;
-	if (cont > 100)
+	if (cont > 1600)
 	{
 		acechar();
 		cont = 0;
@@ -258,14 +255,14 @@ void Deteccion::movimiento(){
 	if (enemy->getTarget() == enemy->getRecolector() && enemy->getRecolector()->esDetectable()){
 		dirAtaque = enemy->getDir();
 		setVista(dirAtaque);
-		if (distRec <= 80){
+		if (distRec <= 100){
 			preparaAtaque(1);
 			enemy->setEstado(Atacando);
 			cont = 0;
 		}
 	}
 	else if (enemy->getTarget() == enemy->getCazador() && enemy->getCazador()->esDetectable()){
-		if (distCaz <= 80){
+		if (distCaz <= 100){
 			preparaAtaque(0);
 			enemy->setEstado(Atacando);
 			cont = 0;
@@ -273,84 +270,81 @@ void Deteccion::movimiento(){
 	}
 }
 void Deteccion::volviendo(){
-	cont++;
-	if (cont >= 500){
+	if (cont >= 8200){
 		cont = 0;
 		dirAtaque = enemy->getDir();
 		enemy->setEstado(Quieto);
 	}
 }
 void Deteccion::atacando(){
-	if (cont == 0){
+	if (cont < 30){
 		enemy->getPJuego()->getEstadoActual()->reproduceFx("Grunido", enemy->getRect().x, enemy->getRect().y, 0);
 		enemy->clearFollow();
 	}
-	if (cont < 100)
-		cont++;
-	else { enemy->setEstado(PostAtaque); cont = 0; }
+	if (cont > 1600) { enemy->setEstado(PostAtaque); cont = 0; }
 	switch (dirAtaque)
 	{
 	case 4:
-		if (cont < 100){
+		if (cont < 1600){
 			enemy->changeAnimV(4);
-			enemy->setAbsRect(0, -2);
-			enemy->setRect(0, -2);
+			enemy->setAbsRect(0, -2 * delta / 16);
+			enemy->setRect(0, -2 * delta / 16);
 			ultAtaque = 0;
 		}
 		break;
 	case 5:
-		if (cont < 100){
+		if (cont < 1600){
 			enemy->changeAnimV(0);
-			enemy->setAbsRect(2, -1);
-			enemy->setRect(2, -1);
+			enemy->setAbsRect(2 * delta / 16, -1 * delta / 16);
+			enemy->setRect(2 * delta / 16, -1 * delta / 16);
 			ultAtaque = 1;
 		}
 		break;
 	case 6:
-		if (cont < 100){
+		if (cont < 1600){
 			enemy->changeAnimV(6);
-			enemy->setAbsRect(2, 0);
-			enemy->setRect(2, 0);
+			enemy->setAbsRect(2 * delta / 16, 0);
+			enemy->setRect(2 * delta / 16, 0);
 			ultAtaque = 2;
 		}
 		break;
 	case 7:
-		if (cont < 100){
+		if (cont < 1600){
 			enemy->changeAnimV(3);
-			enemy->setAbsRect(2, 1);
-			enemy->setRect(2, 1);
+			enemy->setAbsRect(2 * delta / 16, 1 * delta / 16);
+			enemy->setRect(2 * delta / 16, 1 * delta / 16);
 			ultAtaque = 3;
 		}
 		break;
 	case 0:
-		if (cont < 100){
+		if (cont < 1600){
 			enemy->changeAnimV(5);
-			enemy->setAbsRect(0, 2);
-			enemy->setRect(0, 2);
+			enemy->setAbsRect(0, 2 * delta / 16);
+			enemy->setRect(0, 2 * delta / 16);
 			ultAtaque = 4;
 		}
 		break;
 	case 1:
-		if (cont < 100){
+		if (cont < 1600){
 			enemy->changeAnimV(7);
-			enemy->setAbsRect(-2, 1);
-			enemy->setRect(-2, 1);
+			enemy->setAbsRect(-2 * delta / 16, 1 * delta / 16);
+			enemy->setRect(-2 * delta / 16, 1 * delta / 16);
 			ultAtaque = 5;
 		}
 		break;
 	case 2:
-		if (cont < 100){
+		if (cont < 1600){
 			enemy->changeAnimV(1);
-			enemy->setAbsRect(-2, 0);
-			enemy->setRect(-2, 0);
+			enemy->setAbsRect(-2 * delta / 16, 0);
+			enemy->setRect(-2 * delta / 16, 0);
 			ultAtaque = 6;
 		}
 		break;
 	case 3:
-		if (cont < 100){
+		if (cont < 1600){
 			enemy->changeAnimV(2);
-			enemy->setAbsRect(-2, -1);
-			enemy->setRect(-2, -1);
+			enemy->setAbsRect(-2 * delta / 16, -1 * delta / 16);
+			enemy->setRect(-2 * delta / 16, -1 * delta / 16);
 			ultAtaque = 7;
 		}
 		break;
@@ -359,7 +353,7 @@ void Deteccion::atacando(){
 }
 void Deteccion::postAtaque(){
 	direccionAux = nullptr;
-	if (cont == 0){ // Segun adonde atacara el lobo da la vuelta a una posicion u otra
+	if (cont < 30){ // Segun adonde atacara el lobo da la vuelta a una posicion u otra
 		rnd = rand() % 2;
 		if (ultAtaque == 0){
 			if (rnd == 0){ delete direccionAux; direccionAux = new ObjetoPG(enemy->getPJuego(), enemy->getAbsRect().x + 100, enemy->getAbsRect().y); dirAtaque = 5; }
@@ -395,7 +389,7 @@ void Deteccion::postAtaque(){
 		}
 		enemy->followThis(direccionAux);
 	}
-	else if (cont > 100) {
+	else if (cont > 1600) {
 		float distRec;
 		recolectorIn(distRec);
 		float distCaz;
@@ -403,27 +397,25 @@ void Deteccion::postAtaque(){
 		enemy->setTarget(0);
 		delete direccionAux;
 
-		if (distCaz <= 80){
+		if (distCaz <= 100){
 			preparaAtaque(0);
 			enemy->setEstado(Atacando);
 		}
-		else if (distRec <= 80){
+		else if (distRec <= 100){
 			preparaAtaque(0);
 			enemy->setEstado(Atacando);
 		}
 		else enemy->setEstado(Moviendo);
 		cont = 0;
 	}
-	cont++;
 }
 void Deteccion::atrapado(){
-	if (cont == 0){
+	if (cont < 30){
 		enemy->desactivaFollow(); 
 		enemy->clearFollow();
 	}
 	if (enemy->getLife() <= 0){ enemy->setEstado(Muerto); }
-	cont++;
-	if (cont >= 1000)
+	if (cont >= 16000)
 	{
 		cont = 0;
 		enemy->setEstado(Quieto);
@@ -431,23 +423,24 @@ void Deteccion::atrapado(){
 }
 void Deteccion::herido(){		
 	//Animacion Herido
-	if (cont == 0) enemy->clearFollow();
+	enemy->clearFollow();
 	if (enemy->getLife() < 0){
 		enemy->setEstado(Muerto);
 		std::cout << "muerto\n";
 		//enemy->deleteComponente("ColisionBox");
 	}
-	else if (cont > 100){
+	else if (cont > 1600){
 		cont = 0;
 		enemy->setEstado(Moviendo);
 	}
-	cont++;
 }
 void Deteccion::muerto(){}
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
-void Deteccion::update() {
-
+void Deteccion::update(int delta) {
+	this->delta = delta;
+	cont += delta;
+	contVagar += delta;
 	enemy->setTarget(0);
 	setVista(dirAtaque);
 	switch (enemy->getEstado())

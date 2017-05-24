@@ -13,7 +13,7 @@ public:
 	//Atributos--------------------------------------
 	
 	//Metodos----------------------------------------
-	virtual void update();
+	virtual void update(int delta);
 	virtual void draw();
 	virtual void setMovible(bool mov){ movible = mov; }
 	virtual bool getMovible(){ return movible; }

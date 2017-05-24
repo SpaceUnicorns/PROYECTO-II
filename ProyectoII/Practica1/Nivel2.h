@@ -7,7 +7,7 @@ public:
 	Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT = true);
 	virtual ~Nivel2();
 	virtual void callback();
-	virtual void update();
+	virtual void update(int delta);
 	virtual void cargaTriggers();
 private:
 	Trigger* TriggerLevel1;

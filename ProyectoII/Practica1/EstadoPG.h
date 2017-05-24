@@ -29,8 +29,8 @@ public:
 	virtual ~EstadoPG();
 	virtual void draw();
 
-	virtual void update();
-	virtual void lateUpdate();
+	virtual void update(int delta);
+	virtual void lateUpdate(int delta);
 	virtual void onClick();
 	virtual void onOver();
 	virtual void cargaMapa(std::string txt, std::vector<char>& mapa);

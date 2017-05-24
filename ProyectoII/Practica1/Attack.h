@@ -9,7 +9,7 @@ class Attack :
 public:
 	Attack(ObjetoJuego* entidad);
 	virtual ~Attack();
-	virtual void update();
+	virtual void update(int delta);
 
 private:
 	SDL_Rect posEnemigo; //= static_cast<Enemigo*>(pEntidad)->getColisionBox();

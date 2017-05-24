@@ -1,7 +1,7 @@
 #include "Nivel2.h"
 #include "Nivel3.h"
 
-Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, objetos, posRec, posCaz, act, firstT)
+Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, objetos, posRec, posCaz, act,"../sounds/reverb/ReverbBosque.wav", firstT)
 {
 	level = "Nivel2";
 	firsTime = true;
@@ -35,8 +35,8 @@ Nivel2::~Nivel2()
 {
 }
 
-void Nivel2::update(){
-	Nivel1::update();
+void Nivel2::update(int delta){
+	Nivel1::update(delta);
 	if (change){
 
 		if (pCazador->getColisionBox().y > TriggerLevel1->getColisionBox().y - 5 || pRecolector->getColisionBox().y > TriggerLevel1->getColisionBox().y - 5){
@@ -48,7 +48,7 @@ void Nivel2::update(){
 			EstadoJuego* borrar = pJuego->estados.top();
 			pJuego->estados.pop();
 			Punto caz; caz.x = 6950; caz.y = 9150; Punto rec; rec.x = 7010; rec.y = 9130;
-			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));
+			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R", "../sounds/reverb/ReverbBosque.wav"));
 			delete borrar;
 		}
 		else {

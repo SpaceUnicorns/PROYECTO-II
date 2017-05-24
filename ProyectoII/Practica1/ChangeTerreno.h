@@ -5,7 +5,7 @@ class ChangeTerreno :
 {
 public:
 	ChangeTerreno(juegoPG * juego, int px, int py, Cazador* tgC, Recolector* tgR, int terreno, int indice_ = 0);
-	virtual void update();
+	virtual void update(int delta);
 	virtual ~ChangeTerreno();
 private:
 	int terreno;

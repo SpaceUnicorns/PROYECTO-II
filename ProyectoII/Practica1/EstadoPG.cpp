@@ -322,18 +322,18 @@ void EstadoPG::drawFont(SDL_Rect rect, std::string const & s, SDL_Color color){
 		//catch (ELoadFont & e){}
 	}
 
-void EstadoPG::update(){
+void EstadoPG::update(int delta){
 	for (unsigned int i = 0; i < vecObj.size(); i++){
-		vecObj[i]->update();
+		vecObj[i]->update(delta);
 	}
 	for (unsigned int i = 0; i < vecTriggers.size(); i++){
-		vecTriggers[i]->update();
+		vecTriggers[i]->update(delta);
 	}
 }
 
-void EstadoPG::lateUpdate(){
+void EstadoPG::lateUpdate(int delta){
 	for (unsigned int i = 0; i < vecObj.size(); i++){
-		vecObj[i]->lateUpdate();
+		vecObj[i]->lateUpdate(delta);
 	}
 }
 void EstadoPG::onClick(){

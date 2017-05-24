@@ -18,13 +18,13 @@ MenuPrincipal::MenuPrincipal(juegoPG * juego, int px, int py) : ObjetoPG(juego, 
 	opcion = 0;
 }
 
-void MenuPrincipal::update()
+void MenuPrincipal::update(int delta)
 {
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
 
 	while (activo && it != itFin){
-		it->second->update();
+		it->second->update(delta);
 		it++;
 	}
 	if (opcion != 0){
@@ -56,7 +56,7 @@ void MenuPrincipal::update()
 
 			//IR AL NIVEL 1 6850, 9150
 			/*Punto caz; caz.x = 6950; caz.y = 9150; Punto rec; rec.x = 7010; rec.y = 9130;
-			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));*/
+			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R","../sounds/reverb/ReverbBosque.wav"));*/
 
 			//IR AL NIVEL 2
 			/*Punto caz; caz.x = 2723; caz.y = 2394; Punto rec; rec.x = 2603; rec.y = 2394;

@@ -1,7 +1,7 @@
 #include "Nivel3.h"
 #include "Huella.h"
 
-Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, objetos, posRec, posCaz, act, firstT)
+Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, objetos, posRec, posCaz, act,"../sounds/reverb/ReverbCueva.wav", firstT)
 {
 	level = "Nivel3";
 	firsTime = true;
@@ -24,8 +24,8 @@ void Nivel3::cargaTriggers(){
 Nivel3::~Nivel3()
 {
 }
-void Nivel3::update(){
-	Nivel1::update();
+void Nivel3::update(int delta){
+	Nivel1::update(delta);
 	if (change){
 		saveFile();
 		std::ofstream f;

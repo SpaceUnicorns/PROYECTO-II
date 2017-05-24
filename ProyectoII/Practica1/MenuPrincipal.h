@@ -6,7 +6,7 @@ class MenuPrincipal :
 public:
 	MenuPrincipal(juegoPG * juego, int px, int py);
 	virtual ~MenuPrincipal();
-	virtual void update();
+	virtual void update(int delta);
 	int opcion;
 };
 

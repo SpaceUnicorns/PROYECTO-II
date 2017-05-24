@@ -5,7 +5,7 @@
 #include "Pico.h"
 #include "Pala.h"
 #include "TrampaCerrada.h"
-Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool visited, int obj) : Nivel1(jug, map, objetos, posRec, posCaz, act)
+Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool visited, int obj) : Nivel1(jug, map, objetos, posRec, posCaz, act, "../sounds/reverb/ReverbCabana2.wav")
 {
 	firsTime = true;
 	change = false;
@@ -51,8 +51,8 @@ bool ordenation(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
 }
 
-void Cabania::update(){
-	Nivel1::update();
+void Cabania::update(int delta){
+	Nivel1::update(delta);
 	if (change){
 		Nivel1::fadeOut(40);
 		EstadoJuego* borrar = pJuego->estados.top();

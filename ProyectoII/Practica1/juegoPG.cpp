@@ -40,6 +40,10 @@ juegoPG::juegoPG()
 	vida = 300;
 	nieblaRect = { 600,338,400,225 };
 
+	std::string auxStr = "cmd /c ..\\videos\\intro.exe /i1004  /x0 /y0 /w" + to_string(getScreenWidth()) + " /h" + to_string(getScreenHeight()) + " /u3";
+	const char* c = auxStr.c_str();
+	std::system(c);
+
 	estados.push(new MenuPG(this,0));
 	delay = 0;
 
@@ -97,15 +101,16 @@ void juegoPG::run(){
 		Uint32 lastUpdate = SDL_GetTicks();
 		render();
 		handle_event();
+
 		while (!exit) {
 			if (SDL_GetTicks() - lastUpdate >= msUpdate) { // while(elapsed >= MSxUpdate)
-				estados.top()->update();
-				estados.top()->lateUpdate();
-				lastUpdate = SDL_GetTicks();
+				estados.top()->update(SDL_GetTicks() - lastUpdate);
+				estados.top()->lateUpdate(SDL_GetTicks() - lastUpdate);
 				render();
 				estados.top()->updateBorrarObj();
 				handle_event();
 				if (muerto) cargaPartida();
+				lastUpdate = SDL_GetTicks();
 				}
 
 		}

@@ -30,14 +30,15 @@
 #include<stdlib.h>
 #include<time.h>
 
-Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act, bool firstT) : EstadoPG(jug, 0){
+Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, std::string reverb, bool firstT) : EstadoPG(jug, 0){
+
 	level = "Nivel1";
 	srand(time(NULL));
 
 	changeCabania = false;
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = false;
+	visible = true;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -86,7 +87,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	cargaTriggers();
 	cargaObj(objetos);
 
-	cargarAudio("../sounds/reverb/ReverbBosque.wav");
+	cargarAudio(reverb);
 	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
 	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
 	reproduceMusica("Bosque", false);
@@ -134,14 +135,14 @@ void Nivel1::cargaTriggers(){
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 7000, 8352, pCazador, pRecolector, 3); //escondites
+	auxTr = new Trigger(pJuego, 6650, 7000, pCazador, pRecolector, 3); //Cabaña
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Juntos.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
 
-	auxTr = new Trigger(pJuego, 2400, 1112, pCazador, pRecolector, 4); //escondites
+	auxTr = new Trigger(pJuego, 4900, 4100, pCazador, pRecolector, 4); // Salida 1
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Juntos.txt"));
 	auxTr->setTriggerDim(500, 500);
 	vecTriggers.push_back(auxTr);
@@ -149,18 +150,20 @@ void Nivel1::cargaTriggers(){
 
 
 
-	//Random comments
-	auxTr = new Trigger(pJuego, 1662, 1284, pCazador, pRecolector, 5);
+
+	auxTr = new Trigger (pJuego, 5662, 684, pCazador, pRecolector, 5);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo1.txt"));
+	auxTr->setTriggerDim(1000, 150);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 1662, 1084, pCazador, pRecolector, 6);
+	auxTr = new Trigger(pJuego, 4300, 1084, pCazador, pRecolector,6);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo2.txt"));
+	auxTr->setTriggerDim(1000, 150);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 865, 1070, pCazador, pRecolector, 7);
+	auxTr = new Trigger(pJuego, 8276, 1250, pCazador, pRecolector, 7);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogo3.txt"));
 	auxTr->setTriggerDim(80, 80);
 	vecTriggers.push_back(auxTr);
@@ -172,11 +175,36 @@ void Nivel1::cargaTriggers(){
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 9); //escondites
+	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 9); // sonido amb
 	auxTr->setCallback(new SoundTrigger(auxTr));
 	auxTr->setTriggerDim(100, 100);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 3000, 1400, pCazador, pRecolector, 10); // Salida 1
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial6Juntos.txt"));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 7900, 6000, pCazador, pRecolector, 11); // sonido amb
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 4600, 1000, pCazador, pRecolector, 12); // sonido amb
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
+	auxTr = new Trigger(pJuego, 5200, 2200, pCazador, pRecolector, 13); // sonido amb
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
+
 }
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
@@ -390,10 +418,10 @@ void Nivel1::swPlayer(){
 		pJuego->input.sw = false;
 	}
 }
-void Nivel1::update(){
+void Nivel1::update(int delta){
 
 
-	EstadoPG::update();
+	EstadoPG::update(delta);
 	if (changeCabania){
 		if (activePlayer == "R"){
 			int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;
@@ -659,6 +687,8 @@ void Nivel1::cargaObj(std:: string name){
 void Nivel1::callback(){
 	if (!firsTime){
 		changeCabania = true;
+		paraMusica("", false);
+		paraAmb("", false);
 	}
 	else firsTime = false;
 }
@@ -686,8 +716,6 @@ Nivel1::~Nivel1()
 void changeScene::callback(){
 	if (!reacciona){
 		aux->callback();
-		pObj->getPJuego()->getEstadoActual()->paraMusica("", false);
-		pObj->getPJuego()->getEstadoActual()->paraAmb("", false);
 	}
 	reacciona = true;
 }

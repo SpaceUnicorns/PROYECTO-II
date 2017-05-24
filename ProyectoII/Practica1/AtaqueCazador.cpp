@@ -14,7 +14,7 @@ AtaqueCazador::AtaqueCazador(ObjetoJuego* ent) : Componente(ent)
 AtaqueCazador::~AtaqueCazador()
 {
 }
-void AtaqueCazador::update(){
+void AtaqueCazador::update(int delta){
 	if (pObj->isAble()){
 		if (firstime){
 			pEstado = dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top());
