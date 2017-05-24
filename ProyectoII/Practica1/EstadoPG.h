@@ -31,6 +31,10 @@ public:
 
 	virtual void update(int delta);
 	virtual void lateUpdate(int delta);
+
+	virtual void nieve();
+	virtual void setAutoSnow() { autoSnow = true; };
+
 	virtual void onClick();
 	virtual void onOver();
 	virtual void cargaMapa(std::string txt, std::vector<char>& mapa);
@@ -76,7 +80,13 @@ public:
 		int capa;
 		SDL_Rect rectTileset;     //Contiene el rectangulo del Tileset que se quiere dibujar.
 	};
+
+private:
+	SDL_Rect title;
+	bool autoSnow;
+
 protected: 
+	SDL_Rect animNieve1, animNieve2;
 	SDL_Rect camara;
 	struct Colision
 	{

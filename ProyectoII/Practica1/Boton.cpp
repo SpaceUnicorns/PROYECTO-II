@@ -4,8 +4,8 @@
 Boton::Boton(juegoPG * juego, int px, int py, Texturas_t textura, CallBack_t* callback) : ObjetoPG(juego,px, py)
 {
 	et = textura;
-	rect.w = anim.w= 256;
-	rect.h = anim.h =80;
+	rect.w = anim.w= 344;
+	rect.h = anim.h = 42;
 	anim.x = anim.y = 0;
 	cb = callback;
 }

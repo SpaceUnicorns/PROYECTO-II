@@ -17,7 +17,9 @@ enum Texturas_t {
 	TSombra1, TMenuResaltado, TLyov, TZhenia, TEquipables, TMateriales, TCebo, TCuerda, TEnredadera, THueso, TMadera, 
 	TPiedra, TTrampaCerrada, TYesca, TGris, TLuz, TNieve1, TNieve2, TLobete, TTapa, TContinuar, TOpciones, TGoToMenu, 
 	THuella, TAntorcha, TZonaOscura, TObjetoEquipo,	TObjetoEquipo2, TPantallaTrucos, TEscondite, TObstaculoPiedra, 
-	TCarroña, THuellasCamino, TValla, TCabania, TPico, TPala, THacha, TObstaculoNieve, TControl, TBControl, TClarosCueva
+	TCarroña, THuellasCamino, TValla, TCabania, TPico, TPala, THacha, TObstaculoNieve, TControlK, TBControl, TTitulo,
+	TControlG
+
 };
 
 class juegoPG
@@ -100,7 +102,6 @@ private:
 	//void update();														// : Pide a todos los globos que actualicen su estado, y actualiza el número de globos que quedan activos.
 	void handle_event();												// : Comprueba si se ha producido el evento SDL_Quit o el evento soltar el botón izquierdo del ratón.Para el caso SDL_Quit, ejecuta onExit().En el otro caso, ejecuta onClick(), pasando como argumentos la posición del ratón.
 	void onExit();
-
 
 };
 

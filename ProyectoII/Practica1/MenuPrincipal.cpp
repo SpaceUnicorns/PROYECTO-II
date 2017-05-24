@@ -9,8 +9,13 @@
 MenuPrincipal::MenuPrincipal(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
 	et = TMenuResaltado;
-	rect.w = 256;
-	rect.h = 82;
+	int auxH = pJuego->getScreenHeight() / 2 - 21; //21 = boton.h / 2
+	int auxW = pJuego->getScreenWidth() / 2 + 100;
+
+	rect.x = auxW - 10;
+	rect.y = auxH - 107;
+	rect.w = 364;
+	rect.h = 55;
 	absRect.w = rect.w;
 	absRect.h = rect.h;
 	activo = true;

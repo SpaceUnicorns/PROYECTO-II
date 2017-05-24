@@ -10,11 +10,11 @@ Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 
 	cargaTriggers();
 	cargaObj(objetos);
-	animNieve1.w = animNieve1.h = animNieve2.w = animNieve2.h = 0;
 	static_cast<Huella*>(pCazador->dameComponente("Huella"))->swAble();
 	static_cast<Huella*>(pRecolector->dameComponente("Huella"))->swAble();
 
 	huellasCamino.resize(0);
+	animNieve1.w = animNieve1.h = animNieve2.w = animNieve2.h = 0;
 }
 
 void Nivel3::cargaTriggers(){

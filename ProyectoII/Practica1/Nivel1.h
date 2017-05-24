@@ -99,7 +99,7 @@ protected:
 	std::string archivoObj;
 	std::vector<HuellasCamino*> huellasCamino;
 	Mode mode;
-	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
+	SDL_Rect rectZonaOscura, animEquipo, rectEquipo;
 	bool hasTorch;
 	bool firsTime, firstDraw;
 	bool changeCabania;
