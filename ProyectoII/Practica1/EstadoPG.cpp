@@ -350,10 +350,10 @@ void EstadoPG::draw(){
 	if (autoSnow) {
 		nieve();
 		pJuego->getTextura(TTitulo)->draw(pJuego->getRender(), title);
-		title.x = pJuego->getScreenWidth() / 2 + 130;
-		title.y = pJuego->getScreenHeight() - 330;
-		title.h = 300;
-		title.w = 300;
+		title.x = pJuego->getScreenWidth() / 2 + 450;
+		title.y = pJuego->getScreenHeight() - 80;
+		title.h = 50;
+		title.w = 50;
 		pJuego->getTextura(TLogo)->draw(pJuego->getRender(), title);
 		title.x = pJuego->getScreenWidth() / 2 + 30;
 		title.y = 0;
