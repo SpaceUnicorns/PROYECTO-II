@@ -21,13 +21,13 @@ class Nivel1 :
 	public EstadoPG
 {
 public:
-	Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT = true);
+	Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, std::string reverb, bool firstT = true);
 	Nivel1(juegoPG*jug): EstadoPG(jug,0){};
 	virtual ~Nivel1();
 	virtual void draw();
-	virtual void update();
+	virtual void update(int delta);
 	virtual void awake(){ 
-		reproduceFx("AbreMenu1", -100, 0, 0); };
+		reproduceFx("AbreMenu1", 0, 0, 0); };
 	Cazador* getCazador() { return pCazador; }
 	Recolector* getRecolector() { return pRecolector; }
 	void getTorch(){ hasTorch = true; }
@@ -81,18 +81,25 @@ public:
 	std::vector<int>& getTriggerInfo() { return infoTriggers; }
 protected:
 	
+	virtual void cargaTriggers();
 	struct Cab{
 		bool visitadas;
 		int obj;
 	};
 	int lastCabVisited;
 	int numCab;
+	int contadorSw;
+	bool switching;
+	struct feedback{
+		float x; float y;
+	};
+	feedback fd;
 	std::vector<Cab> cabVisitadas;
 	std::vector<int> infoTriggers;
 	std::string archivoObj;
 	std::vector<HuellasCamino*> huellasCamino;
 	Mode mode;
-	SDL_Rect animNieve1, animNieve2, rectZonaOscura, animEquipo, rectEquipo;
+	SDL_Rect rectZonaOscura, animEquipo, rectEquipo;
 	bool hasTorch;
 	bool firsTime, firstDraw;
 	bool changeCabania;
@@ -100,7 +107,7 @@ protected:
 	int x, y, alpha;
 	Cazador* pCazador;
 	Recolector *pRecolector;
-	std::string activePlayer;
+	std::string activePlayer, level;
 	virtual void swPlayer();	
 	void onKeyUp(char k);
 	void cargaObj(std:: string name);
@@ -137,7 +144,7 @@ public:
 	};
 	virtual ~changeScene(){};
 	virtual void callback();
-	virtual void update(){
+	virtual void update(int delta){
 		if (reacciona && !pObj->isTriggering()){
 			reacciona = false;
 			pObj->setReacciona(false);
@@ -162,7 +169,7 @@ public:
 	};
 	virtual ~SoundTrigger(){};
 	virtual void callback();
-	virtual void update(){
+	virtual void update(int delta){
 		if (reacciona && !pObj->isTriggering()){
 			reacciona = false;
 			pObj->setReacciona(false);

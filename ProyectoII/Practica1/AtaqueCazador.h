@@ -10,7 +10,7 @@ class AtaqueCazador :
 public:
 	AtaqueCazador(ObjetoJuego* ent);
 	virtual ~AtaqueCazador();
-	virtual void update();
+	virtual void update(int delta);
 	ObjetoPG* info = nullptr;
 	ObjetoPG *pObj;
 	Direc direccion;

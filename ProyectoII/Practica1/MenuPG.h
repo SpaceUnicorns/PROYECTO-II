@@ -25,7 +25,7 @@ public:
 		EstadoJuego* borrar = jug->estados.top();
 		jug->estados.pop();
 		Punto rec; rec.x = 6905; rec.y = 8930; Punto caz; caz.x = 6970; caz.y = 8930;
-		jug->estados.push(new Nivel1(jug,"../docs/mapa1.txt","../docs/objetos.txt", rec, caz,"R"));
+		jug->estados.push(new Nivel1(jug, "../docs/mapa1.txt", "../docs/objetos.txt", rec, caz, "R", "../sounds/reverb/ReverbBosque.wav"));
 		delete borrar;
 	}
 	virtual void drawFont(){}

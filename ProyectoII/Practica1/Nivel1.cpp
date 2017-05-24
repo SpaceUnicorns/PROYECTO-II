@@ -30,13 +30,15 @@
 #include<stdlib.h>
 #include<time.h>
 
-Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std:: string act, bool firstT) : EstadoPG(jug, 0){
+Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, std::string reverb, bool firstT) : EstadoPG(jug, 0){
+
+	level = "Nivel1";
 	srand(time(NULL));
 
 	changeCabania = false;
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = false;
+	visible = true;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);
@@ -78,6 +80,42 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 		camara.y = (posRec.y - (camara.h / 2));
 	}
 
+	cargaTriggers();
+	cargaObj(objetos);
+
+	cargarAudio(reverb);
+	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
+	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
+	reproduceMusica("Bosque", false);
+	reproduceAmb("Viento",false);
+
+
+	activePlayer = act;
+	if (activePlayer == "R"){
+		pCazador->swAble();
+		pRecolector->swAble();
+	}
+
+	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
+	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
+	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
+	pCazador->newComponente(new follow(pCazador, pRecolector, mapa, true), "follow");
+
+	rectEquipo.x = 50; rectEquipo.y = 50;
+	rectEquipo.h = rectEquipo.w = 50;  animEquipo.h = animEquipo.w = 100;
+	animEquipo.y = animEquipo.x = 0;
+
+	rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
+	rectZonaOscura.x = -100; rectZonaOscura.y = 500;
+	hasTorch = false;
+	alpha = 255;
+	firsTime = !firstT;
+	firstDraw = true;
+	contadorSw = 0;
+	switching = false;
+}
+
+void Nivel1::cargaTriggers(){
 	Trigger *auxTr;
 	
 	//dialogos de tutorial
@@ -131,45 +169,31 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 9); //escondites
+	auxTr = new Trigger(pJuego, 6900, 8800, pCazador, pRecolector, 9); // sonido amb
 	auxTr->setCallback(new SoundTrigger(auxTr));
 	auxTr->setTriggerDim(100, 100);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	cargaObj(objetos);
+	auxTr = new Trigger(pJuego, 7900, 6000, pCazador, pRecolector, 10); // sonido amb
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	cargarAudio("../sounds/reverb/ReverbBosque.wav");
-	cargarAssetsAudio("../docs/fxNivel1.txt", 'f');
-	cargarAssetsAudio("../docs/mNivel1.txt", 'm');
-	reproduceMusica("Bosque", false);
-	reproduceAmb("Viento",false);
+	auxTr = new Trigger(pJuego, 4600, 1000, pCazador, pRecolector, 11); // sonido amb
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
+	auxTr = new Trigger(pJuego, 5200, 2200, pCazador, pRecolector, 12); // sonido amb
+	auxTr->setCallback(new SoundTrigger(auxTr));
+	auxTr->setTriggerDim(500, 500);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //Añadir esto cada vez que se cree un trigger;
 
-	activePlayer = act;
-	if (activePlayer == "R"){
-		pCazador->swAble();
-		pRecolector->swAble();
-	}
-
-	pCazador->newComponente(new Equipo(pCazador, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
-	pRecolector->newComponente(new Equipo(pRecolector, static_cast<Mochila*>(pRecolector->dameComponente("Mochila"))), "Equipo");
-	pRecolector->newComponente(new follow(pRecolector, pCazador, mapa, true), "follow");
-	pCazador->newComponente(new follow(pCazador, pRecolector, mapa, true), "follow");
-
-	rectEquipo.x = 50; rectEquipo.y = 50;
-	rectEquipo.h = rectEquipo.w = 50;  animEquipo.h = animEquipo.w = 100;
-	animEquipo.y = animEquipo.x = 0;
-
-	rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
-	rectZonaOscura.x = -100; rectZonaOscura.y = 500;
-	hasTorch = false;
-	alpha = 255;
-	firsTime = !firstT;
-	firstDraw = true;
-	
 }
-
 bool ordena(ObjetoJuego*p1, ObjetoJuego*p2){
 	return(dynamic_cast<ObjetoPG*>(p1)->getColisionBox().y < dynamic_cast<ObjetoPG*>(p2)->getColisionBox().y);
 }
@@ -183,7 +207,9 @@ void Nivel1::draw(){
 	SDL_Rect aux;
 	Tile tile;
 	
-	if (pJuego->input.sw) swPlayer();
+	if (pJuego->input.sw) switching = true;
+
+	if (switching) swPlayer();
 	else{
 		for (unsigned int i = 0; i < vecTile.size(); i++){
 			vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
@@ -229,8 +255,8 @@ void Nivel1::draw(){
 		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
 
 		for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
+		drawEquipo();
 	}
-	drawEquipo();
 	
 }
 void Nivel1::drawEquipo(){
@@ -264,35 +290,35 @@ void Nivel1::drawEquipo(){
 void Nivel1::swPlayer(){
 	SDL_Rect aux;
 	Tile tile;
-	struct feedback{
-		float x; float y;
-	};
-	feedback fd;
-	reproduceFx("CambioPersonaje", 0, 0, 0);
-	if (activePlayer == "C"){
-		pCazador->swAble();
-		fd.x = -1 * (pCazador->getRect().x - pRecolector->getRect().x);
-		fd.y = -1 * (pCazador->getRect().y - pRecolector->getRect().y);
-		activePlayer = "R";
-	}
-	else if (activePlayer == "R") {
-		pRecolector->swAble();
-		fd.x = -1 * (pRecolector->getRect().x - pCazador->getRect().x);
-		fd.y = -1 * (pRecolector->getRect().y - pCazador->getRect().y);
-		activePlayer = "C";
-	}
 	
-	for (int i = 0; i < 8; i++){
-		camara.x = fd.x / 8.0f;
-		camara.y = fd.y / 8.0f;
+	if (contadorSw == 0){
+		reproduceFx("CambioPersonaje", 0, 0, 0);
+		if (activePlayer == "C"){
+			pCazador->swAble();
+			fd.x = -1 * (pCazador->getRect().x - pRecolector->getRect().x);
+			fd.y = -1 * (pCazador->getRect().y - pRecolector->getRect().y);
+			activePlayer = "R";
+		}
+		else if (activePlayer == "R") {
+			pRecolector->swAble();
+			fd.x = -1 * (pRecolector->getRect().x - pCazador->getRect().x);
+			fd.y = -1 * (pRecolector->getRect().y - pCazador->getRect().y);
+			activePlayer = "C";
+		}
+	}
+	if(contadorSw < 28){
+		contadorSw++;
+		//SDL_RenderClear(pJuego->getRender());
+		camara.x = fd.x / 28.0f;
+		camara.y = fd.y / 28.0f;
 
 		for (unsigned int i = 0; i < vecTile.size(); i++){
 			vecTile[i].x -= camara.x; vecTile[i].y -= camara.y;
 			tile = vecTile[i];
 			aux.x = tile.x; aux.y = tile.y; aux.w = 122; aux.h = 83;
-			pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
+			if (aux.x > -200 && aux.x < pJuego->getScreenWidth() && aux.y > -200 && aux.y < pJuego->getScreenHeight())
+				pJuego->getTextura(TTileSet)->draw(pJuego->getRender(), tile.rectTileset, aux);
 		}
-
 		for (unsigned int i = 0; i < vectBordes.size(); i++){
 			vectBordes[i].A.x -= camara.x;
 			vectBordes[i].A.y -= camara.y;
@@ -301,14 +327,12 @@ void Nivel1::swPlayer(){
 			vectBordes[i].C.x -= camara.x;
 			vectBordes[i].C.y -= camara.y;
 		}
-		for (HuellasCamino* ob : huellasCamino) ob->draw((activePlayer == "R" || mode == Edition));
 		std::sort(vecObj.begin(), vecObj.end(), ordena);
-		for (ObjetoJuego* ob : vecObj){
-			ob->draw();
-		}
-		for (ObjetoJuego* ob : vecTriggers){ //TIENE QUE SER LO ULTIMO EN DIBUJARSE
-			ob->draw();
-		}
+
+		for (HuellasCamino* ob : huellasCamino) ob->draw((activePlayer == "R" || mode == Edition));
+		for (ObjetoJuego* ob : vecObj) ob->draw();
+		for (ObjetoJuego* trg : vecTriggers) trg->draw();
+
 		centroRel.x += camara.x; centroRel.y += camara.y;
 		rectZonaOscura.x -= camara.x;
 		rectZonaOscura.y -= camara.y;
@@ -332,17 +356,20 @@ void Nivel1::swPlayer(){
 		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
 
 		for (ObjetoJuego* trg : vecTriggers) trg->lateDraw();//TIENE QUE SER LO ULTIMO EN DIBUJARSE
-		SDL_RenderPresent(pJuego->getRender());
-		SDL_Delay(20);
+		
 	}
-	if (activePlayer == "C") pCazador->swAble();
-	else pRecolector->swAble();
-	pJuego->input.sw = false;
+	if (contadorSw == 27) {
+		contadorSw = 0;
+		switching = false;
+		if (activePlayer == "C") pCazador->swAble();
+		else pRecolector->swAble();
+		pJuego->input.sw = false;
+	}
 }
-void Nivel1::update(){
+void Nivel1::update(int delta){
 
 
-	EstadoPG::update();
+	EstadoPG::update(delta);
 	if (changeCabania){
 		if (activePlayer == "R"){
 			int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;
@@ -608,6 +635,8 @@ void Nivel1::cargaObj(std:: string name){
 void Nivel1::callback(){
 	if (!firsTime){
 		changeCabania = true;
+		paraMusica("", false);
+		paraAmb("", false);
 	}
 	else firsTime = false;
 }
@@ -635,8 +664,6 @@ Nivel1::~Nivel1()
 void changeScene::callback(){
 	if (!reacciona){
 		aux->callback();
-		pObj->getPJuego()->getEstadoActual()->paraMusica("", false);
-		pObj->getPJuego()->getEstadoActual()->paraAmb("", false);
 	}
 	reacciona = true;
 }
@@ -714,6 +741,7 @@ void Nivel1::saveFile(){
 	f.close();
 
 	f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\players.txt");
+	f << level << "\n";
 	f << "Cazador" << " , " << std::to_string(pCazador->getAbsRect().x) <<" , "<< std::to_string(pCazador->getAbsRect().y) << "\n";
 	f << "Recolector" << " , " << std::to_string(pRecolector->getAbsRect().x) << " , " << std::to_string(pRecolector->getAbsRect().y) << "\n";
 	f << activePlayer << "\n";

@@ -11,7 +11,7 @@ public:
 	ObjetoHuella(int dir, int ind, Componente* comp, juegoPG * juego, int px, int py, int _w, int _h);
 	~ObjetoHuella();
 	virtual void draw();
-	virtual void update();
+	virtual void update(int delta);
 private:
 	virtual void changeAnimV(int fila) { anim.y = anim.h * fila; } // coloca la 'j'
 	virtual void changeAnimH() { anim.x += anim.w; if (anim.x >= anim.w * 6) anim.x = 0; } // coloca la 'i'

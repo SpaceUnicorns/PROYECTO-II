@@ -9,8 +9,8 @@ class Huella :
 public:
 	Huella(ObjetoJuego* ent, int _w, int _h);
 	virtual ~Huella();
-	virtual void lateUpdate();
-	virtual void update();
+	virtual void lateUpdate(int delta);
+	virtual void update(int delta);
 	virtual void draw();
 	void setHuella(int dir);
 	void quitaHuella(int ind);

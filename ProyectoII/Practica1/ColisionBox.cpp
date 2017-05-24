@@ -121,7 +121,7 @@ int ColisionBox::triangleOrientation(TrianguloBorde const & tr){
 	static TrianguloBorde s;
 	return ((tr.A.x - tr.C.x)*(tr.B.y - tr.C.y) - (tr.A.y - tr.C.y)*(tr.B.x - tr.C.x));
 }
-void ColisionBox::update(){
+void ColisionBox::update(int delta){
 	/*if (movible){
 		boxRect.x = pObj->getRect().x +15;
 		boxRect.y = pObj->getRect().y + pObj->getRect().h *0.8;

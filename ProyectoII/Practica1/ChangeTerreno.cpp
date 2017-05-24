@@ -6,7 +6,7 @@ ChangeTerreno::ChangeTerreno(juegoPG * juego, int px, int py, Cazador* tgC, Reco
 	this->terreno = terreno;
 }
 
-void ChangeTerreno::update(){
+void ChangeTerreno::update(int delta){
 	if (tgCazador->getColisionBox().x > rect.x && tgCazador->getColisionBox().x < (rect.x + rect.w)
 		&& tgCazador->getColisionBox().y > rect.y && tgCazador->getColisionBox().y < (rect.y + rect.h)){
 		if (!reacciona && !triggered) { 

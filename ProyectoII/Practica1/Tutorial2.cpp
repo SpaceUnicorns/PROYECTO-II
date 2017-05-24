@@ -1,7 +1,7 @@
 #include "Tutorial2.h"
 #include "Mochila.h"
 
-Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz) : Nivel1(jug, map, objetos, posRec, posCaz, "C")
+Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz) : Nivel1(jug, map, objetos, posRec, posCaz, "C", "../sounds/reverb/ReverbBosque.wav")
 {
 	firsTime = true;
 	change = false;
@@ -58,8 +58,8 @@ void Tutorial2::onKeyUp(char k){
 	if (k != 't') Nivel1::onKeyUp(k);
 }
 
-void Tutorial2::update(){
-	Nivel1::update();
+void Tutorial2::update(int delta){
+	Nivel1::update(delta);
 	if (change){
 		saveFile();
 		std::ofstream f;
@@ -69,7 +69,7 @@ void Tutorial2::update(){
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();
 		Punto caz; caz.x = 7180; caz.y = 9250; Punto rec; rec.x = 7200; rec.y = 9000;
-		pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R"));
+		pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R", "../sounds/reverb/ReverbBosque.wav"));
 		delete borrar;
 	}
 

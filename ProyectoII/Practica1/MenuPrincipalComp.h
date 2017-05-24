@@ -9,7 +9,7 @@ class MenuPrincipalComp :
 	enum estadosMP {Jugar, Salir, Cargar};
 public:
 	MenuPrincipalComp(ObjetoJuego* ent);
-	virtual void update();
+	virtual void update(int delta);
 	virtual ~MenuPrincipalComp();
 	int showMessage(const char* s, bool info = false);
 private:

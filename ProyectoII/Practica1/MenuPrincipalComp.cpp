@@ -13,14 +13,14 @@ MenuPrincipalComp::~MenuPrincipalComp()
 {
 }
 
-void MenuPrincipalComp::update()
+void MenuPrincipalComp::update(int delta)
 {
-	delay++;
-	if (delay > 4){
+	delay+=delta;
+	if (delay > 100){
 
 		if (temp != 0){
-			temp2++;
-			if (temp2 >= 10){
+			temp2+=delta;
+			if (temp2 >= 200){
 				temp = temp2 = 0;
 			}
 		}

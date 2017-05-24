@@ -96,21 +96,21 @@ void ObjetoPG::start(){
 		it++;
 	}
 }
-void ObjetoPG::update(){
+void ObjetoPG::update(int delta){
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
 
 	while (it != itFin){
-		it->second->update();
+		it->second->update(delta);
 		it++;
 	}
 }
-void ObjetoPG::lateUpdate(){
+void ObjetoPG::lateUpdate(int delta){
 	std::map <std::string, Componente*>::const_iterator it = mapaComponentes.cbegin();
 	std::map <std::string, Componente*>::const_iterator itFin = mapaComponentes.cend();
 
 	while (it != itFin){
-		it->second->lateUpdate();
+		it->second->lateUpdate(delta);
 		it++;
 	}
 }

@@ -83,7 +83,7 @@ private:
 	int SCREEN_HEIGHT = 768;//480;  //Screen dimension
 
 	int pmx, pmy;
-	bool exit;
+	bool exit, muerto;
 	TexturasSDL* fuente;
 	//Cosas de los personajes
 	int vida;
@@ -93,7 +93,7 @@ private:
 	
 	void initMedia();									// carga las texturas en el vector de texturas (fuente y música) 
 	//void freeMedia();
-
+	void cargaPartida();
 	void initSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer);	    // : Inicia el renderizador.En caso de error, muestra un mensaje y deja todos los atributos con valores nulos.
 	void closeSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer);    // : Libera los atributos iniciados en initSDL.
 	void render() const;												// : Limpia el buffer, pide a todos los globos que se dibujen y lo muestra.

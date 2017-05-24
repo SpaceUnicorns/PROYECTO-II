@@ -60,9 +60,9 @@ void ObjetoHuella::setAnim(Dir dir){
 ObjetoHuella::~ObjetoHuella()
 {
 }
-void ObjetoHuella::update(){
-	timer++;
-	if (timer == 300){
+void ObjetoHuella::update(int delta){
+	timer+=delta;
+	if (timer == 5000){
 		timer = 0;
 		componente->quitaHuella(indice);
 	}

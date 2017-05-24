@@ -11,7 +11,7 @@ public:
 	virtual ~MovimientoP();
 
 	//Métodos--------------------------------------------------
-	virtual void update();
+	virtual void update(int delta);
 
 	ObjetoPG* info = nullptr;
 	ObjetoPG *pObj;

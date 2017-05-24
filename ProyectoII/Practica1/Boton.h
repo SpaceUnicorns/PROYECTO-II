@@ -15,7 +15,7 @@ public:
 	//Funciones------------------------------------------------------------------------------------------------------------------
 	virtual void draw();
 	virtual bool onClick();
-	virtual void update(){};
+	virtual void update(int delta){};
 	virtual bool onOver();
 private:
 	SDL_Rect anim;

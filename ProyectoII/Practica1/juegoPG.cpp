@@ -12,6 +12,7 @@ using namespace std; // Para cualificar automaticamente con std:: los identifica
 #include "Error.h"
 #include <Windows.h>
 #include <shlobj.h>
+#include "Muerte.h"
 
 juegoPG::juegoPG()
 {
@@ -19,7 +20,7 @@ juegoPG::juegoPG()
 	CHAR my_documents[MAX_PATH];
 	HRESULT result = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
 	path = (string)my_documents;
-
+	muerto = false;
 	srand(1);
 	
 	pWin = nullptr;  	//The window we'll be rendering to
@@ -38,6 +39,10 @@ juegoPG::juegoPG()
 	//La vida de los pjs (al ser compartida va en el juego)
 	vida = 300;
 	nieblaRect = { 600,338,400,225 };
+
+	std::string auxStr = "cmd /c ..\\videos\\intro.exe /i1004  /x0 /y0 /w" + to_string(getScreenWidth()) + " /h" + to_string(getScreenHeight()) + " /u3";
+	const char* c = auxStr.c_str();
+	std::system(c);
 
 	estados.push(new MenuPG(this,0));
 	delay = 0;
@@ -96,14 +101,16 @@ void juegoPG::run(){
 		Uint32 lastUpdate = SDL_GetTicks();
 		render();
 		handle_event();
+
 		while (!exit) {
 			if (SDL_GetTicks() - lastUpdate >= msUpdate) { // while(elapsed >= MSxUpdate)
-				estados.top()->update();
-				estados.top()->lateUpdate();
-				lastUpdate = SDL_GetTicks();
+				estados.top()->update(SDL_GetTicks() - lastUpdate);
+				estados.top()->lateUpdate(SDL_GetTicks() - lastUpdate);
 				render();
 				estados.top()->updateBorrarObj();
 				handle_event();
+				if (muerto) cargaPartida();
+				lastUpdate = SDL_GetTicks();
 				}
 
 		}
@@ -330,7 +337,7 @@ void juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 			SCREEN_WIDTH = pMode.w;
 		}
 		//Create window: SDL_CreateWindow("SDL Hello World", posX, posY, width, height, SDL_WINDOW_SHOWN);
-		pWindow = SDL_CreateWindow("Ghost balloons", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		pWindow = SDL_CreateWindow("Galiakberova", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (pWindow == nullptr){
 			cout << "Window could not be created! \nSDL_Error: " << SDL_GetError() << '\n';
 			throw EInitWindow("Window could not be created!");
@@ -423,4 +430,21 @@ void juegoPG::cambiaVida(int cambio) {
 		nieblaRect.y = 900/2 - nieblaRect.h / 2;
 		if (vida <= 100) estados.top()->reproduceAmb("PocaVida", false);
 	}
+
+	if (vida <= 0) muerto = true;
+}
+void juegoPG::cargaPartida(){
+	muerto = false;
+	vida = 300;
+	nieblaRect = { 600, 338, 400, 225 };
+	estados.top()->paraMusica("", true);
+	estados.top()->paraAmb("", true);
+	EstadoJuego* borrar = estados.top();
+	dynamic_cast<Nivel1*>(borrar)->fadeOut(20);
+	estados.pop();
+
+
+	delete borrar;
+	estados.push(new Muerte(this));
+	
 }
