@@ -23,6 +23,13 @@ void AtaqueCazador::update(int delta){
 		equipo = dynamic_cast<Equipo*>(pObj->dameComponente("Equipo"));
 		if (equipo->tieneEquipo("Hacha")){
 			if (pObj->getPJuego()->input.e) {
+				if(pObj->IndiceAnim == 0 || pObj->IndiceAnim == 3 || pObj->IndiceAnim == 4 || pObj->IndiceAnim == 6 )
+					pObj->changeAnimV(11, true);
+					else if (pObj->IndiceAnim == 7 || pObj->IndiceAnim == 2 || pObj->IndiceAnim == 1 || pObj->IndiceAnim == 5)
+					pObj->changeAnimV(10, true);
+				
+				pObj->atacando = true;
+				pObj->setRectWH(60, 80);
 				std::string fx; fx = "ZheniaAtaca" + std::to_string(rand() % 5);
 				pEstado->reproduceFx(fx,0,0,0);
 				int colAux;
@@ -54,6 +61,7 @@ void AtaqueCazador::update(int delta){
 					pObj->getPJuego()->input.e = false;
 					dynamic_cast<Lobo*>(info)->setLife(-1);
 					dynamic_cast<Lobo*>(info)->setEstado(Herido);
+				
 					int rnd = rand() % 2;
 					if (rnd == 0)
 						pObj->getPJuego()->getEstadoActual()->reproduceFx("LoboHerido", nextPos.x, nextPos.y, 0);
@@ -67,6 +75,7 @@ void AtaqueCazador::update(int delta){
 						axResistance = 10;
 					}
 				}
+				pObj->getPJuego()->input.e = false;
 			}
 		}
 	}
