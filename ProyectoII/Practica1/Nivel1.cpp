@@ -105,8 +105,8 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	rectEquipo.h = rectEquipo.w = 50;  animEquipo.h = animEquipo.w = 100;
 	animEquipo.y = animEquipo.x = 0;
 
-	rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
-	rectZonaOscura.x = -100; rectZonaOscura.y = 500;
+	rectZonaOscura.h = 2000; rectZonaOscura.w = 1200;
+	rectZonaOscura.x = 1050; rectZonaOscura.y = 500;
 	hasTorch = false;
 	alpha = 255;
 	firsTime = !firstT;
@@ -399,6 +399,8 @@ void Nivel1::update(int delta){
 		Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
 		pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited, objCab));
 		changeCabania = false;
+		rectZonaOscura.h = 2000; rectZonaOscura.w = 2500;
+		rectZonaOscura.x = 1050; rectZonaOscura.y = 3600;
 	}
 }
 void escribe(std::string s, int x, int y, std:: string name){

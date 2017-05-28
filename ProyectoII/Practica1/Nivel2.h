@@ -11,6 +11,7 @@ public:
 	virtual void cargaTriggers();
 private:
 	Trigger* TriggerLevel1;
+	Trigger* TriggerCabania;
 	bool change;
 	bool firsTime;
 };

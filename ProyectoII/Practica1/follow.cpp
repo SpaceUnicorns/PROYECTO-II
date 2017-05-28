@@ -133,32 +133,10 @@ void follow::lateUpdate(int delta){
 	}
 
 	//Primero calculamos posiciones absolutas y calculamos luego la distancia euclidea
-	int x, y, xx, yy;
-	int auxX, auxY;
-	x = pObj->getColisionBox().x;
-	y = pObj->getColisionBox().y;
-	if (target){
-		xx = target->getColisionBox().x;
-		yy = target->getColisionBox().y;
-	}
-	else
-	{
-		xx = x; yy = y;
-	}
-	auxX = x; auxY = y;
-	x = x + (x - xx);
-	y = y + (y - yy) + 2;
-	xx = xx + (auxX - xx);
-	yy = yy + (auxY - yy) + 2;
-
-	if (xx >= x) auxX = xx - x;
-	else auxX = x - xx;
-
-	if (yy >= y) auxY = yy - y;
-	else auxY = y - yy;
-
-	//Si la distancia es menor de cierto valor, devolvemos following a false
-	if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) < 50){
+	float a, b;
+	a = abs(pObj->getAbsRect().x - target->getAbsRect().x);
+	b = abs(pObj->getAbsRect().y - target->getAbsRect().y);
+	if ((float)sqrt((double)(a*a) + (double)(b*b) < 50)) {
 		following = false;
 		direccion.clear();
 		cont = 0;
@@ -268,10 +246,10 @@ void follow::lateUpdate(int delta){
 					pObj->changeAnimV(4);
 				}
 				else{
-					pObj->setRect(2 * delta / 16, 1 * delta / 16);
-					pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
-					paso -= delta / 7;
-					pObj->changeAnimV(3);
+					pObj->setRect(0, 2 * delta / 16);
+					pObj->setAbsRect(0, 2 * delta / 16);
+					paso -= delta / 4;
+					pObj->changeAnimV(5);
 					doFollow();
 				}
 				break;
@@ -281,13 +259,13 @@ void follow::lateUpdate(int delta){
 				if (colAux != 1 && colAux != 5 && colAux != 4){
 					pObj->setRect(2 * delta / 16, -1 * delta / 16);
 					pObj->setAbsRect(2 * delta / 16, -1 * delta / 16);
-					paso -= delta / 7;
+					paso -= delta / 7.2;
 					pObj->changeAnimV(0);
 				}
 				else{
 					pObj->setRect(-2 * delta / 16, 1 * delta / 16);
 					pObj->setAbsRect(-2 * delta / 16, 1 * delta / 16);
-					paso -= delta / 7;
+					paso -= delta / 7.2;
 					pObj->changeAnimV(7);
 					doFollow();
 				}
@@ -298,7 +276,7 @@ void follow::lateUpdate(int delta){
 				if (colAux != 1 && colAux != 5 && colAux != 4){
 					pObj->setRect(2 * delta / 16, 0);
 					pObj->setAbsRect(2 * delta / 16, 0);
-					paso -= delta / 2;
+					paso -= delta / 8;
 					pObj->changeAnimV(6);
 				}
 				else{
@@ -316,13 +294,13 @@ void follow::lateUpdate(int delta){
 				if (colAux != 1 && colAux != 5 && colAux != 4){
 					pObj->setRect(2 * delta / 16, 1 * delta / 16);
 					pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
-					paso -= delta / 7;
+					paso -= delta / 7.2;
 					pObj->changeAnimV(3);
 				}
 				else{
 					pObj->setRect(-2 * delta / 16, -1 * delta / 16);
 					pObj->setAbsRect(-2 * delta / 16, -1 * delta / 16);
-					paso -= delta / 7;
+					paso -= delta / 7.2;
 					pObj->changeAnimV(2);
 					doFollow();
 				}
@@ -338,10 +316,10 @@ void follow::lateUpdate(int delta){
 					pObj->changeAnimV(5);
 				}
 				else {
-					pObj->setRect(2 * delta / 16, 1 * delta / 16);
-					pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
-					paso -= delta / 7;
-					pObj->changeAnimV(3);
+					pObj->setRect(0, -2 * delta / 16);
+					pObj->setAbsRect(0, -2 * delta / 16);
+					paso -= delta / 4;
+					pObj->changeAnimV(4);
 					doFollow();
 				}
 				break;
@@ -352,13 +330,13 @@ void follow::lateUpdate(int delta){
 				if (colAux != 1 && colAux != 5 && colAux != 4){
 					pObj->setRect(-2 * delta / 16, 1 * delta / 16);
 					pObj->setAbsRect(-2 * delta / 16, 1 * delta / 16);
-					paso -= delta / 7;
+					paso -= delta / 7.2;
 					pObj->changeAnimV(7);
 				}
 				else{
 					pObj->setRect(2 * delta / 16, -1 * delta / 16);
 					pObj->setAbsRect(2 * delta / 16, -1 * delta / 16);
-					paso -= delta / 7;
+					paso -= delta / 7.2;
 					pObj->changeAnimV(0);
 					doFollow();
 				}
@@ -376,7 +354,7 @@ void follow::lateUpdate(int delta){
 				else{
 					pObj->setRect(2 * delta / 16, 0);
 					pObj->setAbsRect(2 * delta / 16, 0);
-					paso -= delta / 2;
+					paso -= delta / 8;
 					pObj->changeAnimV(6);
 					doFollow();
 				}
@@ -388,13 +366,13 @@ void follow::lateUpdate(int delta){
 				if (colAux != 1 && colAux != 5 && colAux != 4){
 					pObj->setRect(-2 * delta / 16, -1 * delta / 16);
 					pObj->setAbsRect(-2 * delta / 16, -1 * delta / 16);
-					paso -= delta / 7;
+					paso -= delta / 7.2;
 					pObj->changeAnimV(2);
 				}
 				else{
 					pObj->setRect(2 * delta / 16, 1 * delta / 16);
 					pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
-					paso -= delta / 7;
+					paso -= delta / 7.2;
 					pObj->changeAnimV(3);
 					doFollow();
 				}
@@ -427,7 +405,7 @@ void follow::lateUpdate(int delta){
 		int colAux;
 		ObjetoPG* info;
 
-		if (a > 60){
+		if (a < -60){
 			if (b > 30){
 				nextPos.x = 2 * delta / 16; nextPos.y = -1 * delta / 16;
 				pObj->changeAnimV(0);
@@ -441,7 +419,7 @@ void follow::lateUpdate(int delta){
 				pObj->changeAnimV(6);
 			}
 		}
-		else if (a < -60){
+		else if (a > 60){
 			if (b > 30){
 				nextPos.x = -2 * delta / 16; nextPos.y = -1 * delta / 16;
 				pObj->changeAnimV(2);
