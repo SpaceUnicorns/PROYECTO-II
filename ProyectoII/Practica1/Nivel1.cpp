@@ -111,6 +111,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	hasTorch = false;
 	alpha = 255;
 	firsTime = !firstT;
+	firstUpdate = true;
 	firstDraw = true;
 	contadorSw = 0;
 	switching = false;
@@ -383,6 +384,10 @@ void Nivel1::swPlayer(){
 void Nivel1::update(int delta){
 
 	EstadoPG::update(delta);
+	if (firstUpdate){
+		firstUpdate = false;
+		saveFile();
+	}
 	if (changeCabania){
 		
 		ObjetoPG* auxPlayer;

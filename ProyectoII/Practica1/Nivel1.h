@@ -101,7 +101,7 @@ protected:
 	Mode mode;
 	SDL_Rect rectZonaOscura, animEquipo, rectEquipo;
 	bool hasTorch;
-	bool firsTime, firstDraw;
+	bool firsTime, firstDraw, firstUpdate;
 	bool changeCabania;
 	Punto centroRel;
 	int x, y, alpha;

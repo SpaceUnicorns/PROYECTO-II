@@ -109,8 +109,8 @@ void juegoPG::run(){
 				render();
 				estados.top()->updateBorrarObj();
 				handle_event();
-				if (muerto) cargaPartida();
 				lastUpdate = SDL_GetTicks();
+				if (muerto) cargaPartida();
 				}
 
 		}

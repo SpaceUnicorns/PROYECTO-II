@@ -101,17 +101,20 @@ void MenuPrincipal::update(int delta)
 			}
 			f.close();
 
+
+			if (rec.x == caz.x) caz.x += 50;
+
 			getPJuego()->getEstadoActual()->paraMusica("", true);
 			EstadoJuego* borrar = getPJuego()->estados.top();
 			getPJuego()->estados.pop();
 			if (level == "Nivel1"){
-				pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\objs.txt", rec, caz, act, false));
+				pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\objs.txt", rec, caz, act,"../sounds/reverb/ReverbBosque.wav", false));
 			}
 			else if (level == "Nivel2"){
-				pJuego->estados.push(new Nivel2(pJuego, "../docs/mapa.txt", pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\objs.txt", rec, caz, act, false));
+				pJuego->estados.push(new Nivel2(pJuego, "../docs/mapa2.txt", pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\objs.txt", rec, caz, act, false));
 			}
 			else if (level == "Nivel3"){
-
+				pJuego->estados.push(new Nivel3(pJuego, "../docs/mapa3.txt", pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\objs.txt", rec, caz, act, false));
 			}
 			delete borrar;
 
