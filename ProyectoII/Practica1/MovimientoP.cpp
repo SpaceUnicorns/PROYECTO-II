@@ -29,12 +29,25 @@ MovimientoP::~MovimientoP()
 void MovimientoP::update(int delta){
 	if (pObj->herido)
 	{
+		if (contHerido % 3 * delta == 0)
+		pObj->changeAnimH(false);
 		contHerido+=delta;
 		if (contHerido >= 1600){
 			contHerido = 0;
 			pObj->herido = false;
 		}
 	}
+	else if (pObj->atacando) {
+		if (contHerido % 3*delta == 0)
+		pObj->changeAnimHB();
+		contHerido += delta;
+		if (contHerido >= 300) {
+			contHerido = 0;
+			pObj->atacando = false;
+			pObj->setRectWH(45, 80);
+		}
+	}
+	else
 		if (pObj->isAble()){
 			pEstado = dynamic_cast<EstadoPG*>(pObj->getPJuego()->estados.top());
 			//Antes de actualizar la posición comprobamos si colisiona con la posición siguiente.
@@ -42,8 +55,9 @@ void MovimientoP::update(int delta){
 			if (framerate >= 150 && moviendose) {// se mueve 1 frame cada 16 ms x 16ms
 				pObj->changeAnimH();
 				framerate = 0;
-
+				
 			}
+			
 			if (moviendose){
 				contPasos += delta;
 				if (contPasos >= 333)
@@ -105,7 +119,8 @@ void MovimientoP::update(int delta){
 				if (colAux != 1 && colAux != 4 && colAux != 5){
 					direccion = dDS;
 					pEstado->setCamara(nextPos.x, nextPos.y);
-					pObj->changeAnimV(0); // posiciona la 'j' de la matriz de la animacion
+				//	pObj->changeAnimV(0); // posiciona la 'j' de la matriz de la animacion
+					pObj->IndiceAnim = 0;
 					pObj->setAbsRect(nextPos.x, nextPos.y);
 				}
 				moviendose = true;
@@ -116,7 +131,8 @@ void MovimientoP::update(int delta){
 				if (colAux != 1 && colAux != 4 && colAux != 5){
 					direccion = dDI;
 					pEstado->setCamara(nextPos.x, nextPos.y);
-					pObj->changeAnimV(3);
+				//	pObj->changeAnimV(3);
+					pObj->IndiceAnim = 3;
 					pObj->setAbsRect(nextPos.x, nextPos.y);
 				}
 				moviendose = true;
@@ -127,7 +143,8 @@ void MovimientoP::update(int delta){
 				if (colAux != 1 && colAux != 4 && colAux != 5){
 					direccion = dII;
 					pEstado->setCamara(nextPos.x, nextPos.y);
-					pObj->changeAnimV(7);
+				//pObj->changeAnimV(7);
+					pObj->IndiceAnim = 7;
 					pObj->setAbsRect(nextPos.x, nextPos.y);
 				}
 				moviendose = true;
@@ -138,7 +155,8 @@ void MovimientoP::update(int delta){
 				if (colAux != 1 && colAux != 4 && colAux != 5){
 					direccion = dIS;
 					pEstado->setCamara(nextPos.x, nextPos.y);
-					pObj->changeAnimV(2);
+					//pObj->changeAnimV(2);
+					pObj->IndiceAnim = 2;
 					pObj->setAbsRect(nextPos.x, nextPos.y);
 				}
 				moviendose = true;
@@ -146,11 +164,12 @@ void MovimientoP::update(int delta){
 			else if (pObj->getPJuego()->input.arriba){
 				nextPos.x = 0; nextPos.y = -1 * pObj->velocity.x*delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
-				if (colAux != 1 && colAux != 4 && colAux != 5){
+				if (colAux != 1 && colAux != 4 && colAux != 5) {
 					direccion = Up;
 					pObj->setAbsRect(nextPos.x, nextPos.y);
 					pEstado->setCamara(nextPos.x, nextPos.y);
-					pObj->changeAnimV(4);
+					//	pObj->changeAnimV(4);
+					pObj->IndiceAnim = 4;
 				}
 				moviendose = true;
 			}
@@ -160,7 +179,8 @@ void MovimientoP::update(int delta){
 				if (colAux != 1 && colAux != 4 && colAux != 5){
 					direccion = Right;
 					pEstado->setCamara(nextPos.x, nextPos.y);
-					pObj->changeAnimV(6);
+					//pObj->changeAnimV(6);
+					pObj->IndiceAnim = 6;
 					pObj->setAbsRect(nextPos.x, nextPos.y);
 				}
 				moviendose = true;
@@ -171,7 +191,8 @@ void MovimientoP::update(int delta){
 				if (colAux != 1 && colAux != 4 && colAux != 5){
 					direccion = Down;
 					pEstado->setCamara(nextPos.x, nextPos.y);
-					pObj->changeAnimV(5);
+					//pObj->changeAnimV(5);
+					pObj->IndiceAnim = 5;
 					pObj->setAbsRect(nextPos.x, nextPos.y);
 				}
 				moviendose = true;
@@ -182,14 +203,15 @@ void MovimientoP::update(int delta){
 				if (colAux != 1 && colAux != 4 && colAux != 5){
 					direccion = Left;
 					pEstado->setCamara(nextPos.x, nextPos.y);
-					pObj->changeAnimV(1);
+					//pObj->changeAnimV(1);
+					pObj->IndiceAnim = 1;
 					pObj->setAbsRect(nextPos.x, nextPos.y);
 				}
 				moviendose = true;
 			}
 			else moviendose = false;
 
-
+			pObj->changeAnimV(pObj->IndiceAnim);
 			//RECOLECTOR PUEDE COGER OBJETOS
 			Mochila* mochilaAux = static_cast<Mochila*> (static_cast<Nivel1*>(pEstado)->getRecolector()->dameComponente("Mochila"));
 			colAux = pCBox->isColiding(nextPos, info);

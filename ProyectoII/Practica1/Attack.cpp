@@ -28,6 +28,9 @@ void Attack::update(int delta){
 				enemigo->getPJuego()->cambiaVida(-enemigo->damage);
 				std::cout << "\n\n\nLa vida de " << nombre << " ha disminuido " << enemigo->damage << " puntos de salud.\n\n";
 				enemigo->getTarget()->herido = true;
+				if(posicion.x > enemigo->getTarget()->getColisionBox().x + enemigo->getTarget()->getColisionBox().w*0.5)
+				enemigo->getTarget()->changeAnimV(8, true);
+				else enemigo->getTarget()->changeAnimV(9, true);
 
 				enemigo->getPJuego()->getEstadoActual()->reproduceFx("Golpe", enemigo->getRect().x, enemigo->getRect().y, 0);
 				if (nombre == "Zhenia"){ enemigo->getPJuego()->getEstadoActual()->reproduceFx("ZheniaDano", enemigo->getRect().x, enemigo->getRect().y, 0); }
