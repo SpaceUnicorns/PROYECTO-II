@@ -132,6 +132,27 @@ void juegoPG::handle_event(){
 
 	int StickX, StickY;
 	bool hayMando = true;
+
+
+		int MaxJoysticks = SDL_NumJoysticks();
+		int ControllerIndex = 0;
+		for (int JoystickIndex = 0; JoystickIndex < MaxJoysticks; ++JoystickIndex)
+		{
+			if (!SDL_IsGameController(JoystickIndex))
+			{
+				continue;
+			}
+			if (ControllerIndex >= 2)
+			{
+				break;
+			}
+			Controller[ControllerIndex] = SDL_GameControllerOpen(JoystickIndex);
+
+			SDL_Joystick *JoystickHandle = SDL_GameControllerGetJoystick(Controller[ControllerIndex]);
+			RumbleHandles[ControllerIndex] = SDL_HapticOpenFromJoystick(JoystickHandle);
+			ControllerIndex++;
+		}
+
 	if (Controller[0] != NULL){
 		for (int ControllerIndex = 0; ControllerIndex < 2; ++ControllerIndex){
 
