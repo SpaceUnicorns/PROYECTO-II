@@ -14,6 +14,7 @@ follow::follow(ObjetoJuego* ent, ObjetoPG* tg, GrafoMapa* m, bool aliado) : Comp
 	al = aliado;
 	framerate = 0;
 	pCBox = static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"));
+	reFollow = false;
 }
 
 
@@ -76,12 +77,12 @@ void follow::doFollow()
 	map->transformaCoord(x, y);
 	map->transformaCoord(xx, yy);
 
-	
+
 	/*pObj->setRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
 	pObj->setAbsRect((pObj->getAbsRect().x / x) - 51, (pObj->getAbsRect().y / y) - 31);
 	static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + 15, pObj->getRect().y + 40);*/
 	//Resolvemos el camino
-	if (x > 0 && xx > 0 && y > 0 && yy > 0 && y < map->dameAltura()-1 && yy < map->dameAltura()-1 && x < map->dameAnchura() && xx < map->dameAnchura()){
+	if (x > 0 && xx > 0 && y > 0 && yy > 0 && y < map->dameAltura() - 1 && yy < map->dameAltura() - 1 && x < map->dameAnchura() && xx < map->dameAnchura()){
 		map->solve(map->XYToNode(x, y), map->XYToNode(xx, yy), &path, &coste);
 		coste = 0;
 		int auxX, auxY;
@@ -130,40 +131,40 @@ void follow::lateUpdate(int delta){
 		int rnd = rand() % 3 + 1;
 		pObj->getPJuego()->getEstadoActual()->reproduceFx("Silbido" + to_string(rnd), target->getRect().x, target->getRect().y, 0);
 	}
-	
-		//Primero calculamos posiciones absolutas y calculamos luego la distancia euclidea
-		int x, y, xx, yy;
-		int auxX, auxY;
-		x = pObj->getColisionBox().x;
-		y = pObj->getColisionBox().y;
-		if (target){
-			xx = target->getColisionBox().x;
-			yy = target->getColisionBox().y;
-		}
-		else
-		{
-			xx = x; yy = y;
-		}
-		auxX = x; auxY = y;
-		x = x + (x - xx);
-		y = y + (y - yy)+2;
-		xx = xx + (auxX - xx);
-		yy = yy + (auxY - yy)+2;
 
-		if (xx >= x) auxX = xx - x;
-		else auxX = x - xx;
+	//Primero calculamos posiciones absolutas y calculamos luego la distancia euclidea
+	int x, y, xx, yy;
+	int auxX, auxY;
+	x = pObj->getColisionBox().x;
+	y = pObj->getColisionBox().y;
+	if (target){
+		xx = target->getColisionBox().x;
+		yy = target->getColisionBox().y;
+	}
+	else
+	{
+		xx = x; yy = y;
+	}
+	auxX = x; auxY = y;
+	x = x + (x - xx);
+	y = y + (y - yy) + 2;
+	xx = xx + (auxX - xx);
+	yy = yy + (auxY - yy) + 2;
 
-		if (yy >= y) auxY = yy - y;
-		else auxY = y - yy;
+	if (xx >= x) auxX = xx - x;
+	else auxX = x - xx;
 
-		//Si la distancia es menor de cierto valor, devolvemos following a false
-		if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) < 50){
-			following = false;
-			direccion.clear();
-			cont = 0;
-			path.clear();
+	if (yy >= y) auxY = yy - y;
+	else auxY = y - yy;
 
-		}
+	//Si la distancia es menor de cierto valor, devolvemos following a false
+	if ((float)sqrt((double)(auxX*auxX) + (double)(auxY*auxY)) < 50){
+		following = false;
+		direccion.clear();
+		cont = 0;
+		path.clear();
+
+	}
 	if (following)
 	{
 		contPasos += delta;
@@ -252,71 +253,230 @@ void follow::lateUpdate(int delta){
 				pObj->changeAnimH();
 				framerate = 0;
 			}
-			framerate+=delta;
+			framerate += delta;
 			dir = direccion[cont];
 			switch (direccion[cont])
 			{
+				//no esta muy fino y a veces se sale si vemos k se va a salir del follow le movemo en direccion contraria y recalculamos
 			case 0:
-				pObj->setRect(0, -2*delta/16);
-				pObj->setAbsRect(0, -2*delta/16);
-				paso-=delta/4;
-				pObj->changeAnimV(4);
+				nextPos.y = -2 * delta / 16;
+				colAux = pCBox->isColiding(nextPos, info);
+				if (colAux != 1 && colAux != 5 && colAux != 4){
+					pObj->setRect(0, -2 * delta / 16);
+					pObj->setAbsRect(0, -2 * delta / 16);
+					paso -= delta / 4;
+					pObj->changeAnimV(4);
+				}
+				else{
+					pObj->setRect(2 * delta / 16, 1 * delta / 16);
+					pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(3);
+					doFollow();
+				}
 				break;
 			case 1:
-				pObj->setRect(2*delta / 16, -1*delta / 16);
-				pObj->setAbsRect(2 * delta / 16, -1 * delta / 16);
-				paso -= delta/ 7;
-				pObj->changeAnimV(0);
+				nextPos.x = 2 * delta / 16; nextPos.y = -1 * delta / 16;
+				colAux = pCBox->isColiding(nextPos, info);
+				if (colAux != 1 && colAux != 5 && colAux != 4){
+					pObj->setRect(2 * delta / 16, -1 * delta / 16);
+					pObj->setAbsRect(2 * delta / 16, -1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(0);
+				}
+				else{
+					pObj->setRect(-2 * delta / 16, 1 * delta / 16);
+					pObj->setAbsRect(-2 * delta / 16, 1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(7);
+					doFollow();
+				}
 				break;
 			case 2:
-				pObj->setRect(2 * delta / 16, 0);
-				pObj->setAbsRect(2 * delta / 16, 0);
-				paso-=delta/2;
-				pObj->changeAnimV(6);
+				nextPos.x = 2 * delta / 16;
+				colAux = pCBox->isColiding(nextPos, info);
+				if (colAux != 1 && colAux != 5 && colAux != 4){
+					pObj->setRect(2 * delta / 16, 0);
+					pObj->setAbsRect(2 * delta / 16, 0);
+					paso -= delta / 2;
+					pObj->changeAnimV(6);
+				}
+				else{
+					pObj->setRect(-2 * delta / 16, 0);
+					pObj->setAbsRect(-2 * delta / 16, 0);
+					paso -= delta / 8;
+					pObj->changeAnimV(1);
+					doFollow();
+				}
 				break;
 			case 3:
-				pObj->setRect(2 * delta / 16, 1 * delta / 16);
-				pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
-				paso -= delta/7;
-				pObj->changeAnimV(3);
+				nextPos.x = 2 * delta / 16; nextPos.y = 1 * delta / 16;
+				colAux = pCBox->isColiding(nextPos, info);
+
+				if (colAux != 1 && colAux != 5 && colAux != 4){
+					pObj->setRect(2 * delta / 16, 1 * delta / 16);
+					pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(3);
+				}
+				else{
+					pObj->setRect(-2 * delta / 16, -1 * delta / 16);
+					pObj->setAbsRect(-2 * delta / 16, -1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(2);
+					doFollow();
+				}
 				break;
 			case 4:
-				pObj->setRect(0, 2 * delta / 16);
-				pObj->setAbsRect(0, 2 * delta / 16);
-				paso -= delta / 4;
-				pObj->changeAnimV(5);
+				nextPos.y = 2 * delta / 16;
+				colAux = pCBox->isColiding(nextPos, info);
+
+				if (colAux != 1 && colAux != 5 && colAux != 4){
+					pObj->setRect(0, 2 * delta / 16);
+					pObj->setAbsRect(0, 2 * delta / 16);
+					paso -= delta / 4;
+					pObj->changeAnimV(5);
+				}
+				else {
+					pObj->setRect(2 * delta / 16, 1 * delta / 16);
+					pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(3);
+					doFollow();
+				}
 				break;
 			case 5:
-				pObj->setRect(-2 * delta / 16, 1 * delta / 16);
-				pObj->setAbsRect(-2 * delta / 16, 1 * delta / 16);
-				paso -= delta / 7;
-				pObj->changeAnimV(7);
+				nextPos.x = -2 * delta / 16; nextPos.y = 1 * delta / 16;
+				colAux = pCBox->isColiding(nextPos, info);
+
+				if (colAux != 1 && colAux != 5 && colAux != 4){
+					pObj->setRect(-2 * delta / 16, 1 * delta / 16);
+					pObj->setAbsRect(-2 * delta / 16, 1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(7);
+				}
+				else{
+					pObj->setRect(2 * delta / 16, -1 * delta / 16);
+					pObj->setAbsRect(2 * delta / 16, -1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(0);
+					doFollow();
+				}
 				break;
 			case 6:
-				pObj->setRect(-2 * delta / 16, 0);
-				pObj->setAbsRect(-2 * delta / 16, 0);
-				paso -= delta / 8;
-				pObj->changeAnimV(1);
+				nextPos.x = -2 * delta / 16;
+				colAux = pCBox->isColiding(nextPos, info);
+
+				if (colAux != 1 && colAux != 5 && colAux != 4){
+					pObj->setRect(-2 * delta / 16, 0);
+					pObj->setAbsRect(-2 * delta / 16, 0);
+					paso -= delta / 8;
+					pObj->changeAnimV(1);
+				}
+				else{
+					pObj->setRect(2 * delta / 16, 0);
+					pObj->setAbsRect(2 * delta / 16, 0);
+					paso -= delta / 2;
+					pObj->changeAnimV(6);
+					doFollow();
+				}
 				break;
 			case 7:
-				pObj->setRect(-2 * delta / 16, -1 * delta / 16);
-				pObj->setAbsRect(-2 * delta / 16, -1 * delta / 16);
-				paso -= delta / 7;
-				pObj->changeAnimV(2);
+				nextPos.x = -2 * delta / 16; nextPos.y = -1 * delta / 16;
+				colAux = pCBox->isColiding(nextPos, info);
+
+				if (colAux != 1 && colAux != 5 && colAux != 4){
+					pObj->setRect(-2 * delta / 16, -1 * delta / 16);
+					pObj->setAbsRect(-2 * delta / 16, -1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(2);
+				}
+				else{
+					pObj->setRect(2 * delta / 16, 1 * delta / 16);
+					pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
+					paso -= delta / 7;
+					pObj->changeAnimV(3);
+					doFollow();
+				}
 				break;
 			}
+			nextPos.x = nextPos.y = 0;
 			static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + pObj->getRect().w*0.3, pObj->getRect().y + pObj->getRect().h*0.8);
-			if (paso <= 0) { 
-				paso = 122; 
+			if (paso <= 0) {
+				paso = 122;
 				cont++;
-				if (cont == direccion.size()){ 
+				if (cont == direccion.size()){
 					following = false;
 					direccion.clear();
 					path.clear();
-					cont = 0; 
-				
+					cont = 0;
+					//Si la distancia aun así es demasiado amplia intentamos mover al personaje a capon, teniendo en cuenta las colisiones
+					float a, b;
+					a = abs(pObj->getAbsRect().x - target->getAbsRect().x);
+					b = abs(pObj->getAbsRect().y - target->getAbsRect().y);
+					if ((float)sqrt((double)(a*a) + (double)(b*b) > 100)) reFollow = true;
 				}
 			}
 		}
 	}
+	if (reFollow){
+		float a, b;
+		a = pObj->getAbsRect().x - target->getAbsRect().x;
+		b = pObj->getAbsRect().y - target->getAbsRect().y;
+
+		int colAux;
+		ObjetoPG* info;
+
+		if (a > 60){
+			if (b > 30){
+				nextPos.x = 2 * delta / 16; nextPos.y = -1 * delta / 16;
+				pObj->changeAnimV(0);
+			}
+			else if (b < -30){
+				nextPos.x = 2 * delta / 16; nextPos.y = 1 * delta / 16;
+				pObj->changeAnimV(3);
+			}
+			else{
+				nextPos.x = -2 * delta / 16;
+				pObj->changeAnimV(6);
+			}
+		}
+		else if (a < -60){
+			if (b > 30){
+				nextPos.x = -2 * delta / 16; nextPos.y = -1 * delta / 16;
+				pObj->changeAnimV(2);
+			}
+			else if (b < -30){
+				nextPos.x = -2 * delta / 16; nextPos.y = -+-1 * delta / 16;
+				pObj->changeAnimV(7);
+			}
+			else{
+				nextPos.x = -2 * delta / 16;
+				pObj->changeAnimV(1);
+			}
+		}
+		else {
+			if (b > 30){
+				nextPos.y = -2 * delta / 16;
+				pObj->changeAnimV(4);
+			}
+			else{
+				nextPos.y = 2 * delta / 16;
+				pObj->changeAnimV(3);
+			}
+		}
+		colAux = pCBox->isColiding(nextPos, info);
+		if (colAux != 1 && colAux != 5 && colAux != 4){
+			pObj->setRect(nextPos.x, nextPos.y);
+			pObj->setAbsRect(nextPos.x, nextPos.y);
+		}
+
+		nextPos.x = nextPos.y = 0;
+		static_cast<ColisionBox*>(pObj->dameComponente("ColisionBox"))->setRectBox(pObj->getRect().x + pObj->getRect().w*0.3, pObj->getRect().y + pObj->getRect().h*0.8);
+
+		a = abs(a);
+		b = abs(b);
+		if ((float)sqrt((double)(a*a) + (double)(b*b) > 100)) reFollow = false;
+	}
 }
+
