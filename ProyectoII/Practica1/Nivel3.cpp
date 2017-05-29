@@ -18,10 +18,13 @@ Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 
 	vecZonasOscuras.resize(0);
 
-	/*
-	rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
-	rectZonaOscura.x = 6050; rectZonaOscura.y = 7750;
-	vecZonasOscuras.push_back(rectZonaOscura);*/
+	rectZonaOscura.h = 1940; rectZonaOscura.w = 1600;
+	rectZonaOscura.x = 3022; rectZonaOscura.y = 520;
+	vecZonasOscuras.push_back(rectZonaOscura);
+
+	rectZonaOscura.h = 1940; rectZonaOscura.w = 1900;
+	rectZonaOscura.x = 3808; rectZonaOscura.y = 2114;
+	vecZonasOscuras.push_back(rectZonaOscura);
 }
 
 void Nivel3::cargaTriggers(){
