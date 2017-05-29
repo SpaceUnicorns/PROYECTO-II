@@ -106,8 +106,15 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	rectEquipo.h = rectEquipo.w = 50;  animEquipo.h = animEquipo.w = 100;
 	animEquipo.y = animEquipo.x = 0;
 
+	/*rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
+	rectZonaOscura.x = 7050; rectZonaOscura.y = 9150;
+	vecZonasOscuras.push_back(rectZonaOscura);
+
+
 	rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
-	rectZonaOscura.x = -100; rectZonaOscura.y = 500;
+	rectZonaOscura.x = 6050; rectZonaOscura.y = 7750;
+	vecZonasOscuras.push_back(rectZonaOscura);*/
+
 	hasTorch = false;
 	alpha = 255;
 	firsTime = !firstT;
@@ -248,8 +255,11 @@ void Nivel1::draw(){
 		for (ObjetoJuego* trg : vecTriggers) trg->draw();
 
 		centroRel.x += camara.x; centroRel.y += camara.y;
-		rectZonaOscura.x -= camara.x;
-		rectZonaOscura.y -= camara.y;
+		
+		for (int i = 0; i < vecZonasOscuras.size(); i++){
+			vecZonasOscuras[i].x -= camara.x;
+			vecZonasOscuras[i].y -= camara.y;
+		}
 
 		setCamara(0, 0); //Se reinicia el offset a 0
 		EstadoPG::nieve();
@@ -260,12 +270,13 @@ void Nivel1::draw(){
 
 			//Poner aquí todas las zonas oscuras del mapa
 			pJuego->getTextura(TZonaOscura)->setBlendMode(pJuego->getRender(), SDL_BLENDMODE_BLEND);
-			pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura, 240 + (aux / 2));
+			for (SDL_Rect zO : vecZonasOscuras)
+			pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), zO, 240 + (aux / 2));
 			pCazador->lateDraw();
 			pRecolector->lateDraw();
 
 		}
-		else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
+		else for (SDL_Rect zO : vecZonasOscuras) pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), zO);
 
 		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
 
@@ -349,8 +360,10 @@ void Nivel1::swPlayer(){
 		for (ObjetoJuego* trg : vecTriggers) trg->draw();
 
 		centroRel.x += camara.x; centroRel.y += camara.y;
-		rectZonaOscura.x -= camara.x;
-		rectZonaOscura.y -= camara.y;
+		for (int i = 0; i < vecZonasOscuras.size(); i++){
+			vecZonasOscuras[i].x -= camara.x;
+			vecZonasOscuras[i].y -= camara.y;
+		}
 
 		setCamara(0, 0); //Se reinicia el offset a 0
 		EstadoPG::nieve();
@@ -361,12 +374,12 @@ void Nivel1::swPlayer(){
 
 			//Poner aquí todas las zonas oscuras del mapa
 			pJuego->getTextura(TZonaOscura)->setBlendMode(pJuego->getRender(), SDL_BLENDMODE_BLEND);
-			pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura, 240 + (aux / 2));
+			for (SDL_Rect zO : vecZonasOscuras) pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), zO, 240 + (aux / 2));
 			pCazador->lateDraw();
 			pRecolector->lateDraw();
 
 		}
-		else pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), rectZonaOscura);
+		else for (SDL_Rect zO : vecZonasOscuras) pJuego->getTextura(TZonaOscura)->draw(pJuego->getRender(), zO);
 
 		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
 

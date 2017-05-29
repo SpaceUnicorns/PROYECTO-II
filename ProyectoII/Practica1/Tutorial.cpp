@@ -61,6 +61,8 @@ Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posR
 
 	pCazador->setTerreno(3);
 	pRecolector->setTerreno(3);
+
+	vecZonasOscuras.resize(0);
 }
 
 void Tutorial::onKeyUp(char k){

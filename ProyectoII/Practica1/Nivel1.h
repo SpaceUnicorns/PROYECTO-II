@@ -81,6 +81,7 @@ public:
 	std::vector<int>& getTriggerInfo() { return infoTriggers; }
 protected:
 	
+	std::vector <SDL_Rect> vecZonasOscuras;
 	virtual void cargaTriggers();
 	struct Cab{
 		bool visitadas;

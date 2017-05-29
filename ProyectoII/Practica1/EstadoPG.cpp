@@ -425,7 +425,7 @@ void EstadoPG::cargaMapa(std::string txt, std::vector<char>& mapa)
 	Tile aux2;
 	TrianguloBorde auxBorde;
 	Punto auxPunto;
-	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 120; rectAux.h = 81;
+	SDL_Rect rectAux; rectAux.x = rectAux.y = -1; rectAux.w = 119; rectAux.h = 80;
 	f.open(txt, std::ios::in);
 	int tile;
 	while (!f.eof() && !f.fail()){

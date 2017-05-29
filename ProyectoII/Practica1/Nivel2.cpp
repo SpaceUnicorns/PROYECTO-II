@@ -29,6 +29,8 @@ void Nivel2::cargaTriggers(){
 	auxTr->setTriggerDim(100, 100);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
+
+	//vecZonasOscuras.resize(0);
 }
 
 Nivel2::~Nivel2()
