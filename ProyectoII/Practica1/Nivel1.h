@@ -40,7 +40,7 @@ public:
 	void setMode(int m){ mode = (Mode)m; }
 	void fadeOut(int time);
 	void fadeIn(int time);
-	virtual void callback();
+	virtual void callback(bool cabania = true);
 	virtual void saveFile();
 	virtual void saveMochila();
 
@@ -139,10 +139,11 @@ class changeScene :
 	public Componente
 {
 public:
-	changeScene(ObjetoJuego* ent, Nivel1* aux) : Componente(ent){
+	changeScene(ObjetoJuego* ent, Nivel1* aux, bool isCabania = true) : Componente(ent){
 		reacciona = false;
 		pObj = dynamic_cast<Trigger*>(ent);
 		this->aux = aux;
+		cabania = isCabania;
 	};
 	virtual ~changeScene(){};
 	virtual void callback();
@@ -155,6 +156,7 @@ public:
 	virtual void draw(){};
 
 private:
+	bool cabania;
 	bool reacciona;
 	Trigger* pObj;
 	Nivel1* aux;
