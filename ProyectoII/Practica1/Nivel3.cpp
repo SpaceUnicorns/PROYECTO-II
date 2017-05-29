@@ -65,6 +65,10 @@ void Nivel3::update(int delta){
 	if (change){
 		
 		Nivel1::fadeOut(40);
+		paraMusica(" ", false);
+		std::string auxStr = "cmd /c ..\\videos\\final.exe /i1004  /x0 /y0 /w" + to_string(pJuego->getScreenWidth()) + " /h" + to_string(pJuego->getScreenHeight()) + " /u3";
+		const char* c = auxStr.c_str();
+		std::system(c);
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();
 		pJuego->estados.push(new MenuPG(pJuego, 0));

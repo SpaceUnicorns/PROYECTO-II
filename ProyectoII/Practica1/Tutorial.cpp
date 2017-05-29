@@ -62,6 +62,7 @@ Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posR
 	pRecolector->setTerreno(3);
 
 	vecZonasOscuras.resize(0);
+	shownVideo = false;
 }
 
 void Tutorial::onKeyUp(char k){
@@ -75,6 +76,7 @@ void Tutorial::onKeyUp(char k){
 }
 
 void Tutorial::update(int delta){
+	
 	Nivel1::update(delta);
 	if (change){
 		saveFile();

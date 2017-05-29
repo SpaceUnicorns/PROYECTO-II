@@ -117,6 +117,8 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	firstDraw = true;
 	contadorSw = 0;
 	switching = false;
+
+
 }
 
 void Nivel1::cargaTriggers(){
