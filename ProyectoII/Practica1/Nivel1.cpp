@@ -539,8 +539,8 @@ void Nivel1::onKeyUp(char k) {
 			escribe("LI", centroRel.x + 20, centroRel.y + 50, archivoObj);
 			break;
 		case 'v': //Lobo
-			vecObj.push_back(new Lobo(pJuego, pCazador, pRecolector, mapa, pCazador->getRect().x + 30, pCazador->getRect().y + 30));
-			escribe("Lobo", centroRel.x + 30, centroRel.y + 30, archivoObj);
+			vecObj.push_back(new Lobo(pJuego, pCazador, pRecolector, mapa, pCazador->getRect().x + 30, pCazador->getRect().y + 60));
+			escribe("Lobo", centroRel.x + 30, centroRel.y + 60, archivoObj);
 			break;
 		case '2':
 			vecObj.push_back(new Valla(pJuego, pCazador->getRect().x +45, pCazador->getRect().y - 20, "A"));
@@ -611,7 +611,7 @@ void Nivel1::cargaObj(std:: string name){
 			else if (type == "Yesca") vecObj.push_back(new Yesca(pJuego, pos.x, pos.y));
 			else if (type == "TrampaCerrada") vecObj.push_back(new TrampaCerrada(pJuego, pos.x, pos.y));
 			else if (type == "Lobo") vecObj.push_back(new Lobo(pJuego, pCazador, pRecolector,mapa, pos.x, pos.y));
-			else if (type == "Carroña") vecObj.push_back(new Carroña(pJuego, pos.x, pos.y));
+			else if (type[0] == 'C' && type [3] == 'r') vecObj.push_back(new Carroña(pJuego, pos.x, pos.y));
 			else if (type == "HS") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "HS"));
 			else if (type == "HI")huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "HI"));
 			else if (type == "LS") huellasCamino.push_back(new HuellasCamino(pJuego, pos.x, pos.y, "LS"));
