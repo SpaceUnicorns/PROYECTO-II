@@ -1,6 +1,7 @@
 #include "Nivel3.h"
 #include "Huella.h"
 #include "MenuPG.h"
+#include "TextCb.h"
 
 Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, objetos, posRec, posCaz, act,"../sounds/reverb/ReverbCueva.wav", firstT)
 {
@@ -54,6 +55,12 @@ void Nivel3::cargaTriggers(){
 	auxTr->setCallback(new changeScene(auxTr, this, false));
 	auxTr->setTriggerDim(100, 400);
 	vecTriggers.push_back(auxTr);
+
+	auxTr = new Trigger(pJuego, 3396, 626, pCazador, pRecolector, 2);
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogoN3-1.txt"));
+	auxTr->setTriggerDim(200, 200);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); 
 	
 }
 
