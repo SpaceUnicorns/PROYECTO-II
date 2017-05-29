@@ -348,8 +348,18 @@ void EstadoPG::draw(){
 	pJuego->getTextura(et)->draw(pJuego->getRender(), fondo);
 
 	if (autoSnow) {
-		pJuego->getTextura(TTitulo)->draw(pJuego->getRender(), title);
 		nieve();
+		pJuego->getTextura(TTitulo)->draw(pJuego->getRender(), title);
+		title.x = pJuego->getScreenWidth() / 2 + 450;
+		title.y = pJuego->getScreenHeight() - 80;
+		title.h = 50;
+		title.w = 50;
+		pJuego->getTextura(TLogo)->draw(pJuego->getRender(), title);
+		title.x = pJuego->getScreenWidth() / 2 + 30;
+		title.y = 0;
+		title.h = pJuego->getScreenHeight();
+		title.w = 500;
+
 	}
 	//drawFont();
 

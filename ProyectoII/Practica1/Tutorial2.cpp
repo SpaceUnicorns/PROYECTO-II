@@ -11,29 +11,27 @@ Tutorial2::Tutorial2(juegoPG*jug, std::string map, std::string objetos, Punto po
 	Trigger *auxTr; 
 
 	auxTr = new Trigger(pJuego, 6810, 10280, pCazador, pRecolector, 1); //nono1
-
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial1Zhenya.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
 
-	auxTr = new Trigger(pJuego, 7500, 9900, pCazador, pRecolector,2); //como equiparlo
-
+	auxTr = new Trigger(pJuego, 7500, 9900, pCazador, pRecolector, 2); //como equiparlo
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial2Zhenia.txt"));
 	auxTr->setTriggerDim(250, 250);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
-	auxTr = new Trigger(pJuego, 8000, 10000, pCazador, pRecolector,3); //Cómo pegar
+	auxTr = new Trigger(pJuego, 8000, 9700, pCazador, pRecolector, 3); //Cómo pegar
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial3Zhenya.txt"));
-	auxTr->setTriggerDim(250, 250);
+	auxTr->setTriggerDim(200, 800);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
-	auxTr = new Trigger(pJuego, 8125, 9500, pCazador, pRecolector,4); //menu de pausa
+	auxTr = new Trigger(pJuego, 7450, 9450, pCazador, pRecolector,4); //menu de pausa
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/tutorial4Zhenia.txt"));
-	auxTr->setTriggerDim(500, 500);
+	auxTr->setTriggerDim(200, 800);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
