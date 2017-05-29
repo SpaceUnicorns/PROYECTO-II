@@ -6,7 +6,7 @@ class Nivel2 :
 public:
 	Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT = true);
 	virtual ~Nivel2();
-	virtual void callback();
+	virtual void callback(bool cabania = true);
 	virtual void update(int delta);
 	virtual void cargaTriggers();
 private:

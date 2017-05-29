@@ -634,7 +634,7 @@ void Nivel1::cargaObj(std:: string name){
 	}
 	f.close();
 }
-void Nivel1::callback(){
+void Nivel1::callback(bool cabania){
 	if (!firsTime){
 		changeCabania = true;
 		paraMusica("", false);
@@ -665,7 +665,7 @@ Nivel1::~Nivel1()
 }
 void changeScene::callback(){
 	if (!reacciona){
-		aux->callback();
+		aux->callback(cabania);
 	}
 	reacciona = true;
 }

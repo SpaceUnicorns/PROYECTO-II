@@ -2,7 +2,7 @@
 #include "Nivel3.h"
 #include "Cabania.h"
 
-Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, objetos, posRec, posCaz, act,"../sounds/reverb/ReverbBosque.wav", firstT)
+Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, " ", posRec, posCaz, act,"../sounds/reverb/ReverbBosque.wav", firstT)
 {
 	level = "Nivel2";
 	firsTime = true;
@@ -10,7 +10,7 @@ Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	visible = true;
 	
 	cargaTriggers();
-	//cargaObj(objetos);
+	cargaObj(objetos);
 	rectZonaOscura.h = 2000; rectZonaOscura.w = 0;
 	rectZonaOscura.x = 1050; rectZonaOscura.y = 0;
 
@@ -21,23 +21,23 @@ void Nivel2::cargaTriggers(){
 	
 	Trigger* auxTr;
 	auxTr = new Trigger(pJuego, 2323, 2554, pCazador, pRecolector, 1);
-	auxTr->setCallback(new changeScene(auxTr, this));
+	auxTr->setCallback(new changeScene(auxTr, this, false));
 	auxTr->setTriggerDim(100, 800);
 	vecTriggers.push_back(auxTr);
 	TriggerLevel1 = auxTr;
 	infoTriggers.push_back(0);
 
 	auxTr = new Trigger(pJuego, 3200, 1607, pCazador, pRecolector, 1);
-	auxTr->setCallback(new changeScene(auxTr, this));
+	auxTr->setCallback(new changeScene(auxTr, this, false));
 	auxTr->setTriggerDim(100, 100);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
 
-	auxTr = new Trigger(pJuego, 4907 + 62, 1857 + 256, pCazador, pRecolector, numCab, true);
+	/*auxTr = new Trigger(pJuego, 4907 + 62, 1857 + 256, pCazador, pRecolector, numCab, true);
 	auxTr->setCallback(new changeScene(auxTr, this));
 	auxTr->setTriggerDim(60, 80);
 	TriggerCabania = auxTr;
-	vecTriggers.push_back(auxTr);
+	vecTriggers.push_back(auxTr);*/
 }
 
 Nivel2::~Nivel2()
@@ -60,38 +60,6 @@ void Nivel2::update(int delta){
 			pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R", "../sounds/reverb/ReverbBosque.wav"));
 			delete borrar;
 		}
-		else if (pCazador->getColisionBox().y > TriggerCabania->getColisionBox().y - 5 || pRecolector->getColisionBox().y > TriggerCabania->getColisionBox().y - 5){
-			if (changeCabania){
-				if (activePlayer == "R"){
-					int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;
-					int y = pRecolector->getAbsRect().y - pCazador->getAbsRect().y;
-					pCazador->setRect(x + 20, y + 20);
-					pCazador->setAbsRect(x + 20, y + 20);
-					pCazador->setColRect(x + 20, y + 20);
-				}
-				else {
-					int x = pCazador->getAbsRect().x - pRecolector->getAbsRect().x;
-					int y = pCazador->getAbsRect().y - pRecolector->getAbsRect().y;
-					pRecolector->setRect(x + 20, y + 20);
-					pRecolector->setAbsRect(x + 20, y + 20);
-					pRecolector->setColRect(x + 20, y + 20);
-				}
-				bool visited = false;
-				int objCab = cabVisitadas[lastCabVisited].obj;
-				if (!cabVisitadas[lastCabVisited].visitadas){
-					visited = true;
-					cabVisitadas[lastCabVisited].visitadas = true;
-				}
-				fadeOut(40);
-				pJuego->cambiaVida(300);
-				saveFile();
-				pRecolector->salirEscondite();
-				pCazador->salirEscondite();
-				Punto rec; rec.x = 1550; rec.y = 700; Punto caz; caz.x = rec.x + 80; caz.y = rec.y;
-				pJuego->estados.push(new Cabania(pJuego, "../docs/cabania.txt", "../docs/cabaObj.txt", rec, caz, activePlayer, visited, objCab));
-				changeCabania = false;
-			}
-		}
 		else {
 			saveFile();
 			std::ofstream f;
@@ -107,7 +75,8 @@ void Nivel2::update(int delta){
 	}
 }
 
-void Nivel2::callback(){
-	change = true;
-	changeCabania = true;
+void Nivel2::callback(bool cabania){
+	if (cabania) changeCabania = true;
+	else change = true;
+	
 }
