@@ -89,7 +89,7 @@ void Tutorial2::update(int delta){
 	}
 }
 
-void Tutorial2::callback(){
+void Tutorial2::callback(bool cabania){
 	change = true;
 }
 

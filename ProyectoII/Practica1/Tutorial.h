@@ -7,7 +7,7 @@ public:
 	Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz);
 	virtual ~Tutorial();
 	virtual void onKeyUp(char k);
-	virtual void callback();
+	virtual void callback(bool cabania = true);
 	virtual void update(int delta);
 	virtual void draw(){
 		if (!shownVideo){

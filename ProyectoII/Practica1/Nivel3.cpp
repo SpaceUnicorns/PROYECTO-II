@@ -8,7 +8,7 @@ Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	level = "Nivel3";
 	firsTime = true;
 	change = false;
-	visible = true;
+	visible = false;
 
 	cargaTriggers();
 	cargaObj(objetos);

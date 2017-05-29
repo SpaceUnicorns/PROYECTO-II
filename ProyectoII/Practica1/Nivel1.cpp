@@ -39,7 +39,7 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	changeCabania = false;
 	mapa = new GrafoMapa();
 	mode = Play;
-	visible = true;
+	visible = false;
 	std::vector<char> mapAux;
 	cargaMapa(map, mapAux);
 	mapa->creaMapa(mapAux);

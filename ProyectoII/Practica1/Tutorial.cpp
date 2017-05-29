@@ -4,6 +4,7 @@
 #include "Equipo.h"
 #include "MCrafteo.h"
 
+
 Tutorial::Tutorial(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz) : Nivel1(jug, map, objetos, posRec, posCaz, "R", "../sounds/reverb/ReverbBosque.wav")
 {
 	firsTime = true;
@@ -92,7 +93,7 @@ void Tutorial::update(int delta){
 	}
 }
 
-void Tutorial::callback(){
+void Tutorial::callback(bool cabania){
 	change = true;
 	
 }

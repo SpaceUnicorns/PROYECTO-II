@@ -9,7 +9,7 @@ Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	level = "Nivel2";
 	firsTime = true;
 	change = false;
-	visible = true;
+	visible = false;
 	
 	cargaTriggers();
 	cargaObj(objetos);
