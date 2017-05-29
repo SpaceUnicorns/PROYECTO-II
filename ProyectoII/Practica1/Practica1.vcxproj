@@ -26,7 +26,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -126,6 +126,7 @@
     <ClCompile Include="Nivel1.cpp" />
     <ClCompile Include="Pico.cpp" />
     <ClCompile Include="Piedra.cpp" />
+    <ClCompile Include="Pozo.cpp" />
     <ClCompile Include="Recolector.cpp" />
     <ClCompile Include="TextCb.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Nivel1.h" />
     <ClInclude Include="Pico.h" />
     <ClInclude Include="Piedra.h" />
+    <ClInclude Include="Pozo.h" />
     <ClInclude Include="Recolector.h" />
     <ClInclude Include="TextCb.h" />
     <ClInclude Include="TexturasSDL.h" />

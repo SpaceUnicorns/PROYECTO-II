@@ -2,7 +2,7 @@
 #include "Nivel3.h"
 #include "Cabania.h"
 #include "TextCb.h"
-
+#include "Pozo.h"
 
 Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, " ", posRec, posCaz, act,"../sounds/reverb/ReverbBosque.wav", firstT)
 {
@@ -13,6 +13,8 @@ Nivel2::Nivel2(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	
 	cargaTriggers();
 	cargaObj(objetos);
+	vecObj.push_back(new Pozo(jug, 3225, 1632));
+
 	rectZonaOscura.h = 2000; rectZonaOscura.w = 0;
 	rectZonaOscura.x = 1050; rectZonaOscura.y = 0;
 
@@ -34,6 +36,13 @@ void Nivel2::cargaTriggers(){
 	auxTr->setTriggerDim(100, 100);
 	vecTriggers.push_back(auxTr);
 	infoTriggers.push_back(0);
+
+	auxTr = new Trigger(pJuego, 3210, 1617, pCazador, pRecolector, 7);
+	auxTr->setCallback(new changeScene(auxTr, this, false));
+	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogoN2-5.txt"));
+	auxTr->setTriggerDim(90, 90);
+	vecTriggers.push_back(auxTr);
+	infoTriggers.push_back(0); //cuerda
 
 	auxTr = new Trigger(pJuego, 2500, 2394, pCazador, pRecolector, 3);
 	auxTr->setCallback(new TextCb(auxTr, "../docs/textos/dialogoN2-1.txt"));
@@ -84,16 +93,20 @@ void Nivel2::update(int delta){
 			delete borrar;
 		}
 		else {
-			saveFile();
-			std::ofstream f;
-			f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\infoTriggers.txt");
-			f.close();
-			Nivel1::fadeOut(40);
-			EstadoJuego* borrar = pJuego->estados.top();
-			pJuego->estados.pop();
-			Punto caz; caz.x = 3456; caz.y = 696; Punto rec; rec.x = 3496; rec.y = 726;
-			pJuego->estados.push(new Nivel3(pJuego, "../docs/mapa3.txt", "../docs/objetosNivel3.txt", rec, caz, "R"));
-			delete borrar;
+			Mochila * auxM = static_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
+			if (pJuego->input.e && auxM->findItem("Cuerda")){
+				auxM->removeItem("Cuerda", 1);
+				saveFile();
+				std::ofstream f;
+				f.open(pJuego->getPath() + "\\Galiakberova\\partidaGuardada\\infoTriggers.txt");
+				f.close();
+				Nivel1::fadeOut(40);
+				EstadoJuego* borrar = pJuego->estados.top();
+				pJuego->estados.pop();
+				Punto caz; caz.x = 3456; caz.y = 696; Punto rec; rec.x = 3496; rec.y = 726;
+				pJuego->estados.push(new Nivel3(pJuego, "../docs/mapa3.txt", "../docs/objetosNivel3.txt", rec, caz, "R"));
+				delete borrar;
+			}
 		}
 	}
 }
@@ -105,10 +118,7 @@ void Nivel2::callback(bool cabania){
 }
 
 void Nivel2::onKeyUp(char k) {
-	switch (k) {
-	case '1':
-		std::cout << "X: " << pRecolector->getAbsRect().x << ", Y: " << pRecolector->getAbsRect().y << "\n";
-		break;
-	}
+	if (k != '1') Nivel1::onKeyUp(k);
+	else 	std::cout << "X: " << pRecolector->getAbsRect().x << ", Y: " << pRecolector->getAbsRect().y << "\n";
 
 }
