@@ -9,6 +9,7 @@ public:
 	virtual void callback(bool cabania = true);
 	virtual void update(int delta);
 	virtual void cargaTriggers();
+	void onKeyUp(char k);
 private:
 	Trigger* TriggerLevel1;
 	Trigger* TriggerCabania;
