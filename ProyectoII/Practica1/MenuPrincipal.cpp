@@ -61,19 +61,20 @@ void MenuPrincipal::update(int delta)
 
 			//IR AL NIVEL 1 6850, 9150
 			//Punto caz; caz.x = 6950; caz.y = 9150; Punto rec; rec.x = 7010; rec.y = 9130;
+			//Punto caz; caz.x = 1778; caz.y = 3576; Punto rec; rec.x = 2078; rec.y = 3596;
 			//====== FINAL DEL NIVEL ======= 3077 , 1260
 			//Punto caz; caz.x = 3090; caz.y = 1420; Punto rec; rec.x = 3120; rec.y = 1420;
 			//pJuego->estados.push(new Nivel1(pJuego, "../docs/mapa.txt", "../docs/objetosNivel1.txt", rec, caz, "R","../sounds/reverb/ReverbBosque.wav"));
 
 			//IR AL NIVEL 2
-			//Punto caz; caz.x = 2723; caz.y = 2394; Punto rec; rec.x = 2603; rec.y = 2394;
+			Punto caz; caz.x = 2723; caz.y = 2394; Punto rec; rec.x = 2603; rec.y = 2394;
 			//======= FINAL DEL NIVEL =========
 			//Punto caz; caz.x = 5031; caz.y = 917; Punto rec; rec.x = 5000; rec.y = 917; 
-			//pJuego->estados.push(new Nivel2(pJuego, "../docs/mapa2.txt", "../docs/objetosNivel2.txt", rec, caz, "R"));
+			pJuego->estados.push(new Nivel2(pJuego, "../docs/mapa2.txt", "../docs/objetosNivel2.txt", rec, caz, "R"));
 
 			//IR AL NIVEL 3
-			Punto caz; caz.x = 3456; caz.y = 696; Punto rec; rec.x = 3496; rec.y = 726;
-			pJuego->estados.push(new Nivel3(pJuego, "../docs/mapa3.txt", "../docs/objetosNivel3.txt", rec, caz, "R"));
+			/*Punto caz; caz.x = 3456; caz.y = 696; Punto rec; rec.x = 3496; rec.y = 726;
+			pJuego->estados.push(new Nivel3(pJuego, "../docs/mapa3.txt", "../docs/objetosNivel3.txt", rec, caz, "R"));*/
 			delete borrar;
 		}
 		else if (opcion == 3){
