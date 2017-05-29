@@ -52,8 +52,8 @@ void MenuPrincipal::update(int delta)
 			getPJuego()->estados.pop();
 			
 			//IR A TUTORIAL 1
-			Punto rec; rec.x = 6925; rec.y = 10265; Punto caz; caz.x = 0; caz.y = 0;
-			getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));
+			//Punto rec; rec.x = 6925; rec.y = 10265; Punto caz; caz.x = 0; caz.y = 0;
+			//getPJuego()->estados.push(new Tutorial(getPJuego(), "../docs/mapa1.txt", "../docs/objetosTutorial.txt", rec, caz));
 			
 			//IR A TUTORIAL 2
 			//Punto rec; rec.x = 0; rec.y = 0; Punto caz; caz.x = 6925; caz.y = 10260;
@@ -72,8 +72,8 @@ void MenuPrincipal::update(int delta)
 			pJuego->estados.push(new Nivel2(pJuego, "../docs/mapa2.txt", "../docs/objetosNivel2.txt", rec, caz, "R"));*/
 
 			//IR AL NIVEL 3
-			//Punto caz; caz.x = 3456; caz.y = 696; Punto rec; rec.x = 3496; rec.y = 726;
-			//pJuego->estados.push(new Nivel3(pJuego, "../docs/mapa3.txt", "../docs/objetosNivel3.txt", rec, caz, "R"));
+			Punto caz; caz.x = 3456; caz.y = 696; Punto rec; rec.x = 3496; rec.y = 726;
+			pJuego->estados.push(new Nivel3(pJuego, "../docs/mapa3.txt", "../docs/objetosNivel3.txt", rec, caz, "R"));
 			delete borrar;
 		}
 		else if (opcion == 3){

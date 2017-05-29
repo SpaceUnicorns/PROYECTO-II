@@ -106,14 +106,10 @@ Nivel1::Nivel1(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	rectEquipo.h = rectEquipo.w = 50;  animEquipo.h = animEquipo.w = 100;
 	animEquipo.y = animEquipo.x = 0;
 
-	/*rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
-	rectZonaOscura.x = 7050; rectZonaOscura.y = 9150;
+	rectZonaOscura.h = 2000;  rectZonaOscura.w = 2500;
+	rectZonaOscura.x = 1050; rectZonaOscura.y = 3600;
 	vecZonasOscuras.push_back(rectZonaOscura);
 
-
-	rectZonaOscura.h = 1400; rectZonaOscura.w = 1200;
-	rectZonaOscura.x = 6050; rectZonaOscura.y = 7750;
-	vecZonasOscuras.push_back(rectZonaOscura);*/
 
 	hasTorch = false;
 	alpha = 255;
