@@ -59,23 +59,23 @@ void Equipo::update(int delta)
 			if (cantidad == 0) equipado = Nada;
 			break;
 		case Pala:
-			if (pObj->getPJuego()->input.enter && cantidad > 0 && !pObj->herido){
+			/*if (cantidad > 0 && !pObj->herido){
 				//Rellenar en función de lo que haga
 				std::cout << "Has usado la pala\n";
 				mochila->removeItem("Pala", 1);
 				cantidad--;
 				delay = 1000;
-			}
+			}*/
 			if (cantidad == 0) equipado = Nada;
 			break;
 		case Pico:
-			if (pObj->getPJuego()->input.enter && cantidad > 0 && !pObj->herido){
+			/*if (pObj->getPJuego()->input.enter && cantidad > 0 && !pObj->herido){
 				//Rellenar en función de lo que haga
 				std::cout << "Has usado el pico\n";
 				mochila->removeItem("Pico", 1);
 				cantidad--;
 				delay = 1000;
-			}
+			}*/
 			if (cantidad == 0) equipado = Nada;
 			break;
 

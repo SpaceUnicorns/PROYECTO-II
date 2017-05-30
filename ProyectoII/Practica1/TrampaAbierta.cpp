@@ -4,13 +4,13 @@
 TrampaAbierta::TrampaAbierta(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
 	interactuable = true;
-	et = TCColision;
-	rect.w = 100;
-	rect.h = 60;
+	et = TTrampaAbierta;
+	rect.w = 40;
+	rect.h = 40;
 	activo = true;
 	nombre[0] = "1";
 	nombre.push_back("Trampa");
-	SDL_Rect colision = { rect.x, rect.y + 10, 50, 10 };
+	SDL_Rect colision = { rect.x-15, rect.y-5, 60, 60 };
 	newComponente(new ColisionBox(this, colision, false), "ColisionBox");
 	newComponente(new TrampaComponente(this), "TrampaComponente");
 

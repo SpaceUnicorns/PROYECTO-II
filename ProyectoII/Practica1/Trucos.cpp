@@ -88,6 +88,7 @@ void Trucos::desbloquea(){
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
+		font.x = pJuego->getScreenWidth() / 2 - 80; font.y = pJuego->getScreenHeight() / 2 - 30; font.w = 80; font.h = 100;
 		level->setMode(1);
 
 	}
@@ -96,6 +97,7 @@ void Trucos::desbloquea(){
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
+		font.x = pJuego->getScreenWidth() / 2 - 80; font.y = pJuego->getScreenHeight() / 2 - 30; font.w = 80; font.h = 100;
 		level->swVisible();
 	}
 	else if (codigo == "ababa"){
@@ -103,6 +105,7 @@ void Trucos::desbloquea(){
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
+		font.x = pJuego->getScreenWidth() / 2 - 80; font.y = pJuego->getScreenHeight() / 2 - 30; font.w = 80; font.h = 100;
 		level->getCazador()->setVelocity(2,1);
 		level->getRecolector()->setVelocity(2, 1);
 	}
@@ -111,6 +114,7 @@ void Trucos::desbloquea(){
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
+		font.x = pJuego->getScreenWidth() / 2 - 80; font.y = pJuego->getScreenHeight() / 2 - 30; font.w = 80; font.h = 100;
 		level->getCazador()->setVelocity(3, 1.5);
 		level->getRecolector()->setVelocity(3, 1.5);
 
@@ -120,6 +124,7 @@ void Trucos::desbloquea(){
 		reproduceFx("OpcionMenuCrafteo", -100, 0, 0);
 		codigo = "";
 		renderCodigo = " ";
+		font.x = pJuego->getScreenWidth() / 2 - 80; font.y = pJuego->getScreenHeight() / 2 - 30; font.w = 80; font.h = 100;
 		level->getCazador()->setVelocity(4, 2);
 		level->getRecolector()->setVelocity(4, 2);
 	}
