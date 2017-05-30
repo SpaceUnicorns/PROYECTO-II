@@ -35,5 +35,6 @@ protected:
 	int framerate;
 	int contFollowSolo;
 	ColisionBox * pCBox;
-	bool reFollow;
+	bool reFollow, redir;
+	int contRedir;
 };
