@@ -3,7 +3,6 @@
 
 Pozo::Pozo(juegoPG * juego, int px, int py) : ObjetoPG(juego, px, py)
 {
-	interactuable = true;
 	et = TPozo;
 	rect.w = 50;
 	rect.h = 50;

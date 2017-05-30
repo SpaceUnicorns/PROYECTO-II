@@ -104,7 +104,7 @@ void TextCb::draw(){
 	}
 }
 void TextCb::callback(){
-	std::cout << "TRIGGERED\n";
+
 	if (!reacciona) estadoAux = static_cast<EstadoPG*>(pObj->getPJuego()->estados.top());
 	int indice = pObj->getIndice();
 	state = dynamic_cast<Nivel1*>(estadoAux)->getTriggerInfo()[pObj->getIndice()];

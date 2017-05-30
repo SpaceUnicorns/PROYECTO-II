@@ -94,7 +94,7 @@ void Nivel2::update(int delta){
 		}
 		else {
 			Mochila * auxM = static_cast<Mochila*>(pRecolector->dameComponente("Mochila"));
-			if (pJuego->input.e && auxM->findItem("Cuerda")){
+			if (pJuego->input.enter && auxM->findItem("Cuerda")){
 				auxM->removeItem("Cuerda", 1);
 				saveFile();
 				std::ofstream f;
