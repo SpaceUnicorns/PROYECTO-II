@@ -295,9 +295,9 @@ void EstadoPG::reproduceAmb(std::string amb, bool fade){
 				camb2->addFadePoint(parentclock, 0.0f);
 				camb2->addFadePoint(parentclock + 4096, 1.0f);
 			}
-			camb1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
+		/*	camb1->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
 			reverbUnit->addInput(channelHead, &reverbConnectionamb1, FMOD_DSPCONNECTION_TYPE_SEND);
-			reverbConnectionamb1->setMix(0.10f);
+			reverbConnectionamb1->setMix(0.10f);*/
 			cAmb = 2;
 		}
 
@@ -310,9 +310,9 @@ void EstadoPG::reproduceAmb(std::string amb, bool fade){
 				camb1->addFadePoint(parentclock, 0.0f);
 				camb1->addFadePoint(parentclock + 4096, 1.0f);
 			}
-			camb2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
-			reverbUnit->addInput(channelHead, &reverbConnectionamb1, FMOD_DSPCONNECTION_TYPE_SEND);
-			reverbConnectionamb1->setMix(0.10f);
+		/*	camb2->getDSP(FMOD_CHANNELCONTROL_DSP_HEAD, &channelHead);
+			reverbUnit->addInput(channelHead, &reverbConnectionamb2, FMOD_DSPCONNECTION_TYPE_SEND);
+			reverbConnectionamb2->setMix(0.10f);*/
 			cAmb = 1;
 		}
 	}

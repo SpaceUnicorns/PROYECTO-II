@@ -3,7 +3,7 @@
 #include "MenuPG.h"
 #include "TextCb.h"
 
-Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, objetos, posRec, posCaz, act,"../sounds/reverb/ReverbCueva.wav", firstT)
+Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool firstT) : Nivel1(jug, map, " ", posRec, posCaz, act,"../sounds/reverb/ReverbCueva.wav", firstT)
 {
 	level = "Nivel3";
 	firsTime = true;
@@ -27,8 +27,7 @@ Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	rectZonaOscura.h = 1940; rectZonaOscura.w = 1900;
 	rectZonaOscura.x = 3808; rectZonaOscura.y = 2114;
 	vecZonasOscuras.push_back(rectZonaOscura);
-	/*Arbol , 1767 , 853
-	Arbol , 4951 , 1963*/
+	
 	rectZonaOscura.h = 2340; rectZonaOscura.w = 1500;
 	rectZonaOscura.x = 1000; rectZonaOscura.y = 53;
 	vecZonasOscuras.push_back(rectZonaOscura);
@@ -49,6 +48,7 @@ Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	pCazador->setTerreno(2);
 	pRecolector->setTerreno(2);
 	for (ObjetoJuego* o : vecObj) static_cast<ObjetoPG*>(o)->setTerreno(2);
+
 }
 
 void Nivel3::cargaTriggers(){

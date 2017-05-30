@@ -45,6 +45,7 @@ public:
 		while (rec.x == caz.x) caz.x += 50;
 
 		pJuego->getEstadoActual()->paraMusica("", true);
+		pJuego->getEstadoActual()->paraAmb("", true);
 		EstadoJuego* borrar = pJuego->estados.top();
 		pJuego->estados.pop();
 		if (level == "Nivel1"){
