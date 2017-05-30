@@ -112,6 +112,8 @@ protected:
 	FMOD::DSPConnection* reverbConnectionfx1, *reverbConnectionfx2, *reverbConnectionfx3, *reverbConnectionfx4, *reverbConnectionamb1, *reverbConnectionamb2;
 	int cMusic;
 	int cAmb;
+	std::vector<FMOD::Channel*> cfx;
+	std::vector<FMOD::DSPConnection*> reverbConnectionfx;
 	FMOD::Channel   *cfx1 = 0, *cfx2 = 0, *cfx3 = 0, *cfx4 = 0, *camb1 = 0, *camb2 = 0, *cmusic1 = 0, *cmusic2 = 0;
 	std::vector<ObjetoJuego*> vecObj;
 	std::vector<ObjetoJuego*> vecBorrar;
