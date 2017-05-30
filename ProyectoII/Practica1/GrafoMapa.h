@@ -255,7 +255,7 @@ public:
 					if (mapa[(y -2)*niveles[0] + x] == 'X')
 						nodeCost = { XYToNode(x, y - 2), 99 };
 					else
-						nodeCost = { XYToNode(x, y - 2), 0.1f };
+						nodeCost = { XYToNode(x, y - 2), 0.05f };
 					adjacent->push_back(nodeCost);
 				}
 				break;
@@ -265,7 +265,7 @@ public:
 						if (mapa[(y - 1)*niveles[0] + x + 1] == 'X')
 							nodeCost = { XYToNode(x + 1, y - 1), 99 };
 						else
-							nodeCost = { XYToNode(x + 1, y - 1), 0.07f };
+							nodeCost = { XYToNode(x + 1, y - 1), 0.04f };
 						adjacent->push_back(nodeCost);
 					}
 					else {
@@ -273,7 +273,7 @@ public:
 							if (mapa[(y - 1)*niveles[0] + x] == 'X')
 								nodeCost = { XYToNode(x, y - 1), 99 };
 							else
-								nodeCost = { XYToNode(x, y - 1), 0.07f };
+								nodeCost = { XYToNode(x, y - 1), 0.04f };
 						adjacent->push_back(nodeCost);
 						}
 					}
@@ -294,7 +294,7 @@ public:
 						if (mapa[(y + 1)*niveles[0] + x + 1] == 'X')
 							nodeCost = { XYToNode(x + 1, y + 1), 99 };
 						else
-							nodeCost = { XYToNode(x + 1, y + 1), 0.07f };
+							nodeCost = { XYToNode(x + 1, y + 1), 0.04f };
 						adjacent->push_back(nodeCost);
 					}
 					else{
@@ -302,7 +302,7 @@ public:
 							if (mapa[(y + 1)*niveles[0] + x] == 'X')
 								nodeCost = { XYToNode(x, y + 1), 99 };
 							else
-								nodeCost = { XYToNode(x, y + 1), 0.07f };
+								nodeCost = { XYToNode(x, y + 1), 0.04f };
 							adjacent->push_back(nodeCost);
 						}
 					}
@@ -313,7 +313,7 @@ public:
 					if (mapa[(y + 2)*niveles[0] + x] == 'X')
 						nodeCost = { XYToNode(x, y + 2), 99 };
 					else
-						nodeCost = { XYToNode(x, y + 2), 0.1f };
+						nodeCost = { XYToNode(x, y + 2), 0.05f };
 					adjacent->push_back(nodeCost);
 				}
 				break;
@@ -323,7 +323,7 @@ public:
 						if (mapa[(y + 1)*niveles[0] + x] == 'X')
 							nodeCost = { XYToNode(x, y + 1), 99 };
 						else
-							nodeCost = { XYToNode(x, y + 1), 0.07f };
+							nodeCost = { XYToNode(x, y + 1), 0.04f };
 						adjacent->push_back(nodeCost);
 					}
 					else {
@@ -331,7 +331,7 @@ public:
 							if (mapa[(y + 1)*niveles[0] + x] == 'X')
 								nodeCost = { XYToNode(x - 1, y + 1), 99 };
 							else
-								nodeCost = { XYToNode(x - 1, y + 1), 0.07f };
+								nodeCost = { XYToNode(x - 1, y + 1), 0.04f };
 							adjacent->push_back(nodeCost);
 						}
 					}
@@ -352,7 +352,7 @@ public:
 						if (mapa[(y - 1)*niveles[0] + x] == 'X')
 							nodeCost = { XYToNode(x, y - 1), 99 };
 						else
-							nodeCost = { XYToNode(x, y - 1), 0.07f };
+							nodeCost = { XYToNode(x, y - 1), 0.04f };
 						adjacent->push_back(nodeCost);
 					}
 					else{
@@ -360,7 +360,7 @@ public:
 							if (mapa[(y - 1)*niveles[0] + x - 1] == 'X')
 								nodeCost = { XYToNode(x - 1, y - 1), 99 };
 							else
-								nodeCost = { XYToNode(x - 1, y - 1), 0.07f };
+								nodeCost = { XYToNode(x - 1, y - 1), 0.04f };
 							adjacent->push_back(nodeCost);
 						}
 					}
