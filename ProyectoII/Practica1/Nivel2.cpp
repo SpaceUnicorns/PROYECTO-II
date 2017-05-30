@@ -116,9 +116,3 @@ void Nivel2::callback(bool cabania){
 	else change = true;
 	
 }
-
-void Nivel2::onKeyUp(char k) {
-	if (k != '1') Nivel1::onKeyUp(k);
-	else 	std::cout << "X: " << pRecolector->getAbsRect().x << ", Y: " << pRecolector->getAbsRect().y << "\n";
-
-}
