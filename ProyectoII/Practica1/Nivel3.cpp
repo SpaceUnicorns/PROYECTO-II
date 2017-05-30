@@ -45,6 +45,10 @@ Nivel3::Nivel3(juegoPG*jug, std::string map, std::string objetos, Punto posRec, 
 	rectZonaOscura.x = 5503; rectZonaOscura.y = 1716;
 	vecZonasOscuras.push_back(rectZonaOscura);
 	
+
+	pCazador->setTerreno(2);
+	pRecolector->setTerreno(2);
+	for (ObjetoJuego* o : vecObj) static_cast<ObjetoPG*>(o)->setTerreno(2);
 }
 
 void Nivel3::cargaTriggers(){

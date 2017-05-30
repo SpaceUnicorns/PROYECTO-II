@@ -23,6 +23,7 @@ Lobo::Lobo(juegoPG *juego, Cazador* hunter, Recolector* collector, GrafoMapa* ma
 	newComponente(new Deteccion(this,500),"Deteccion");
 	newComponente(new follow(this, hunter, mapa, false), "follow");
 	followEnem = dynamic_cast<follow*>(mapaComponentes.at("follow"));
+	setEstado(Quieto);
 }
 
 

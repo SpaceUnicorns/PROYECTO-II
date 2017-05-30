@@ -1,6 +1,5 @@
 #include "Deteccion.h"
 
-
 Deteccion::Deteccion(ObjetoJuego* entidad, float radio) :Componente(entidad), radio(radio)
 {
 	enemy = dynamic_cast<Enemigo*>(entidad);
@@ -15,6 +14,8 @@ Deteccion::Deteccion(ObjetoJuego* entidad, float radio) :Componente(entidad), ra
 	direccionAux = nullptr;
 	info = nullptr;
 	vagar = contVagar = 0;
+	//srand(1);
+	
 }
 
 
@@ -26,9 +27,11 @@ Deteccion::~Deteccion()
 void Deteccion::quieto(){
 	if (vagar > 0 && contVagar < 3000){
 		Punto p = { 0, 0 };
+		int colAux;
 		if (vagar == 1){
 			p.x -= 2;
-			if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4){
 				enemy->setAbsRect(-2 * delta / 16, 0);
 				enemy->setRect(-2 * delta / 16, 0);
 				dirAtaque = 6;
@@ -58,12 +61,13 @@ void Deteccion::quieto(){
 							enemy->getPJuego()->getEstadoActual()->reproduceFx("LoboPiedra3", enemy->getRect().x, enemy->getRect().y, 0);
 					}
 				}
-				contPasos+=delta;
+				contPasos += delta;
 			}
 		}
 		else if (vagar == 2){
 			p.x += 2;
-			if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4){
 				enemy->setAbsRect(2 * delta / 16, 0);
 				enemy->setRect(2 * delta / 16, 0);
 				dirAtaque = 2;
@@ -98,7 +102,8 @@ void Deteccion::quieto(){
 		}
 		else if (vagar == 3){
 			p.y -= 1;
-			if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4){
 				enemy->setAbsRect(0, -1 * delta / 16);
 				enemy->setRect(0, -1 * delta / 16);
 				dirAtaque = 0;
@@ -133,7 +138,8 @@ void Deteccion::quieto(){
 		}
 		else if (vagar == 4) {
 			p.y += 1;
-			if (static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info) != 1){
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4){
 				enemy->setAbsRect(0, 1 * delta / 16);
 				enemy->setRect(0, 1 * delta / 16);
 				dirAtaque = 4;
@@ -171,13 +177,15 @@ void Deteccion::quieto(){
 		if (contVagar >= 3000){ vagar = 0; contVagar = 0; }
 	}
 	if (cont > 5000){
-		rnd = (rand() % 11) + 80;
+		rnd = rand() % 11;
+		rnd += 80;
 		if (rnd >=80 && rnd < 88){
 			direccionAux = nullptr;
 			if (rnd >=80 && rnd <82){ if (enemy->getAbsRect().x > 150)vagar = 1; }
 			else if (rnd >81 && rnd <84){ vagar = 2; }
 			else if (rnd >83 && rnd <86){ if (enemy->getAbsRect().y > 150)vagar = 3; }
 			else if (rnd >85 && rnd < 88){ vagar = 4; }
+			contVagar = 0;
 		}
 		if (rnd >= 88){
 			float distRec;
@@ -438,6 +446,7 @@ void Deteccion::muerto(){}
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 void Deteccion::update(int delta) {
+
 	this->delta = delta;
 	cont += delta;
 	contVagar += delta;

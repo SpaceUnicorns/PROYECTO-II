@@ -239,7 +239,7 @@ void follow::lateUpdate(int delta){
 			case 0:
 				nextPos.y = -2 * delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
-				if (colAux != 1 && colAux != 5 && colAux != 4){
+				if (colAux != 1 && colAux != 4){
 					pObj->setRect(0, -2 * delta / 16);
 					pObj->setAbsRect(0, -2 * delta / 16);
 					paso -= delta / 4;
@@ -256,7 +256,7 @@ void follow::lateUpdate(int delta){
 			case 1:
 				nextPos.x = 2 * delta / 16; nextPos.y = -1 * delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
-				if (colAux != 1 && colAux != 5 && colAux != 4){
+				if (colAux != 1 && colAux != 4){
 					pObj->setRect(2 * delta / 16, -1 * delta / 16);
 					pObj->setAbsRect(2 * delta / 16, -1 * delta / 16);
 					paso -= delta / 7.2;
@@ -273,7 +273,7 @@ void follow::lateUpdate(int delta){
 			case 2:
 				nextPos.x = 2 * delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
-				if (colAux != 1 && colAux != 5 && colAux != 4){
+				if (colAux != 1 && colAux != 4){
 					pObj->setRect(2 * delta / 16, 0);
 					pObj->setAbsRect(2 * delta / 16, 0);
 					paso -= delta / 8;
@@ -291,7 +291,7 @@ void follow::lateUpdate(int delta){
 				nextPos.x = 2 * delta / 16; nextPos.y = 1 * delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
 
-				if (colAux != 1 && colAux != 5 && colAux != 4){
+				if (colAux != 1 && colAux != 4){
 					pObj->setRect(2 * delta / 16, 1 * delta / 16);
 					pObj->setAbsRect(2 * delta / 16, 1 * delta / 16);
 					paso -= delta / 7.2;
@@ -309,7 +309,7 @@ void follow::lateUpdate(int delta){
 				nextPos.y = 2 * delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
 
-				if (colAux != 1 && colAux != 5 && colAux != 4){
+				if (colAux != 1 && colAux != 4){
 					pObj->setRect(0, 2 * delta / 16);
 					pObj->setAbsRect(0, 2 * delta / 16);
 					paso -= delta / 4;
@@ -327,7 +327,7 @@ void follow::lateUpdate(int delta){
 				nextPos.x = -2 * delta / 16; nextPos.y = 1 * delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
 
-				if (colAux != 1 && colAux != 5 && colAux != 4){
+				if (colAux != 1 && colAux != 4){
 					pObj->setRect(-2 * delta / 16, 1 * delta / 16);
 					pObj->setAbsRect(-2 * delta / 16, 1 * delta / 16);
 					paso -= delta / 7.2;
@@ -345,7 +345,7 @@ void follow::lateUpdate(int delta){
 				nextPos.x = -2 * delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
 
-				if (colAux != 1 && colAux != 5 && colAux != 4){
+				if (colAux != 1 && colAux != 4){
 					pObj->setRect(-2 * delta / 16, 0);
 					pObj->setAbsRect(-2 * delta / 16, 0);
 					paso -= delta / 8;
@@ -363,7 +363,7 @@ void follow::lateUpdate(int delta){
 				nextPos.x = -2 * delta / 16; nextPos.y = -1 * delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
 
-				if (colAux != 1 && colAux != 5 && colAux != 4){
+				if (colAux != 1 && colAux != 4){
 					pObj->setRect(-2 * delta / 16, -1 * delta / 16);
 					pObj->setAbsRect(-2 * delta / 16, -1 * delta / 16);
 					paso -= delta / 7.2;
@@ -444,7 +444,7 @@ void follow::lateUpdate(int delta){
 			}
 		}
 		colAux = pCBox->isColiding(nextPos, info);
-		if (colAux != 1 && colAux != 5 && colAux != 4){
+		if (colAux != 1 && colAux != 4){
 			pObj->setRect(nextPos.x, nextPos.y);
 			pObj->setAbsRect(nextPos.x, nextPos.y);
 		}

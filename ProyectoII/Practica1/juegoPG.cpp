@@ -13,6 +13,7 @@ using namespace std; // Para cualificar automaticamente con std:: los identifica
 #include <Windows.h>
 #include <shlobj.h>
 #include "Muerte.h"
+#include <time.h>
 
 juegoPG::juegoPG()
 {
@@ -21,7 +22,7 @@ juegoPG::juegoPG()
 	HRESULT result = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
 	path = (string)my_documents;
 	muerto = false;
-	srand(1);
+	srand(time(0));
 	
 	pWin = nullptr;  	//The window we'll be rendering to
 	pRender = nullptr;   //The renderer by the window
