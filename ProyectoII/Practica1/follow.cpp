@@ -235,7 +235,7 @@ void follow::lateUpdate(int delta){
 			dir = direccion[cont];
 			switch (direccion[cont])
 			{
-				//no esta muy fino y a veces se sale si vemos k se va a salir del follow le movemo en direccion contraria y recalculamos
+				//no esta muy fino y a veces se sale si vemos que se va a salir del follow le movemos en direccion contraria y recalculamos
 			case 0:
 				nextPos.y = -2 * delta / 16;
 				colAux = pCBox->isColiding(nextPos, info);
