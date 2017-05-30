@@ -394,6 +394,11 @@ void Nivel1::update(int delta){
 	}
 	if (changeCabania){
 		
+		follow* auxF = static_cast<follow*>(pCazador->dameComponente("follow"));
+		auxF->clearFollow();
+		auxF = static_cast<follow*>(pRecolector->dameComponente("follow"));
+		auxF->clearFollow();
+
 		ObjetoPG* auxPlayer;
 		if (activePlayer == "R"){
 			int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;

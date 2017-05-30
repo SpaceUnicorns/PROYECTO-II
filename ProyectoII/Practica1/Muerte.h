@@ -42,7 +42,7 @@ public:
 		f.close();
 
 
-		if (rec.x == caz.x) caz.x += 50;
+		while (rec.x == caz.x) caz.x += 50;
 
 		pJuego->getEstadoActual()->paraMusica("", true);
 		EstadoJuego* borrar = pJuego->estados.top();
