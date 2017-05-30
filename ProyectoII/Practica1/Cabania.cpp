@@ -239,7 +239,7 @@ void Cabania::onKeyUp(char k){
 	if (k == 'S'){
 		Nivel1::fadeOut(40);
 		bool recogido = true;
-
+		paraMusica("", true);
 		if (vecObj.size() != 2) recogido = false;
 		else saveMochila();
 		EstadoJuego* borrar = pJuego->estados.top();

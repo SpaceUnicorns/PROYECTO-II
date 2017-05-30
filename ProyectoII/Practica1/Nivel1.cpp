@@ -393,7 +393,9 @@ void Nivel1::update(int delta){
 		saveFile();
 	}
 	if (changeCabania){
-		
+		paraMusica("", true);
+		paraAmb("", true);
+
 		follow* auxF = static_cast<follow*>(pCazador->dameComponente("follow"));
 		auxF->clearFollow();
 		auxF = static_cast<follow*>(pRecolector->dameComponente("follow"));
