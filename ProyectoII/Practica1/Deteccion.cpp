@@ -31,7 +31,7 @@ void Deteccion::quieto(){
 		if (vagar == 1){
 			p.x -= 2;
 			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				enemy->setAbsRect(-2 * delta / 16, 0);
 				enemy->setRect(-2 * delta / 16, 0);
 				dirAtaque = 6;
@@ -67,7 +67,7 @@ void Deteccion::quieto(){
 		else if (vagar == 2){
 			p.x += 2;
 			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				enemy->setAbsRect(2 * delta / 16, 0);
 				enemy->setRect(2 * delta / 16, 0);
 				dirAtaque = 2;
@@ -103,7 +103,7 @@ void Deteccion::quieto(){
 		else if (vagar == 3){
 			p.y -= 1;
 			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux !=5 ){
 				enemy->setAbsRect(0, -1 * delta / 16);
 				enemy->setRect(0, -1 * delta / 16);
 				dirAtaque = 0;
@@ -139,7 +139,7 @@ void Deteccion::quieto(){
 		else if (vagar == 4) {
 			p.y += 1;
 			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
-			if (colAux != 1 && colAux != 4){
+			if (colAux != 1 && colAux != 4 && colAux != 5){
 				enemy->setAbsRect(0, 1 * delta / 16);
 				enemy->setRect(0, 1 * delta / 16);
 				dirAtaque = 4;
@@ -290,70 +290,105 @@ void Deteccion::atacando(){
 		enemy->clearFollow();
 	}
 	if (cont > 1600) { enemy->setEstado(PostAtaque); cont = 0; }
+	int colAux;
+	ObjetoPG* info;
+	Punto p = { 0, 0 };
 	switch (dirAtaque)
 	{
 	case 4:
 		if (cont < 1600){
-			enemy->changeAnimV(4);
-			enemy->setAbsRect(0, -2 * delta / 16);
-			enemy->setRect(0, -2 * delta / 16);
-			ultAtaque = 0;
+			p.y = -2*delta/16;
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4 && colAux != 5){
+				enemy->changeAnimV(4);
+				enemy->setAbsRect(0, -2 * delta / 16);
+				enemy->setRect(0, -2 * delta / 16);
+				ultAtaque = 0;
+			}
 		}
 		break;
 	case 5:
 		if (cont < 1600){
-			enemy->changeAnimV(0);
-			enemy->setAbsRect(2 * delta / 16, -1 * delta / 16);
-			enemy->setRect(2 * delta / 16, -1 * delta / 16);
-			ultAtaque = 1;
+			p.x = 2 * delta / 16; p.y = -1 * delta / 16;
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4 && colAux != 5){
+				enemy->changeAnimV(0);
+				enemy->setAbsRect(2 * delta / 16, -1 * delta / 16);
+				enemy->setRect(2 * delta / 16, -1 * delta / 16);
+				ultAtaque = 1;
+			}
 		}
 		break;
 	case 6:
 		if (cont < 1600){
-			enemy->changeAnimV(6);
-			enemy->setAbsRect(2 * delta / 16, 0);
-			enemy->setRect(2 * delta / 16, 0);
-			ultAtaque = 2;
+			p.x = 2 * delta / 16;
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4 && colAux != 5){
+				enemy->changeAnimV(6);
+				enemy->setAbsRect(2 * delta / 16, 0);
+				enemy->setRect(2 * delta / 16, 0);
+				ultAtaque = 2;
+			}
 		}
 		break;
 	case 7:
 		if (cont < 1600){
-			enemy->changeAnimV(3);
-			enemy->setAbsRect(2 * delta / 16, 1 * delta / 16);
-			enemy->setRect(2 * delta / 16, 1 * delta / 16);
-			ultAtaque = 3;
+			p.x = 2 * delta / 16; p.y = 1 * delta / 16;
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4 && colAux != 5){
+				enemy->changeAnimV(3);
+				enemy->setAbsRect(2 * delta / 16, 1 * delta / 16);
+				enemy->setRect(2 * delta / 16, 1 * delta / 16);
+				ultAtaque = 3;
+			}
 		}
 		break;
 	case 0:
 		if (cont < 1600){
-			enemy->changeAnimV(5);
-			enemy->setAbsRect(0, 2 * delta / 16);
-			enemy->setRect(0, 2 * delta / 16);
-			ultAtaque = 4;
+			p.y = 2 * delta / 16;
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4 && colAux != 5){
+				enemy->changeAnimV(5);
+				enemy->setAbsRect(0, 2 * delta / 16);
+				enemy->setRect(0, 2 * delta / 16);
+				ultAtaque = 4;
+			}
 		}
 		break;
 	case 1:
 		if (cont < 1600){
-			enemy->changeAnimV(7);
-			enemy->setAbsRect(-2 * delta / 16, 1 * delta / 16);
-			enemy->setRect(-2 * delta / 16, 1 * delta / 16);
-			ultAtaque = 5;
+			p.x = -2 * delta / 16; p.y = 1 * delta / 16;
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4 && colAux != 5){
+				enemy->changeAnimV(7);
+				enemy->setAbsRect(-2 * delta / 16, 1 * delta / 16);
+				enemy->setRect(-2 * delta / 16, 1 * delta / 16);
+				ultAtaque = 5;
+			}
 		}
 		break;
 	case 2:
 		if (cont < 1600){
-			enemy->changeAnimV(1);
-			enemy->setAbsRect(-2 * delta / 16, 0);
-			enemy->setRect(-2 * delta / 16, 0);
-			ultAtaque = 6;
+			p.x = -2 * delta / 16;
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4 && colAux != 5){
+				enemy->changeAnimV(1);
+				enemy->setAbsRect(-2 * delta / 16, 0);
+				enemy->setRect(-2 * delta / 16, 0);
+				ultAtaque = 6;
+			}
 		}
 		break;
 	case 3:
 		if (cont < 1600){
-			enemy->changeAnimV(2);
-			enemy->setAbsRect(-2 * delta / 16, -1 * delta / 16);
-			enemy->setRect(-2 * delta / 16, -1 * delta / 16);
-			ultAtaque = 7;
+			p.x = -2 * delta / 16; p.y = -1 * delta / 16;
+			colAux = static_cast<ColisionBox*>(enemy->dameComponente("ColisionBox"))->isColiding(p, info);
+			if (colAux != 1 && colAux != 4 && colAux != 5){
+				enemy->changeAnimV(2);
+				enemy->setAbsRect(-2 * delta / 16, -1 * delta / 16);
+				enemy->setRect(-2 * delta / 16, -1 * delta / 16);
+				ultAtaque = 7;
+			}
 		}
 		break;
 	}

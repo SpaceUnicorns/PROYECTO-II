@@ -45,6 +45,8 @@ int ColisionBox::isColiding(Punto const & P, ObjetoPG* &info){
 						col = 4;
 					else if (ob->enemigo)
 						col = 5;
+					else if (ob->nombre[1] == "Zhenia" || ob->nombre[1] == "Liov")
+						col = 6;
 					else
 					col = 1;
 				};
