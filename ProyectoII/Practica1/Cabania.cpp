@@ -7,6 +7,7 @@
 #include "TrampaCerrada.h"
 Cabania::Cabania(juegoPG*jug, std::string map, std::string objetos, Punto posRec, Punto posCaz, std::string act, bool visited, int obj) : Nivel1(jug, map, objetos, posRec, posCaz, act, "../sounds/reverb/ReverbCabana2.wav")
 {
+	level = "Cabania";
 	firsTime = true;
 	change = false;
 	rectZonaOscura.w = 0; rectZonaOscura.h = 0;
@@ -130,27 +131,6 @@ void Cabania::draw(){
 		rectZonaOscura.y -= camara.y;
 
 		setCamara(0, 0); //Se reinicia el offset a 0
-	/*	int x = rand() % 100;
-		if (x >= 60){
-			animNieve1.x--;
-			animNieve1.y--;
-		}
-		if (animNieve1.x <= 0)
-			animNieve1.x = camara.w;
-		if (animNieve1.y <= 0)
-			animNieve1.y = camara.h;
-
-		if (x >= 70){
-			animNieve2.x--;
-			animNieve2.y--;
-		}
-		if (animNieve2.x <= 0)
-			animNieve2.x = camara.w;
-		if (animNieve2.y <= 0)
-			animNieve2.y = camara.h;*/
-
-	//	pJuego->getTextura(TNieve1)->draw(pJuego->getRender(), animNieve1, camara);
-	//	pJuego->getTextura(TNieve2)->draw(pJuego->getRender(), animNieve2, camara);
 
 		pJuego->getTextura(TLuz)->draw(pJuego->getRender(), pJuego->getNieblaRect(), camara);
 

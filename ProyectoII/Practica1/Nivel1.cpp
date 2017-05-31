@@ -390,7 +390,7 @@ void Nivel1::update(int delta){
 	EstadoPG::update(delta);
 	if (firstUpdate){
 		firstUpdate = false;
-		saveFile();
+		if (level != "Cabania")saveFile();
 	}
 	if (changeCabania){
 		paraMusica("", true);
@@ -405,17 +405,30 @@ void Nivel1::update(int delta){
 		if (activePlayer == "R"){
 			int x = pRecolector->getAbsRect().x - pCazador->getAbsRect().x;
 			int y = pRecolector->getAbsRect().y - pCazador->getAbsRect().y;
-			pCazador->setRect(x + 20, y + 20);
-			pCazador->setAbsRect(x + 20, y + 20);
-			pCazador->setColRect(x + 20, y + 20);
+			
+			pCazador->setRect(x - 40, y + 40);
+			pCazador->setAbsRect(x - 40, y + 40);
+			pCazador->setColRect(x - 40, y+40);
+
+
+			pRecolector->setRect(- 10, 0);
+			pRecolector->setAbsRect(- 10, 0);
+			pRecolector->setColRect(- 10, 0);
+
 			auxPlayer = pRecolector;
 		}
 		else {
 			int x = pCazador->getAbsRect().x - pRecolector->getAbsRect().x;
 			int y = pCazador->getAbsRect().y - pRecolector->getAbsRect().y;
-			pRecolector->setRect(x + 20, y + 20);
-			pRecolector->setAbsRect(x + 20, y + 20);
-			pRecolector->setColRect(x + 20, y + 20);
+
+			pRecolector->setRect(x - 40, y + 40);
+			pRecolector->setAbsRect(x - 40, y + 40);
+			pRecolector->setColRect(x - 40, y + 40);
+
+			pCazador->setRect(- 10, 0);
+			pCazador->setAbsRect(- 10, 0);
+			pCazador->setColRect(- 10, 0);
+
 			auxPlayer = pCazador;
 		}
 
