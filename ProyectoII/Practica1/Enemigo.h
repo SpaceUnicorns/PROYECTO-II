@@ -41,13 +41,18 @@ public:
 	int getLife(){ return life; }
 	void setLife(int x){
 		life += x;
-		if (life < 0) 
+		if (life < 0){
 			life = 0;
+			//deleteComponente("ColisionBox");
+			dibuja = false;
+		}
+		
 	}
 	int getDir(){ return followEnem->getDirection(); }
 	ObjetoPG* getCasita(){ return casita; }
 
 protected:
+	bool dibuja;
 	int life;
 	void dameUnHogar();
 	EstadoEnemigo estado;

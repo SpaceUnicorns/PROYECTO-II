@@ -31,7 +31,10 @@ Lobo::~Lobo()
 {
 }
 
-void Lobo::setEstado(EstadoEnemigo est){ estado = est; static_cast<Deteccion*>(dameComponente("Deteccion"))->cont = 0; }
+void Lobo::setEstado(EstadoEnemigo est){ 
+	
+	estado = est; static_cast<Deteccion*>(dameComponente("Deteccion"))->cont = 0; 
+}
 /*
 void Lobo::update() {
 	ObjetoPG::update();
@@ -43,6 +46,6 @@ void Lobo::draw(){ //BORRAR CUANDO NO SEA NECESARIO VER EL BOX COLLIDER;!!!!!!!!
 	aux = (dynamic_cast<EstadoPG*>(pJuego->estados.top())->getCamara());
 	rect.x -= aux.x;
 	rect.y -= aux.y;
-	pJuego->getTextura(et)->draw(pJuego->getRender(), anim, rect, alpha);
+	if(dibuja)pJuego->getTextura(et)->draw(pJuego->getRender(), anim, rect, alpha);
 	static_cast<ColisionBox*>(mapaComponentes.at("ColisionBox"))->draw();
 }

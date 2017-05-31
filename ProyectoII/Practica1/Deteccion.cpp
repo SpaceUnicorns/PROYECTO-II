@@ -467,7 +467,7 @@ void Deteccion::atrapado(){
 void Deteccion::herido(){		
 	//Animacion Herido
 	enemy->clearFollow();
-	if (enemy->getLife() < 0){
+	if (enemy->getLife() <= 0){
 		enemy->setEstado(Muerto);
 		std::cout << "muerto\n";
 		//enemy->deleteComponente("ColisionBox");
@@ -477,7 +477,9 @@ void Deteccion::herido(){
 		enemy->setEstado(Moviendo);
 	}
 }
-void Deteccion::muerto(){}
+void Deteccion::muerto(){
+//	std::cout << "muerto \n";
+}
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------
 void Deteccion::update(int delta) {
@@ -499,7 +501,7 @@ void Deteccion::update(int delta) {
 		volviendo();
 		break;
 	case Atacando:
-		atacando();
+	//	atacando();
 		break;
 	case Atrapado:
 		atrapado();

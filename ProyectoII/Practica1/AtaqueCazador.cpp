@@ -74,6 +74,9 @@ void AtaqueCazador::update(int delta){
 						equipo->removeEquipo("Hacha"); 
 						axResistance = 10;
 					}
+
+
+					if (dynamic_cast<Lobo*>(info)->getLife() <= 0) pEstado->eraseVectObj(info);
 				}
 				pObj->getPJuego()->input.e = false;
 			}
